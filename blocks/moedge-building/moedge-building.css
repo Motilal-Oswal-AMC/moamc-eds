@@ -168,6 +168,9 @@
   margin: 0;
   padding: 0;
 }
+.moedge-building > div .moedge-build-sec4 {
+  display: none;
+}
 
 @media (width >= 900px) {
   .moedge-building {

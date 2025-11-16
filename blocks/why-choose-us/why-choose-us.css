@@ -1,10 +1,12 @@
 @import "../../../styles/fonts.css";
 .section.why-choose-us-container {
   margin-bottom: 0;
+  margin-top: 123px;
 }
 @media (max-width: 768px) {
   .section.why-choose-us-container {
     margin-bottom: 0;
+    margin-top: 40px;
     padding-bottom: 0;
   }
 }
@@ -33,7 +35,6 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
-  padding-top: 130px;
 }
 @media (max-width: 768px) {
   .section.why-choose-us-container .why-choose-us .why-choose-us-row1 {
@@ -130,10 +131,10 @@
 }
 @media (max-width: 768px) {
   .section.why-choose-us-container .why-choose-us .why-choose-us-row1 .why-choose-us-sec1 ul .choose-us-lists2 p {
-    font-size: var(--paragraph-medium-regular-size);
+    font-size: 16px;
     font-style: normal;
     font-weight: 400;
-    line-height: var(--paragraph-medium-regular-line-height);
+    line-height: 24px;
   }
 }
 .section.why-choose-us-container .why-choose-us .why-choose-us-row1 .why-choose-us-sec1 .why-choose-us-sub2 {

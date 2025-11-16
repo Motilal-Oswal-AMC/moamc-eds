@@ -43,6 +43,7 @@
             font-style: normal;
             font-weight: 600;
             line-height: 28px;
+            padding: 2px 0;
 
             @include media(mobile) {
                 margin-bottom: 16px;
@@ -154,12 +155,12 @@
             li {
                 min-width: 164px;
                 display: flex;
-                height: 44px;
+                height: 40px;
                 padding: var(--spacing-12);
                 justify-content: center;
                 align-items: center;
                 gap: var(--spacing-8);
-                border-radius: var(--border-radius-4);
+                border-radius: var(--border-radius-8);
                 background: var(--button-primary-default);
 
                 @include media(mobile) {
@@ -176,7 +177,7 @@
                     font-family: var(--body);
                     font-size: var(--body-medium-regular-size, 16px);
                     font-style: normal;
-                    font-weight: 400;
+                    font-weight: 500;
                     line-height: var(--body-medium-regular-line-height);
 
                     @include media(mobile) {
@@ -225,7 +226,7 @@
             font-weight: 600;
             line-height: var(--heading-h4-line-height, 40px);
             margin: 0;
-            margin-bottom: 20px;
+            margin-bottom: 40px;
 
             @include media (mobile) {
                 font-size: var(--sub-header-large-size);
@@ -293,10 +294,10 @@
     }
 
     >.default-content-wrapper:nth-child(3) {
-        padding: 40px 0;
+        // padding: 40px 0;
 
         >ul {
-            // padding: 0;
+            padding: 0;
 
             // li:nth-child(1) {
             //     background-color: transparent;
