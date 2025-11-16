@@ -922,5 +922,41 @@ if (block.closest('.previous-studies-tab')) {
         dropList.classList.remove('active');
       }
     });
+
+    const prevpage = block.closest('.previous-studies-tab');
+    [...prevpage.querySelectorAll('.prev-studies-wrapper .icon-share')].forEach((elemevent)=>{
+      const dsp = elemevent.parentElement.nextElementSibling;
+      if(dsp !== null){
+        dsp.style.display = 'none';
+      }
+      const eventvar =elemevent.parentElement;
+      eventvar.addEventListener('click', () => {
+        const dspblk = elemevent.parentElement.nextElementSibling;
+        if (dsp === null) {
+          return false;
+        }
+        if (dspblk.style.display === 'none' ) {
+          dspblk.style.display = 'block'
+        }else{
+          dspblk.style.display = 'none';
+        }
+      })
+    })
+    document.addEventListener('click', (event)=>{
+      if (!dropList.contains(event.target) && !selectedTab.contains(event.target)) {
+        dropList.classList.remove('active');
+      }
+      const nearest = event.target //.closest('.tabs-wrapper');
+      const icons = nearest.querySelector('.icon-share');
+      const iconsib = icons.parentElement.nextElementSibling;
+      if (!event.target.contains(icons) && !event.target.contains.contains(iconsib)) {
+        [...prevpage.querySelectorAll('.prev-studies-wrapper .icon-share')].forEach((elemevent)=>{
+          const element = elemevent.parentElement.nextElementSibling;
+          if (element !== null) {
+            element.style.display = 'none'; 
+          }
+        }); 
+      }
+    })
   }
 }

@@ -576,6 +576,16 @@
         "component": "text",
         "name": "id",
         "label": "Enter Section Id"
+      },
+      {
+        "component": "text",
+        "name": "tab-head-title",
+        "label": "Tab Head Title"
+      },
+      {
+        "component": "text",
+        "name": "tab-title",
+        "label": "Tab Title"
       }
     ]
   },

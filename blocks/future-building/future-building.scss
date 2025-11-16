@@ -635,9 +635,20 @@
     .library-btn {
         &1 {
             padding: 40px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+
+            @include media(desktop-sm) {
+                padding: 40px 16px;
+            }
 
             @include media(mobile) {
-                padding: 24px 16px 40px;
+                padding: 24px 16px var(--spacing-40);
+                flex-direction: column;
+                align-items: start;
+                gap: 40px;
             }
 
             h1,
@@ -661,6 +672,81 @@
                     line-height: var(--sub-header-large-line-height);
                 }
             }
+
+            .keyinvest-search {
+                position: relative;
+                min-width: 504px;
+                height: 44px;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                padding: var(--spacing-10) var(--spacing-8);
+                border-radius: var(--border-radius-6);
+                border: var(--border-width-01) solid var(--strokes-default);
+
+                @include media(mobile) {
+                    min-width: unset;
+                    width: 100%;
+                }
+
+                &::before {
+                    content: "";
+                    background: url("../../icons/search-icon-black.svg") center center no-repeat;
+                    width: 24px;
+                    height: 24px;
+                    display: block;
+                }
+
+                .keyinvest-label,
+                .keyinvest-inp {
+                    @include font-style(
+                        var(--body-medium-regular-size),
+                        var(--body-medium-regular-line-height),
+                        var(--text-body-2),
+                        400,
+                        var(--body)
+                    );
+
+                    @include media(mmobile) {
+                        font-size: var(--body-medium-regular-size);
+                        line-height: var(--body-medium-regular-line-height);
+                    }
+                }
+
+                .keyinvest-inp {
+                    width: 100%;
+                    border: none;
+                    outline: none;
+
+                    &:focus + label {
+                        top: 0;
+                        left: 25px;
+                        padding: 0 4px;
+                        background-color: var(--neutrals-white);
+
+                        @include font-style(
+                            var(--text-link-xsmall-size),
+                            var(--text-link-xsmall-line-height),
+                            var(--blue-1-800-primary),
+                            400,
+                            var(--body)
+                        );
+
+                        @include media(mobile) {
+                            font-size: var(--text-link-xsmall-size);
+                            line-height: var(--text-link-xsmall-line-height);
+                        }
+                    }
+                }
+
+                .keyinvest-label {
+                    position: absolute;
+                    left: 40px;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    transition: all 0.2s ease;
+                }
+            }
         }
 
         &2 {
@@ -669,32 +755,63 @@
             }
 
             .future-building {
+                margin: 0 0 62px;
+
+                @include media(mobile) {
+                    margin: 0 0 102px;
+                }
+
                 .swiper-wrapper {
                     flex-wrap: wrap;
                     gap: 16px;
+                    margin: 0 0 40px;
 
-                    @include media(mobile){
+                    @include media(mobile) {
                         gap: 0;
+                        margin: 0 0 16px;
                     }
 
                     .swiper-slide {
+                        display: flex;
+                        flex-direction: column;
+
+                        @include media(desktop-sm) {
+                            width: 32.223% !important;
+                        }
+
+                        @media screen and (width <= 1025px) {
+                            width: 31.88% !important;
+                        }
+
                         @include media(mobile) {
                             width: 100% !important;
                         }
 
                         &-cards-1 {
-                            a.button img {
-                                border-radius: 8px;
-                                opacity: unset;
+                            picture {
+                                width: 100%;
+                                line-height: 0;
+                                height: 100%;
+                                display: block;
+
+                                img {
+                                    border-radius: 8px;
+                                    opacity: unset;
+                                    width: 100%;
+                                    height: 100%;
+                                }
                             }
 
-                            &::after{
+                            &::after {
                                 content: unset;
                             }
                         }
 
                         &-cards-2 {
-                            padding: 24px 0;
+                            padding: var(--spacing-24) 0;
+                            display: flex;
+                            flex-direction: column;
+                            height: 100%;
 
                             .cards-listcards {
                                 &1 {
@@ -732,24 +849,120 @@
                                 }
 
                                 &3 {
-                                    @include font-style(
-                                        14px,
-                                        var(--text-link-small-line-height),
-                                        var(--text-text-link),
-                                        400,
-                                        var(--body)
-                                    );
-
-                                    text-decoration: underline;
-                                    text-underline-offset: 2.8px;
-                                    margin: 0;
+                                    margin: auto 0 0;
 
                                     @include media(mobile) {
-                                        font-size: var(--text-link-small-size);
-                                        line-height: var(--text-link-small-line-height);
+                                        margin: 0;
+                                    }
+
+                                    .cards-list-1-button1 {
+                                        @include font-style(
+                                            14px,
+                                            var(--text-link-small-line-height),
+                                            var(--text-text-link),
+                                            400,
+                                            var(--body)
+                                        );
+
+                                        text-decoration: underline;
+                                        text-underline-offset: 2.8px;
+                                        margin: 0;
+                                        padding: 0;
+                                        border: none;
+                                        border-radius: 0;
+                                        background-color: transparent;
+
+                                        @include media(mobile) {
+                                            font-size: var(--text-link-small-size);
+                                            line-height: var(--text-link-small-line-height);
+                                        }
                                     }
                                 }
                             }
+                        }
+                    }
+                }
+
+                .navigate-wrap {
+                    position: absolute;
+                    top: 100%;
+                    bottom: unset;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 18px;
+                    width: 100%;
+
+                    @include media(mobile) {
+                        left: 0;
+                        right: 0;
+                        margin: 0 auto;
+                        padding: 0 16px;
+                        overflow: auto;
+                        scrollbar-width: none;
+
+                        &::-webkit-scrollbar {
+                            display: none;
+                        }
+                    }
+                }
+
+                .swiper-button-prev,
+                .swiper-button-next {
+                    position: unset;
+                    width: 22px;
+                    height: 22px;
+                    margin: 0;
+
+                    &::after {
+                        content: "";
+                        background: url("../../icons/pagination-arrow.svg") center center no-repeat;
+                        width: 22px;
+                        height: 22px;
+                        display: block;
+                    }
+                }
+
+                .swiper-button-next {
+                    &::after {
+                        transform: rotate(180deg);
+                    }
+                }
+
+                .swiper-pagination {
+                    position: unset;
+                    width: max-content;
+                    display: flex;
+                    align-items: center;
+                    gap: 18px;
+
+                    &-bullet {
+                        width: 22px;
+                        height: 22px;
+                        background-color: transparent;
+                        margin: 0;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        opacity: unset;
+
+                        @include font-style(
+                            var(--label-medium-size),
+                            var(--label-medium-line-height),
+                            var(--neutrals-700),
+                            400,
+                            var(--body)
+                        );
+
+                        @include media(mobile) {
+                            font-size: var(--label-medium-size);
+                            line-height: var(--label-medium-line-height);
+                        }
+
+                        &-active {
+                            border-radius: 80px;
+                            background: #2e2a94;
+                            color: var(--neutrals-white);
                         }
                     }
                 }

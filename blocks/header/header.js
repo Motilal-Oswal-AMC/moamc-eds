@@ -226,7 +226,9 @@ export default async function decorate(block) {
         const hrefnaf = navSection.querySelector('ul li');
         const frgnav = await loadFragment(hrefnaf.children[0].getAttribute('href'));
         hrefnaf.innerHTML = '';
-        hrefnaf.append(frgnav.children[0]);
+        if (frgnav !== null) {
+          hrefnaf.append(frgnav.children[0]);
+        }
       }
 
       // --- Desktop Hover Logic ---
@@ -681,23 +683,25 @@ export default async function decorate(block) {
   }
 
   const searchtemp = block.querySelector('.nav-tools .nav-tools-sec1 .nav-tools-inner-net1');
-  const iconcls = searchtemp.querySelector('.nav-tools-list-content1');
+  const iconcls = searchtemp !== null ? searchtemp.querySelector('.nav-tools-list-content1') : '';
   const navmain = block.closest('body');
   const navblk = navmain.querySelector('main');
   navblk.classList.add('nfo-nav');
-  iconcls.addEventListener('click', () => {
-    const nfoban = block.querySelector('.nfo-banner');
-    const navelement = block.querySelector('nav');
-    if (nfoban.style.display === 'none') {
-      nfoban.style.display = 'block';
-      navblk.classList.add('nfo-nav');
-      navelement.classList.add('nfo-nav');
-    } else {
-      nfoban.style.display = 'none';
-      navblk.classList.remove('nfo-nav');
-      navelement.classList.remove('nfo-nav');
-    }
-  });
+  if (iconcls !== '') {
+    iconcls.addEventListener('click', () => {
+      const nfoban = block.querySelector('.nfo-banner');
+      const navelement = block.querySelector('nav');
+      if (nfoban.style.display === 'none') {
+        nfoban.style.display = 'block';
+        navblk.classList.add('nfo-nav');
+        navelement.classList.add('nfo-nav');
+      } else {
+        nfoban.style.display = 'none';
+        navblk.classList.remove('nfo-nav');
+        navelement.classList.remove('nfo-nav');
+      }
+    });
+  }
 
   const loginevent = block.querySelector('.nav-tools .nav-tools-sub4');// .nav-tools-inner-net1');
   loginevent.addEventListener('click', () => {

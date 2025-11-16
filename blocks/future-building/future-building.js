@@ -1,5 +1,11 @@
 import Swiper from '../swiper/swiper-bundle.min.js';
 import dataMapMoObj from '../../scripts/constant.js';
+import {
+  div,
+  label,
+  input,
+  img,
+} from '../../scripts/dom-helpers.js';
 
 export default function decorate(block) {
   if (window.location.href.includes('author')) {
@@ -29,15 +35,18 @@ export default function decorate(block) {
     const card1 = document.createElement('div');
     card1.classList.add('swiper-slide-cards-1');
 
-    anchor.textContent = '';
-    anchor.classList.add('button');
-    anchor.appendChild(picture);
-    card1.appendChild(anchor);
+    if (!block.closest('.key-investing')) {
+      anchor.textContent = '';
+      anchor.classList.add('button');
+      anchor.appendChild(picture);
+      card1.appendChild(anchor);
+    } else {
+      card1.appendChild(picture);
+    }
 
     const card2 = document.createElement('div');
     card2.classList.add('swiper-slide-cards-2');
     card2.innerHTML = textContent.innerHTML;
-
     dataMapMoObj.CLASS_PREFIXES = [
       'cards-list',
       'cards-list-1-',
@@ -115,52 +124,103 @@ export default function decorate(block) {
   dataMapMoObj.addIndexed(block.closest('.future-building-container'));
   const maindiv = block.closest('.future-building-container');
 
-  maindiv.querySelector('.library-btn3 p').classList.add('libr-btn-p');
-  maindiv.querySelector('.library-btn3 a').classList.add('libr-btn-a');
-
   // 7. Initialize Swiper with navigation if available
-  Swiper(block, {
-    slidesPerView: 'auto',
-    spaceBetween: 12,
-    loop: true,
-    navigation, // will be false if no buttons
-    breakpoints: {
-      769: {
-        spaceBetween: 16,
+  let config = {};
+  if (!block.closest('.key-investing')) {
+    maindiv.querySelector('.library-btn3 p').classList.add('libr-btn-p');
+    maindiv.querySelector('.library-btn3 a').classList.add('libr-btn-a');
+    config = {
+      slidesPerView: 'auto',
+      spaceBetween: 12,
+      loop: true,
+      navigation, // will be false if no buttons
+      breakpoints: {
+        769: {
+          spaceBetween: 16,
+        },
       },
-    },
-  });
+    };
+  } else {
+    const leftarrow = document.createElement('div');
+    leftarrow.classList.add('swiper-button-prev');
+    block.appendChild(leftarrow);
+    const rightarrow = document.createElement('div');
+    rightarrow.classList.add('swiper-button-next');
+    block.appendChild(rightarrow);
+    const pagination = document.createElement('div');
+    pagination.classList.add('swiper-pagination');
+    const navigationWrap = document.createElement('div');
+    navigationWrap.classList.add('navigate-wrap');
+    navigationWrap.append(leftarrow, pagination, rightarrow);
+    // block.appendChild(pagination);
+    block.appendChild(navigationWrap);
+    config = {
+      slidesPerView: 'auto',
+      // spaceBetween: 12,
+      loop: true,
+      navigation: {
+        nextEl: block.querySelector('.swiper-button-next'),
+        prevEl: block.querySelector('.swiper-button-prev'),
+      }, // will be false if no buttons
+      pagination: {
+        el: block.querySelector('.swiper-pagination'), // Selector for your pagination container
+        clickable: true, // Makes pagination bullets clickable
+        renderBullet(index, className) {
+          // Customize the bullet content to display numbers
+          return `<span class="${className}">${index + 1}</span>`;
+        },
+      },
+      // breakpoints: {
+      //   769: {
+      //     spaceBetween: 16,
+      //   },
+      // },
+    };
+
+    // creating Sear Box for Key Investing
+    const keyInvestSection = block.closest('.section');
+    const keyInvestSearchWrap = keyInvestSection.querySelector('.default-content-wrapper');
+    if (keyInvestSection.classList.contains('key-investing')) {
+      const keyInvestSearch = div(
+        { class: 'keyinvest-search' },
+        input({ class: 'keyinvest-inp', id: 'keyinvest' }),
+        label({ class: 'keyinvest-label', for: 'keyinvest' }, 'Search here'),
+      );
+      keyInvestSearchWrap.append(keyInvestSearch);
+    }
+  }
+  Swiper(block, config);
 
   window.addEventListener('resize', () => {
-    if(window.innerWidth <= 767){
-    const futureBuildingSection = document.querySelector('.future-building-container');
-    const stayUpdatedSection = document.querySelector('.article-sub-right.stay-updated.comlist.articlesub2');
+    if (window.innerWidth <= 767) {
+      const futureBuildingSection = document.querySelector('.future-building-container');
+      const stayUpdatedSection = document
+        .querySelector('.article-sub-right.stay-updated.comlist.articlesub2');
 
-    if (futureBuildingSection && stayUpdatedSection) {
+      if (futureBuildingSection && stayUpdatedSection) {
       // Move future-building-container above stay-updated
-    stayUpdatedSection.parentNode.insertBefore(futureBuildingSection, stayUpdatedSection);
-    console.log('✅ future-building-container moved above stay-updated');
-    } else {
-      console.warn('⚠️ Required sections not found in DOM');
-    }
-
+        stayUpdatedSection.parentNode.insertBefore(futureBuildingSection, stayUpdatedSection);
+        console.log('✅ future-building-container moved above stay-updated');
+      } else {
+        console.warn('⚠️ Required sections not found in DOM');
+      }
     }
   });
 
-    // if(window.innerWidth <= 767){
-    // const futureBuildingSection = document.querySelector('.future-building-container');
-    // const stayUpdatedSection = document.querySelector('.article-sub-right.stay-updated.comlist.articlesub2');
+  // if(window.innerWidth <= 767){
+  // const futureBuildingSection = document.querySelector('.future-building-container');
+  // const stayUpdatedSection = =
+  //  document.querySelector('.article-sub-right.stay-updated.comlist.articlesub2');
 
-    // if (futureBuildingSection && stayUpdatedSection) {
-    // // Move future-building-container above stay-updated
-    // stayUpdatedSection.parentNode.insertBefore(futureBuildingSection, stayUpdatedSection);
-    // console.log('✅ future-building-container moved above stay-updated');
-    // } else {
-    // console.warn('⚠️ Required sections not found in DOM');
-    // }
-    // // 
-    // }
-
+  // if (futureBuildingSection && stayUpdatedSection) {
+  // // Move future-building-container above stay-updated
+  // stayUpdatedSection.parentNode.insertBefore(futureBuildingSection, stayUpdatedSection);
+  // console.log('✅ future-building-container moved above stay-updated');
+  // } else {
+  // console.warn('⚠️ Required sections not found in DOM');
+  // }
+  // //
+  // }
 
   return block;
   // let config;
