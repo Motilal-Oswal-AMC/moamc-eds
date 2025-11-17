@@ -2108,7 +2108,7 @@ main>.section.media-coverage .default-content-wrapper h6 {
 
     .maintab>.tab-dropdown-wrap {
         max-width: 100%;
-        margin: 32px 0 24px;
+        /* margin: 32px 0 24px; */
         padding: 0 14.5px;
         top: 0;
         right: 0;
@@ -2234,6 +2234,28 @@ main>.section.media-coverage .default-content-wrapper h6 {
 
     /* Media Coverage Image modal end */
 }
+
+/* media-coverage start */
+@media screen and (width <=768px) {
+    main.nfo-nav > .section.media-coverage{
+        margin: 24px auto 0;
+    }
+
+    .nfo-nav > .section.media-coverage + .maintab .innerdiv .tabs-list {
+        margin-top: 32px;
+        padding-top: 64px;
+    }
+
+    .section.media-coverage + .maintab>.tabs-panel .innerdiv .tabs-panel{
+        margin-top: 32px;
+    }
+
+    .section.media-coverage + .maintab>.tab-dropdown-wrap{
+       padding-top: 0px;
+       margin-top: 0;
+    }
+}
+/* media-coverage end */
 
 
 /* Wealth Page - Media Coverage End */

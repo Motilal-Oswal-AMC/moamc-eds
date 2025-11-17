@@ -758,7 +758,7 @@ export default async function decorate(block) {
     divtab.append(tabList);
     block.prepend(divtab);
   }
-  
+
   document.addEventListener('click', (event) => {
     document.querySelectorAll('.cagr-container').forEach((el) => {
       if (!el.contains(event.target)) {
@@ -808,9 +808,9 @@ export default async function decorate(block) {
   const tabsPreviousStudies = document.querySelectorAll('.previous-studies-ctn .tabs-list .tabs-tab');
 
   if (tabsPreviousStudies) {
-  // Function to handle switching tabs
+    // Function to handle switching tabs
     const switchTab = (clickedTab) => {
-    // 1. Remove 'active' and 'aria-selected' from all tabs
+      // 1. Remove 'active' and 'aria-selected' from all tabs
       tabsPreviousStudies.forEach((tab) => {
         tab.classList.remove('active');
         tab.setAttribute('aria-selected', 'false');
@@ -832,7 +832,7 @@ export default async function decorate(block) {
     // Add a click event listener to each tab
     tabsPreviousStudies.forEach((tab) => {
       tab.addEventListener('click', () => {
-      // When a tab is clicked, run the switchTab function
+        // When a tab is clicked, run the switchTab function
         switchTab(tab);
       });
     });
@@ -857,7 +857,7 @@ export default async function decorate(block) {
     });
   }
   // previous studies tab end
-if (block.closest('.previous-studies-tab')) {
+  if (block.closest('.previous-studies-tab')) {
     const mainblk = block.closest('main');
     const blk = mainblk.querySelectorAll('.prev-studies-wrapper');
     Array.from(blk).forEach((mainblk) => {
@@ -924,39 +924,43 @@ if (block.closest('.previous-studies-tab')) {
     });
 
     const prevpage = block.closest('.previous-studies-tab');
-    [...prevpage.querySelectorAll('.prev-studies-wrapper .icon-share')].forEach((elemevent)=>{
+    [...prevpage.querySelectorAll('.prev-studies-wrapper .icon-share')].forEach((elemevent) => {
       const dsp = elemevent.parentElement.nextElementSibling;
-      if(dsp !== null){
+      if (dsp !== null) {
         dsp.style.display = 'none';
       }
-      const eventvar =elemevent.parentElement;
+      const eventvar = elemevent.parentElement;
       eventvar.addEventListener('click', () => {
         const dspblk = elemevent.parentElement.nextElementSibling;
         if (dsp === null) {
           return false;
         }
-        if (dspblk.style.display === 'none' ) {
+        if (dspblk.style.display === 'none') {
           dspblk.style.display = 'block'
-        }else{
+        } else {
           dspblk.style.display = 'none';
         }
       })
     })
-    document.addEventListener('click', (event)=>{
+    document.addEventListener("click", (event) => {
+      // CLOSE DROPLIST
       if (!dropList.contains(event.target) && !selectedTab.contains(event.target)) {
-        dropList.classList.remove('active');
+        dropList.classList.remove("active");
       }
-      const nearest = event.target //.closest('.tabs-wrapper');
-      const icons = nearest.querySelector('.icon-share');
-      const iconsib = icons.parentElement.nextElementSibling;
-      if (!event.target.contains(icons) && !event.target.contains.contains(iconsib)) {
-        [...prevpage.querySelectorAll('.prev-studies-wrapper .icon-share')].forEach((elemevent)=>{
-          const element = elemevent.parentElement.nextElementSibling;
-          if (element !== null) {
-            element.style.display = 'none'; 
-          }
-        }); 
-      }
-    })
+
+      // FIND CLICKED SHARE ICON OR WRAPPER
+      const clickedShareIcon = event.target.closest(".icon-share");
+      const clickedSharePopup = event.target.closest(".share-popup"); // example: your popup div
+
+      // If clicked inside share popup or on the icon → do nothing
+      if (clickedShareIcon || clickedSharePopup) return;
+
+      // Otherwise close all share popups
+      prevpage.querySelectorAll(".prev-studies-wrapper .icon-share").forEach((icon) => {
+        const popup = icon.parentElement.nextElementSibling;
+        if (popup) popup.style.display = "none";
+      });
+    });
+
   }
 }

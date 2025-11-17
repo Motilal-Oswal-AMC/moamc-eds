@@ -714,86 +714,97 @@
 // MO Edge Listing css start end
 
 /* --- Pagination Logic --- */
+.pr-news-list.moedge-building-container, .moedge-list.moedge-building-container, .our-author-detail.moedge-building-container {
+    .moedge-building {
+        .hidden-item {
+            display: none !important;
+        }
+    }
 
-.pr-news-list.moedge-building-container .moedge-building .hidden-item {
-    display: none !important;
-}
+    .pagination-wrapper {
+        display: flex;
+        width: 340px;
+        justify-content: center;
+        align-items: center;
+        gap: 17.75px;
+        margin-top: 40px;
+        padding: 5px 0;
 
-.pr-news-list.moedge-building-container .pagination-wrapper {
-    display: flex;
-    width: 340px;
-    justify-content: space-between;
-    align-items: center;
-    gap: 17.75px;
-    margin-top: 40px;
-    padding: 5px 0;
-}
+        @include media(mobile) {
+            padding: 0;
+            padding-bottom: 40px;
+        }
 
-.pr-news-list.moedge-building-container .pagination-wrapper button {
-    display: flex;
-    width: 22px;
-    height: 22px;
-    padding: 10px;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    color: var(--neutrals-700, #616161);
-    font-feature-settings: var(--font-features-default);
-    font-family: var(--body, Inter);
-    font-size: var(--label-medium-size, 14px);
-    font-style: normal;
-    font-weight: 400;
-    line-height: var(--label-medium-line-height, 16px);
-    flex-shrink: 0;
-    border: none;
-    background: transparent;
-    cursor: pointer;
-    margin: 0;
-    transition: all 0.2s ease;
-}
+        button {
+            display: flex;
+            width: 22px;
+            height: 22px;
+            padding: 10px;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            color: var(--neutrals-700, #616161);
+            font-feature-settings: var(--font-features-default);
+            font-family: var(--body, Inter);
+            font-size: var(--label-medium-size, 14px);
+            font-style: normal;
+            font-weight: 400;
+            line-height: var(--label-medium-line-height, 16px);
+            flex-shrink: 0;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            margin: 0;
+            transition: all 0.2s ease;
+        }
+    }
 
-.pr-news-list.moedge-building-container .pagination-btn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    color: #666;
-}
+    .pagination-btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        color: #666;
 
-.pr-news-list.moedge-building-container .pagination-btn:hover {
-    background-color: #f0f0f0;
-    color: #333;
-}
+        &:hover {
+            background-color: #f0f0f0;
+            color: #333;
+        }
 
-.pr-news-list.moedge-building-container .pagination-btn.active {
-    // padding: 10px 101px;
-    color: var(--neutrals-white, #FFF);
-    border-radius: 80px;
-    background: #2E2A94;
-}
+        &.active {
+            color: var(--neutrals-white, #FFF);
+            border-radius: 80px;
+            background: #2E2A94;
+        }
+    }
 
-.pr-news-list.moedge-building-container .pagination-arrow {
-    font-size: 20px;
-    font-weight: bold;
-    color: #2E2A94;
-    padding: 0 10px;
-    line-height: 1;
-    aspect-ratio: 4.36 / 7.54;
-    fill: rgb(63 63 63 / 80%);
-}
+    .pagination-arrow {
+        font-size: 20px;
+        font-weight: bold;
+        color: #2E2A94;
+        padding: 0 10px;
+        line-height: 1;
+        aspect-ratio: 4.36 / 7.54;
+        fill: rgb(63 63 63 / 80%);
 
-.pr-news-list.moedge-building-container .pagination-arrow:disabled {
-    color: #ccc;
-    cursor: not-allowed;
-}
+        &:disabled {
+            color: #ccc;
+            cursor: not-allowed;
+        }
+    }
 
-.pr-news-list.moedge-building-container .pagination-ellipsis {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 32px;
-    height: 32px;
-    color: #666;
+    .pagination-ellipsis {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2px 6.5px;
+        color: rgba(63, 63, 63, 0.8);
+        font-family: var(--body);
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 18px;
+    }
 }

@@ -113,7 +113,6 @@
   color: var(--text-body-2);
 }
 .section.our-experts-container .our-experts-wrapper .our-experts-cont2 .our-expert-section1 .our-expert-sub1 .floating-label-wrapper {
-  width: 100%;
   line-height: 0;
   width: 100%;
 }
@@ -200,7 +199,7 @@
 }
 .section.our-experts-container .our-experts-wrapper .our-experts-cont2 .our-expert-section1 .search-results .result-item {
   margin: unset;
-  padding: 12px 20px 12px;
+  padding: 12px 20px;
   cursor: pointer;
 }
 .section.our-experts-container .our-experts-wrapper .our-experts-cont2 .our-expert-section1 .search-results .result-item .list {
@@ -245,7 +244,7 @@
 
 @media (max-width: 768px) {
   .section.out-expert-listing.our-experts-container {
-    margin-bottom: 56px;
+    margin-bottom: 32px;
   }
 }
 @media (max-width: 768px) {

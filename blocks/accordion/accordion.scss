@@ -3,8 +3,8 @@
 /*   media-feature-range-notation */
 
 @use "sass:map";
-@use "../../styles/common-theme/css/variables_mixins"as *;
-@use "../../styles/common-theme/css/fluid-typography"as *;
+@use "../../styles/common-theme/css/variables_mixins" as *;
+@use "../../styles/common-theme/css/fluid-typography" as *;
 @import "./faq-page.css";
 
 .accordion-container {
@@ -359,6 +359,18 @@
               p {
                 position: relative;
 
+                @include font-style(var(--body-large-semibold-size),
+                  var(--body-large-semibold-line-height),
+                  var(--blue-1-800-primary),
+                  600,
+                  var(--body));
+
+                @include media(mobile) {
+                  padding-right: 45px;
+                  font-size: var(--body-medium-semibold-size);
+                  line-height: var(--body-medium-semibold-line-height);
+                }
+
                 &::after {
                   // top: 15px;
                   right: 0;
@@ -371,19 +383,19 @@
                 }
               }
 
-              p {
-                @include font-style(var(--body-large-semibold-size),
-                  var(--body-large-semibold-line-height),
-                  var(--blue-1-800-primary),
-                  600,
-                  var(--body));
+              // p {
+              //   @include font-style(var(--body-large-semibold-size),
+              //     var(--body-large-semibold-line-height),
+              //     var(--blue-1-800-primary),
+              //     600,
+              //     var(--body));
 
-                @include media(mobile) {
-                  padding-right: 45px;
-                  font-size: var(--body-medium-semibold-size);
-                  line-height: var(--body-medium-semibold-line-height);
-                }
-              }
+              //   @include media(mobile) {
+              //     padding-right: 45px;
+              //     font-size: var(--body-medium-semibold-size);
+              //     line-height: var(--body-medium-semibold-line-height);
+              //   }
+              // }
             }
 
             .accordion-item-body {

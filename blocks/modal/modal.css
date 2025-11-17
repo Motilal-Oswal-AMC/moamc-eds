@@ -89,6 +89,10 @@ body.modal-open {
     height: 100%;
 }
 
+.modal dialog .section.embed-container{
+    margin-top: unset;
+}
+
 @media (width <=900px) {
     .modal .close-button {
         top: 0;

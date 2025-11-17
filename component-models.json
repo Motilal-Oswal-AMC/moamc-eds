@@ -575,6 +575,10 @@
             "value": "qglp-tab-component"
           },
           {
+            "name": "Media Coverage Tab Component",
+            "value": "media-coverage-component"
+          },
+          {
             "name": "Coverage Table Panel",
             "value": "coverage-table-panel"
           }

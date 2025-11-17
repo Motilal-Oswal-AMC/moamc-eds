@@ -261,13 +261,6 @@
 }
 .section.freq-ask-ques .faq-our-fund .accordion-wrapper .accordion details.accordion-item[open] summary p {
   position: relative;
-}
-.section.freq-ask-ques .faq-our-fund .accordion-wrapper .accordion details.accordion-item[open] summary p::after {
-  right: 0;
-  background: url("/icons/mins-blue.svg");
-  transform: translateY(-50%);
-}
-.section.freq-ask-ques .faq-our-fund .accordion-wrapper .accordion details.accordion-item[open] summary p {
   font-size: var(--body-large-semibold-size);
   line-height: var(--body-large-semibold-line-height);
   color: var(--blue-1-800-primary);
@@ -281,6 +274,11 @@
     font-size: var(--body-medium-semibold-size);
     line-height: var(--body-medium-semibold-line-height);
   }
+}
+.section.freq-ask-ques .faq-our-fund .accordion-wrapper .accordion details.accordion-item[open] summary p::after {
+  right: 0;
+  background: url("/icons/mins-blue.svg");
+  transform: translateY(-50%);
 }
 .section.freq-ask-ques .faq-our-fund .accordion-wrapper .accordion details.accordion-item[open] .accordion-item-body {
   color: #fff;

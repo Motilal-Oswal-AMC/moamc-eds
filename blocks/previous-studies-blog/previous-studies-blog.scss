@@ -61,6 +61,12 @@ main .previous-studies-blog-container.section.previous-studies-each-details{
             }
     
             .ps-in2{
+                max-width: 296px;
+                
+                @include media(mobile) {
+                    max-width: 164px;
+                }
+
                 .ps-cont1{
                     font-size: 0;
                     line-height: 0;
