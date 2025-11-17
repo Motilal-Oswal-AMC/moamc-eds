@@ -569,7 +569,6 @@ main > .section.previous-studies-tab .tab-dropdown-wrap .tab-droplist .tabs-list
   font-style: normal;
   font-weight: 600;
   line-height: var(--heading-h6-line-height);
-  margin: 0 0 0 40px;
 }
 @media (max-width: 768px) {
   .default-content-wrapper h1,
