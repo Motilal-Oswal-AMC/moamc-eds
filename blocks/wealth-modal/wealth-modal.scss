@@ -1,6 +1,6 @@
 @use "sass:map";
-@use "../../styles/common-theme/css/variables_mixins" as *;
-@use "../../styles/common-theme/css/fluid-typography" as *;
+@use "../../styles/common-theme/css/variables_mixins"as *;
+@use "../../styles/common-theme/css/fluid-typography"as *;
 
 .modal dialog .section.wealth-register {
   max-width: 379px;
@@ -18,9 +18,7 @@
     z-index: 11;
     bottom: 0;
     border-radius: 24px 24px 0 0;
-
-    // height: 83vh !important;
-    height: max-content;
+    height: 91vh;
     max-width: 100%;
   }
 
@@ -205,7 +203,7 @@
           padding: 0;
           margin: 5px 0 0;
           display: none;
-          max-height: 150px;
+          max-height: 208px;
           overflow-y: auto;
           z-index: 10;
           list-style: none;
@@ -220,7 +218,7 @@
             font-family: var(--body);
             font-size: var(--body-medium-regular-size);
             color: var(--neutrals-900);
-            font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
+            font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
             font-weight: 400;
             line-height: var(--body-medium-regular-line-height);
 

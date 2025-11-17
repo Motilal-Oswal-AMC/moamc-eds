@@ -121,6 +121,13 @@
   transform: translateY(10px);
   transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
 }
+@media (max-width: 768px) {
+  .section.edge-filter-container .edge-filter-wrapper .edge-filter .edge-filter-sub1 > li > .filter-lists-wrap2 {
+    bottom: 40px;
+    left: 16px;
+    top: unset;
+  }
+}
 .section.edge-filter-container .edge-filter-wrapper .edge-filter .edge-filter-sub1 > li > .filter-lists-wrap2 li a {
   display: block;
   padding: 8px 12px;

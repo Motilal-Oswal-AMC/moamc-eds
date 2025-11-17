@@ -558,21 +558,25 @@
 }
 
 /* --- Pagination Logic --- */
-.pr-news-list.moedge-building-container .moedge-building .hidden-item {
+.pr-news-list.moedge-building-container .moedge-building .hidden-item, .moedge-list.moedge-building-container .moedge-building .hidden-item, .our-author-detail.moedge-building-container .moedge-building .hidden-item {
   display: none !important;
 }
-
-.pr-news-list.moedge-building-container .pagination-wrapper {
+.pr-news-list.moedge-building-container .pagination-wrapper, .moedge-list.moedge-building-container .pagination-wrapper, .our-author-detail.moedge-building-container .pagination-wrapper {
   display: flex;
   width: 340px;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   gap: 17.75px;
   margin-top: 40px;
   padding: 5px 0;
 }
-
-.pr-news-list.moedge-building-container .pagination-wrapper button {
+@media (max-width: 768px) {
+  .pr-news-list.moedge-building-container .pagination-wrapper, .moedge-list.moedge-building-container .pagination-wrapper, .our-author-detail.moedge-building-container .pagination-wrapper {
+    padding: 0;
+    padding-bottom: 40px;
+  }
+}
+.pr-news-list.moedge-building-container .pagination-wrapper button, .moedge-list.moedge-building-container .pagination-wrapper button, .our-author-detail.moedge-building-container .pagination-wrapper button {
   display: flex;
   width: 22px;
   height: 22px;
@@ -594,8 +598,7 @@
   margin: 0;
   transition: all 0.2s ease;
 }
-
-.pr-news-list.moedge-building-container .pagination-btn {
+.pr-news-list.moedge-building-container .pagination-btn, .moedge-list.moedge-building-container .pagination-btn, .our-author-detail.moedge-building-container .pagination-btn {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -604,19 +607,16 @@
   border-radius: 50%;
   color: #666;
 }
-
-.pr-news-list.moedge-building-container .pagination-btn:hover {
+.pr-news-list.moedge-building-container .pagination-btn:hover, .moedge-list.moedge-building-container .pagination-btn:hover, .our-author-detail.moedge-building-container .pagination-btn:hover {
   background-color: #f0f0f0;
   color: #333;
 }
-
-.pr-news-list.moedge-building-container .pagination-btn.active {
+.pr-news-list.moedge-building-container .pagination-btn.active, .moedge-list.moedge-building-container .pagination-btn.active, .our-author-detail.moedge-building-container .pagination-btn.active {
   color: var(--neutrals-white, #FFF);
   border-radius: 80px;
   background: #2E2A94;
 }
-
-.pr-news-list.moedge-building-container .pagination-arrow {
+.pr-news-list.moedge-building-container .pagination-arrow, .moedge-list.moedge-building-container .pagination-arrow, .our-author-detail.moedge-building-container .pagination-arrow {
   font-size: 20px;
   font-weight: bold;
   color: #2E2A94;
@@ -625,17 +625,19 @@
   aspect-ratio: 4.36/7.54;
   fill: rgba(63, 63, 63, 0.8);
 }
-
-.pr-news-list.moedge-building-container .pagination-arrow:disabled {
+.pr-news-list.moedge-building-container .pagination-arrow:disabled, .moedge-list.moedge-building-container .pagination-arrow:disabled, .our-author-detail.moedge-building-container .pagination-arrow:disabled {
   color: #ccc;
   cursor: not-allowed;
 }
-
-.pr-news-list.moedge-building-container .pagination-ellipsis {
+.pr-news-list.moedge-building-container .pagination-ellipsis, .moedge-list.moedge-building-container .pagination-ellipsis, .our-author-detail.moedge-building-container .pagination-ellipsis {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 32px;
-  height: 32px;
-  color: #666;
+  padding: 2px 6.5px;
+  color: rgba(63, 63, 63, 0.8);
+  font-family: var(--body);
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 18px;
 }/*# sourceMappingURL=moedge-building.css.map */
