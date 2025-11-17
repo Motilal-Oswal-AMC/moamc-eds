@@ -8,6 +8,7 @@ function decorateBreadcrumbItems(title, url, icon = '') {
   if (icon) {
     const link = a({ href: url });
     const img = document.createElement('img');
+    img.classList.add('homeicon');
     img.src = icon;
     img.alt = 'home-icon';
     link.appendChild(img);
@@ -99,6 +100,12 @@ async function decorateBreadcrumbs() {
           'Breadcrumb container ([data-id="breadcrumb"] or .breadcrumbs-fdp) not found.',
         );
       }
+
+      const bdcrumbsAnchor = document.querySelectorAll('.breadcrumbs .breadul .breadli a');
+      bdcrumbsAnchor.forEach(function (link) {
+        link.classList.add('breadlist');
+      });
+
     }
   } catch (error) {
     console.error('Error decorating breadcrumbs:', error);
@@ -126,20 +133,20 @@ if (newSection) {
   }
 
 }
-if(window.innerWidth <= 767){
-    const futureBuildingSection = document.querySelector('.future-building-container');
-    const stayUpdatedSection = document.querySelector('.article-sub-right.stay-updated.comlist.articlesub2');
+if (window.innerWidth <= 767) {
+  const futureBuildingSection = document.querySelector('.future-building-container');
+  const stayUpdatedSection = document.querySelector('.article-sub-right.stay-updated.comlist.articlesub2');
 
-    
-    if (futureBuildingSection && stayUpdatedSection) {
+
+  if (futureBuildingSection && stayUpdatedSection) {
     // Move future-building-container above stay-updated
     stayUpdatedSection.parentNode.insertBefore(futureBuildingSection, stayUpdatedSection);
     console.log('✅ future-building-container moved above stay-updated');
-    } else {
+  } else {
     console.warn('⚠️ Required sections not found in DOM');
-    }
-    // 
-    }
+  }
+  // 
+}
 
 // function articleStructure() {
 //    // Investor Education article left and right wrapper
