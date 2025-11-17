@@ -303,6 +303,13 @@ export default function decorate(block) {
         }
       });
       block.closest('.section').style.display = 'block';
+      document.addEventListener('click', (event)=>{
+        const selectedTab = tabmainclick.querySelector('.selected-tab');
+        const tabslistwrap = tabmainclick.querySelector('.tab-droplist');
+        if (!selectedTab.contains(event.target) && !tabslistwrap.contains(event.target)) {
+          tabmainclick.classList.remove('active');
+        }
+      })
     }
   }
   return block;
