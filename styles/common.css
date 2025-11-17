@@ -982,6 +982,7 @@ main > .section.previous-studies-tab .tab-dropdown-wrap .tab-droplist .tabs-list
   align-items: center;
   gap: 4px;
   position: relative;
+  cursor: pointer;
 }
 @media (max-width: 768px) {
   .prev-main-wrapper .co-branding-wrapper .comlist ul li:nth-child(3) {
@@ -1016,17 +1017,24 @@ main > .section.previous-studies-tab .tab-dropdown-wrap .tab-droplist .tabs-list
 }
 .prev-main-wrapper .co-branding-wrapper .comlist ul li:nth-child(3) ul {
   position: absolute;
-  top: 100%;
+  top: 21px;
   margin: 9px 0 0;
   left: 0;
-  display: block;
   border-radius: 6px;
   border: 1px solid var(--neutrals-200);
   box-shadow: 0 0 14px 0 rgba(40, 40, 40, 0.06);
   width: 170px;
   background: var(--neutrals-white);
-  height: 80px;
+  height: 100px;
   overflow: auto;
+}
+@media (max-width: 768px) {
+  .prev-main-wrapper .co-branding-wrapper .comlist ul li:nth-child(3) ul {
+    bottom: 27px;
+    right: 3px;
+    width: 170px;
+    height: 120px;
+  }
 }
 .prev-main-wrapper .co-branding-wrapper .comlist ul li:nth-child(3) ul::-webkit-scrollbar {
   width: 3px;

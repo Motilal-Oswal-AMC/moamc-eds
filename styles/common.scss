@@ -3,8 +3,8 @@
 /* media-feature-range-notation */
 
 @use "sass:map";
-@use "../styles/common-theme/css/variables_mixins" as *;
-@use "../styles/common-theme/css/fluid-typography" as *;
+@use "../styles/common-theme/css/variables_mixins"as *;
+@use "../styles/common-theme/css/fluid-typography"as *;
 @import "../blocks/moedge-article-details/moedge-article-details.css";
 
 .section.download {
@@ -957,6 +957,7 @@ main>.section.previous-studies-tab {
             align-items: center;
             gap: 4px;
             position: relative;
+            cursor: pointer;
 
             @include media(mobile) {
               // width: 98%;
@@ -993,17 +994,23 @@ main>.section.previous-studies-tab {
 
             ul {
               position: absolute;
-              top: 100%;
+              top: 21px;
               margin: 9px 0 0;
               left: 0;
-              display: block;
               border-radius: 6px;
               border: 1px solid var(--neutrals-200);
-              box-shadow: 0 0 14px 0 rgb(40 40 40 / 6%);
+              box-shadow: 0 0 14px 0 rgba(40, 40, 40, 0.06);
               width: 170px;
               background: var(--neutrals-white);
-              height: 80px;
+              height: 100px;
               overflow: auto;
+
+              @include media (mobile) {
+                bottom: 27px;
+                right: 3px;
+                width: 170px;
+                height: 120px;
+              }
 
               &::-webkit-scrollbar {
                 width: 3px;

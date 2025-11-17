@@ -295,6 +295,7 @@
   font-size: 12px;
   line-height: 16px;
   margin: unset;
+  margin-top: 20px;
 }
 @media (max-width: 768px) {
   .modal dialog .section.wealth-register .ragis-lab-btn > .btn-mand .mandatory {
