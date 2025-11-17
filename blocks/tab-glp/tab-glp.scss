@@ -431,4 +431,12 @@
       }
     }
   }
+
+  &.qglp-tab-component{
+    .tabs-list{
+      display: flex;
+      padding-bottom: 40px;
+      column-gap: 8px;
+    }
+  }
 }

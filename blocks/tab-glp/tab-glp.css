@@ -363,4 +363,10 @@
 }
 .section.qglp-tabs .tabs-wrapper .tabs .tabs-list::-webkit-scrollbar {
   display: none;
+}
+.section.qglp-tabs.qglp-tab-component .tabs-list {
+  display: flex;
+  padding-bottom: 40px;
+  -moz-column-gap: 8px;
+       column-gap: 8px;
 }/*# sourceMappingURL=tab-glp.css.map */
