@@ -31,6 +31,11 @@
   gap: 12px;
   margin-top: 47px;
 }
+@media (max-width: 768px) {
+  .section .decoding-qglp-wrapper .decoding-qglp .glpcoding1 .glpcoding-inner1 {
+    margin-top: 0;
+  }
+}
 .section .decoding-qglp-wrapper .decoding-qglp .glpcoding1 .glpcoding-inner1 .glpcoding-sub-inner1 {
   margin: 0;
   font-size: var(--heading-h1-size);

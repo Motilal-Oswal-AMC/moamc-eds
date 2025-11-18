@@ -1,6 +1,6 @@
 @use "sass:map";
-@use "../../styles/common-theme/css/variables_mixins" as *;
-@use "../../styles/common-theme/css/fluid-typography" as *;
+@use "../../styles/common-theme/css/variables_mixins"as *;
+@use "../../styles/common-theme/css/fluid-typography"as *;
 
 .section .decoding-qglp-wrapper {
   max-width: 1366px;
@@ -36,16 +36,18 @@
         gap: 12px;
         margin-top: 47px;
 
+        @include media(mobile) {
+          margin-top: 0;
+        }
+
         .glpcoding-sub-inner1 {
           margin: 0;
 
-          @include font-style(
-            var(--heading-h1-size),
+          @include font-style(var(--heading-h1-size),
             var(--heading-h1-line-height),
             var(--blue-1-800-primary),
             600,
-            var(--title)
-          );
+            var(--title));
 
           @include media(mobile) {
             font-size: 28px;
@@ -66,13 +68,11 @@
           strong {
             margin: 0;
 
-            @include font-style(
-              var(--body-medium-regular-size),
+            @include font-style(var(--body-medium-regular-size),
               var(--body-medium-regular-line-height),
               var(--neutrals-800),
               600,
-              var(--body)
-            );
+              var(--body));
 
             @include media(mobile) {
               font-size: 16px;
@@ -106,8 +106,8 @@
   }
 }
 
-.section.decoding-qglp-container{
+.section.decoding-qglp-container {
   @include media(mobile) {
-  padding-bottom: 8px;
+    padding-bottom: 8px;
   }
 }
