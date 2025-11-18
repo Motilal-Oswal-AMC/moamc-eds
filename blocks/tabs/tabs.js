@@ -938,7 +938,7 @@ export default async function decorate(block) {
 
       const eventvar = elemevent.parentElement;
 
-      // 🔹 Toggle popup open/close
+      // 🔹 Popup Toggle
       eventvar.addEventListener('click', (e) => {
         e.stopPropagation();
 
@@ -947,36 +947,58 @@ export default async function decorate(block) {
 
         const isVisible = dspblk.style.display === 'block';
 
-        // Hide all other share popups first
+        // Close all others
         prevpage.querySelectorAll('.share-popup').forEach(p => p.style.display = 'none');
 
         dspblk.style.display = isVisible ? 'none' : 'block';
       });
 
-      // 🔹 WhatsApp Share - CLICK EVENT
-      const whatsappBtn = elemevent.parentElement.nextElementSibling.querySelector('.listindex2');
+      const dspblk = elemevent.parentElement.nextElementSibling;
+      if (!dspblk) return;
 
-      if (whatsappBtn) {
-        whatsappBtn.addEventListener('click', (e) => {
+      // Common share data
+      const getShareData = () => {
+        const shareUrl = window.location.href;
+        const card = elemevent.closest("li");
+        const shareText = card?.querySelector("h3")?.innerText || "Check this out";
+        return { shareUrl, shareText };
+      };
+
+      // 🔹 Facebook Share
+      const facebookBtn = dspblk.querySelector(".listindex1");
+      if (facebookBtn) {
+        facebookBtn.addEventListener("click", (e) => {
           e.stopPropagation();
+          const { shareUrl } = getShareData();
+          const fbLink = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`;
+          window.open(fbLink, "_blank");
+        });
+      }
 
-          // PAGE URL
-          const shareUrl = window.location.href;
+      // 🔹 WhatsApp Share
+      const whatsappBtn = dspblk.querySelector(".listindex2");
+      if (whatsappBtn) {
+        whatsappBtn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          const { shareUrl, shareText } = getShareData();
+          const wpLink = `https://wa.me/?text=${encodeURIComponent(`${shareText} ${shareUrl}`)}`;
+          window.open(wpLink, "_blank");
+        });
+      }
 
-          // ITEM TITLE (if exists)
-          const card = elemevent.closest('li');
-          const shareText = card?.querySelector('h3')?.innerText || 'Check this study';
-
-          // WhatsApp link creation
-          const whatsappLink = `https://wa.me/?text=${encodeURIComponent(`${shareText} ${shareUrl}`)}`;
-
-          // Open WhatsApp
-          window.open(whatsappLink, '_blank');
+      // 🔹 X (Twitter) Share
+      const twitterBtn = dspblk.querySelector(".listindex3");
+      if (twitterBtn) {
+        twitterBtn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          const { shareUrl, shareText } = getShareData();
+          const twLink = `https://twitter.com/intent/tweet?text=${encodeURIComponent(`${shareText}`)}&url=${encodeURIComponent(shareUrl)}`;
+          window.open(twLink, "_blank");
         });
       }
     });
 
-    // 🔹 Click outside - Close popup
+    // Click outside → close popup
     document.addEventListener("click", (event) => {
       if (!dropList.contains(event.target) && !selectedTab.contains(event.target)) {
         dropList.classList.remove("active");
@@ -992,7 +1014,6 @@ export default async function decorate(block) {
         if (popup) popup.style.display = "none";
       });
     });
-
 
   }
 }
