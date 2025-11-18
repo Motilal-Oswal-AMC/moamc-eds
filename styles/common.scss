@@ -559,7 +559,6 @@ main>.section.previous-studies-tab {
 }
 
 .default-content-wrapper.annual-wealth-wrap1 {
-
   h1,
   h2,
   h3,
@@ -1090,7 +1089,7 @@ main>.section.previous-studies-tab {
 
 }
 
-@media only screen and (max-width:767px) {
+@media only screen and (width <=767px) {
   .previous-studies-tab:has(.prev-studies-wrapper.embed-container) li:has(> ul[style*="display: block"]) {
     padding-bottom: 120px
   }
