@@ -123,7 +123,7 @@ export default function decorate(block) {
     }
   }
 
-  if (!block.closest('.prev-studies-wrapper')) {
+  if (!block.closest('.prev-studies-wrapper') && !block.closest('.media-coverage')) {
     if (placeholder && !block.closest('.media-coverage') && !block.closest('.prev-studies-wrapper')) {
       const wrapper = document.createElement('div');
       wrapper.className = 'embed-placeholder';
