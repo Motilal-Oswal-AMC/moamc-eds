@@ -1,14 +1,26 @@
 @use "sass:map";
-@use "../../styles/common-theme/css/variables_mixins"as *;
-@use "../../styles/common-theme/css/fluid-typography"as *;
+@use "../../styles/common-theme/css/variables_mixins" as *;
+@use "../../styles/common-theme/css/fluid-typography" as *;
+
+main.nfo-nav {
+  .section.decoding-qglp-container {
+    margin-top: 33px;
+
+    @include media (mobile) {
+      margin-top: 0;
+      padding-bottom: 8px;
+    }
+  }
+}
+
 
 .section .decoding-qglp-wrapper {
   max-width: 1366px;
   width: 100%;
-  margin-top: 73px;
+  padding-top: 40px;
 
   @include media(mobile) {
-    margin-top: 56px;
+    padding-top: 56px;
   }
 
   .decoding-qglp {
@@ -106,8 +118,8 @@
   }
 }
 
-.section.decoding-qglp-container {
-  @include media(mobile) {
-    padding-bottom: 8px;
-  }
-}
+// .section.decoding-qglp-container {
+//   @include media(mobile) {
+//     padding-bottom: 8px;
+//   }
+// }

@@ -581,6 +581,26 @@
           {
             "name": "Coverage Table Panel",
             "value": "coverage-table-panel"
+          },
+          {
+            "name":"Why Choose Us",
+            "value":"why-choose-us"
+          },
+          {
+            "name":"Why Choose Card",
+            "value":"why-choose-card"
+          },
+          {
+            "name": "Section One",
+            "value": "section-one"
+          },
+          {
+            "name": "Section Two",
+            "value": "section-two"
+          },
+          {
+            "name": "Section Three",
+            "value": "section-three"
           }
         ]
       },
@@ -2102,7 +2122,7 @@
       },
       {
         "component": "text",
-        "name": "imageAlt",    
+        "name": "imageAlt",
         "label": "Alt Text"
       },
       {
