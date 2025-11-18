@@ -969,9 +969,23 @@ export default async function decorate(block) {
       if (facebookBtn) {
         facebookBtn.addEventListener("click", (e) => {
           e.stopPropagation();
-          const { shareUrl } = getShareData();
-          const fbLink = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`;
-          window.open(fbLink, "_blank");
+          const { shareUrl, shareText } = getShareData();
+          // Use Web Share API if available (mobile-first approach)
+          if (navigator.share) {
+            navigator.share({
+              title: shareText,
+              text: shareText,
+              url: shareUrl
+            }).catch(() => {
+              // Fallback: Use Facebook Feed Dialog
+              const fbLink = `https://www.facebook.com/dialog/feed?app_id=YOUR_APP_ID&link=${encodeURIComponent(shareUrl)}&redirect_uri=${encodeURIComponent(window.location.href)}`;
+              window.open(fbLink, "_blank");
+            });
+          } else {
+            // Use Facebook Feed Dialog directly
+            const fbLink = `https://www.facebook.com/dialog/feed?app_id=YOUR_APP_ID&link=${encodeURIComponent(shareUrl)}&redirect_uri=${encodeURIComponent(window.location.href)}`;
+            window.open(fbLink, "_blank");
+          }
         });
       }
 
@@ -992,7 +1006,7 @@ export default async function decorate(block) {
         twitterBtn.addEventListener("click", (e) => {
           e.stopPropagation();
           const { shareUrl, shareText } = getShareData();
-          const twLink = `https://twitter.com/intent/tweet?text=${encodeURIComponent(`${shareText}`)}&url=${encodeURIComponent(shareUrl)}`;
+          const twLink = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`;
           window.open(twLink, "_blank");
         });
       }
