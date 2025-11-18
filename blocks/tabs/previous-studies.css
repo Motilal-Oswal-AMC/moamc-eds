@@ -1,4 +1,10 @@
 @import "../../../styles/fonts.css";
+@media (max-width: 768px) {
+  main .section.previous-studies-ctn.tabs-container {
+    margin-top: 0;
+  }
+}
+
 .previous-studies-ctn.tabs-container {
   color: var(--blue-1-800-primary);
   font-family: var(--title, Inter);

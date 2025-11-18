@@ -3,8 +3,8 @@
 /* media-feature-range-notation */
 
 @use "sass:map";
-@use "../styles/common-theme/css/variables_mixins" as *;
-@use "../styles/common-theme/css/fluid-typography" as *;
+@use "../styles/common-theme/css/variables_mixins"as *;
+@use "../styles/common-theme/css/fluid-typography"as *;
 @import "../blocks/moedge-article-details/moedge-article-details.css";
 
 .section.download {
@@ -559,6 +559,7 @@ main>.section.previous-studies-tab {
 }
 
 .default-content-wrapper.annual-wealth-wrap1 {
+
   h1,
   h2,
   h3,
@@ -862,7 +863,8 @@ main>.section.previous-studies-tab {
                 bottom: 27px;
                 right: 3px;
                 width: 170px;
-                height: 120px;
+                height: 100px;
+                padding: 5px;
               }
 
               &::-webkit-scrollbar {
@@ -886,7 +888,7 @@ main>.section.previous-studies-tab {
                 width: 100%;
 
                 a {
-                  padding: 12px;
+                  padding: 3px 0;
                   display: flex;
                   align-items: center;
                   gap: 8px;
@@ -1056,10 +1058,16 @@ main>.section.previous-studies-tab {
 
               picture {
                 img {
+                  width: 712px;
+                  height: 284px;
+                  flex-shrink: 0;
+                  object-fit: contain;
+
                   @include media(mobile) {
                     &:last-child {
-                      height: 158px;
-                      margin-top: -1px;
+                      height: 100%;
+                      margin-top: -2px;
+                      object-fit: fill;
                     }
                   }
                 }
@@ -1079,12 +1087,13 @@ main>.section.previous-studies-tab {
     // }
   }
 
-  
+
 }
-@media only screen and (max-width:767px){
-  .previous-studies-tab:has(.prev-studies-wrapper.embed-container) li:has(> ul[style*="display: block"]){
-padding-bottom:120px
-}
+
+@media only screen and (max-width:767px) {
+  .previous-studies-tab:has(.prev-studies-wrapper.embed-container) li:has(> ul[style*="display: block"]) {
+    padding-bottom: 120px
+  }
 
   // .co-branding-wrapper {
   //   max-width: 504px;
