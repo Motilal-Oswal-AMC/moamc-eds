@@ -924,50 +924,75 @@ export default async function decorate(block) {
     });
 
     const prevpage = block.closest('.previous-studies-tab');
+
     [...prevpage.querySelectorAll('.prev-studies-wrapper .icon-share')].forEach((elemevent) => {
       const dsp = elemevent.parentElement.nextElementSibling;
       const prev = elemevent.closest('li').previousElementSibling;
-      prev.style.display = 'none';
+      if (prev) prev.style.display = 'none';
+
       if (dsp !== null) {
         dsp.style.display = 'none';
         dataMapMoObj.CLASS_PREFIXES = ['listindex'];
         dataMapMoObj.addIndexed(dsp);
       }
+
       const eventvar = elemevent.parentElement;
-      eventvar.addEventListener('click', () => {
+
+      // 🔹 Toggle popup open/close
+      eventvar.addEventListener('click', (e) => {
+        e.stopPropagation();
+
         const dspblk = elemevent.parentElement.nextElementSibling;
-        if (dsp === null) {
-          return false;
-        }
-        if (dspblk.style.display === 'none') {
-          dspblk.style.display = 'block';
-        } else {
-          dspblk.style.display = 'none';
-        }
-      })
-    })
+        if (!dspblk) return;
+
+        const isVisible = dspblk.style.display === 'block';
+
+        // Hide all other share popups first
+        prevpage.querySelectorAll('.share-popup').forEach(p => p.style.display = 'none');
+
+        dspblk.style.display = isVisible ? 'none' : 'block';
+      });
+
+      // 🔹 WhatsApp Share - CLICK EVENT
+      const whatsappBtn = elemevent.parentElement.nextElementSibling.querySelector('.listindex2');
+
+      if (whatsappBtn) {
+        whatsappBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+
+          // PAGE URL
+          const shareUrl = window.location.href;
+
+          // ITEM TITLE (if exists)
+          const card = elemevent.closest('li');
+          const shareText = card?.querySelector('h3')?.innerText || 'Check this study';
+
+          // WhatsApp link creation
+          const whatsappLink = `https://wa.me/?text=${encodeURIComponent(`${shareText} ${shareUrl}`)}`;
+
+          // Open WhatsApp
+          window.open(whatsappLink, '_blank');
+        });
+      }
+    });
+
+    // 🔹 Click outside - Close popup
     document.addEventListener("click", (event) => {
-      // CLOSE DROPLIST
       if (!dropList.contains(event.target) && !selectedTab.contains(event.target)) {
         dropList.classList.remove("active");
       }
 
-      // FIND CLICKED SHARE ICON OR WRAPPER
       const clickedShareIcon = event.target.closest(".icon-share");
-      const clickedSharePopup = event.target.closest(".share-popup"); // example: your popup div
+      const clickedSharePopup = event.target.closest(".share-popup");
 
-      // If clicked inside share popup or on the icon → do nothing
       if (clickedShareIcon || clickedSharePopup || event.target.closest("p")) return;
-      // if (event.target.querySelector(".icon-share")) {
-        // return false;
-      // }
 
-      // Otherwise close all share popups
       prevpage.querySelectorAll(".prev-studies-wrapper .icon-share").forEach((icon) => {
         const popup = icon.parentElement.nextElementSibling;
         if (popup) popup.style.display = "none";
       });
     });
+
 
   }
 }
