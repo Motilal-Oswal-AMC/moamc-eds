@@ -4,6 +4,8 @@
 
 // previous-studies start
 main .section.previous-studies-ctn.tabs-container {
+  margin-top: 0;
+
   @include media (mobile) {
     margin-top: 0;
   }
@@ -24,9 +26,11 @@ main .section.previous-studies-ctn.tabs-container {
 
   .default-content-wrapper.previous-studies-ex1 {
     padding: 40px 0;
+    margin-top: 33px;
 
     @include media(mobile) {
       padding: 56px 16px 32px;
+       margin-top: 0;
     }
 
     .previous-studies-inter1 {

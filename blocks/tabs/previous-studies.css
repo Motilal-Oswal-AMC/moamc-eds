@@ -1,4 +1,7 @@
 @import "../../../styles/fonts.css";
+main .section.previous-studies-ctn.tabs-container {
+  margin-top: 0;
+}
 @media (max-width: 768px) {
   main .section.previous-studies-ctn.tabs-container {
     margin-top: 0;
@@ -21,10 +24,12 @@
 }
 .previous-studies-ctn.tabs-container .default-content-wrapper.previous-studies-ex1 {
   padding: 40px 0;
+  margin-top: 33px;
 }
 @media (max-width: 768px) {
   .previous-studies-ctn.tabs-container .default-content-wrapper.previous-studies-ex1 {
     padding: 56px 16px 32px;
+    margin-top: 0;
   }
 }
 .previous-studies-ctn.tabs-container .default-content-wrapper.previous-studies-ex1 .previous-studies-inter1 {

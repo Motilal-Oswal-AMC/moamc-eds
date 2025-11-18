@@ -178,7 +178,7 @@ export default async function decorate(block) {
 
       // Add the click event listener to redirect to the home page.
       container.addEventListener('click', () => {
-        window.location.href = 'https://mosldevexp--eds-cloud--rupeshdept.aem.live/mutual-fund/in/en/home-page';
+        window.location.href = `${window.location.origin}/mutual-fund/in/en/home-page`;
       });
     });
   }

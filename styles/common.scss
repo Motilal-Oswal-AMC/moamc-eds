@@ -142,6 +142,7 @@
   h4,
   h5,
   h6 {
+    margin: 0;
     color: var(--text-body);
     font-family: var(--title);
     font-size: var(--heading-h6-size);
@@ -268,6 +269,14 @@
 // Invest Now Scss Start
 
 // WCS Landing Scss Start
+main .section.wcs-landing.section.embed-container {
+  margin-top: 33px;
+
+  @include media (mobile) {
+    margin-top: 0;
+  }
+}
+
 .wcs-landing.section.embed-container {
   max-width: 1232px;
   margin: 0 auto;
@@ -402,10 +411,11 @@
   padding: 0;
 }
 
-main>.section.previous-studies-tab {
+main>.section.previous-studies-tab.tabs-container {
   max-width: 1232px;
   width: 100%;
   margin: 0 auto;
+  margin-top: 0;
   position: relative;
 
   @include media(mobile) {
@@ -429,7 +439,7 @@ main>.section.previous-studies-tab {
       font-weight: 600;
       line-height: var(--heading-h1-line-height);
       margin: 0;
-      padding-top: 40px;
+      padding-top: 41px;
       margin-top: 16px;
 
       @include media(mobile) {

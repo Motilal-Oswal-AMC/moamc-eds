@@ -475,7 +475,7 @@
 
         .articlesub1 {
             @include media(mobile) {
-                display: none;
+                // display: none;
             }
 
             .default-content-wrapper.articleitem1 {
