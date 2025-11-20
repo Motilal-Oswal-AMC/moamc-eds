@@ -1,11 +1,11 @@
 @use "sass:map";
-@use "../../styles/common-theme/css/variables_mixins"as *;
-@use "../../styles/common-theme/css/fluid-typography"as *;
+@use "../../styles/common-theme/css/variables_mixins" as *;
+@use "../../styles/common-theme/css/fluid-typography" as *;
 
 .moedge-building {
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: 16px;
 
     & > div {
         display: flex;
@@ -35,7 +35,10 @@
                 display: block;
                 border-radius: var(--border-radius-8);
 
-                @include media (mobile) {
+                // @include media (mobile) {
+                // }
+
+                @media screen and (width <= 390px) {
                     height: 188px;
                 }
             }
@@ -200,7 +203,7 @@
                     line-height: 24px;
                     margin: 0;
 
-                    @include media(mobile){
+                    @include media(mobile) {
                         font-size: var(--paragraph-small-regular-size);
                         line-height: var(--paragraph-small-regular-line-height);
                     }
@@ -232,8 +235,8 @@
                         border-radius: unset;
                         margin: 0;
                         padding: 0;
-                        
-                        @include media(mobile){
+
+                        @include media(mobile) {
                             font-size: var(--text-link-small-size);
                             line-height: var(--text-link-small-line-height);
                         }
@@ -255,12 +258,28 @@
         // grid-template-columns: repeat(3, 1fr);
         flex-direction: unset;
         flex-wrap: wrap;
-        gap: 16px;
+        justify-content: space-between;
+        gap: 40px 16px;
     }
 
     .moedge-building > div {
         max-width: 32.468%;
         flex: 0 0 32.468%;
+
+        @include media(desktop-sm) {
+            max-width: 32.24%;
+            flex: 0 0 32.24%;
+        }
+
+        @include media(tab) {
+            max-width: 31.8%;
+            flex: 0 0 31.8%;
+        }
+
+        @include media(mobile) {
+            max-width: 100%;
+            flex: 0 0 100%;
+        }
 
         .moedge-build-sec1 {
             height: 220px;

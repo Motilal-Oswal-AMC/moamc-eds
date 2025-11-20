@@ -36,12 +36,20 @@ $breakpoint-tablet: 900px;
 
       @media (width <=768px) {
         display: block;
+        width: 100%;
 
         .compaignsub1{
+          width: 100%;
+
           .compaigninner1{
             line-height: 0;
             height: 100%;
             display: block;
+            width: 100%;
+
+            img{
+              width: 100%;
+            }
           }
         }
       }

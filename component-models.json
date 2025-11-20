@@ -215,6 +215,10 @@
             "value": "investor-banner"
           },
           {
+            "name": "Landing Investor Banner",
+            "value": "landing-investor-banner"
+          },
+          {
             "name": "FDP FAQ Change",
             "value": "fdp-faq-change"
           },

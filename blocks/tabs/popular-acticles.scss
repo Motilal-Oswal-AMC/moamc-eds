@@ -340,10 +340,14 @@
     }
 
     .default-content-wrapper {
-        padding: 2px 0;
-
+        padding: 0;
+        
         @include media(mobile) {
-            padding: 0 16px;
+            padding: 24px 16px 0;
+        }
+        
+        h1,h2,h3,h4,h5,h6{
+            padding: 2px 0;
         }
     }
 
@@ -368,9 +372,12 @@
                 right: 24px;
             }
 
-            @include media(tab) {
+            @media screen and (width <= 1200px) {
                 position: unset;
                 margin: 0 0 40px;
+            }
+
+            @include media(mobile){
                 padding: 0 16px;
             }
         }
@@ -380,28 +387,29 @@
                 padding: 0 16px;
             }
 
-            .moedge-building {
-                @include media(desktop-sm) {
-                    flex-direction: unset;
-                    flex-wrap: wrap;
-                    gap: 0;
-                }
+            // .moedge-building {
+                // @include media(desktop-sm) {
+                //     flex-direction: unset;
+                //     flex-wrap: wrap;
+                //     justify-content: space-between;
+                //     gap: 16px;
+                // }
 
-                > .comlist {
-                    @include media(desktop-sm) {
-                        max-width: 32.24%;
-                        flex: 0 0 32.24%;
-                    }
+                // > .comlist {
+                    // @include media(desktop-sm) {
+                    //     max-width: 32.24%;
+                    //     flex: 0 0 32.24%;
+                    // }
 
-                    @include media(tab) {
-                        max-width: 31.1%;
-                        flex: 0 0 31.1%;
-                    }
+                    // @include media(tab) {
+                    //     max-width: 31.8%;
+                    //     flex: 0 0 31.8%;
+                    // }
 
-                    @include media(mobile) {
-                        max-width: 100%;
-                        flex: 0 0 100%;
-                    }
+                    // @include media(mobile) {
+                    //     max-width: 100%;
+                    //     flex: 0 0 100%;
+                    // }
 
                     // .moedge-build-sec3 {
                         // .moedge-build-inner-text {
@@ -433,8 +441,8 @@
                             // }
                         // }
                     // }
-                }
-            }
+                // }
+            // }
         }
     }
 }

@@ -803,6 +803,9 @@
     line-height: var(--text-link-small-line-height);
   }
 }
+.section.key-investing.future-building-container .library-btn2 .future-building .navigate-wrap {
+  display: none;
+}
 .section.key-investing.future-building-container .pagination-wrapper {
   display: flex;
   width: 340px;

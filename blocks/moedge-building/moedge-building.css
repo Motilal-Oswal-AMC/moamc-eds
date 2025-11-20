@@ -2,7 +2,7 @@
 .moedge-building {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 16px;
 }
 .moedge-building > div {
   display: flex;
@@ -18,7 +18,7 @@
   display: block;
   border-radius: var(--border-radius-8);
 }
-@media (max-width: 768px) {
+@media screen and (width <= 390px) {
   .moedge-building > div .moedge-build-sec1 img {
     height: 188px;
   }
@@ -212,12 +212,33 @@
   .moedge-building {
     flex-direction: unset;
     flex-wrap: wrap;
-    gap: 16px;
+    justify-content: space-between;
+    gap: 40px 16px;
   }
   .moedge-building > div {
     max-width: 32.468%;
     flex: 0 0 32.468%;
   }
+}
+@media (width >= 900px) and (max-width: 1299px) {
+  .moedge-building > div {
+    max-width: 32.24%;
+    flex: 0 0 32.24%;
+  }
+}
+@media (width >= 900px) and (max-width: 1025px) {
+  .moedge-building > div {
+    max-width: 31.8%;
+    flex: 0 0 31.8%;
+  }
+}
+@media (width >= 900px) and (max-width: 768px) {
+  .moedge-building > div {
+    max-width: 100%;
+    flex: 0 0 100%;
+  }
+}
+@media (width >= 900px) {
   .moedge-building > div .moedge-build-sec1 {
     height: 220px;
   }
