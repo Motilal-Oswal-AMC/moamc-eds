@@ -16,6 +16,26 @@ export default function decorate(block) {
     wrapperDiv.appendChild(mainArticle2);
   }
 
+
+  const shareWrapper = document.querySelector(".itemmainleftart3");
+  const shareBtn = shareWrapper.querySelector(".submainleftart1");
+  const dropdown = shareWrapper.querySelector(".submainleftart2");
+
+  // Toggle dropdown when clicking share icon
+  shareBtn.addEventListener("click", function (e) {
+    e.stopPropagation();
+    dropdown.classList.toggle("active");
+  });
+
+  // Close dropdown on outside click
+  document.addEventListener("click", function (e) {
+    if (!shareWrapper.contains(e.target)) {
+      dropdown.classList.remove("active");
+    }
+  });
+
+
+
   //  // Investor Education article left and right wrapper
   // if (window.location.href.includes('/investor-education/all-articles/') || window.location.href.includes('/motilal-oswal-edge/article-details')) {
   //   const maincloser = block.closest('main');

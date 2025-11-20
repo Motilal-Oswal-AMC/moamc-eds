@@ -583,12 +583,12 @@
             "value": "coverage-table-panel"
           },
           {
-            "name":"Why Choose Us",
-            "value":"why-choose-us"
+            "name": "Why Choose Us",
+            "value": "why-choose-us"
           },
           {
-            "name":"Why Choose Card",
-            "value":"why-choose-card"
+            "name": "Why Choose Card",
+            "value": "why-choose-card"
           },
           {
             "name": "Section One",
@@ -609,6 +609,14 @@
           {
             "name": "Testing",
             "value": "testing"
+          },
+          {
+            "name": "Mo Inter Business",
+            "value": "mo-inter-business"
+          },
+          {
+            "name": "our investing style",
+            "value": "our-investing-style"
           }
         ]
       },
@@ -2589,6 +2597,25 @@
   },
   {
     "id": "edge-filter",
+    "fields": [
+      {
+        "component": "richtext",
+        "name": "one text",
+        "value": "",
+        "label": "Text",
+        "valueType": "string"
+      },
+      {
+        "component": "richtext",
+        "name": "two text",
+        "value": "",
+        "label": "Text",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "global-gateway",
     "fields": [
       {
         "component": "richtext",

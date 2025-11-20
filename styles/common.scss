@@ -1471,6 +1471,10 @@ main>.section.previous-studies-tab.tabs-container {
   margin: 0;
   padding: 24px 0;
 
+  @include media(mobile) {
+    padding: 20px 0 24px;
+  }
+
   .breadul {
     max-width: 1232px;
     margin: 0 auto;
@@ -1540,7 +1544,8 @@ main>.section.previous-studies-tab.tabs-container {
 
       &:last-child {
         a.breadlist {
-          color: var(--blue-1800-primary, #2e2a94);
+          // color: var(--blue-1800-primary, #2e2a94);
+          color: var(--neutrals-800, #424242);
           font-feature-settings: var(--font-features-default);
           font-family: var(--body, Inter);
           font-size: var(--label-small-size);
@@ -1563,21 +1568,22 @@ main>.section.previous-studies-tab.tabs-container {
 
 
 // static QGLP component start
-.qglp-static-Component{
-  ul{
+.qglp-static-Component {
+  ul {
     list-style: none;
 
-    li{
+    li {
 
 
-    //  &::marker{
-    //     display: none;
-    //     content: none;
-    //   }
+      //  &::marker{
+      //     display: none;
+      //     content: none;
+      //   }
 
     }
   }
 }
+<<<<<<< HEAD
 // static QGLP component end
 //Why Choose Us Static Start
 
@@ -1783,3 +1789,7 @@ main>.section.previous-studies-tab.tabs-container {
 }
 
 //why choose us ststic end 
+=======
+
+// static QGLP component end
+>>>>>>> a43ee353915f9aa4630a984afe52a73e1f5356af

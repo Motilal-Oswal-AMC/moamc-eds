@@ -1,6 +1,27 @@
 @import "../../../styles/fonts.css";
+.moedge-article-video-container {
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
 .moedge-article-video-wrapper .moedge-article-video .articles-wrapper {
   position: relative;
+  height: 320px;
+}
+@media (max-width: 768px) {
+  .moedge-article-video-wrapper .moedge-article-video .articles-wrapper {
+    height: 160px;
+  }
+}
+.moedge-article-video-wrapper .moedge-article-video .articles-wrapper .subleftart1 {
+  height: 320px;
+}
+@media (max-width: 768px) {
+  .moedge-article-video-wrapper .moedge-article-video .articles-wrapper .subleftart1 {
+    height: 160px;
+  }
 }
 .moedge-article-video-wrapper .moedge-article-video .articles-wrapper .subleftart1 .itemarticle1.mainleftart1 {
   font-size: 0;
@@ -65,7 +86,7 @@
 .moedge-article-video-wrapper .moedge-article-video .mainarticle3 {
   padding: 0;
   margin: 0;
-  margin: 40px 0 16px;
+  margin: 40px 0 0;
 }
 @media (max-width: 768px) {
   .moedge-article-video-wrapper .moedge-article-video .mainarticle3 {
@@ -134,6 +155,7 @@
   }
 }
 .moedge-article-video-wrapper .moedge-article-video .mainarticle3 p.comlist {
+  margin: 0;
   color: var(--blue-1800-primary, #2E2A94);
   font-feature-settings: var(--font-features-default);
   font-family: var(--body, Inter);
@@ -172,7 +194,7 @@
 }
 .moedge-article-video-wrapper .moedge-article-video .subleftart3 .mainleftart1 p.itemleftart3:nth-child(3) {
   padding-top: 24px;
-  padding-bottom: 8px;
+  padding-bottom: 0;
   color: #3D3D3D;
   font-feature-settings: var(--font-features-default);
   font-family: var(--body, Inter);

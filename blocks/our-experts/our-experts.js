@@ -84,7 +84,7 @@ export default function decorate(block) {
   const inputEl = document.createElement('input');
   inputEl.type = 'text';
   inputEl.id = 'our-experts-search';
-  inputEl.placeholder = ' ';
+  inputEl.placeholder = 'Search here';
   inputEl.autocomplete = 'off';
 
   const labelEl = document.createElement('label');
