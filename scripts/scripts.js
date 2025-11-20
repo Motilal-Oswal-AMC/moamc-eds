@@ -597,3 +597,10 @@ function qglpwcs() {
   }
 }
 dataMapMoObj.qglpwcs = qglpwcs;
+
+const qglpStaticComponent = document.querySelector('.qglp-static-component');
+
+if (qglpStaticComponent != null) {
+  dataMapMoObj.CLASS_PREFIXES = ['qglp-static-ctn', 'qglp-static-ext', 'qglp-static-int', 'qglp-static-wrp', 'qglp-static-box', 'qglp-static-ls-ul', 'qglp-static-ls-li'];
+  dataMapMoObj.addIndexed(qglpStaticComponent);
+}

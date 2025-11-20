@@ -939,7 +939,7 @@ main > .section.previous-studies-tab.tabs-container .tab-dropdown-wrap .tab-drop
 .prev-main-wrapper .co-branding-wrapper .comlist ul > li:nth-child(3) ul li.comlist.listindex5 {
   position: fixed;
   left: 50%;
-  transform: translateY(-50%);
+  transform: translateX(-50%);
   margin: 0 auto;
   min-width: unset;
   width: -moz-max-content;
@@ -1196,4 +1196,76 @@ main > .section.previous-studies-tab.tabs-container .tab-dropdown-wrap .tab-drop
 }
 .section.breadcrumbs.slash-dsp-none li.breadli:nth-child(3) {
   display: none;
+}
+
+.qglp-static-component ul {
+  list-style: none;
+}
+.qglp-static-component .qglp-static-ext1 {
+  margin: 0;
+}
+.qglp-static-component .qglp-static-ext1 .qglp-static-wrp1 {
+  display: flex;
+  -moz-column-gap: 16px;
+       column-gap: 16px;
+  margin: 0;
+  flex-wrap: wrap;
+}
+@media (max-width: 768px) {
+  .qglp-static-component .qglp-static-ext1 .qglp-static-wrp1 {
+    flex-direction: column;
+    row-gap: 16px;
+  }
+}
+.qglp-static-component .qglp-static-ext1 .qglp-static-wrp1 > .comlist .comlist.qglp-static-ls-ul1 {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  max-width: 263px;
+}
+@media (max-width: 768px) {
+  .qglp-static-component .qglp-static-ext1 .qglp-static-wrp1 > .comlist .comlist.qglp-static-ls-ul1 {
+    padding: 16px 0;
+    max-width: 100%;
+  }
+}
+.qglp-static-component .qglp-static-ext1 .qglp-static-wrp1 > .comlist .comlist.qglp-static-ls-ul1 .qglp-static-ls-li1 {
+  color: var(--blue-1-800-primary);
+  font-family: var(--body);
+  font-size: 158px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: var(--label-small-line-height);
+  border-radius: 12px;
+  border: 1px solid var(--neutrals-200);
+  background: var(--blue-1-25, );
+  box-shadow: 0 0 24px 0 rgba(0, 0, 0, 0.04);
+  width: 263px;
+  height: 232px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@media (max-width: 768px) {
+  .qglp-static-component .qglp-static-ext1 .qglp-static-wrp1 > .comlist .comlist.qglp-static-ls-ul1 .qglp-static-ls-li1 {
+    width: 100%;
+  }
+}
+.qglp-static-component .qglp-static-ext1 .qglp-static-wrp1 > .comlist .comlist.qglp-static-ls-ul1 .qglp-static-ls-li2 {
+  margin: 12px 0;
+  color: var(--blue-1-800-primary);
+  font-family: var(--body);
+  font-size: var(--body-medium-regular-size);
+  font-style: normal;
+  font-weight: 400;
+  line-height: var(--body-medium-regular-line-height);
+}
+.qglp-static-component .qglp-static-ext1 .qglp-static-wrp1 > .comlist .comlist.qglp-static-ls-ul1 .qglp-static-ls-li3 {
+  color: var(--text-body-2);
+  font-family: var(--body);
+  font-size: var(--body-medium-regular-size);
+  font-style: normal;
+  font-weight: 400;
+  line-height: var(--body-medium-regular-line-height);
 }/*# sourceMappingURL=common.css.map */
