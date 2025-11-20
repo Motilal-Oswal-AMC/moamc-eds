@@ -35,10 +35,10 @@ export default function decorate(block) {
       container.insertBefore(newWrapper, defaultContent);
       newWrapper.appendChild(defaultContent);
       newWrapper.appendChild(performanceWrapper);
-    }else{
+    } else {
       const newWrapper = document.createElement('div');
       newWrapper.classList.add('performance-graph-wrapper');
-      container.insertBefore(newWrapper,performanceGraphReturningWrapper)
+      container.insertBefore(newWrapper, performanceGraphReturningWrapper);
       newWrapper.appendChild(performanceWrapper);
     }
   }
@@ -357,7 +357,7 @@ export default function decorate(block) {
           //   span({ class: 'value' }, '15.28%'),
           // )
           span({ class: 'fund-returns' }, 'Returns '),
-          span({ class: 'value' }, '15.28',span({class: 'fund-percentage'}, '%')),
+          span({ class: 'value' }, '15.28', span({ class: 'fund-percentage' }, '%')),
         ),
       ),
     ),

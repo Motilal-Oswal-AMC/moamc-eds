@@ -224,7 +224,7 @@ export default async function decorate(block) {
     }
     const footerfield = block.querySelector('.footer-section2 .footer-sub-cont2');
     footerfield.style.display = 'none';
-    blokform.style.display = 'none'
+    blokform.style.display = 'none';
     if (blokform !== null && blokform !== undefined) {
       const elemObj = {};
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;

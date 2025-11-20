@@ -523,7 +523,7 @@ export default async function decorate(block) {
     }
   }
 
-  document.querySelectorAll('.contact-main1 a').forEach(function (el) {
+  document.querySelectorAll('.contact-main1 a').forEach((el) => {
     el.classList.add('inner-link');
   });
 

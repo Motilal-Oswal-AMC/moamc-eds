@@ -4,7 +4,6 @@ import {
   div,
   label,
   input,
-  img,
 } from '../../scripts/dom-helpers.js';
 
 export default function decorate(block) {
@@ -73,12 +72,12 @@ export default function decorate(block) {
   };
 
   const imagesToFix = swiperWrapper.querySelectorAll('img[alt=""]');
-  imagesToFix.forEach((img) => {
-    const { iconName } = img.dataset;
+  imagesToFix.forEach((imgelem) => {
+    const { iconName } = imgelem.dataset;
     const altText = altTextMap[iconName];
 
     if (altText !== undefined) {
-      img.setAttribute('alt', altText);
+      imgelem.setAttribute('alt', altText);
     }
   });
   // =================================================================
@@ -181,9 +180,9 @@ export default function decorate(block) {
       if (futureBuildingSection && stayUpdatedSection) {
       // Move future-building-container above stay-updated
         stayUpdatedSection.parentNode.insertBefore(futureBuildingSection, stayUpdatedSection);
-        console.log('✅ future-building-container moved above stay-updated');
+        // console.log('✅ future-building-container moved above stay-updated');
       } else {
-        console.warn('⚠️ Required sections not found in DOM');
+        // console.warn('⚠️ Required sections not found in DOM');
       }
     }
   });

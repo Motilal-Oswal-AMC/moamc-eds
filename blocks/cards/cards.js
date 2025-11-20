@@ -185,7 +185,7 @@ export default function decorate(block) {
   // aif component end
 
   // // Investor Education article left and right wrapper
-  // if (window.location.href.includes('/investor-education/all-articles/') 
+  // if (window.location.href.includes('/investor-education/all-articles/')
   // || window.location.href.includes('/motilal-oswal-edge/article-details')) {
   //   const maincloser = block.closest('main');
   //   const rightSub = maincloser.querySelectorAll('.article-sub-right');

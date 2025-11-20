@@ -49,8 +49,8 @@ export default async function decorate(block) {
     }
   });
 
-  let play_btn = document.querySelectorAll('.previous-studies-ctn .tabs-panel .previous-studies-blog-wrapper .icon img')
-  play_btn.forEach((e) =>{
-  dataMapMoObj.altFunction(e, 'play-btn-icon')
-})
+  const playBtn = document.querySelectorAll('.previous-studies-ctn .tabs-panel .previous-studies-blog-wrapper .icon img');
+  playBtn.forEach((e) => {
+    dataMapMoObj.altFunction(e, 'play-btn-icon');
+  });
 }

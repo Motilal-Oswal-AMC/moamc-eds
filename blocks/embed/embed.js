@@ -4,11 +4,12 @@
  * Show videos and social posts directly on your page
  * https://www.hlx.live/developer/block-collection/embed
  */
+// eslint-disable-next-line
+import buildtabblock from '../tabs/tabs.js';
 import dataMapMoObj from '../../scripts/constant.js';
 import {
   div, table, thead, tbody, tr, p,
 } from '../../scripts/dom-helpers.js';
-import tabBlock from '../tabs/tabs.js';
 
 const loadScript = (url, callback, type) => {
   const head = document.querySelector('head');
@@ -209,7 +210,7 @@ export default function decorate(block) {
           // .append(valueAry[index][inner]);
           innerdiv.append(subinner);
         });
-        tabBlock(innerdiv);
+        buildtabblock(innerdiv);
         const container = div(
           { class: 'contain' },
           div(elobj),
@@ -219,7 +220,7 @@ export default function decorate(block) {
         divmain.append(container);
       });
       // console.log(divmain);
-      tabBlock(divmain);
+      buildtabblock(divmain);
       if (!data.classList.contains('modal-wrapper')) {
         data.append(divmain);
       }

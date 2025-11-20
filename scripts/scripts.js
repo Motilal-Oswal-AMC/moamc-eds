@@ -1,3 +1,4 @@
+// eslint-disable-next-line
 import {
   loadEmbed,
 } from '../blocks/embed/embed.js';
@@ -337,9 +338,9 @@ export async function myAPI(method, url, body = null, customHeaders = {}) {
 }
 
 export function generateAppId() {
-  const chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVXYZ";
-  let appId = "";
-  for (let i = 0; i < 36; i++) {
+  const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVXYZ';
+  let appId = '';
+  for (let i = 0; i < 36; i += 1) {
     appId += chars[Math.floor(Math.random() * chars.length)];
   }
   return appId;
@@ -617,4 +618,3 @@ if (chooseusCard != null) {
   ];
   dataMapMoObj.addIndexed(chooseusCard);
 }
-

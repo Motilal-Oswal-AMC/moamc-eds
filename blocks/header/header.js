@@ -746,7 +746,7 @@ export default async function decorate(block) {
         dropdownMenu.classList.remove('open');
       }
     } catch (error) {
-      console.error('Error in scroll event handler:', error);
+      // console.error('Error in scroll event handler:', error);
     }
   });
 

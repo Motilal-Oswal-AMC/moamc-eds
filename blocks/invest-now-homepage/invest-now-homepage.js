@@ -2144,7 +2144,7 @@ export default function decorate(block) {
         }
         dataMapMoObj.planText = `${fund.planList[0].planName} | ${fund.planList[0].optionName}`;
       }
-    })
+    });
   }
   const textdrop = dataMapMoObj.planText === undefined ? '' : dataMapMoObj.planText;
   const modal = div(
@@ -2683,7 +2683,7 @@ export default function decorate(block) {
         if (fp.calendarContainer) {
           fp.calendarContainer.removeAttribute('style');
         } else {
-          console.log('somehting is wrong');
+          // console.log('somehting is wrong');
         }
       },
       onChange(selectedDates) { // (selectedDates, dateStr, instance) {

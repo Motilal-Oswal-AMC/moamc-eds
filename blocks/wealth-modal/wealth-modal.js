@@ -272,7 +272,7 @@ export default function decorate(block) {
         const headers = {
           'Content-Type': 'application/json',
           'X-Encrypted-Key': 'N',
-          'appid': generateAppId(),
+          appid: generateAppId(),
         };
 
         const response = await myAPI(
@@ -298,7 +298,7 @@ export default function decorate(block) {
           alert(`Something went wrong: ${result.message || 'Unknown error'}`);
         }
       } catch (error) {
-        console.error('API Error:', error);
+        // console.error('API Error:', error);
         alert('Failed to submit form. Please try again later.');
       }
     } else {
