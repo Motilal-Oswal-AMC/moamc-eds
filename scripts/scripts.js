@@ -215,7 +215,7 @@ async function loadEager(doc) {
 async function loadLazy(doc) {
   autolinkVideo(doc);
   const main = doc.querySelector('main');
-  if (window.location.href.includes('/investor-education/all-articles/') || window.location.href.includes('/motilal-oswal-edge/article-details') || window.location.href.includes('/motilal-oswal-edge/mo-edge-article-details-d') || window.location.href.includes('/motilal-oswal-edge/mo-edge-article-details-image') || window.location.href.includes('/motilal-oswal-edge/mo-edge-article-details-video')) {
+  if (window.location.href.includes('/investor-education/all-articles/') || window.location.href.includes('/motilal-oswal-edge/article-details') || window.location.href.includes('/motilal-oswal-edge/mo-edge-article-image') || window.location.href.includes('/motilal-oswal-edge/mo-edge-article-details-d') || window.location.href.includes('/motilal-oswal-edge/mo-edge-article-details-image') || window.location.href.includes('/motilal-oswal-edge/mo-edge-article-details-video')) {
     const maindiv = main.querySelector('.main-wrapper');
     // maindiv.classList.add('main-wrapper');
     maindiv.append(main.querySelector('.article-left-wrapper'));
@@ -501,7 +501,7 @@ if (calculatorsCard != null) {
 // // article
 function articleStructure() {
   // Investor Education article left and right wrapper
-  if (window.location.href.includes('/investor-education/all-articles/') || window.location.href.includes('/motilal-oswal-edge/article-details') || window.location.href.includes('/motilal-oswal-edge/mo-edge-article-details-d') || window.location.href.includes('/motilal-oswal-edge/mo-edge-article-details-image') || window.location.href.includes('/motilal-oswal-edge/mo-edge-article-details-video')) {
+  if (window.location.href.includes('/investor-education/all-articles/') || window.location.href.includes('/motilal-oswal-edge/article-details')  || window.location.href.includes('/motilal-oswal-edge/mo-edge-article-image') || window.location.href.includes('/motilal-oswal-edge/mo-edge-article-details-d') || window.location.href.includes('/motilal-oswal-edge/mo-edge-article-details-image') || window.location.href.includes('/motilal-oswal-edge/mo-edge-article-details-video')) {
     const maincloser = document.querySelector('main');
     const rightSub = maincloser.querySelectorAll('.article-sub-right');
     const rightarticle = maincloser.querySelector('.article-right-wrapper');
