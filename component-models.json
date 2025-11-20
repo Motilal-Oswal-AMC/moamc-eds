@@ -609,7 +609,15 @@
           {
             "name": "Testing",
             "value": "testing"
-          }
+          },
+          {
+            "name":"High Skin Text",
+            "value":"high-skin-text"
+          },
+          {
+            "name":"High Image Component",
+            "value":"high-image-component"
+          } 
         ]
       },
       {
