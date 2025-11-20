@@ -36,6 +36,14 @@ $breakpoint-tablet: 900px;
 
       @media (width <=768px) {
         display: block;
+
+        .compaignsub1{
+          .compaigninner1{
+            line-height: 0;
+            height: 100%;
+            display: block;
+          }
+        }
       }
     }
 
@@ -56,10 +64,21 @@ $breakpoint-tablet: 900px;
         height: 255px;
         object-fit: cover;
 
-        img{
-          height: 100%;
-          width: 100%;
+        @include media(desktop-sm){
+          height: auto;
         }
+
+        .compaigninner1{
+          line-height: 0;
+          height: 100%;
+          display: block;
+
+          img{
+            height: 100%;
+            width: 100%;
+          }
+        }
+
       }
     }
 
@@ -1043,8 +1062,3 @@ $breakpoint-tablet: 900px;
   }
   
 }
-  
-  
-    
-
-

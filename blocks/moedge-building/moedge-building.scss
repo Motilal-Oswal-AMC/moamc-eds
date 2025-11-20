@@ -7,10 +7,10 @@
     flex-direction: column;
     gap: 24px;
 
-    &>div {
+    & > div {
         display: flex;
         flex-direction: column;
-        gap: 24px;
+        gap: var(--spacing-24);
 
         // .button-container >p {
         //     margin: 0;
@@ -34,6 +34,10 @@
                 object-fit: cover;
                 display: block;
                 border-radius: var(--border-radius-8);
+
+                @include media (mobile) {
+                    height: 188px;
+                }
             }
         }
 
@@ -47,7 +51,7 @@
             flex-direction: column;
             flex-grow: 1;
 
-            >.moedge-build-sub1 {
+            > .moedge-build-sub1 {
                 list-style: none;
                 padding: 0;
                 margin: 0;
@@ -68,7 +72,7 @@
                 font-size: 0.875rem;
                 margin-bottom: 24px;
 
-                >.moedge-build-list1 {
+                > .moedge-build-list1 {
                     margin: 0;
                     min-width: 74px;
                     display: flex;
@@ -78,7 +82,7 @@
                     gap: 4px;
                     border-radius: var(--border-radius-circle);
                     border: 1px solid var(--strokes-default);
-                    color: var(--blue-1800-primary, #2E2A94);
+                    color: var(--blue-1-800-primary, #2e2a94);
                     font-feature-settings: var(--font-features-default);
                     font-family: var(--body, Inter);
                     font-size: var(--label-small-size);
@@ -86,13 +90,18 @@
                     font-weight: 400;
                     line-height: var(--label-small-line-height);
 
+                    @include media(mobile) {
+                        font-size: var(--label-small-size);
+                        line-height: var(--label-small-line-height);
+                    }
+
                     span {
                         width: 16px;
                         height: 16px;
                     }
                 }
 
-                >.moedge-build-list2 {
+                > .moedge-build-list2 {
                     display: contents;
                     list-style: none;
                     padding: 0;
@@ -111,6 +120,11 @@
                     font-weight: 400;
                     line-height: var(--label-small-line-height);
 
+                    @include media(mobile) {
+                        font-size: var(--label-small-size);
+                        line-height: var(--label-small-line-height);
+                    }
+
                     span {
                         width: 12px;
                         height: 12px;
@@ -120,17 +134,17 @@
                     }
 
                     &::before {
-                        content: '';
+                        content: "";
                         display: inline-block;
                         width: 4px;
                         height: 4px;
-                        background: url('../../icons/blue-dot.svg');
+                        background: url("../../icons/blue-dot.svg");
                         background-repeat: no-repeat;
                         background-position: center;
                     }
                 }
 
-                .moedge-build-list2>li:first-child::before {
+                .moedge-build-list2 > li:first-child::before {
                     display: none;
                 }
             }
@@ -145,7 +159,7 @@
                     line-height: 0;
 
                     .button {
-                        color: #2E2A94;
+                        color: #2e2a94;
                         font-feature-settings: var(--font-features-default);
                         font-family: var(--body);
                         font-size: var(--body-large-medium-size);
@@ -162,6 +176,11 @@
                         white-space: unset;
                         overflow: unset;
 
+                        @include media(mobile) {
+                            font-size: var(--body-large-medium-size);
+                            line-height: var(--body-large-medium-line-height);
+                        }
+
                         // &:hover {
                         //     color: var(--link-color);
                         // }
@@ -176,10 +195,15 @@
                     color: #616161;
                     font-family: var(--body, inter);
                     font-feature-settings: var(--font-features-default);
-                    font-size: var(--paragraph-small-size);
+                    font-size: var(--body-medium-regular-size);
                     font-weight: 400;
-                    line-height: var(--paragraph-small-line-height);
+                    line-height: 24px;
                     margin: 0;
+
+                    @include media(mobile){
+                        font-size: var(--paragraph-small-regular-size);
+                        line-height: var(--paragraph-small-regular-line-height);
+                    }
                 }
             }
 
@@ -191,7 +215,7 @@
 
                     .moedge-build-list-content1 {
                         background-color: transparent;
-                        color: #2E2A94;
+                        color: #2e2a94;
                         font-feature-settings: var(--font-features-default);
                         font-family: var(--body);
                         font-size: 14px;
@@ -208,6 +232,11 @@
                         border-radius: unset;
                         margin: 0;
                         padding: 0;
+                        
+                        @include media(mobile){
+                            font-size: var(--text-link-small-size);
+                            line-height: var(--text-link-small-line-height);
+                        }
 
                         // text-underline-offset: 20%;
                     }
@@ -229,9 +258,9 @@
         gap: 16px;
     }
 
-    .moedge-building>div {
-        max-width: 32.46%;
-        flex: 0 0 32.46%;
+    .moedge-building > div {
+        max-width: 32.468%;
+        flex: 0 0 32.468%;
 
         .moedge-build-sec1 {
             height: 220px;
@@ -248,7 +277,7 @@
 
         .moedge-build-sec3 {
             .moedge-build-inner-text1 {
-                >.moedge-build-list1 {
+                > .moedge-build-list1 {
                     padding: 0 var(--spacing-12);
                     min-width: 86px;
                     gap: 4px;
@@ -267,19 +296,19 @@
                 }
             }
 
-            >.moedge-build-sub1 {
-                padding-bottom: 24px;
+            > .moedge-build-sub1 {
+                padding-bottom: var(--spacing-24);
             }
         }
     }
 
-    .learn-about.moedge-building>div {
+    .learn-about.moedge-building > div {
         max-width: 100%;
         flex: 100%;
     }
 }
 
-// MOedge Videos Sections css start 
+// MOedge Videos Sections css start
 .moedge-videos {
     .moedge-building {
         .secs-wrapper {
@@ -313,17 +342,17 @@
 
 // MOedge Videos Sections css End
 
-// learn-about moedge-building-container cards css 
+// learn-about moedge-building-container cards css
 
 .learn-about.moedge-building-container {
     margin-bottom: 24px;
 
-    @include media (mobile) {
+    @include media(mobile) {
         margin: 24px 0;
     }
 
     .moedge-building {
-        &>div {
+        & > div {
             flex-direction: column;
 
             @include media(mobile) {
@@ -336,7 +365,7 @@
                     background: lightgray 0 -0.156px / 100% 127.052% no-repeat;
                     object-position: top;
 
-                    @include media (mobile-md) {
+                    @include media(mobile-md) {
                         aspect-ratio: 16 / 8.85;
                     }
                 }
@@ -345,7 +374,7 @@
             .moedge-build-sec3 {
                 padding-top: 16px;
 
-                @include media (mobile) {
+                @include media(mobile) {
                     padding-top: 0;
                 }
             }
@@ -357,7 +386,7 @@
     .learn-about.moedge-building-container {
         margin-bottom: 40px;
 
-        .moedge-building>div {
+        .moedge-building > div {
             max-width: 100%;
             flex: 0 0 100%;
             gap: 16px;
@@ -391,13 +420,10 @@
                 object-position: top;
             }
         }
-
     }
 }
 
-
-
-// in-the-news moedge-building-container css start 
+// in-the-news moedge-building-container css start
 
 .in-the-news.popular-artical.moedge-building-container {
     position: relative;
@@ -408,7 +434,7 @@
         gap: 16px;
         row-gap: 40px;
 
-        @include media (mobile) {
+        @include media(mobile) {
             padding-bottom: 96px;
             gap: unset;
         }
@@ -417,7 +443,7 @@
             display: none;
         }
 
-        &>div {
+        & > div {
             gap: 0;
 
             .moedge-build-sec1 {
@@ -445,7 +471,7 @@
         align-self: stretch;
         margin-bottom: 40px;
 
-        @include media (mobile) {
+        @include media(mobile) {
             justify-content: center;
             padding-top: 0;
             margin-top: 0;
@@ -455,7 +481,7 @@
         h4 {
             margin: 0;
             padding: 0;
-            color: var(--blue-1800-primary, #2E2A94);
+            color: var(--blue-1800-primary, #2e2a94);
             font-feature-settings: var(--font-features-default);
             font-family: var(--title, Inter);
             font-size: var(--heading-h4-size, 32px);
@@ -463,7 +489,7 @@
             font-weight: 600;
             line-height: var(--heading-h4-line-height, 40px);
 
-            @include media (mobile) {
+            @include media(mobile) {
                 width: 100%;
                 text-align: left;
 
@@ -484,7 +510,7 @@
             align-items: center;
             gap: var(--spacing-8, 8px);
             border-radius: var(--border-radius-8, 8px);
-            background: var(--button-primary-default, #2E2A94);
+            background: var(--button-primary-default, #2e2a94);
             margin: 0;
 
             @include media(mobile) {
@@ -493,7 +519,7 @@
             }
 
             a.button {
-                color: var(--text-white, #FFF);
+                color: var(--text-white, #fff);
                 text-align: center;
                 font-feature-settings: var(--font-features-default);
                 font-family: var(--body);
@@ -506,7 +532,6 @@
                 padding: 0;
                 border: unset;
                 border-radius: unset;
-
             }
         }
     }
@@ -523,7 +548,7 @@
             padding-bottom: 0;
         }
 
-        >div .moedge-build-sec3 {
+        > div .moedge-build-sec3 {
             .moedge-build-inner-text1 {
                 display: none;
             }
@@ -563,15 +588,15 @@
             display: none;
         }
 
-        >div .moedge-build-sec3 {
-            >.moedge-build-sub1 {
+        > div .moedge-build-sec3 {
+            > .moedge-build-sub1 {
                 padding-bottom: 24px;
             }
         }
     }
 
-    >div.default-content-wrapper {
-        @include media (mobile) {
+    > div.default-content-wrapper {
+        @include media(mobile) {
             padding-top: 0;
         }
     }
@@ -593,10 +618,10 @@
         line-height: 10px;
     }
 
-    >div.default-content-wrapper:nth-child(2) {
+    > div.default-content-wrapper:nth-child(2) {
         padding-top: 40px;
 
-        @include media (mobile) {
+        @include media(mobile) {
             padding-top: 40px;
         }
 
@@ -610,7 +635,7 @@
             align-items: center;
             gap: 10px;
 
-            @include media (mobile) {
+            @include media(mobile) {
                 padding-bottom: 0;
             }
 
@@ -623,7 +648,7 @@
                 align-items: center;
                 gap: var(--spacing-8, 8px);
                 border-radius: var(--border-radius-8, 8px);
-                background: var(--button-primary-default, #2E2A94);
+                background: var(--button-primary-default, #2e2a94);
 
                 a {
                     color: var(--text-white);
@@ -650,7 +675,6 @@
                 display: none;
             }
         }
-
     }
 
     // .moedge-building-wrapper {
@@ -663,19 +687,19 @@
 }
 
 .popular-artical.building-moedge {
-    @include media (mobile) {
+    @include media(mobile) {
         padding-bottom: 40px;
         margin-bottom: 0;
     }
 
     .default-content-wrapper:last-of-type {
-        @include media (mobile) {
+        @include media(mobile) {
             padding: 0;
             padding: 48px 0 0;
         }
 
         ul:first-child {
-            @include media (mobile) {
+            @include media(mobile) {
                 padding: 0;
             }
         }
@@ -686,14 +710,14 @@
     }
 }
 
-// MO Edge Listing css start 
+// MO Edge Listing css start
 
 .learn-about.moedge-list.moedge-building-container {
     margin-top: 0;
 
     .moedge-building {
-        >div {
-            @include media (mobile) {
+        > div {
+            @include media(mobile) {
                 gap: 24px;
             }
         }
@@ -777,16 +801,16 @@
         }
 
         &.active {
-            color: var(--neutrals-white, #FFF);
+            color: var(--neutrals-white, #fff);
             border-radius: 80px;
-            background: #2E2A94;
+            background: #2e2a94;
         }
     }
 
     .pagination-arrow {
         font-size: 20px;
         font-weight: bold;
-        color: #2E2A94;
+        color: #2e2a94;
         padding: 0 10px;
         line-height: 1;
         aspect-ratio: 4.36 / 7.54;

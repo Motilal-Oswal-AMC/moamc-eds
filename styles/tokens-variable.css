@@ -338,6 +338,8 @@
     --paragraph-xsmall-weight: var(--weight-regular);
     --paragraph-xsmall-size: var(--spacing-12);
     --paragraph-xsmall-line-height: var(--spacing-16);
+    --paragraph-xsmall-regular-size: var(--spacing-12);
+    --paragraph-xsmall-regular-line-height: var(--spacing-16);
     --text-link-xlarge-font: var(--body);
     --text-link-xlarge-weight: var(--weight-regular);
     --text-link-xlarge-size: var(--spacing-20);

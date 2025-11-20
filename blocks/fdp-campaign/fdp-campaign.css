@@ -28,6 +28,11 @@
   .section.table-wrapper.fdp-campaign-container .fdp-campaign .compaign2 {
     display: block;
   }
+  .section.table-wrapper.fdp-campaign-container .fdp-campaign .compaign2 .compaignsub1 .compaigninner1 {
+    line-height: 0;
+    height: 100%;
+    display: block;
+  }
 }
 .section.table-wrapper.fdp-campaign-container .fdp-campaign .compaign3 {
   display: none;
@@ -41,7 +46,17 @@
   -o-object-fit: cover;
      object-fit: cover;
 }
-.section.table-wrapper.fdp-campaign-container.investor-banner .fdp-campaign-wrapper .fdp-campaign .compaign1 .compaignsub1 img {
+@media (max-width: 1299px) {
+  .section.table-wrapper.fdp-campaign-container.investor-banner .fdp-campaign-wrapper .fdp-campaign .compaign1 .compaignsub1 {
+    height: auto;
+  }
+}
+.section.table-wrapper.fdp-campaign-container.investor-banner .fdp-campaign-wrapper .fdp-campaign .compaign1 .compaignsub1 .compaigninner1 {
+  line-height: 0;
+  height: 100%;
+  display: block;
+}
+.section.table-wrapper.fdp-campaign-container.investor-banner .fdp-campaign-wrapper .fdp-campaign .compaign1 .compaignsub1 .compaigninner1 img {
   height: 100%;
   width: 100%;
 }

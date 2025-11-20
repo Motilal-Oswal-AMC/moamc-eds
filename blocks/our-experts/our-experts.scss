@@ -48,7 +48,7 @@
                     h6 {
                         margin: 0;
                         padding: 0;
-                        color: var(--blue-1800-primary, #2E2A94);
+                        color: var(--blue-1-800-primary, #2E2A94);
                         font-feature-settings: var(--font-features-default);
                         font-family: var(--title);
                         font-size: var(--heading-h4-size);
@@ -87,7 +87,7 @@
                     .our-expert-sub1 {
                         display: flex;
                         height: 44px;
-                        padding: 10px 8px;
+                        padding: var(--spacing-10) var(--spacing-8);
                         justify-content: flex-start;
                         align-items: center;
                         gap: 8px;
@@ -125,6 +125,7 @@
                             width: 100%;
 
                             label {
+                                display: none;
                                 position: absolute;
                                 top: 12px;
                                 left: 45px;

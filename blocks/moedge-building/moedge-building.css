@@ -7,7 +7,7 @@
 .moedge-building > div {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: var(--spacing-24);
 }
 .moedge-building > div .moedge-build-sec1 img {
   width: 100%;
@@ -17,6 +17,11 @@
      object-fit: cover;
   display: block;
   border-radius: var(--border-radius-8);
+}
+@media (max-width: 768px) {
+  .moedge-building > div .moedge-build-sec1 img {
+    height: 188px;
+  }
 }
 .moedge-building > div .moedge-build-sec2,
 .moedge-building > div .moedge-build-inner-text5 {
@@ -54,13 +59,19 @@
   gap: 4px;
   border-radius: var(--border-radius-circle);
   border: 1px solid var(--strokes-default);
-  color: var(--blue-1800-primary, #2E2A94);
+  color: var(--blue-1-800-primary, #2e2a94);
   font-feature-settings: var(--font-features-default);
   font-family: var(--body, Inter);
   font-size: var(--label-small-size);
   font-style: normal;
   font-weight: 400;
   line-height: var(--label-small-line-height);
+}
+@media (max-width: 768px) {
+  .moedge-building > div .moedge-build-sec3 .moedge-build-inner-text1 > .moedge-build-list1 {
+    font-size: var(--label-small-size);
+    line-height: var(--label-small-line-height);
+  }
 }
 .moedge-building > div .moedge-build-sec3 .moedge-build-inner-text1 > .moedge-build-list1 span {
   width: 16px;
@@ -83,6 +94,12 @@
   font-style: normal;
   font-weight: 400;
   line-height: var(--label-small-line-height);
+}
+@media (max-width: 768px) {
+  .moedge-building > div .moedge-build-sec3 .moedge-build-inner-text1 .moedge-build-list2 li {
+    font-size: var(--label-small-size);
+    line-height: var(--label-small-line-height);
+  }
 }
 .moedge-building > div .moedge-build-sec3 .moedge-build-inner-text1 .moedge-build-list2 li span {
   width: 12px;
@@ -113,7 +130,7 @@
   line-height: 0;
 }
 .moedge-building > div .moedge-build-sec3 .moedge-build-inner-text2 .button-container .button {
-  color: #2E2A94;
+  color: #2e2a94;
   font-feature-settings: var(--font-features-default);
   font-family: var(--body);
   font-size: var(--body-large-medium-size);
@@ -130,6 +147,12 @@
   white-space: unset;
   overflow: unset;
 }
+@media (max-width: 768px) {
+  .moedge-building > div .moedge-build-sec3 .moedge-build-inner-text2 .button-container .button {
+    font-size: var(--body-large-medium-size);
+    line-height: var(--body-large-medium-line-height);
+  }
+}
 .moedge-building > div .moedge-build-sec3 .moedge-build-inner-text3 {
   margin-bottom: 16px;
 }
@@ -137,10 +160,16 @@
   color: #616161;
   font-family: var(--body, inter);
   font-feature-settings: var(--font-features-default);
-  font-size: var(--paragraph-small-size);
+  font-size: var(--body-medium-regular-size);
   font-weight: 400;
-  line-height: var(--paragraph-small-line-height);
+  line-height: 24px;
   margin: 0;
+}
+@media (max-width: 768px) {
+  .moedge-building > div .moedge-build-sec3 .moedge-build-inner-text3 .moedge-build-list1 {
+    font-size: var(--paragraph-small-regular-size);
+    line-height: var(--paragraph-small-regular-line-height);
+  }
 }
 .moedge-building > div .moedge-build-sec3 .moedge-build-inner-text4 {
   margin: 0;
@@ -150,7 +179,7 @@
 }
 .moedge-building > div .moedge-build-sec3 .moedge-build-inner-text4 p .moedge-build-list-content1 {
   background-color: transparent;
-  color: #2E2A94;
+  color: #2e2a94;
   font-feature-settings: var(--font-features-default);
   font-family: var(--body);
   font-size: 14px;
@@ -169,6 +198,12 @@
   margin: 0;
   padding: 0;
 }
+@media (max-width: 768px) {
+  .moedge-building > div .moedge-build-sec3 .moedge-build-inner-text4 p .moedge-build-list-content1 {
+    font-size: var(--text-link-small-size);
+    line-height: var(--text-link-small-line-height);
+  }
+}
 .moedge-building > div .moedge-build-sec4 {
   display: none;
 }
@@ -180,8 +215,8 @@
     gap: 16px;
   }
   .moedge-building > div {
-    max-width: 32.46%;
-    flex: 0 0 32.46%;
+    max-width: 32.468%;
+    flex: 0 0 32.468%;
   }
   .moedge-building > div .moedge-build-sec1 {
     height: 220px;
@@ -210,7 +245,7 @@
     line-height: 24px;
   }
   .moedge-building > div .moedge-build-sec3 > .moedge-build-sub1 {
-    padding-bottom: 24px;
+    padding-bottom: var(--spacing-24);
   }
   .learn-about.moedge-building > div {
     max-width: 100%;
@@ -358,7 +393,7 @@
 .in-the-news.popular-artical.moedge-building-container .default-content-wrapper h4 {
   margin: 0;
   padding: 0;
-  color: var(--blue-1800-primary, #2E2A94);
+  color: var(--blue-1800-primary, #2e2a94);
   font-feature-settings: var(--font-features-default);
   font-family: var(--title, Inter);
   font-size: var(--heading-h4-size, 32px);
@@ -385,7 +420,7 @@
   align-items: center;
   gap: var(--spacing-8, 8px);
   border-radius: var(--border-radius-8, 8px);
-  background: var(--button-primary-default, #2E2A94);
+  background: var(--button-primary-default, #2e2a94);
   margin: 0;
 }
 @media (max-width: 768px) {
@@ -395,7 +430,7 @@
   }
 }
 .in-the-news.popular-artical.moedge-building-container .default-content-wrapper p.button-container a.button {
-  color: var(--text-white, #FFF);
+  color: var(--text-white, #fff);
   text-align: center;
   font-feature-settings: var(--font-features-default);
   font-family: var(--body);
@@ -500,7 +535,7 @@
   align-items: center;
   gap: var(--spacing-8, 8px);
   border-radius: var(--border-radius-8, 8px);
-  background: var(--button-primary-default, #2E2A94);
+  background: var(--button-primary-default, #2e2a94);
 }
 .popular-artical.moedge-building-container > div.default-content-wrapper:nth-child(2) ul li:first-child a {
   color: var(--text-white);
@@ -627,16 +662,16 @@
 .pr-news-list.moedge-building-container .pagination-btn.active,
 .moedge-list.moedge-building-container .pagination-btn.active,
 .our-author-detail.moedge-building-container .pagination-btn.active {
-  color: var(--neutrals-white, #FFF);
+  color: var(--neutrals-white, #fff);
   border-radius: 80px;
-  background: #2E2A94;
+  background: #2e2a94;
 }
 .pr-news-list.moedge-building-container .pagination-arrow,
 .moedge-list.moedge-building-container .pagination-arrow,
 .our-author-detail.moedge-building-container .pagination-arrow {
   font-size: 20px;
   font-weight: bold;
-  color: #2E2A94;
+  color: #2e2a94;
   padding: 0 10px;
   line-height: 1;
   aspect-ratio: 4.36/7.54;
