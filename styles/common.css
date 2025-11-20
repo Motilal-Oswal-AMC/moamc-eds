@@ -1569,4 +1569,94 @@ main > .section.previous-studies-tab.tabs-container .tab-dropdown-wrap .tab-drop
     font-size: var(--paragraph-medium-regular-size);
     line-height: var(--paragraph-medium-regular-line-height);
   }
+}
+
+@media (max-width: 768px) {
+  .promise-qglp {
+    padding: 0 16px;
+  }
+}
+.promise-qglp .default-content-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  padding: 65.5px 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+@media (max-width: 768px) {
+  .promise-qglp .default-content-wrapper {
+    flex-direction: column;
+    padding: 0;
+    row-gap: 40px;
+    align-items: start;
+  }
+}
+.promise-qglp .default-content-wrapper .promise-qglp-ctn1 {
+  position: absolute;
+  left: 40px;
+  top: 0;
+  margin: 0;
+}
+@media (max-width: 768px) {
+  .promise-qglp .default-content-wrapper .promise-qglp-ctn1 {
+    left: 0px;
+    top: 0;
+  }
+}
+.promise-qglp .default-content-wrapper .promise-qglp-ctn1 .icon {
+  width: 192px;
+  height: 203px;
+}
+@media (max-width: 768px) {
+  .promise-qglp .default-content-wrapper .promise-qglp-ctn1 .icon {
+    width: 113px;
+    height: 120px;
+  }
+}
+.promise-qglp .default-content-wrapper .promise-qglp-ctn2 {
+  margin: 0 0 0 72px;
+  padding: 12px 0;
+  color: var(--blue-1-800-primary);
+  font-family: var(--title);
+  font-size: var(--heading-h2-size, 40px);
+  font-style: normal;
+  font-weight: 600;
+  line-height: var(--heading-h2-line-height);
+  /* 120% */
+}
+@media (max-width: 768px) {
+  .promise-qglp .default-content-wrapper .promise-qglp-ctn2 {
+    margin: 0 0 0 46px;
+    padding: 48px 0;
+    color: var(--blue-1-800-primary);
+    font-family: var(--title);
+    font-size: var(--sub-header-large-size);
+    font-style: normal;
+    font-weight: 600;
+    line-height: var(--sub-header-medium-line-height);
+    width: -moz-fit-content;
+    width: fit-content;
+  }
+}
+.promise-qglp .default-content-wrapper .promise-qglp-ctn3 {
+  margin: 0;
+  max-width: 720px;
+  width: 100%;
+  color: var(--text-body);
+  font-family: var(--body);
+  font-size: var(--body-xlarge-regular-size);
+  font-style: normal;
+  font-weight: 400;
+  line-height: var(--body-xlarge-regular-line-height);
+}
+.promise-qglp .default-content-wrapper .promise-qglp-ctn3 .promise-qglp-ext1 {
+  color: var(--text-body);
+  font-family: var(--body);
+  font-size: var(--body-xlarge-bold-size);
+  font-style: normal;
+  font-weight: 600;
+  line-height: var(--body-xlarge-bold-line-height);
 }/*# sourceMappingURL=common.css.map */

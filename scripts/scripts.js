@@ -632,3 +632,12 @@ if (whyQGLPComponent != null) {
   dataMapMoObj.addIndexed(whyQGLPComponent);
 }
 // why qglp componet end
+
+// why qglp componet  start
+const promiseQGLP = document.querySelector('.promise-qglp .default-content-wrapper');
+
+if (promiseQGLP != null) {
+  dataMapMoObj.CLASS_PREFIXES = ['promise-qglp-ctn', 'promise-qglp-ext', 'promise-qglp-int', 'promise-qglp-wrp', 'promise-qglp-box'];
+  dataMapMoObj.addIndexed(promiseQGLP);
+}
+// why qglp componet end
