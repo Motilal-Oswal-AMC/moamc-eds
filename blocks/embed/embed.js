@@ -131,6 +131,22 @@ export default function decorate(block) {
         if (prevStudyul) {
           dataMapMoObj.CLASS_PREFIXES = ['awsubctn-innerchild5-ul'];
           dataMapMoObj.addIndexed(prevStudyul);
+          if (prevStudyul.nextElementSibling !== null && prevStudyul.closest('.aw-subctnin1-innerchild1')) {
+            const elem = prevStudyul.closest('.aw-subctnin1-innerchild1').querySelector('ul');
+            dataMapMoObj.CLASS_PREFIXES = ['awsubctn-innerchild5-ul'];
+            dataMapMoObj.addIndexed(elem);
+            elem.classList.add('panel-field');
+            Array.from(elem).forEach((elfor, ind) => {
+              elfor.classList.add(`panellist${ind}`);
+            });
+          }
+          if (prevStudyul.closest('.aw-subctnin1-innerchild1')) {
+            const elem = prevStudyul.closest('.aw-subctnin1-innerchild1').querySelector('ul');
+            elem.classList.add('panel-field');
+            Array.from(elem.children).forEach((elfor, ind) => {
+              elfor.classList.add(`panellist${ind+1}`);
+            });
+          }
         }
 
         const prevSocialLink = el.querySelector('.co-branding .awsubctn-innerchild5-ul3');
