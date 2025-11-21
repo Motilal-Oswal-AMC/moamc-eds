@@ -1,5 +1,4 @@
 @import "../../../styles/fonts.css";
-
 .modal dialog .section.wealth-register {
   max-width: 379px;
   width: 100%;
@@ -8,7 +7,6 @@
   position: relative;
   height: 100vh;
 }
-
 @media (width <= 768px) {
   .modal dialog .section.wealth-register {
     padding: 36px 16px 32px;
@@ -20,13 +18,11 @@
     max-width: 100%;
   }
 }
-
 @media (width <= 768px) {
   .modal dialog .section.wealth-register .wealth-modal-wrapper {
     padding: 0;
   }
 }
-
 .modal dialog .section.wealth-register .wealth-modal .main-wealth-modal .cross-btn {
   position: absolute;
   top: 12px;
@@ -35,11 +31,9 @@
   height: 24px;
   cursor: pointer;
 }
-
 .modal dialog .section.wealth-register .wealth-modal .main-wealth-modal .cross-btn p {
   margin: 0;
 }
-
 .modal dialog .section.wealth-register .ragis-lab-btn > .rag-lable {
   margin: 0 0 40px;
   color: var(--text-black);
@@ -48,25 +42,21 @@
   font-weight: 500;
   line-height: var(--sub-header-medium-line-height);
 }
-
 @media (width <= 768px) {
   .modal dialog .section.wealth-register .ragis-lab-btn > .rag-lable {
     margin-bottom: 24px;
     margin-top: 12px;
   }
 }
-
 .modal dialog .section.wealth-register .ragis-lab-btn > .inp-lab {
   display: flex;
   flex-direction: column;
   gap: 36px;
 }
-
 .modal dialog .section.wealth-register .ragis-lab-btn > .inp-lab .inp-lab-div {
   position: relative;
   line-height: unset;
 }
-
 .modal dialog .section.wealth-register .ragis-lab-btn > .inp-lab .inp-lab-div .label {
   position: absolute;
   top: 50%;
@@ -79,11 +69,9 @@
   line-height: var(--body-medium-regular-line-height);
   font-weight: 400;
 }
-
 .modal dialog .section.wealth-register .ragis-lab-btn > .inp-lab .inp-lab-div .label.cont-label {
   left: 40px;
 }
-
 .modal dialog .section.wealth-register .ragis-lab-btn > .inp-lab .inp-lab-div .label.filled {
   top: -8px;
   transform: unset;
@@ -91,7 +79,6 @@
   padding: 0 4px;
   z-index: 3;
 }
-
 .modal dialog .section.wealth-register .ragis-lab-btn > .inp-lab .inp-lab-div .error-msg {
   color: var(--text-error);
   font-feature-settings: var(--font-features-default);
@@ -105,11 +92,9 @@
   opacity: 0;
   transition: opacity 0.2s ease-in-out;
 }
-
 .modal dialog .section.wealth-register .ragis-lab-btn > .inp-lab .inp-lab-div .error-msg:not(:empty) {
   opacity: 1;
 }
-
 .modal dialog .section.wealth-register .ragis-lab-btn > .inp-lab .inp-lab-div .error-msg:not(:empty)::before {
   content: "";
   background-image: url("/icons/warning.svg");
@@ -122,12 +107,10 @@
   vertical-align: middle;
   margin-right: 4px;
 }
-
 .modal dialog .section.wealth-register .ragis-lab-btn > .inp-lab .inp-lab-div .inp.error {
   color: var(--text-black);
   border-color: var(--text-error);
 }
-
 .modal dialog .section.wealth-register .ragis-lab-btn > .inp-lab .inp-lab-div.active .label, .modal dialog .section.wealth-register .ragis-lab-btn > .inp-lab .inp-lab-div:focus-within .label {
   top: -8px;
   transform: unset;
@@ -135,7 +118,6 @@
   padding: 0 4px;
   z-index: 3;
 }
-
 .modal dialog .section.wealth-register .ragis-lab-btn > .inp-lab .inp-lab-div .inp {
   width: 100%;
   display: flex;
@@ -152,50 +134,42 @@
   font-style: normal;
   height: 40px;
 }
-
+.modal dialog .section.wealth-register .ragis-lab-btn > .inp-lab .inp-lab-div .inp:-moz-read-only {
+  color: #333;
+}
 .modal dialog .section.wealth-register .ragis-lab-btn > .inp-lab .inp-lab-div .inp:read-only {
   color: #333;
 }
-
-/* .modal dialog .section.wealth-register .ragis-lab-btn > .inp-lab .inp-lab-div .inp:read-only {
-  color: #333;
-} */
-
 .modal dialog .section.wealth-register .ragis-lab-btn > .inp-lab .inp-lab-div .error-icon {
   position: absolute;
   right: 12px;
   top: 8px;
 }
-
 .modal dialog .section.wealth-register .ragis-lab-btn > .inp-lab .inp-lab-div .cont-inp {
   z-index: unset;
 }
-
 .modal dialog .section.wealth-register .ragis-lab-btn > .inp-lab .inp-lab-div .coun-img {
   position: absolute;
   left: 12px;
   top: 5px;
   margin-top: 3px;
 }
-
-@media (width <= 768px) {
+@media (max-width: 768px) {
   .modal dialog .section.wealth-register .ragis-lab-btn > .inp-lab .inp-lab-div .coun-img {
     top: 7px;
   }
 }
-
 .modal dialog .section.wealth-register .ragis-lab-btn > .inp-lab .inp-lab-div .coun-img .icon-national-flag {
   height: 20px;
   width: 28px;
 }
-
 .modal dialog .section.wealth-register .ragis-lab-btn > .inp-lab .inp-lab-div ul {
   position: absolute;
   top: 100%;
   left: 0;
   width: 100%;
   background: var(--neutrals-white);
-  box-shadow: 0 4px 16px 0 rgb(47 64 84 / 12%);
+  box-shadow: 0 4px 16px 0 rgba(47, 64, 84, 0.12);
   border-radius: var(--border-radius-8);
   padding: 0;
   margin: 5px 0 0;
@@ -205,23 +179,18 @@
   z-index: 10;
   list-style: none;
 }
-
 .modal dialog .section.wealth-register .ragis-lab-btn > .inp-lab .inp-lab-div ul::-webkit-scrollbar {
   display: none;
 }
-
 .modal dialog .section.wealth-register .ragis-lab-btn > .inp-lab .inp-lab-div ul::-webkit-scrollbar-track {
   display: none;
 }
-
 .modal dialog .section.wealth-register .ragis-lab-btn > .inp-lab .inp-lab-div ul::-webkit-scrollbar-thumb {
   display: none;
 }
-
 .modal dialog .section.wealth-register .ragis-lab-btn > .inp-lab .inp-lab-div ul::-webkit-scrollbar-thumb:hover {
   display: none;
 }
-
 .modal dialog .section.wealth-register .ragis-lab-btn > .inp-lab .inp-lab-div ul li {
   padding: 16px;
   cursor: pointer;
@@ -232,19 +201,15 @@
   font-weight: 400;
   line-height: var(--body-medium-regular-line-height);
 }
-
 .modal dialog .section.wealth-register .ragis-lab-btn > .inp-lab .inp-lab-div ul li:hover {
   background: var(--neutrals-light-gray);
 }
-
 .modal dialog .section.wealth-register .ragis-lab-btn > .inp-lab .inp-lab-div.active ul, .modal dialog .section.wealth-register .ragis-lab-btn > .inp-lab .inp-lab-div.open ul {
   display: block;
 }
-
 .modal dialog .section.wealth-register .ragis-lab-btn > .inp-lab .associated-drop {
   position: relative;
 }
-
 .modal dialog .section.wealth-register .ragis-lab-btn > .inp-lab .associated-drop .dropdown-arrow {
   background-image: url("/icons/arrow-down-black.svg");
   width: 24px;
@@ -258,17 +223,14 @@
   cursor: pointer;
   z-index: 5;
 }
-
 .modal dialog .section.wealth-register .ragis-lab-btn > .inp-lab .nat-numb {
   display: flex;
   gap: 12px;
 }
-
 .modal dialog .section.wealth-register .ragis-lab-btn > .inp-lab .nat-numb .country-drop {
   width: 100%;
   max-width: 112px;
 }
-
 .modal dialog .section.wealth-register .ragis-lab-btn > .inp-lab .nat-numb .country-drop .cont-label {
   position: absolute;
   top: 50%;
@@ -281,7 +243,6 @@
   line-height: var(--body-medium-regular-line-height);
   font-weight: 400;
 }
-
 .modal dialog .section.wealth-register .ragis-lab-btn > .inp-lab .nat-numb .country-drop .cont-label::after {
   content: "";
   background-image: url("/icons/arrow-down-black.svg");
@@ -295,21 +256,18 @@
   cursor: pointer;
   z-index: 5;
 }
-
 .modal dialog .section.wealth-register .ragis-lab-btn > .btn-mand {
   margin-top: 36px;
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
-
-@media (width <= 768px) {
+@media (max-width: 768px) {
   .modal dialog .section.wealth-register .ragis-lab-btn > .btn-mand {
     margin-top: 32px;
     gap: 20px;
   }
 }
-
 .modal dialog .section.wealth-register .ragis-lab-btn > .btn-mand .btn {
   width: 100%;
   display: flex;
@@ -326,24 +284,20 @@
   margin: unset;
   padding: 12px;
 }
-
 .modal dialog .section.wealth-register .ragis-lab-btn > .btn-mand .btn > p {
   margin: 0;
 }
-
 .modal dialog .section.wealth-register .ragis-lab-btn > .btn-mand .btn:disabled {
   background: #ccc;
   color: var(--text-white);
   opacity: 0.5;
   cursor: not-allowed;
 }
-
 .modal dialog .section.wealth-register .ragis-lab-btn > .btn-mand .btn.active {
   background: var(--button-primary-default);
   opacity: 1;
   cursor: pointer;
 }
-
 .modal dialog .section.wealth-register .ragis-lab-btn > .btn-mand .mandatory {
   color: var(--text-black);
   font-family: var(--body);
@@ -352,32 +306,26 @@
   margin: unset;
   margin-top: 20px;
 }
-
-@media (width <= 768px) {
+@media (max-width: 768px) {
   .modal dialog .section.wealth-register .ragis-lab-btn > .btn-mand .mandatory {
     margin-top: 8px;
   }
 }
-
 .modal dialog .section.wealth-register .ragis-lab-btn > .btn-mand .mandatory p {
   margin: 0;
 }
-
 @media (width <= 768px) {
   .modal dialog .section.wealth-register .ragis-lab-btn {
     border-radius: 32px 32px 0 0;
   }
-
   .modal dialog .section.wealth-register .ragis-lab-btn > .ragis-lab-btn > .rag-lable {
     margin-bottom: 24px;
     margin-top: 12px;
     font-size: var(--paragraph-large-regular-size);
   }
-
   .modal dialog .section.wealth-register .ragis-lab-btn > .ragis-lab-btn > .btn-mand {
     margin-top: 20px;
   }
-
   .modal dialog .section.wealth-register .ragis-lab-btn .section.wealth-register {
     position: fixed;
     bottom: 0;
@@ -392,9 +340,8 @@
 .modal.modal-journey .close-button {
   display: none;
 }
-
 .modal.modal-journey .modal-content {
   display: flex;
   justify-content: end;
   padding-right: 0;
-}
+}/*# sourceMappingURL=wealth-modal.css.map */

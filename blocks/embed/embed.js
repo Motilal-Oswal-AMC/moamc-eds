@@ -109,30 +109,6 @@ export default function decorate(block) {
       dataMapMoObj.CLASS_PREFIXES = ['wcs', 'text', 'cta', 'media'];
       dataMapMoObj.addIndexed(wcsLanding);
     }
-
-    const dropDownText = main.querySelector('.previous-studies-tab .annual-wealth-wrap2 .aw-ctn2 .aw-subctnin1');
-    if (dropDownText) {
-      dataMapMoObj.CLASS_PREFIXES = ['aw-subctnin1-innerchild', 'awsubctn-innerchild'];
-      dataMapMoObj.addIndexed(dropDownText);
-    }
-
-    const prevStudyul = main.querySelector('.co-branding .awsubctn-innerchild5');
-    if (prevStudyul) {
-      dataMapMoObj.CLASS_PREFIXES = ['awsubctn-innerchild5-ul'];
-      dataMapMoObj.addIndexed(prevStudyul);
-    }
-
-    const prevSocialLink = main.querySelector('.co-branding .awsubctn-innerchild5-ul3');
-    if (prevSocialLink) {
-      dataMapMoObj.CLASS_PREFIXES = ['socialLinking', 'socialLinking-inner', 'socialLinking-child'];
-      dataMapMoObj.addIndexed(prevSocialLink);
-    }
-
-    const previousStudiesText = main.querySelector('.prev-main-wrapper .embed');
-    if (previousStudiesText) {
-      dataMapMoObj.CLASS_PREFIXES = ['video-wrap', 'video-inner', 'video-child', 'picture-wrap', 'picture-child'];
-      dataMapMoObj.addIndexed(previousStudiesText);
-    }
   } catch (error) {
     // console.log('classes not appended');
   }
@@ -142,8 +118,32 @@ export default function decorate(block) {
     const prevStudieswrapper = main.querySelectorAll('.prev-studies-wrapper');
     if (prevStudieswrapper.length !== 0) {
       prevStudieswrapper.forEach((el) => {
-        dataMapMoObj.CLASS_PREFIXES = ['annual-wealth-wrap', 'aw-ctn', 'aw-subctn', 'aw-subctnIn'];
+        dataMapMoObj.CLASS_PREFIXES = ['annual-wealth-wrap', 'aw-ctn', 'aw-subctn', 'aw-subctnin'];
         dataMapMoObj.addIndexed(el);
+
+        const dropDownText = el.querySelector('.previous-studies-tab .annual-wealth-wrap2 .aw-ctn2 .aw-subctnin1');
+        if (dropDownText) {
+          dataMapMoObj.CLASS_PREFIXES = ['aw-subctnin1-innerchild', 'awsubctn-innerchild'];
+          dataMapMoObj.addIndexed(dropDownText);
+        }
+
+        const prevStudyul = el.querySelector('.co-branding .awsubctn-innerchild5');
+        if (prevStudyul) {
+          dataMapMoObj.CLASS_PREFIXES = ['awsubctn-innerchild5-ul'];
+          dataMapMoObj.addIndexed(prevStudyul);
+        }
+
+        const prevSocialLink = el.querySelector('.co-branding .awsubctn-innerchild5-ul3');
+        if (prevSocialLink) {
+          dataMapMoObj.CLASS_PREFIXES = ['socialLinking', 'socialLinking-inner', 'socialLinking-child'];
+          dataMapMoObj.addIndexed(prevSocialLink);
+        }
+
+        const previousStudiesText = el.querySelector('.prev-main-wrapper .embed');
+        if (previousStudiesText) {
+          dataMapMoObj.CLASS_PREFIXES = ['video-wrap', 'video-inner', 'video-child', 'picture-wrap', 'picture-child'];
+          dataMapMoObj.addIndexed(previousStudiesText);
+        }
       });
     }
   }
