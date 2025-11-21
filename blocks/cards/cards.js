@@ -252,6 +252,20 @@ export default function decorate(block) {
       }
     }
   }
+
+  // Error Screen adding
+  const error = block.closest('.section.cards-container');
+  error.classList.add('error-screen-container');
+  if (error) {
+      dataMapMoObj.CLASS_PREFIXES = ['error-screen-wrapper', 'error-screen-wrap', 'error-screen-ul',  'error-screen-li', 'errscrn-img-cont', 'errscrn-cont', 'errscrn-inner-cont'];
+      dataMapMoObj.addIndexed(error);
+      const newEle = document.createElement('div');
+      newEle.classList.add('errscn-txtwrap')
+      const a = document.querySelector('.error-screen-container .cards-card-body .errscrn-cont2');
+      const b = document.querySelector('.error-screen-container .cards-card-body');
+      newEle.push(a);
+      b.appendChild(newEle);  
+  }
 }
 
 function decorateArticlePage() {

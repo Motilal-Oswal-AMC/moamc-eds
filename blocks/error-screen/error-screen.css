@@ -1,0 +1,35 @@
+@import "../../../styles/fonts.css";
+.cards.block {
+  display: flex;
+  justify-content: center;
+}
+.cards.block ul {
+  grid: unset;
+  max-width: 752px;
+  width: 100%;
+}
+.cards.block ul li {
+  border: unset;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 28px;
+}
+.cards.block ul li .cards-card-image {
+  height: 196px;
+  width: 145px;
+}
+.cards.block ul li .cards-card-image img {
+  aspect-ratio: unset;
+}
+.cards.block ul li .cards-card-body {
+  margin: unset;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-align: center;
+}
+.cards.block ul li .cards-card-body p {
+  margin: unset;
+}/*# sourceMappingURL=error-screen.css.map */

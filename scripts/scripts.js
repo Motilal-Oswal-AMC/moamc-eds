@@ -618,3 +618,11 @@ if (chooseusCard != null) {
   ];
   dataMapMoObj.addIndexed(chooseusCard);
 }
+
+// const main = document.querySelector('main');
+// const error = main.querySelector('.section.cards-container');
+// error.classList.add('error-screen-container');
+// if (error) {
+//     dataMapMoObj.CLASS_PREFIXES = ['error-screen-wrapper', 'error-screen-wrap', 'error-screen-ul' ];
+//     dataMapMoObj.addIndexed(error);
+// }

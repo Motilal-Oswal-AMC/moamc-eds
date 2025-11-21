@@ -1,0 +1,47 @@
+// @import url(../tabs/tabs.scss);
+@use "sass:map";
+@use "../../styles/common-theme/css/variables_mixins" as *;
+@use "../../styles/common-theme/css/fluid-typography" as *;
+
+.cards.block {
+  display: flex;
+  justify-content: center;
+  // max-width: 752px;
+  // width: 100%;
+
+  ul {
+    grid: unset;
+    max-width: 752px;
+    width: 100%;
+
+    li {
+    border: unset;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 28px;
+
+    .cards-card-image {
+      height: 196px;
+      width: 145px;
+
+      img {
+        aspect-ratio: unset;
+      }
+    }
+
+    .cards-card-body {
+      margin: unset;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      text-align: center;
+
+      p {
+        margin: unset;
+      }
+    }
+  }
+  }
+}
