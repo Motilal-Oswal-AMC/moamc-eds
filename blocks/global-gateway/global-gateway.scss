@@ -95,6 +95,10 @@
                 border-radius: var(--border-radius-16, 16px);
                 background: var(--neutrals-100, #F5F5F5);
 
+                @include media (desktop-sm) {
+                    width: auto;
+                }
+
                 @include media (mobile) {
                     width: 100%;
                 }
