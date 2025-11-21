@@ -163,4 +163,34 @@ export default function decorate(block) {
       dataMapMoObj.setupPagination(block, items, itemsPerPage);
     }
   }
+
+  // Find the container that has your special classes
+  const mainblklist = block.closest('.section')//('[data-id="listing-article-cards"]');
+
+  // Only run this pagination logic if we are in the correct block
+  if (mainblklist.getAttribute('data-id') === 'listing-article-cards') {
+    // Select all the card items
+    const items = Array.from(block.querySelectorAll(':scope > [class*="moedge-build-cont"]'));
+    const itemsPerPage = items.slice(0, 9).length;
+
+    if (items.length > itemsPerPage) {
+      dataMapMoObj.setupPagination(block, items, itemsPerPage);
+    }
+
+    const blockdo = block.closest('body');
+    const blkcamp = blockdo.querySelector('.listing-investor-banner');
+    const level = blkcamp.getAttribute('data-id')
+    const leveliteration = (Number(level) * 3)
+    if (leveliteration) {
+        block.innerHTML = '';
+        // let leveliteration = Number(level) * 3;
+        items.forEach((el,index) => {
+          block.appendChild(el);
+          if (index === (leveliteration -1)) {
+            block.appendChild(blkcamp);
+          }
+        })
+    }
+
+  }
 }
