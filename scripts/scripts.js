@@ -618,3 +618,45 @@ if (chooseusCard != null) {
   ];
   dataMapMoObj.addIndexed(chooseusCard);
 }
+
+// qglp static class appending
+const qglpStaticComponent = document.querySelector('.qglp-static-component');
+if (qglpStaticComponent != null) {
+  dataMapMoObj.CLASS_PREFIXES = ['qglp-static-ctn', 'qglp-static-ext', 'qglp-static-int', 'qglp-static-wrp', 'qglp-static-box', 'qglp-static-ls-ul', 'qglp-static-ls-li'];
+  dataMapMoObj.addIndexed(qglpStaticComponent);
+}
+
+// why qglp componet  start
+const whyQGLPComponent = document.querySelector('.why-qglp .default-content-wrapper');
+if (whyQGLPComponent != null) {
+  dataMapMoObj.CLASS_PREFIXES = ['why-qglp-ctn', 'why-qglp-ext', 'why-qglp-int', 'why-qglp-wrp', 'why-qglp-box', 'why-qglp-ls-ul', 'why-qglp-ls-li'];
+  dataMapMoObj.addIndexed(whyQGLPComponent);
+}
+// why qglp componet end
+
+// why qglp componet  start
+const promiseQGLP = document.querySelector('.promise-qglp .default-content-wrapper');
+if (promiseQGLP != null) {
+  dataMapMoObj.CLASS_PREFIXES = ['promise-qglp-ctn', 'promise-qglp-ext', 'promise-qglp-int', 'promise-qglp-wrp', 'promise-qglp-box'];
+  dataMapMoObj.addIndexed(promiseQGLP);
+}
+// why qglp componet end
+
+// why qglp css lent start
+const whyQGLPWrp = document.querySelector('.why-qglp .default-content-wrapper');
+
+if (whyQGLPWrp) {
+  whyQGLPWrp.classList.add("why-qglp-wrapper");
+  // why qglp css lent end
+}
+// why qglp css lent end
+
+// promise qglp css lent start
+const promiseQGLPWrp = document.querySelector('.promise-qglp .default-content-wrapper');
+
+if (promiseQGLPWrp) {
+  promiseQGLPWrp.classList.add("promise-qglp-wrapper");
+  // why qglp css lent end
+}
+// promise qglp css lent end
+

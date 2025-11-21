@@ -2,6 +2,12 @@
 @use "../../styles/common-theme/css/variables_mixins"as *;
 @use "../../styles/common-theme/css/fluid-typography"as *;
 
+main.nfo-nav {
+  .previous-studies-ctn.section:first-of-type {
+      margin-top: 0px;
+  }
+}
+
 // previous-studies start
 .section.previous-studies-ctn.tabs-container {
   margin-top: 0;

@@ -621,6 +621,18 @@
           {
             "name": "our investing style",
             "value": "our-investing-style"
+          },
+          {
+            "name": "Why QGLP",
+            "value": "why-qglp"
+          },
+          {
+            "name": "Promise QGLP",
+            "value": "promise-qglp"
+          },
+          {
+            "name": "Decoding QGLP Static",
+            "value": "decoding-qglp-static"
           }
         ]
       },
