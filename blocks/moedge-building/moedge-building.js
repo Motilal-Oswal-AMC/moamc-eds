@@ -90,97 +90,98 @@ export default function decorate(block) {
       }
     });
 
-  //   // 5. -> Bonus: Add keyboard support for accessibility
-  //   viewAllButton.addEventListener('keydown', (e) => {
-  //     if (e.key === 'Enter' || e.key === ' ') {
-  //       e.preventDefault();
-  //       viewAllButton.click(); // Trigger the click event
-  //     }
-  //   });
-  // }
+    //   // 5. -> Bonus: Add keyboard support for accessibility
+    //   viewAllButton.addEventListener('keydown', (e) => {
+    //     if (e.key === 'Enter' || e.key === ' ') {
+    //       e.preventDefault();
+    //       viewAllButton.click(); // Trigger the click event
+    //     }
+    //   });
+    // }
 
-  /**
+    /**
    * Helper function to create pagination buttons and logic.
    * @param {Element} block The main block element.
    * @param {Array<Element>} items An array of all card items.
    * @param {number} itemsPerPage The number of items to show per page.
    */
 
-  /**
+    /**
    * Decorates the moedge-building block.
    * @param {Element} block The block element
    */
 
-  // Find the container that has your special classes
-  const mainContainer = block.closest('.pr-news-list.moedge-building-container');
+    // Find the container that has your special classes
+    const mainContainer = block.closest('.pr-news-list.moedge-building-container');
 
-  // Only run this pagination logic if we are in the correct block
-  if (mainContainer) {
+    // Only run this pagination logic if we are in the correct block
+    if (mainContainer) {
     // Select all the card items
-    const items = Array.from(block.querySelectorAll(':scope > [class*="moedge-build-cont"]'));
-    const itemsPerPage = items.slice(0, 12).length;
+      const items = Array.from(block.querySelectorAll(':scope > [class*="moedge-build-cont"]'));
+      const itemsPerPage = items.slice(0, 12).length;
 
-    if (items.length > itemsPerPage) {
-      dataMapMoObj.setupPagination(block, items, itemsPerPage);
-    }
-  }
-
-  // ... any other decoration code you have ...
-
-  // Find the container that has your special classes
-  const mainbuilding = block.closest('.our-author-detail.moedge-building-container');
-
-  // Only run this pagination logic if we are in the correct block
-  if (mainbuilding) {
-    // Select all the card items
-    const items = Array.from(block.querySelectorAll(':scope > [class*="moedge-build-cont"]'));
-    const itemsPerPage = items.slice(0, 12).length;
-
-    if (items.length > itemsPerPage) {
-      dataMapMoObj.setupPagination(block, items, itemsPerPage);
-    }
-  }
-
-  // Find the container that has your special classes
-  const mainlisting = block.closest('.moedge-list.moedge-building-container');
-
-  // Only run this pagination logic if we are in the correct block
-  if (mainlisting) {
-    // Select all the card items
-    const items = Array.from(block.querySelectorAll(':scope > [class*="moedge-build-cont"]'));
-    const itemsPerPage = items.slice(0, 12).length;
-
-    if (items.length > itemsPerPage) {
-      dataMapMoObj.setupPagination(block, items, itemsPerPage);
-    }
-  }
-
-  // Find the container that has your special classes
-  const mainblklist = block.closest('.section');// ('[data-id="listing-article-cards"]');
-
-  // Only run this pagination logic if we are in the correct block
-  if (mainblklist.getAttribute('data-id') === 'listing-article-cards') {
-    // Select all the card items
-    const items = Array.from(block.querySelectorAll(':scope > [class*="moedge-build-cont"]'));
-    const itemsPerPage = items.slice(0, 9).length;
-
-    if (items.length > itemsPerPage) {
-      dataMapMoObj.setupPagination(block, items, itemsPerPage);
+      if (items.length > itemsPerPage) {
+        dataMapMoObj.setupPagination(block, items, itemsPerPage);
+      }
     }
 
-    const blockdo = block.closest('body');
-    const blkcamp = blockdo.querySelector('.listing-investor-banner');
-    const level = blkcamp.getAttribute('data-id');
-    const leveliteration = (Number(level) * 3);
-    if (leveliteration) {
-      block.innerHTML = '';
-      // let leveliteration = Number(level) * 3;
-      items.forEach((el, index) => {
-        block.appendChild(el);
-        if (index === (leveliteration - 1)) {
-          block.appendChild(blkcamp);
-        }
-      });
+    // ... any other decoration code you have ...
+
+    // Find the container that has your special classes
+    const mainbuilding = block.closest('.our-author-detail.moedge-building-container');
+
+    // Only run this pagination logic if we are in the correct block
+    if (mainbuilding) {
+    // Select all the card items
+      const items = Array.from(block.querySelectorAll(':scope > [class*="moedge-build-cont"]'));
+      const itemsPerPage = items.slice(0, 12).length;
+
+      if (items.length > itemsPerPage) {
+        dataMapMoObj.setupPagination(block, items, itemsPerPage);
+      }
+    }
+
+    // Find the container that has your special classes
+    const mainlisting = block.closest('.moedge-list.moedge-building-container');
+
+    // Only run this pagination logic if we are in the correct block
+    if (mainlisting) {
+    // Select all the card items
+      const items = Array.from(block.querySelectorAll(':scope > [class*="moedge-build-cont"]'));
+      const itemsPerPage = items.slice(0, 12).length;
+
+      if (items.length > itemsPerPage) {
+        dataMapMoObj.setupPagination(block, items, itemsPerPage);
+      }
+    }
+
+    // Find the container that has your special classes
+    const mainblklist = block.closest('.section');// ('[data-id="listing-article-cards"]');
+
+    // Only run this pagination logic if we are in the correct block
+    if (mainblklist.getAttribute('data-id') === 'listing-article-cards') {
+    // Select all the card items
+      const items = Array.from(block.querySelectorAll(':scope > [class*="moedge-build-cont"]'));
+      const itemsPerPage = items.slice(0, 9).length;
+
+      if (items.length > itemsPerPage) {
+        dataMapMoObj.setupPagination(block, items, itemsPerPage);
+      }
+
+      const blockdo = block.closest('body');
+      const blkcamp = blockdo.querySelector('.listing-investor-banner');
+      const level = blkcamp.getAttribute('data-id');
+      const leveliteration = (Number(level) * 3);
+      if (leveliteration) {
+        block.innerHTML = '';
+        // let leveliteration = Number(level) * 3;
+        items.forEach((el, index) => {
+          block.appendChild(el);
+          if (index === (leveliteration - 1)) {
+            block.appendChild(blkcamp);
+          }
+        });
+      }
     }
   }
 }
