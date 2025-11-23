@@ -649,6 +649,10 @@
           {
             "name": "Decoding QGLP Static",
             "value": "decoding-qglp-static"
+          },
+          {
+            "name": "Article Detail Library",
+            "value": "article-detail-library"
           }
         ]
       },
