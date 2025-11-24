@@ -4,13 +4,17 @@
 
 main.nfo-nav {
   .previous-studies-ctn.section:first-of-type {
-      margin-top: 0px;
+    margin-top: 61px;
+
+    @include media (mobile) {
+      margin-top: 0;
+    }
   }
 }
 
 // previous-studies start
 .section.previous-studies-ctn.tabs-container.legendWordCtn {
-  margin-top: 106px;
+  margin-top: 21px;
 
   @include media (mobile) {
     margin-top: 0;
@@ -31,12 +35,12 @@ main.nfo-nav {
   }
 
   .default-content-wrapper.previous-studies-ex1 {
-    padding: 0 0 40px 0;
-    margin-top: 33px;
+    padding: 0 0 40px;
+    margin-top: 40px;
 
     @include media(mobile) {
       padding: 56px 16px 32px;
-       margin-top: 0;
+      margin-top: 0;
     }
 
     .previous-studies-inter1 {

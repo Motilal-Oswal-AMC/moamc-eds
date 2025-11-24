@@ -134,6 +134,9 @@ export default async function decorate(block) {
     nav.classList.remove('nfo-nav');
   }
 
+  if ([...block.classList].includes('wealth-header')) {
+    nav.classList.remove('nfo-nav');
+  }
   const classes = ['brand', 'sections', 'tools'];
   classes.forEach((c, i) => {
     const section = nav.children[i];
