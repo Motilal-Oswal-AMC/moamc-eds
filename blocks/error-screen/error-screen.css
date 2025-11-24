@@ -7,7 +7,7 @@ main.nfo-nav .section.cards-container.error-screen-container {
 @media (max-width: 768px) {
   main .section.cards-container.error-screen-container,
   main.nfo-nav .section.cards-container.error-screen-container {
-    margin: 59px 0 120px 0;
+    margin: 59px 0 120px;
     padding-top: 120px;
   }
 }
