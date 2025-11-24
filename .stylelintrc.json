@@ -23,7 +23,8 @@
           "min-width",
           "max-width",
           "height",
-          "column-gap"
+          "column-gap",
+          "line-height"
         ]
       }
     ],
