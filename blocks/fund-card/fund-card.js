@@ -31,26 +31,28 @@ export default function decorate(block) {
   const finPlangrp = [];
   const tempReturns = [];
 
-  const DirectPlanlistArr = block.planList.filter(
+  const DirectPlanlistArr = block.planList !== undefined ? block.planList.filter(
     (el) => el.planName === planFlow,
-  );
-  block.returns.forEach((ret) => {
-    if (DirectPlanlistArr.length !== 0) {
-      const grp = ret.plancode + ret.optioncode;
-      if (DirectPlanlistArr[0].groupedCode === grp) {
-        [...Object.keys(ret)].forEach((key) => {
-          if (dataMapMoObj.ObjTemp[key]) {
-            if (key === 'inception_Ret') {
-              tempReturns.unshift(dataMapMoObj.ObjTemp[key]);
-            } else {
-              tempReturns.push(dataMapMoObj.ObjTemp[key]);
+  ) : [];
+  if (block.returns !== undefined) {
+    block.returns.forEach((ret) => {
+      if (DirectPlanlistArr.length !== 0) {
+        const grp = ret.plancode + ret.optioncode;
+        if (DirectPlanlistArr[0].groupedCode === grp) {
+          [...Object.keys(ret)].forEach((key) => {
+            if (dataMapMoObj.ObjTemp[key]) {
+              if (key === 'inception_Ret') {
+                tempReturns.unshift(dataMapMoObj.ObjTemp[key]);
+              } else {
+                tempReturns.push(dataMapMoObj.ObjTemp[key]);
+              }
             }
-          }
-        });
-        finPlangrp.push(ret);
+          });
+          finPlangrp.push(ret);
+        }
       }
-    }
-  });
+    });
+  }
 
   const labelcagr = evaluateByDays(block.dateOfAllotment);
   const classplan = DirectPlanlistArr.length !== 0 && tempReturns.length !== 0 ? '' : ' not-provided';
@@ -63,10 +65,11 @@ export default function decorate(block) {
   const iconsvg = `${dataMapMoObj.iconsNfo[
     block.risk.riskType.toLowerCase().replaceAll(' ', '-')
   ]}.svg`;
+
   const starClass = dataMapMoObj.schstar.includes(block.schcode)
     ? 'star-filled'
     : '';
-  const mop = `/icons/schemeicons/MO_${block.schcode}.svg`;
+  const mop = '/icons/schemeicons/MO_AA.svg'; // block.schcode
   const dspdate = returnYear === 'Since Inception' ? 'block' : 'none';
   // const cagrValue = finPlangrp
   if (finPlangrp.length !== 0) {

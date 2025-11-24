@@ -1,4 +1,4 @@
-import dataCfObj from '../../scripts/dataCfObj.js';
+// import dataCfObj from '../../scripts/dataCfObj.js';
 import {
   div,
   input,
@@ -14,6 +14,7 @@ import dataMapMoObj from '../../scripts/constant.js';
 import fundcardblock from '../fund-card/fund-card.js';
 import listviewblock from '../list-view-card/list-view-card.js';
 
+const dataCfObj = {};
 function dataFilterfun(param) {
   const dataMapObj = {
     schemeName: [],
@@ -169,11 +170,17 @@ function dataFilterfun(param) {
 
   for (let i = 0; i < param.length; i += 1) {
     const name = param[i];
-    const tags = name.fundsTaggingSection;
+    let tags = name.fundsTaggingSection;
     const {
       schcode,
     } = name;
-
+    if (tags === undefined) {
+      tags = param[0].fundsTaggingSection;
+      // console.log(param[i].schDetail.schemeName);
+    }
+    if (param[i].planList === undefined) {
+      console.log(param[i].schDetail.schemeName);
+    }
     // Category matching
     for (let k = 0; k < categoryMapKeys.length; k += 1) {
       if (tags.indexOf(categoryMapKeys[k]) !== -1) {
@@ -264,6 +271,9 @@ function viewFunction(param) {
   param.querySelector('.cards-container').innerHTML = '';
   if (Array.from(param.querySelector('.listby-container').classList).includes('list-view-active')) {
     dataMapMoObj.funddata.forEach((el) => {
+      if (el.fundsTaggingSection === undefined) {
+        el.fundsTaggingSection = dataMapMoObj.funddata[0].fundsTaggingSection;
+      }
       param.querySelector('.list-container').append(listviewblock(el));
     });
     if (dataMapMoObj.deskrightdrp === '') {
@@ -274,6 +284,9 @@ function viewFunction(param) {
     }
   } else {
     dataMapMoObj.funddata.forEach((el) => {
+      if (el.fundsTaggingSection === undefined) {
+        el.fundsTaggingSection = dataMapMoObj.funddata[0].fundsTaggingSection;
+      }
       param.querySelector('.cards-container').append(fundcardblock(el));
     });
     if (dataMapMoObj.deskrightdrp === '') {
@@ -319,19 +332,21 @@ function searchFunctionality(block) {
   let datacd = [];
   const dataouter = [];
   dataCfObj.cfDataObjs.forEach((elde, indexde) => {
-    elde?.planList.forEach((elplan) => {
-      if (elplan.planName === planflow) {
-        if (!datacd.includes(elplan.planName)) {
-          datacd.push(elplan.planName);
+    if (elde.planList !== undefined) {
+      elde?.planList.forEach((elplan) => {
+        if (elplan.planName === planflow) {
+          if (!datacd.includes(elplan.planName)) {
+            datacd.push(elplan.planName);
+          }
         }
-      }
-    });
-    if (datacd.length > 0) {
-      dataouter.push({
-        [indexde]: datacd,
-        schemeName: elde.schDetail.schemeName,
       });
-      datacd = [];
+      if (datacd.length > 0) {
+        dataouter.push({
+          [indexde]: datacd,
+          schemeName: elde.schDetail.schemeName,
+        });
+        datacd = [];
+      }
     }
   });
   // console.log(dataouter);
@@ -467,6 +482,9 @@ function searchFunctionality(block) {
         const datatem = dataCfObj.cfDataObjs.filter(
           (elsch) => elsch.schDetail.schemeName === searchInput.value,
         );
+        if (datatem[0].fundsTaggingSection === undefined) {
+          datatem[0].fundsTaggingSection = dataCfObj.cfDataObjs[0].fundsTaggingSection;
+        }
         cardsContainer.innerHTML = '';
         cardsContainer.append(fundcardblock(datatem[0]));
       }
@@ -480,6 +498,9 @@ function searchFunctionality(block) {
             (elsch) => (elsch.schDetail.schemeName === searchInput.value),
           );
           listHeader.innerHTML = '';
+          if (datatem[0].fundsTaggingSection === undefined) {
+            datatem[0].fundsTaggingSection = dataCfObj.cfDataObjs[0].fundsTaggingSection;
+          }
           listHeader.append(listviewblock(datatem[0]));
         }
       }
@@ -513,14 +534,24 @@ function searchFunctionality(block) {
       if (cardsContainer && cardsContainer.checkVisibility()) {
         const datatem = dataCfObj.cfDataObjs.slice(0, 10);
         cardsContainer.innerHTML = '';
-        datatem.forEach((elcard) => cardsContainer.append(fundcardblock(elcard)));
+        datatem.forEach((elcard) => {
+          if (elcard.fundsTaggingSection === undefined) {
+            elcard.fundsTaggingSection = dataCfObj.cfDataObjs[0].fundsTaggingSection;
+          }
+          cardsContainer.append(fundcardblock(elcard));
+        });
       }
       const listHeader = block.querySelector('.filter-cards .list-container');
       if (listHeader && listHeader.checkVisibility()) {
         if (cardsContainer && cardsContainer.checkVisibility()) {
           const datatem = dataCfObj.cfDataObjs.slice(0, 10);
           listHeader.innerHTML = '';
-          datatem.forEach((elist) => cardsContainer.append(listviewblock(elist)));
+          datatem.forEach((elist) => {
+            if (elist.fundsTaggingSection === undefined) {
+              elist.fundsTaggingSection = dataCfObj.cfDataObjs[0].fundsTaggingSection;
+            }
+            cardsContainer.append(listviewblock(elist));
+          });
         }
       }
       return false;
@@ -544,6 +575,9 @@ function searchFunctionality(block) {
           (elsch) => elsch.schDetail.schemeName === searchInput.value,
         );
         cardsContainer.innerHTML = '';
+        if (datatem[0].fundsTaggingSection === undefined) {
+          datatem[0].fundsTaggingSection = dataCfObj.cfDataObjs[0].fundsTaggingSection;
+        }
         cardsContainer.append(fundcardblock(datatem[0]));
       }
 
@@ -556,6 +590,9 @@ function searchFunctionality(block) {
             (elsch) => (elsch.schDetail.schemeName === searchInput.value),
           );
           listHeader.innerHTML = '';
+          if (datatem[0].fundsTaggingSection === undefined) {
+            datatem[0].fundsTaggingSection = dataCfObj.cfDataObjs[0].fundsTaggingSection;
+          }
           listHeader.append(listviewblock(datatem[0]));
         }
       }
@@ -814,6 +851,7 @@ dataMapMoObj.parseFunction = (param, attrparam) => {
   }
 };
 export default function decorate(block) {
+  dataCfObj.cfDataObjs = {};
   const ultooltip = block.closest('.section');
   const ullisttoop = ultooltip.querySelector('.default-content-wrapper ul');
   // console.log(ullisttoop);
@@ -844,309 +882,245 @@ export default function decorate(block) {
   });
 
   dataMapMoObj.selectreturns = '';
-  dataMapMoObj.data = dataFilterfun(dataMapMoObj.GetFilter);//(dataCfObj.cfDataObjs);
-  dataMapMoObj.datatooltip = {};
-  Array.from(ullisttoop.children).forEach((tooltip) => {
-    const datakey = tooltip.textContent.trim().split(':-');
-    const datkey = datakey[0];
-    const datval = datakey[1];
-    if (datkey === 'Active') {
-      dataMapMoObj.datatooltip.active = datval;
-    } else if (datkey === 'Commodity') {
-      dataMapMoObj.datatooltip.commodity = datval;
-    } else if (datkey === 'Debt & Liquid') {
-      dataMapMoObj.datatooltip['debt-&-liquid'] = datval;
-    } else if (datkey === 'ETFs') {
-      dataMapMoObj.datatooltip.etf = datval;
-    } else if (datkey === 'Factor') {
-      dataMapMoObj.datatooltip['indian-equity'] = datval;
-    } else if (datkey === 'Hybrid & Balanced') {
-      dataMapMoObj.datatooltip['hybrid-&-balanced'] = datval;
-    } else if (datkey === 'Index Funds') {
-      dataMapMoObj.datatooltip['index-funds'] = datval;
-    } else if (datkey === 'Indian Equity') {
-      dataMapMoObj.datatooltip['indian-equity'] = datval;
-    } else if (datkey === 'International Equity') {
-      dataMapMoObj.datatooltip['international-equity'] = datval;
-    } else if (datkey === 'Mid Cap') {
-      dataMapMoObj.datatooltip['indian-equity'] = datval;
-    } else if (datkey === 'Multi Asset') {
-      dataMapMoObj.datatooltip['multi-asset'] = datval;
-    } else if (datkey === 'Multi Cap Fund') {
-      dataMapMoObj.datatooltip['indian-equity'] = datval;
-    } else if (datkey === 'Sector') {
-      dataMapMoObj.datatooltip['indian-equity'] = datval;
-    } else if (datkey === 'Small Cap') {
-      dataMapMoObj.datatooltip['indian-equity'] = datval;
+  dataMapMoObj.GetFilter().then((resp) => {
+    dataCfObj.cfDataObjs = resp;
+    dataMapMoObj.data = dataFilterfun(resp);
+    // (dataCfObj.cfDataObjs);
+    dataMapMoObj.datatooltip = {};
+    Array.from(ullisttoop.children).forEach((tooltip) => {
+      const datakey = tooltip.textContent.trim().split(':-');
+      const datkey = datakey[0];
+      const datval = datakey[1];
+      if (datkey === 'Active') {
+        dataMapMoObj.datatooltip.active = datval;
+      } else if (datkey === 'Commodity') {
+        dataMapMoObj.datatooltip.commodity = datval;
+      } else if (datkey === 'Debt & Liquid') {
+        dataMapMoObj.datatooltip['debt-&-liquid'] = datval;
+      } else if (datkey === 'ETFs') {
+        dataMapMoObj.datatooltip.etf = datval;
+      } else if (datkey === 'Factor') {
+        dataMapMoObj.datatooltip['indian-equity'] = datval;
+      } else if (datkey === 'Hybrid & Balanced') {
+        dataMapMoObj.datatooltip['hybrid-&-balanced'] = datval;
+      } else if (datkey === 'Index Funds') {
+        dataMapMoObj.datatooltip['index-funds'] = datval;
+      } else if (datkey === 'Indian Equity') {
+        dataMapMoObj.datatooltip['indian-equity'] = datval;
+      } else if (datkey === 'International Equity') {
+        dataMapMoObj.datatooltip['international-equity'] = datval;
+      } else if (datkey === 'Mid Cap') {
+        dataMapMoObj.datatooltip['indian-equity'] = datval;
+      } else if (datkey === 'Multi Asset') {
+        dataMapMoObj.datatooltip['multi-asset'] = datval;
+      } else if (datkey === 'Multi Cap Fund') {
+        dataMapMoObj.datatooltip['indian-equity'] = datval;
+      } else if (datkey === 'Sector') {
+        dataMapMoObj.datatooltip['indian-equity'] = datval;
+      } else if (datkey === 'Small Cap') {
+        dataMapMoObj.datatooltip['indian-equity'] = datval;
+      }
+    });
+    let checkboxSel = '';
+    let funddata;
+    if (localStorage.getItem('viewmark')) {
+      const fundlast = dataMapMoObj.data.fundCategory;
+      const indiansub = fundlast[fundlast.length - 1];
+      checkboxSel = localStorage.getItem('viewmark');
+      dataMapMoObj.data.fundCategory.forEach((el) => {
+        if (el[checkboxSel]) {
+          funddata = el[checkboxSel];
+        }
+      });
+      dataMapMoObj.data.fundType.forEach((el) => {
+        if (el[checkboxSel]) {
+          funddata = el[checkboxSel];
+        }
+      });
+      indiansub.indianEquitySub.forEach((el) => {
+        if (el[checkboxSel]) {
+          funddata = el[checkboxSel];
+        }
+      });
+      if (funddata !== undefined) {
+        dataMapMoObj.funddata = dataCfObj.cfDataObjs.filter((el) => funddata.includes(el.schcode));
+      }
     }
-  });
-  let checkboxSel = '';
-  let funddata;
-  if (localStorage.getItem('viewmark')) {
-    const fundlast = dataMapMoObj.data.fundCategory;
-    const indiansub = fundlast[fundlast.length - 1];
-    checkboxSel = localStorage.getItem('viewmark');
-    dataMapMoObj.data.fundCategory.forEach((el) => {
-      if (el[checkboxSel]) {
-        funddata = el[checkboxSel];
-      }
-    });
-    dataMapMoObj.data.fundType.forEach((el) => {
-      if (el[checkboxSel]) {
-        funddata = el[checkboxSel];
-      }
-    });
-    indiansub.indianEquitySub.forEach((el) => {
-      if (el[checkboxSel]) {
-        funddata = el[checkboxSel];
-      }
-    });
-    if (funddata !== undefined) {
-      dataMapMoObj.funddata = dataCfObj.cfDataObjs.filter((el) => funddata.includes(el.schcode));
+    if (funddata === undefined) {
+      dataMapMoObj.funddata = dataCfObj.cfDataObjs.slice(0, 10); // .slice(0, 11);;
     }
-  }
-  if (funddata === undefined) {
-    dataMapMoObj.funddata = dataCfObj.cfDataObjs.slice(0, 10); // .slice(0, 11);;
-  }
-  const subfourer = block.querySelector('.block-subitem2');
-  const subun = subfourer.querySelector('.block-subitem-finelsub3 span');
-  const subfour = subun.cloneNode(true);
-  const divfund = div(
-    {
-      class: 'blockwrapper',
-    },
-    div(
+    const subfourer = block.querySelector('.block-subitem2');
+    const subun = subfourer.querySelector('.block-subitem-finelsub3 span');
+    const subfour = subun.cloneNode(true);
+    const divfund = div(
       {
-        class: 'upper-container',
+        class: 'blockwrapper',
       },
       div(
         {
-          class: 'fundcontainer',
+          class: 'upper-container',
         },
-        block.querySelector('.block-subitem1'),
         div(
           {
-            class: 'search-trending-wrapper',
+            class: 'fundcontainer',
           },
+          block.querySelector('.block-subitem1'),
           div(
             {
-              class: 'search-input',
+              class: 'search-trending-wrapper',
             },
-            label(
-              {
-                for: 'search-field', // Use a valid ID
-                class: 'search-label',
-              },
-              'Search here',
-            ),
-            input({
-              class: 'search',
-              id: 'search-field',
-              placeholder: block
-                .querySelector('.block-subitem2 .block-subitem-finelsub1')
-                .textContent.trim(),
-            }),
             div(
               {
-                class: 'cancel-search',
+                class: 'search-input',
               },
-              img({
-                class: 'cancel-btn',
-                src: '/icons/input-cancel.svg',
-                alt: 'cancel button',
-              }),
-            ),
-            ul(
-              {
-                class: 'list-search',
-              },
-              ...dataMapMoObj.funddata.map((el) => li(
+              label(
                 {
-                  class: 'list-fund-name',
-                  schcode: el.schcode,
+                  for: 'search-field', // Use a valid ID
+                  class: 'search-label',
                 },
-                el.schDetail.schemeName,
-              )),
+                'Search here',
+              ),
+              input({
+                class: 'search',
+                id: 'search-field',
+                placeholder: block
+                  .querySelector('.block-subitem2 .block-subitem-finelsub1')
+                  .textContent.trim(),
+              }),
+              div(
+                {
+                  class: 'cancel-search',
+                },
+                img({
+                  class: 'cancel-btn',
+                  src: '/icons/input-cancel.svg',
+                  alt: 'cancel button',
+                }),
+              ),
+              ul(
+                {
+                  class: 'list-search',
+                },
+                ...dataMapMoObj.funddata.map((el) => li(
+                  {
+                    class: 'list-fund-name',
+                    schcode: el.schcode,
+                  },
+                  el.schDetail.schemeName,
+                )),
+              ),
             ),
-          ),
-          div(
-            {
-              class: 'watchlist',
-            },
             div(
               {
-                class: 'staricon',
+                class: 'watchlist',
               },
-              block.querySelector(
-                '.block-subitem2 .block-subitem-finelsub2 span',
-              ),
+              div(
+                {
+                  class: 'staricon',
+                },
+                block.querySelector(
+                  '.block-subitem2 .block-subitem-finelsub2 span',
+                ),
               // block.querySelector(
               //   '.block-subitem2 .block-subitem-finelsub3 span',
               // ),
-            ),
-            div(
-              {
-                class: 'watchlisttext',
-              },
-              span(
-                block
-                  .querySelector('.block-subitem2 .block-subitem-finelsub2')
-                  .textContent.trim(),
               ),
-            ),
-          ),
-          div(
-            {
-              class: 'trending-container',
-            },
-            div(
-              {
-                class: 'trendinglabel',
-              },
-              p(
-                subfour,
-              ),
-              span(
+              div(
                 {
-                  class: 'trending-text',
+                  class: 'watchlisttext',
                 },
-                block
-                  .querySelector('.block-subitem2 .block-subitem-finelsub4')
-                  .textContent.trim(),
+                span(
+                  block
+                    .querySelector('.block-subitem2 .block-subitem-finelsub2')
+                    .textContent.trim(),
+                ),
               ),
             ),
             div(
               {
-                class: 'trendingmostlist',
+                class: 'trending-container',
               },
-              block.querySelector('.block-subitem2 .block-subitem-finelsub5'),
+              div(
+                {
+                  class: 'trendinglabel',
+                },
+                p(
+                  subfour,
+                ),
+                span(
+                  {
+                    class: 'trending-text',
+                  },
+                  block
+                    .querySelector('.block-subitem2 .block-subitem-finelsub4')
+                    .textContent.trim(),
+                ),
+              ),
+              div(
+                {
+                  class: 'trendingmostlist',
+                },
+                block.querySelector('.block-subitem2 .block-subitem-finelsub5'),
+              ),
             ),
           ),
         ),
       ),
-    ),
-    div(
-      {
-        class: 'filter-cards',
-      },
       div(
         {
-          class: 'left-container',
+          class: 'filter-cards',
         },
         div(
           {
-            class: 'fundcategory-container',
+            class: 'left-container',
           },
           div(
             {
-              class: 'filter-sort-container',
+              class: 'fundcategory-container',
             },
             div(
               {
-                class: 'filter-wrapper',
-                onclick: () => {
-                  block
-                    .querySelector('.filter-overlay')
-                    .classList.add('active');
-                  if (window.innerWidth < 768) {
-                    block.closest('body').classList.add('scroll-lock');
-                  }
-                  if (
-                    Array.from(
-                      block.querySelector('.sort-overlay').classList,
-                    ).includes('active')
-                  ) {
-                    block
-                      .querySelector('.sort-overlay')
-                      .classList.remove('active');
-                  }
-                },
+                class: 'filter-sort-container',
               },
               div(
                 {
-                  class: 'filter-text',
-                },
-                block.querySelector(
-                  '.block-item2 .block-subitem-finelsub1 span',
-                ),
-                p(
-                  block
-                    .querySelector('.block-item2 .block-subitem-finelsub2')
-                    .textContent.trim(),
-                ),
-              ),
-              button(
-                {
-                  class: 'clearall-btn',
+                  class: 'filter-wrapper',
                   onclick: () => {
-                    block.closest('body').classList.remove('scroll-lock');
-                    Array.from(
-                      block.querySelector('.filter-list-wrapper').children,
-                    ).forEach((el) => {
-                      if (
-                        el
-                          .closest('.checkbox-label-container')
-                          .querySelector('.innerindianequity')
-                      ) {
-                        el.closest('.checkbox-label-container')
-                          .querySelectorAll('.innerindianequity input')
-                          .forEach((elemsub) => {
-                            elemsub.checked = false;
-                          });
-                      }
-                      el.querySelector('input').checked = false;
-                    });
-                    dataMapMoObj.funddata = dataCfObj.cfDataObjs.slice(0, 11);
-                    viewFunction(block);
-                    block.querySelector('.applied-filter-list').innerHTML = '';
-                    block.querySelector('.applied-filter-wrap').classList.remove('filter-active');
-                  },
-                },
-                'Clear All',
-              ),
-            ),
-            div(
-              {
-                class: 'sort-wrapper',
-                onclick: () => {
-                  block.querySelector('.sort-overlay').classList.add('active');
-                  block.closest('body').classList.add('scroll-lock');
-                  if (
-                    Array.from(
-                      block.querySelector('.filter-overlay').classList,
-                    ).includes('active')
-                  ) {
                     block
                       .querySelector('.filter-overlay')
-                      .classList.remove('active');
-                  }
+                      .classList.add('active');
+                    if (window.innerWidth < 768) {
+                      block.closest('body').classList.add('scroll-lock');
+                    }
+                    if (
+                      Array.from(
+                        block.querySelector('.sort-overlay').classList,
+                      ).includes('active')
+                    ) {
+                      block
+                        .querySelector('.sort-overlay')
+                        .classList.remove('active');
+                    }
+                  },
                 },
-              },
-              block.querySelector('.block-item2 .block-subitem-finelsub3 span'),
-              p(
-                block
-                  .querySelector('.block-item2 .block-subitem-finelsub4')
-                  .textContent.trim(),
-              ),
-            ),
-          ),
-          div(
-            {
-              class: 'filter-overlay',
-            },
-            div(
-              {
-                class: 'filter-container',
-              },
-              div(
-                {
-                  class: 'clearall-wrapper',
-                },
-                span('Filters'),
+                div(
+                  {
+                    class: 'filter-text',
+                  },
+                  block.querySelector(
+                    '.block-item2 .block-subitem-finelsub1 span',
+                  ),
+                  p(
+                    block
+                      .querySelector('.block-item2 .block-subitem-finelsub2')
+                      .textContent.trim(),
+                  ),
+                ),
                 button(
                   {
                     class: 'clearall-btn',
                     onclick: () => {
+                      block.closest('body').classList.remove('scroll-lock');
                       Array.from(
                         block.querySelector('.filter-list-wrapper').children,
                       ).forEach((el) => {
@@ -1164,6 +1138,9 @@ export default function decorate(block) {
                         el.querySelector('input').checked = false;
                       });
                       dataMapMoObj.funddata = dataCfObj.cfDataObjs.slice(0, 11);
+                      viewFunction(block);
+                      block.querySelector('.applied-filter-list').innerHTML = '';
+                      block.querySelector('.applied-filter-wrap').classList.remove('filter-active');
                     },
                   },
                   'Clear All',
@@ -1171,1121 +1148,1191 @@ export default function decorate(block) {
               ),
               div(
                 {
-                  class: 'filter-list-wrapper',
-                },
-                ...dataMapMoObj.data.fundCategory.map((element, index) => {
-                  const indexeq = index === 0 ? 'indaneqsub' : '';
-                  if (capitalizeEachWord(Object.keys(element)[0].replaceAll('-', ' ')) === 'Indian Equity') {
-                    dataMapMoObj[`${index}ArrayDoc`] = div(
-                      {
-                        class: 'indian-equity-container',
-                      },
-                      ...dataMapMoObj.data.fundCategory[
-                        dataMapMoObj.data.fundCategory.length - 1
-                      ].indianEquitySub.map((elme, ind) => {
-                        const sublabel = Object.keys(elme)[0].replaceAll('-', ' ');
-                        return div(
-                          {
-                            class: 'checkbox-label-container',
-                          },
-                          input({
-                            class: 'category-direct',
-                            type: 'checkbox',
-                            id: `ind${ind + 1}`,
-                            dataattr: elme[Object.keys(elme)].join('-'),
-                            datakey: Object.keys(elme)[0],
-                            onclick: () => {
-                              if (window.innerWidth < 786) {
-                                const temp = [];
-                                const dup = [];
-                                Array.from(block.querySelectorAll('.checkbox-label-container input')).forEach((el) => {
-                                  if (el.checked) {
-                                    const tempel = el.getAttribute('dataattr').split('-');
-                                    temp.push(...tempel);
-                                  }
-                                });
-                                if (temp.length > 0) {
-                                  temp.forEach((scel) => {
-                                    if (!dup.includes(scel)) {
-                                      dup.push(scel);
-                                    }
-                                  });
-                                }
-                                // console.log(dup);
-                                const tempdata = dataCfObj.cfDataObjs
-                                  .filter((el) => (dup.includes(el.schcode) ? el : ''));
-                                dataMapMoObj.tempMobReturn = [];
-                                dataMapMoObj.tempMobReturn = tempdata;
-                              } else {
-                                checkfilter(block);
-                              }
-                            },
-                          }),
-                          label(
-                            {
-                              for: `ind${ind + 1}`,
-                            },
-                            capitalizeEachWord(sublabel),
-                            span({
-                              class: 'fund-length',
-                            }, `(${elme[Object.keys(elme)[0]].length})`),
-                          ),
-                        );
-                      }),
-                    );
-                  }
-                  const indetempcount = Object.keys(element)[0] === 'indian-equity' ? '43' : element[Object.keys(element)[0]].length;
-                  return Object.keys(element)[0] !== 'indianEquitySub'
-                    ? div(
-                      {
-                        class: `checkbox-label-container ${indexeq}`,
-                      },
-                      input({
-                        class: 'category-direct',
-                        type: 'checkbox',
-                        id: `index${index + 1}`,
-                        dataattr: element[Object.keys(element)[0]].join('-'),
-                        datakey: Object.keys(element)[0],
-                        onclick: (event) => {
-                          // const fundScheme = event.target
-                          //   .getAttribute('dataattr')
-                          //   .split('-');
-                          if (event.target.closest('.indaneqsub')) {
-                            const el = event.target.closest('.indaneqsub');
-                            if (el.querySelector('.innerindianequity')) {
-                              el.querySelectorAll(
-                                '.innerindianequity input',
-                              ).forEach((elemsub) => {
-                                elemsub.checked = el.querySelector('input').checked;
-                              });
-                            }
-                          }
-                          if (window.innerWidth < 786) {
-                            const temp = [];
-                            const dup = [];
-                            Array.from(block.querySelectorAll('.checkbox-label-container input')).forEach((el) => {
-                              if (el.checked) {
-                                const tempel = el.getAttribute('dataattr').split('-');
-                                temp.push(...tempel);
-                              }
-                            });
-                            if (temp.length > 0) {
-                              temp.forEach((scel) => {
-                                if (!dup.includes(scel)) {
-                                  dup.push(scel);
-                                }
-                              });
-                            }
-                            // console.log(dup);
-                            const tempdata = dataCfObj.cfDataObjs
-                              .filter((el) => (dup.includes(el.schcode) ? el : ''));
-                            dataMapMoObj.tempMobReturn = [];
-                            dataMapMoObj.tempMobReturn = tempdata;
-                          } else {
-                            checkfilter(block);
-                          }
-                        },
-                      }),
-                      div(
-                        {
-                          class: 'label-tooltip-wrap',
-                        },
-                        label(
-                          {
-                            for: `index${index + 1}`,
-                          },
-                          capitalizeEachWord(
-                            Object.keys(element)[0].replaceAll('-', ' '),
-                          ),
-                          span(
-                            {
-                              class: 'fund-length',
-                            },
-                            `(${indetempcount})`,
-                          ),
-                        ),
-                        div(
-                          {
-                            class: 'tooltip-wrap',
-                          },
-                          img({
-                            src: '/icons/filter-info.svg',
-                            alt: 'Filter Info Icon',
-                          }),
-                          p(
-                            {
-                              class: 'tooltip-text',
-                            },
-                            dataMapMoObj.datatooltip[Object.keys(element)[0]],
-                          ),
-                        ),
-                      ),
-                      capitalizeEachWord(
-                        Object.keys(element)[0].replaceAll('-', ' '),
-                      ) === 'Indian Equity'
-                        ? div(
-                          {
-                            class: 'innerindianequity',
-                          },
-                          dataMapMoObj[`${index}ArrayDoc`],
-                        )
-                        : '',
-                    )
-                    : '';
-                }),
-                ...dataMapMoObj.data.fundType.map((element, index) => div(
-                  {
-                    class: 'checkbox-label-container',
-                  },
-                  input({
-                    class: 'category-direct',
-                    type: 'checkbox',
-                    id: `fundtype${index + 1}`,
-                    dataattr: element[Object.keys(element)[0]].join('-'),
-                    datakey: Object.keys(element)[0],
-                    onclick: () => {
-                      // checkfilter(block);
-                      if (window.innerWidth < 786) {
-                        const temp = [];
-                        const dup = [];
-                        Array.from(block.querySelectorAll('.checkbox-label-container input')).forEach((el) => {
-                          if (el.checked) {
-                            const tempel = el.getAttribute('dataattr').split('-');
-                            temp.push(...tempel);
-                          }
-                        });
-                        if (temp.length > 0) {
-                          temp.forEach((scel) => {
-                            if (!dup.includes(scel)) {
-                              dup.push(scel);
-                            }
-                          });
-                        }
-                        // console.log(dup);
-                        const tempdata = dataCfObj.cfDataObjs
-                          .filter((el) => (dup.includes(el.schcode) ? el : ''));
-                        dataMapMoObj.tempMobReturn = [];
-                        dataMapMoObj.tempMobReturn = tempdata;
-                      } else {
-                        checkfilter(block);
-                      }
-                      // viewFunction(block);
-                    },
-                  }),
-                  div(
-                    {
-                      class: 'label-tooltip-wrap',
-                    },
-                    label(
-                      {
-                        for: `fundtype${index + 1}`,
-                      },
-                      capitalizeEachWord(
-                        Object.keys(element)[0].replaceAll('-', ' '),
-                      ),
-                      span(
-                        `(${element[Object.keys(element)[0]].length})`,
-                      ),
-                    ),
-                    div(
-                      {
-                        class: 'tooltip-wrap',
-                      },
-                      img({
-                        src: '/icons/filter-info.svg',
-                        alt: 'Filter Info Icon',
-                      }),
-                      p(
-                        {
-                          class: 'tooltip-text',
-                        },
-                        dataMapMoObj.datatooltip[Object.keys(element)[0]],
-                      ),
-                    ),
-                  ),
-                )),
-              ),
-              div(
-                {
-                  class: 'apply-wrapper',
-                },
-                button(
-                  {
-                    class: 'close-btn',
-                    onclick: () => {
+                  class: 'sort-wrapper',
+                  onclick: () => {
+                    block.querySelector('.sort-overlay').classList.add('active');
+                    block.closest('body').classList.add('scroll-lock');
+                    if (
+                      Array.from(
+                        block.querySelector('.filter-overlay').classList,
+                      ).includes('active')
+                    ) {
                       block
                         .querySelector('.filter-overlay')
                         .classList.remove('active');
-                      block.closest('body').classList.remove('scroll-lock');
-                      block
-                        .querySelector('.sort-overlay')
-                        .classList.remove('active');
-                    },
+                    }
                   },
-                  'Close',
-                ),
-                button(
-                  {
-                    class: 'apply-btn',
-                    onclick: () => {
-                      applyFunction(block);
-                    },
-                  },
-                  'Apply',
-                ),
-              ),
-            ),
-          ),
-          div(
-            {
-              class: 'sort-overlay',
-            },
-            div(
-              {
-                class: 'sort-container',
-              },
-              div(
-                {
-                  class: 'sort-label',
                 },
-                // span(label(
-                //   block.querySelector(".block-item3 .block-subitem-finelsub1").textContent.trim()
-                // ))
-                span(
+                block.querySelector('.block-item2 .block-subitem-finelsub3 span'),
+                p(
                   block
-                    .querySelector('.block-item3 .block-subitem-finelsub3')
+                    .querySelector('.block-item2 .block-subitem-finelsub4')
                     .textContent.trim(),
                 ),
               ),
+            ),
+            div(
+              {
+                class: 'filter-overlay',
+              },
               div(
                 {
-                  class: 'arrange-returns',
+                  class: 'filter-container',
                 },
                 div(
                   {
-                    class: 'arrange-container',
+                    class: 'clearall-wrapper',
                   },
-                  span('Arrange by'),
-                  div(
+                  span('Filters'),
+                  button(
                     {
-                      class: 'radio-label-container',
+                      class: 'clearall-btn',
+                      onclick: () => {
+                        Array.from(
+                          block.querySelector('.filter-list-wrapper').children,
+                        ).forEach((el) => {
+                          if (
+                            el
+                              .closest('.checkbox-label-container')
+                              .querySelector('.innerindianequity')
+                          ) {
+                            el.closest('.checkbox-label-container')
+                              .querySelectorAll('.innerindianequity input')
+                              .forEach((elemsub) => {
+                                elemsub.checked = false;
+                              });
+                          }
+                          el.querySelector('input').checked = false;
+                        });
+                        dataMapMoObj.funddata = dataCfObj.cfDataObjs.slice(0, 11);
+                      },
                     },
-                    div(
-                      {
-                        class: 'radio-label',
-                      },
-                      input({
-                        type: 'radio',
-                        id: 'popular',
-                        name: 'arrange',
-                      }),
-                      label(
-                        {
-                          for: 'popular',
-                        },
-                        'Popular',
-                      ),
-                    ),
-                    div(
-                      {
-                        class: 'radio-label',
-                      },
-                      input({
-                        type: 'radio',
-                        id: 'lastnav',
-                        name: 'arrange',
-                      }),
-                      label(
-                        {
-                          for: 'lastnav',
-                        },
-                        'Latest NAV',
-                      ),
-                    ),
-                    div(
-                      {
-                        class: 'radio-label',
-                      },
-                      input({
-                        type: 'radio',
-                        id: 'lastnavone',
-                        name: 'arrange',
-                      }),
-                      label(
-                        {
-                          for: 'lastnavone',
-                        },
-                        'Latest by 1 day',
-                      ),
-                    ),
-                    div(
-                      {
-                        class: 'radio-label',
-                      },
-                      input({
-                        type: 'radio',
-                        id: 'oldnew',
-                        name: 'arrange',
-                      }),
-                      label(
-                        {
-                          for: 'oldnew',
-                        },
-                        'Oldest to Newest',
-                      ),
-                    ),
-                    div(
-                      {
-                        class: 'radio-label',
-                      },
-                      input({
-                        type: 'radio',
-                        id: 'newold',
-                        name: 'arrange',
-                      }),
-                      label(
-                        {
-                          for: 'newold',
-                        },
-                        'Newest to Oldest',
-                      ),
-                    ),
+                    'Clear All',
                   ),
                 ),
                 div(
                   {
-                    class: 'return-container',
+                    class: 'filter-list-wrapper',
                   },
-                  span('Returns Period'),
-                  div(
+                  ...dataMapMoObj.data.fundCategory.map((element, index) => {
+                    const indexeq = index === 0 ? 'indaneqsub' : '';
+                    if (capitalizeEachWord(Object.keys(element)[0].replaceAll('-', ' ')) === 'Indian Equity') {
+                      dataMapMoObj[`${index}ArrayDoc`] = div(
+                        {
+                          class: 'indian-equity-container',
+                        },
+                        ...dataMapMoObj.data.fundCategory[
+                          dataMapMoObj.data.fundCategory.length - 1
+                        ].indianEquitySub.map((elme, ind) => {
+                          const sublabel = Object.keys(elme)[0].replaceAll('-', ' ');
+                          return div(
+                            {
+                              class: 'checkbox-label-container',
+                            },
+                            input({
+                              class: 'category-direct',
+                              type: 'checkbox',
+                              id: `ind${ind + 1}`,
+                              dataattr: elme[Object.keys(elme)].join('-'),
+                              datakey: Object.keys(elme)[0],
+                              onclick: () => {
+                                if (window.innerWidth < 786) {
+                                  const temp = [];
+                                  const dup = [];
+                                  Array.from(block.querySelectorAll('.checkbox-label-container input')).forEach((el) => {
+                                    if (el.checked) {
+                                      const tempel = el.getAttribute('dataattr').split('-');
+                                      temp.push(...tempel);
+                                    }
+                                  });
+                                  if (temp.length > 0) {
+                                    temp.forEach((scel) => {
+                                      if (!dup.includes(scel)) {
+                                        dup.push(scel);
+                                      }
+                                    });
+                                  }
+                                  // console.log(dup);
+                                  const tempdata = dataCfObj.cfDataObjs
+                                    .filter((el) => (dup.includes(el.schcode) ? el : ''));
+                                  dataMapMoObj.tempMobReturn = [];
+                                  dataMapMoObj.tempMobReturn = tempdata;
+                                } else {
+                                  checkfilter(block);
+                                }
+                              },
+                            }),
+                            label(
+                              {
+                                for: `ind${ind + 1}`,
+                              },
+                              capitalizeEachWord(sublabel),
+                              span({
+                                class: 'fund-length',
+                              }, `(${elme[Object.keys(elme)[0]].length})`),
+                            ),
+                          );
+                        }),
+                      );
+                    }
+                    const indetempcount = Object.keys(element)[0] === 'indian-equity' ? '43' : element[Object.keys(element)[0]].length;
+                    return Object.keys(element)[0] !== 'indianEquitySub'
+                      ? div(
+                        {
+                          class: `checkbox-label-container ${indexeq}`,
+                        },
+                        input({
+                          class: 'category-direct',
+                          type: 'checkbox',
+                          id: `index${index + 1}`,
+                          dataattr: element[Object.keys(element)[0]].join('-'),
+                          datakey: Object.keys(element)[0],
+                          onclick: (event) => {
+                          // const fundScheme = event.target
+                          //   .getAttribute('dataattr')
+                          //   .split('-');
+                            if (event.target.closest('.indaneqsub')) {
+                              const el = event.target.closest('.indaneqsub');
+                              if (el.querySelector('.innerindianequity')) {
+                                el.querySelectorAll(
+                                  '.innerindianequity input',
+                                ).forEach((elemsub) => {
+                                  elemsub.checked = el.querySelector('input').checked;
+                                });
+                              }
+                            }
+                            if (window.innerWidth < 786) {
+                              const temp = [];
+                              const dup = [];
+                              Array.from(block.querySelectorAll('.checkbox-label-container input')).forEach((el) => {
+                                if (el.checked) {
+                                  const tempel = el.getAttribute('dataattr').split('-');
+                                  temp.push(...tempel);
+                                }
+                              });
+                              if (temp.length > 0) {
+                                temp.forEach((scel) => {
+                                  if (!dup.includes(scel)) {
+                                    dup.push(scel);
+                                  }
+                                });
+                              }
+                              // console.log(dup);
+                              const tempdata = dataCfObj.cfDataObjs
+                                .filter((el) => (dup.includes(el.schcode) ? el : ''));
+                              dataMapMoObj.tempMobReturn = [];
+                              dataMapMoObj.tempMobReturn = tempdata;
+                            } else {
+                              checkfilter(block);
+                            }
+                          },
+                        }),
+                        div(
+                          {
+                            class: 'label-tooltip-wrap',
+                          },
+                          label(
+                            {
+                              for: `index${index + 1}`,
+                            },
+                            capitalizeEachWord(
+                              Object.keys(element)[0].replaceAll('-', ' '),
+                            ),
+                            span(
+                              {
+                                class: 'fund-length',
+                              },
+                              `(${indetempcount})`,
+                            ),
+                          ),
+                          div(
+                            {
+                              class: 'tooltip-wrap',
+                            },
+                            img({
+                              src: '/icons/filter-info.svg',
+                              alt: 'Filter Info Icon',
+                            }),
+                            p(
+                              {
+                                class: 'tooltip-text',
+                              },
+                              dataMapMoObj.datatooltip[Object.keys(element)[0]],
+                            ),
+                          ),
+                        ),
+                        capitalizeEachWord(
+                          Object.keys(element)[0].replaceAll('-', ' '),
+                        ) === 'Indian Equity'
+                          ? div(
+                            {
+                              class: 'innerindianequity',
+                            },
+                            dataMapMoObj[`${index}ArrayDoc`],
+                          )
+                          : '',
+                      )
+                      : '';
+                  }),
+                  ...dataMapMoObj.data.fundType.map((element, index) => div(
                     {
-                      class: 'radio-label-container',
+                      class: 'checkbox-label-container',
                     },
+                    input({
+                      class: 'category-direct',
+                      type: 'checkbox',
+                      id: `fundtype${index + 1}`,
+                      dataattr: element[Object.keys(element)[0]].join('-'),
+                      datakey: Object.keys(element)[0],
+                      onclick: () => {
+                      // checkfilter(block);
+                        if (window.innerWidth < 786) {
+                          const temp = [];
+                          const dup = [];
+                          Array.from(block.querySelectorAll('.checkbox-label-container input')).forEach((el) => {
+                            if (el.checked) {
+                              const tempel = el.getAttribute('dataattr').split('-');
+                              temp.push(...tempel);
+                            }
+                          });
+                          if (temp.length > 0) {
+                            temp.forEach((scel) => {
+                              if (!dup.includes(scel)) {
+                                dup.push(scel);
+                              }
+                            });
+                          }
+                          // console.log(dup);
+                          const tempdata = dataCfObj.cfDataObjs
+                            .filter((el) => (dup.includes(el.schcode) ? el : ''));
+                          dataMapMoObj.tempMobReturn = [];
+                          dataMapMoObj.tempMobReturn = tempdata;
+                        } else {
+                          checkfilter(block);
+                        }
+                      // viewFunction(block);
+                      },
+                    }),
                     div(
                       {
-                        class: 'radio-label',
+                        class: 'label-tooltip-wrap',
                       },
-                      input({
-                        type: 'radio',
-                        id: 'sinceinp',
-                        name: 'returns',
-                        dataattr: dataMapMoObj.data.sort[0].inception_Ret.join('-'),
-                      }),
                       label(
                         {
-                          for: 'sinceinp',
+                          for: `fundtype${index + 1}`,
                         },
-                        'Since Inception',
+                        capitalizeEachWord(
+                          Object.keys(element)[0].replaceAll('-', ' '),
+                        ),
+                        span(
+                          `(${element[Object.keys(element)[0]].length})`,
+                        ),
                       ),
-                    ),
-                    div(
-                      {
-                        class: 'radio-label',
-                      },
-                      input({
-                        type: 'radio',
-                        id: 'oneyear',
-                        name: 'returns',
-                        dataattr: dataMapMoObj.data.sort[0].oneYear_Ret.join('-'),
-                      }),
-                      label(
+                      div(
                         {
-                          for: 'oneyear',
+                          class: 'tooltip-wrap',
                         },
-                        '1 year',
+                        img({
+                          src: '/icons/filter-info.svg',
+                          alt: 'Filter Info Icon',
+                        }),
+                        p(
+                          {
+                            class: 'tooltip-text',
+                          },
+                          dataMapMoObj.datatooltip[Object.keys(element)[0]],
+                        ),
                       ),
                     ),
-                    div(
-                      {
-                        class: 'radio-label',
+                  )),
+                ),
+                div(
+                  {
+                    class: 'apply-wrapper',
+                  },
+                  button(
+                    {
+                      class: 'close-btn',
+                      onclick: () => {
+                        block
+                          .querySelector('.filter-overlay')
+                          .classList.remove('active');
+                        block.closest('body').classList.remove('scroll-lock');
+                        block
+                          .querySelector('.sort-overlay')
+                          .classList.remove('active');
                       },
-                      input({
-                        type: 'radio',
-                        id: 'threeyear',
-                        name: 'returns',
-                        dataattr: dataMapMoObj.data.sort[0].threeYear_Ret.join('-'),
-                      }),
-                      label(
-                        {
-                          for: 'threeyear',
-                        },
-                        '3 years',
-                      ),
-                    ),
-                    div(
-                      {
-                        class: 'radio-label',
+                    },
+                    'Close',
+                  ),
+                  button(
+                    {
+                      class: 'apply-btn',
+                      onclick: () => {
+                        applyFunction(block);
                       },
-                      input({
-                        type: 'radio',
-                        id: 'fiveyear',
-                        name: 'returns',
-                        dataattr: dataMapMoObj.data.sort[0].fiveYear_Ret.join('-'),
-                      }),
-                      label(
-                        {
-                          for: 'fiveyear',
-                        },
-                        '5 years',
-                      ),
-                    ),
-                    div(
-                      {
-                        class: 'radio-label',
-                      },
-                      input({
-                        type: 'radio',
-                        id: 'tenyear1',
-                        name: 'returns',
-                        dataattr: dataMapMoObj.data.sort[0].sevenYear_Ret.join('-'),
-                      }),
-                      label(
-                        {
-                          for: 'tenyear1',
-                        },
-                        '7 years',
-                      ),
-                    ),
-                    div(
-                      {
-                        class: 'radio-label',
-                      },
-                      input({
-                        type: 'radio',
-                        id: 'tenyear2',
-                        name: 'returns',
-                        dataattr: dataMapMoObj.data.sort[0].tenYear_Ret.join('-'),
-                      }),
-                      label(
-                        {
-                          for: 'tenyear2',
-                        },
-                        '10 years',
-                      ),
-                    ),
+                    },
+                    'Apply',
                   ),
                 ),
               ),
+            ),
+            div(
+              {
+                class: 'sort-overlay',
+              },
               div(
                 {
-                  class: 'close-apply-btn',
+                  class: 'sort-container',
                 },
-                button(
+                div(
                   {
-                    class: 'closebtn',
-                    onclick: () => {
-                      block
-                        .querySelector('.filter-overlay')
-                        .classList.remove('active');
-                      block.closest('body').classList.remove('scroll-lock');
-                      block
-                        .querySelector('.sort-overlay')
-                        .classList.remove('active');
-                    },
+                    class: 'sort-label',
                   },
-                  'Close',
+                  // span(label(
+                  //   block.querySelector(".block-item3 .block-subitem-finelsub1").textContent.trim()
+                  // ))
+                  span(
+                    block
+                      .querySelector('.block-item3 .block-subitem-finelsub3')
+                      .textContent.trim(),
+                  ),
                 ),
-                button(
+                div(
                   {
-                    class: 'applybtn',
-                    onclick: () => {
-                      applyFunction(block);
-                    },
+                    class: 'arrange-returns',
                   },
-                  'Apply',
+                  div(
+                    {
+                      class: 'arrange-container',
+                    },
+                    span('Arrange by'),
+                    div(
+                      {
+                        class: 'radio-label-container',
+                      },
+                      div(
+                        {
+                          class: 'radio-label',
+                        },
+                        input({
+                          type: 'radio',
+                          id: 'popular',
+                          name: 'arrange',
+                        }),
+                        label(
+                          {
+                            for: 'popular',
+                          },
+                          'Popular',
+                        ),
+                      ),
+                      div(
+                        {
+                          class: 'radio-label',
+                        },
+                        input({
+                          type: 'radio',
+                          id: 'lastnav',
+                          name: 'arrange',
+                        }),
+                        label(
+                          {
+                            for: 'lastnav',
+                          },
+                          'Latest NAV',
+                        ),
+                      ),
+                      div(
+                        {
+                          class: 'radio-label',
+                        },
+                        input({
+                          type: 'radio',
+                          id: 'lastnavone',
+                          name: 'arrange',
+                        }),
+                        label(
+                          {
+                            for: 'lastnavone',
+                          },
+                          'Latest by 1 day',
+                        ),
+                      ),
+                      div(
+                        {
+                          class: 'radio-label',
+                        },
+                        input({
+                          type: 'radio',
+                          id: 'oldnew',
+                          name: 'arrange',
+                        }),
+                        label(
+                          {
+                            for: 'oldnew',
+                          },
+                          'Oldest to Newest',
+                        ),
+                      ),
+                      div(
+                        {
+                          class: 'radio-label',
+                        },
+                        input({
+                          type: 'radio',
+                          id: 'newold',
+                          name: 'arrange',
+                        }),
+                        label(
+                          {
+                            for: 'newold',
+                          },
+                          'Newest to Oldest',
+                        ),
+                      ),
+                    ),
+                  ),
+                  div(
+                    {
+                      class: 'return-container',
+                    },
+                    span('Returns Period'),
+                    div(
+                      {
+                        class: 'radio-label-container',
+                      },
+                      div(
+                        {
+                          class: 'radio-label',
+                        },
+                        input({
+                          type: 'radio',
+                          id: 'sinceinp',
+                          name: 'returns',
+                          dataattr: dataMapMoObj.data.sort[0].inception_Ret.join('-'),
+                        }),
+                        label(
+                          {
+                            for: 'sinceinp',
+                          },
+                          'Since Inception',
+                        ),
+                      ),
+                      div(
+                        {
+                          class: 'radio-label',
+                        },
+                        input({
+                          type: 'radio',
+                          id: 'oneyear',
+                          name: 'returns',
+                          dataattr: dataMapMoObj.data.sort[0].oneYear_Ret.join('-'),
+                        }),
+                        label(
+                          {
+                            for: 'oneyear',
+                          },
+                          '1 year',
+                        ),
+                      ),
+                      div(
+                        {
+                          class: 'radio-label',
+                        },
+                        input({
+                          type: 'radio',
+                          id: 'threeyear',
+                          name: 'returns',
+                          dataattr: dataMapMoObj.data.sort[0].threeYear_Ret.join('-'),
+                        }),
+                        label(
+                          {
+                            for: 'threeyear',
+                          },
+                          '3 years',
+                        ),
+                      ),
+                      div(
+                        {
+                          class: 'radio-label',
+                        },
+                        input({
+                          type: 'radio',
+                          id: 'fiveyear',
+                          name: 'returns',
+                          dataattr: dataMapMoObj.data.sort[0].fiveYear_Ret.join('-'),
+                        }),
+                        label(
+                          {
+                            for: 'fiveyear',
+                          },
+                          '5 years',
+                        ),
+                      ),
+                      div(
+                        {
+                          class: 'radio-label',
+                        },
+                        input({
+                          type: 'radio',
+                          id: 'tenyear1',
+                          name: 'returns',
+                          dataattr: dataMapMoObj.data.sort[0].sevenYear_Ret.join('-'),
+                        }),
+                        label(
+                          {
+                            for: 'tenyear1',
+                          },
+                          '7 years',
+                        ),
+                      ),
+                      div(
+                        {
+                          class: 'radio-label',
+                        },
+                        input({
+                          type: 'radio',
+                          id: 'tenyear2',
+                          name: 'returns',
+                          dataattr: dataMapMoObj.data.sort[0].tenYear_Ret.join('-'),
+                        }),
+                        label(
+                          {
+                            for: 'tenyear2',
+                          },
+                          '10 years',
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                div(
+                  {
+                    class: 'close-apply-btn',
+                  },
+                  button(
+                    {
+                      class: 'closebtn',
+                      onclick: () => {
+                        block
+                          .querySelector('.filter-overlay')
+                          .classList.remove('active');
+                        block.closest('body').classList.remove('scroll-lock');
+                        block
+                          .querySelector('.sort-overlay')
+                          .classList.remove('active');
+                      },
+                    },
+                    'Close',
+                  ),
+                  button(
+                    {
+                      class: 'applybtn',
+                      onclick: () => {
+                        applyFunction(block);
+                      },
+                    },
+                    'Apply',
+                  ),
                 ),
               ),
             ),
           ),
         ),
-      ),
-      div(
-        {
-          class: 'right-container',
-        },
         div(
           {
-            class: 'sort-pop-container',
+            class: 'right-container',
           },
           div(
             {
-              class: 'sort-popular',
+              class: 'sort-pop-container',
             },
             div(
               {
-                class: 'sort-container',
+                class: 'sort-popular',
               },
-              span(
-                {
-                  class: 'sort-pop-label',
-                },
-                block
-                  .querySelector('.block-item3 .block-subitem-finelsub1')
-                  .textContent.trim(),
-              ),
               div(
                 {
-                  class: 'sort-select-container',
+                  class: 'sort-container',
                 },
-                p(
+                span(
                   {
-                    class: 'selectedtext',
-                    onclick: (event) => {
-                      if (Array.from(event.target.nextElementSibling.classList).includes('dropdown-active')) {
-                        event.target.nextElementSibling.classList.remove('dropdown-active');
-                      } else {
-                        event.target.nextElementSibling.classList.add('dropdown-active');
-                      }
-                    },
+                    class: 'sort-pop-label',
                   },
-                  'Popular',
+                  block
+                    .querySelector('.block-item3 .block-subitem-finelsub1')
+                    .textContent.trim(),
                 ),
-                ul(
+                div(
                   {
-                    class: 'dropdown-list',
-                    onclick: (event) => {
-                      event.target
-                        .closest('.dropdown-list')
-                        .classList.remove('dropdown-active');
-                      const name = event.target.textContent.trim();
-                      event.target
-                        .closest('.sort-select-container')
-                        .querySelector('p').innerText = '';
-                      event.target
-                        .closest('.sort-select-container')
-                        .querySelector('p').innerText = name;
-                      if (name === 'Popular') {
-                        dataMapMoObj.funddata = '';
-                        dataMapMoObj.funddata = dataCfObj.cfDataObjs.slice(0, 10);
-                      }
-                      if (event.target.textContent.trim() === 'Oldest to Newest') {
-                        const tempData = JSON.parse(JSON.stringify(dataCfObj.cfDataObjs));
-                        const tempa = tempData.sort(
-                          (a, b) => new Date(a.dateOfAllotment) - new Date(b.dateOfAllotment),
-                        );
-                        dataMapMoObj.funddata = '';
-                        dataMapMoObj.funddata = tempa;
-                      }
-                      if (event.target.textContent.trim() === 'Newest to Oldest') {
-                        const tempData = JSON.parse(JSON.stringify(dataCfObj.cfDataObjs));
-                        const tempa = tempData.sort(
-                          (a, b) => new Date(b.dateOfAllotment) - new Date(a.dateOfAllotment),
-                        );
-                        dataMapMoObj.funddata = '';
-                        dataMapMoObj.funddata = tempa;
-                      }
-                      const searInp = block.querySelector('.search-input input');
-                      searInp.value = '';
-                      const cancelBtn = block.querySelector('.cancel-search');
-                      cancelBtn.style.display = 'none';
-                      const flitwrap = block.querySelector('.applied-filter-wrap');
-                      if (Array.from(flitwrap.classList).includes('filter-active')) {
-                        flitwrap.classList.remove('filter-active');
-                      }
-                      Array.from(block.querySelector('.filter-list-wrapper').children).forEach((el) => {
-                        if (el.closest('.checkbox-label-container').querySelector('.innerindianequity')) {
-                          el.closest('.checkbox-label-container').querySelectorAll('.innerindianequity input').forEach((elemsub) => {
-                            if (elemsub.checked) {
-                              elemsub.checked = false;
-                            }
-                          });
+                    class: 'sort-select-container',
+                  },
+                  p(
+                    {
+                      class: 'selectedtext',
+                      onclick: (event) => {
+                        if (Array.from(event.target.nextElementSibling.classList).includes('dropdown-active')) {
+                          event.target.nextElementSibling.classList.remove('dropdown-active');
+                        } else {
+                          event.target.nextElementSibling.classList.add('dropdown-active');
                         }
-                        if (el.querySelector('input').checked) {
+                      },
+                    },
+                    'Popular',
+                  ),
+                  ul(
+                    {
+                      class: 'dropdown-list',
+                      onclick: (event) => {
+                        event.target
+                          .closest('.dropdown-list')
+                          .classList.remove('dropdown-active');
+                        const name = event.target.textContent.trim();
+                        event.target
+                          .closest('.sort-select-container')
+                          .querySelector('p').innerText = '';
+                        event.target
+                          .closest('.sort-select-container')
+                          .querySelector('p').innerText = name;
+                        if (name === 'Popular') {
+                          dataMapMoObj.funddata = '';
+                          dataMapMoObj.funddata = dataCfObj.cfDataObjs.slice(0, 10);
+                        }
+                        if (event.target.textContent.trim() === 'Oldest to Newest') {
+                          const tempData = JSON.parse(JSON.stringify(dataCfObj.cfDataObjs));
+                          const tempa = tempData.sort(
+                            (a, b) => new Date(a.dateOfAllotment) - new Date(b.dateOfAllotment),
+                          );
+                          dataMapMoObj.funddata = '';
+                          dataMapMoObj.funddata = tempa;
+                        }
+                        if (event.target.textContent.trim() === 'Newest to Oldest') {
+                          const tempData = JSON.parse(JSON.stringify(dataCfObj.cfDataObjs));
+                          const tempa = tempData.sort(
+                            (a, b) => new Date(b.dateOfAllotment) - new Date(a.dateOfAllotment),
+                          );
+                          dataMapMoObj.funddata = '';
+                          dataMapMoObj.funddata = tempa;
+                        }
+                        const searInp = block.querySelector('.search-input input');
+                        searInp.value = '';
+                        const cancelBtn = block.querySelector('.cancel-search');
+                        cancelBtn.style.display = 'none';
+                        const flitwrap = block.querySelector('.applied-filter-wrap');
+                        if (Array.from(flitwrap.classList).includes('filter-active')) {
+                          flitwrap.classList.remove('filter-active');
+                        }
+                        Array.from(block.querySelector('.filter-list-wrapper').children).forEach((el) => {
+                          if (el.closest('.checkbox-label-container').querySelector('.innerindianequity')) {
+                            el.closest('.checkbox-label-container').querySelectorAll('.innerindianequity input').forEach((elemsub) => {
+                              if (elemsub.checked) {
+                                elemsub.checked = false;
+                              }
+                            });
+                          }
+                          if (el.querySelector('input').checked) {
                           // const moplabel = el.querySelector('input').nextElementSibling;
-                          if (el.querySelector('input').getAttribute('id') !== 'index1') {
-                            if (el.querySelector('input').checked) {
-                              el.querySelector('input').checked = false;
+                            if (el.querySelector('input').getAttribute('id') !== 'index1') {
+                              if (el.querySelector('input').checked) {
+                                el.querySelector('input').checked = false;
+                              }
                             }
                           }
-                        }
-                      });
-                      block.querySelectorAll('.arrange-container input').forEach((el) => {
-                        if (el.nextElementSibling.textContent === name) {
-                          el.click();
-                        }
-                      });
-                      viewFunction(block);
+                        });
+                        block.querySelectorAll('.arrange-container input').forEach((el) => {
+                          if (el.nextElementSibling.textContent === name) {
+                            el.click();
+                          }
+                        });
+                        viewFunction(block);
                       // planListEvent(event,block)
+                      },
                     },
-                  },
-                  li('Popular'),
-                  li('Latest NAV'),
-                  li('Lastest by 1 day'),
-                  li('Oldest to Newest'),
-                  li('Newest to Oldest'),
+                    li('Popular'),
+                    li('Latest NAV'),
+                    li('Lastest by 1 day'),
+                    li('Oldest to Newest'),
+                    li('Newest to Oldest'),
+                  ),
                 ),
-              ),
-            ),
-            div(
-              {
-                class: 'popular-container',
-              },
-              span(
-                {
-                  class: 'sort-pop-label',
-                },
-                block
-                  .querySelector('.block-item3 .block-subitem-finelsub2')
-                  .textContent.trim(),
               ),
               div(
                 {
-                  class: 'return-select-container',
+                  class: 'popular-container',
                 },
-                p(
+                span(
                   {
-                    class: 'selectedtext',
-                    onclick: (event) => {
-                      if (Array.from(event.target.nextElementSibling.classList).includes('dropdown-active')) {
-                        event.target.nextElementSibling.classList.remove('dropdown-active');
-                      } else {
-                        event.target.nextElementSibling.classList.add('dropdown-active');
-                      }
-                    },
+                    class: 'sort-pop-label',
                   },
-                  '3 years',
+                  block
+                    .querySelector('.block-item3 .block-subitem-finelsub2')
+                    .textContent.trim(),
                 ),
-                ul(
+                div(
                   {
-                    class: 'dropdown-list',
-                    onclick: (event) => {
-                      event.target
-                        .closest('.dropdown-list')
-                        .classList.remove('dropdown-active');
-                      const name = event.target.textContent.trim();
-                      event.target
-                        .closest('.return-select-container')
-                        .querySelector('p').innerText = '';
-                      event.target
-                        .closest('.return-select-container')
-                        .querySelector('p').innerText = name;
-                      // const dataattr = event.target
-                      //   .getAttribute('dataattr')
-                      //   .split('-');
-                      const sorttextcont = block.querySelector('.sort-select-container .selectedtext');
-                      const sorttext = sorttextcont.textContent.trim();
-                      if (sorttext === 'Popular') {
-                        dataMapMoObj.funddata = '';
-                        dataMapMoObj.funddata = dataCfObj.cfDataObjs.slice(0, 10);
-                      }
-                      if (sorttext === 'Oldest to Newest') {
-                        const tempData = JSON.parse(JSON.stringify(dataCfObj.cfDataObjs));
-                        const tempa = tempData.sort(
-                          (a, b) => new Date(a.dateOfAllotment) - new Date(b.dateOfAllotment),
-                        );
-                        dataMapMoObj.funddata = '';
-                        dataMapMoObj.funddata = tempa;
-                      }
-                      if (sorttext === 'Newest to Oldest') {
-                        const tempData = JSON.parse(JSON.stringify(dataCfObj.cfDataObjs));
-                        const tempa = tempData.sort(
-                          (a, b) => new Date(b.dateOfAllotment) - new Date(a.dateOfAllotment),
-                        );
-                        dataMapMoObj.funddata = '';
-                        dataMapMoObj.funddata = tempa;
-                      }
-                      dataMapMoObj.deskrightdrp = name;
-                      dataMapMoObj.selectreturns = dataMapMoObj.toTitleCase(name);
-                      const searInp = block.querySelector('.search-input input');
-                      searInp.value = '';
-                      const cancelBtn = block.querySelector('.cancel-search');
-                      cancelBtn.style.display = 'none';
-                      const flitwrap = block.querySelector('.applied-filter-wrap');
-                      if (Array.from(flitwrap.classList).includes('filter-active')) {
-                        flitwrap.classList.remove('filter-active');
-                      }
-                      Array.from(block.querySelector('.filter-list-wrapper').children).forEach((el) => {
-                        if (el.closest('.checkbox-label-container').querySelector('.innerindianequity')) {
-                          el.closest('.checkbox-label-container').querySelectorAll('.innerindianequity input').forEach((elemsub) => {
-                            if (elemsub.checked) {
-                              elemsub.checked = false;
-                            }
-                          });
-                        }
-                        if (el.querySelector('input').checked) {
-                          // const moplabel = el.querySelector('input').nextElementSibling;
-                          if (el.querySelector('input').getAttribute('id') !== 'index1') {
-                            if (el.querySelector('input').checked) {
-                              el.querySelector('input').checked = false;
-                            }
-                          }
-                        }
-                      });
-                      block.querySelectorAll('.return-container input').forEach((elre) => {
-                        const tempret = elre.nextElementSibling.textContent;
-                        if (tempret.toLowerCase() === name.toLowerCase()) {
-                          elre.click();
-                        }
-                      });
-                      viewFunction(block);
-                    },
+                    class: 'return-select-container',
                   },
-                  li(
+                  p(
                     {
-                      dataattr: dataMapMoObj.data.sort[0].inception_Ret.join('-'),
-                    },
-                    'Since Inception',
-                  ),
-                  li(
-                    {
-                      dataattr: dataMapMoObj.data.sort[0].oneYear_Ret.join('-'),
-                    },
-                    '1 year',
-                  ),
-                  li(
-                    {
-                      dataattr: dataMapMoObj.data.sort[0].threeYear_Ret.join('-'),
+                      class: 'selectedtext',
+                      onclick: (event) => {
+                        if (Array.from(event.target.nextElementSibling.classList).includes('dropdown-active')) {
+                          event.target.nextElementSibling.classList.remove('dropdown-active');
+                        } else {
+                          event.target.nextElementSibling.classList.add('dropdown-active');
+                        }
+                      },
                     },
                     '3 years',
                   ),
-                  li(
+                  ul(
                     {
-                      dataattr: dataMapMoObj.data.sort[0].fiveYear_Ret.join('-'),
+                      class: 'dropdown-list',
+                      onclick: (event) => {
+                        event.target
+                          .closest('.dropdown-list')
+                          .classList.remove('dropdown-active');
+                        const name = event.target.textContent.trim();
+                        event.target
+                          .closest('.return-select-container')
+                          .querySelector('p').innerText = '';
+                        event.target
+                          .closest('.return-select-container')
+                          .querySelector('p').innerText = name;
+                        // const dataattr = event.target
+                        //   .getAttribute('dataattr')
+                        //   .split('-');
+                        const sorttextcont = block.querySelector('.sort-select-container .selectedtext');
+                        const sorttext = sorttextcont.textContent.trim();
+                        if (sorttext === 'Popular') {
+                          dataMapMoObj.funddata = '';
+                          dataMapMoObj.funddata = dataCfObj.cfDataObjs.slice(0, 10);
+                        }
+                        if (sorttext === 'Oldest to Newest') {
+                          const tempData = JSON.parse(JSON.stringify(dataCfObj.cfDataObjs));
+                          const tempa = tempData.sort(
+                            (a, b) => new Date(a.dateOfAllotment) - new Date(b.dateOfAllotment),
+                          );
+                          dataMapMoObj.funddata = '';
+                          dataMapMoObj.funddata = tempa;
+                        }
+                        if (sorttext === 'Newest to Oldest') {
+                          const tempData = JSON.parse(JSON.stringify(dataCfObj.cfDataObjs));
+                          const tempa = tempData.sort(
+                            (a, b) => new Date(b.dateOfAllotment) - new Date(a.dateOfAllotment),
+                          );
+                          dataMapMoObj.funddata = '';
+                          dataMapMoObj.funddata = tempa;
+                        }
+                        dataMapMoObj.deskrightdrp = name;
+                        dataMapMoObj.selectreturns = dataMapMoObj.toTitleCase(name);
+                        const searInp = block.querySelector('.search-input input');
+                        searInp.value = '';
+                        const cancelBtn = block.querySelector('.cancel-search');
+                        cancelBtn.style.display = 'none';
+                        const flitwrap = block.querySelector('.applied-filter-wrap');
+                        if (Array.from(flitwrap.classList).includes('filter-active')) {
+                          flitwrap.classList.remove('filter-active');
+                        }
+                        Array.from(block.querySelector('.filter-list-wrapper').children).forEach((el) => {
+                          if (el.closest('.checkbox-label-container').querySelector('.innerindianequity')) {
+                            el.closest('.checkbox-label-container').querySelectorAll('.innerindianequity input').forEach((elemsub) => {
+                              if (elemsub.checked) {
+                                elemsub.checked = false;
+                              }
+                            });
+                          }
+                          if (el.querySelector('input').checked) {
+                          // const moplabel = el.querySelector('input').nextElementSibling;
+                            if (el.querySelector('input').getAttribute('id') !== 'index1') {
+                              if (el.querySelector('input').checked) {
+                                el.querySelector('input').checked = false;
+                              }
+                            }
+                          }
+                        });
+                        block.querySelectorAll('.return-container input').forEach((elre) => {
+                          const tempret = elre.nextElementSibling.textContent;
+                          if (tempret.toLowerCase() === name.toLowerCase()) {
+                            elre.click();
+                          }
+                        });
+                        viewFunction(block);
+                      },
                     },
-                    '5 years',
-                  ),
-                  li(
-                    {
-                      dataattr: dataMapMoObj.data.sort[0].sevenYear_Ret.join('-'),
-                    },
-                    '7 years',
-                  ),
-                  li(
-                    {
-                      dataattr: dataMapMoObj.data.sort[0].tenYear_Ret.join('-'),
-                    },
-                    '10 years',
+                    li(
+                      {
+                        dataattr: dataMapMoObj.data.sort[0].inception_Ret.join('-'),
+                      },
+                      'Since Inception',
+                    ),
+                    li(
+                      {
+                        dataattr: dataMapMoObj.data.sort[0].oneYear_Ret.join('-'),
+                      },
+                      '1 year',
+                    ),
+                    li(
+                      {
+                        dataattr: dataMapMoObj.data.sort[0].threeYear_Ret.join('-'),
+                      },
+                      '3 years',
+                    ),
+                    li(
+                      {
+                        dataattr: dataMapMoObj.data.sort[0].fiveYear_Ret.join('-'),
+                      },
+                      '5 years',
+                    ),
+                    li(
+                      {
+                        dataattr: dataMapMoObj.data.sort[0].sevenYear_Ret.join('-'),
+                      },
+                      '7 years',
+                    ),
+                    li(
+                      {
+                        dataattr: dataMapMoObj.data.sort[0].tenYear_Ret.join('-'),
+                      },
+                      '10 years',
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
-          div(
-            {
-              class: 'group-view-container',
-            },
             div(
               {
-                class: 'view-container',
+                class: 'group-view-container',
               },
               div(
                 {
-                  class: 'squareby-container grid-view-active',
-                  onclick: (event) => {
-                    event.currentTarget.classList.add('grid-view-active');
-                    event.currentTarget
-                      .closest('.view-container')
-                      .querySelector('.listby-container')
-                      .classList.remove('list-view-active');
-                    event.currentTarget
-                      .closest('.right-container')
-                      .querySelector('.list-view-header').style.display = 'none';
+                  class: 'view-container',
+                },
+                div(
+                  {
+                    class: 'squareby-container grid-view-active',
+                    onclick: (event) => {
+                      event.currentTarget.classList.add('grid-view-active');
+                      event.currentTarget
+                        .closest('.view-container')
+                        .querySelector('.listby-container')
+                        .classList.remove('list-view-active');
+                      event.currentTarget
+                        .closest('.right-container')
+                        .querySelector('.list-view-header').style.display = 'none';
 
-                    if (block.querySelector('.search-input .search').value !== '') {
-                      const searchval = block.querySelector('.search-input .search').value;
-                      dataMapMoObj.funddata = dataCfObj.cfDataObjs
-                        .filter((ellim) => ellim.schDetail.schemeName === searchval);
-                    }
-                    viewFunction(block);
+                      if (block.querySelector('.search-input .search').value !== '') {
+                        const searchval = block.querySelector('.search-input .search').value;
+                        dataMapMoObj.funddata = dataCfObj.cfDataObjs
+                          .filter((ellim) => ellim.schDetail.schemeName === searchval);
+                      }
+                      viewFunction(block);
+                    },
                   },
-                },
-                block.querySelector('.block-item3 .block-subitem-finelsub4'),
+                  block.querySelector('.block-item3 .block-subitem-finelsub4'),
+                ),
+                div(
+                  {
+                    class: 'listby-container',
+                    onclick: (event) => {
+                      event.currentTarget.classList.add('list-view-active');
+                      event.currentTarget
+                        .closest('.view-container')
+                        .querySelector('.squareby-container')
+                        .classList.remove('grid-view-active');
+                      event.currentTarget
+                        .closest('.right-container')
+                        .querySelector('.list-view-header').style.display = 'block';
+                      if (block.querySelector('.search-input .search').value !== '') {
+                        const searchval = block.querySelector('.search-input .search').value;
+                        dataMapMoObj.funddata = dataCfObj.cfDataObjs
+                          .filter((ellim) => ellim.schDetail.schemeName === searchval);
+                      }
+                      viewFunction(block);
+                    },
+                  },
+                  block.querySelector('.block-item3 .block-subitem-finelsub5'),
+                ),
               ),
               div(
                 {
-                  class: 'listby-container',
-                  onclick: (event) => {
-                    event.currentTarget.classList.add('list-view-active');
-                    event.currentTarget
-                      .closest('.view-container')
-                      .querySelector('.squareby-container')
-                      .classList.remove('grid-view-active');
-                    event.currentTarget
-                      .closest('.right-container')
-                      .querySelector('.list-view-header').style.display = 'block';
-                    if (block.querySelector('.search-input .search').value !== '') {
-                      const searchval = block.querySelector('.search-input .search').value;
-                      dataMapMoObj.funddata = dataCfObj.cfDataObjs
-                        .filter((ellim) => ellim.schDetail.schemeName === searchval);
-                    }
-                    viewFunction(block);
+                  class: 'togglebtn',
+                },
+                p({
+                  class: 'toggle-text',
+                }, 'Direct'),
+                div(
+                  {
+                    class: 'fund-toggle-wrap',
                   },
-                },
-                block.querySelector('.block-item3 .block-subitem-finelsub5'),
-              ),
-            ),
-            div(
-              {
-                class: 'togglebtn',
-              },
-              p({
-                class: 'toggle-text',
-              }, 'Direct'),
-              div(
-                {
-                  class: 'fund-toggle-wrap',
-                },
-                input({
-                  type: 'checkbox',
-                  id: 'toggle',
-                  'aria-label': 'Switch between Direct and Regular mode',
-                  onclick: () => {
+                  input({
+                    type: 'checkbox',
+                    id: 'toggle',
+                    'aria-label': 'Switch between Direct and Regular mode',
+                    onclick: () => {
                     // event.target.checked
                     // viewFunction(block);
-                    checkfilter(block);
-                  },
-                }),
-                label(
-                  {
-                    class: 'fund-toggle',
-                    for: 'toggle',
-                  },
-                  // Add spans for the visible text inside the label
-                  span({ class: 'label-text direct' }, 'Direct'),
-                  span({ class: 'label-text regular' }, 'Regular'),
+                      checkfilter(block);
+                    },
+                  }),
+                  label(
+                    {
+                      class: 'fund-toggle',
+                      for: 'toggle',
+                    },
+                    // Add spans for the visible text inside the label
+                    span({ class: 'label-text direct' }, 'Direct'),
+                    span({ class: 'label-text regular' }, 'Regular'),
+                  ),
                 ),
+                p({
+                  class: 'toggle-text',
+                }, 'Regular'),
               ),
-              p({
-                class: 'toggle-text',
-              }, 'Regular'),
-            ),
-            div(
-              {
-                class: 'compare-btn',
-              },
-              button('Compare'),
+              div(
+                {
+                  class: 'compare-btn',
+                },
+                button('Compare'),
+              ),
             ),
           ),
-        ),
-        div(
-          {
-            class: 'applied-filter-wrap',
-          },
-          ul(
-            {
-              class: 'applied-filter-list',
-            },
-            li(
-              {
-                class: 'applied-filter-name',
-              },
-              span('Large Cap'),
-              img({
-                class: 'filter-cross-icon',
-                src: '/icons/cross-icon.svg',
-                alt: 'cross icon',
-              }),
-            ),
-            li(
-              {
-                class: 'applied-filter-name',
-              },
-              span('Tax saver (ELSS)'),
-              img({
-                src: '/icons/cross-icon.svg',
-                alt: 'cross icon',
-              }),
-            ),
-            li(
-              {
-                class: 'applied-filter-name',
-              },
-              span('Hybrid & Balanced'),
-              img({
-                src: '/icons/cross-icon.svg',
-                alt: 'cross icon',
-              }),
-            ),
-          ),
-        ),
-        div(
-          {
-            class: 'cards-container',
-          },
-          ...dataMapMoObj.funddata.map((el) => fundcardblock(el)),
-        ),
-        div(
-          {
-            class: 'list-view-header',
-            style: 'display:none',
-          },
           div(
             {
-              class: 'list-header',
+              class: 'applied-filter-wrap',
             },
-            block.closest('.section').querySelector('.item2'),
+            ul(
+              {
+                class: 'applied-filter-list',
+              },
+              li(
+                {
+                  class: 'applied-filter-name',
+                },
+                span('Large Cap'),
+                img({
+                  class: 'filter-cross-icon',
+                  src: '/icons/cross-icon.svg',
+                  alt: 'cross icon',
+                }),
+              ),
+              li(
+                {
+                  class: 'applied-filter-name',
+                },
+                span('Tax saver (ELSS)'),
+                img({
+                  src: '/icons/cross-icon.svg',
+                  alt: 'cross icon',
+                }),
+              ),
+              li(
+                {
+                  class: 'applied-filter-name',
+                },
+                span('Hybrid & Balanced'),
+                img({
+                  src: '/icons/cross-icon.svg',
+                  alt: 'cross icon',
+                }),
+              ),
+            ),
           ),
-          div({
-            class: 'list-container',
-          }),
+          div(
+            {
+              class: 'cards-container',
+            },
+            ...dataMapMoObj.funddata.map((el) => {
+              if (el.fundsTaggingSection === undefined) {
+                el.fundsTaggingSection = dataMapMoObj.funddata[0].fundsTaggingSection;
+              }
+              return fundcardblock(el);
+            }),
+          ),
+          div(
+            {
+              class: 'list-view-header',
+              style: 'display:none',
+            },
+            div(
+              {
+                class: 'list-header',
+              },
+              block.closest('.section').querySelector('.item2'),
+            ),
+            div({
+              class: 'list-container',
+            }),
+          ),
         ),
       ),
-    ),
-  );
-  block.innerHTML = '';
-  block.append(divfund);
-  block.querySelector('.applied-filter-list').innerHTML = '';
-  [...block.querySelectorAll('.sort-container .dropdown-list')].forEach(
-    (el) => {
-      el.addEventListener('click', (event) => {
-        if (event.target.textContent.trim() === 'Oldest to Newest') {
+    );
+    block.innerHTML = '';
+    block.append(divfund);
+    block.querySelector('.applied-filter-list').innerHTML = '';
+    [...block.querySelectorAll('.sort-container .dropdown-list')].forEach(
+      (el) => {
+        el.addEventListener('click', (event) => {
+          if (event.target.textContent.trim() === 'Oldest to Newest') {
+            const tempdata = JSON.parse(JSON.stringify(dataCfObj.cfDataObjs));
+            const tempa = tempdata.sort(
+              (a, b) => new Date(a.dateOfAllotment) - new Date(b.dateOfAllotment),
+            );
+            dataMapMoObj.funddata = tempa;
+          }
+          if (event.target.textContent.trim() === 'Newest to Oldest') {
+            const tempdata = JSON.parse(JSON.stringify(dataCfObj.cfDataObjs));
+            const tempa = tempdata.sort(
+              (a, b) => new Date(b.dateOfAllotment) - new Date(a.dateOfAllotment),
+            );
+            dataMapMoObj.funddata = tempa;
+          }
+          viewFunction(block);
+        });
+      },
+    );
+    // Mobile Sorting
+    [...block.querySelectorAll('.arrange-container .radio-label')].forEach((mobel) => {
+      mobel.addEventListener('click', (event) => {
+        const sortText = event.target
+          .closest('.radio-label')
+          .querySelector('label').textContent;
+        if (sortText.trim() === 'Oldest to Newest') {
           const tempdata = JSON.parse(JSON.stringify(dataCfObj.cfDataObjs));
           const tempa = tempdata.sort(
             (a, b) => new Date(a.dateOfAllotment) - new Date(b.dateOfAllotment),
           );
-          dataMapMoObj.funddata = tempa;
+          dataMapMoObj.tempMobReturn = tempa;
         }
-        if (event.target.textContent.trim() === 'Newest to Oldest') {
+        if (sortText.trim() === 'Newest to Oldest') {
           const tempdata = JSON.parse(JSON.stringify(dataCfObj.cfDataObjs));
           const tempa = tempdata.sort(
             (a, b) => new Date(b.dateOfAllotment) - new Date(a.dateOfAllotment),
           );
-          dataMapMoObj.funddata = tempa;
+          dataMapMoObj.tempMobReturn = tempa;
         }
-        viewFunction(block);
+        if (sortText.trim() === 'Popular') {
+          dataMapMoObj.tempMobReturn = dataCfObj.cfDataObjs.slice(0, 10);
+        }
+        dataMapMoObj.schmenmob = sortText;
       });
-    },
-  );
-  // Mobile Sorting
-  [...block.querySelectorAll('.arrange-container .radio-label')].forEach((mobel) => {
-    mobel.addEventListener('click', (event) => {
-      const sortText = event.target
-        .closest('.radio-label')
-        .querySelector('label').textContent;
-      if (sortText.trim() === 'Oldest to Newest') {
-        const tempdata = JSON.parse(JSON.stringify(dataCfObj.cfDataObjs));
-        const tempa = tempdata.sort(
-          (a, b) => new Date(a.dateOfAllotment) - new Date(b.dateOfAllotment),
-        );
-        dataMapMoObj.tempMobReturn = tempa;
-      }
-      if (sortText.trim() === 'Newest to Oldest') {
-        const tempdata = JSON.parse(JSON.stringify(dataCfObj.cfDataObjs));
-        const tempa = tempdata.sort(
-          (a, b) => new Date(b.dateOfAllotment) - new Date(a.dateOfAllotment),
-        );
-        dataMapMoObj.tempMobReturn = tempa;
-      }
-      if (sortText.trim() === 'Popular') {
-        dataMapMoObj.tempMobReturn = dataCfObj.cfDataObjs.slice(0, 10);
-      }
-      dataMapMoObj.schmenmob = sortText;
     });
-  });
 
-  // added wrapper
-  const divmop = div(
-    {
-      class: 'indanequity-wrapper',
-    },
-    block.querySelector('.indaneqsub #index1'),
-    div(
+    // added wrapper
+    const divmop = div(
       {
-        class: 'label-tooltip-wrap',
+        class: 'indanequity-wrapper',
       },
-      block.querySelector(".indaneqsub [for='index1']"),
+      block.querySelector('.indaneqsub #index1'),
       div(
         {
-          class: 'tooltip-wrap',
+          class: 'label-tooltip-wrap',
         },
-        img({
-          class: 'filter-info-icon',
-          src: '/icons/filter-info.svg',
-          alt: 'Filter Info Icon',
-        }),
-        p(
+        block.querySelector(".indaneqsub [for='index1']"),
+        div(
           {
-            class: 'tooltip-text',
+            class: 'tooltip-wrap',
           },
-          'Shares of companies listed on Indian stock exchanges, representing ownership in businesses operating in India.',
+          img({
+            class: 'filter-info-icon',
+            src: '/icons/filter-info.svg',
+            alt: 'Filter Info Icon',
+          }),
+          p(
+            {
+              class: 'tooltip-text',
+            },
+            'Shares of companies listed on Indian stock exchanges, representing ownership in businesses operating in India.',
+          ),
         ),
       ),
-    ),
-  );
-  const divinner = block.querySelector('.indaneqsub .innerindianequity');
-  block.querySelector('.indaneqsub').innerHTML = '';
-  block.querySelector('.indaneqsub').append(divmop, divinner);
+    );
+    const divinner = block.querySelector('.indaneqsub .innerindianequity');
+    block.querySelector('.indaneqsub').innerHTML = '';
+    block.querySelector('.indaneqsub').append(divmop, divinner);
 
-  searchFunctionality(block);
-  Array.from(block.querySelector('.return-container .radio-label-container').children).forEach((el) => {
-    el.querySelector('input').addEventListener('click', (event) => {
-      const dataattr = event.target.getAttribute('dataattr').split('-');
-      const tempdata = dataCfObj.cfDataObjs.filter((elem) => dataattr.includes(elem.schcode));
+    searchFunctionality(block);
+    Array.from(block.querySelector('.return-container .radio-label-container').children).forEach((el) => {
+      el.querySelector('input').addEventListener('click', (event) => {
+        const dataattr = event.target.getAttribute('dataattr').split('-');
+        const tempdata = dataCfObj.cfDataObjs.filter((elem) => dataattr.includes(elem.schcode));
 
-      dataMapMoObj.tempMobReturn = [];
-      dataMapMoObj.tempMobReturn = tempdata;
-      dataMapMoObj.selectreturnstemp = event.target.nextSibling.textContent;
+        dataMapMoObj.tempMobReturn = [];
+        dataMapMoObj.tempMobReturn = tempdata;
+        dataMapMoObj.selectreturnstemp = event.target.nextSibling.textContent;
       // viewFunction(block);
-    });
-  });
-  block.querySelectorAll('.arrange-container input')[0].click();
-  block.querySelectorAll('.return-container input')[2].click();
-  Array.from(block.querySelectorAll('.filter-list-wrapper input')).forEach((el) => {
-    if (el.getAttribute('datakey') !== null && checkboxSel === el.getAttribute('datakey')) {
-      if (checkboxSel === 'indian-equity') {
-        el.checked = true;
-        block.querySelectorAll('.indian-equity-container input').forEach((inner) => {
-          inner.checked = true;
-        });
-      } else {
-        el.checked = true;
-      }
-    }
-  });
-
-  document.addEventListener('click', (event) => {
-    try {
-      if (!block.querySelector('.sort-select-container').contains(event.target)) {
-        const sortcont = block.querySelector('.sort-select-container .dropdown-list');
-        sortcont.classList.remove('dropdown-active');
-      }
-      if (!block.querySelector('.return-select-container').contains(event.target)) {
-        const sortcont = block.querySelector('.return-select-container .dropdown-list');
-        sortcont.classList.remove('dropdown-active');
-      }
-      Array.from(block.querySelectorAll('.tooltip-wrap img')).forEach((elinner) => {
-        if (!elinner.contains(event.target)) {
-          elinner.nextElementSibling.style.display = 'none';
-        }
       });
-    } catch (error) {
-      // console.log(error);
-    }
-  });
+    });
+    block.querySelectorAll('.arrange-container input')[0].click();
+    block.querySelectorAll('.return-container input')[2].click();
+    Array.from(block.querySelectorAll('.filter-list-wrapper input')).forEach((el) => {
+      if (el.getAttribute('datakey') !== null && checkboxSel === el.getAttribute('datakey')) {
+        if (checkboxSel === 'indian-equity') {
+          el.checked = true;
+          block.querySelectorAll('.indian-equity-container input').forEach((inner) => {
+            inner.checked = true;
+          });
+        } else {
+          el.checked = true;
+        }
+      }
+    });
 
-  if (window.innerWidth >= 1024) {
-    document.addEventListener('mouseover', (event) => {
+    document.addEventListener('click', (event) => {
       try {
+        if (!block.querySelector('.sort-select-container').contains(event.target)) {
+          const sortcont = block.querySelector('.sort-select-container .dropdown-list');
+          sortcont.classList.remove('dropdown-active');
+        }
+        if (!block.querySelector('.return-select-container').contains(event.target)) {
+          const sortcont = block.querySelector('.return-select-container .dropdown-list');
+          sortcont.classList.remove('dropdown-active');
+        }
         Array.from(block.querySelectorAll('.tooltip-wrap img')).forEach((elinner) => {
           if (!elinner.contains(event.target)) {
             elinner.nextElementSibling.style.display = 'none';
           }
         });
       } catch (error) {
-        // console.log(error);
+      // console.log(error);
       }
     });
-  }
-  Array.from(block.querySelectorAll('.tooltip-wrap img')).forEach((eltoo) => {
-    if (window.innerWidth < 786) {
-      eltoo.addEventListener('click', (event) => {
-        if (event.target.nextElementSibling.style.display === 'block') {
-          event.target.nextElementSibling.style.display = 'none';
-          return false;
+
+    if (window.innerWidth >= 1024) {
+      document.addEventListener('mouseover', (event) => {
+        try {
+          Array.from(block.querySelectorAll('.tooltip-wrap img')).forEach((elinner) => {
+            if (!elinner.contains(event.target)) {
+              elinner.nextElementSibling.style.display = 'none';
+            }
+          });
+        } catch (error) {
+        // console.log(error);
         }
-        Array.from(block.querySelectorAll('.tooltip-wrap img')).forEach((elinner) => {
-          elinner.nextElementSibling.style.display = 'none';
-        });
-        event.target.nextElementSibling.style.display = 'block';
-        return true;
-      });
-    } else {
-      eltoo.addEventListener('mouseover', (event) => {
-        Array.from(block.querySelectorAll('.tooltip-wrap img')).forEach((elinner) => {
-          elinner.nextElementSibling.style.display = 'none';
-        });
-        event.target.nextElementSibling.style.display = 'block';
       });
     }
+    Array.from(block.querySelectorAll('.tooltip-wrap img')).forEach((eltoo) => {
+      if (window.innerWidth < 786) {
+        eltoo.addEventListener('click', (event) => {
+          if (event.target.nextElementSibling.style.display === 'block') {
+            event.target.nextElementSibling.style.display = 'none';
+            return false;
+          }
+          Array.from(block.querySelectorAll('.tooltip-wrap img')).forEach((elinner) => {
+            elinner.nextElementSibling.style.display = 'none';
+          });
+          event.target.nextElementSibling.style.display = 'block';
+          return true;
+        });
+      } else {
+        eltoo.addEventListener('mouseover', (event) => {
+          Array.from(block.querySelectorAll('.tooltip-wrap img')).forEach((elinner) => {
+            elinner.nextElementSibling.style.display = 'none';
+          });
+          event.target.nextElementSibling.style.display = 'block';
+        });
+      }
+    });
   });
 }

@@ -267,5 +267,6 @@ const dataMapMoObj = {
     mainContainer.appendChild(paginationWrapper);
     goToPage(1);
   },
+  microDelayPromise: () => Promise.resolve(),
 };
 export default dataMapMoObj;
