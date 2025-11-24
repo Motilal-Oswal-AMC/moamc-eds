@@ -844,50 +844,49 @@ export default async function decorate(block) {
       .setAttribute('fetchpriority', 'high');
   }
 
-  // previous studies tab start
-  const previousStudiesCtn = block.closest('.previous-studies-ctn');
-  if (previousStudiesCtn !== null) {
-    dataMapMoObj.CLASS_PREFIXES = ['previous-studies-ex', 'previous-studies-inter', 'previous-studies-wrp', 'previous-studies-cover', 'previous-studies-txt'];
-    dataMapMoObj.addIndexed(previousStudiesCtn);
-  }
-
-  // Wait for the HTML document to be fully loaded
-
-  // Get all the tab buttons
-  const tabsPreviousStudies = document.querySelectorAll('.previous-studies-ctn .tabs-list .tabs-tab');
-
-  if (tabsPreviousStudies) {
-    // Function to handle switching tabs
-    const switchTab = (clickedTab) => {
-      // 1. Remove 'active' and 'aria-selected' from all tabs
-      tabsPreviousStudies.forEach((tab) => {
-        tab.classList.remove('active');
-        tab.setAttribute('aria-selected', 'false');
-      });
-
-      // 2. Add 'active' and 'aria-selected' to the one you clicked
-      clickedTab.classList.add('active');
-      clickedTab.setAttribute('aria-selected', 'true');
-    };
-
-    // --- Set Initial State ---
-    // Find the tab that is already selected in your HTML
-    const initialActiveTab = document.querySelector('.tabs-tab[aria-selected="true"]');
-    if (initialActiveTab) {
-      initialActiveTab.classList.add('active');
+  if (block.closest('.previous-studies-ctn')) {
+    // previous studies tab start
+    const previousStudiesCtn = block.closest('.previous-studies-ctn');
+    if (previousStudiesCtn !== null) {
+      dataMapMoObj.CLASS_PREFIXES = ['previous-studies-ex', 'previous-studies-inter', 'previous-studies-wrp', 'previous-studies-cover', 'previous-studies-txt'];
+      dataMapMoObj.addIndexed(previousStudiesCtn);
     }
 
-    // --- Add Click Listeners ---
-    // Add a click event listener to each tab
-    tabsPreviousStudies.forEach((tab) => {
-      tab.addEventListener('click', () => {
-        // When a tab is clicked, run the switchTab function
-        switchTab(tab);
-      });
-    });
-  }
+    // Wait for the HTML document to be fully loaded
 
-  if (block.closest('.previous-studies-ctn')) {
+    // Get all the tab buttons
+    const tabsPreviousStudies = document.querySelectorAll('.previous-studies-ctn .tabs-list .tabs-tab');
+
+    if (tabsPreviousStudies) {
+    // Function to handle switching tabs
+      const switchTab = (clickedTab) => {
+      // 1. Remove 'active' and 'aria-selected' from all tabs
+        tabsPreviousStudies.forEach((tab) => {
+          tab.classList.remove('active');
+          tab.setAttribute('aria-selected', 'false');
+        });
+
+        // 2. Add 'active' and 'aria-selected' to the one you clicked
+        clickedTab.classList.add('active');
+        clickedTab.setAttribute('aria-selected', 'true');
+      };
+
+      // --- Set Initial State ---
+      // Find the tab that is already selected in your HTML
+      const initialActiveTab = document.querySelector('.tabs-tab[aria-selected="true"]');
+      if (initialActiveTab) {
+        initialActiveTab.classList.add('active');
+      }
+
+      // --- Add Click Listeners ---
+      // Add a click event listener to each tab
+      tabsPreviousStudies.forEach((tab) => {
+        tab.addEventListener('click', () => {
+        // When a tab is clicked, run the switchTab function
+          switchTab(tab);
+        });
+      });
+    }
     const mainwrapper = block.closest('main');
     const grpwrap = mainwrapper.querySelectorAll('.previous-studies-each-details');
     const panel = block.closest('.previous-studies-ex2 .previous-studies-inter1').querySelectorAll('.tabs-panel');
