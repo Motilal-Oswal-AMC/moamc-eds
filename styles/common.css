@@ -939,7 +939,6 @@ main > .section.previous-studies-tab.tabs-container .tab-dropdown-wrap .tab-drop
   transform: translateX(-50%);
   margin: 0 auto;
   min-width: unset;
-  width: -moz-max-content;
   width: max-content;
   bottom: 10%;
   background-color: var(--neutrals-white);
@@ -1097,14 +1096,12 @@ main > .section.previous-studies-tab.tabs-container .tab-dropdown-wrap .tab-drop
   width: 712px;
   height: 284px;
   flex-shrink: 0;
-  -o-object-fit: contain;
      object-fit: contain;
 }
 @media (max-width: 768px) {
   .prev-main-wrapper .prev-sub .embed div div:first-child p.video-child2 picture.comlist img.picture-child4:last-child {
     height: 100%;
     margin-top: -2px;
-    -o-object-fit: fill;
        object-fit: fill;
   }
 }
@@ -1208,7 +1205,6 @@ main > .section.previous-studies-tab.tabs-container .tab-dropdown-wrap .tab-drop
 }
 .qglp-static-component .qglp-static-ext1 .qglp-static-wrp1 {
   display: flex;
-  -moz-column-gap: 16px;
        column-gap: 16px;
   margin: 0;
   flex-wrap: wrap;
@@ -1518,7 +1514,6 @@ main > .section.previous-studies-tab.tabs-container .tab-dropdown-wrap .tab-drop
   margin: 0;
   display: flex;
   flex-flow: row wrap;
-  -moz-column-gap: 120px;
        column-gap: 120px;
 }
 @media (max-width: 768px) {
@@ -1642,7 +1637,6 @@ main > .section.previous-studies-tab.tabs-container .tab-dropdown-wrap .tab-drop
     font-style: normal;
     font-weight: 600;
     line-height: var(--sub-header-medium-line-height);
-    width: -moz-fit-content;
     width: fit-content;
   }
 }
@@ -1814,9 +1808,8 @@ main.nfo-nav .section.decoding-qglp-container.decoding-qglp-static .decoding-qgl
   margin: 37px 0;
 }
 .section.high-image-component .default-content-wrapper.comlist.high-skin-component-wrap1 .comlist.high-skin-component-heading1 .icon.icon-rupees.comlist.high-skin-component-paragraph1 img.comlist.high-skin-component-image1 {
-  -o-object-fit: contain;
      object-fit: contain;
-  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.15));
+  filter: drop-shadow(0 4px 12px rgb(0 0 0 / 15%));
 }
 .section.high-image-component .default-content-wrapper.comlist.high-skin-component-wrap1 .high-skin-component-heading2 {
   width: 100%;

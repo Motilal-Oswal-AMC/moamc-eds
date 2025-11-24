@@ -242,6 +242,7 @@
     flex-wrap: wrap;
     gap: 40px 16px;
   }
+
   .moedge-building-container .pagination-wrapper {
     display: flex;
     width: 340px;
@@ -252,12 +253,14 @@
     padding: 5px 0;
   }
 }
-@media (width >= 900px) and (max-width: 768px) {
+
+@media (width >= 900px) and (width <= 768px) {
   .moedge-building-container .pagination-wrapper {
     padding: 0;
     padding-bottom: 40px;
   }
 }
+
 @media (width >= 900px) {
   .moedge-building-container .pagination-wrapper button {
     display: flex;
@@ -281,6 +284,7 @@
     margin: 0;
     transition: all 0.2s ease;
   }
+
   .moedge-building-container .pagination-btn {
     display: flex;
     justify-content: center;
@@ -290,15 +294,18 @@
     border-radius: 50%;
     color: #666;
   }
+
   .moedge-building-container .pagination-btn:hover {
     background-color: #f0f0f0;
     color: #333;
   }
+
   .moedge-building-container .pagination-btn.active {
     color: var(--neutrals-white, #fff);
     border-radius: 80px;
     background: #2e2a94;
   }
+
   .moedge-building-container .pagination-arrow {
     font-size: 20px;
     font-weight: bold;
@@ -306,29 +313,33 @@
     padding: 0 10px;
     line-height: 1;
     aspect-ratio: 4.36/7.54;
-    fill: rgba(63, 63, 63, 0.8);
+    fill: rgb(63 63 63 / 80%);
   }
+
   .moedge-building-container .pagination-arrow:disabled {
     color: #ccc;
     cursor: not-allowed;
   }
+
   .moedge-building-container .pagination-ellipsis {
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 2px 6.5px;
-    color: rgba(63, 63, 63, 0.8);
+    color: rgb(63 63 63 / 80%);
     font-family: var(--body);
     font-size: 12px;
     font-style: normal;
     font-weight: 500;
     line-height: 18px;
   }
+
   .moedge-building .listing-investor-banner {
     max-width: 100%;
     width: 100%;
     flex: unset;
   }
+
   .moedge-building > div {
     max-width: 32.468%;
     flex: 0 0 32.468%;
@@ -360,6 +371,7 @@
   .moedge-building > div.hidden-item {
     display: none !important;
   }
+
   .moedge-building > div .moedge-build-sec1 {
     height: 220px;
   }
