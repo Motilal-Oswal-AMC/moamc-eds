@@ -271,7 +271,7 @@ export default function decorate(block) {
         };
         const headers = {
           'Content-Type': 'application/json',
-          'X-Encrypted-Key': 'N',
+          'X-Encrypted': 'N',
           appid: generateAppId(),
         };
 

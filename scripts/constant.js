@@ -199,13 +199,13 @@ const dataMapMoObj = {
       const end = start + itemsPerPage;
       // Toggle Visibility
       items.forEach((item, index) => {
-          if(item.closest('.section').querySelector('.listing-investor-banner')){
-            if(page === 1){ 
-              item.closest('.section').querySelector('.listing-investor-banner').classList.remove('hidden-item');
-            }else{
-              item.closest('.section').querySelector('.listing-investor-banner').classList.add('hidden-item')
-            } 
+        if (item.closest('.section').querySelector('.listing-investor-banner')) {
+          if (page === 1) {
+            item.closest('.section').querySelector('.listing-investor-banner').classList.remove('hidden-item');
+          } else {
+            item.closest('.section').querySelector('.listing-investor-banner').classList.add('hidden-item');
           }
+        }
         item.classList.toggle('hidden-item', index < start || index >= end);
       });
 

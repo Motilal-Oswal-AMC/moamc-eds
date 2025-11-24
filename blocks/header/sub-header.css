@@ -1,4 +1,7 @@
 @import "../../../styles/fonts.css";
+header nav[aria-expanded=true] {
+  height: auto;
+}
 header nav[aria-expanded=true] .nav-sections.header-sub-pms .nav-sec-sec1 li p a {
   color: var(--neutrals-white);
   background-color: transparent;

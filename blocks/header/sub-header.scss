@@ -4,6 +4,8 @@
 
 header {
     nav[aria-expanded='true'] {
+        height: auto;
+
         .nav-sections {
             &.header-sub-pms {
                 .nav-sec-sec1 {

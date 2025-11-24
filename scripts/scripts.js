@@ -619,10 +619,132 @@ if (chooseusCard != null) {
   dataMapMoObj.addIndexed(chooseusCard);
 }
 
-// const main = document.querySelector('main');
-// const error = main.querySelector('.section.cards-container');
-// error.classList.add('error-screen-container');
-// if (error) {
-//     dataMapMoObj.CLASS_PREFIXES = ['error-screen-wrapper', 'error-screen-wrap', 'error-screen-ul' ];
-//     dataMapMoObj.addIndexed(error);
-// }
+// qglp static class appending
+const qglpStaticComponent = document.querySelector('.qglp-static-component');
+if (qglpStaticComponent != null) {
+  dataMapMoObj.CLASS_PREFIXES = ['qglp-static-ctn', 'qglp-static-ext', 'qglp-static-int', 'qglp-static-wrp', 'qglp-static-box', 'qglp-static-ls-ul', 'qglp-static-ls-li'];
+  dataMapMoObj.addIndexed(qglpStaticComponent);
+}
+
+// why qglp componet  start
+const whyQGLPComponent = document.querySelector('.why-qglp .default-content-wrapper');
+if (whyQGLPComponent != null) {
+  dataMapMoObj.CLASS_PREFIXES = ['why-qglp-ctn', 'why-qglp-ext', 'why-qglp-int', 'why-qglp-wrp', 'why-qglp-box', 'why-qglp-ls-ul', 'why-qglp-ls-li'];
+  dataMapMoObj.addIndexed(whyQGLPComponent);
+}
+// why qglp componet end
+
+// why qglp componet  start
+const promiseQGLP = document.querySelector('.promise-qglp .default-content-wrapper');
+if (promiseQGLP != null) {
+  dataMapMoObj.CLASS_PREFIXES = ['promise-qglp-ctn', 'promise-qglp-ext', 'promise-qglp-int', 'promise-qglp-wrp', 'promise-qglp-box'];
+  dataMapMoObj.addIndexed(promiseQGLP);
+}
+// why qglp componet end
+
+// why qglp css lent start
+const whyQGLPWrp = document.querySelector('.why-qglp .default-content-wrapper');
+
+if (whyQGLPWrp) {
+  whyQGLPWrp.classList.add('why-qglp-wrapper');
+  // why qglp css lent end
+}
+// why qglp css lent end
+
+// promise qglp css lent start
+const promiseQGLPWrp = document.querySelector('.promise-qglp .default-content-wrapper');
+
+if (promiseQGLPWrp) {
+  promiseQGLPWrp.classList.add('promise-qglp-wrapper');
+  // why qglp css lent end
+}
+// promise qglp css lent end
+
+// Skin the game static start
+const highskinText = document.querySelector('.high-skin-text');
+if (highskinText != null) {
+  dataMapMoObj.CLASS_PREFIXES = [
+    'high-skin-wrap-one',
+    'high-skin-wrap-two',
+    'high-skin-wrap-three',
+    'high-skin-heading',
+    'high-skin-subheading',
+    'high-skin-paragraph',
+    'high-skin-paragraph-one',
+    'high-skin-paragraph-two',
+  ];
+  dataMapMoObj.addIndexed(highskinText);
+}
+const highimageComponent = document.querySelector('.high-image-component');
+if (highimageComponent != null) {
+  dataMapMoObj.CLASS_PREFIXES = [
+    'high-skin-component-wrap',
+    'high-skin-component-heading',
+    'high-skin-component-paragraph',
+    'high-skin-component-ctn',
+    'high-skin-component-external',
+    'high-skin-component-internal',
+
+  ];
+  dataMapMoObj.addIndexed(highimageComponent);
+}
+
+const skinmoamcComponent = document.querySelector('.skin-moamc-component');
+if (skinmoamcComponent != null) {
+  dataMapMoObj.CLASS_PREFIXES = [
+    'moamc-component-wrap',
+    'moamc-component-main-head',
+    'moamc-component-title',
+    'moamc-component-para',
+    'moamc-component-para-one',
+    'moamc-component-para-two',
+    'moamc-component-para-three',
+
+  ];
+  dataMapMoObj.addIndexed(skinmoamcComponent);
+}
+
+try {
+  const whymattersComponent = document.querySelector('.why-matters-component');
+  if (whymattersComponent != null) {
+    dataMapMoObj.CLASS_PREFIXES = [
+      'why-matters-wrap',
+      'why-matters-heading',
+      'why-matters-para',
+      'why-matters-icon',
+      'why-matters-title',
+      'why-matters-sub-title',
+      'why-matters-text',
+      'why-matters-card-wrap',
+      'why-matters-card-icon',
+      'why-matters-card-text1',
+      'why-matters-card-text2',
+      'why-matters-card-text3',
+    ];
+    dataMapMoObj.addIndexed(whymattersComponent);
+  }
+
+  const container = document.querySelector('.section.why-matters-component.cards-container');
+
+  const wrapper = document.createElement('div');
+  wrapper.classList.add('why-matters-wrapper-in');
+
+  const wrap1 = container.querySelector('.why-matters-wrap1');
+  const wrap2 = container.querySelector('.why-matters-wrap2');
+
+  container.insertBefore(wrapper, container.firstChild);
+
+  wrapper.appendChild(wrap1);
+  wrapper.appendChild(wrap2);
+
+  const section = document.querySelector('.promise-qglp');
+  const skinwrapper = document.createElement('div');
+  skinwrapper.classList.add('skin-in-the-game-wrapper');
+  section.parentNode.insertBefore(skinwrapper, section);
+  skinwrapper.appendChild(section);
+} catch (error) {
+  // console.log(error);
+
+}
+
+// Skin the game static end

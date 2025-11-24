@@ -165,7 +165,7 @@ export default function decorate(block) {
   }
 
   // Find the container that has your special classes
-  const mainblklist = block.closest('.section')//('[data-id="listing-article-cards"]');
+  const mainblklist = block.closest('.section');// ('[data-id="listing-article-cards"]');
 
   // Only run this pagination logic if we are in the correct block
   if (mainblklist.getAttribute('data-id') === 'listing-article-cards') {
@@ -179,18 +179,17 @@ export default function decorate(block) {
 
     const blockdo = block.closest('body');
     const blkcamp = blockdo.querySelector('.listing-investor-banner');
-    const level = blkcamp.getAttribute('data-id')
-    const leveliteration = (Number(level) * 3)
+    const level = blkcamp.getAttribute('data-id');
+    const leveliteration = (Number(level) * 3);
     if (leveliteration) {
-        block.innerHTML = '';
-        // let leveliteration = Number(level) * 3;
-        items.forEach((el,index) => {
-          block.appendChild(el);
-          if (index === (leveliteration -1)) {
-            block.appendChild(blkcamp);
-          }
-        })
+      block.innerHTML = '';
+      // let leveliteration = Number(level) * 3;
+      items.forEach((el, index) => {
+        block.appendChild(el);
+        if (index === (leveliteration - 1)) {
+          block.appendChild(blkcamp);
+        }
+      });
     }
-
   }
 }

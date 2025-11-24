@@ -765,7 +765,9 @@ export default async function decorate(block) {
   const glossary = block.closest('.glossary-tabs');
   if (glossary) {
     // const paragraphs = heroBlock.querySelectorAll('p');
-    // dataMapMoObj.CLASS_PREFIXES = ['tab1', 'tab2', 'tab3', 'tab4', 'tab5', 'tab6', 'tab7', 'tab8', 'tab9'];
+    // dataMapMoObj.CLASS_PREFIXES = ['tab1', 'tab2',
+    // 'tab3', 'tab4', 'tab5', 'tab6', 'tab7',
+    // 'tab8', 'tab9'];
     dataMapMoObj.CLASS_PREFIXES = ['tabmain', 'tab-inner', 'tab-subinner', 'tab-child', 'tab-subchild', 'tab-itemmain', 'tab-subitem', 'tab-itemchild', 'tab-iteminner'];
     dataMapMoObj.addIndexed(block);
 
@@ -777,7 +779,7 @@ export default async function decorate(block) {
   const tabsPreviousStudies1 = document.querySelectorAll('.glossary-tabs .tabs-list .tabs-tab');
   if (tabsPreviousStudies1) {
   // Function to handle switching tabs
-    function switchTab(clickedTab) {
+    const switchTab = (clickedTab) => {
     // 1. Remove 'active' and 'aria-selected' from all tabs
       Array.from(tabsPreviousStudies1).forEach((tab) => {
         tab.classList.remove('active');
@@ -786,7 +788,7 @@ export default async function decorate(block) {
       // 2. Add 'active' and 'aria-selected' to the one you clicked
       clickedTab.classList.add('active');
       clickedTab.setAttribute('aria-selected', 'true');
-    }
+    };
     // --- Set Initial State ---
     // Find the tab that is already selected in your HTML
     const initialActiveTab = document.querySelector('.tabs-tab[aria-selected="true"]');

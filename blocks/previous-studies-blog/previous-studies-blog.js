@@ -55,10 +55,10 @@ export default async function decorate(block) {
   });
 
   const psCont1 = document.querySelectorAll('.previous-studies-blog-wrapper .previous-studies-blog .ps-in1 .ps-cont1');
-  if(psCont1){
+  if (psCont1) {
     psCont1.forEach((e) => {
-      e.classList.add("ps-cont-plybtn");
-    })
+      e.classList.add('ps-cont-plybtn');
+    });
   }
 
   const eachStudiesBlog = document.querySelectorAll('.previous-studies-blog-wrapper .previous-studies-blog > .comlist');
