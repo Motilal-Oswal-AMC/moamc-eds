@@ -190,7 +190,7 @@ header .header.wealth-header {
 
                         @include media (mobile) {
                             gap: 28px;
-                            align-items:center;
+                            // align-items:center;
                         }
 
                         .nav-sec-sub1 {
@@ -205,6 +205,7 @@ header .header.wealth-header {
                             @include media (mobile) {
                                 padding: 0;
                                 line-height: 0;
+                                gap: unset;
                             }
 
                             .button-container {
