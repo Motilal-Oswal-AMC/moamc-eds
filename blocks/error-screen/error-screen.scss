@@ -3,14 +3,18 @@
 @use "../../styles/common-theme/css/variables_mixins" as *;
 @use "../../styles/common-theme/css/fluid-typography" as *;
 
-main .section.cards-container.error-screen-container,
-main.nfo-nav .section.cards-container.error-screen-container {
-  padding-top: 76px;
-  margin: 76px 0;
+.screen-400.cards-container,
+.screen-401.cards-container,
+.screen-403.cards-container,
+.screen-408.cards-container,
+.screen-500.cards-container,
+.service-screen.cards-container {
+  padding: 76px 0;
+  margin-bottom: unset;
 
   @include media(mobile) {
-    margin: 59px 0 120px;
-    padding-top: 120px;
+    margin: 59px 0 0;
+    padding: 120px 0;
   }
 
   .cards.error-screen-wrap1 {
@@ -95,7 +99,7 @@ main.nfo-nav .section.cards-container.error-screen-container {
             margin: 20px 0 0;
 
             @include media(mobile) {
-              margin: 1px 0 0;
+              margin: 16px 0 0;
             }
 
             a.errscrn-inner-cont1 {
@@ -128,7 +132,7 @@ main.nfo-nav .section.cards-container.error-screen-container {
 }
 
 // to change the image for error screen
-.error-screen-container.screen-400 {
+.screen-400 {
   .errscrn-img-cont1 {
     height: 196px;
     width: 145px;
@@ -140,7 +144,7 @@ main.nfo-nav .section.cards-container.error-screen-container {
   }
 }
 
-.error-screen-container.screen-401 {
+.screen-401 {
   .errscrn-img-cont1 {
     height: 196px;
     width: 112px;
@@ -152,7 +156,7 @@ main.nfo-nav .section.cards-container.error-screen-container {
   }
 }
 
-.error-screen-container.screen-403 {
+.screen-403 {
   .errscrn-img-cont1 {
     height: 196px;
     width: 121px;
@@ -164,7 +168,7 @@ main.nfo-nav .section.cards-container.error-screen-container {
   }
 }
 
-.error-screen-container.screen-408 {
+.screen-408 {
   .errscrn-img-cont1 {
     height: 196px;
     width: 132px;
@@ -176,7 +180,7 @@ main.nfo-nav .section.cards-container.error-screen-container {
   }
 }
 
-.error-screen-container.screen-500 {
+.screen-500 {
   .errscrn-img-cont1 {
     height: 196px;
     width: 156px;
@@ -188,7 +192,7 @@ main.nfo-nav .section.cards-container.error-screen-container {
   }
 }
 
-.error-screen-container.service-screen {
+.service-screen {
   .cards {
     .cards-card-image {
       height: 196px;
