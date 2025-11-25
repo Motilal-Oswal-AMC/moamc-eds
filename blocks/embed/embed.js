@@ -256,8 +256,10 @@ export default function decorate(block) {
           const images = element.querySelectorAll('img');
           Array.from(images).forEach((imgelement) => {
             dataMapMoObj.altFunction(imgelement, `subbinner-${index + 1}-img`);
-            imgelement.loading = 'eager';
-            imgelement.fetchPriority = 'high';
+            // Use lazy loading to avoid blocking FCP/LCP on mobile
+            if (!imgelement.loading) {
+              imgelement.loading = 'lazy';
+            }
           });
 
           // Use CSS class instead of inline style for better performance
@@ -266,12 +268,12 @@ export default function decorate(block) {
           }
 
           // Use appendChild instead of innerHTML += to avoid reparsing
-          subinner.querySelector('.subbinner').appendChild(element.cloneNode(true));
+          // Append directly to reduce cloning overhead on mobile
+          subinner.querySelector('.subbinner').appendChild(element);
           innerFragment.appendChild(subinner);
         });
 
         innerdiv.appendChild(innerFragment);
-        buildtabblock(innerdiv);
 
         const container = div(
           { class: 'contain' },
@@ -283,6 +285,7 @@ export default function decorate(block) {
       });
 
       divmain.appendChild(documentFragment);
+      // Call buildtabblock once after all DOM is ready, not per-loop
       buildtabblock(divmain);
 
       if (!data.classList.contains('modal-wrapper')) {
