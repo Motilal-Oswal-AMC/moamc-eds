@@ -4,7 +4,6 @@ import {
   div,
   label,
   input,
-  img,
 } from '../../scripts/dom-helpers.js';
 
 export default function decorate(block) {
@@ -73,12 +72,12 @@ export default function decorate(block) {
   };
 
   const imagesToFix = swiperWrapper.querySelectorAll('img[alt=""]');
-  imagesToFix.forEach((img) => {
-    const { iconName } = img.dataset;
+  imagesToFix.forEach((imgelem) => {
+    const { iconName } = imgelem.dataset;
     const altText = altTextMap[iconName];
 
     if (altText !== undefined) {
-      img.setAttribute('alt', altText);
+      imgelem.setAttribute('alt', altText);
     }
   });
   // =================================================================
@@ -450,26 +449,31 @@ export default function decorate(block) {
 
         case 'ArrowUp':
           event.preventDefault();
-          currentFocusIndex = (currentFocusIndex - 1 + visibleItems().length) % visibleItems().length;
+          currentFocusIndex = ((currentFocusIndex - 1 + visibleItems().length)
+          % visibleItems().length);
           updateActiveItem(visibleItems());
           break;
 
         case 'Enter':
           if (visibleItems().length === 0) return false;
-          const selected = visibleItems()[currentFocusIndex] || visibleItems()[0];
-          searchFld.value = selected.textContent.trim();
-          keySearchNewEle.classList.add('dsp-none');
+          if (visibleItems()[currentFocusIndex] || visibleItems()[0]) {
+            const selected = visibleItems()[currentFocusIndex] || visibleItems()[0];
+            searchFld.value = selected.textContent.trim();
+            keySearchNewEle.classList.add('dsp-none');
+          }
           break;
+        default:
       }
+      return false;
     });
   }
 
   // 👉 Hide on document click
   document.addEventListener('click', (event) => {
-    const input = document.querySelector('#keyinvest');
+    const inputfield = document.querySelector('#keyinvest');
     const listBox = document.querySelector('.key-search-results');
 
-    if (!input.contains(event.target) && !listBox.contains(event.target)) {
+    if (!inputfield.contains(event.target) && !listBox.contains(event.target)) {
       listBox.classList.add('dsp-none');
       if (searchFld.value === '') closeBtn.style.display = 'none';
     }
