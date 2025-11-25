@@ -256,10 +256,8 @@ export default function decorate(block) {
           const images = element.querySelectorAll('img');
           Array.from(images).forEach((imgelement) => {
             dataMapMoObj.altFunction(imgelement, `subbinner-${index + 1}-img`);
-            // Use lazy loading to avoid blocking FCP/LCP on mobile
-            if (!imgelement.loading) {
-              imgelement.loading = 'lazy';
-            }
+            imgelement.loading = 'eager';
+            imgelement.fetchPriority = 'high';
           });
 
           // Use CSS class instead of inline style for better performance
@@ -268,12 +266,12 @@ export default function decorate(block) {
           }
 
           // Use appendChild instead of innerHTML += to avoid reparsing
-          // Append directly to reduce cloning overhead on mobile
-          subinner.querySelector('.subbinner').appendChild(element);
+          subinner.querySelector('.subbinner').appendChild(element.cloneNode(true));
           innerFragment.appendChild(subinner);
         });
 
         innerdiv.appendChild(innerFragment);
+        buildtabblock(innerdiv);
 
         const container = div(
           { class: 'contain' },
@@ -285,7 +283,6 @@ export default function decorate(block) {
       });
 
       divmain.appendChild(documentFragment);
-      // Call buildtabblock once after all DOM is ready, not per-loop
       buildtabblock(divmain);
 
       if (!data.classList.contains('modal-wrapper')) {
@@ -489,29 +486,17 @@ export default function decorate(block) {
           }
         };
 
-        // Update dropdown text when its trigger is clicked
-        tabmainclick.addEventListener('click', updateDropdownText);
+        // Single event listener with proper scoping
+        const handleClickOutside = (event) => {
+          if (!selectedTabBtn.contains(event.target) && !tabmainclick.querySelector('.tab-droplist').contains(event.target)) {
+            tabmainclick.classList.remove('active');
+            selectedTabBtn.setAttribute('aria-expanded', 'false');
+          }
+        };
 
-        // Register a single global click handler once to close any open dropdowns.
-        // This avoids adding a document-level listener per instance and reduces
-        // memory/CPU overhead while preserving accessible behavior.
-        if (!window.embedCloseDropdownsHandlerAdded) {
-          document.addEventListener('click', (event) => {
-            const openWraps = document.querySelectorAll('.tab-dropdown-wrap.active');
-            openWraps.forEach((wrap) => {
-              const selected = wrap.querySelector('.selected-tab');
-              const list = wrap.querySelector('.tab-droplist');
-              // If the click happened outside the trigger and the list, close it
-              const clickedOutsideSelected = selected && !selected.contains(event.target);
-              const clickedOutsideList = list && !list.contains(event.target);
-              if (clickedOutsideSelected && clickedOutsideList) {
-                wrap.classList.remove('active');
-                selected.setAttribute('aria-expanded', 'false');
-              }
-            });
-          });
-          window.embedCloseDropdownsHandlerAdded = true;
-        }
+        // Use capture phase and single listener per dropdown
+        tabmainclick.addEventListener('click', updateDropdownText);
+        document.addEventListener('click', handleClickOutside, { once: false, capture: false });
       }
 
       block.closest('.section').classList.add('coverage-section-visible');
