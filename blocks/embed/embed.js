@@ -209,62 +209,100 @@ export default function decorate(block) {
       if (dataMapMoObj.objdata === undefined) {
         dataMapMoObj.objdata = {};
       }
+
+      // Batch DOM reads to reduce layout thrashing
+      const tabHeadTitles = new Map();
       Array.from(subdata).forEach((eldata) => {
-        if (eldata.getAttribute('data-tab-head-title') !== null) {
-          if (dataMapMoObj.objdata[eldata.getAttribute('data-tab-head-title')] === undefined) {
-            dataMapMoObj.objdata[eldata.getAttribute('data-tab-head-title')] = {};
+        const headTitle = eldata.getAttribute('data-tab-head-title');
+        const tabTitle = eldata.getAttribute('data-tab-title');
+        if (headTitle !== null && tabTitle !== null) {
+          if (!tabHeadTitles.has(headTitle)) {
+            tabHeadTitles.set(headTitle, {});
           }
-          dataMapMoObj.objdata[eldata.getAttribute('data-tab-head-title')][eldata.getAttribute('data-tab-title')] = eldata;
+          tabHeadTitles.get(headTitle)[tabTitle] = eldata;
           eldata.remove();
         }
       });
-      // console.log(dataMapMoObj.objdata);
+
+      // Store in global object
+      dataMapMoObj.objdata = Object.fromEntries(
+        Array.from(tabHeadTitles).map(([key, value]) => [key, value]),
+      );
+
       const divmain = div({ class: 'maintab' });
-      Object.keys(dataMapMoObj.objdata).forEach((elobj, index) => {
+
+      // Cache values array to avoid repeated calls
+      const tabEntries = Object.entries(dataMapMoObj.objdata);
+      const documentFragment = document.createDocumentFragment();
+
+      tabEntries.forEach((entry, index) => {
+        const [elobj, tabContent] = entry;
         const innerdiv = div({ class: 'innerdiv' });
-        const valueAry = Object.values(dataMapMoObj.objdata);
-        Object.keys(valueAry[index]).forEach((inner) => {
+        const innerFragment = document.createDocumentFragment();
+
+        // Batch processing of inner elements
+        Object.entries(tabContent).forEach((tabEntry) => {
+          const [inner, element] = tabEntry;
           const subinner = div(
             { class: 'subinnercontain' },
             div(inner),
             div({ class: 'subbinner' }),
           );
+
           dataMapMoObj.CLASS_PREFIXES = ['embed-main', 'embed-inner', 'embed-subitem', 'embed-childitem', 'embed-childinner'];
-          dataMapMoObj.addIndexed(valueAry[index][inner]);
-          Array.from(valueAry[index][inner].querySelectorAll('img')).forEach((el) => {
-            dataMapMoObj.altFunction(el, `subbinner-${index + 1}-img`);
+          dataMapMoObj.addIndexed(element);
+
+          // Batch image processing
+          const images = element.querySelectorAll('img');
+          Array.from(images).forEach((img) => {
+            dataMapMoObj.altFunction(img, `subbinner-${index + 1}-img`);
           });
+
+          // Use CSS class instead of inline style for better performance
           if (index === 0) {
-            valueAry[index][inner].style.display = 'flex';
+            element.classList.add('tab-active-display');
           }
-          subinner.querySelector('.subbinner').innerHTML += valueAry[index][inner].outerHTML;
-          // subinner.querySelector('.section > .default-content-wrapper > p')
-          //   .classList.add('studytab-title');
-          // .append(valueAry[index][inner]);
-          innerdiv.append(subinner);
+
+          // Use appendChild instead of innerHTML += to avoid reparsing
+          subinner.querySelector('.subbinner').appendChild(element.cloneNode(true));
+          innerFragment.appendChild(subinner);
         });
+
+        innerdiv.appendChild(innerFragment);
         buildtabblock(innerdiv);
+
         const container = div(
           { class: 'contain' },
           div(elobj),
           div({ class: 'maininnerdiv' }),
         );
-        container.querySelector('.maininnerdiv').innerHTML += innerdiv.outerHTML;
-        divmain.append(container);
+        container.querySelector('.maininnerdiv').appendChild(innerdiv);
+        documentFragment.appendChild(container);
       });
-      // console.log(divmain);
+
+      divmain.appendChild(documentFragment);
       buildtabblock(divmain);
+
       if (!data.classList.contains('modal-wrapper')) {
-        data.append(divmain);
+        data.appendChild(divmain);
       }
 
       const tableRender = (panel) => {
-        const headkey = panel.querySelector('.section').getAttribute('data-tab-head-title');
-        const key = panel.querySelector('.section').getAttribute('data-tab-title');
-        const paneldata = dataMapMoObj.objdata[headkey][key];
-        const htmldata = paneldata.querySelector('ul ul').querySelectorAll('ul');
-        const selectedLabelTab = paneldata.querySelector('p').textContent.trim();
-        if (window.location.pathname.includes('/wcs/in/en/coverage')) {
+        // Early return if table already rendered
+        if (panel.querySelector('.coverage-table-container')) {
+          return;
+        }
+
+        const headkey = panel.querySelector('.section')?.getAttribute('data-tab-head-title');
+        const key = panel.querySelector('.section')?.getAttribute('data-tab-title');
+        const paneldata = dataMapMoObj.objdata?.[headkey]?.[key];
+
+        if (!paneldata) return;
+
+        const htmldata = paneldata.querySelector('ul ul')?.querySelectorAll('ul') || [];
+        const selectedLabelTab = paneldata.querySelector('p')?.textContent?.trim() || '';
+
+        if (window.location.pathname.includes('/wcs/in/en/coverage') && htmldata.length > 0) {
           const tableMain = div(
             { class: 'coverage-table-container' },
             p({ class: 'studytab-title' }, selectedLabelTab),
@@ -281,99 +319,185 @@ export default function decorate(block) {
               ),
             ),
           );
-          Array.from(htmldata[0].querySelectorAll('li')).map((el, headind) => {
-            el.classList.add('coverage-thead-th');
-            el.classList.add(`coverage-th-${headind + 1}`);
-            const stringel = el.outerHTML;
-            const repformat = stringel.replaceAll('<li', '<th').replaceAll('</li>', '</th>');
-            tableMain.querySelector('.coverage-thead tr').innerHTML += repformat;
-            return el;
+
+          const headRow = tableMain.querySelector('.coverage-thead tr');
+          const bodyContainer = tableMain.querySelector('.coverage-tbody');
+          const headFragment = document.createDocumentFragment();
+          const bodyFragment = document.createDocumentFragment();
+
+          // Process header row
+          Array.from(htmldata[0].querySelectorAll('li')).forEach((el, headind) => {
+            el.classList.add('coverage-thead-th', `coverage-th-${headind + 1}`);
+            const th = document.createElement('th');
+            th.innerHTML = el.innerHTML;
+            headFragment.appendChild(th);
           });
-          Array.from(Array.from(htmldata).slice(1)).map((el) => {
+
+          headRow.appendChild(headFragment);
+
+          // Process body rows
+          Array.from(htmldata).slice(1).forEach((el) => {
             el.classList.add('coverage-tbody-tr');
+            const trElem = document.createElement('tr');
             const eldatali = el.querySelectorAll('li');
+
             Array.from(eldatali).forEach((elsub, index) => {
-              elsub.classList.add('coverage-tbody-td');
-              elsub.classList.add(`coverage-td-${index + 1}`);
+              elsub.classList.add('coverage-tbody-td', `coverage-td-${index + 1}`);
+              const td = document.createElement('td');
+              td.innerHTML = elsub.innerHTML;
+              trElem.appendChild(td);
             });
-            const stringsec = el.outerHTML;
-            const repformat = stringsec.replaceAll('<ul', '<tr')
-              .replaceAll('</ul>', '</tr>').replaceAll('<li', '<td').replaceAll('</li>', '</td>');
-            tableMain.querySelector('.coverage-tbody').innerHTML += repformat;
-            return el;
+
+            bodyFragment.appendChild(trElem);
           });
-          if (!panel.querySelector('.coverage-table-container')) {
-            panel.querySelector('.coverage-table-panel').append(tableMain);
-            panel.querySelector('.coverage-table-panel').style.display = 'block';
-            panel.querySelector('.default-content-wrapper').style.display = 'none';
+
+          bodyContainer.appendChild(bodyFragment);
+
+          const coveragePanel = panel.querySelector('.coverage-table-panel');
+          if (coveragePanel) {
+            coveragePanel.appendChild(tableMain);
+            coveragePanel.classList.add('coverage-visible');
+            panel.querySelector('.default-content-wrapper')?.classList.add('coverage-hidden');
           }
         }
       };
 
-      data.querySelectorAll('.innerdiv').forEach((eldiv) => {
-        eldiv.querySelectorAll('.tabs-list button').forEach((tabbtn) => {
-          tabbtn.addEventListener('click', () => {
-            eldiv.querySelectorAll('[role=tabpanel]').forEach((panel) => {
-              panel.setAttribute('aria-hidden', true);
-            });
-            eldiv.querySelectorAll('.tabs-list button').forEach((btn) => {
-              btn.setAttribute('aria-selected', false);
-            });
-            tabbtn.setAttribute('aria-selected', true);
-            const attr = tabbtn.getAttribute('id').replace('tab', 'tabpanel');
-            const tabpanel = eldiv.querySelector(`#${attr}`);
-            tabpanel.setAttribute('aria-hidden', false);
+      // Handle tab change with performance optimization
+      const handleTabChange = (container, tabbtn, tabpanels) => {
+        // Use requestAnimationFrame to batch DOM updates
+        requestAnimationFrame(() => {
+          tabpanels.forEach((panel) => {
+            panel.setAttribute('aria-hidden', 'true');
+          });
+          container.querySelectorAll('.tabs-list button').forEach((btn) => {
+            btn.setAttribute('aria-selected', 'false');
+          });
+
+          tabbtn.setAttribute('aria-selected', 'true');
+          const attr = tabbtn.getAttribute('id').replace('tab', 'tabpanel');
+          const tabpanel = container.querySelector(`#${attr}`);
+          if (tabpanel) {
+            tabpanel.setAttribute('aria-hidden', 'false');
             if (tabpanel.querySelector('.coverage-table-panel')) {
               tableRender(tabpanel);
             }
+          }
+        });
+      };
+
+      // Event delegation with lazy initialization
+      const setupTabHandlers = () => {
+        const innerDivs = divmain.querySelectorAll('.innerdiv');
+        innerDivs.forEach((eldiv) => {
+          const buttons = eldiv.querySelectorAll('.tabs-list button');
+          const tabpanels = eldiv.querySelectorAll('[role=tabpanel]');
+
+          // Set initial ARIA attributes once
+          if (buttons.length > 0) {
+            buttons[0].setAttribute('aria-selected', 'true');
+          }
+          if (tabpanels.length > 0) {
+            tabpanels[0].setAttribute('aria-hidden', 'false');
+          }
+
+          // Add keyboard support
+          buttons.forEach((tabbtn, btnIndex) => {
+            tabbtn.addEventListener('click', () => handleTabChange(eldiv, tabbtn, tabpanels));
+            tabbtn.addEventListener('keydown', (e) => {
+              if (e.key === 'ArrowLeft' && btnIndex > 0) {
+                buttons[btnIndex - 1].focus();
+                buttons[btnIndex - 1].click();
+              } else if (e.key === 'ArrowRight' && btnIndex < buttons.length - 1) {
+                buttons[btnIndex + 1].focus();
+                buttons[btnIndex + 1].click();
+              } else if (e.key === 'Home') {
+                buttons[0].focus();
+                buttons[0].click();
+              } else if (e.key === 'End') {
+                buttons[buttons.length - 1].focus();
+                buttons[buttons.length - 1].click();
+              }
+            });
           });
         });
-        eldiv.querySelectorAll('.tabs-list button')[0]
-          .setAttribute('aria-selected', true);
-        eldiv.querySelectorAll('[role=tabpanel]')[0]
-          .setAttribute('aria-hidden', false);
-      });
+      };
 
-      // Coverage Tab Dropdown
+      setupTabHandlers();
+
+      // Coverage Tab Dropdown with keyboard support
       const dropdownlist = divmain.querySelector('.tabs-list');
-      let activeTab;
-      Array.from(dropdownlist.children).forEach((el) => {
-        if (el.getAttribute('aria-selected') === 'true') {
-          activeTab = el.textContent;
-        }
-      });
-      const tabDrodpwon = div(
-        { class: 'tab-dropdown-wrap' },
-        p({ class: 'selected-tab' }, activeTab),
-        div({ class: 'tab-droplist' }),
-      );
-      tabDrodpwon.querySelector('.tab-droplist').append(dropdownlist);
+      if (dropdownlist) {
+        let activeTab = '';
+        const buttons = dropdownlist.querySelectorAll('button');
+        Array.from(buttons).forEach((btn) => {
+          if (btn.getAttribute('aria-selected') === 'true') {
+            activeTab = btn.textContent;
+          }
+        });
 
-      divmain.prepend(tabDrodpwon);
+        const tabDrodpwon = div(
+          { class: 'tab-dropdown-wrap' },
+          div(
+            {
+              class: 'selected-tab',
+              role: 'button',
+              tabindex: '0',
+              'aria-haspopup': 'listbox',
+              'aria-expanded': 'false',
+            },
+            activeTab,
+          ),
+          div({ class: 'tab-droplist', role: 'listbox' }),
+        );
+        tabDrodpwon.querySelector('.tab-droplist').appendChild(dropdownlist);
+        divmain.prepend(tabDrodpwon);
 
-      const tabmainclick = divmain.querySelector('.tab-dropdown-wrap');
-      tabmainclick.addEventListener('click', () => {
-        const selectedTab = tabmainclick.querySelector('.selected-tab');
-        const tabslistwrap = tabmainclick.querySelector('.tab-droplist');
-        const tabslist = tabmainclick.querySelectorAll('.tabs-list .tabs-tab');
-        tabmainclick.classList.toggle('active');
+        const tabmainclick = divmain.querySelector('.tab-dropdown-wrap');
+        const selectedTabBtn = tabmainclick.querySelector('.selected-tab');
 
-        if (!tabslistwrap.classList.contains('active')) {
-          tabslist.forEach((tab) => {
-            if (tab.getAttribute('aria-selected') === 'true') {
-              selectedTab.textContent = tab.textContent;
-            }
-          });
-        }
-      });
-      block.closest('.section').style.display = 'block';
-      document.addEventListener('click', (event) => {
-        const selectedTab = tabmainclick.querySelector('.selected-tab');
-        const tabslistwrap = tabmainclick.querySelector('.tab-droplist');
-        if (!selectedTab.contains(event.target) && !tabslistwrap.contains(event.target)) {
-          tabmainclick.classList.remove('active');
-        }
-      });
+        // Improved click handler with event delegation
+        const toggleDropdown = (e) => {
+          e.stopPropagation();
+          tabmainclick.classList.toggle('active');
+          selectedTabBtn.setAttribute('aria-expanded', tabmainclick.classList.contains('active') ? 'true' : 'false');
+        };
+
+        // Keyboard support for dropdown
+        const handleDropdownKeydown = (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            toggleDropdown(e);
+          } else if (e.key === 'Escape' && tabmainclick.classList.contains('active')) {
+            tabmainclick.classList.remove('active');
+            selectedTabBtn.setAttribute('aria-expanded', 'false');
+          }
+        };
+
+        selectedTabBtn.addEventListener('click', toggleDropdown);
+        selectedTabBtn.addEventListener('keydown', handleDropdownKeydown);
+
+        // Update selected tab text
+        const updateDropdownText = () => {
+          const selected = tabmainclick.querySelector('.tabs-list [aria-selected="true"]');
+          if (selected) {
+            selectedTabBtn.textContent = selected.textContent;
+          }
+        };
+
+        // Single event listener with proper scoping
+        const handleClickOutside = (event) => {
+          if (!selectedTabBtn.contains(event.target) && !tabmainclick.querySelector('.tab-droplist').contains(event.target)) {
+            tabmainclick.classList.remove('active');
+            selectedTabBtn.setAttribute('aria-expanded', 'false');
+          }
+        };
+
+        // Use capture phase and single listener per dropdown
+        tabmainclick.addEventListener('click', updateDropdownText);
+        document.addEventListener('click', handleClickOutside, { once: false, capture: false });
+      }
+
+      block.closest('.section').classList.add('coverage-section-visible');
     }
   }
   return block;
