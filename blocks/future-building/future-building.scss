@@ -730,7 +730,7 @@
                         var(--body)
                     );
 
-                    @include media(mmobile) {
+                    @include media(mobile) {
                         font-size: var(--body-medium-regular-size);
                         line-height: var(--body-medium-regular-line-height);
                     }

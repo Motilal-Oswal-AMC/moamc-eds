@@ -657,7 +657,7 @@
   font-feature-settings: "ss01" on, "ss04" on, "cv01" on, "cv02" on, "cv03" on, "cv04" on, "cv06" on, "cv09" on, "cv10" on, "cv11" on;
   font-weight: 400;
 }
-@media (max-width: ) {
+@media (max-width: 768px) {
   .section.key-investing.future-building-container .library-btn1 .keyinvest-search .keyinvest-label,
   .section.key-investing.future-building-container .library-btn1 .keyinvest-search .keyinvest-inp {
     font-size: var(--body-medium-regular-size);
