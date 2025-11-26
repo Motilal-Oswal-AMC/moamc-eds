@@ -1,9 +1,18 @@
 @import "../../../styles/fonts.css";
-.section.previous-studies-ctn.tabs-container.legendWordCtn {
-  margin-top: 106px;
+main.nfo-nav .previous-studies-ctn.section:first-of-type {
+  margin-top: 72px;
 }
 @media (max-width: 768px) {
-  .section.previous-studies-ctn.tabs-container.legendWordCtn {
+  main.nfo-nav .previous-studies-ctn.section:first-of-type {
+    margin-top: 0;
+  }
+}
+
+.section.previous-studies-ctn.tabs-container.legendwordctn {
+  margin-top: 21px;
+}
+@media (max-width: 768px) {
+  .section.previous-studies-ctn.tabs-container.legendwordctn {
     margin-top: 0;
   }
 }
@@ -23,12 +32,12 @@
   }
 }
 .previous-studies-ctn.tabs-container .default-content-wrapper.previous-studies-ex1 {
-  padding: 0 0 40px 0;
-  margin-top: 33px;
+  padding: 0 0 40px;
+  margin-top: 40px;
 }
 @media (max-width: 768px) {
   .previous-studies-ctn.tabs-container .default-content-wrapper.previous-studies-ex1 {
-    padding: 56px 16px 32px;
+    padding: 40px 16px 32px;
     margin-top: 0;
   }
 }

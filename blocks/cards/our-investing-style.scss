@@ -8,6 +8,10 @@
     margin: 0;
     margin-bottom: 80px;
 
+    @include media (mobile) {
+        padding-top: 0;
+    }
+
     .our-invest-cont1 {
         margin-bottom: 64px;
 

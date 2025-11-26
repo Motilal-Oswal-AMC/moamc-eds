@@ -61,6 +61,7 @@
                             font-style: normal;
                             font-weight: 600;
                             line-height: var(--sub-header-large-line-height);
+                            text-wrap-style: balance;
                         }
                     }
                 }
@@ -174,6 +175,12 @@
                         &:focus {
                             border: 2px solid #2E2A94;
                         }
+
+                        .icon.expert-lists1{
+                            min-width: 24px;
+                            width: 24px;
+                            height: 24px;
+                        }
                     }
 
                     .our-expert-sub2 {
@@ -246,18 +253,35 @@
                     }
 
                     .search-results {
+                        // position: absolute;
+                        // top: 45px;
+                        // display: block;
+                        // background-color: var(--neutrals-white);
+                        // border: 1px solid var(--neutrals-200);
+                        // border-radius: 6px;
+                        // width: 100%;
+                        // margin: 4px 0 0;
+                        // max-height: 220px;
+                        // height: auto;
+                        // overflow: auto;
+                        // z-index: 10;
+                        // margin-right: 16px;
                         position: absolute;
-                        top: 45px;
-                        display: block;
+                        top: 100%;
+                        left: 0;
+                        z-index: 10;
                         background-color: var(--neutrals-white);
                         border: 1px solid var(--neutrals-200);
                         border-radius: 6px;
-                        width: 96.9%;
+                        width: 100%;
                         margin: 4px 0 0;
-                        max-height: 220px;
+                        max-height: 352px;
                         overflow: auto;
-                        z-index: 10;
-                        margin-right: 16px;
+                        list-style: none;
+
+                        @include media(mobile) {
+                            width: 95.3%;
+                        }
 
                         &::-webkit-scrollbar {
                             width: 3px;
@@ -267,7 +291,7 @@
                         &::-webkit-scrollbar-thumb {
                             width: 3px;
                             background-color: #424242;
-                            border-radius: 0 1px 1px 0;
+                            border-radius: 0 5px 5px 0;
                         }
 
                         &::-webkit-scrollbar-track {
@@ -278,7 +302,7 @@
 
                         .result-item {
                             margin: unset;
-                            padding: 12px 20px;
+                            padding: 12px 20px 12px 40px;
                             cursor: pointer;
 
                             .list {
@@ -290,9 +314,9 @@
                                 font-weight: 400;
                             }
 
-                            &:last-child {
-                                padding-bottom: unset;
-                            }
+                            // &:last-child {
+                            //     padding-bottom: unset;
+                            // }
                         }
 
                         .no-results-message {
@@ -300,11 +324,12 @@
                             line-height: var(--label-large-line-height);
                             color: var(--neutrals-black);
                             font-family: var(--body);
-                            font-feature-settings: var(--font-features-default);
+                            font-feature-settings: "ss01"on, "ss04"on, "cv01"on, "cv02"on, "cv03"on, "cv04"on, "cv06"on, "cv09"on, "cv10"on, "cv11"on;
                             font-weight: 400;
+                            padding: 12px 20px 12px 40px;
+                            cursor: pointer;
                             position: relative;
                             top: 0;
-                            padding-left: 13px;
                             border: none;
                             z-index: 10;
                         }
@@ -365,11 +390,17 @@
     //             }
     //         }
 
-    //         // .our-experts-cont2 {
-    //         //     display: none;
-    //         // }
-    //     }
-    // }
+            // .our-experts-cont2 {
+            //     display: none;
+            // }
+        }
+    }
+}
+
+.section.our-experts-container.listing-our-expert {
+    @include media(mobile) {
+        margin: 24px auto var(--spacing-40);
+    }
 }
 
 // .section.out-expert-listing.our-experts-container {

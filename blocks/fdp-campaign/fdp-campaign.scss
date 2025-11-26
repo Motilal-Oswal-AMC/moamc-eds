@@ -97,7 +97,7 @@ $breakpoint-tablet: 900px;
 
 .section.fdp-campaign-container.investor-banner.listing-investor-banner{
   @include media(mobile){
-    margin: -24px 16px 0;
+    margin: 0 0 40px;
   }
 }
 

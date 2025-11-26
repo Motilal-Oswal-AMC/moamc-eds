@@ -306,15 +306,13 @@ if (container) {
   });
 }
 
-// Get the current path
+// Function to hide footer on WCS PAGE
+
 const currentPath = window.location.pathname;
 
-// Define the target path you want to match
 const targetPath = '/wcs';
 
-// Check if we are on the correct page
 if (currentPath.includes(targetPath)) {
-  // Function to hide footer
   const hideFooter = () => {
     const footer = document.querySelector('footer');
     if (footer) {
@@ -322,21 +320,19 @@ if (currentPath.includes(targetPath)) {
     }
   };
 
-  // 1. Try immediately in case it's already there
   hideFooter();
 
-  // 2. Create an observer to watch for the footer appearing (Async loading support)
   const observer = new MutationObserver((mutations, obs) => {
     const footer = document.querySelector('footer');
     if (footer) {
       footer.style.display = 'none';
-      obs.disconnect(); // Stop watching once we found and hid it
+      obs.disconnect();
     }
   });
-
-  // Start observing the body for added nodes
   observer.observe(document.body, {
     childList: true,
     subtree: true,
   });
 }
+
+// Code End Function to hide footer on WCS PAGE

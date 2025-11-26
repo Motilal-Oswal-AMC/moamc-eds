@@ -10,6 +10,7 @@ import dataMapMoObj from '../../scripts/constant.js';
 import {
   div, table, thead, tbody, tr, p,
 } from '../../scripts/dom-helpers.js';
+import { createModal } from '../modal/modal.js';
 
 const loadScript = (url, callback, type) => {
   const head = document.querySelector('head');
@@ -144,7 +145,8 @@ export default function decorate(block) {
             const elem = prevStudyul.closest('.aw-subctnin1-innerchild1').querySelector('ul');
             elem.classList.add('panel-field');
             Array.from(elem.children).forEach((elfor, ind) => {
-              elfor.classList.add(`panellist${ind+1}`);
+              const indexVal = ind + 1;
+              elfor.classList.add(`panellist${indexVal}`);
             });
           }
         }
@@ -170,8 +172,20 @@ export default function decorate(block) {
       wrapper.className = 'embed-placeholder';
       wrapper.innerHTML = '<div class="embed-placeholder-play"><button type="button" title="Play"></button></div>';
       wrapper.prepend(placeholder);
-      wrapper.addEventListener('click', () => {
+      wrapper.addEventListener('click', async (event) => {
+        if (block.closest('.article-left-wrapper')) {
+          // investor atricle detail
+
+          const videoContainer = document.createElement('div');
+          // videoContainer.append(block);
+          loadEmbed(videoContainer, link, true);
+          const { showModal } = await createModal([videoContainer]);
+          showModal();
+          // console.log('df');
+          return false;
+        }
         loadEmbed(block, link, true);
+        return event;
       });
       block.append(wrapper);
     } else {
@@ -217,6 +231,9 @@ export default function decorate(block) {
           );
           dataMapMoObj.CLASS_PREFIXES = ['embed-main', 'embed-inner', 'embed-subitem', 'embed-childitem', 'embed-childinner'];
           dataMapMoObj.addIndexed(valueAry[index][inner]);
+          Array.from(valueAry[index][inner].querySelectorAll('img')).forEach((el) => {
+            dataMapMoObj.altFunction(el, `subbinner-${index + 1}-img`);
+          });
           if (index === 0) {
             valueAry[index][inner].style.display = 'flex';
           }

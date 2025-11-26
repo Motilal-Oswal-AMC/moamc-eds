@@ -111,6 +111,7 @@ main > .section.investing-terms-container {
           background: var(--neutrals-white);
           font-style: normal;
           margin: 0;
+          cursor: pointer;
 
           @include font-style(
             var(--label-small-size),
@@ -155,6 +156,7 @@ main > .section.investing-terms-container {
           padding: 10px var(--spacing-12);
           height: 40px;
           width: 100%;
+          min-width: 100%;
           font-size: var(--button-medium-size);
           line-height: var(--button-medium-line-height);
         }

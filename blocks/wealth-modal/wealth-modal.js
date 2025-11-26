@@ -3,7 +3,16 @@ import {
   div, ul, li, p, input, label, button, img,
 } from '../../scripts/dom-helpers.js';
 import { myAPI, generateAppId } from '../../scripts/scripts.js';
+import { createModal } from '../modal/modal.js';
 
+async function popup(param) {
+  // Create NEW container for the modal
+  const videoContainer = document.createElement('div');
+  videoContainer.append(param);
+  // Open Modal
+  const { showModal } = await createModal([videoContainer]);
+  showModal();
+}
 export default function decorate(block) {
   const wealthModalData = Array.from(block.children);
   const wealthModal = wealthModalData[0];
@@ -226,7 +235,6 @@ export default function decorate(block) {
         assocError.textContent = 'Please select an association.';
       } else assocError.textContent = '';
     }
-
     inputarg.classList.toggle('error', !valid && inputarg.value.trim() !== '');
     toggleErrorIcon(inputarg, valid);
     return valid;
@@ -271,7 +279,7 @@ export default function decorate(block) {
         };
         const headers = {
           'Content-Type': 'application/json',
-          'X-Encrypted-Key': 'N',
+          'X-Encrypted': 'N',
           appid: generateAppId(),
         };
 
@@ -282,24 +290,28 @@ export default function decorate(block) {
           headers,
         );
 
-        const result = await response.json();
+        const result = await response; // .json();
         // console.log('API Response:', result);
 
-        if (response.ok) {
-          alert('Your details have been submitted successfully!');
+        if (result) {
+          // alert
+          popup(div('Your details have been submitted successfully!'));
           // Reset form
           fields.forEach((f) => {
             f.value = '';
             const labelvar = f.parentElement.querySelector('.label');
             if (labelvar) labelvar.classList.remove('filled');
           });
+          // block.querySelector('.btn-mand .btn').classList.remove('active');
           toggleSubmitButton();
+          block.querySelector('.associated-drop .error-msg').textContent = '';
         } else {
-          alert(`Something went wrong: ${result.message || 'Unknown error'}`);
+          // alert
+          popup(div(`Something went wrong: ${result.message || 'Unknown error'}`));
         }
       } catch (error) {
         // console.error('API Error:', error);
-        alert('Failed to submit form. Please try again later.');
+        popup(div('Failed to submit form. Please try again later.'));
       }
     } else {
       toggleSubmitButton();

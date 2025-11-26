@@ -1,4 +1,5 @@
 @import "../../../styles/fonts.css";
+
 /* ===== Accessibility Helpers ===== */
 .visually-hidden {
   position: absolute;
@@ -17,11 +18,13 @@
     transition: none !important;
   }
 }
+
 @media (prefers-contrast: more) {
   .key-facts-container {
     background-color: #fff !important;
     color: #000 !important;
   }
+
   .key-facts-container h4,
   .key-facts-container p,
   .key-facts-container button,
@@ -29,6 +32,7 @@
     color: #000 !important;
   }
 }
+
 /* ===== Key Facts Container ===== */
 .key-facts-container {
   display: flex;
@@ -38,17 +42,20 @@
   background-color: #fff;
   padding: 40px 24px;
   border-radius: 8px;
-  border: 1px solid rgba(0, 0, 0, 0.0509803922);
+  border: 1px solid rgb(0 0 0 / 5.1%);
 }
+
 @media (width <= 768px) {
   .key-facts-container {
     padding: 40px 16px;
     gap: 0;
   }
 }
+
 .key-facts-container .default-content-wrapper ol {
   margin: 0;
 }
+
 .key-facts-container .default-content-wrapper ol li {
   display: flex;
   gap: 8px;
@@ -56,14 +63,17 @@
   list-style: none;
   align-items: center;
 }
+
 .key-facts-container .default-content-wrapper ol li:first-child {
   width: 100%;
 }
-@media (max-width: 768px) {
+
+@media (width <= 768px) {
   .key-facts-container .default-content-wrapper ol li:first-child {
     min-width: unset;
   }
 }
+
 .key-facts-container .default-content-wrapper ol li > p {
   font-size: var(--body-xlarge-bold-size);
   line-height: var(--body-xlarge-bold-line-height);
@@ -78,24 +88,28 @@
   align-items: center;
   gap: 8px;
 }
+
 @media (width <= 768px) {
   .key-facts-container .default-content-wrapper ol li > p {
     font-size: var(--body-xlarge-bold-size);
     line-height: var(--body-xlarge-bold-line-height);
   }
 }
+
 .key-facts-container .default-content-wrapper ol li > p span {
   max-width: 56px;
   width: 100%;
   max-height: 56px;
   height: 100%;
 }
+
 @media (width <= 768px) {
   .key-facts-container .default-content-wrapper ol li > p span {
     max-width: 56px;
     height: 56px;
   }
 }
+
 .key-facts-container .default-content-wrapper ol li ol {
   width: calc(100% - 72px);
   display: flex;
@@ -103,6 +117,7 @@
   margin: 0;
   align-items: center;
 }
+
 @media (width <= 768px) {
   .key-facts-container .default-content-wrapper ol li ol {
     flex-direction: column;
@@ -110,6 +125,7 @@
     align-items: start;
   }
 }
+
 .key-facts-container .default-content-wrapper ol li ol li:nth-child(2) {
   font-size: var(--paragraph-xsmall-size);
   line-height: var(--paragraph-xsmall-line-height);
@@ -126,11 +142,13 @@
   max-width: 169px;
   width: 100%;
 }
+
 @media (width <= 768px) {
   .key-facts-container .default-content-wrapper ol li ol li:nth-child(2) {
     font-weight: 400;
   }
 }
+
 .key-facts-container .default-content-wrapper ol li ol li:nth-child(2) p {
   display: flex;
   width: 169px;
@@ -148,7 +166,8 @@
   font-weight: 500;
   line-height: var(--paragraph-xsmall-line-height, 16px);
 }
-@media (max-width: 768px) {
+
+@media (width <= 768px) {
   .key-facts-container .default-content-wrapper ol li ol li:nth-child(2) p {
     font-size: var(--paragraph-xsmall-size, 12px);
     font-style: normal;
@@ -156,31 +175,37 @@
     line-height: var(--paragraph-xsmall-line-height, 16px);
   }
 }
+
 @media (width <= 768px) {
   .key-facts-container .key-facts {
     padding: 40px 0 0;
   }
 }
+
 .key-facts-container .key-facts .key-facts-section {
   display: flex;
   flex-direction: column;
   gap: 40px;
 }
-@media (max-width: 768px) {
+
+@media (width <= 768px) {
   .key-facts-container .key-facts .key-facts-section {
     gap: 24px;
   }
 }
+
 .key-facts-container .key-facts .key-facts-section .investment-objective {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
+
 @media (width <= 768px) {
   .key-facts-container .key-facts .key-facts-section .investment-objective {
     gap: 12px;
   }
 }
+
 .key-facts-container .key-facts .key-facts-section .investment-objective p:nth-child(1) {
   font-size: var(--body-medium-medium-size);
   line-height: var(--body-medium-medium-line-height);
@@ -190,6 +215,7 @@
   font-weight: 500;
   margin: 0;
 }
+
 .key-facts-container .key-facts .key-facts-section .investment-objective .investment-discripstion {
   position: relative;
   margin: 0;
@@ -200,6 +226,7 @@
   font-feature-settings: "ss01" on, "ss04" on, "cv01" on, "cv02" on, "cv03" on, "cv04" on, "cv06" on, "cv09" on, "cv10" on, "cv11" on;
   font-weight: 400;
 }
+
 @media (width <= 768px) {
   .key-facts-container .key-facts .key-facts-section .investment-objective .investment-discripstion {
     padding-right: 10px;
@@ -207,6 +234,7 @@
     line-height: var(--paragraph-small-line-height);
   }
 }
+
 .key-facts-container .key-facts .key-facts-section .investment-objective .investment-discripstion .read-toggle-btn {
   font-size: 14px;
   line-height: var(--text-link-small-line-height);
@@ -221,30 +249,36 @@
   bottom: 4px;
   left: 5px;
 }
-@media (max-width: 768px) {
+
+@media (width <= 768px) {
   .key-facts-container .key-facts .key-facts-section .investment-objective .investment-discripstion .read-toggle-btn {
     bottom: 2px;
   }
 }
+
 .key-facts-container .key-facts .key-facts-section .investment-objective .investment-discripstion .read-toggle-btn:focus {
   outline: 2px dashed #2e2a94;
   outline-offset: 2px;
 }
+
 .key-facts-container .key-facts .key-facts-section .key-facts-amounts {
   display: flex;
   flex-direction: column;
   gap: 40px;
 }
-@media (max-width: 768px) {
+
+@media (width <= 768px) {
   .key-facts-container .key-facts .key-facts-section .key-facts-amounts {
     gap: 24px;
   }
 }
+
 .key-facts-container .key-facts .key-facts-section .key-facts-amounts .minimum-amount {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
+
 @media (width <= 768px) {
   .key-facts-container .key-facts .key-facts-section .key-facts-amounts .minimum-amount {
     flex-wrap: wrap;
@@ -252,22 +286,27 @@
     height: unset;
   }
 }
+
 .key-facts-container .key-facts .key-facts-section .key-facts-amounts .minimum-amount .redemption-amount {
   width: 50%;
 }
-@media (max-width: 768px) {
+
+@media (width <= 768px) {
   .key-facts-container .key-facts .key-facts-section .key-facts-amounts .minimum-amount .redemption-amount {
     width: 100%;
   }
 }
+
 .key-facts-container .key-facts .key-facts-section .key-facts-amounts .minimum-amount div {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
+
 .key-facts-container .key-facts .key-facts-section .key-facts-amounts .minimum-amount div .key-facts-amounts-title .block-subitem-finelsub2, .key-facts-container .key-facts .key-facts-section .key-facts-amounts .minimum-amount div .key-facts-amounts-title .block-subitem-finelsub3 {
   margin: unset;
 }
+
 .key-facts-container .key-facts .key-facts-section .key-facts-amounts .minimum-amount div .key-facts-amounts-title:nth-child(1) {
   font-size: var(--body-medium-medium-size);
   line-height: var(--body-medium-medium-line-height);
@@ -277,6 +316,7 @@
   font-weight: 500;
   margin: 0;
 }
+
 .key-facts-container .key-facts .key-facts-section .key-facts-amounts .minimum-amount div .key-facts-amounts-sub:nth-child(2) {
   font-size: var(--body-medium-regular-size);
   line-height: 24px;
@@ -286,31 +326,37 @@
   font-weight: 400;
   margin: 0;
 }
+
 .key-facts-container .key-facts .key-facts-section .key-facts-amounts .key-plans {
   display: flex;
   flex-direction: column;
   gap: 40px;
 }
+
 @media (width <= 768px) {
   .key-facts-container .key-facts .key-facts-section .key-facts-amounts .key-plans {
     flex-direction: column-reverse;
   }
 }
+
 .key-facts-container .key-facts .key-facts-section .key-facts-amounts .key-plans .aum-benchmark {
   display: flex;
   flex-direction: column;
   gap: 40px;
 }
-@media (max-width: 768px) {
+
+@media (width <= 768px) {
   .key-facts-container .key-facts .key-facts-section .key-facts-amounts .key-plans .aum-benchmark {
     gap: 24px;
   }
 }
+
 .key-facts-container .key-facts .key-facts-section .key-facts-amounts .key-plans .aum-benchmark .aum-groups,
 .key-facts-container .key-facts .key-facts-section .key-facts-amounts .key-plans .aum-benchmark .benchmark-groups {
   display: flex;
   justify-content: space-between;
 }
+
 @media (width <= 768px) {
   .key-facts-container .key-facts .key-facts-section .key-facts-amounts .key-plans .aum-benchmark .aum-groups,
   .key-facts-container .key-facts .key-facts-section .key-facts-amounts .key-plans .aum-benchmark .benchmark-groups {
@@ -319,6 +365,7 @@
     height: unset;
   }
 }
+
 .key-facts-container .key-facts .key-facts-section .key-facts-amounts .key-plans .aum-benchmark .aum-groups div,
 .key-facts-container .key-facts .key-facts-section .key-facts-amounts .key-plans .aum-benchmark .benchmark-groups div {
   max-width: 190px;
@@ -327,6 +374,7 @@
   flex-direction: column;
   gap: 8px;
 }
+
 @media (width <= 768px) {
   .key-facts-container .key-facts .key-facts-section .key-facts-amounts .key-plans .aum-benchmark .aum-groups div,
   .key-facts-container .key-facts .key-facts-section .key-facts-amounts .key-plans .aum-benchmark .benchmark-groups div {
@@ -335,6 +383,7 @@
     gap: 4px;
   }
 }
+
 .key-facts-container .key-facts .key-facts-section .key-facts-amounts .key-plans .aum-benchmark .aum-groups div p:nth-child(1),
 .key-facts-container .key-facts .key-facts-section .key-facts-amounts .key-plans .aum-benchmark .benchmark-groups div p:nth-child(1) {
   font-size: var(--body-medium-medium-size);
@@ -345,12 +394,14 @@
   font-weight: 500;
   margin: 0;
 }
+
 @media (width <= 768px) {
   .key-facts-container .key-facts .key-facts-section .key-facts-amounts .key-plans .aum-benchmark .aum-groups div p:nth-child(1),
   .key-facts-container .key-facts .key-facts-section .key-facts-amounts .key-plans .aum-benchmark .benchmark-groups div p:nth-child(1) {
     text-wrap: wrap;
   }
 }
+
 .key-facts-container .key-facts .key-facts-section .key-facts-amounts .key-plans .aum-benchmark .aum-groups div p:nth-child(2),
 .key-facts-container .key-facts .key-facts-section .key-facts-amounts .key-plans .aum-benchmark .benchmark-groups div p:nth-child(2) {
   font-size: var(--body-medium-regular-size);
@@ -361,12 +412,14 @@
   font-weight: 400;
   margin: 0;
 }
+
 @media (width <= 768px) {
   .key-facts-container .key-facts .key-facts-section .key-facts-amounts .key-plans .aum-benchmark .aum-groups div p:nth-child(2),
   .key-facts-container .key-facts .key-facts-section .key-facts-amounts .key-plans .aum-benchmark .benchmark-groups div p:nth-child(2) {
     font-size: var(--paragraph-small-size);
   }
 }
+
 .key-facts-container .key-facts .key-facts-section .key-facts-amounts .key-plans .aum-benchmark .aum-groups div p:nth-child(2) p,
 .key-facts-container .key-facts .key-facts-section .key-facts-amounts .key-plans .aum-benchmark .benchmark-groups div p:nth-child(2) p {
   font-size: var(--body-medium-regular-size);
@@ -377,11 +430,13 @@
   font-weight: 400;
   margin: 0;
 }
+
 .key-facts-container .key-facts .key-facts-section .key-facts-amounts .key-plans .load-policy {
   display: flex;
   flex-direction: column;
   gap: 8px;
 }
+
 .key-facts-container .key-facts .key-facts-section .key-facts-amounts .key-plans .load-policy p.load-policy-para {
   font-size: var(--body-medium-medium-size);
   line-height: var(--body-medium-medium-line-height);
@@ -391,19 +446,23 @@
   font-weight: 500;
   margin: 0;
 }
+
 .key-facts-container .key-facts .key-facts-section .key-facts-amounts .key-plans .load-policy p.load-policy-para .block-subitem-finelsub4 {
   margin: unset;
 }
+
 .key-facts-container .key-facts .key-facts-section .key-facts-amounts .key-plans .load-policy .load-policy-list {
   display: flex;
   flex-direction: column;
   gap: 4px;
 }
+
 .key-facts-container .key-facts .key-facts-section .key-facts-amounts .key-plans .load-policy .load-policy-list .load-policy-list-ul {
   margin: unset;
   margin-left: 12px;
   padding-left: 10px;
 }
+
 .key-facts-container .key-facts .key-facts-section .key-facts-amounts .key-plans .load-policy .load-policy-list .load-policy-list-ul li {
   font-size: var(--body-medium-regular-size);
   line-height: 24px;
@@ -413,9 +472,10 @@
   font-weight: 400;
   margin: 0;
 }
+
 @media (width <= 768px) {
   .key-facts-container .key-facts .key-facts-section .key-facts-amounts .key-plans .load-policy .load-policy-list .load-policy-list-ul li {
     font-size: var(--paragraph-small-size);
     line-height: var(--paragraph-small-line-height);
   }
-}/*# sourceMappingURL=key-facts.css.map */
+}
