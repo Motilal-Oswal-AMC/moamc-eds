@@ -135,7 +135,7 @@ export default function decorate(block) {
 
   const pmsHighSkin = block.closest('.high-skin');
   if (pmsHighSkin !== null) {
-    dataMapMoObj.CLASS_PREFIXES = ['pms-high-skin', 'pms-high-skin-card', 'pms-high-skin-card-cont', 'pms-high-skin-card-subcont','high-skin-inner','high-skin-sub-inner','high-skin-sinner-sub'];
+    dataMapMoObj.CLASS_PREFIXES = ['pms-high-skin', 'pms-high-skin-card', 'pms-high-skin-card-cont', 'pms-high-skin-card-subcont', 'high-skin-inner', 'high-skin-sub-inner', 'high-skin-sinner-sub'];
     dataMapMoObj.addIndexed(pmsHighSkin);
   }
   // high skin component

@@ -612,7 +612,6 @@ $breakpoint-tablet: 900px;
 
 // NRI high-skin Strat  // 
 .section.high-skin.nri-high-skin {
-    background-color: red;
     max-width: 1232px;
     width: 100%;
     margin: 0 auto;
@@ -621,7 +620,7 @@ $breakpoint-tablet: 900px;
     background-color: #F5F5F5;
 
     @include media (mobile) {
-        padding: 40px 16px 80px 16px;
+        padding: 40px 16px 80px;
     }
 
     .cards-wrapper {
@@ -646,6 +645,7 @@ $breakpoint-tablet: 900px;
                                 font-style: normal;
                                 font-weight: 400;
                                 line-height: 24px;
+
                                 /* 150% */
                             }
                         }
@@ -678,13 +678,13 @@ $breakpoint-tablet: 900px;
                                     font-style: normal;
                                     font-weight: 500;
                                     line-height: var(--button-medium-line-height);
+
                                     /* 125% */
                                 }
 
                             }
 
                             .high-skin-sinner-sub2 {
-
                                 border: 1px solid #2E2A94;
                                 background-color: #F5F5F5;
 

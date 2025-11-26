@@ -139,9 +139,9 @@ export default function decorate(block) {
     }
   }
 
-  /* NRI Wrapper Js  Start*/
+  /* NRI Wrapper Js  Start */
 
-  // const nriAccordion = block.closest('.nri-accordion'); 
+  // const nriAccordion = block.closest('.nri-accordion');
 
   // const wrapperAccordion = document.createElement("div");
   // wrapperAccordion.classList.add("faq-our-fund")
@@ -153,24 +153,18 @@ export default function decorate(block) {
 
   // nriAccordion.append(wrapperAccordion)
 
-
-
-
   const allAccordions = Array.from(document.querySelectorAll('.nri-accordion'));
 
   allAccordions.forEach((nriAccordion) => {
-
     const children = Array.from(nriAccordion.children);
-    const hasWrapper = children.some(child =>
-      child.classList.contains("faq-our-fund")
-    );
+    const hasWrapper = children.some((child) => child.classList.contains('faq-our-fund'));
 
     if (hasWrapper) {
       return;
     }
 
-    const wrapperAccordion = document.createElement("div");
-    wrapperAccordion.classList.add("faq-our-fund");
+    const wrapperAccordion = document.createElement('div');
+    wrapperAccordion.classList.add('faq-our-fund');
 
     children.forEach((child) => {
       wrapperAccordion.append(child);
@@ -178,9 +172,5 @@ export default function decorate(block) {
 
     nriAccordion.append(wrapperAccordion);
   });
-  /* NRI Wrapper Js  End*/
-
-
+  /* NRI Wrapper Js  End */
 }
-
-

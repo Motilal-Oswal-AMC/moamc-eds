@@ -677,7 +677,7 @@
 }
 
 
-/*NRI Account Start */
+/* NRI Account Start */
 .section.mo-inter-business.hero-container.nri-hero {
     // background-color: red;
     max-width: 100%;
@@ -690,7 +690,7 @@
         width: 100%;
 
         @include media(mobile) {
-            padding: 0px;
+            padding: 0;
         }
 
         .hero {
@@ -757,7 +757,7 @@
                 max-width: 588px;
 
                 @include media(mobile) {
-                    padding: 37px 16px 0px 16px;
+                    padding: 37px 16px 0;
                 }
 
                 .mo-inter-inner-text1 {
@@ -772,4 +772,4 @@
 
 }
 
-/*NRI Account End */
+/* NRI Account End */
