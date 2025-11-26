@@ -665,6 +665,7 @@ async function waitForFirstImage(section) {
       lcpCandidate.setAttribute('loading', 'eager');
       lcpCandidate.addEventListener('load', resolve);
       lcpCandidate.addEventListener('error', resolve);
+      lcpCandidate.setAttribute('fetchpriority', 'high');
     } else {
       resolve();
     }
