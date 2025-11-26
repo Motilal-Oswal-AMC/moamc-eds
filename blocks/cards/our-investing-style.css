@@ -4,6 +4,11 @@
   margin: 0;
   margin-bottom: 80px;
 }
+@media (max-width: 768px) {
+  .our-investing-style.cards-container {
+    padding-top: 0;
+  }
+}
 .our-investing-style.cards-container .our-invest-cont1 {
   margin-bottom: 64px;
 }
