@@ -35,6 +35,11 @@
   padding: 24px 0;
   gap: 16px 36px;
 }
+@media (max-width: 1299px) {
+  .section.our-experts-container.glossary-tabs .tabs-wrapper .tabs-list {
+    justify-content: unset;
+  }
+}
 @media (max-width: 768px) {
   .section.our-experts-container.glossary-tabs .tabs-wrapper .tabs-list {
     gap: 16px;
