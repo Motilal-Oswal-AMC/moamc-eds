@@ -49,6 +49,11 @@
 
           img.comlist {
             aspect-ratio: unset;
+            height: 196px;
+            
+            @include media(mobile) {
+              height: 160px;
+            }
           }
         }
 
