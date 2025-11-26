@@ -68,6 +68,17 @@
 .screen-500.cards-container .cards.error-screen-wrap1 ul.error-screen-ul1 li.comlist .cards-card-image img.comlist,
 .service-screen.cards-container .cards.error-screen-wrap1 ul.error-screen-ul1 li.comlist .cards-card-image img.comlist {
   aspect-ratio: unset;
+  height: 196px;
+}
+@media (max-width: 768px) {
+  .screen-400.cards-container .cards.error-screen-wrap1 ul.error-screen-ul1 li.comlist .cards-card-image img.comlist,
+  .screen-401.cards-container .cards.error-screen-wrap1 ul.error-screen-ul1 li.comlist .cards-card-image img.comlist,
+  .screen-403.cards-container .cards.error-screen-wrap1 ul.error-screen-ul1 li.comlist .cards-card-image img.comlist,
+  .screen-408.cards-container .cards.error-screen-wrap1 ul.error-screen-ul1 li.comlist .cards-card-image img.comlist,
+  .screen-500.cards-container .cards.error-screen-wrap1 ul.error-screen-ul1 li.comlist .cards-card-image img.comlist,
+  .service-screen.cards-container .cards.error-screen-wrap1 ul.error-screen-ul1 li.comlist .cards-card-image img.comlist {
+    height: 160px;
+  }
 }
 .screen-400.cards-container .cards.error-screen-wrap1 ul.error-screen-ul1 li.comlist .cards-card-body,
 .screen-401.cards-container .cards.error-screen-wrap1 ul.error-screen-ul1 li.comlist .cards-card-body,
