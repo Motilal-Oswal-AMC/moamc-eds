@@ -42,6 +42,7 @@
 }
 @media (max-width: 768px) {
   .section.our-experts-container.glossary-tabs .tabs-wrapper .tabs-list {
+    justify-content: space-between;
     gap: 16px;
     padding: 28px 0;
   }

@@ -53,12 +53,13 @@
       justify-content: space-between;
       padding: 24px 0;
       gap: 16px 36px;
-
+      
       @include media(desktop-sm){
         justify-content: unset;
       }
-
+      
       @include media(mobile) {
+        justify-content: space-between;
         gap: 16px;
         padding: 28px 0;
       }
