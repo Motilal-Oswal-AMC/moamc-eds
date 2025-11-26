@@ -4,11 +4,13 @@
  * Show videos and social posts directly on your page
  * https://www.hlx.live/developer/block-collection/embed
  */
+// eslint-disable-next-line
+import buildtabblock from '../tabs/tabs.js';
 import dataMapMoObj from '../../scripts/constant.js';
 import {
   div, table, thead, tbody, tr, p,
 } from '../../scripts/dom-helpers.js';
-import tabBlock from '../tabs/tabs.js';
+import { createModal } from '../modal/modal.js';
 
 const loadScript = (url, callback, type) => {
   const head = document.querySelector('head');
@@ -117,8 +119,49 @@ export default function decorate(block) {
     const prevStudieswrapper = main.querySelectorAll('.prev-studies-wrapper');
     if (prevStudieswrapper.length !== 0) {
       prevStudieswrapper.forEach((el) => {
-        dataMapMoObj.CLASS_PREFIXES = ['annual-wealth-wrap', 'aw-ctn', 'aw-subctn', 'aw-subctnIn'];
+        dataMapMoObj.CLASS_PREFIXES = ['annual-wealth-wrap', 'aw-ctn', 'aw-subctn', 'aw-subctnin'];
         dataMapMoObj.addIndexed(el);
+
+        const dropDownText = el.querySelector('.previous-studies-tab .annual-wealth-wrap2 .aw-ctn2 .aw-subctnin1');
+        if (dropDownText) {
+          dataMapMoObj.CLASS_PREFIXES = ['aw-subctnin1-innerchild', 'awsubctn-innerchild'];
+          dataMapMoObj.addIndexed(dropDownText);
+        }
+
+        const prevStudyul = el.querySelector('.co-branding .awsubctn-innerchild5');
+        if (prevStudyul) {
+          dataMapMoObj.CLASS_PREFIXES = ['awsubctn-innerchild5-ul'];
+          dataMapMoObj.addIndexed(prevStudyul);
+          if (prevStudyul.nextElementSibling !== null && prevStudyul.closest('.aw-subctnin1-innerchild1')) {
+            const elem = prevStudyul.closest('.aw-subctnin1-innerchild1').querySelector('ul');
+            dataMapMoObj.CLASS_PREFIXES = ['awsubctn-innerchild5-ul'];
+            dataMapMoObj.addIndexed(elem);
+            elem.classList.add('panel-field');
+            Array.from(elem).forEach((elfor, ind) => {
+              elfor.classList.add(`panellist${ind}`);
+            });
+          }
+          if (prevStudyul.closest('.aw-subctnin1-innerchild1')) {
+            const elem = prevStudyul.closest('.aw-subctnin1-innerchild1').querySelector('ul');
+            elem.classList.add('panel-field');
+            Array.from(elem.children).forEach((elfor, ind) => {
+              const indexVal = ind + 1;
+              elfor.classList.add(`panellist${indexVal}`);
+            });
+          }
+        }
+
+        const prevSocialLink = el.querySelector('.co-branding .awsubctn-innerchild5-ul3');
+        if (prevSocialLink) {
+          dataMapMoObj.CLASS_PREFIXES = ['socialLinking', 'socialLinking-inner', 'socialLinking-child'];
+          dataMapMoObj.addIndexed(prevSocialLink);
+        }
+
+        const previousStudiesText = el.querySelector('.prev-main-wrapper .embed');
+        if (previousStudiesText) {
+          dataMapMoObj.CLASS_PREFIXES = ['video-wrap', 'video-inner', 'video-child', 'picture-wrap', 'picture-child'];
+          dataMapMoObj.addIndexed(previousStudiesText);
+        }
       });
     }
   }
@@ -129,8 +172,20 @@ export default function decorate(block) {
       wrapper.className = 'embed-placeholder';
       wrapper.innerHTML = '<div class="embed-placeholder-play"><button type="button" title="Play"></button></div>';
       wrapper.prepend(placeholder);
-      wrapper.addEventListener('click', () => {
+      wrapper.addEventListener('click', async (event) => {
+        if (block.closest('.article-left-wrapper')) {
+          // investor atricle detail
+
+          const videoContainer = document.createElement('div');
+          // videoContainer.append(block);
+          loadEmbed(videoContainer, link, true);
+          const { showModal } = await createModal([videoContainer]);
+          showModal();
+          // console.log('df');
+          return false;
+        }
         loadEmbed(block, link, true);
+        return event;
       });
       block.append(wrapper);
     } else {
@@ -176,6 +231,9 @@ export default function decorate(block) {
           );
           dataMapMoObj.CLASS_PREFIXES = ['embed-main', 'embed-inner', 'embed-subitem', 'embed-childitem', 'embed-childinner'];
           dataMapMoObj.addIndexed(valueAry[index][inner]);
+          Array.from(valueAry[index][inner].querySelectorAll('img')).forEach((el) => {
+            dataMapMoObj.altFunction(el, `subbinner-${index + 1}-img`);
+          });
           if (index === 0) {
             valueAry[index][inner].style.display = 'flex';
           }
@@ -185,7 +243,7 @@ export default function decorate(block) {
           // .append(valueAry[index][inner]);
           innerdiv.append(subinner);
         });
-        tabBlock(innerdiv);
+        buildtabblock(innerdiv);
         const container = div(
           { class: 'contain' },
           div(elobj),
@@ -195,7 +253,7 @@ export default function decorate(block) {
         divmain.append(container);
       });
       // console.log(divmain);
-      tabBlock(divmain);
+      buildtabblock(divmain);
       if (!data.classList.contains('modal-wrapper')) {
         data.append(divmain);
       }

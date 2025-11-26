@@ -1,3 +1,4 @@
+// eslint-disable-next-line
 import {
   loadEmbed,
 } from '../blocks/embed/embed.js';
@@ -215,7 +216,7 @@ async function loadEager(doc) {
 async function loadLazy(doc) {
   autolinkVideo(doc);
   const main = doc.querySelector('main');
-  if (window.location.href.includes('/investor-education/all-articles/') || window.location.href.includes('/motilal-oswal-edge/article-details') || window.location.href.includes('/motilal-oswal-edge/mo-edge-article-details-d') || window.location.href.includes('/motilal-oswal-edge/mo-edge-article-details-image') || window.location.href.includes('/motilal-oswal-edge/mo-edge-article-details-video')) {
+  if (window.location.href.includes('/investor-education/all-articles/') || window.location.href.includes('/motilal-oswal-edge/article-details') || window.location.href.includes('/motilal-oswal-edge/mo-edge-article-image') || window.location.href.includes('/motilal-oswal-edge/mo-edge-article-details-d') || window.location.href.includes('/motilal-oswal-edge/mo-edge-article-details-image') || window.location.href.includes('/motilal-oswal-edge/mo-edge-article-details-video')) {
     const maindiv = main.querySelector('.main-wrapper');
     // maindiv.classList.add('main-wrapper');
     maindiv.append(main.querySelector('.article-left-wrapper'));
@@ -225,7 +226,7 @@ async function loadLazy(doc) {
   wrapImgsInLinks(doc);
   await loadSections(main);
   dataMapMoObj.article();
-  dataMapMoObj.qglpwcs();
+  // dataMapMoObj.qglpwcs();
 
   const {
     hash,
@@ -337,9 +338,9 @@ export async function myAPI(method, url, body = null, customHeaders = {}) {
 }
 
 export function generateAppId() {
-  const chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVXYZ";
-  let appId = "";
-  for (let i = 0; i < 36; i++) {
+  const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVXYZ';
+  let appId = '';
+  for (let i = 0; i < 36; i += 1) {
     appId += chars[Math.floor(Math.random() * chars.length)];
   }
   return appId;
@@ -501,7 +502,7 @@ if (calculatorsCard != null) {
 // // article
 function articleStructure() {
   // Investor Education article left and right wrapper
-  if (window.location.href.includes('/investor-education/all-articles/') || window.location.href.includes('/motilal-oswal-edge/article-details') || window.location.href.includes('/motilal-oswal-edge/mo-edge-article-details-d') || window.location.href.includes('/motilal-oswal-edge/mo-edge-article-details-image') || window.location.href.includes('/motilal-oswal-edge/mo-edge-article-details-video')) {
+  if (window.location.href.includes('/investor-education/all-articles/') || window.location.href.includes('/motilal-oswal-edge/article-details') || window.location.href.includes('/motilal-oswal-edge/mo-edge-article-image') || window.location.href.includes('/motilal-oswal-edge/mo-edge-article-details-d') || window.location.href.includes('/motilal-oswal-edge/mo-edge-article-details-image') || window.location.href.includes('/motilal-oswal-edge/mo-edge-article-details-video')) {
     const maincloser = document.querySelector('main');
     const rightSub = maincloser.querySelectorAll('.article-sub-right');
     const rightarticle = maincloser.querySelector('.article-right-wrapper');
@@ -513,6 +514,17 @@ function articleStructure() {
     Array.from(leftSub).forEach((leftel) => {
       leftarticle.append(leftel);
     });
+
+    Array.from(leftSub).forEach((subleft) => {
+      dataMapMoObj.CLASS_PREFIXES = ['investarticle-leftmain', 'investarticle-leftsub', 'investarticle-leftinner', 'investsub-leftarticle', 'investleft-subinner', 'investleft-articleitem', 'investleft-itemchild', 'investleft-subchild'];
+      dataMapMoObj.addIndexed(subleft);
+    });
+
+    Array.from(rightSub).forEach((subright) => {
+      dataMapMoObj.CLASS_PREFIXES = ['investarticle-rightmain', 'investarticle-rightsub', 'investarticle-rightinner', 'investsub-rightarticle', 'investright-subinner', 'investright-articleitem', 'investright-itemchild', 'investright-subchild'];
+      dataMapMoObj.addIndexed(subright);
+    });
+
     if (maincloser.querySelector('.moedge-article-details')) {
       dataMapMoObj.CLASS_PREFIXES = ['articlemain', 'articlesub', 'articleitem',
         'subarticle', 'mainarticle', 'itemarticle', 'itemsubart',
@@ -549,51 +561,152 @@ function articleStructure() {
 }
 dataMapMoObj.article = articleStructure;
 
-function qglpwcs() {
-  const mainbl = document.querySelector('main');
-  const data = mainbl.querySelectorAll('.tab-glp');
-  if (data.length !== 0) {
-    data.forEach((ele) => {
-      if (ele != null) {
-        dataMapMoObj.CLASS_PREFIXES = [
-          'glp-tab-block',
-          'glp-tab-inner',
-          'glp-tab-sub-inner',
-          'glp-tab-sub-inner-sub',
-          'glp-tab-ul',
-          'glp-tab-inner-ul',
-          'glp-tab-li',
-          'glp-tab-sub-inner-ul',
-          'glp-tab-inner-li',
-          'glp-tab-sub-inner-li',
-          'glp-tab-sub-inner-li-sub',
-          'glp-li',
-          'glp-li-inner',
-        ];
-        dataMapMoObj.addIndexed(ele);
-
-        const addClassName = ele.querySelectorAll('.glp-tab-li1');
-        if (addClassName) {
-          addClassName.forEach((elem) => {
-            elem.classList.add('li-containers');
-          });
-        }
-
-        const addClassNameli = ele.querySelectorAll('.glp-tab-sub-inner-ul2');
-        if (addClassNameli) {
-          addClassNameli.forEach((elem) => {
-            elem.classList.add('same-li');
-          });
-        }
-
-        const addClassNamel = ele.querySelectorAll('.glp-tab-sub-inner-ul1');
-        if (addClassNamel) {
-          addClassNamel.forEach((elem) => {
-            elem.classList.add('same-li');
-          });
-        }
-      }
-    });
-  }
+const chooseUs = document.querySelector('.why-choose-us');
+if (chooseUs != null) {
+  dataMapMoObj.CLASS_PREFIXES = [
+    'choose-title',
+    'choose-us-para',
+    'choose-us-img',
+  ];
+  dataMapMoObj.addIndexed(chooseUs);
 }
-dataMapMoObj.qglpwcs = qglpwcs;
+
+const chooseusCard = document.querySelector('.why-choose-card');
+if (chooseusCard != null) {
+  dataMapMoObj.CLASS_PREFIXES = [
+    'card-image',
+    'card-title',
+    'card-subtitle',
+  ];
+  dataMapMoObj.addIndexed(chooseusCard);
+}
+
+// qglp static class appending
+const qglpStaticComponent = document.querySelector('.qglp-static-component');
+if (qglpStaticComponent != null) {
+  dataMapMoObj.CLASS_PREFIXES = ['qglp-static-ctn', 'qglp-static-ext', 'qglp-static-int', 'qglp-static-wrp', 'qglp-static-box', 'qglp-static-ls-ul', 'qglp-static-ls-li'];
+  dataMapMoObj.addIndexed(qglpStaticComponent);
+}
+
+// why qglp componet  start
+const whyQGLPComponent = document.querySelector('.why-qglp .default-content-wrapper');
+if (whyQGLPComponent != null) {
+  dataMapMoObj.CLASS_PREFIXES = ['why-qglp-ctn', 'why-qglp-ext', 'why-qglp-int', 'why-qglp-wrp', 'why-qglp-box', 'why-qglp-ls-ul', 'why-qglp-ls-li'];
+  dataMapMoObj.addIndexed(whyQGLPComponent);
+}
+// why qglp componet end
+
+// why qglp componet  start
+const promiseQGLP = document.querySelector('.promise-qglp .default-content-wrapper');
+if (promiseQGLP != null) {
+  dataMapMoObj.CLASS_PREFIXES = ['promise-qglp-ctn', 'promise-qglp-ext', 'promise-qglp-int', 'promise-qglp-wrp', 'promise-qglp-box'];
+  dataMapMoObj.addIndexed(promiseQGLP);
+}
+// why qglp componet end
+
+// why qglp css lent start
+const whyQGLPWrp = document.querySelector('.why-qglp .default-content-wrapper');
+
+if (whyQGLPWrp) {
+  whyQGLPWrp.classList.add('why-qglp-wrapper');
+  // why qglp css lent end
+}
+// why qglp css lent end
+
+// promise qglp css lent start
+const promiseQGLPWrp = document.querySelector('.promise-qglp .default-content-wrapper');
+
+if (promiseQGLPWrp) {
+  promiseQGLPWrp.classList.add('promise-qglp-wrapper');
+  // why qglp css lent end
+}
+// promise qglp css lent end
+
+// Skin the game static start
+const highskinText = document.querySelector('.high-skin-text');
+if (highskinText != null) {
+  dataMapMoObj.CLASS_PREFIXES = [
+    'high-skin-wrap-one',
+    'high-skin-wrap-two',
+    'high-skin-wrap-three',
+    'high-skin-heading',
+    'high-skin-subheading',
+    'high-skin-paragraph',
+    'high-skin-paragraph-one',
+    'high-skin-paragraph-two',
+  ];
+  dataMapMoObj.addIndexed(highskinText);
+}
+const highimageComponent = document.querySelector('.high-image-component');
+if (highimageComponent != null) {
+  dataMapMoObj.CLASS_PREFIXES = [
+    'high-skin-component-wrap',
+    'high-skin-component-heading',
+    'high-skin-component-paragraph',
+    'high-skin-component-ctn',
+    'high-skin-component-external',
+    'high-skin-component-internal',
+
+  ];
+  dataMapMoObj.addIndexed(highimageComponent);
+}
+
+const skinmoamcComponent = document.querySelector('.skin-moamc-component');
+if (skinmoamcComponent != null) {
+  dataMapMoObj.CLASS_PREFIXES = [
+    'moamc-component-wrap',
+    'moamc-component-main-head',
+    'moamc-component-title',
+    'moamc-component-para',
+    'moamc-component-para-one',
+    'moamc-component-para-two',
+    'moamc-component-para-three',
+
+  ];
+  dataMapMoObj.addIndexed(skinmoamcComponent);
+}
+
+try {
+  const whymattersComponent = document.querySelector('.why-matters-component');
+  if (whymattersComponent != null) {
+    dataMapMoObj.CLASS_PREFIXES = [
+      'why-matters-wrap',
+      'why-matters-heading',
+      'why-matters-para',
+      'why-matters-icon',
+      'why-matters-title',
+      'why-matters-sub-title',
+      'why-matters-text',
+      'why-matters-card-wrap',
+      'why-matters-card-icon',
+      'why-matters-card-text1',
+      'why-matters-card-text2',
+      'why-matters-card-text3',
+    ];
+    dataMapMoObj.addIndexed(whymattersComponent);
+  }
+
+  const container = document.querySelector('.section.why-matters-component.cards-container');
+
+  const wrapper = document.createElement('div');
+  wrapper.classList.add('why-matters-wrapper-in');
+
+  const wrap1 = container.querySelector('.why-matters-wrap1');
+  const wrap2 = container.querySelector('.why-matters-wrap2');
+
+  container.insertBefore(wrapper, container.firstChild);
+
+  wrapper.appendChild(wrap1);
+  wrapper.appendChild(wrap2);
+
+  const section = document.querySelector('.promise-qglp');
+  const skinwrapper = document.createElement('div');
+  skinwrapper.classList.add('skin-in-the-game-wrapper');
+  section.parentNode.insertBefore(skinwrapper, section);
+  skinwrapper.appendChild(section);
+} catch (error) {
+  // console.log(error);
+
+}
+
+// Skin the game static end

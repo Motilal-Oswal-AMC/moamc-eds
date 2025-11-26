@@ -185,7 +185,7 @@ export default function decorate(block) {
   // aif component end
 
   // // Investor Education article left and right wrapper
-  // if (window.location.href.includes('/investor-education/all-articles/') 
+  // if (window.location.href.includes('/investor-education/all-articles/')
   // || window.location.href.includes('/motilal-oswal-edge/article-details')) {
   //   const maincloser = block.closest('main');
   //   const rightSub = maincloser.querySelectorAll('.article-sub-right');
@@ -243,7 +243,7 @@ export default function decorate(block) {
 
     // Only run this pagination logic if we are in the correct block
     if (mainContainer) {
-    // Select all the card items
+      // Select all the card items
       const items = Array.from(mainContainer.querySelectorAll('li'));
       const itemsPerPage = items.slice(0, 12).length;
 
@@ -251,6 +251,19 @@ export default function decorate(block) {
         dataMapMoObj.setupPagination(mainContainer, items, itemsPerPage);
       }
     }
+  }
+
+  // Error Screen adding
+  const error = block.closest('.section.screen-400, .section.screen-401, .section.screen-403, .section.screen-408, .section.screen-500, .section.service-screen');
+  if (error) {
+    const newEle = document.createElement('div');
+    newEle.classList.add('errscn-txtwrap');
+    const secondP = document.querySelector('.cards-container .cards-card-body p:nth-child(2)');
+    const errscnCont = document.querySelector('.cards-container .cards-card-body');
+    errscnCont.append(newEle);
+    newEle.append(secondP);
+    dataMapMoObj.CLASS_PREFIXES = ['error-screen-wrapper', 'error-screen-wrap', 'error-screen-ul', 'error-screen-li', 'errscrn-img-cont', 'errscrn-cont', 'errscrn-inner-cont'];
+    dataMapMoObj.addIndexed(error);
   }
 }
 
@@ -297,6 +310,18 @@ subSection.forEach((sublist) => {
 
   dataMapMoObj.addIndexed(sublist);
 });
+
+const newSection = document.querySelectorAll('.our-investing-style.cards-container');
+dataMapMoObj.CLASS_PREFIXES = [
+  'our-invest-cont',
+  'our-invest-sec',
+  'our-invest-sub',
+  'our-invest-inner-text',
+  'our-invest-list',
+  'our-invest-list-content',
+  'our-invest-list-row',
+];
+newSection.forEach((sublist) => dataMapMoObj.addIndexed(sublist));
 
 // const emailFields = document.querySelectorAll(
 //   '.section.article-sub-right.subscribe-email .field-wrapper.email-wrapper input'

@@ -193,7 +193,7 @@ $font-weights: (
 // ----------------------------------------
 
 @mixin typography-h2 {
-  font-family: $butlerpro;
+  font-family: $inter;
   color: $primary-blue;
   font-weight: map.get($font-weights, bold);
   line-height: $line-height-h2;

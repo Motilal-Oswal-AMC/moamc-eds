@@ -96,19 +96,18 @@ async function decorateBreadcrumbs() {
         container.appendChild(breadcrumb);
       } else {
         // Log an error if neither container is found
-        console.warn(
-          'Breadcrumb container ([data-id="breadcrumb"] or .breadcrumbs-fdp) not found.',
-        );
+        // console.warn(
+        //   'Breadcrumb container ([data-id="breadcrumb"] or .breadcrumbs-fdp) not found.',
+        // );
       }
 
       const bdcrumbsAnchor = document.querySelectorAll('.breadcrumbs .breadul .breadli a');
-      bdcrumbsAnchor.forEach(function (link) {
+      bdcrumbsAnchor.forEach((link) => {
         link.classList.add('breadlist');
       });
-
     }
   } catch (error) {
-    console.error('Error decorating breadcrumbs:', error);
+    // console.error('Error decorating breadcrumbs:', error);
   }
 }
 
@@ -131,26 +130,25 @@ if (newSection) {
     wrapperDiv.appendChild(item5);
     wrapperDiv.appendChild(item6);
   }
-
 }
 if (window.innerWidth <= 767) {
   const futureBuildingSection = document.querySelector('.future-building-container');
   const stayUpdatedSection = document.querySelector('.article-sub-right.stay-updated.comlist.articlesub2');
 
-
   if (futureBuildingSection && stayUpdatedSection) {
     // Move future-building-container above stay-updated
     stayUpdatedSection.parentNode.insertBefore(futureBuildingSection, stayUpdatedSection);
-    console.log('✅ future-building-container moved above stay-updated');
+    // console.log('✅ future-building-container moved above stay-updated');
   } else {
-    console.warn('⚠️ Required sections not found in DOM');
+    // console.warn('⚠️ Required sections not found in DOM');
   }
-  // 
+  //
 }
 
 // function articleStructure() {
 //    // Investor Education article left and right wrapper
-//   if (window.location.href.includes('/investor-education/all-articles/') || window.location.href.includes('/motilal-oswal-edge/article-details')) {
+//   if (window.location.href.includes('/investor-education/all-articles/')
+// || window.location.href.includes('/motilal-oswal-edge/article-details')) {
 //     const maincloser = document.querySelector('main');
 //     const rightSub = maincloser.querySelectorAll('.article-sub-right');
 //     const rightarticle = maincloser.querySelector('.article-right-wrapper');

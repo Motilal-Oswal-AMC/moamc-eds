@@ -1,6 +1,6 @@
 @import "../../../styles/fonts.css";
 main.nfo-nav .section.decoding-qglp-container {
-  margin-top: 33px;
+  margin-top: 32px;
 }
 @media (max-width: 768px) {
   main.nfo-nav .section.decoding-qglp-container {
@@ -13,11 +13,6 @@ main.nfo-nav .section.decoding-qglp-container {
   max-width: 1366px;
   width: 100%;
   padding-top: 40px;
-}
-@media (max-width: 768px) {
-  .section .decoding-qglp-wrapper {
-    padding-top: 56px;
-  }
 }
 .section .decoding-qglp-wrapper .decoding-qglp {
   display: flex;
@@ -39,7 +34,6 @@ main.nfo-nav .section.decoding-qglp-container {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  margin-top: 47px;
 }
 @media (max-width: 768px) {
   .section .decoding-qglp-wrapper .decoding-qglp .glpcoding1 .glpcoding-inner1 {

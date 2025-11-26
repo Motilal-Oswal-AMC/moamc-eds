@@ -37,7 +37,7 @@
 .section.our-experts-container .our-experts-wrapper .our-experts-cont1 .our-expert-section1 h6 {
   margin: 0;
   padding: 0;
-  color: var(--blue-1800-primary, #2E2A94);
+  color: var(--blue-1-800-primary, #2E2A94);
   font-feature-settings: var(--font-features-default);
   font-family: var(--title);
   font-size: var(--heading-h4-size);
@@ -56,6 +56,7 @@
     font-style: normal;
     font-weight: 600;
     line-height: var(--sub-header-large-line-height);
+    text-wrap-style: balance;
   }
 }
 .section.our-experts-container .our-experts-wrapper .our-experts-cont2 {
@@ -78,7 +79,7 @@
 .section.our-experts-container .our-experts-wrapper .our-experts-cont2 .our-expert-section1 .our-expert-sub1 {
   display: flex;
   height: 44px;
-  padding: 10px 8px;
+  padding: var(--spacing-10) var(--spacing-8);
   justify-content: flex-start;
   align-items: center;
   gap: 8px;
@@ -164,6 +165,11 @@
 .section.our-experts-container .our-experts-wrapper .our-experts-cont2 .our-expert-section1 .our-expert-sub1:focus {
   border: 2px solid #2E2A94;
 }
+.section.our-experts-container .our-experts-wrapper .our-experts-cont2 .our-expert-section1 .our-expert-sub1 .icon.expert-lists1 {
+  min-width: 24px;
+  width: 24px;
+  height: 24px;
+}
 .section.our-experts-container .our-experts-wrapper .our-experts-cont2 .our-expert-section1 .our-expert-sub2 {
   display: none;
 }
@@ -172,17 +178,22 @@
 }
 .section.our-experts-container .our-experts-wrapper .our-experts-cont2 .our-expert-section1 .search-results {
   position: absolute;
-  top: 45px;
-  display: block;
+  top: 100%;
+  left: 0;
+  z-index: 10;
   background-color: var(--neutrals-white);
   border: 1px solid var(--neutrals-200);
   border-radius: 6px;
-  width: 96.9%;
+  width: 100%;
   margin: 4px 0 0;
-  height: 220px;
+  max-height: 352px;
   overflow: auto;
-  z-index: 10;
-  margin-right: 16px;
+  list-style: none;
+}
+@media (max-width: 768px) {
+  .section.our-experts-container .our-experts-wrapper .our-experts-cont2 .our-expert-section1 .search-results {
+    width: 95.3%;
+  }
 }
 .section.our-experts-container .our-experts-wrapper .our-experts-cont2 .our-expert-section1 .search-results::-webkit-scrollbar {
   width: 3px;
@@ -191,7 +202,7 @@
 .section.our-experts-container .our-experts-wrapper .our-experts-cont2 .our-expert-section1 .search-results::-webkit-scrollbar-thumb {
   width: 3px;
   background-color: #424242;
-  border-radius: 0 1px 1px 0;
+  border-radius: 0 5px 5px 0;
 }
 .section.our-experts-container .our-experts-wrapper .our-experts-cont2 .our-expert-section1 .search-results::-webkit-scrollbar-track {
   width: 3px;
@@ -200,7 +211,7 @@
 }
 .section.our-experts-container .our-experts-wrapper .our-experts-cont2 .our-expert-section1 .search-results .result-item {
   margin: unset;
-  padding: 12px 20px;
+  padding: 12px 20px 12px 40px;
   cursor: pointer;
 }
 .section.our-experts-container .our-experts-wrapper .our-experts-cont2 .our-expert-section1 .search-results .result-item .list {
@@ -208,22 +219,20 @@
   line-height: var(--label-large-line-height);
   color: var(--neutrals-black);
   font-family: var(--body);
-  font-feature-settings: "ss01" on, "ss04" on, "cv01" on, "cv02" on, "cv03" on, "cv04" on, "cv06" on, "cv09" on, "cv10" on, "cv11" on;
+  font-feature-settings: var(--font-features-default);
   font-weight: 400;
-}
-.section.our-experts-container .our-experts-wrapper .our-experts-cont2 .our-expert-section1 .search-results .result-item:last-child {
-  padding-bottom: unset;
 }
 .section.our-experts-container .our-experts-wrapper .our-experts-cont2 .our-expert-section1 .search-results .no-results-message {
   font-size: var(--body-small-regular-size);
   line-height: var(--label-large-line-height);
   color: var(--neutrals-black);
   font-family: var(--body);
-  font-feature-settings: var(--font-features-default);
+  font-feature-settings: "ss01" on, "ss04" on, "cv01" on, "cv02" on, "cv03" on, "cv04" on, "cv06" on, "cv09" on, "cv10" on, "cv11" on;
   font-weight: 400;
+  padding: 12px 20px 12px 40px;
+  cursor: pointer;
   position: relative;
   top: 0;
-  padding-left: 13px;
   border: none;
   z-index: 10;
 }
@@ -252,5 +261,11 @@
   .section.out-expert-listing.our-experts-container .our-experts-wrapper .our-experts .our-experts-cont1 .our-expert-section1 .our-expert-sub1 {
     font-size: var(--sub-header-large-size);
     line-height: 28px;
+  }
+}
+
+@media (max-width: 768px) {
+  .section.our-experts-container.listing-our-expert {
+    margin: 24px auto var(--spacing-40);
   }
 }/*# sourceMappingURL=our-experts.css.map */

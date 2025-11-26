@@ -660,17 +660,36 @@ async function loadFooter(footer) {
  */
 async function waitForFirstImage(section) {
   const lcpCandidate = section.querySelector('img');
-  await new Promise((resolve) => {
-    if (lcpCandidate && !lcpCandidate.complete) {
+  if (lcpCandidate) {
+    // Check if image is in the first fold (viewport)
+    const rect = lcpCandidate.getBoundingClientRect();
+    const isInFirstFold = rect.top < window.innerHeight && rect.top >= 0;
+    if (isInFirstFold) {
+      // Add fetchpriority to the img tag
+      lcpCandidate.setAttribute('fetchpriority', 'high');
       lcpCandidate.setAttribute('loading', 'eager');
-      lcpCandidate.addEventListener('load', resolve);
-      lcpCandidate.addEventListener('error', resolve);
-    } else {
-      resolve();
+      // Get parent element to find sibling source tags
+      const parent = lcpCandidate.parentElement;
+      if (parent) {
+        // Find all sibling source tags
+        const sourceTags = parent.querySelectorAll('source');
+        // Add fetchpriority to all source siblings
+        sourceTags.forEach((source) => {
+          source.setAttribute('fetchpriority', 'high');
+        });
+      }
+      // Wait for image to load
+      await new Promise((resolve) => {
+        if (!lcpCandidate.complete) {
+          lcpCandidate.addEventListener('load', resolve);
+          lcpCandidate.addEventListener('error', resolve);
+        } else {
+          resolve();
+        }
+      });
     }
-  });
+  }
 }
-
 /**
  * Loads all blocks in a section.
  * @param {Element} section The section element

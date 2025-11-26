@@ -64,7 +64,7 @@
   width: auto;
 }
 .section.investment-philosophy .invest-philo-cont2 .invest-philo-sec1 ul {
-  grid-gap: 16px;
+  gap: 16px;
 }
 .section.investment-philosophy .invest-philo-cont2 .invest-philo-sec1 ul li {
   min-height: 296px;

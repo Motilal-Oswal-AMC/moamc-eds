@@ -1,0 +1,153 @@
+@use "sass:map";
+@use "../../styles/common-theme/css/variables_mixins"as *;
+@use "../../styles/common-theme/css/fluid-typography"as *;
+
+
+.our-investing-style.cards-container {
+    padding-top: 80px;
+    margin: 0;
+    margin-bottom: 80px;
+
+    @include media (mobile) {
+        padding-top: 0;
+    }
+
+    .our-invest-cont1 {
+        margin-bottom: 64px;
+
+        h5 {
+            margin: 0;
+            color: var(--blue-1800-primary, #2E2A94);
+            text-align: center;
+            font-feature-settings: var(--font-features-default);
+            font-family: var(--title, Inter);
+            font-size: var(--heading-h5-size, 28px);
+            font-style: normal;
+            font-weight: 600;
+            line-height: var(--heading-h5-line-height, 32px);
+            margin-bottom: 4px;
+
+            @include media (mobile) {
+                font-size: var(--sub-header-large-size, 24px);
+
+                // line-height: var(--sub-header-medium-line-height, 28px);
+                line-height: 28px;
+            }
+        }
+
+        p {
+            margin: 0;
+            color: var(--blue-1800-primary, #2E2A94);
+            text-align: center;
+            font-feature-settings: var(--font-features-default);
+            font-family: var(--body, Inter);
+            font-size: var(--body-medium-regular-size, 16px);
+            font-style: normal;
+            font-weight: 400;
+
+            // line-height: var(--body-medium-regular-line-height, 24px);
+            line-height: 24px;
+
+            @include media(mobile) {
+                font-size: var(--paragraph-small-regular-size, 14px);
+                line-height: var(--paragraph-small-regular-line-height, 20px);
+            }
+        }
+    }
+
+    .our-invest-cont2 {
+        .our-invest-sec1 {
+            ul {
+                grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+                gap: 16px;
+
+                @include media (mobile) {
+                    display: flex;
+                    flex-direction: column;
+
+                }
+
+                li {
+                    flex-direction: column-reverse;
+                    display: flex;
+                    height: 240px;
+                    padding: 24px 0 0 16px;
+
+                    // gap: 36px;
+                    border-radius: 12px;
+                    background: var(--neutrals-100, #F5F5F5);
+                    position: relative;
+                    border: none;
+
+                    .cards-card-image {
+                        margin: 0;
+                        text-align: right;
+
+                        img {
+                            width: 240px;
+                            height: 172px;
+                            border-radius: 0 0 12px;
+                            object-fit: contain;
+                            object-position: bottom;
+                        }
+                    }
+
+                    .cards-card-body {
+                        margin: 0;
+                        margin-right: 16px;
+
+                        p {
+                            margin: 0;
+                            color: var(--neutrals-900, #212121);
+                            font-feature-settings: var(--font-features-default);
+                            font-family: var(--body, Inter);
+
+                            // font-size: var(--sub-header-medium-size, 20px);
+                            font-size: 20px;
+                            font-style: normal;
+                            font-weight: 500;
+
+                            // line-height: var(--sub-header-medium-line-height, 28px);
+                            line-height: 28px;
+
+                            @include media (mobile) {
+                                font-size: 18px;
+                                line-height: 24px;
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+
+    .our-invest-cont3 {
+        padding-top: 40px;
+
+        p.comlist {
+            color: var(--text-body, #424242);
+            text-align: center;
+            font-feature-settings: var(--font-features-default);
+            font-family: var(--body, Inter);
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 400;
+
+            // line-height: var(--body-medium-regular-line-height, 24px);
+            line-height: 24px;
+            margin: 0;
+            padding: 0 127px;
+
+            @include media (tab) {
+                padding: 0;
+            }
+
+            @include media (mobile) {
+                padding: 0;
+                font-size: 16px;
+                line-height: 24px;
+            }
+        }
+    }
+}

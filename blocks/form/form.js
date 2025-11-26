@@ -1,5 +1,6 @@
 /*    */
 import createField from './form-fields.js';
+import dataMapMoObj from '../../scripts/constant.js';
 
 export async function createForm(formHref, submitHref) {
   const {
@@ -116,7 +117,7 @@ export default async function decorate(block) {
       event.target.value = sanitizedValue;
     };
     phno.addEventListener('input', sanitizeInput);
-    updateSelectIds('countrySelect', 'countryLabel');
+    dataMapMoObj.updateSelectIds('countrySelect', 'countryLabel');
   }
 
   // Change select id and its label
@@ -132,4 +133,5 @@ export default async function decorate(block) {
     labelEl.remove();
     selectEl.setAttribute('aria-label', 'Select country code');
   }
+  dataMapMoObj.updateSelectIds = updateSelectIds;
 }

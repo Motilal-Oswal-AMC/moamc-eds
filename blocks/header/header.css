@@ -1300,11 +1300,12 @@ header nav .header-top .header-top-sec1::before {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
+    width: 100vw;
     height: 48px;
     background-color: var(--neutrals-white);
     z-index: 0;
-
+    overflow: hidden;
+    
     /* box-shadow: 0 -1px 3px #0003; */
 }
 
@@ -1867,6 +1868,7 @@ header nav .header-top .default-content-wrapper .header-top-sec1 .header-top-sub
         background-color: transparent;
         color: unset;
         margin: 0;
+
         /* padding-left: 40%; */
 
         /* overflow: unset;

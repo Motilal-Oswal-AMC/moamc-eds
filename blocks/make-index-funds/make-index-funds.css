@@ -246,18 +246,18 @@
 }
 
 @media (max-width: 768px) {
-  .swiper-pagination.swiper-pagination-bullets.swiper-pagination-horizontal {
+  .make-index-funds-container .swiper-pagination.swiper-pagination-bullets.swiper-pagination-horizontal {
     bottom: 70px;
   }
 }
 @media (max-width: 768px) and (max-width: 768px) {
-  .swiper-pagination.swiper-pagination-bullets.swiper-pagination-horizontal {
+  .make-index-funds-container .swiper-pagination.swiper-pagination-bullets.swiper-pagination-horizontal {
     bottom: 115px;
     top: unset;
   }
 }
 @media (max-width: 768px) {
-  .swiper-pagination.swiper-pagination-bullets.swiper-pagination-horizontal .swiper-pagination-bullet {
+  .make-index-funds-container .swiper-pagination.swiper-pagination-bullets.swiper-pagination-horizontal .swiper-pagination-bullet {
     width: 50px;
     height: 2px;
     margin: 0 !important;
@@ -265,7 +265,7 @@
     border-radius: unset;
     opacity: unset;
   }
-  .swiper-pagination.swiper-pagination-bullets.swiper-pagination-horizontal .swiper-pagination-bullet-active {
+  .make-index-funds-container .swiper-pagination.swiper-pagination-bullets.swiper-pagination-horizontal .swiper-pagination-bullet-active {
     background-color: #2E2A94;
     border-radius: 2px;
     opacity: unset;
