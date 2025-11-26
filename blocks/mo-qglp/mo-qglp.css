@@ -1,5 +1,4 @@
 @import "../../../styles/fonts.css";
-
 .mo-qglp-container .mo-qglp {
   list-style: none;
   margin: 0;
@@ -8,8 +7,7 @@
   grid-template-columns: repeat(auto-fill, minmax(257px, 1fr));
   gap: 16px;
 }
-
-@media (width <= 768px) {
+@media (max-width: 768px) {
   .mo-qglp-container .mo-qglp {
     display: flex;
     flex-wrap: wrap;
@@ -17,7 +15,6 @@
     list-style: none;
   }
 }
-
 .mo-qglp-container .mo-qglp > div {
   display: flex;
   width: 296px;
@@ -29,19 +26,17 @@
   border-radius: 8px;
   border: 1px solid #B9BBFF;
   background: var(--neutrals-white);
-  box-shadow: 0 0 8px 0 rgb(0 0 0 / 6%);
+  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.06);
 }
-
-@media (width <= 768px) {
+@media (max-width: 768px) {
   .mo-qglp-container .mo-qglp > div {
     gap: 4px;
     width: 48.2%;
     height: 164px;
     padding: 4px;
-    box-shadow: 0 0 1.788px 0 rgb(0 0 0 / 6%);
+    box-shadow: 0 0 1.788px 0 rgba(0, 0, 0, 0.06);
   }
 }
-
 .mo-qglp-container .mo-qglp > div .invest-philo-inner-text1 {
   min-height: 232px;
   display: flex;
@@ -53,20 +48,17 @@
   border-radius: 12px;
   border: 1px solid var(--neutrals-200);
   background: #F8F8FF;
-  box-shadow: 0 0 24px 0 rgb(0 0 0 / 4%);
+  box-shadow: 0 0 24px 0 rgba(0, 0, 0, 0.04);
 }
-
-@media (width <= 768px) {
+@media (max-width: 768px) {
   .mo-qglp-container .mo-qglp > div .invest-philo-inner-text1 {
     min-height: 136px;
     padding: 5.365px 2.682px;
   }
 }
-
 .mo-qglp-container .mo-qglp > div .invest-philo-inner-text1 p {
   margin: 0;
 }
-
 .mo-qglp-container .mo-qglp > div .invest-philo-inner-text1 p a {
   margin: 0;
   color: var(--blue-1800-primary, #2E2A94);
@@ -89,8 +81,7 @@
   border-radius: unset;
   padding: 58px;
 }
-
-@media (width <= 768px) {
+@media (max-width: 768px) {
   .mo-qglp-container .mo-qglp > div .invest-philo-inner-text1 p a {
     font-size: 80px;
     font-style: normal;
@@ -99,7 +90,6 @@
     padding: inherit;
   }
 }
-
 .mo-qglp-container .mo-qglp > div .invest-philo-inner-text2 {
   display: flex;
   padding: 0 12px;
@@ -107,13 +97,11 @@
   align-items: center;
   align-self: stretch;
 }
-
-@media (width <= 768px) {
+@media (max-width: 768px) {
   .mo-qglp-container .mo-qglp > div .invest-philo-inner-text2 {
     justify-content: center;
   }
 }
-
 .mo-qglp-container .mo-qglp > div .invest-philo-inner-text2 .invest-philo-list1 {
   margin: 0;
   color: var(--blue-1800-primary, #2E2A94);
@@ -124,12 +112,11 @@
   font-weight: 500;
   line-height: var(--body-medium-medium-line-height, 20px);
 }
-
-@media (width <= 768px) {
+@media (max-width: 768px) {
   .mo-qglp-container .mo-qglp > div .invest-philo-inner-text2 .invest-philo-list1 {
     font-size: var(--body-small-regular-size, 14px);
     font-style: normal;
     font-weight: 400;
     line-height: var(--body-small-regular-line-height, 16px);
   }
-}
+}/*# sourceMappingURL=mo-qglp.css.map */

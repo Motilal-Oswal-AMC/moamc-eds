@@ -530,3 +530,37 @@
 }
 
 // Faq css End
+
+
+// NRI accordion Start //
+
+.section.freq-ask-ques.nri-accordion {
+  .faq-our-fund {
+     &>.default-content-wrapper:nth-child(1){
+      p {
+        font-size: 28px;
+        line-height: 32px;
+
+        @include media(mobile) {
+          font-size: 24px;
+          line-height: 28px;
+        }
+
+      }
+    }
+
+    .accordion-wrapper{
+      .accordion{
+        .hidden{
+          display: block;
+        }
+      }
+    }
+
+    &>.default-content-wrapper:nth-child(3){
+      display: none;
+    }
+  }
+}
+
+// NRI accordion End //

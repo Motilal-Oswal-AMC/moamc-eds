@@ -1,5 +1,4 @@
 @import "../../../styles/fonts.css";
-
 .modal.block dialog {
   width: 100%;
   height: 100%;
@@ -8,7 +7,6 @@
   justify-content: center;
   padding: 16px;
 }
-
 .modal.block dialog:focus-visible {
   outline: 3px solid #2E2A94;
   outline-offset: 4px;
@@ -30,12 +28,10 @@
   z-index: 10;
   cursor: pointer;
 }
-
 .modal.block dialog .risk-meter .close-button:focus-visible {
   outline: 3px dashed #FFF;
   outline-offset: 4px;
 }
-
 .modal.block dialog .risk-meter .close-button .icon.icon-close::before,
 .modal.block dialog .risk-meter .close-button .icon.icon-close::after {
   width: 13px;
@@ -52,11 +48,10 @@
   justify-content: center;
   border-radius: 8px;
   background: #FFF;
-  box-shadow: 0 4px 12px 0 rgb(0 0 0 / 5%);
+  box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.05);
   height: auto;
 }
-
-@media (width <= 768px) {
+@media (max-width: 768px) {
   .modal.block dialog > .modal-content.risk-meter {
     max-width: 91.4%;
   }
@@ -70,25 +65,21 @@
   gap: 48px;
   flex-direction: column-reverse;
 }
-
-@media (width <= 768px) {
+@media (max-width: 768px) {
   .section.risk-o-meter-container {
     gap: 16px;
   }
 }
-
 .section.risk-o-meter-container.risk-container {
   margin: 0;
   padding: 16px;
 }
-
-@media (width <= 768px) {
+@media (max-width: 768px) {
   .section.risk-o-meter-container.risk-container {
     padding: 40px 16px;
     gap: 32px;
   }
 }
-
 .section.risk-o-meter-container .risk-o-meter {
   display: flex;
   justify-content: space-between;
@@ -96,27 +87,23 @@
   flex-direction: row-reverse;
   padding: 0 33px;
 }
-
-@media (width <= 768px) {
+@media (max-width: 768px) {
   .section.risk-o-meter-container .risk-o-meter {
     flex-direction: column-reverse;
     padding: 0;
     gap: 40px;
   }
 }
-
 .section.risk-o-meter-container .corner-1,
 .section.risk-o-meter-container .corner-2 {
   text-align: center;
 }
-
-@media (width <= 768px) {
+@media (max-width: 768px) {
   .section.risk-o-meter-container .corner-1,
   .section.risk-o-meter-container .corner-2 {
     padding: 0 45px;
   }
 }
-
 .section.risk-o-meter-container .corner-1 p,
 .section.risk-o-meter-container .corner-2 p {
   margin: 0;
@@ -128,47 +115,41 @@
   font-feature-settings: "ss01" on, "ss04" on, "cv01" on, "cv02" on, "cv03" on, "cv04" on, "cv06" on, "cv09" on, "cv10" on, "cv11" on;
   font-weight: 600;
 }
-
 .section.risk-o-meter-container .corner-1 .column-1,
 .section.risk-o-meter-container .corner-2 .column-1 {
   padding-bottom: 10px;
 }
-
 .section.risk-o-meter-container .corner-1 .column-2,
 .section.risk-o-meter-container .corner-2 .column-2 {
   height: 160px;
 }
-
-@media (width <= 768px) {
+@media (max-width: 768px) {
   .section.risk-o-meter-container .corner-1 .column-2,
   .section.risk-o-meter-container .corner-2 .column-2 {
     height: 160px;
     width: 250px;
   }
 }
-
 .section.risk-o-meter-container .corner-1 .column-2 img,
 .section.risk-o-meter-container .corner-2 .column-2 img {
   height: 100%;
   max-width: 100%;
+  -o-object-fit: contain;
      object-fit: contain;
   alt: "";
 }
-
 .section.risk-o-meter-container > .default-content-wrapper {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 10px;
 }
-
-@media (width <= 768px) {
+@media (max-width: 768px) {
   .section.risk-o-meter-container > .default-content-wrapper {
     margin: 0;
     padding: 0;
   }
 }
-
 .section.risk-o-meter-container > .default-content-wrapper h3.defone1 {
   margin: 0;
   padding: 0;
@@ -179,14 +160,12 @@
   font-feature-settings: "ss01" on, "ss04" on, "cv01" on, "cv02" on, "cv03" on, "cv04" on, "cv06" on, "cv09" on, "cv10" on, "cv11" on;
   font-weight: 600;
 }
-
-@media (width <= 768px) {
+@media (max-width: 768px) {
   .section.risk-o-meter-container > .default-content-wrapper h3.defone1 {
     font-size: var(--body-medium-semibold-size);
     line-height: var(--body-medium-semibold-line-height);
   }
 }
-
 .section.risk-o-meter-container > .default-content-wrapper h3.defone1 a {
   font-size: var(--body-large-semibold-size);
   line-height: var(--body-large-semibold-line-height);
@@ -195,31 +174,30 @@
   font-feature-settings: "ss01" on, "ss04" on, "cv01" on, "cv02" on, "cv03" on, "cv04" on, "cv06" on, "cv09" on, "cv10" on, "cv11" on;
   font-weight: 600;
 }
-
-@media (width <= 768px) {
+@media (max-width: 768px) {
   .section.risk-o-meter-container > .default-content-wrapper h3.defone1 a {
     font-size: var(--body-medium-semibold-size);
     line-height: var(--body-medium-semibold-line-height);
   }
 }
-
 .section.risk-o-meter-container > .default-content-wrapper h3.defone1 a:focus-visible {
   outline: 2px dashed #2E2A94;
   outline-offset: 4px;
 }
-
 .section.risk-o-meter-container > .default-content-wrapper ul.defone2 {
   padding-left: 24px;
   margin: 0;
 }
-
-@media (width <= 768px) {
+@media (max-width: 768px) {
   .section.risk-o-meter-container > .default-content-wrapper ul.defone2 {
     margin: 0;
   }
 }
-
 .section.risk-o-meter-container > .default-content-wrapper ul.defone2 li.defli {
+  color: #616161;
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  line-height: 20px;
   font-size: var(--body-small-regular-size);
   line-height: var(--label-large-line-height);
   color: var(--neutrals-800);
@@ -227,14 +205,12 @@
   font-feature-settings: "ss01" on, "ss04" on, "cv01" on, "cv02" on, "cv03" on, "cv04" on, "cv06" on, "cv09" on, "cv10" on, "cv11" on;
   font-weight: 400;
 }
-
-@media (width <= 768px) {
+@media (max-width: 768px) {
   .section.risk-o-meter-container > .default-content-wrapper ul.defone2 li.defli {
     font-size: var(--paragraph-small-size);
     line-height: var(--paragraph-small-line-height);
   }
 }
-
 .section.risk-o-meter-container > .default-content-wrapper p.defone3 {
   font-size: var(--body-small-regular-size);
   line-height: var(--label-large-line-height);
@@ -245,18 +221,15 @@
   margin: 0;
   display: flex;
 }
-
 .section.risk-o-meter-container > .default-content-wrapper p.defone3 .comlist.defthree1 {
   color: var(--blue-1-400);
 }
-
-@media (width <= 768px) {
+@media (max-width: 768px) {
   .section.risk-o-meter-container > .default-content-wrapper p.defone3 {
     font-size: var(--paragraph-small-size);
     line-height: var(--paragraph-small-line-height);
   }
 }
-
 .section.risk-o-meter-container > .default-content-wrapper p.defone3 a.deftwo1 {
   font-size: var(--body-small-regular-size);
   line-height: var(--label-large-line-height);
@@ -266,14 +239,12 @@
   font-weight: 400;
   text-decoration: none;
 }
-
-@media (width <= 768px) {
+@media (max-width: 768px) {
   .section.risk-o-meter-container > .default-content-wrapper p.defone3 a.deftwo1 {
     font-size: var(--paragraph-small-size);
     line-height: var(--paragraph-small-line-height);
   }
 }
-
 .section.risk-o-meter-container > .default-content-wrapper p.defone3 a.deftwo1:focus-visible {
   outline: 2px dashed #5659FA;
   outline-offset: 3px;
@@ -286,14 +257,12 @@
   flex-direction: column;
   gap: 24px;
 }
-
-@media (width <= 768px) {
+@media (max-width: 768px) {
   .section.product-label.risk-o-meter-container {
     padding: 40px 16px;
     margin: unset !important;
   }
 }
-
 .section.product-label.risk-o-meter-container > div:first-child h2 {
   margin: 0;
   font-size: var(--body-xlarge-bold-size);
@@ -303,29 +272,25 @@
   font-feature-settings: "ss01" on, "ss04" on, "cv01" on, "cv02" on, "cv03" on, "cv04" on, "cv06" on, "cv09" on, "cv10" on, "cv11" on;
   font-weight: 600;
 }
-
 .section.product-label.risk-o-meter-container .risk-wrapper {
   display: flex;
   flex-direction: column-reverse;
   gap: 16px;
   border-radius: 8px;
   background: #FFF;
-  box-shadow: 0 4px 12px 0 rgb(0 0 0 / 5%);
+  box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.05);
   padding: 24px 16px;
 }
-
-@media (width <= 768px) {
+@media (max-width: 768px) {
   .section.product-label.risk-o-meter-container .risk-wrapper {
     padding: 0;
     background: inherit;
     box-shadow: none;
   }
 }
-
 .section.product-label.risk-o-meter-container .risk-wrapper .risk-o-meter-wrapper.risk2 {
   width: 100%;
 }
-
 .section.product-label.risk-o-meter-container .risk-wrapper .risk-o-meter-wrapper.risk2 .risk-o-meter {
   display: flex;
   justify-content: space-between;
@@ -333,33 +298,29 @@
   padding: 0 40px;
   margin: 32px 0 8px;
 }
-
-@media (width <= 768px) {
+@media (max-width: 768px) {
   .section.product-label.risk-o-meter-container .risk-wrapper .risk-o-meter-wrapper.risk2 .risk-o-meter {
     gap: 40px;
     margin-bottom: 32px;
   }
 }
-
 .section.product-label.risk-o-meter-container .risk-wrapper .risk-o-meter-wrapper.risk2 .risk-o-meter .risk-meter-cont.corner-1 .column-1 p,
 .section.product-label.risk-o-meter-container .risk-wrapper .risk-o-meter-wrapper.risk2 .risk-o-meter .risk-meter-cont.corner-2 .column-1 p {
   color: #242177;
-  font-family: Inter, sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 18px;
   font-weight: 500;
   line-height: 24px;
 }
-
 .section.product-label.risk-o-meter-container .risk-wrapper .risk3 {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 10px;
 }
-
 .section.product-label.risk-o-meter-container .risk-wrapper .risk3 h3 {
   font-size: 18px;
   line-height: 24px;
   color: #242177;
-  font-family: Inter, sans-serif;
-}
+  font-family: "Inter", sans-serif;
+}/*# sourceMappingURL=risk-o-meter.css.map */

@@ -1,5 +1,4 @@
 @import "../../../styles/fonts.css";
-
 .section.login-page-container {
   max-width: 1440px;
   width: 100%;
@@ -10,8 +9,7 @@
   gap: 16px;
   background-color: var(--surface-background);
 }
-
-@media (width <= 768px) {
+@media (max-width: 768px) {
   .section.login-page-container {
     display: flex;
     padding: var(--spacing-28) var(--spacing-20) var(--spacing-40) var(--spacing-20);
@@ -20,18 +18,15 @@
     align-self: stretch;
   }
 }
-
 .section.login-page-container .login-image-item-wrapper {
   max-width: 504px;
   width: 100%;
 }
-
 .section.login-page-container .login-image-item-wrapper .login-image-item {
   display: flex;
   flex-direction: column;
   gap: var(--spacing-12);
 }
-
 .section.login-page-container .login-image-item-wrapper .login-image-item .login-image-sub-item1 .comlist.login-image-inner-item1 {
   max-width: 504px;
   width: 100%;
@@ -44,31 +39,26 @@
   font-feature-settings: "ss01" on, "ss04" on, "cv01" on, "cv02" on, "cv03" on, "cv04" on, "cv06" on, "cv09" on, "cv10" on, "cv11" on;
   font-weight: 600;
 }
-
-@media (width <= 768px) {
+@media (max-width: 768px) {
   .section.login-page-container .login-image-item-wrapper .login-image-item .login-image-sub-item1 .comlist.login-image-inner-item1 {
     font-size: var(--sub-header-large-size);
     line-height: 28px;
   }
 }
-
-@media (width <= 768px) {
+@media (max-width: 768px) {
   .section.login-page-container .login-image-item-wrapper .login-image-item .login-image-sub-item2 {
     display: none;
   }
 }
-
 .section.login-page-container .login-image-item-wrapper .login-image-item .login-image-sub-item2 .login-image-sub-item1 {
   padding: 0 17.5px;
 }
-
 .section.login-page-container .login-image-item-wrapper .login-image-item .login-image-sub-item2 .login-image-sub-item1 img {
   max-width: 496px;
   width: 100%;
   max-height: 264px;
   height: 100%;
 }
-
 .section.login-page-container .login-page-wrapper {
   display: flex;
   max-width: 504px;
@@ -81,20 +71,17 @@
   border-radius: var(--border-radius-16);
   border: 1px solid #b9bbff;
   background: var(--surface-background, #fff);
-  box-shadow: 0 0 8px 0 rgb(0 0 0 / 6%);
+  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.06);
 }
-
-@media (width <= 768px) {
+@media (max-width: 768px) {
   .section.login-page-container .login-page-wrapper {
     padding: 20px;
   }
 }
-
 .section.login-page-container .login-page-wrapper .main-login-page {
   display: flex;
   flex-direction: column;
 }
-
 .section.login-page-container .login-page-wrapper .main-login-page .login-pan-label {
   display: flex;
   padding: var(--spacing-none);
@@ -104,14 +91,12 @@
   align-self: stretch;
   padding-bottom: 36px;
 }
-
-@media (width <= 768px) {
+@media (max-width: 768px) {
   .section.login-page-container .login-page-wrapper .main-login-page .login-pan-label {
     gap: var(--spacing-24);
     padding-bottom: 48px;
   }
 }
-
 .section.login-page-container .login-page-wrapper .main-login-page .login-pan-label .user-pan-para {
   font-style: normal;
   margin: 0;
@@ -122,19 +107,16 @@
   font-feature-settings: "ss01" on, "ss04" on, "cv01" on, "cv02" on, "cv03" on, "cv04" on, "cv06" on, "cv09" on, "cv10" on, "cv11" on;
   font-weight: 500;
 }
-
-@media (width <= 768px) {
+@media (max-width: 768px) {
   .section.login-page-container .login-page-wrapper .main-login-page .login-pan-label .user-pan-para {
     font-size: 18px;
     line-height: var(--paragraph-medium-line-height);
   }
 }
-
 .section.login-page-container .login-page-wrapper .main-login-page .login-pan-label .user-input-error {
   width: 100%;
   position: relative;
 }
-
 .section.login-page-container .login-page-wrapper .main-login-page .login-pan-label .user-input-error .input-lable {
   overflow: hidden;
   font-style: normal;
@@ -149,7 +131,6 @@
   font-feature-settings: "ss01" on, "ss04" on, "cv01" on, "cv02" on, "cv03" on, "cv04" on, "cv06" on, "cv09" on, "cv10" on, "cv11" on;
   font-weight: 400;
 }
-
 .section.login-page-container .login-page-wrapper .main-login-page .login-pan-label .user-input-error .user-input {
   max-width: 372px;
   width: 100%;
@@ -169,7 +150,6 @@
   font-feature-settings: "ss01" on, "ss04" on, "cv01" on, "cv02" on, "cv03" on, "cv04" on, "cv06" on, "cv09" on, "cv10" on, "cv11" on;
   font-weight: 400;
 }
-
 .section.login-page-container .login-page-wrapper .main-login-page .login-pan-label .user-input-error .error-login {
   font-style: normal;
   position: absolute;
@@ -181,7 +161,6 @@
   font-feature-settings: "ss01" on, "ss04" on, "cv01" on, "cv02" on, "cv03" on, "cv04" on, "cv06" on, "cv09" on, "cv10" on, "cv11" on;
   font-weight: 400;
 }
-
 .section.login-page-container .login-page-wrapper .main-login-page .login-pan-label .user-input-error .para-succ {
   display: flex;
   align-items: center;
@@ -189,7 +168,6 @@
   position: absolute;
   top: 84%;
 }
-
 .section.login-page-container .login-page-wrapper .main-login-page .login-pan-label .user-input-error .para-succ .succ-para {
   margin: 0;
   padding-top: 8px;
@@ -200,28 +178,24 @@
   font-feature-settings: "ss01" on, "ss04" on, "cv01" on, "cv02" on, "cv03" on, "cv04" on, "cv06" on, "cv09" on, "cv10" on, "cv11" on;
   font-weight: 400;
 }
-
 .section.login-page-container .login-page-wrapper .main-login-page .response-block .kycblock {
   display: flex;
   flex-direction: column;
   gap: 36px;
   padding-bottom: 36px;
 }
-
-@media (width <= 768px) {
+@media (max-width: 768px) {
   .section.login-page-container .login-page-wrapper .main-login-page .response-block .kycblock {
     gap: 40px;
     padding-bottom: 20px;
   }
 }
-
 .section.login-page-container .login-page-wrapper .main-login-page .response-block .kycblock .enter-input-block {
   display: flex;
   flex-direction: column;
   gap: 8px;
   position: relative;
 }
-
 .section.login-page-container .login-page-wrapper .main-login-page .response-block .kycblock .enter-input-block .enter-label {
   font-style: normal;
   font-size: var(--label-small-size);
@@ -231,28 +205,24 @@
   font-feature-settings: "ss01" on, "ss04" on, "cv01" on, "cv02" on, "cv03" on, "cv04" on, "cv06" on, "cv09" on, "cv10" on, "cv11" on;
   font-weight: 400;
 }
-
 .section.login-page-container .login-page-wrapper .main-login-page .response-block .kycblock .enter-input-block .input-resend {
   display: flex;
   align-items: center;
   gap: 16px;
 }
-
-@media (width <= 768px) {
+@media (max-width: 768px) {
   .section.login-page-container .login-page-wrapper .main-login-page .response-block .kycblock .enter-input-block .input-resend {
     flex-direction: column;
     align-items: unset;
     gap: 40px;
   }
 }
-
 .section.login-page-container .login-page-wrapper .main-login-page .response-block .kycblock .enter-input-block .input-resend .otp-inputs-block {
   display: flex;
   height: 40px;
   align-items: flex-start;
   gap: var(--spacing-8);
 }
-
 .section.login-page-container .login-page-wrapper .main-login-page .response-block .kycblock .enter-input-block .input-resend .otp-inputs-block .otp-input {
   display: flex;
   width: 40px;
@@ -271,7 +241,6 @@
   font-feature-settings: "ss01" on, "ss04" on, "cv01" on, "cv02" on, "cv03" on, "cv04" on, "cv06" on, "cv09" on, "cv10" on, "cv11" on;
   font-weight: 600;
 }
-
 .section.login-page-container .login-page-wrapper .main-login-page .response-block .kycblock .enter-input-block .input-resend .otp-inputs-block .otp-input:focus {
   border-radius: var(--border-radius-8, 8px);
   border: var(--border-width-02, 2px) solid var(--strokes-typing, #1887d2);
@@ -279,23 +248,20 @@
   text-align: center;
   font-weight: 600;
 }
-
 .section.login-page-container .login-page-wrapper .main-login-page .response-block .kycblock .enter-input-block .input-resend .otp-inputs-block .otp-input-error {
   border-radius: var(--border-radius-8, 8px);
   border: var(--border-width-01, 1px) solid var(--strokes-error, #ee212e);
 }
-
 .section.login-page-container .login-page-wrapper .main-login-page .response-block .kycblock .enter-input-block .input-resend .otp-inputs-block .otp-input-succ {
   border-radius: var(--border-radius-8, 8px);
   border: var(--border-width-01, 1px) solid var(--strokes-success, #00a850);
 }
-
 .section.login-page-container .login-page-wrapper .main-login-page .response-block .kycblock .enter-input-block .input-resend .resend {
   margin: 0;
   font-style: normal;
   text-decoration-line: underline;
   text-decoration-style: solid;
-  text-decoration-skip: ink;
+  -webkit-text-decoration-skip: ink;
           text-decoration-skip-ink: auto;
   text-decoration-thickness: auto;
   text-underline-offset: 20%; /* 2.8px */
@@ -308,7 +274,6 @@
   font-feature-settings: "ss01" on, "ss04" on, "cv01" on, "cv02" on, "cv03" on, "cv04" on, "cv06" on, "cv09" on, "cv10" on, "cv11" on;
   font-weight: 400;
 }
-
 .section.login-page-container .login-page-wrapper .main-login-page .response-block .kycblock .enter-input-block .incorrect-otp {
   font-style: normal;
   position: absolute;
@@ -320,23 +285,19 @@
   font-feature-settings: "ss01" on, "ss04" on, "cv01" on, "cv02" on, "cv03" on, "cv04" on, "cv06" on, "cv09" on, "cv10" on, "cv11" on;
   font-weight: 400;
 }
-
-@media (width <= 768px) {
+@media (max-width: 768px) {
   .section.login-page-container .login-page-wrapper .main-login-page .response-block .kycblock .enter-input-block .incorrect-otp {
     top: 58%;
   }
 }
-
 .section.login-page-container .login-page-wrapper .main-login-page .response-block .kycblock .otp-para-block {
   padding-top: 36px;
 }
-
-@media (width <= 768px) {
+@media (max-width: 768px) {
   .section.login-page-container .login-page-wrapper .main-login-page .response-block .kycblock .otp-para-block {
     padding-top: 12px;
   }
 }
-
 .section.login-page-container .login-page-wrapper .main-login-page .response-block .kycblock .otp-para-block .otp-para {
   margin: 0;
   font-style: normal;
@@ -347,19 +308,16 @@
   font-feature-settings: "ss01" on, "ss04" on, "cv01" on, "cv02" on, "cv03" on, "cv04" on, "cv06" on, "cv09" on, "cv10" on, "cv11" on;
   font-weight: 400;
 }
-
 .section.login-page-container .login-page-wrapper .main-login-page .response-block .passcode-main {
   display: flex;
   flex-direction: column;
   gap: 40px;
   padding-bottom: 20px;
 }
-
 .section.login-page-container .login-page-wrapper .main-login-page .response-block .passcode-main .label-pass {
   padding-bottom: 40px;
   position: relative;
 }
-
 .section.login-page-container .login-page-wrapper .main-login-page .response-block .passcode-main .label-pass .passcode-label {
   font-style: normal;
   font-size: var(--label-small-size);
@@ -369,13 +327,11 @@
   font-feature-settings: "ss01" on, "ss04" on, "cv01" on, "cv02" on, "cv03" on, "cv04" on, "cv06" on, "cv09" on, "cv10" on, "cv11" on;
   font-weight: 400;
 }
-
 .section.login-page-container .login-page-wrapper .main-login-page .response-block .passcode-main .label-pass .pass-input {
   display: flex;
   gap: 8px;
   align-items: center;
 }
-
 .section.login-page-container .login-page-wrapper .main-login-page .response-block .passcode-main .label-pass .pass-input .pass-code-input {
   display: flex;
   width: 40px;
@@ -393,19 +349,16 @@
   font-weight: 600;
   /* stylelint-disable-next-line custom-property-pattern */
 }
-
 .section.login-page-container .login-page-wrapper .main-login-page .response-block .passcode-main .label-pass .pass-input .succ-pass {
   stroke-width: 1px;
   border: 1px solid var(--strokes-success);
   color: var(--icon-success);
 }
-
 .section.login-page-container .login-page-wrapper .main-login-page .response-block .passcode-main .label-pass .pass-input .error-pass {
   stroke-width: 1px;
   border: 1px solid var(--strokes-error);
   color: var(--icon-error);
 }
-
 .section.login-page-container .login-page-wrapper .main-login-page .response-block .passcode-main .label-pass .pass-input .pass-code-input:focus {
   border-radius: var(--border-radius-8);
   border: var(--border-width-02) solid var(--strokes-typing);
@@ -413,7 +366,6 @@
   text-align: center;
   font-weight: 600;
 }
-
 .section.login-page-container .login-page-wrapper .main-login-page .response-block .passcode-main .label-pass .error-para {
   font-style: normal;
   position: absolute;
@@ -425,23 +377,20 @@
   font-feature-settings: "ss01" on, "ss04" on, "cv01" on, "cv02" on, "cv03" on, "cv04" on, "cv06" on, "cv09" on, "cv10" on, "cv11" on;
   font-weight: 400;
 }
-
-@media (width <= 768px) {
+@media (max-width: 768px) {
   .section.login-page-container .login-page-wrapper .main-login-page .response-block .passcode-main .label-pass .error-para {
     top: 58%;
   }
 }
-
 .section.login-page-container .login-page-wrapper .main-login-page .response-block .passcode-main .forget-pass {
   margin: 0;
 }
-
 .section.login-page-container .login-page-wrapper .main-login-page .response-block .passcode-main .forget-pass .pass-para {
   margin: 0;
   font-style: normal;
   text-decoration-line: underline;
   text-decoration-style: solid;
-  text-decoration-skip: ink;
+  -webkit-text-decoration-skip: ink;
           text-decoration-skip-ink: auto;
   text-decoration-thickness: auto;
   text-underline-offset: 20%; /* 2.8px */
@@ -454,7 +403,6 @@
   font-feature-settings: "ss01" on, "ss04" on, "cv01" on, "cv02" on, "cv03" on, "cv04" on, "cv06" on, "cv09" on, "cv10" on, "cv11" on;
   font-weight: 400;
 }
-
 .section.login-page-container .login-page-wrapper .main-login-page .response-block .main-register .text-status-block {
   display: flex;
   padding: var(--spacing-16);
@@ -466,13 +414,11 @@
   border: 1px solid var(--icon-warning);
   background: #fff3e0;
 }
-
 .section.login-page-container .login-page-wrapper .main-login-page .response-block .main-register .text-status-block .radio-text {
   display: flex;
   align-items: center;
   gap: 12px;
 }
-
 .section.login-page-container .login-page-wrapper .main-login-page .response-block .main-register .text-status-block .radio-text .radio-text {
   margin: 0;
   font-style: normal;
@@ -483,19 +429,16 @@
   font-feature-settings: "ss01" on, "ss04" on, "cv01" on, "cv02" on, "cv03" on, "cv04" on, "cv06" on, "cv09" on, "cv10" on, "cv11" on;
   font-weight: 400;
 }
-
 .section.login-page-container .login-page-wrapper .main-login-page .response-block .main-register .text-status-block .radio-text .text-radio-input {
   display: flex;
   align-items: center;
   gap: 20px;
 }
-
 .section.login-page-container .login-page-wrapper .main-login-page .response-block .main-register .text-status-block .radio-text .text-radio-input .radio-label-input {
   display: flex;
   gap: 4px;
   align-items: center;
 }
-
 .section.login-page-container .login-page-wrapper .main-login-page .response-block .main-register .text-status-block .radio-text .text-radio-input .radio-label-input .radio-label {
   font-style: normal;
   font-size: var(--body-small-medium-size);
@@ -505,7 +448,6 @@
   font-feature-settings: "ss01" on, "ss04" on, "cv01" on, "cv02" on, "cv03" on, "cv04" on, "cv06" on, "cv09" on, "cv10" on, "cv11" on;
   font-weight: 500;
 }
-
 .section.login-page-container .login-page-wrapper .main-login-page .response-block .main-register .text-status-block .radio-text .text-radio-input .radio-label-input .radio-input {
   width: 24px;
   height: 24px;
@@ -513,13 +455,11 @@
   color: #757575;
   border: 2px solid #757575;
 }
-
 .section.login-page-container .login-page-wrapper .main-login-page .response-block .main-register .text-status-block .disc-text {
   display: flex;
   flex-direction: column;
   gap: 4px;
 }
-
 .section.login-page-container .login-page-wrapper .main-login-page .response-block .main-register .text-status-block .disc-text .text-registered {
   margin: 0;
   font-style: normal;
@@ -530,7 +470,6 @@
   font-feature-settings: "ss01" on, "ss04" on, "cv01" on, "cv02" on, "cv03" on, "cv04" on, "cv06" on, "cv09" on, "cv10" on, "cv11" on;
   font-weight: 400;
 }
-
 .section.login-page-container .login-page-wrapper .main-login-page .response-block .main-register .text-status-block .disc-text .disc-text-all {
   margin: 0;
   font-style: normal;
@@ -541,31 +480,26 @@
   font-feature-settings: "ss01" on, "ss04" on, "cv01" on, "cv02" on, "cv03" on, "cv04" on, "cv06" on, "cv09" on, "cv10" on, "cv11" on;
   font-weight: 400;
 }
-
 .section.login-page-container .login-page-wrapper .main-login-page .response-block .main-register .register-input-block {
   display: flex;
   flex-direction: column;
   gap: 40px;
   padding: 32px 0 40px;
 }
-
-@media (width <= 768px) {
+@media (max-width: 768px) {
   .section.login-page-container .login-page-wrapper .main-login-page .response-block .main-register .register-input-block {
     gap: 36px;
   }
 }
-
 .section.login-page-container .login-page-wrapper .main-login-page .response-block .main-register .register-input-block .name-number-input {
   display: flex;
   gap: 24px;
 }
-
-@media (width <= 768px) {
+@media (max-width: 768px) {
   .section.login-page-container .login-page-wrapper .main-login-page .response-block .main-register .register-input-block .name-number-input {
     flex-direction: column;
   }
 }
-
 .section.login-page-container .login-page-wrapper .main-login-page .response-block .main-register .register-input-block .name-number-input .reg-mob-con-code {
   width: 100%;
   display: flex;
@@ -573,7 +507,6 @@
   align-items: center;
   gap: 12px;
 }
-
 .section.login-page-container .login-page-wrapper .main-login-page .response-block .main-register .register-input-block .name-number-input .label-reg {
   font-style: normal;
   font-size: var(--label-small-size);
@@ -587,13 +520,11 @@
   left: 13px;
   background: white;
 }
-
 .section.login-page-container .login-page-wrapper .main-login-page .response-block .main-register .register-input-block .name-number-input .block-label-input {
   max-width: 372px;
   width: 100%;
   position: relative;
 }
-
 .section.login-page-container .login-page-wrapper .main-login-page .response-block .main-register .register-input-block .name-number-input .block-label-input .input-reg {
   max-width: 372px;
   width: 100%;
@@ -607,12 +538,10 @@
   border-radius: var(--border-radius-8);
   border: var(--border-width-01, 1px) solid var(--strokes-default);
 }
-
 .section.login-page-container .login-page-wrapper .main-login-page .response-block .main-register .register-input-block .name-number-input .block-label-input .contry-code {
   max-width: 112px;
   width: 100%;
 }
-
 .section.login-page-container .login-page-wrapper .main-login-page .response-block .main-register .register-input-block .name-number-input .cont-code {
   max-width: 112px;
   width: 100%;
@@ -625,7 +554,6 @@
   border: var(--border-width-01) solid var(--strokes-default);
   justify-content: center;
 }
-
 .section.login-page-container .login-page-wrapper .main-login-page .response-block .main-register .register-input-block .name-number-input .cont-code .contry-code-para {
   margin: 0;
   font-size: var(--body-medium-regular-size);
@@ -635,24 +563,20 @@
   font-feature-settings: "ss01" on, "ss04" on, "cv01" on, "cv02" on, "cv03" on, "cv04" on, "cv06" on, "cv09" on, "cv10" on, "cv11" on;
   font-weight: 400;
 }
-
 .section.login-page-container .login-page-wrapper .main-login-page .response-block .main-register .register-input-block .email-cty-name {
   display: flex;
   gap: 24px;
 }
-
-@media (width <= 768px) {
+@media (max-width: 768px) {
   .section.login-page-container .login-page-wrapper .main-login-page .response-block .main-register .register-input-block .email-cty-name {
     flex-direction: column;
   }
 }
-
 .section.login-page-container .login-page-wrapper .main-login-page .response-block .main-register .register-input-block .email-cty-name .block-rex {
   max-width: 372px;
   width: 100%;
   position: relative;
 }
-
 .section.login-page-container .login-page-wrapper .main-login-page .response-block .main-register .register-input-block .email-cty-name .block-rex .label-rex {
   font-size: var(--label-small-size);
   line-height: var(--label-small-line-height);
@@ -665,7 +589,6 @@
   left: 13px;
   background: white;
 }
-
 .section.login-page-container .login-page-wrapper .main-login-page .response-block .main-register .register-input-block .email-cty-name .input-rex {
   max-width: 372px;
   width: 100%;
@@ -679,7 +602,6 @@
   border-radius: var(--border-radius-8);
   border: var(--border-width-01, 1px) solid var(--strokes-default);
 }
-
 .section.login-page-container .login-page-wrapper .main-login-page .btn-descr {
   display: flex;
   padding: var(--spacing-none);
@@ -689,7 +611,6 @@
   align-self: stretch;
   border-radius: var(--border-radius-none);
 }
-
 .section.login-page-container .login-page-wrapper .main-login-page .btn-descr .auth.btn {
   max-width: 372px;
   cursor: pointer;
@@ -712,13 +633,11 @@
   font-feature-settings: "ss01" on, "ss04" on, "cv01" on, "cv02" on, "cv03" on, "cv04" on, "cv06" on, "cv09" on, "cv10" on, "cv11" on;
   font-weight: 500;
 }
-
 .section.login-page-container .login-page-wrapper .main-login-page .btn-descr .discr-new-invester {
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
-
 .section.login-page-container .login-page-wrapper .main-login-page .btn-descr .discr-new-invester .discr {
   font-style: normal;
   margin: 0;
@@ -729,20 +648,18 @@
   font-feature-settings: "ss01" on, "ss04" on, "cv01" on, "cv02" on, "cv03" on, "cv04" on, "cv06" on, "cv09" on, "cv10" on, "cv11" on;
   font-weight: 400;
 }
-
-@media (width <= 768px) {
+@media (max-width: 768px) {
   .section.login-page-container .login-page-wrapper .main-login-page .btn-descr .discr-new-invester .discr {
     font-size: var(--paragraph-xsmall-size);
     line-height: var(--paragraph-xsmall-line-height);
   }
 }
-
 .section.login-page-container .login-page-wrapper .main-login-page .btn-descr .discr-new-invester .discr .terms-disc {
   cursor: pointer;
   font-style: normal;
   text-decoration-line: underline;
   text-decoration-style: solid;
-  text-decoration-skip: ink;
+  -webkit-text-decoration-skip: ink;
           text-decoration-skip-ink: auto;
   text-decoration-thickness: auto;
   text-underline-offset: 20%;
@@ -755,7 +672,6 @@
   font-feature-settings: "ss01" on, "ss04" on, "cv01" on, "cv02" on, "cv03" on, "cv04" on, "cv06" on, "cv09" on, "cv10" on, "cv11" on;
   font-weight: 400;
 }
-
 .section.login-page-container .login-page-wrapper .main-login-page .btn-descr .discr-new-invester .new-invest {
   margin: 0;
   font-style: normal;
@@ -766,20 +682,18 @@
   font-feature-settings: "ss01" on, "ss04" on, "cv01" on, "cv02" on, "cv03" on, "cv04" on, "cv06" on, "cv09" on, "cv10" on, "cv11" on;
   font-weight: 400;
 }
-
-@media (width <= 768px) {
+@media (max-width: 768px) {
   .section.login-page-container .login-page-wrapper .main-login-page .btn-descr .discr-new-invester .new-invest {
     font-size: var(--paragraph-small-size);
     line-height: var(--paragraph-small-line-height);
   }
 }
-
 .section.login-page-container .login-page-wrapper .main-login-page .btn-descr .discr-new-invester .new-invest .new-invest-disc {
   cursor: pointer;
   font-style: normal;
   text-decoration-line: underline;
   text-decoration-style: solid;
-  text-decoration-skip: ink;
+  -webkit-text-decoration-skip: ink;
           text-decoration-skip-ink: auto;
   text-decoration-thickness: auto;
   text-underline-offset: 20%;
@@ -796,19 +710,16 @@
 .section.login-register {
   padding: 40px 104px;
 }
-
-@media (width <= 768px) {
+@media (max-width: 768px) {
   .section.login-register {
     padding: 20px;
   }
 }
-
 .section.login-register .login-image-item-wrapper {
   max-width: 400px;
   width: 100%;
 }
-
 .section.login-register .login-page-wrapper {
   max-width: 816px;
   width: 100%;
-}
+}/*# sourceMappingURL=login-page.css.map */

@@ -1,5 +1,4 @@
 @import "../../../styles/fonts.css";
-
 .section.fm-portfolio-container {
   display: flex;
   flex-direction: column;
@@ -9,8 +8,7 @@
   height: 100%;
   overflow: auto;
 }
-
-@media (width <= 768px) {
+@media (max-width: 768px) {
   .section.fm-portfolio-container {
     border-top-left-radius: 32px;
     border-top-right-radius: 32px;
@@ -19,46 +17,38 @@
     padding: 16px 16px 70px;
   }
 }
-
 .section.fm-portfolio-container .default-content-wrapper {
   width: 100%;
   text-align: end;
 }
-
 .section.fm-portfolio-container .default-content-wrapper p {
   margin: unset;
   height: 24px;
 }
-
 .section.fm-portfolio-container .default-content-wrapper p .icon.icon-modal-cross-btn {
   height: 24px;
   width: 24px;
   cursor: pointer;
 }
-
 .section.fm-portfolio-container .fm-portfolio-wrapper {
   max-width: 683px;
   width: 100%;
 }
-
 .section.fm-portfolio-container .fm-portfolio-wrapper .fm-portfolio {
   background: var(--neutrals-white);
   max-width: 100%;
   width: 100%;
 }
-
 .section.fm-portfolio-container .fm-portfolio-wrapper .fm-portfolio .portfolio-composition {
   display: flex;
   flex-direction: column;
   gap: 24px;
 }
-
-@media (width <= 768px) {
+@media (max-width: 768px) {
   .section.fm-portfolio-container .fm-portfolio-wrapper .fm-portfolio .portfolio-composition {
     gap: 44px;
   }
 }
-
 .section.fm-portfolio-container .fm-portfolio-wrapper .fm-portfolio .portfolio-composition .fm-param {
   font-size: var(--body-small-regular-size);
   line-height: var(--label-large-line-height);
@@ -67,52 +57,43 @@
   font-feature-settings: "ss01" on, "ss04" on, "cv01" on, "cv02" on, "cv03" on, "cv04" on, "cv06" on, "cv09" on, "cv10" on, "cv11" on;
   font-weight: 400;
 }
-
-@media (width <= 768px) {
+@media (max-width: 768px) {
   .section.fm-portfolio-container .fm-portfolio-wrapper .fm-portfolio .portfolio-composition .fm-param {
     font-size: var(--paragraph-small-size);
     line-height: var(--paragraph-small-line-height);
     color: var(--text-body);
   }
 }
-
-@media (width <= 768px) {
+@media (max-width: 768px) {
   .section.fm-portfolio-container .fm-portfolio-wrapper .fm-portfolio .portfolio-composition .fm-scheme-table {
     overflow: scroll;
   }
 }
-
 .section.fm-portfolio-container .fm-portfolio-wrapper .fm-portfolio .portfolio-composition .fm-scheme-table table {
   border: 1px solid var(--neutrals-300);
   border-radius: var(--border-radius-8);
   width: 651px;
 }
-
 .section.fm-portfolio-container .fm-portfolio-wrapper .fm-portfolio .portfolio-composition .fm-scheme-table table::-webkit-scrollbar {
   height: 3px;
 }
-
 .section.fm-portfolio-container .fm-portfolio-wrapper .fm-portfolio .portfolio-composition .fm-scheme-table table::-webkit-scrollbar-track {
   background-color: var(--neutrals-white);
   border-radius: 6px;
 }
-
 .section.fm-portfolio-container .fm-portfolio-wrapper .fm-portfolio .portfolio-composition .fm-scheme-table table::-webkit-scrollbar-thumb {
   background-color: #6e6c6c;
   border-radius: 6px;
 }
-
 .section.fm-portfolio-container .fm-portfolio-wrapper .fm-portfolio .portfolio-composition .fm-scheme-table table thead {
   border-bottom: 1px solid var(--neutrals-300);
 }
-
 .section.fm-portfolio-container .fm-portfolio-wrapper .fm-portfolio .portfolio-composition .fm-scheme-table table thead tr,
 .section.fm-portfolio-container .fm-portfolio-wrapper .fm-portfolio .portfolio-composition .fm-scheme-table table thead th {
   border-right: 1px solid var(--neutrals-300);
   height: 41px;
   padding: 12px 8px;
 }
-
 .section.fm-portfolio-container .fm-portfolio-wrapper .fm-portfolio .portfolio-composition .fm-scheme-table table thead tr th {
   font-size: var(--body-small-regular-size);
   line-height: var(--body-small-regular-line-height);
@@ -121,38 +102,32 @@
   font-feature-settings: "ss01" on, "ss04" on, "cv01" on, "cv02" on, "cv03" on, "cv04" on, "cv06" on, "cv09" on, "cv10" on, "cv11" on;
   font-weight: 500;
 }
-
-@media (width <= 768px) {
+@media (max-width: 768px) {
   .section.fm-portfolio-container .fm-portfolio-wrapper .fm-portfolio .portfolio-composition .fm-scheme-table table thead tr th {
     font-size: var(--body-xsmall-medium-size);
     line-height: var(--body-xsmall-medium-line-height);
   }
 }
-
 .section.fm-portfolio-container .fm-portfolio-wrapper .fm-portfolio .portfolio-composition .fm-scheme-table table thead tr:nth-child(2) {
   border-top: 1px solid var(--neutrals-300);
   border-bottom: 1px solid var(--neutrals-300);
 }
-
 .section.fm-portfolio-container .fm-portfolio-wrapper .fm-portfolio .portfolio-composition .fm-scheme-table table thead tr:nth-child(2) th {
   font-size: var(--label-small-size);
   padding: 12px 11px 12px 4px;
   min-width: 80px;
 }
-
-@media (width <= 768px) {
+@media (max-width: 768px) {
   .section.fm-portfolio-container .fm-portfolio-wrapper .fm-portfolio .portfolio-composition .fm-scheme-table table thead tr:nth-child(2) th {
     padding: 12px 16px 12px 4px;
     font-size: var(--body-xsmall-medium-size);
     line-height: var(--body-xsmall-medium-line-height);
   }
 }
-
 .section.fm-portfolio-container .fm-portfolio-wrapper .fm-portfolio .portfolio-composition .fm-scheme-table table thead tr:nth-child(1) th:nth-child(1) {
   min-width: 180px;
   text-align: left;
 }
-
 .section.fm-portfolio-container .fm-portfolio-wrapper .fm-portfolio .portfolio-composition .fm-scheme-table table tbody tr td {
   font-size: var(--paragraph-xsmall-size);
   line-height: var(--paragraph-xsmall-line-height);
@@ -164,15 +139,13 @@
   min-width: 80px;
   text-align: left;
 }
-
-@media (width <= 768px) {
+@media (max-width: 768px) {
   .section.fm-portfolio-container .fm-portfolio-wrapper .fm-portfolio .portfolio-composition .fm-scheme-table table tbody tr td {
     padding: 20px 40px 20px 8px;
     font-size: var(--paragraph-xsmall-size);
     line-height: var(--paragraph-xsmall-line-height);
   }
 }
-
 .section.fm-portfolio-container .fm-portfolio-wrapper .fm-portfolio .portfolio-composition .fm-scheme-table table tbody tr .fundname {
   min-width: 180px;
   padding: 14px 8px;
@@ -184,41 +157,34 @@
   font-feature-settings: "ss01" on, "ss04" on, "cv01" on, "cv02" on, "cv03" on, "cv04" on, "cv06" on, "cv09" on, "cv10" on, "cv11" on;
   font-weight: 500;
 }
-
-@media (width <= 768px) {
+@media (max-width: 768px) {
   .section.fm-portfolio-container .fm-portfolio-wrapper .fm-portfolio .portfolio-composition .fm-scheme-table table tbody tr .fundname {
     font-size: var(--body-xsmall-medium-size);
     line-height: var(--body-xsmall-medium-line-height);
   }
 }
-
 .section.fm-portfolio-container .fm-portfolio-wrapper .fm-portfolio .portfolio-composition .fm-scheme-table table tbody tr:nth-child(even) {
   background-color: var(--neutrals-100);
 }
-
 .section.fm-portfolio-container .fm-portfolio-wrapper .fm-portfolio .fm-details {
   display: flex;
   gap: 16px;
   align-items: center;
 }
-
 .section.fm-portfolio-container .fm-portfolio-wrapper .fm-portfolio .fm-details .fm-img {
   max-width: 61px;
   width: 100%;
   height: 64px;
 }
-
 .section.fm-portfolio-container .fm-portfolio-wrapper .fm-portfolio .fm-details .fm-dealer-details {
   display: flex;
   flex-direction: column;
   gap: 4px;
 }
-
 .section.fm-portfolio-container .fm-portfolio-wrapper .fm-portfolio .fm-details .fm-dealer-details .managername,
 .section.fm-portfolio-container .fm-portfolio-wrapper .fm-portfolio .fm-details .fm-dealer-details .designation {
   margin: unset;
 }
-
 .section.fm-portfolio-container .fm-portfolio-wrapper .fm-portfolio .fm-details .fm-dealer-details .managername {
   font-size: var(--body-large-medium-size);
   line-height: var(--body-large-medium-line-height);
@@ -227,14 +193,12 @@
   font-feature-settings: "ss01" on, "ss04" on, "cv01" on, "cv02" on, "cv03" on, "cv04" on, "cv06" on, "cv09" on, "cv10" on, "cv11" on;
   font-weight: 500;
 }
-
-@media (width <= 768px) {
+@media (max-width: 768px) {
   .section.fm-portfolio-container .fm-portfolio-wrapper .fm-portfolio .fm-details .fm-dealer-details .managername {
     font-size: var(--body-large-semibold-size);
     line-height: var(--body-large-semibold-line-height);
   }
 }
-
 .section.fm-portfolio-container .fm-portfolio-wrapper .fm-portfolio .fm-details .fm-dealer-details .designation {
   font-size: var(--body-medium-regular-size);
   line-height: var(--body-medium-regular-line-height);
@@ -243,14 +207,12 @@
   font-feature-settings: "ss01" on, "ss04" on, "cv01" on, "cv02" on, "cv03" on, "cv04" on, "cv06" on, "cv09" on, "cv10" on, "cv11" on;
   font-weight: 500;
 }
-
-@media (width <= 768px) {
+@media (max-width: 768px) {
   .section.fm-portfolio-container .fm-portfolio-wrapper .fm-portfolio .fm-details .fm-dealer-details .designation {
     font-size: var(--body-small-regular-size);
     line-height: var(--label-large-line-height);
   }
 }
-
 .section.fm-portfolio-container .fm-portfolio-wrapper .fm-portfolio .fm-param p {
   margin: unset;
 }
@@ -261,13 +223,11 @@
   justify-content: end;
   padding: 0;
 }
-
-@media (width <= 768px) {
+@media (max-width: 768px) {
   .modal.modal-journey-fund.block dialog {
     padding: 0;
   }
 }
-
 .modal.modal-journey-fund.block dialog .modal-content {
   max-width: 689px;
   height: 100%;
@@ -276,17 +236,15 @@
   border-radius: 0;
   padding: 0;
 }
-
-@media (width <= 768px) {
+@media (max-width: 768px) {
   .modal.modal-journey-fund.block dialog .modal-content {
     width: 100%;
     height: 90dvh;
     border-radius: 24px;
   }
 }
-
 .modal.modal-journey-fund.block dialog .close-button {
   display: block;
   z-index: -1;
   background-color: transparent;
-}
+}/*# sourceMappingURL=fm-portfolio.css.map */

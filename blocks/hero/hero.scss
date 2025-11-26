@@ -2,8 +2,8 @@
 
 /*   media-feature-range-notation */
 @use "sass:map";
-@use "../../styles/common-theme/css/variables_mixins"as *;
-@use "../../styles/common-theme/css/fluid-typography"as *;
+@use "../../styles/common-theme/css/variables_mixins" as *;
+@use "../../styles/common-theme/css/fluid-typography" as *;
 @import '../swiper/swiper-bundle.min.css';
 
 
@@ -73,7 +73,7 @@
 
                     @include media(mobile) {
                         color: var(--neutrals-white);
-                        font-feature-settings: 'liga'off;
+                        font-feature-settings: 'liga' off;
                         font-family: var(--body);
                         font-size: 36px;
                         font-style: normal;
@@ -678,8 +678,98 @@
 
 
 /*NRI Account Start */
-.mo-inter-business.hero-container.nri-heo{
-background-color: unset;
+.section.mo-inter-business.hero-container.nri-hero {
+    // background-color: red;
+    max-width: 100%;
+    width: 100%;
+    margin: 0 auto;
+
+
+    .hero-wrapper {
+        max-width: 100%;
+        width: 100%;
+
+        @include media(mobile) {
+            padding: 0px;
+        }
+
+        .hero {
+            padding: 119px 0 0;
+            gap: 33px;
+            max-width: 100%;
+            width: 100%;
+
+            @include media(mobile) {
+                padding: 59px 0 0;
+            }
+
+            .mo-inter-sub1 {
+                width: 100%;
+                height: 420px;
+                display: flex;
+                flex-direction: column;
+                justify-content: end;
+                position: relative;
+
+                @include media(mobile) {
+                    height: 277px;
+                    margin: 0;
+                }
+
+                .mo-inter-inner-text1 {
+                    height: 177px;
+                    background: #382AD7;
+
+                    @include media(mobile) {
+                        height: 101px;
+                    }
+
+                    .mo-inter-list1 {
+                        line-height: 0;
+                        height: 100%;
+                        display: block;
+                        max-width: 1366px;
+                        margin: 0 auto;
+                        position: relative;
+
+                        .mo-inter-list-content4 {
+                            max-width: 505.495px;
+                            height: 347.001px;
+                            flex-shrink: 0;
+                            object-fit: cover;
+                            position: absolute;
+                            top: -215px;
+                            left: 28%;
+
+                            @include media(mobile) {
+                                width: 292.464px;
+                                height: 200.765px;
+                                flex-shrink: 0;
+                                left: 28px;
+                                top: -139px;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .mo-inter-sub2 {
+                max-width: 588px;
+
+                @include media(mobile) {
+                    padding: 37px 16px 0px 16px;
+                }
+
+                .mo-inter-inner-text1 {
+                    .mo-inter-list2 {
+                        padding: 0;
+                    }
+                }
+            }
+        }
+
+    }
+
 }
 
 /*NRI Account End */

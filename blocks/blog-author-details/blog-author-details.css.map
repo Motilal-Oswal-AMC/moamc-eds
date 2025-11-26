@@ -1,9 +1,1 @@
-{
-    "version": 3,
-    "mappings": "AAAA,AAAA,MAAM,CAAC;EACH,gBAAgB,EAAE,KAAK;CAC1B",
-    "sources": [
-        "blog-author-details.scss"
-    ],
-    "names": [],
-    "file": "blog-author-details.css"
-}
+{"version":3,"sources":["blog-author-details.scss","blog-author-details.css"],"names":[],"mappings":"AAAA;EACI,uBAAA;ACCJ","file":"blog-author-details.css"}
