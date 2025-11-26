@@ -1,7 +1,8 @@
 /* Reset */
 @import "../../../styles/fonts.css";
 @import "../fund-card/fund-card.css";
-@media (max-width: 768px) {
+
+@media (width <= 768px) {
   body .scroll-lock {
     overflow: hidden;
   }
@@ -11,33 +12,39 @@
   background-color: var(--neutrals-100);
   margin: 0;
 }
+
 .section .our-funds-block-wrapper {
   width: 100%;
   padding: 32px 0 50px;
-  background: radial-gradient(50% 50% at 50% 50%, #e5e7f7 0%, rgba(229, 231, 247, 0) 100%);
+  background: radial-gradient(50% 50% at 50% 50%, #e5e7f7 0%, rgb(229 231 247 / 0%) 100%);
 }
-@media (max-width: 1299px) {
+
+@media (width <= 1299px) {
   .section .our-funds-block-wrapper {
     padding: 32px 16px 50px;
   }
 }
-@media (max-width: 768px) {
+
+@media (width <= 768px) {
   .section .our-funds-block-wrapper {
     padding: 56px 16px 24px;
   }
 }
+
 .section .our-funds-block .fundcontainer {
   display: flex;
   justify-content: space-between;
   gap: 20px;
 }
-@media (max-width: 768px) {
+
+@media (width <= 768px) {
   .section .our-funds-block .fundcontainer {
     flex-direction: column;
     gap: 36px;
     max-width: 100%;
   }
 }
+
 .section .our-funds-block .fundcontainer .block-subitem1 .block-subitem-finelsub1 {
   margin: 0;
   font-size: var(--heading-h2-size);
@@ -47,12 +54,14 @@
   font-feature-settings: "ss01" on, "ss04" on, "cv01" on, "cv02" on, "cv03" on, "cv04" on, "cv06" on, "cv09" on, "cv10" on, "cv11" on;
   font-weight: 600;
 }
-@media (max-width: 768px) {
+
+@media (width <= 768px) {
   .section .our-funds-block .fundcontainer .block-subitem1 .block-subitem-finelsub1 {
     font-size: 34px;
     line-height: 40px;
   }
 }
+
 .section .our-funds-block .fundcontainer .search-trending-wrapper {
   display: flex;
   align-items: center;
@@ -61,18 +70,21 @@
   max-width: 74.676%;
   width: 100%;
 }
-@media (max-width: 1299px) {
+
+@media (width <= 1299px) {
   .section .our-funds-block .fundcontainer .search-trending-wrapper {
     max-width: 73.4%;
     justify-content: space-between;
   }
 }
-@media (max-width: 1025px) {
+
+@media (width <= 1025px) {
   .section .our-funds-block .fundcontainer .search-trending-wrapper {
     max-width: 68.24%;
   }
 }
-@media (max-width: 768px) {
+
+@media (width <= 768px) {
   .section .our-funds-block .fundcontainer .search-trending-wrapper {
     max-width: 100%;
     display: grid;
@@ -80,6 +92,7 @@
     justify-content: unset;
   }
 }
+
 .section .our-funds-block .fundcontainer .search-trending-wrapper .search-input {
   max-width: 83.044%;
   width: 100%;
@@ -91,22 +104,26 @@
   gap: 8px;
   position: relative;
 }
-@media (max-width: 1299px) {
+
+@media (width <= 1299px) {
   .section .our-funds-block .fundcontainer .search-trending-wrapper .search-input {
     max-width: 79%;
   }
 }
-@media (max-width: 1025px) {
+
+@media (width <= 1025px) {
   .section .our-funds-block .fundcontainer .search-trending-wrapper .search-input {
     max-width: 70%;
   }
 }
-@media (max-width: 768px) {
+
+@media (width <= 768px) {
   .section .our-funds-block .fundcontainer .search-trending-wrapper .search-input {
     grid-area: search;
     max-width: 100%;
   }
 }
+
 .section .our-funds-block .fundcontainer .search-trending-wrapper .search-input::before {
   content: "";
   background-image: url("/icons/search-icon-black.svg");
@@ -117,6 +134,7 @@
   height: 24px;
   display: block;
 }
+
 .section .our-funds-block .fundcontainer .search-trending-wrapper .search-input .search {
   width: 100%;
   border: none;
@@ -129,18 +147,22 @@
   font-feature-settings: "ss01" on, "ss04" on, "cv01" on, "cv02" on, "cv03" on, "cv04" on, "cv06" on, "cv09" on, "cv10" on, "cv11" on;
   font-weight: 500;
 }
-@media (max-width: 768px) {
+
+@media (width <= 768px) {
   .section .our-funds-block .fundcontainer .search-trending-wrapper .search-input .search {
     font-size: var(--body-medium-regular-size);
     line-height: var(--body-medium-regular-line-height);
   }
 }
+
 .section .our-funds-block .fundcontainer .search-trending-wrapper .search-input .search::-moz-placeholder {
   visibility: hidden;
 }
+
 .section .our-funds-block .fundcontainer .search-trending-wrapper .search-input .search::placeholder {
   visibility: hidden;
 }
+
 .section .our-funds-block .fundcontainer .search-trending-wrapper .search-input .cancel-search {
   max-width: 24px;
   width: 100%;
@@ -148,10 +170,12 @@
   cursor: pointer;
   display: none;
 }
+
 .section .our-funds-block .fundcontainer .search-trending-wrapper .search-input .cancel-search .cancel-btn {
   width: 100%;
   height: 100%;
 }
+
 .section .our-funds-block .fundcontainer .search-trending-wrapper .search-input .list-search {
   position: absolute;
   top: 100%;
@@ -167,28 +191,34 @@
   list-style: none;
   display: none;
 }
+
 .section .our-funds-block .fundcontainer .search-trending-wrapper .search-input .list-search.no-search-list {
   height: auto;
 }
-@media (max-width: 768px) {
+
+@media (width <= 768px) {
   .section .our-funds-block .fundcontainer .search-trending-wrapper .search-input .list-search {
     max-height: 372px;
   }
 }
+
 .section .our-funds-block .fundcontainer .search-trending-wrapper .search-input .list-search::-webkit-scrollbar {
   width: 3px;
   background-color: #464343;
 }
+
 .section .our-funds-block .fundcontainer .search-trending-wrapper .search-input .list-search::-webkit-scrollbar-track {
   width: 3px;
   background-color: var(--neutrals-white);
   border-radius: 0 6px 6px 0;
 }
+
 .section .our-funds-block .fundcontainer .search-trending-wrapper .search-input .list-search::-webkit-scrollbar-thumb {
   width: 3px;
   background-color: #424242;
   border-radius: 0 1px 1px 0;
 }
+
 .section .our-funds-block .fundcontainer .search-trending-wrapper .search-input .list-search .list-fund-name {
   font-size: var(--body-small-regular-size);
   line-height: var(--label-large-line-height);
@@ -199,24 +229,30 @@
   padding: 12px 20px 12px 40px;
   cursor: pointer;
 }
-@media (max-width: 768px) {
+
+@media (width <= 768px) {
   .section .our-funds-block .fundcontainer .search-trending-wrapper .search-input .list-search .list-fund-name {
     font-size: var(--paragraph-small-size);
     line-height: var(--paragraph-small-line-height);
   }
 }
+
 .section .our-funds-block .fundcontainer .search-trending-wrapper .search-input.search-active {
   outline: 2px solid var(--strokes-typing);
 }
+
 .section .our-funds-block .fundcontainer .search-trending-wrapper .search-input.search-active .search {
   caret-color: var(--strokes-typing);
 }
+
 .section .our-funds-block .fundcontainer .search-trending-wrapper .search-input.search-active .cancel-search {
   display: flex;
 }
+
 .section .our-funds-block .fundcontainer .search-trending-wrapper .search-input.search-active .list-search {
   display: block;
 }
+
 .section .our-funds-block .fundcontainer .search-trending-wrapper .search-input .search-label {
   position: absolute;
   top: 50%;
@@ -232,6 +268,7 @@
   font-weight: 400;
   line-height: var(--body-medium-regular-line-height);
 }
+
 .section .our-funds-block .fundcontainer .search-trending-wrapper .search-input:has(.search:not(:-moz-placeholder)) .search-label {
   top: -10px;
   left: 35px;
@@ -243,6 +280,7 @@
   background-color: var(--neutrals-100);
   padding: 0 5px;
 }
+
 .section .our-funds-block .fundcontainer .search-trending-wrapper .search-input:has(.search:focus) .search-label,
 .section .our-funds-block .fundcontainer .search-trending-wrapper .search-input:has(.search:not(:placeholder-shown)) .search-label {
   top: -10px;
@@ -255,9 +293,11 @@
   background-color: var(--neutrals-100);
   padding: 0 5px;
 }
+
 .section .our-funds-block .fundcontainer .search-trending-wrapper .search-input:has(.search:focus) .search {
   border-color: var(--strokes-typing, #1887D2);
 }
+
 .section .our-funds-block .fundcontainer .search-trending-wrapper .watchlist {
   display: flex;
   align-items: center;
@@ -265,19 +305,22 @@
   line-height: 0;
   cursor: pointer;
 }
-@media (max-width: 768px) {
+
+@media (width <= 768px) {
   .section .our-funds-block .fundcontainer .search-trending-wrapper .watchlist {
     grid-area: watchlist;
     margin-top: 20px;
     padding: 8px 0;
   }
 }
+
 .section .our-funds-block .fundcontainer .search-trending-wrapper .watchlist .staricon .icon {
   width: 20px;
   height: 20px;
   display: block;
   cursor: pointer;
 }
+
 .section .our-funds-block .fundcontainer .search-trending-wrapper .watchlisttext span {
   font-size: var(--body-small-medium-size);
   line-height: var(--body-small-medium-line-height);
@@ -287,7 +330,8 @@
   font-weight: 500;
   text-decoration-line: underline;
 }
-@media (max-width: 768px) {
+
+@media (width <= 768px) {
   .section .our-funds-block .fundcontainer .search-trending-wrapper .watchlisttext span {
     font-size: var(--text-link-small-size);
     line-height: var(--text-link-small-line-height);
@@ -296,12 +340,14 @@
     text-underline-offset: 20%;
   }
 }
+
 .section .our-funds-block .fundcontainer .search-trending-wrapper .trending-container {
   display: flex;
   align-items: center;
   gap: 8px;
 }
-@media (max-width: 768px) {
+
+@media (width <= 768px) {
   .section .our-funds-block .fundcontainer .search-trending-wrapper .trending-container {
     grid-area: trending;
     align-items: center;
@@ -309,16 +355,19 @@
     overflow: auto hidden;
     width: calc(100% + 16px);
   }
+
   .section .our-funds-block .fundcontainer .search-trending-wrapper .trending-container::-webkit-scrollbar {
     display: none;
   }
 }
+
 .section .our-funds-block .fundcontainer .search-trending-wrapper .trending-container .trendinglabel {
   display: flex;
   align-items: center;
   gap: 4px;
 }
-@media (max-width: 768px) {
+
+@media (width <= 768px) {
   .section .our-funds-block .fundcontainer .search-trending-wrapper .trending-container .trendinglabel {
     position: sticky;
     left: 0;
@@ -326,6 +375,7 @@
     padding: 2px 8px 2px 0;
   }
 }
+
 .section .our-funds-block .fundcontainer .search-trending-wrapper .trending-container .trendinglabel p,
 .section .our-funds-block .fundcontainer .search-trending-wrapper .trending-container .trendinglabel span.icon {
   margin: 0;
@@ -333,6 +383,7 @@
   height: 16px;
   display: flex;
 }
+
 .section .our-funds-block .fundcontainer .search-trending-wrapper .trending-container .trendinglabel .trending-text {
   font-size: var(--body-small-medium-size);
   line-height: var(--body-small-medium-line-height);
@@ -341,16 +392,19 @@
   font-feature-settings: "ss01" on, "ss04" on, "cv01" on, "cv02" on, "cv03" on, "cv04" on, "cv06" on, "cv09" on, "cv10" on, "cv11" on;
   font-weight: 500;
 }
-@media (max-width: 768px) {
+
+@media (width <= 768px) {
   .section .our-funds-block .fundcontainer .search-trending-wrapper .trending-container .trendinglabel .trending-text {
     font-size: var(--body-small-medium-size);
     line-height: var(--body-small-medium-line-height);
   }
 }
+
 .section .our-funds-block .fundcontainer .search-trending-wrapper .trending-container .trendingmostlist {
   line-height: 0;
   overflow: hidden;
 }
+
 .section .our-funds-block .fundcontainer .search-trending-wrapper .trending-container .trendingmostlist ul.block-subitem-finelsub5 {
   display: flex;
   align-items: center;
@@ -359,25 +413,30 @@
   list-style: none;
   margin: 0;
 }
-@media (max-width: 768px) {
+
+@media (width <= 768px) {
   .section .our-funds-block .fundcontainer .search-trending-wrapper .trending-container .trendingmostlist ul.block-subitem-finelsub5 {
     flex-wrap: nowrap;
     padding-right: 16px;
     overflow: auto hidden;
     scrollbar-width: none;
   }
+
   .section .our-funds-block .fundcontainer .search-trending-wrapper .trending-container .trendingmostlist ul.block-subitem-finelsub5::-webkit-scrollbar {
     display: none;
   }
 }
+
 .section .our-funds-block .fundcontainer .search-trending-wrapper .trending-container .trendingmostlist ul.block-subitem-finelsub5 li {
   line-height: 0;
 }
-@media (max-width: 768px) {
+
+@media (width <= 768px) {
   .section .our-funds-block .fundcontainer .search-trending-wrapper .trending-container .trendingmostlist ul.block-subitem-finelsub5 li {
     white-space: nowrap;
   }
 }
+
 .section .our-funds-block .fundcontainer .search-trending-wrapper .trending-container .trendingmostlist ul.block-subitem-finelsub5 li a {
   text-decoration-line: underline;
   text-underline-offset: 20%;
@@ -388,38 +447,45 @@
   font-feature-settings: "ss01" on, "ss04" on, "cv01" on, "cv02" on, "cv03" on, "cv04" on, "cv06" on, "cv09" on, "cv10" on, "cv11" on;
   font-weight: 400;
 }
-@media (max-width: 768px) {
+
+@media (width <= 768px) {
   .section .our-funds-block .fundcontainer .search-trending-wrapper .trending-container .trendingmostlist ul.block-subitem-finelsub5 li a {
     font-size: var(--text-link-small-size);
     line-height: var(--text-link-small-line-height);
   }
 }
+
 .section .our-funds-block .filter-cards {
   display: flex;
   gap: 16px;
   margin: 48px 0 0;
 }
-@media (max-width: 768px) {
+
+@media (width <= 768px) {
   .section .our-funds-block .filter-cards {
     margin: 12px 0 0;
   }
 }
+
 .section .our-funds-block .filter-cards .left-container {
   max-width: 296px;
   width: 100%;
   margin: 53.2px 0 0;
 }
-@media (max-width: 1299px) {
+
+@media (width <= 1299px) {
   .section .our-funds-block .filter-cards .left-container {
     max-width: 25%;
   }
 }
-@media (max-width: 1025px) {
+
+@media (width <= 1025px) {
   .section .our-funds-block .filter-cards .left-container {
     max-width: 30%;
   }
 }
-@media (max-width: 768px) {
+
+@media (width <= 768px) {
   .section .our-funds-block .filter-cards .left-container {
     display: flex;
     justify-content: space-between;
@@ -427,7 +493,7 @@
     z-index: 150;
     background-color: var(--neutrals-white);
     border-radius: 8px 8px 0 0;
-    box-shadow: 0 -4px 12px 0 rgba(0, 0, 0, 0.05);
+    box-shadow: 0 -4px 12px 0 rgb(0 0 0 / 5%);
     max-width: 100%;
     left: 0;
     right: 0;
@@ -435,22 +501,26 @@
     margin: 0;
   }
 }
+
 .section .our-funds-block .filter-cards .left-container .fundcategory-container {
   width: 100%;
   background-color: var(--neutrals-white);
   border-radius: 8px;
 }
+
 .section .our-funds-block .filter-cards .left-container .fundcategory-container .filter-sort-container {
   padding: 12px 12px 0;
 }
-@media (max-width: 768px) {
+
+@media (width <= 768px) {
   .section .our-funds-block .filter-cards .left-container .fundcategory-container .filter-sort-container {
     padding: 0;
     display: flex;
     justify-content: space-between;
-    box-shadow: 0 -4px 12px 0 rgba(0, 0, 0, 0.05);
+    box-shadow: 0 -4px 12px 0 rgb(0 0 0 / 5%);
   }
 }
+
 .section .our-funds-block .filter-cards .left-container .fundcategory-container .filter-sort-container .filter-wrapper,
 .section .our-funds-block .filter-cards .left-container .fundcategory-container .filter-sort-container .sort-wrapper {
   display: flex;
@@ -458,7 +528,8 @@
   justify-content: space-between;
   gap: 4px;
 }
-@media (max-width: 768px) {
+
+@media (width <= 768px) {
   .section .our-funds-block .filter-cards .left-container .fundcategory-container .filter-sort-container .filter-wrapper,
   .section .our-funds-block .filter-cards .left-container .fundcategory-container .filter-sort-container .sort-wrapper {
     padding: 16px 16px 20px;
@@ -471,6 +542,7 @@
     border-radius: 8px 0 0;
   }
 }
+
 .section .our-funds-block .filter-cards .left-container .fundcategory-container .filter-sort-container .filter-wrapper p,
 .section .our-funds-block .filter-cards .left-container .fundcategory-container .filter-sort-container .sort-wrapper p {
   font-size: var(--body-small-semibold-size);
@@ -481,32 +553,38 @@
   font-weight: 500;
   margin: 0;
 }
-@media (max-width: 768px) {
+
+@media (width <= 768px) {
   .section .our-funds-block .filter-cards .left-container .fundcategory-container .filter-sort-container .filter-wrapper p,
   .section .our-funds-block .filter-cards .left-container .fundcategory-container .filter-sort-container .sort-wrapper p {
     font-size: var(--body-medium-medium-size);
     line-height: var(--body-medium-medium-line-height);
   }
 }
+
 .section .our-funds-block .filter-cards .left-container .fundcategory-container .filter-sort-container .filter-wrapper .filter-text {
   display: flex;
   align-items: center;
   gap: 4px;
 }
-@media (max-width: 768px) {
+
+@media (width <= 768px) {
   .section .our-funds-block .filter-cards .left-container .fundcategory-container .filter-sort-container .filter-wrapper .filter-text {
     gap: 8px;
   }
 }
+
 .section .our-funds-block .filter-cards .left-container .fundcategory-container .filter-sort-container .filter-wrapper .filter-text .icon-filtericon {
   max-width: 24px;
   width: 100%;
   height: 24px;
 }
+
 .section .our-funds-block .filter-cards .left-container .fundcategory-container .filter-sort-container .filter-wrapper .filter-text .icon-filtericon img {
   width: 100%;
   height: 100%;
 }
+
 .section .our-funds-block .filter-cards .left-container .fundcategory-container .filter-sort-container .filter-wrapper .clearall-btn {
   font-size: var(--body-small-regular-size);
   line-height: var(--label-large-line-height);
@@ -520,20 +598,24 @@
   border-radius: 0;
   border: none;
 }
-@media (max-width: 768px) {
+
+@media (width <= 768px) {
   .section .our-funds-block .filter-cards .left-container .fundcategory-container .filter-sort-container .filter-wrapper .clearall-btn {
     display: none;
   }
 }
+
 .section .our-funds-block .filter-cards .left-container .fundcategory-container .filter-sort-container .sort-wrapper {
   display: none;
 }
-@media (max-width: 768px) {
+
+@media (width <= 768px) {
   .section .our-funds-block .filter-cards .left-container .fundcategory-container .filter-sort-container .sort-wrapper {
     display: flex;
     border-radius: 0 8px 0 0;
     position: relative;
   }
+
   .section .our-funds-block .filter-cards .left-container .fundcategory-container .filter-sort-container .sort-wrapper::before {
     content: "";
     width: 1px;
@@ -545,24 +627,28 @@
     top: 0;
   }
 }
-@media (max-width: 768px) {
+
+@media (width <= 768px) {
   .section .our-funds-block .filter-cards .left-container .fundcategory-container .filter-overlay {
     width: 100%;
     height: 100%;
-    background: rgba(17, 17, 17, 0.6);
+    background: rgb(17 17 17 / 60%);
     position: fixed;
     top: 0;
     align-items: end;
     display: none;
   }
+
   .section .our-funds-block .filter-cards .left-container .fundcategory-container .filter-overlay.active {
     display: flex;
   }
 }
+
 .section .our-funds-block .filter-cards .left-container .fundcategory-container .filter-overlay .filter-container {
   padding: 0 12px 36px;
 }
-@media (max-width: 768px) {
+
+@media (width <= 768px) {
   .section .our-funds-block .filter-cards .left-container .fundcategory-container .filter-overlay .filter-container {
     background-color: var(--neutrals-white);
     max-width: 100%;
@@ -571,11 +657,13 @@
     border-radius: 12px 12px 0 0;
   }
 }
+
 .section .our-funds-block .filter-cards .left-container .fundcategory-container .filter-overlay .filter-container .clearall-wrapper,
 .section .our-funds-block .filter-cards .left-container .fundcategory-container .filter-overlay .filter-container .apply-wrapper {
   display: none;
 }
-@media (max-width: 768px) {
+
+@media (width <= 768px) {
   .section .our-funds-block .filter-cards .left-container .fundcategory-container .filter-overlay .filter-container .clearall-wrapper,
   .section .our-funds-block .filter-cards .left-container .fundcategory-container .filter-overlay .filter-container .apply-wrapper {
     display: flex;
@@ -584,6 +672,7 @@
     padding: 16px;
     border-bottom: 1px solid var(--neutrals-300);
   }
+
   .section .our-funds-block .filter-cards .left-container .fundcategory-container .filter-overlay .filter-container .clearall-wrapper span,
   .section .our-funds-block .filter-cards .left-container .fundcategory-container .filter-overlay .filter-container .apply-wrapper span {
     font-size: var(--body-medium-regular-size);
@@ -593,6 +682,7 @@
     font-feature-settings: "ss01" on, "ss04" on, "cv01" on, "cv02" on, "cv03" on, "cv04" on, "cv06" on, "cv09" on, "cv10" on, "cv11" on;
     font-weight: 400;
   }
+
   .section .our-funds-block .filter-cards .left-container .fundcategory-container .filter-overlay .filter-container .clearall-wrapper button,
   .section .our-funds-block .filter-cards .left-container .fundcategory-container .filter-overlay .filter-container .apply-wrapper button {
     margin: 0;
@@ -608,18 +698,21 @@
     font-weight: 400;
   }
 }
-@media (max-width: 768px) {
+
+@media (width <= 768px) {
   .section .our-funds-block .filter-cards .left-container .fundcategory-container .filter-overlay .filter-container .apply-wrapper {
     border: none;
     padding: 0;
     border-radius: 8px 8px 0 0;
-    box-shadow: 0 -4px 12px 0 rgba(0, 0, 0, 0.05);
+    box-shadow: 0 -4px 12px 0 rgb(0 0 0 / 5%);
   }
+
   .section .our-funds-block .filter-cards .left-container .fundcategory-container .filter-overlay .filter-container .apply-wrapper button {
     padding: 16px 16px 20px;
     max-width: 50%;
     width: 100%;
   }
+
   .section .our-funds-block .filter-cards .left-container .fundcategory-container .filter-overlay .filter-container .apply-wrapper .apply-btn {
     border-left: 1px solid var(--neutrals-300);
     font-size: var(--body-small-regular-size);
@@ -630,7 +723,8 @@
     font-weight: 500;
   }
 }
-@media (max-width: 768px) {
+
+@media (width <= 768px) {
   .section .our-funds-block .filter-cards .left-container .fundcategory-container .filter-overlay .filter-container .filter-list-wrapper {
     overflow: auto;
     height: 437px;
@@ -638,12 +732,15 @@
     margin-top: 10px;
   }
 }
+
 .section .our-funds-block .filter-cards .left-container .fundcategory-container .filter-overlay .filter-container .filter-list-wrapper::-webkit-scrollbar {
   display: none;
 }
+
 .section .our-funds-block .filter-cards .left-container .fundcategory-container .filter-overlay .filter-container .filter-list-wrapper .fundcategory-label {
   display: none;
 }
+
 .section .our-funds-block .filter-cards .left-container .fundcategory-container .filter-overlay .filter-container .filter-list-wrapper .checkbox-label-container {
   -webkit-user-select: none;
      -moz-user-select: none;
@@ -653,11 +750,13 @@
   padding: 12px 0;
   -webkit-tap-highlight-color: transparent;
 }
-@media (max-width: 768px) {
+
+@media (width <= 768px) {
   .section .our-funds-block .filter-cards .left-container .fundcategory-container .filter-overlay .filter-container .filter-list-wrapper .checkbox-label-container {
     padding: 16px 0;
   }
 }
+
 .section .our-funds-block .filter-cards .left-container .fundcategory-container .filter-overlay .filter-container .filter-list-wrapper .checkbox-label-container .category-direct {
   visibility: hidden;
   min-width: 24px;
@@ -667,12 +766,14 @@
      -moz-appearance: none;
           appearance: none;
 }
-@media (max-width: 768px) {
+
+@media (width <= 768px) {
   .section .our-funds-block .filter-cards .left-container .fundcategory-container .filter-overlay .filter-container .filter-list-wrapper .checkbox-label-container .category-direct {
     min-width: 20px;
     height: 20px;
   }
 }
+
 .section .our-funds-block .filter-cards .left-container .fundcategory-container .filter-overlay .filter-container .filter-list-wrapper .checkbox-label-container .category-direct::before, .section .our-funds-block .filter-cards .left-container .fundcategory-container .filter-overlay .filter-container .filter-list-wrapper .checkbox-label-container .category-direct:checked::before {
   content: "";
   background-image: url("/icons/checkbox-desk.svg");
@@ -685,7 +786,8 @@
   display: block;
   visibility: visible;
 }
-@media (max-width: 768px) {
+
+@media (width <= 768px) {
   .section .our-funds-block .filter-cards .left-container .fundcategory-container .filter-overlay .filter-container .filter-list-wrapper .checkbox-label-container .category-direct::before, .section .our-funds-block .filter-cards .left-container .fundcategory-container .filter-overlay .filter-container .filter-list-wrapper .checkbox-label-container .category-direct:checked::before {
     background-image: url("/icons/checkbox-mob.svg");
     width: 16.67px;
@@ -693,9 +795,11 @@
     margin: 1.67px;
   }
 }
+
 .section .our-funds-block .filter-cards .left-container .fundcategory-container .filter-overlay .filter-container .filter-list-wrapper .checkbox-label-container .category-direct:checked::before {
   background-image: url("/icons/checkbox-fill.svg");
 }
+
 .section .our-funds-block .filter-cards .left-container .fundcategory-container .filter-overlay .filter-container .filter-list-wrapper .checkbox-label-container label {
   font-size: var(--body-small-regular-size);
   line-height: var(--label-large-line-height);
@@ -712,15 +816,18 @@
   cursor: pointer;
   position: relative;
 }
+
 .section .our-funds-block .filter-cards .left-container .fundcategory-container .filter-overlay .filter-container .filter-list-wrapper .checkbox-label-container label .fund-length {
   color: var(--neutrals-600);
 }
-@media (max-width: 768px) {
+
+@media (width <= 768px) {
   .section .our-funds-block .filter-cards .left-container .fundcategory-container .filter-overlay .filter-container .filter-list-wrapper .checkbox-label-container label {
     font-size: var(--paragraph-small-size);
     line-height: var(--paragraph-small-line-height);
   }
 }
+
 .section .our-funds-block .filter-cards .left-container .fundcategory-container .filter-overlay .filter-container .filter-list-wrapper .checkbox-label-container .tooltip-wrap {
   position: relative;
   cursor: pointer;
@@ -728,16 +835,19 @@
   height: 16px;
   display: flex;
 }
-@media (max-width: 768px) {
+
+@media (width <= 768px) {
   .section .our-funds-block .filter-cards .left-container .fundcategory-container .filter-overlay .filter-container .filter-list-wrapper .checkbox-label-container .tooltip-wrap {
     min-width: 20px;
     height: 20px;
   }
 }
+
 .section .our-funds-block .filter-cards .left-container .fundcategory-container .filter-overlay .filter-container .filter-list-wrapper .checkbox-label-container .tooltip-wrap .filter-info-icon {
   width: 100%;
   height: 100%;
 }
+
 .section .our-funds-block .filter-cards .left-container .fundcategory-container .filter-overlay .filter-container .filter-list-wrapper .checkbox-label-container .tooltip-wrap .tooltip-text {
   display: none;
   position: absolute;
@@ -759,7 +869,8 @@
   font-feature-settings: "ss01" on, "ss04" on, "cv01" on, "cv02" on, "cv03" on, "cv04" on, "cv06" on, "cv09" on, "cv10" on, "cv11" on;
   font-weight: 400;
 }
-@media (max-width: 768px) {
+
+@media (width <= 768px) {
   .section .our-funds-block .filter-cards .left-container .fundcategory-container .filter-overlay .filter-container .filter-list-wrapper .checkbox-label-container .tooltip-wrap .tooltip-text {
     padding: 8px;
     font-size: var(--paragraph-xsmall-size);
@@ -774,6 +885,7 @@
     margin: 12px 0 0;
   }
 }
+
 .section .our-funds-block .filter-cards .left-container .fundcategory-container .filter-overlay .filter-container .filter-list-wrapper .checkbox-label-container .tooltip-wrap .tooltip-text::before {
   content: "";
   width: 16px;
@@ -790,7 +902,8 @@
   bottom: -8.2px;
   background-color: var(--neutrals-100);
 }
-@media (max-width: 768px) {
+
+@media (width <= 768px) {
   .section .our-funds-block .filter-cards .left-container .fundcategory-container .filter-overlay .filter-container .filter-list-wrapper .checkbox-label-container .tooltip-wrap .tooltip-text::before {
     bottom: unset;
     top: -6px;
@@ -803,9 +916,11 @@
     transform: rotate(-135deg);
   }
 }
+
 .section .our-funds-block .filter-cards .left-container .fundcategory-container .filter-overlay .filter-container .filter-list-wrapper .checkbox-label-container .tooltip-wrap:hover .tooltip-text {
   display: block;
 }
+
 .section .our-funds-block .filter-cards .left-container .fundcategory-container .filter-overlay .filter-container .filter-list-wrapper .checkbox-label-container .label-tooltip-wrap {
   display: flex;
   align-items: center;
@@ -813,58 +928,71 @@
   justify-content: space-between;
   width: 100%;
 }
+
 .section .our-funds-block .filter-cards .left-container .fundcategory-container .filter-overlay .filter-container .filter-list-wrapper .checkbox-label-container .indanequity-wrapper {
   display: flex;
   position: relative;
 }
+
 .section .our-funds-block .filter-cards .left-container .fundcategory-container .filter-overlay .filter-container .filter-list-wrapper .checkbox-label-container .innerindianequity {
   padding: 12px 0 0 30px;
 }
-@media (max-width: 768px) {
+
+@media (width <= 768px) {
   .section .our-funds-block .filter-cards .left-container .fundcategory-container .filter-overlay .filter-container .filter-list-wrapper .checkbox-label-container .innerindianequity {
     padding: 12px 0 0 28px;
   }
 }
+
 .section .our-funds-block .filter-cards .left-container .fundcategory-container .filter-overlay .filter-container .filter-list-wrapper .checkbox-label-container .innerindianequity .indian-equity-container {
   display: flex;
   flex-direction: column;
   gap: 14px;
 }
-@media (max-width: 768px) {
+
+@media (width <= 768px) {
   .section .our-funds-block .filter-cards .left-container .fundcategory-container .filter-overlay .filter-container .filter-list-wrapper .checkbox-label-container .innerindianequity .indian-equity-container {
     gap: 20px;
   }
 }
+
 .section .our-funds-block .filter-cards .left-container .fundcategory-container .filter-overlay .filter-container .filter-list-wrapper .checkbox-label-container .innerindianequity .indian-equity-container .checkbox-label-container {
   padding: 0;
 }
+
 .section .our-funds-block .filter-cards .left-container .fundcategory-container .filter-overlay .filter-container .filter-list-wrapper .checkbox-label-container .innerindianequity .indian-equity-container .checkbox-label-container label {
   padding: 0 0 0 8px;
 }
+
 .section .our-funds-block .filter-cards .left-container .fundcategory-container .filter-overlay .filter-container .filter-list-wrapper .checkbox-label-container .innerindianequity .indian-equity-container .checkbox-label-container label::after {
   content: unset;
 }
+
 .section .our-funds-block .filter-cards .left-container .fundcategory-container .filter-overlay .filter-container .filter-list-wrapper .checkbox-label-container.indaneqsub {
   display: block;
 }
-@media (max-width: 768px) {
+
+@media (width <= 768px) {
   .section .our-funds-block .filter-cards .left-container .fundcategory-container .sort-overlay {
     width: 100%;
     height: 100%;
-    background: rgba(17, 17, 17, 0.6);
+    background: rgb(17 17 17 / 60%);
     position: fixed;
     top: 0;
     align-items: end;
     display: none;
   }
 }
+
 .section .our-funds-block .filter-cards .left-container .fundcategory-container .sort-overlay.active {
   display: flex;
 }
+
 .section .our-funds-block .filter-cards .left-container .fundcategory-container .sort-overlay .sort-container {
   display: none;
 }
-@media (max-width: 768px) {
+
+@media (width <= 768px) {
   .section .our-funds-block .filter-cards .left-container .fundcategory-container .sort-overlay .sort-container {
     display: block;
     background-color: var(--neutrals-white);
@@ -873,10 +1001,12 @@
     padding: 0;
     border-radius: 12px 12px 0 0;
   }
+
   .section .our-funds-block .filter-cards .left-container .fundcategory-container .sort-overlay .sort-container .sort-label {
     padding: 16px;
     border-bottom: 1px solid var(--neutrals-300);
   }
+
   .section .our-funds-block .filter-cards .left-container .fundcategory-container .sort-overlay .sort-container .sort-label span {
     font-size: var(--body-medium-regular-size);
     line-height: var(--body-medium-regular-line-height);
@@ -885,6 +1015,7 @@
     font-feature-settings: "ss01" on, "ss04" on, "cv01" on, "cv02" on, "cv03" on, "cv04" on, "cv06" on, "cv09" on, "cv10" on, "cv11" on;
     font-weight: 600;
   }
+
   .section .our-funds-block .filter-cards .left-container .fundcategory-container .sort-overlay .sort-container .arrange-returns {
     padding: 0 16px 20px;
     display: flex;
@@ -893,9 +1024,11 @@
     height: 350px;
     overflow: auto;
   }
+
   .section .our-funds-block .filter-cards .left-container .fundcategory-container .sort-overlay .sort-container .arrange-returns::-webkit-scrollbar {
     display: none;
   }
+
   .section .our-funds-block .filter-cards .left-container .fundcategory-container .sort-overlay .sort-container .arrange-returns .arrange-container span,
   .section .our-funds-block .filter-cards .left-container .fundcategory-container .sort-overlay .sort-container .arrange-returns .return-container span {
     padding: 24px 0 20px;
@@ -907,6 +1040,7 @@
     font-feature-settings: "ss01" on, "ss04" on, "cv01" on, "cv02" on, "cv03" on, "cv04" on, "cv06" on, "cv09" on, "cv10" on, "cv11" on;
     font-weight: 500;
   }
+
   .section .our-funds-block .filter-cards .left-container .fundcategory-container .sort-overlay .sort-container .arrange-returns .arrange-container .radio-label-container,
   .section .our-funds-block .filter-cards .left-container .fundcategory-container .sort-overlay .sort-container .arrange-returns .return-container .radio-label-container {
     display: flex;
@@ -915,12 +1049,14 @@
     width: -moz-max-content;
     width: max-content;
   }
+
   .section .our-funds-block .filter-cards .left-container .fundcategory-container .sort-overlay .sort-container .arrange-returns .arrange-container .radio-label-container .radio-label,
   .section .our-funds-block .filter-cards .left-container .fundcategory-container .sort-overlay .sort-container .arrange-returns .return-container .radio-label-container .radio-label {
     display: flex;
     gap: 8px;
     -webkit-tap-highlight-color: transparent;
   }
+
   .section .our-funds-block .filter-cards .left-container .fundcategory-container .sort-overlay .sort-container .arrange-returns .arrange-container .radio-label-container .radio-label input,
   .section .our-funds-block .filter-cards .left-container .fundcategory-container .sort-overlay .sort-container .arrange-returns .return-container .radio-label-container .radio-label input {
     visibility: hidden;
@@ -931,6 +1067,7 @@
        -moz-appearance: none;
             appearance: none;
   }
+
   .section .our-funds-block .filter-cards .left-container .fundcategory-container .sort-overlay .sort-container .arrange-returns .arrange-container .radio-label-container .radio-label input::before,
   .section .our-funds-block .filter-cards .left-container .fundcategory-container .sort-overlay .sort-container .arrange-returns .return-container .radio-label-container .radio-label input::before {
     content: "";
@@ -942,6 +1079,7 @@
     visibility: visible;
     margin: 2px;
   }
+
   .section .our-funds-block .filter-cards .left-container .fundcategory-container .sort-overlay .sort-container .arrange-returns .arrange-container .radio-label-container .radio-label input:checked::before,
   .section .our-funds-block .filter-cards .left-container .fundcategory-container .sort-overlay .sort-container .arrange-returns .return-container .radio-label-container .radio-label input:checked::before {
     outline: 1.67px solid var(--blue-1-800-primary);
@@ -950,6 +1088,7 @@
     min-width: 16.33px;
     height: 16.33px;
   }
+
   .section .our-funds-block .filter-cards .left-container .fundcategory-container .sort-overlay .sort-container .arrange-returns .arrange-container .radio-label-container .radio-label label,
   .section .our-funds-block .filter-cards .left-container .fundcategory-container .sort-overlay .sort-container .arrange-returns .return-container .radio-label-container .radio-label label {
     font-size: var(--paragraph-small-size);
@@ -961,17 +1100,20 @@
     width: 100%;
     cursor: pointer;
   }
+
   .section .our-funds-block .filter-cards .left-container .fundcategory-container .sort-overlay .sort-container .arrange-returns .arrange-container {
     border-bottom: 1px solid var(--neutrals-300);
     padding-bottom: 28px;
   }
+
   .section .our-funds-block .filter-cards .left-container .fundcategory-container .sort-overlay .sort-container .close-apply-btn {
     display: flex;
     justify-content: space-between;
     background-color: var(--neutrals-white);
-    box-shadow: 0 -4px 12px 0 rgba(0, 0, 0, 0.05);
+    box-shadow: 0 -4px 12px 0 rgb(0 0 0 / 5%);
     border-radius: 8px 8px 0 0;
   }
+
   .section .our-funds-block .filter-cards .left-container .fundcategory-container .sort-overlay .sort-container .close-apply-btn button {
     max-width: 50%;
     width: 100%;
@@ -988,6 +1130,7 @@
     font-feature-settings: "ss01" on, "ss04" on, "cv01" on, "cv02" on, "cv03" on, "cv04" on, "cv06" on, "cv09" on, "cv10" on, "cv11" on;
     font-weight: 400;
   }
+
   .section .our-funds-block .filter-cards .left-container .fundcategory-container .sort-overlay .sort-container .close-apply-btn button:last-of-type {
     font-size: var(--body-small-regular-size);
     line-height: var(--body-small-regular-line-height);
@@ -998,25 +1141,30 @@
     border-left: 1px solid var(--neutrals-300);
   }
 }
+
 .section .our-funds-block .filter-cards .right-container {
   max-width: calc(100% - 296px);
   width: 100%;
 }
-@media (max-width: 1299px) {
+
+@media (width <= 1299px) {
   .section .our-funds-block .filter-cards .right-container {
     max-width: 75%;
   }
 }
-@media (max-width: 1025px) {
+
+@media (width <= 1025px) {
   .section .our-funds-block .filter-cards .right-container {
     max-width: 70%;
   }
 }
-@media (max-width: 768px) {
+
+@media (width <= 768px) {
   .section .our-funds-block .filter-cards .right-container {
     max-width: 100%;
   }
 }
+
 .section .our-funds-block .filter-cards .right-container .sort-pop-container {
   display: flex;
   justify-content: space-between;
@@ -1025,11 +1173,13 @@
   gap: 10px 20px;
   margin: 0 0 20px;
 }
+
 @media (max-width: ) {
   .section .our-funds-block .filter-cards .right-container .sort-pop-container {
     margin: 0 0 32px;
   }
 }
+
 .section .our-funds-block .filter-cards .right-container .sort-pop-container .sort-popular,
 .section .our-funds-block .filter-cards .right-container .sort-pop-container .group-view-container,
 .section .our-funds-block .filter-cards .right-container .sort-pop-container .view-container {
@@ -1040,16 +1190,19 @@
   height: max-content;
   line-height: 0;
 }
+
 .section .our-funds-block .filter-cards .right-container .sort-pop-container .sort-popular {
   min-width: -moz-max-content;
   min-width: max-content;
 }
+
 .section .our-funds-block .filter-cards .right-container .sort-pop-container .sort-popular .sort-container,
 .section .our-funds-block .filter-cards .right-container .sort-pop-container .sort-popular .popular-container {
   display: flex;
   align-items: center;
   gap: 4px;
 }
+
 .section .our-funds-block .filter-cards .right-container .sort-pop-container .sort-popular .sort-container .sort-pop-label,
 .section .our-funds-block .filter-cards .right-container .sort-pop-container .sort-popular .popular-container .sort-pop-label {
   font-size: var(--body-small-regular-size);
@@ -1059,12 +1212,14 @@
   font-feature-settings: "ss01" on, "ss04" on, "cv01" on, "cv02" on, "cv03" on, "cv04" on, "cv06" on, "cv09" on, "cv10" on, "cv11" on;
   font-weight: 400;
 }
+
 .section .our-funds-block .filter-cards .right-container .sort-pop-container .sort-popular .sort-container .sort-select-container,
 .section .our-funds-block .filter-cards .right-container .sort-pop-container .sort-popular .sort-container .return-select-container,
 .section .our-funds-block .filter-cards .right-container .sort-pop-container .sort-popular .popular-container .sort-select-container,
 .section .our-funds-block .filter-cards .right-container .sort-pop-container .sort-popular .popular-container .return-select-container {
   position: relative;
 }
+
 .section .our-funds-block .filter-cards .right-container .sort-pop-container .sort-popular .sort-container .sort-select-container .selectedtext,
 .section .our-funds-block .filter-cards .right-container .sort-pop-container .sort-popular .sort-container .return-select-container .selectedtext,
 .section .our-funds-block .filter-cards .right-container .sort-pop-container .sort-popular .popular-container .sort-select-container .selectedtext,
@@ -1081,6 +1236,7 @@
   align-items: center;
   gap: 1px;
 }
+
 .section .our-funds-block .filter-cards .right-container .sort-pop-container .sort-popular .sort-container .sort-select-container .selectedtext::after,
 .section .our-funds-block .filter-cards .right-container .sort-pop-container .sort-popular .sort-container .return-select-container .selectedtext::after,
 .section .our-funds-block .filter-cards .right-container .sort-pop-container .sort-popular .popular-container .sort-select-container .selectedtext::after,
@@ -1095,6 +1251,7 @@
   display: block;
   transform: rotate(90deg);
 }
+
 .section .our-funds-block .filter-cards .right-container .sort-pop-container .sort-popular .sort-container .sort-select-container .dropdown-list,
 .section .our-funds-block .filter-cards .right-container .sort-pop-container .sort-popular .sort-container .return-select-container .dropdown-list,
 .section .our-funds-block .filter-cards .right-container .sort-pop-container .sort-popular .popular-container .sort-select-container .dropdown-list,
@@ -1110,14 +1267,16 @@
   background-color: var(--neutrals-white);
   border-radius: 8px;
   border: 1px solid var(--neutrals-200);
-  box-shadow: 0 0 14px 0 rgba(40, 40, 40, 0.06);
+  box-shadow: 0 0 14px 0 rgb(40 40 40 / 6%);
 }
+
 .section .our-funds-block .filter-cards .right-container .sort-pop-container .sort-popular .sort-container .sort-select-container .dropdown-list::-webkit-scrollbar,
 .section .our-funds-block .filter-cards .right-container .sort-pop-container .sort-popular .sort-container .return-select-container .dropdown-list::-webkit-scrollbar,
 .section .our-funds-block .filter-cards .right-container .sort-pop-container .sort-popular .popular-container .sort-select-container .dropdown-list::-webkit-scrollbar,
 .section .our-funds-block .filter-cards .right-container .sort-pop-container .sort-popular .popular-container .return-select-container .dropdown-list::-webkit-scrollbar {
   width: 3px;
 }
+
 .section .our-funds-block .filter-cards .right-container .sort-pop-container .sort-popular .sort-container .sort-select-container .dropdown-list::-webkit-scrollbar-track,
 .section .our-funds-block .filter-cards .right-container .sort-pop-container .sort-popular .sort-container .return-select-container .dropdown-list::-webkit-scrollbar-track,
 .section .our-funds-block .filter-cards .right-container .sort-pop-container .sort-popular .popular-container .sort-select-container .dropdown-list::-webkit-scrollbar-track,
@@ -1126,6 +1285,7 @@
   background-color: #fff;
   border-radius: 0 6px 6px 0;
 }
+
 .section .our-funds-block .filter-cards .right-container .sort-pop-container .sort-popular .sort-container .sort-select-container .dropdown-list::-webkit-scrollbar-thumb,
 .section .our-funds-block .filter-cards .right-container .sort-pop-container .sort-popular .sort-container .return-select-container .dropdown-list::-webkit-scrollbar-thumb,
 .section .our-funds-block .filter-cards .right-container .sort-pop-container .sort-popular .popular-container .sort-select-container .dropdown-list::-webkit-scrollbar-thumb,
@@ -1133,13 +1293,15 @@
   width: 3px;
   background-color: #2e2a94;
 }
+
 .section .our-funds-block .filter-cards .right-container .sort-pop-container .sort-popular .sort-container .sort-select-container .dropdown-list.dropdown-active,
 .section .our-funds-block .filter-cards .right-container .sort-pop-container .sort-popular .sort-container .return-select-container .dropdown-list.dropdown-active,
 .section .our-funds-block .filter-cards .right-container .sort-pop-container .sort-popular .popular-container .sort-select-container .dropdown-list.dropdown-active,
 .section .our-funds-block .filter-cards .right-container .sort-pop-container .sort-popular .popular-container .return-select-container .dropdown-list.dropdown-active {
   display: block;
 }
-@media (max-width: 768px) {
+
+@media (width <= 768px) {
   .section .our-funds-block .filter-cards .right-container .sort-pop-container .sort-popular .sort-container .sort-select-container .dropdown-list,
   .section .our-funds-block .filter-cards .right-container .sort-pop-container .sort-popular .sort-container .return-select-container .dropdown-list,
   .section .our-funds-block .filter-cards .right-container .sort-pop-container .sort-popular .popular-container .sort-select-container .dropdown-list,
@@ -1147,6 +1309,7 @@
     width: 168px;
   }
 }
+
 .section .our-funds-block .filter-cards .right-container .sort-pop-container .sort-popular .sort-container .sort-select-container .dropdown-list li,
 .section .our-funds-block .filter-cards .right-container .sort-pop-container .sort-popular .sort-container .return-select-container .dropdown-list li,
 .section .our-funds-block .filter-cards .right-container .sort-pop-container .sort-popular .popular-container .sort-select-container .dropdown-list li,
@@ -1160,16 +1323,19 @@
   padding: 12px;
   cursor: pointer;
 }
+
 .section .our-funds-block .filter-cards .right-container .sort-pop-container .sort-popular .sort-container .sort-select-container .dropdown-list li:last-of-type,
 .section .our-funds-block .filter-cards .right-container .sort-pop-container .sort-popular .sort-container .return-select-container .dropdown-list li:last-of-type,
 .section .our-funds-block .filter-cards .right-container .sort-pop-container .sort-popular .popular-container .sort-select-container .dropdown-list li:last-of-type,
 .section .our-funds-block .filter-cards .right-container .sort-pop-container .sort-popular .popular-container .return-select-container .dropdown-list li:last-of-type {
   border: none;
 }
+
 .section .our-funds-block .filter-cards .right-container .sort-pop-container .sort-popular .sort-container .return-select-container .dropdown-list,
 .section .our-funds-block .filter-cards .right-container .sort-pop-container .sort-popular .popular-container .return-select-container .dropdown-list {
   left: 4px;
 }
+
 .section .our-funds-block .filter-cards .right-container .sort-pop-container .sort-popular .sort-container::after {
   content: "";
   width: 1px;
@@ -1178,17 +1344,20 @@
   margin-left: 8px;
   border-radius: 5px;
 }
-@media (max-width: 768px) {
+
+@media (width <= 768px) {
   .section .our-funds-block .filter-cards .right-container .sort-pop-container .sort-popular {
     display: none;
   }
 }
-@media (max-width: 1025px) {
+
+@media (width <= 1025px) {
   .section .our-funds-block .filter-cards .right-container .sort-pop-container .group-view-container {
     width: 100%;
     position: relative;
   }
 }
+
 .section .our-funds-block .filter-cards .right-container .sort-pop-container .group-view-container .view-container::after {
   content: "";
   width: 1px;
@@ -1196,17 +1365,20 @@
   background-color: var(--neutrals-500);
   border-radius: 5px;
 }
+
 .section .our-funds-block .filter-cards .right-container .sort-pop-container .group-view-container .view-container .squareby-container ul,
 .section .our-funds-block .filter-cards .right-container .sort-pop-container .group-view-container .view-container .listby-container ul {
   margin: 0;
   list-style: none;
 }
+
 .section .our-funds-block .filter-cards .right-container .sort-pop-container .group-view-container .view-container .squareby-container ul .viewlist-btn,
 .section .our-funds-block .filter-cards .right-container .sort-pop-container .group-view-container .view-container .listby-container ul .viewlist-btn {
   width: 20px;
   height: 20px;
   cursor: pointer;
 }
+
 .section .our-funds-block .filter-cards .right-container .sort-pop-container .group-view-container .view-container .squareby-container ul .viewlist-btn .icon,
 .section .our-funds-block .filter-cards .right-container .sort-pop-container .group-view-container .view-container .squareby-container ul .viewlist-btn img,
 .section .our-funds-block .filter-cards .right-container .sort-pop-container .group-view-container .view-container .listby-container ul .viewlist-btn .icon,
@@ -1215,28 +1387,34 @@
   height: 100%;
   display: flex;
 }
+
 .section .our-funds-block .filter-cards .right-container .sort-pop-container .group-view-container .view-container .squareby-container.grid-view-active ul .viewlist-btn:first-of-type,
 .section .our-funds-block .filter-cards .right-container .sort-pop-container .group-view-container .view-container .listby-container.list-view-active ul .viewlist-btn:first-of-type {
   display: block;
 }
+
 .section .our-funds-block .filter-cards .right-container .sort-pop-container .group-view-container .view-container .squareby-container.grid-view-active ul .viewlist-btn:last-of-type,
 .section .our-funds-block .filter-cards .right-container .sort-pop-container .group-view-container .view-container .listby-container.list-view-active ul .viewlist-btn:last-of-type {
   display: none;
 }
+
 .section .our-funds-block .filter-cards .right-container .sort-pop-container .group-view-container .view-container .squareby-container:not(.grid-view-active) ul .viewlist-btn:first-of-type,
 .section .our-funds-block .filter-cards .right-container .sort-pop-container .group-view-container .view-container .listby-container:not(.list-view-active) ul .viewlist-btn:first-of-type {
   display: none;
 }
-@media (max-width: 1025px) {
+
+@media (width <= 1025px) {
   .section .our-funds-block .filter-cards .right-container .sort-pop-container .group-view-container .view-container {
     display: none;
   }
 }
+
 .section .our-funds-block .filter-cards .right-container .sort-pop-container .group-view-container .togglebtn {
   display: flex;
   align-items: center;
   gap: 8px;
 }
+
 .section .our-funds-block .filter-cards .right-container .sort-pop-container .group-view-container .togglebtn .toggle-text {
   margin: 0;
   font-size: var(--body-small-semibold-size);
@@ -1246,12 +1424,14 @@
   font-feature-settings: "ss01" on, "ss04" on, "cv01" on, "cv02" on, "cv03" on, "cv04" on, "cv06" on, "cv09" on, "cv10" on, "cv11" on;
   font-weight: 600;
 }
-@media (max-width: 768px) {
+
+@media (width <= 768px) {
   .section .our-funds-block .filter-cards .right-container .sort-pop-container .group-view-container .togglebtn .toggle-text {
     font-size: var(--body-small-semibold-size);
     line-height: var(--body-small-semibold-line-height);
   }
 }
+
 .section .our-funds-block .filter-cards .right-container .sort-pop-container .group-view-container .togglebtn .toggle-text:last-of-type {
   font-size: var(--body-small-regular-size);
   line-height: var(--label-large-line-height);
@@ -1260,12 +1440,14 @@
   font-feature-settings: "ss01" on, "ss04" on, "cv01" on, "cv02" on, "cv03" on, "cv04" on, "cv06" on, "cv09" on, "cv10" on, "cv11" on;
   font-weight: 400;
 }
-@media (max-width: 768px) {
+
+@media (width <= 768px) {
   .section .our-funds-block .filter-cards .right-container .sort-pop-container .group-view-container .togglebtn .toggle-text:last-of-type {
     font-size: var(--paragraph-small-size);
     line-height: var(--paragraph-small-line-height);
   }
 }
+
 .section .our-funds-block .filter-cards .right-container .sort-pop-container .group-view-container .togglebtn.toggle-checked .toggle-text:first-of-type {
   font-size: var(--body-small-regular-size);
   line-height: var(--label-large-line-height);
@@ -1274,12 +1456,14 @@
   font-feature-settings: "ss01" on, "ss04" on, "cv01" on, "cv02" on, "cv03" on, "cv04" on, "cv06" on, "cv09" on, "cv10" on, "cv11" on;
   font-weight: 400;
 }
-@media (max-width: 768px) {
+
+@media (width <= 768px) {
   .section .our-funds-block .filter-cards .right-container .sort-pop-container .group-view-container .togglebtn.toggle-checked .toggle-text:first-of-type {
     font-size: var(--paragraph-small-size);
     line-height: var(--paragraph-small-line-height);
   }
 }
+
 .section .our-funds-block .filter-cards .right-container .sort-pop-container .group-view-container .togglebtn.toggle-checked .toggle-text:last-of-type {
   font-size: var(--body-small-semibold-size);
   line-height: var(--body-small-semibold-line-height);
@@ -1288,12 +1472,14 @@
   font-feature-settings: "ss01" on, "ss04" on, "cv01" on, "cv02" on, "cv03" on, "cv04" on, "cv06" on, "cv09" on, "cv10" on, "cv11" on;
   font-weight: 600;
 }
-@media (max-width: 768px) {
+
+@media (width <= 768px) {
   .section .our-funds-block .filter-cards .right-container .sort-pop-container .group-view-container .togglebtn.toggle-checked .toggle-text:last-of-type {
     font-size: var(--body-small-semibold-size);
     line-height: var(--body-small-semibold-line-height);
   }
 }
+
 .section .our-funds-block .filter-cards .right-container .sort-pop-container .group-view-container .togglebtn .fund-toggle-wrap input {
   opacity: 0;
   position: absolute;
@@ -1301,6 +1487,7 @@
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
 }
+
 .section .our-funds-block .filter-cards .right-container .sort-pop-container .group-view-container .togglebtn .fund-toggle-wrap .fund-toggle {
   width: 40px;
   height: 20px;
@@ -1312,6 +1499,7 @@
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
 }
+
 .section .our-funds-block .filter-cards .right-container .sort-pop-container .group-view-container .togglebtn .fund-toggle-wrap .fund-toggle::before {
   content: "";
   width: 16px;
@@ -1319,26 +1507,30 @@
   display: block;
   background: var(--icon-white);
   border-radius: 16px;
-  box-shadow: 0 3.2px 16px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 3.2px 16px 0 rgb(0 0 0 / 10%);
   position: absolute;
   top: 2px;
   transform: translateX(2px);
   transition: all 0.3s;
 }
+
 .section .our-funds-block .filter-cards .right-container .sort-pop-container .group-view-container .togglebtn .fund-toggle-wrap .fund-toggle .label-text {
   display: none;
 }
+
 .section .our-funds-block .filter-cards .right-container .sort-pop-container .group-view-container .togglebtn .fund-toggle-wrap input:checked + .fund-toggle::before {
   transform: translateX(22px);
 }
-@media (max-width: 1025px) {
+
+@media (width <= 1025px) {
   .section .our-funds-block .filter-cards .right-container .sort-pop-container .group-view-container .compare-btn {
     display: flex;
     justify-content: end;
     width: 100%;
   }
 }
-@media (max-width: 768px) {
+
+@media (width <= 768px) {
   .section .our-funds-block .filter-cards .right-container .sort-pop-container .group-view-container .compare-btn {
     position: absolute;
     right: 0;
@@ -1346,6 +1538,7 @@
     margin: 2px 0;
   }
 }
+
 .section .our-funds-block .filter-cards .right-container .sort-pop-container .group-view-container .compare-btn button {
   margin: 0 0 0 8px;
   background-color: transparent;
@@ -1360,18 +1553,22 @@
   font-feature-settings: "ss01" on, "ss04" on, "cv01" on, "cv02" on, "cv03" on, "cv04" on, "cv06" on, "cv09" on, "cv10" on, "cv11" on;
   font-weight: 500;
 }
-@media (max-width: 768px) {
+
+@media (width <= 768px) {
   .section .our-funds-block .filter-cards .right-container .sort-pop-container .group-view-container .compare-btn button {
     font-size: 14px;
     line-height: 16px;
   }
 }
+
 .section .our-funds-block .filter-cards .right-container .applied-filter-wrap {
   display: none;
 }
+
 .section .our-funds-block .filter-cards .right-container .applied-filter-wrap.filter-active {
   display: block;
 }
+
 .section .our-funds-block .filter-cards .right-container .applied-filter-list {
   margin: 0;
   padding: 0 0 20px;
@@ -1381,15 +1578,18 @@
   flex-wrap: wrap;
   gap: 8px;
 }
-@media (max-width: 768px) {
+
+@media (width <= 768px) {
   .section .our-funds-block .filter-cards .right-container .applied-filter-list {
     flex-wrap: unset;
     overflow: auto;
   }
+
   .section .our-funds-block .filter-cards .right-container .applied-filter-list::-webkit-scrollbar {
     display: none;
   }
 }
+
 .section .our-funds-block .filter-cards .right-container .applied-filter-name {
   display: flex;
   align-items: center;
@@ -1400,6 +1600,7 @@
   padding: 6px var(--spacing-12);
   gap: 4px;
 }
+
 .section .our-funds-block .filter-cards .right-container .applied-filter-name span {
   font-size: var(--body-small-regular-size);
   line-height: var(--body-small-regular-line-height);
@@ -1408,48 +1609,57 @@
   font-feature-settings: "ss01" on, "ss04" on, "cv01" on, "cv02" on, "cv03" on, "cv04" on, "cv06" on, "cv09" on, "cv10" on, "cv11" on;
   font-weight: 400;
 }
-@media (max-width: 768px) {
+
+@media (width <= 768px) {
   .section .our-funds-block .filter-cards .right-container .applied-filter-name span {
     font-size: var(--body-small-regular-size);
     line-height: var(--body-small-regular-line-height);
   }
 }
+
 .section .our-funds-block .filter-cards .right-container .applied-filter-name .filter-cross-icon {
   max-width: 20px;
   width: 100%;
   height: 20px;
   cursor: pointer;
 }
+
 .section .our-funds-block .filter-cards .right-container .cards-container {
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
 }
-@media (max-width: 768px) {
+
+@media (width <= 768px) {
   .section .our-funds-block .filter-cards .right-container .cards-container {
     gap: 20px;
   }
 }
-@media (max-width: 1299px) {
+
+@media (width <= 1299px) {
   .section .our-funds-block .filter-cards .right-container .cards-container .card-container {
     max-width: 31.7%;
   }
 }
-@media (max-width: 1025px) {
+
+@media (width <= 1025px) {
   .section .our-funds-block .filter-cards .right-container .cards-container .card-container {
     max-width: 48.4%;
   }
 }
+
 @media (width <= 660px) {
   .section .our-funds-block .filter-cards .right-container .cards-container .card-container {
     max-width: 100%;
   }
 }
-@media (max-width: 1025px) {
+
+@media (width <= 1025px) {
   .section .our-funds-block .filter-cards .right-container .list-view-header {
     display: none !important;
   }
 }
+
 .section .our-funds-block .filter-cards .right-container .list-view-header .list-header .default-content-wrapper {
   background-color: var(--neutrals-white);
   display: flex;
@@ -1458,11 +1668,13 @@
   border-radius: 8px;
   padding: 8px 20px;
 }
-@media (max-width: 1299px) {
+
+@media (width <= 1299px) {
   .section .our-funds-block .filter-cards .right-container .list-view-header .list-header .default-content-wrapper {
     gap: 22px;
   }
 }
+
 .section .our-funds-block .filter-cards .right-container .list-view-header .list-header .default-content-wrapper .list-header-text {
   margin: 0;
   padding: 6px 0;
@@ -1473,16 +1685,19 @@
   font-feature-settings: "ss01" on, "ss04" on, "cv01" on, "cv02" on, "cv03" on, "cv04" on, "cv06" on, "cv09" on, "cv10" on, "cv11" on;
   font-weight: 500;
 }
+
 .section .our-funds-block .filter-cards .right-container .list-view-header .list-header .default-content-wrapper .list-header-text:nth-of-type(1) {
   max-width: 45.228%;
   width: 100%;
   margin-right: 33px;
 }
-@media (max-width: 1025px) {
+
+@media (width <= 1025px) {
   .section .our-funds-block .filter-cards .right-container .list-view-header .list-header .default-content-wrapper .list-header-text:nth-of-type(1) {
     margin: 0;
   }
 }
+
 .section .our-funds-block .filter-cards .right-container .list-view-header .list-header .default-content-wrapper .list-header-text:nth-of-type(2) {
   max-width: 9.44%;
   width: 100%;
@@ -1492,13 +1707,15 @@
   justify-content: space-between;
   gap: 8px;
 }
-@media (max-width: 1025px) {
+
+@media (width <= 1025px) {
   .section .our-funds-block .filter-cards .right-container .list-view-header .list-header .default-content-wrapper .list-header-text:nth-of-type(2) {
     margin: 0;
     max-width: -moz-max-content;
     max-width: max-content;
   }
 }
+
 .section .our-funds-block .filter-cards .right-container .list-view-header .list-header .default-content-wrapper .list-header-text:nth-of-type(2)::after {
   content: "";
   background-image: url("/icons/returns-icon.svg");
@@ -1509,53 +1726,64 @@
   height: 10px;
   display: block;
 }
+
 .section .our-funds-block .filter-cards .right-container .list-view-header .list-header .default-content-wrapper .list-header-text:nth-of-type(3) {
   max-width: 9%;
   width: 100%;
   text-align: center;
 }
+
 .section .our-funds-block .filter-cards .right-container .list-view-header .list-header .default-content-wrapper .list-header-text:nth-of-type(4) {
   max-width: 8%;
   width: 100%;
   text-align: center;
 }
-@media (max-width: 1299px) {
+
+@media (width <= 1299px) {
   .section .our-funds-block .filter-cards .right-container .list-view-header .list-header .default-content-wrapper .list-header-text:nth-of-type(1) {
     margin-right: 25px;
     max-width: 40%;
   }
+
   .section .our-funds-block .filter-cards .right-container .list-view-header .list-header .default-content-wrapper .list-header-text:nth-of-type(2) {
     margin-right: 15px;
     max-width: 12%;
   }
+
   .section .our-funds-block .filter-cards .right-container .list-view-header .list-header .default-content-wrapper .list-header-text:nth-of-type(4) {
     max-width: 10%;
   }
 }
+
 .section .our-funds-block .filter-cards .right-container .list-view-header .list-container {
   margin: 8px 0 0;
 }
+
 .section .our-funds-block .filter-cards .right-container .list-view-header .list-container .list-view-container {
   background-color: var(--neutrals-white);
   border-radius: 8px;
   transition: border 0.3s;
   border: 1px solid transparent;
 }
+
 .section .our-funds-block .filter-cards .right-container .list-view-header .list-container .list-view-container:hover {
   border: 1px solid var(--blue-1-50);
   background-color: var(--blue-1-25);
 }
+
 .section .our-funds-block .filter-cards .right-container .list-view-header .list-container .list-view-container .list-wrapper {
   display: flex;
   align-items: center;
   gap: 25px;
   padding: 16px 20px;
 }
-@media (max-width: 1299px) {
+
+@media (width <= 1299px) {
   .section .our-funds-block .filter-cards .right-container .list-view-header .list-container .list-view-container .list-wrapper {
     gap: 22px;
   }
 }
+
 .section .our-funds-block .filter-cards .right-container .list-view-header .list-container .list-view-container .list-wrapper .fund-name-wrapper {
   max-width: 45.228%;
   width: 100%;
@@ -1564,35 +1792,41 @@
   align-items: center;
   gap: 8px;
 }
-@media (max-width: 1299px) {
+
+@media (width <= 1299px) {
   .section .our-funds-block .filter-cards .right-container .list-view-header .list-container .list-view-container .list-wrapper .fund-name-wrapper {
     max-width: 40%;
     margin-right: 25px;
   }
 }
-@media (max-width: 1025px) {
+
+@media (width <= 1025px) {
   .section .our-funds-block .filter-cards .right-container .list-view-header .list-container .list-view-container .list-wrapper .fund-name-wrapper {
     margin: 0;
   }
 }
+
 .section .our-funds-block .filter-cards .right-container .list-view-header .list-container .list-view-container .list-wrapper .fund-name-wrapper .logo-container {
   max-width: 32px;
   width: 100%;
   height: 32px;
   margin-right: 2px;
-  box-shadow: 0 0 14px 0 rgba(0, 0, 0, 0.07);
+  box-shadow: 0 0 14px 0 rgb(0 0 0 / 7%);
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 50%;
 }
+
 .section .our-funds-block .filter-cards .right-container .list-view-header .list-container .list-view-container .list-wrapper .fund-name-wrapper .logo-container .fund-logo {
   width: 100%;
   height: 100%;
 }
+
 .section .our-funds-block .filter-cards .right-container .list-view-header .list-container .list-view-container .list-wrapper .fund-name-wrapper .fund-name-container {
   width: 100%;
 }
+
 .section .our-funds-block .filter-cards .right-container .list-view-header .list-container .list-view-container .list-wrapper .fund-name-wrapper .fund-name-container .fund-name-txt {
   margin: 0;
   font-size: var(--body-medium-medium-size);
@@ -1602,11 +1836,13 @@
   font-feature-settings: "ss01" on, "ss04" on, "cv01" on, "cv02" on, "cv03" on, "cv04" on, "cv06" on, "cv09" on, "cv10" on, "cv11" on;
   font-weight: 500;
 }
+
 .section .our-funds-block .filter-cards .right-container .list-view-header .list-container .list-view-container .list-wrapper .fund-name-wrapper .logoscheme {
   max-width: 24px;
   width: 100%;
   height: 24px;
 }
+
 .section .our-funds-block .filter-cards .right-container .list-view-header .list-container .list-view-container .list-wrapper .cagr-return {
   max-width: 9.44%;
   width: 100%;
@@ -1616,12 +1852,14 @@
   gap: 4px;
   align-items: end;
 }
-@media (max-width: 1299px) {
+
+@media (width <= 1299px) {
   .section .our-funds-block .filter-cards .right-container .list-view-header .list-container .list-view-container .list-wrapper .cagr-return {
     max-width: 12%;
     margin-right: 15px;
   }
 }
+
 .section .our-funds-block .filter-cards .right-container .list-view-header .list-container .list-view-container .list-wrapper .cagr-return .cagr-value {
   font-size: var(--body-medium-semibold-size);
   line-height: var(--body-medium-semibold-line-height);
@@ -1631,6 +1869,7 @@
   font-weight: 600;
   display: flex;
 }
+
 .section .our-funds-block .filter-cards .right-container .list-view-header .list-container .list-view-container .list-wrapper .cagr-return .cagr-text {
   margin: 0;
   font-size: var(--label-small-size);
@@ -1640,6 +1879,7 @@
   font-feature-settings: "ss01" on, "ss04" on, "cv01" on, "cv02" on, "cv03" on, "cv04" on, "cv06" on, "cv09" on, "cv10" on, "cv11" on;
   font-weight: 400;
 }
+
 .section .our-funds-block .filter-cards .right-container .list-view-header .list-container .list-view-container .list-wrapper .risk-star-icon {
   max-width: 9%;
   width: 100%;
@@ -1647,12 +1887,14 @@
   justify-content: center;
   align-items: center;
 }
+
 .section .our-funds-block .filter-cards .right-container .list-view-header .list-container .list-view-container .list-wrapper .risk-star-icon .risk-icon,
 .section .our-funds-block .filter-cards .right-container .list-view-header .list-container .list-view-container .list-wrapper .risk-star-icon .riskfactor-icon {
   max-width: 24px;
   width: 100%;
   height: 24px;
 }
+
 .section .our-funds-block .filter-cards .right-container .list-view-header .list-container .list-view-container .list-wrapper .star {
   max-width: 8%;
   width: 100%;
@@ -1662,32 +1904,39 @@
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
 }
-@media (max-width: 1299px) {
+
+@media (width <= 1299px) {
   .section .our-funds-block .filter-cards .right-container .list-view-header .list-container .list-view-container .list-wrapper .star {
     max-width: 10%;
   }
 }
+
 .section .our-funds-block .filter-cards .right-container .list-view-header .list-container .list-view-container .list-wrapper .star .fillstar-icon {
   display: none;
 }
+
 .section .our-funds-block .filter-cards .right-container .list-view-header .list-container .list-view-container .list-wrapper .star.star-filled .star-icon {
   display: none;
 }
+
 .section .our-funds-block .filter-cards .right-container .list-view-header .list-container .list-view-container .list-wrapper .star.star-filled .fillstar-icon {
   display: block;
   cursor: pointer;
 }
+
 .section .our-funds-block .filter-cards .right-container .list-view-header .list-container .list-view-container .list-wrapper .btn-invest {
   max-width: 11.364%;
   width: 100%;
   display: flex;
   justify-content: end;
 }
-@media (max-width: 1299px) {
+
+@media (width <= 1299px) {
   .section .our-funds-block .filter-cards .right-container .list-view-header .list-container .list-view-container .list-wrapper .btn-invest {
     max-width: 10.4%;
   }
 }
+
 .section .our-funds-block .filter-cards .right-container .list-view-header .list-container .list-view-container .list-wrapper .btn-invest button {
   padding: var(--spacing-8) var(--spacing-12);
   margin: 0;
@@ -1704,29 +1953,35 @@
   font-feature-settings: "ss01" on, "ss04" on, "cv01" on, "cv02" on, "cv03" on, "cv04" on, "cv06" on, "cv09" on, "cv10" on, "cv11" on;
   font-weight: 500;
 }
+
 .section .our-funds-block .filter-cards .right-container .list-view-header .list-container .list-view-container.nfo-list-container {
   background-color: var(--blue-1-800-primary);
 }
+
 .section .our-funds-block .filter-cards .right-container .list-view-header .list-container .list-view-container.nfo-list-container .list-wrapper .fund-name-wrapper {
   flex-direction: column;
   align-items: start;
   gap: 4px;
 }
+
 .section .our-funds-block .filter-cards .right-container .list-view-header .list-container .list-view-container.nfo-list-container .list-wrapper .fund-name-wrapper .fund-inner-wrapper {
   display: flex;
   align-items: center;
   width: 100%;
 }
+
 .section .our-funds-block .filter-cards .right-container .list-view-header .list-container .list-view-container.nfo-list-container .list-wrapper .fund-name-wrapper .fund-inner-wrapper .fund-name-container .fund-name-txt {
   color: var(--neutrals-white);
   margin-left: 10px;
 }
+
 .section .our-funds-block .filter-cards .right-container .list-view-header .list-container .list-view-container.nfo-list-container .list-wrapper .fund-name-wrapper .fund-inner-wrapper .logoscheme {
   margin-left: -3px;
 }
+
 .section .our-funds-block .filter-cards .right-container .list-view-header .list-container .list-view-container.nfo-list-container .list-wrapper .fund-name-wrapper .timing-nfo-value {
   border-radius: 8px;
-  background: rgba(255, 255, 255, 0.08);
+  background: rgb(255 255 255 / 8%);
   display: flex;
   align-items: center;
   gap: 12px;
@@ -1735,9 +1990,11 @@
   max-width: -moz-max-content;
   max-width: max-content;
 }
+
 .section .our-funds-block .filter-cards .right-container .list-view-header .list-container .list-view-container.nfo-list-container .list-wrapper .fund-name-wrapper .timing-nfo-value .nfo-container {
   line-height: 0;
 }
+
 .section .our-funds-block .filter-cards .right-container .list-view-header .list-container .list-view-container.nfo-list-container .list-wrapper .fund-name-wrapper .timing-nfo-value .nfo-container .label-nfo {
   font-size: 12px;
   line-height: var(--paragraph-xsmall-line-height);
@@ -1749,6 +2006,7 @@
   align-items: center;
   gap: 4px;
 }
+
 .section .our-funds-block .filter-cards .right-container .list-view-header .list-container .list-view-container.nfo-list-container .list-wrapper .fund-name-wrapper .timing-nfo-value .nfo-container .label-nfo::before {
   content: "";
   width: 9px;
@@ -1757,6 +2015,7 @@
   border-radius: 50%;
   display: block;
 }
+
 .section .our-funds-block .filter-cards .right-container .list-view-header .list-container .list-view-container.nfo-list-container .list-wrapper .fund-name-wrapper .timing-nfo-value .timing-container p {
   margin: 0;
   font-size: var(--disclaimer-xsmall-size);
@@ -1766,12 +2025,14 @@
   font-feature-settings: "ss01" on, "ss04" on, "cv01" on, "cv02" on, "cv03" on, "cv04" on, "cv06" on, "cv09" on, "cv10" on, "cv11" on;
   font-weight: 400;
 }
+
 .section .our-funds-block .filter-cards .right-container .list-view-header .list-container .list-view-container.nfo-list-container .list-wrapper .cagr-return .cagr-value {
   color: var(--neutrals-white);
   display: flex;
   align-items: center;
   gap: 4px;
 }
+
 .section .our-funds-block .filter-cards .right-container .list-view-header .list-container .list-view-container.nfo-list-container .list-wrapper .cagr-return .cagr-value::after {
   content: "";
   background-image: url("/icons/info-white.svg");
@@ -1782,7 +2043,8 @@
   height: 12px;
   display: block;
 }
+
 .section .our-funds-block .filter-cards .right-container .list-view-header .list-container .list-view-container.nfo-list-container .list-wrapper .btn-invest button {
   background-color: var(--surface-background);
   color: var(--button-primary-default);
-}/*# sourceMappingURL=our-funds-block.css.map */
+}
