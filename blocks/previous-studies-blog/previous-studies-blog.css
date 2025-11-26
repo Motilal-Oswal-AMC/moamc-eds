@@ -4,14 +4,14 @@ main .previous-studies-blog-container.section.previous-studies-each-details {
     margin: 0;
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
     main .previous-studies-blog-container.section.previous-studies-each-details .previous-studies-blog-wrapper {
         display: flex;
         justify-content: center;
     }
 }
 
-@media (max-width: 768px) and (max-width: 768px) {
+@media (width <= 768px) and (width <= 768px) {
     main .previous-studies-blog-container.section.previous-studies-each-details .previous-studies-blog-wrapper .previous-studies-blog {
         display: flex;
         max-width: 340px;
@@ -27,7 +27,7 @@ main .previous-studies-blog-container.section.previous-studies-each-details .pre
     margin: 0;
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
     main .previous-studies-blog-container.section.previous-studies-each-details .previous-studies-blog-wrapper .previous-studies-blog {
         gap: 40px 12px;
         max-width: 340px;
@@ -45,7 +45,7 @@ main .previous-studies-blog-container.section.previous-studies-each-details .pre
     height: auto;
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
     main .previous-studies-blog-container.section.previous-studies-each-details .previous-studies-blog-wrapper .previous-studies-blog>.comlist .ps-in1 {
         max-width: 164px;
         max-height: 164px;
@@ -59,7 +59,7 @@ main .previous-studies-blog-container.section.previous-studies-each-details .pre
     width: 100%;
     height: 100%;
     border-radius: var(--border-radius-8);
-    background: linear-gradient(0deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.4) 100%);
+    background: linear-gradient(0deg, rgb(0 0 0 / 40%) 0%, rgb(0 0 0 / 40%) 100%);
     z-index: 2;
     pointer-events: none;
 }
@@ -84,7 +84,7 @@ main .previous-studies-blog-container.section.previous-studies-each-details .pre
     max-width: 296px;
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
     main .previous-studies-blog-container.section.previous-studies-each-details .previous-studies-blog-wrapper .previous-studies-blog>.comlist .ps-in2 {
         max-width: 164px;
     }
@@ -148,7 +148,7 @@ main .previous-studies-blog-container.section.previous-studies-each-details .pre
     width: 32px;
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
     main .previous-studies-blog-container.section.previous-studies-each-details .previous-studies-blog-wrapper .previous-studies-blog>.comlist .ps-in3 .ps-cont1 .ps-subcont1 .icon img {
         width: 16px;
         height: 16px;
@@ -158,5 +158,3 @@ main .previous-studies-blog-container.section.previous-studies-each-details .pre
 .section.previous-studies-each-details.hide-section {
     display: none;
 }
-
-/*# sourceMappingURL=previous-studies-blog.css.map */

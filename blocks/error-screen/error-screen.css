@@ -1,4 +1,5 @@
 @import "../../../styles/fonts.css";
+
 .screen-400.cards-container,
 .screen-401.cards-container,
 .screen-403.cards-container,
@@ -8,7 +9,8 @@
   padding: 76px 0;
   margin-bottom: unset;
 }
-@media (max-width: 768px) {
+
+@media (width <= 768px) {
   .screen-400.cards-container,
   .screen-401.cards-container,
   .screen-403.cards-container,
@@ -19,6 +21,7 @@
     padding: 120px 0;
   }
 }
+
 .screen-400.cards-container .cards.error-screen-wrap1,
 .screen-401.cards-container .cards.error-screen-wrap1,
 .screen-403.cards-container .cards.error-screen-wrap1,
@@ -28,6 +31,7 @@
   display: flex;
   justify-content: center;
 }
+
 .screen-400.cards-container .cards.error-screen-wrap1 ul.error-screen-ul1,
 .screen-401.cards-container .cards.error-screen-wrap1 ul.error-screen-ul1,
 .screen-403.cards-container .cards.error-screen-wrap1 ul.error-screen-ul1,
@@ -38,6 +42,7 @@
   max-width: 752px;
   width: 100%;
 }
+
 .screen-400.cards-container .cards.error-screen-wrap1 ul.error-screen-ul1 li.comlist,
 .screen-401.cards-container .cards.error-screen-wrap1 ul.error-screen-ul1 li.comlist,
 .screen-403.cards-container .cards.error-screen-wrap1 ul.error-screen-ul1 li.comlist,
@@ -51,7 +56,8 @@
   align-items: center;
   gap: 28px;
 }
-@media (max-width: 768px) {
+
+@media (width <= 768px) {
   .screen-400.cards-container .cards.error-screen-wrap1 ul.error-screen-ul1 li.comlist,
   .screen-401.cards-container .cards.error-screen-wrap1 ul.error-screen-ul1 li.comlist,
   .screen-403.cards-container .cards.error-screen-wrap1 ul.error-screen-ul1 li.comlist,
@@ -61,6 +67,7 @@
     gap: 40px;
   }
 }
+
 .screen-400.cards-container .cards.error-screen-wrap1 ul.error-screen-ul1 li.comlist .cards-card-image img.comlist,
 .screen-401.cards-container .cards.error-screen-wrap1 ul.error-screen-ul1 li.comlist .cards-card-image img.comlist,
 .screen-403.cards-container .cards.error-screen-wrap1 ul.error-screen-ul1 li.comlist .cards-card-image img.comlist,
@@ -70,7 +77,8 @@
   aspect-ratio: unset;
   height: 196px;
 }
-@media (max-width: 768px) {
+
+@media (width <= 768px) {
   .screen-400.cards-container .cards.error-screen-wrap1 ul.error-screen-ul1 li.comlist .cards-card-image img.comlist,
   .screen-401.cards-container .cards.error-screen-wrap1 ul.error-screen-ul1 li.comlist .cards-card-image img.comlist,
   .screen-403.cards-container .cards.error-screen-wrap1 ul.error-screen-ul1 li.comlist .cards-card-image img.comlist,
@@ -80,6 +88,7 @@
     height: 160px;
   }
 }
+
 .screen-400.cards-container .cards.error-screen-wrap1 ul.error-screen-ul1 li.comlist .cards-card-body,
 .screen-401.cards-container .cards.error-screen-wrap1 ul.error-screen-ul1 li.comlist .cards-card-body,
 .screen-403.cards-container .cards.error-screen-wrap1 ul.error-screen-ul1 li.comlist .cards-card-body,
@@ -93,6 +102,7 @@
   gap: 12px;
   text-align: center;
 }
+
 .screen-400.cards-container .cards.error-screen-wrap1 ul.error-screen-ul1 li.comlist .cards-card-body p.comlist,
 .screen-401.cards-container .cards.error-screen-wrap1 ul.error-screen-ul1 li.comlist .cards-card-body p.comlist,
 .screen-403.cards-container .cards.error-screen-wrap1 ul.error-screen-ul1 li.comlist .cards-card-body p.comlist,
@@ -101,6 +111,7 @@
 .service-screen.cards-container .cards.error-screen-wrap1 ul.error-screen-ul1 li.comlist .cards-card-body p.comlist {
   margin: unset;
 }
+
 .screen-400.cards-container .cards.error-screen-wrap1 ul.error-screen-ul1 li.comlist .cards-card-body .errscrn-cont1,
 .screen-401.cards-container .cards.error-screen-wrap1 ul.error-screen-ul1 li.comlist .cards-card-body .errscrn-cont1,
 .screen-403.cards-container .cards.error-screen-wrap1 ul.error-screen-ul1 li.comlist .cards-card-body .errscrn-cont1,
@@ -114,7 +125,8 @@
   font-weight: 600;
   line-height: var(--heading-h3-line-height);
 }
-@media (max-width: 768px) {
+
+@media (width <= 768px) {
   .screen-400.cards-container .cards.error-screen-wrap1 ul.error-screen-ul1 li.comlist .cards-card-body .errscrn-cont1,
   .screen-401.cards-container .cards.error-screen-wrap1 ul.error-screen-ul1 li.comlist .cards-card-body .errscrn-cont1,
   .screen-403.cards-container .cards.error-screen-wrap1 ul.error-screen-ul1 li.comlist .cards-card-body .errscrn-cont1,
@@ -125,6 +137,7 @@
     line-height: 40px;
   }
 }
+
 .screen-400.cards-container .cards.error-screen-wrap1 ul.error-screen-ul1 li.comlist .cards-card-body .errscn-txtwrap,
 .screen-401.cards-container .cards.error-screen-wrap1 ul.error-screen-ul1 li.comlist .cards-card-body .errscn-txtwrap,
 .screen-403.cards-container .cards.error-screen-wrap1 ul.error-screen-ul1 li.comlist .cards-card-body .errscn-txtwrap,
@@ -138,7 +151,8 @@
   font-weight: 500;
   line-height: var(--body-medium-medium-line-height);
 }
-@media (max-width: 768px) {
+
+@media (width <= 768px) {
   .screen-400.cards-container .cards.error-screen-wrap1 ul.error-screen-ul1 li.comlist .cards-card-body .errscn-txtwrap,
   .screen-401.cards-container .cards.error-screen-wrap1 ul.error-screen-ul1 li.comlist .cards-card-body .errscn-txtwrap,
   .screen-403.cards-container .cards.error-screen-wrap1 ul.error-screen-ul1 li.comlist .cards-card-body .errscn-txtwrap,
@@ -149,6 +163,7 @@
     line-height: var(--body-small-medium-line-height);
   }
 }
+
 .screen-400.cards-container .cards.error-screen-wrap1 ul.error-screen-ul1 li.comlist .cards-card-body p.button-container,
 .screen-401.cards-container .cards.error-screen-wrap1 ul.error-screen-ul1 li.comlist .cards-card-body p.button-container,
 .screen-403.cards-container .cards.error-screen-wrap1 ul.error-screen-ul1 li.comlist .cards-card-body p.button-container,
@@ -160,7 +175,8 @@
   width: 154px;
   margin: 20px 0 0;
 }
-@media (max-width: 768px) {
+
+@media (width <= 768px) {
   .screen-400.cards-container .cards.error-screen-wrap1 ul.error-screen-ul1 li.comlist .cards-card-body p.button-container,
   .screen-401.cards-container .cards.error-screen-wrap1 ul.error-screen-ul1 li.comlist .cards-card-body p.button-container,
   .screen-403.cards-container .cards.error-screen-wrap1 ul.error-screen-ul1 li.comlist .cards-card-body p.button-container,
@@ -170,6 +186,7 @@
     margin: 16px 0 0;
   }
 }
+
 .screen-400.cards-container .cards.error-screen-wrap1 ul.error-screen-ul1 li.comlist .cards-card-body p.button-container a.errscrn-inner-cont1,
 .screen-401.cards-container .cards.error-screen-wrap1 ul.error-screen-ul1 li.comlist .cards-card-body p.button-container a.errscrn-inner-cont1,
 .screen-403.cards-container .cards.error-screen-wrap1 ul.error-screen-ul1 li.comlist .cards-card-body p.button-container a.errscrn-inner-cont1,
@@ -192,7 +209,8 @@
   justify-content: center;
   align-items: center;
 }
-@media (max-width: 768px) {
+
+@media (width <= 768px) {
   .screen-400.cards-container .cards.error-screen-wrap1 ul.error-screen-ul1 li.comlist .cards-card-body p.button-container a.errscrn-inner-cont1,
   .screen-401.cards-container .cards.error-screen-wrap1 ul.error-screen-ul1 li.comlist .cards-card-body p.button-container a.errscrn-inner-cont1,
   .screen-403.cards-container .cards.error-screen-wrap1 ul.error-screen-ul1 li.comlist .cards-card-body p.button-container a.errscrn-inner-cont1,
@@ -208,7 +226,8 @@
   height: 196px;
   width: 145px;
 }
-@media (max-width: 768px) {
+
+@media (width <= 768px) {
   .screen-400 .errscrn-img-cont1 {
     height: 160px;
     width: 110px;
@@ -219,7 +238,8 @@
   height: 196px;
   width: 112px;
 }
-@media (max-width: 768px) {
+
+@media (width <= 768px) {
   .screen-401 .errscrn-img-cont1 {
     height: 160px;
     width: 92px;
@@ -230,7 +250,8 @@
   height: 196px;
   width: 121px;
 }
-@media (max-width: 768px) {
+
+@media (width <= 768px) {
   .screen-403 .errscrn-img-cont1 {
     height: 160px;
     width: 99px;
@@ -241,7 +262,8 @@
   height: 196px;
   width: 132px;
 }
-@media (max-width: 768px) {
+
+@media (width <= 768px) {
   .screen-408 .errscrn-img-cont1 {
     height: 160px;
     width: 108px;
@@ -252,7 +274,8 @@
   height: 196px;
   width: 156px;
 }
-@media (max-width: 768px) {
+
+@media (width <= 768px) {
   .screen-500 .errscrn-img-cont1 {
     height: 160px;
     width: 127px;
@@ -263,9 +286,10 @@
   height: 196px;
   width: 144px;
 }
-@media (max-width: 768px) {
+
+@media (width <= 768px) {
   .service-screen .cards .cards-card-image {
     height: 160px;
     width: 117px;
   }
-}/*# sourceMappingURL=error-screen.css.map */
+}

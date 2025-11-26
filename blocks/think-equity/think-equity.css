@@ -14,7 +14,7 @@
     padding: 40px 0;
 }
 
-@media (max-width: 1025px) {
+@media (width <= 1025px) {
     .think-equity-container {
         padding: 40px 16px 0;
     }
@@ -41,7 +41,7 @@
     justify-content: space-between;
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .think-equity-container .columns.block .collist1 {
         flex-direction: column;
         justify-content: space-around;
@@ -57,7 +57,7 @@
     max-width: 22.4%;
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .think-equity-container .columns.block .collist1 .subcollist {
         display: flex;
         flex-direction: row;
@@ -75,11 +75,11 @@
     font-size: 36px;
     font-weight: 700;
     line-height: 44px;
-    font-family: "Inter", sans-serif;
+    font-family: Inter, sans-serif;
     text-wrap: balance;
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .think-equity-container .columns.block .collist1 .subcollist .subitem-child-1 {
         font-size: var(--body-medium-semibold-size);
         line-height: var(--body-medium-semibold-line-height);
@@ -103,7 +103,7 @@
     font-weight: 400;
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .think-equity-container .columns.block .collist1 .subcollist .subitem-child-2 {
         font-size: var(--paragraph-small-size);
         line-height: var(--paragraph-small-line-height);
@@ -118,7 +118,7 @@
     max-width: 116px;
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .think-equity-container .columns.block .collist1 .subcollist.item-child-2 .subitem-child-2 {
         max-width: 61%;
     }
@@ -139,7 +139,7 @@
     padding: 0;
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .think-equity-container .default-content-wrapper {
         flex-direction: column;
         align-items: start;
@@ -163,7 +163,7 @@
     font-weight: 500;
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .think-equity-container .default-content-wrapper .item-child-1 {
         font-size: var(--body-xlarge-semibold-size);
         line-height: var(--body-xlarge-semibold-line-height);
@@ -177,7 +177,7 @@
     width: 100%;
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .think-equity-container .default-content-wrapper .item-child-2.button-container {
         max-width: 100%;
     }
@@ -202,7 +202,7 @@
     font-weight: 500;
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .think-equity-container .default-content-wrapper .item-child-2.button-container .button {
         font-size: var(--button-medium-size);
         line-height: var(--button-medium-line-height);
@@ -223,7 +223,7 @@
     margin-bottom: 24px;
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .think-equity.block {
         justify-content: space-around;
         flex-direction: column;
@@ -245,7 +245,7 @@
     min-height: 237px;
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .think-equity.block .imagelist1 {
         padding: 0;
         flex-basis: 100%;
@@ -263,7 +263,7 @@
     height: 100%;
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .think-equity.block .imagelist1 .subimagelist {
         min-height: 114px;
     }
@@ -285,8 +285,7 @@
     font-weight: 600;
 }
 
-@media (max-width: 768px) {
-
+@media (width <= 768px) {
     .think-equity.block .imagelist1 .subimagelist h1,
     .think-equity.block .imagelist1 .subimagelist h2,
     .think-equity.block .imagelist1 .subimagelist h3,
@@ -311,7 +310,7 @@
     height: 100%;
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .think-equity.block .imagelist1 .subimagelist::before {
         background: url("/icons/think-logo-circle-mob.svg");
         width: 107px;
@@ -327,7 +326,7 @@
     width: 685px;
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .think-equity.block .imagelist2 {
         width: 340px;
         height: 145px;
@@ -346,5 +345,3 @@
         height: 100%;
     }
 }
-
-/*# sourceMappingURL=think-equity.css.map */

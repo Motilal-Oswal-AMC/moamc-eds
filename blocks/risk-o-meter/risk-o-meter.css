@@ -52,11 +52,11 @@
     justify-content: center;
     border-radius: 8px;
     background: #FFF;
-    box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 12px 0 rgb(0 0 0 / 5%);
     height: auto;
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .modal.block dialog>.modal-content.risk-meter {
         max-width: 91.4%;
     }
@@ -71,7 +71,7 @@
     flex-direction: column-reverse;
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .section.risk-o-meter-container {
         gap: 16px;
     }
@@ -82,7 +82,7 @@
     padding: 16px;
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .section.risk-o-meter-container.risk-container {
         padding: 40px 16px;
         gap: 32px;
@@ -97,7 +97,7 @@
     padding: 0 33px;
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .section.risk-o-meter-container .risk-o-meter {
         flex-direction: column-reverse;
         padding: 0;
@@ -110,8 +110,7 @@
     text-align: center;
 }
 
-@media (max-width: 768px) {
-
+@media (width <= 768px) {
     .section.risk-o-meter-container .corner-1,
     .section.risk-o-meter-container .corner-2 {
         padding: 0 45px;
@@ -140,8 +139,7 @@
     height: 160px;
 }
 
-@media (max-width: 768px) {
-
+@media (width <= 768px) {
     .section.risk-o-meter-container .corner-1 .column-2,
     .section.risk-o-meter-container .corner-2 .column-2 {
         height: 160px;
@@ -165,7 +163,7 @@
     gap: 10px;
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .section.risk-o-meter-container>.default-content-wrapper {
         margin: 0;
         padding: 0;
@@ -183,7 +181,7 @@
     font-weight: 600;
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .section.risk-o-meter-container>.default-content-wrapper h3.defone1 {
         font-size: var(--body-medium-semibold-size);
         line-height: var(--body-medium-semibold-line-height);
@@ -199,7 +197,7 @@
     font-weight: 600;
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .section.risk-o-meter-container>.default-content-wrapper h3.defone1 a {
         font-size: var(--body-medium-semibold-size);
         line-height: var(--body-medium-semibold-line-height);
@@ -216,17 +214,13 @@
     margin: 0;
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .section.risk-o-meter-container>.default-content-wrapper ul.defone2 {
         margin: 0;
     }
 }
 
 .section.risk-o-meter-container>.default-content-wrapper ul.defone2 li.defli {
-    color: #616161;
-    font-family: "Inter", sans-serif;
-    font-size: 14px;
-    line-height: 20px;
     font-size: var(--body-small-regular-size);
     line-height: var(--label-large-line-height);
     color: var(--neutrals-800);
@@ -235,7 +229,7 @@
     font-weight: 400;
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .section.risk-o-meter-container>.default-content-wrapper ul.defone2 li.defli {
         font-size: var(--paragraph-small-size);
         line-height: var(--paragraph-small-line-height);
@@ -257,7 +251,7 @@
     color: var(--blue-1-400);
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .section.risk-o-meter-container>.default-content-wrapper p.defone3 {
         font-size: var(--paragraph-small-size);
         line-height: var(--paragraph-small-line-height);
@@ -274,7 +268,7 @@
     text-decoration: none;
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .section.risk-o-meter-container>.default-content-wrapper p.defone3 a.deftwo1 {
         font-size: var(--paragraph-small-size);
         line-height: var(--paragraph-small-line-height);
@@ -294,7 +288,7 @@
     gap: 24px;
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .section.product-label.risk-o-meter-container {
         padding: 40px 16px;
         margin: unset !important;
@@ -317,11 +311,11 @@
     gap: 16px;
     border-radius: 8px;
     background: #FFF;
-    box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 12px 0 rgb(0 0 0 / 5%);
     padding: 24px 16px;
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .section.product-label.risk-o-meter-container .risk-wrapper {
         padding: 0;
         background: inherit;
@@ -341,7 +335,7 @@
     margin: 32px 0 8px;
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .section.product-label.risk-o-meter-container .risk-wrapper .risk-o-meter-wrapper.risk2 .risk-o-meter {
         gap: 40px;
         margin-bottom: 32px;
@@ -351,7 +345,7 @@
 .section.product-label.risk-o-meter-container .risk-wrapper .risk-o-meter-wrapper.risk2 .risk-o-meter .risk-meter-cont.corner-1 .column-1 p,
 .section.product-label.risk-o-meter-container .risk-wrapper .risk-o-meter-wrapper.risk2 .risk-o-meter .risk-meter-cont.corner-2 .column-1 p {
     color: #242177;
-    font-family: "Inter", sans-serif;
+    font-family: Inter, sans-serif;
     font-size: 18px;
     font-weight: 500;
     line-height: 24px;
@@ -368,7 +362,5 @@
     font-size: 18px;
     line-height: 24px;
     color: #242177;
-    font-family: "Inter", sans-serif;
+    font-family: Inter, sans-serif;
 }
-
-/*# sourceMappingURL=risk-o-meter.css.map */

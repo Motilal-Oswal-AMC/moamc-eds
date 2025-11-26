@@ -37,7 +37,7 @@
 .section.our-funds-fdp-container .our-funds-fdp-wrapper .our-funds-fdp .funds-container {
     display: flex;
     background-color: var(--neutrals-white);
-    box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 12px 0 rgb(0 0 0 / 5%);
     border-radius: 0.5rem;
     padding: 1rem;
     flex-direction: column;
@@ -47,7 +47,7 @@
     height: 140px;
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .section.our-funds-fdp-container .our-funds-fdp-wrapper .our-funds-fdp .funds-container {
         height: 196px;
     }
@@ -214,7 +214,7 @@
     text-decoration-style: solid;
     text-underline-offset: 14%;
     text-decoration-thickness: 1px;
-    -webkit-text-decoration-skip: ink;
+    text-decoration-skip: ink;
     text-decoration-skip-ink: auto;
     padding: 0 5rem;
 }
@@ -288,7 +288,7 @@
     background-color: #6e6c6c;
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .modal.modal-journey-fund dialog .modal-content .fm-portfolio-container {
         border: 1px solid #9E9E9E;
     }
@@ -300,5 +300,3 @@
         max-width: 100%;
     }
 }
-
-/*# sourceMappingURL=our-funds-fdp.css.map */

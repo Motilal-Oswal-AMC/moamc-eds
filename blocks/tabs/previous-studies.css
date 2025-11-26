@@ -4,7 +4,7 @@ main.nfo-nav .previous-studies-ctn.section:first-of-type {
     margin-top: 72px;
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
     main.nfo-nav .previous-studies-ctn.section:first-of-type {
         margin-top: 0;
     }
@@ -14,7 +14,7 @@ main.nfo-nav .previous-studies-ctn.section:first-of-type {
     margin-top: 21px;
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .section.previous-studies-ctn.tabs-container.legendwordctn {
         margin-top: 0;
     }
@@ -29,7 +29,7 @@ main.nfo-nav .previous-studies-ctn.section:first-of-type {
     line-height: var(--heading-h1-line-height);
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .previous-studies-ctn.tabs-container {
         font-size: var(--heading-h5-size);
         line-height: var(--sub-header-large-line-height);
@@ -41,7 +41,7 @@ main.nfo-nav .previous-studies-ctn.section:first-of-type {
     margin-top: 40px;
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .previous-studies-ctn.tabs-container .default-content-wrapper.previous-studies-ex1 {
         padding: 40px 16px 32px;
         margin-top: 0;
@@ -58,7 +58,7 @@ main.nfo-nav .previous-studies-ctn.section:first-of-type {
     line-height: var(--heading-h1-line-height);
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .previous-studies-ctn.tabs-container .default-content-wrapper.previous-studies-ex1 .previous-studies-inter1 {
         color: var(--blue-1-800-primary);
         font-family: var(--title);
@@ -69,7 +69,7 @@ main.nfo-nav .previous-studies-ctn.section:first-of-type {
     }
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .previous-studies-ctn.tabs-container .previous-studies-ex2 {
         padding: 0;
     }
@@ -84,7 +84,7 @@ main.nfo-nav .previous-studies-ctn.section:first-of-type {
     display: none;
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .previous-studies-ctn.tabs-container .previous-studies-ex2 .tabs-list {
         padding: 0 16px;
     }
@@ -126,10 +126,8 @@ main.nfo-nav .previous-studies-ctn.section:first-of-type {
     margin: 0;
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .previous-studies-ctn.tabs-container .previous-studies-ex2 .tabs-panel {
         padding: 52px 0 72px;
     }
 }
-
-/*# sourceMappingURL=previous-studies.css.map */

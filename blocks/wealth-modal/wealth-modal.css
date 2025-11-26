@@ -179,7 +179,7 @@
     margin-top: 3px;
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .modal dialog .section.wealth-register .ragis-lab-btn>.inp-lab .inp-lab-div .coun-img {
         top: 7px;
     }
@@ -196,7 +196,7 @@
     left: 0;
     width: 100%;
     background: var(--neutrals-white);
-    box-shadow: 0 4px 16px 0 rgba(47, 64, 84, 0.12);
+    box-shadow: 0 4px 16px 0 rgb(47 64 84 / 12%);
     border-radius: var(--border-radius-8);
     padding: 0;
     margin: 5px 0 0;
@@ -305,7 +305,7 @@
     gap: 12px;
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .modal dialog .section.wealth-register .ragis-lab-btn>.btn-mand {
         margin-top: 32px;
         gap: 20px;
@@ -355,7 +355,7 @@
     margin-top: 20px;
 }
 
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .modal dialog .section.wealth-register .ragis-lab-btn>.btn-mand .mandatory {
         margin-top: 8px;
     }
@@ -400,5 +400,3 @@
     justify-content: end;
     padding-right: 0;
 }
-
-/*# sourceMappingURL=wealth-modal.css.map */

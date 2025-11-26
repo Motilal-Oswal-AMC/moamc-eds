@@ -1,17 +1,20 @@
 @import "../../../styles/fonts.css";
+
 .co-branding .co-branding-section {
   padding: 40px 16px 62px;
   max-width: 400px;
   height: 100%;
   background-color: var(--neutrals-white);
 }
-@media (max-width: 768px) {
+
+@media (width <= 768px) {
   .co-branding .co-branding-section {
     border-radius: 24px 24px 0 0;
     max-width: 100%;
     padding-bottom: 24px;
   }
 }
+
 .co-branding .co-branding-section .crossparbtn {
   margin: 0;
   position: absolute;
@@ -22,15 +25,18 @@
   z-index: 10;
   cursor: pointer;
 }
-@media (max-width: 768px) {
+
+@media (width <= 768px) {
   .co-branding .co-branding-section .crossparbtn {
     right: 9px;
   }
 }
+
 .co-branding .co-branding-section .crossparbtn .icon-modal-btn {
   width: 36px;
   height: 36px;
 }
+
 .co-branding .co-branding-section .crossparbtn .icon-modal-btn .img {
   width: 36px;
   height: 36px;
@@ -39,6 +45,7 @@
   justify-content: center;
   gap: 10px;
 }
+
 .co-branding .co-branding-section .co-heading {
   margin: 0 95px 44px 0;
   font-size: var(--sub-header-medium-size);
@@ -48,22 +55,26 @@
   font-feature-settings: "ss01" on, "ss04" on, "cv01" on, "cv02" on, "cv03" on, "cv04" on, "cv06" on, "cv09" on, "cv10" on, "cv11" on;
   font-weight: 500;
 }
-@media (max-width: 768px) {
+
+@media (width <= 768px) {
   .co-branding .co-branding-section .co-heading {
     margin: 0 0 40px;
     font-size: var(--paragraph-large-size);
     line-height: var(--paragraph-medium-line-height);
   }
 }
+
 .co-branding .co-branding-section .cobrand-form, .co-branding .co-branding-section .cobrand-field {
   display: flex;
   flex-direction: column;
   gap: 32px;
 }
+
 .co-branding .co-branding-section .cobrand-field {
   gap: 0;
   position: relative;
 }
+
 .co-branding .co-branding-section .cobrand-field .error-msg {
   font-size: 8px;
   line-height: 12px;
@@ -74,12 +85,15 @@
   display: none;
   margin: 5px 0 0;
 }
+
 .co-branding .co-branding-section .cobrand-field .show-error {
   display: block;
 }
+
 .co-branding .co-branding-section .cobrand-field .hide-error {
   display: none;
 }
+
 .co-branding .co-branding-section .cobrand-label {
   font-size: var(--label-small-size);
   line-height: var(--label-small-line-height);
@@ -95,12 +109,14 @@
   left: 12px;
   top: -8px;
 }
-@media (max-width: 768px) {
+
+@media (width <= 768px) {
   .co-branding .co-branding-section .cobrand-label {
     font-size: var(--label-small-size);
     line-height: var(--label-small-line-height);
   }
 }
+
 .co-branding .co-branding-section .cobrand-input {
   padding: var(--spacing-8) var(--spacing-12);
   border-radius: var(--border-radius-8);
@@ -112,23 +128,27 @@
   font-feature-settings: "ss01" on, "ss04" on, "cv01" on, "cv02" on, "cv03" on, "cv04" on, "cv06" on, "cv09" on, "cv10" on, "cv11" on;
   font-weight: 400;
 }
-@media (max-width: 768px) {
+
+@media (width <= 768px) {
   .co-branding .co-branding-section .cobrand-input {
     font-size: var(--body-medium-regular-size);
     line-height: var(--body-medium-regular-line-height);
   }
 }
+
 .co-branding .co-branding-section .cobrand-btns {
   display: flex;
   gap: 16px;
   margin: 48px 0 40px;
 }
-@media (max-width: 768px) {
+
+@media (width <= 768px) {
   .co-branding .co-branding-section .cobrand-btns {
     gap: 12px;
     height: 40px;
   }
 }
+
 .co-branding .co-branding-section .cobrand-btns .share,
 .co-branding .co-branding-section .cobrand-btns .download {
   font-size: var(--button-medium-size);
@@ -150,7 +170,8 @@
   justify-content: center;
   align-items: center;
 }
-@media (max-width: 768px) {
+
+@media (width <= 768px) {
   .co-branding .co-branding-section .cobrand-btns .share,
   .co-branding .co-branding-section .cobrand-btns .download {
     font-size: var(--button-medium-size);
@@ -159,16 +180,20 @@
     width: 100%;
   }
 }
+
 .co-branding .co-branding-section .cobrand-btns .share {
   border: 1px solid var(--button-primary-default);
 }
+
 .co-branding .co-branding-section .cobrand-btns .download {
   background-color: var(--button-primary-default);
   color: var(--text-white);
 }
+
 .co-branding .co-branding-section .cobrand-disc {
   padding: 0 14px;
 }
+
 .co-branding .co-branding-section .cobrand-disc .co-diclaimer,
 .co-branding .co-branding-section .cobrand-disc .co-listname {
   font-size: var(--paragraph-xsmall-size);
@@ -179,10 +204,12 @@
   font-weight: 400;
   margin: 0;
 }
+
 .co-branding .co-branding-section .cobrand-disc .co-listwrap .co-ullist {
   margin: 20px 0 0;
   padding: 0 0 0 20px;
 }
+
 .co-branding .co-branding-section .cobrand-disc .co-listwrap .co-ullist .co-listname {
   color: var(--text-disclaimer);
 }
@@ -195,11 +222,13 @@
   display: block;
   overflow: hidden;
 }
-@media (max-width: 768px) {
+
+@media (width <= 768px) {
   .modal-journey.modal.block {
     display: block;
   }
 }
+
 .modal-journey.modal.block dialog {
   padding: 0;
   margin: 0;
@@ -207,12 +236,14 @@
   justify-content: end;
   overflow: hidden;
 }
-@media (max-width: 768px) {
+
+@media (width <= 768px) {
   .modal-journey.modal.block dialog::backdrop {
     background-color: var(--neutrals-black);
     opacity: 0.7;
   }
 }
+
 .modal-journey.modal.block dialog .modal-content {
   padding: 0;
   position: relative;
@@ -224,16 +255,18 @@
   overflow: hidden auto;
   scrollbar-width: none;
 }
-@media (max-width: 768px) {
+
+@media (width <= 768px) {
   .modal-journey.modal.block dialog .modal-content {
     max-width: 100%;
     height: 76vh;
     border-radius: 24px 24px 0 0;
   }
 }
+
 .modal-journey.modal.block dialog .close-button {
   display: block;
   z-index: -1;
   background: none;
   color: transparent;
-}/*# sourceMappingURL=co-branding.css.map */
+}
