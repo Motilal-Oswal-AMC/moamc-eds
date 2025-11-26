@@ -671,7 +671,7 @@ main > .section.previous-studies-tab.tabs-container .tab-dropdown-wrap .tab-drop
 
 .prev-main-wrapper {
   display: flex;
-  gap: 16px;
+  gap: 60px;
 }
 @media (max-width: 1025px) {
   .prev-main-wrapper {

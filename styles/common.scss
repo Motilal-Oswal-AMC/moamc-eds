@@ -622,7 +622,7 @@ main>.section.previous-studies-tab.tabs-container {
 
 .prev-main-wrapper {
   display: flex;
-  gap: 16px;
+  gap: 60px;
 
   @include media(tab) {
     flex-direction: column;
