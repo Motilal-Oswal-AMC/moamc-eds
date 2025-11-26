@@ -137,6 +137,16 @@
               @include media(mobile){
                 padding: 0 var(--spacing-8);
               }
+
+              span.icon{
+                width: 20px;
+                height: 20px;
+                
+                @include media(mobile){
+                  width: 16px;
+                  height: 16px;
+                }
+              }
             }
           }
 
