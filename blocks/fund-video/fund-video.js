@@ -31,9 +31,9 @@ export default function decorate(block) {
     dataMapMoObj.CLASS_PREFIXES = ['invest-blog-contain', 'invest-blog-txt'];
     dataMapMoObj.addIndexed(investblog);
 
-    const investblog = block.closest('main').querySelector('.section.invest-blog');
-    dataMapMoObj.CLASS_PREFIXES = ['invest-blog-contain', 'invest-blog-txt'];
-    dataMapMoObj.addIndexed(investblog);
+    // const investblog = block.closest('main').querySelector('.section.invest-blog');
+    // dataMapMoObj.CLASS_PREFIXES = ['invest-blog-contain', 'invest-blog-txt'];
+    // dataMapMoObj.addIndexed(investblog);
 
   }
 }

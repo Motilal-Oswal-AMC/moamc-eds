@@ -175,20 +175,16 @@
             "value": "highlight"
           },
           {
-            "name": "Fund tax",
+            "name": "Fund Tax",
             "value": "fund-tax"
           },
           {
-            "name": "invest blog",
+            "name": "Invest Blog",
             "value": "invest-blog"
           },
           {
-            "name": "tax blog",
+            "name": "Tax Blog",
             "value": "tax-blog"
-          },
-          {
-            "name": "invest blog",
-            "value": "invest-blog"
           },
           {
             "name": "Calculators Card",
