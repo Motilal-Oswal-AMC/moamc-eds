@@ -305,14 +305,13 @@ main .section.wcs-landing.section.embed-container {
     .text1 {
       max-width: 504px;
       width: 100%;
-      margin-top: 0;
       color: var(--blue-1-800-primary);
       font-family: var(--title);
       font-size: var(--heading-h1-size);
       font-style: normal;
       font-weight: 600;
       line-height: var(--heading-h1-line-height);
-      margin-bottom: 12px;
+      margin: 0;
 
       @include media(mobile) {
         font-size: 28px;
@@ -321,6 +320,24 @@ main .section.wcs-landing.section.embed-container {
     }
 
     .text2 {
+      margin: 0;
+      padding: 12px 0;
+      color: var(--blue-1800-primary, #2E2A94);
+      font-feature-settings: var(--font-features-default);
+      font-family: var(--body, Inter);
+      font-size: var(--body-medium-medium-size, 16px);
+      font-style: normal;
+      font-weight: 500;
+      line-height: var(--body-medium-medium-line-height, 20px);
+
+      @include media (mobile) {
+        font-size: var(--body-small-medium-size, 14px);
+        line-height: var(--body-small-medium-line-height, 16px);
+      }
+    }
+
+    .text3 {
+      margin: 0;
       margin-top: 0;
       max-width: 504px;
       width: 100%;
@@ -337,8 +354,9 @@ main .section.wcs-landing.section.embed-container {
       }
     }
 
-    .text3 {
+    .text4 {
       padding: 0 4px 0 0;
+      margin: 0;
 
       @include media(mobile) {
         padding: 0 16px 0 20px;
@@ -351,6 +369,10 @@ main .section.wcs-landing.section.embed-container {
       }
 
       .cta1 {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
         color: var(--text-white);
         text-align: center;
         font-family: var(--body);
@@ -365,7 +387,7 @@ main .section.wcs-landing.section.embed-container {
         border: unset;
         max-width: 336px;
         width: 100%;
-        height: 50px;
+        height: 40px;
 
         @include media(mobile) {
           width: 100%;
@@ -471,6 +493,7 @@ main>.section.previous-studies-tab.tabs-container {
       .tabs-panel {
         border: none;
         padding: unset;
+        overflow: unset;
 
         .prev-studies-wrapper.embed-container {
           .default-content-wrapper.annual-wealth-wrap1 {
@@ -608,6 +631,7 @@ main>.section.previous-studies-tab.tabs-container {
 }
 
 .default-content-wrapper.annual-wealth-wrap1 {
+
   h1,
   h2,
   h3,
@@ -626,12 +650,12 @@ main>.section.previous-studies-tab.tabs-container {
 
   @include media(tab) {
     flex-direction: column;
-    gap: 0;
+    gap: 12px;
   }
 
   @include media(mobile) {
     flex-direction: column;
-    gap: 0;
+    gap: 12px;
   }
 
   .co-branding-wrapper {
@@ -851,8 +875,8 @@ main>.section.previous-studies-tab.tabs-container {
             cursor: pointer;
 
             @include media(mobile) {
-              // width: 98%;
-              justify-content: start;
+              justify-content: end;
+              margin-right: -26px;
             }
 
             p.comlist {
@@ -908,29 +932,37 @@ main>.section.previous-studies-tab.tabs-container {
               height: 100px;
               overflow: auto;
               padding: 2px 6px;
+              scrollbar-width: auto;
+              scrollbar-color: transparent;
 
               @include media (mobile) {
                 bottom: 27px;
-                right: 3px;
+                left: unset;
+                right: -56px;
                 width: 170px;
                 height: 100px;
                 padding: 5px;
               }
 
               &::-webkit-scrollbar {
-                width: 3px;
+                width: 2px;
                 background-color: #464343;
               }
 
               &::-webkit-scrollbar-track {
-                width: 3px;
+                width: 2px;
                 background-color: $primary-white;
                 border-radius: 0 1px 1px 0;
               }
 
               &::-webkit-scrollbar-thumb {
-                width: 3px;
+                width: 2px;
                 background-color: #464343;
+                border-radius: 10px;
+
+                &:hover {
+                  background: #333;
+                }
               }
 
               li.comlist {
@@ -1007,9 +1039,8 @@ main>.section.previous-studies-tab.tabs-container {
       }
 
       @include media(mobile) {
-        // width: 100%;
+        width: 100%;
         height: 160px;
-        width: 340px;
         padding: 0;
       }
     }
@@ -1083,7 +1114,7 @@ main>.section.previous-studies-tab.tabs-container {
 
           @include media (mobile) {
             height: inherit;
-            margin-top: 1px;
+            margin-top: 1.5px;
           }
         }
 
@@ -1145,9 +1176,10 @@ main>.section.previous-studies-tab.tabs-container {
 
                   @include media(mobile) {
                     &:last-child {
-                      height: 100%;
-                      margin-top: -2px;
+                      height: 102%;
+                      margin-top: -3px;
                       object-fit: fill;
+                      border-radius: 8px;
                     }
                   }
                 }
