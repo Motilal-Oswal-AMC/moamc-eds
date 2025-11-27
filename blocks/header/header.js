@@ -142,6 +142,10 @@ export default async function decorate(block) {
   if (nav.querySelector('[data-id="wcs-header"]')) {
     block.classList.add('wealth-header');
   }
+
+  if (nav.querySelector('[data-id="wcs-header"]')) {
+    document.body.classList.add('custom-scroll');
+  }
   // Find the main .nav-brand container once.
   const navBrand = nav.querySelector('.nav-brand');
   // Guard clause: If the .nav-brand element doesn't exist, prevent errors.
