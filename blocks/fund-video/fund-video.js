@@ -26,5 +26,14 @@ export default function decorate(block) {
     const fundTax = block.closest('main').querySelector('.section.fund-tax');
     dataMapMoObj.CLASS_PREFIXES = ['fund-tax-contain', 'fund-tax-txt'];
     dataMapMoObj.addIndexed(fundTax);
+
+    const investblog = block.closest('main').querySelector('.section.invest-blog');
+    dataMapMoObj.CLASS_PREFIXES = ['invest-blog-contain', 'invest-blog-txt'];
+    dataMapMoObj.addIndexed(investblog);
+
+    const investblog = block.closest('main').querySelector('.section.invest-blog');
+    dataMapMoObj.CLASS_PREFIXES = ['invest-blog-contain', 'invest-blog-txt'];
+    dataMapMoObj.addIndexed(investblog);
+
   }
 }
