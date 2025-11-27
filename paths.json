@@ -1,6 +1,5 @@
 {
   "mappings": [
-    "/content/moamc-eds/:/",
     "/content/moamc-eds/wcs/in/en/:/",
     "/content/moamc-eds/metadata:/metadata.json",
     "/content/moamc-eds/mutual-fund/in/api/faq:/api/faq.json",
