@@ -287,14 +287,14 @@ export default function decorate(block) {
         };
 
         let response;
-        if (window.location.href('https://stage.motilaloswalwcs.com/')) {
+        if (window.location.href.includes('https://stage.motilaloswalwcs.com/')) {
           response = await myAPI(
             'POST',
             'https://mf.moamc.com/ums/api/SaveLead/create-leads',
             objreq,
             headers,
           );
-        } else if (window.location.href('motilal-oswal-amc.aem.live')) {
+        } else if (window.location.href.includes('motilal-oswal-amc.aem.live')) {
           response = await myAPI(
             'POST',
             'https://www.motilaloswalmf.com/ums/api/SaveLead/create-leads',
@@ -302,7 +302,7 @@ export default function decorate(block) {
             objreq,
             headers,
           );
-        } else if (window.location.href('https://www.motilaloswalwcs.com/')) {
+        } else if (window.location.href.includes('https://www.motilaloswalwcs.com/')) {
           response = await myAPI(
             'POST',
             'https://www.motilaloswalmf.com/ums/api/SaveLead/create-leads',
