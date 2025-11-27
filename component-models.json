@@ -549,6 +549,10 @@
           {
             "name": "wcs-landing",
             "value": "wcs-landing"
+          },
+          {
+            "name": "gift-city",
+            "value": "gift-city"
           }
         ]
       },
