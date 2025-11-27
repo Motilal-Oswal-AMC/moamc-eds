@@ -777,7 +777,7 @@ if (skinmoamcComponent != null) {
 
 // Adding custom scrollbar to WCS pages
 try {
-  if (window.location.pathname.includes('/wcs/in/en')) {
+  if (document.querySelector('header [data-id="wcs-header"]')) {
     document.body.classList.add('custom-scroll');
   }
 } catch (error) {
