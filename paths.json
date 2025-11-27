@@ -3,6 +3,8 @@
     "/content/moamc-eds/:/",
     "/content/moamc-eds/wcs/in/en/:/wcs/",
     "/content/moamc-eds/mutual-fund/in/en/:/mutual-fund/",
+    "/content/moamc-eds/pms/in/en/:/pms/",
+    "/content/moamc-eds/aif/in/en/:/aif/",
     "/content/moamc-eds/metadata:/metadata.json",
     "/content/moamc-eds/mutual-fund/in/api/faq:/api/faq.json",
     "/content/moamc-eds/mutual-fund/in/api/form-api:/api/form-api.json",
