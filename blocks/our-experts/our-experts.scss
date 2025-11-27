@@ -1,11 +1,11 @@
 @use "sass:map";
-@use "../../styles/common-theme/css/variables_mixins"as *;
-@use "../../styles/common-theme/css/fluid-typography"as *;
+@use "../../styles/common-theme/css/variables_mixins" as *;
+@use "../../styles/common-theme/css/fluid-typography" as *;
 
 .section.our-experts-container {
     // margin-top: 24px;
 
-    @include media (mobile) {
+    @include media(mobile) {
         margin-top: 0;
     }
 
@@ -48,7 +48,7 @@
                     h6 {
                         margin: 0;
                         padding: 0;
-                        color: var(--blue-1-800-primary, #2E2A94);
+                        color: var(--blue-1-800-primary, #2e2a94);
                         font-feature-settings: var(--font-features-default);
                         font-family: var(--title);
                         font-size: var(--heading-h4-size);
@@ -94,7 +94,7 @@
                         gap: 8px;
                         align-self: stretch;
                         border-radius: var(--border-radius-6);
-                        border: var(--border-width-01, 1px) solid var(--strokes-default, #9E9E9E);
+                        border: var(--border-width-01, 1px) solid var(--strokes-default, #9e9e9e);
                         margin: 0;
                         position: relative;
 
@@ -103,7 +103,7 @@
                         }
 
                         &.input-focused {
-                            border: 1px solid #2E2A94;
+                            border: 1px solid #2e2a94;
                         }
 
                         input {
@@ -143,30 +143,29 @@
 
                             input {
                                 width: 100%;
-
                             }
                         }
 
-                        .floating-label-wrapper input:focus+label,
-                        .floating-label-wrapper input:not(:placeholder-shown)+label {
+                        .floating-label-wrapper input:focus + label,
+                        .floating-label-wrapper input:not(:placeholder-shown) + label {
                             top: -8px;
                             left: 25px;
                             padding: 0 4px;
-                            color: #2E2A94;
+                            color: #2e2a94;
                             font-feature-settings: var(--font-features-default);
                             font-family: var(--body);
                             font-size: var(--text-link-xsmall-size);
                             font-style: normal;
                             font-weight: 400;
                             line-height: var(--text-link-xsmall-line-height, 16px);
-                            background-color: #FFF;
+                            background-color: #fff;
                         }
 
                         &:focus {
-                            border: 2px solid #2E2A94;
+                            border: 2px solid #2e2a94;
                         }
 
-                        .icon.expert-lists1{
+                        .icon.expert-lists1 {
                             min-width: 24px;
                             width: 24px;
                             height: 24px;
@@ -261,10 +260,10 @@
                         left: 0;
                         z-index: 10;
                         background-color: var(--neutrals-white);
-                        border: 1px solid var(--neutrals-200);
-                        border-radius: 6px;
+                        box-shadow: 0 4px 16px 0 rgb(47 64 84 / 12%);
+                        border-radius: 8px;
                         width: 100%;
-                        margin: 4px 0 0;
+                        margin: 6px 0 0;
                         max-height: 352px;
                         overflow: auto;
                         list-style: none;
@@ -292,21 +291,29 @@
 
                         .result-item {
                             margin: unset;
-                            padding: 12px 20px 12px 40px;
                             cursor: pointer;
+                            padding: 16px;
+                            background: var(--surface-background-neutral-subtle);
 
-                            .list {
-                                font-size: var(--body-small-regular-size);
-                                line-height: var(--label-large-line-height);
-                                color: var(--neutrals-black);
-                                font-family: var(--body);
-                                font-feature-settings: var(--font-features-default);
-                                font-weight: 400;
+                            &:hover {
+                                background-color: var(--blue-1-25);
                             }
 
-                            // &:last-child {
-                            //     padding-bottom: unset;
-                            // }
+                            &:focus {
+                                background-color: var(--blue-1-50);
+                            }
+
+                            .list {
+                                color: var(--neutrals-900);
+                                font-feature-settings: var(--font-features-default);
+                                font-family: var(--body);
+                                font-size: var(--body-medium-regular-size);
+                                font-weight: 400;
+                                line-height: var(--body-medium-regular-line-height);
+                                word-break: unset;
+                                width: 100%;
+                                display: block;
+                            }
                         }
 
                         .no-results-message {
@@ -314,7 +321,17 @@
                             line-height: var(--label-large-line-height);
                             color: var(--neutrals-black);
                             font-family: var(--body);
-                            font-feature-settings: "ss01"on, "ss04"on, "cv01"on, "cv02"on, "cv03"on, "cv04"on, "cv06"on, "cv09"on, "cv10"on, "cv11"on;
+                            font-feature-settings:
+                                "ss01" on,
+                                "ss04" on,
+                                "cv01" on,
+                                "cv02" on,
+                                "cv03" on,
+                                "cv04" on,
+                                "cv06" on,
+                                "cv09" on,
+                                "cv10" on,
+                                "cv11" on;
                             font-weight: 400;
                             padding: 12px 20px 12px 40px;
                             cursor: pointer;
@@ -353,7 +370,6 @@
                     }
                 }
             }
-
         }
     }
 }
@@ -361,7 +377,7 @@
 .section.out-expert-listing.our-experts-container {
     // margin-bottom: 24px;
 
-    @include media (mobile) {
+    @include media(mobile) {
         margin-bottom: 32px;
     }
 
@@ -388,8 +404,10 @@
 }
 
 .section.our-experts-container.listing-our-expert {
+    margin: 16px auto var(--spacing-40);
+
     @include media(mobile) {
-        margin: 24px auto var(--spacing-40);
+        margin: 0 auto var(--spacing-40);
     }
 }
 

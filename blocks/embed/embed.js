@@ -86,7 +86,7 @@ export const loadEmbed = (block, link, autoplay) => {
 
   const config = EMBEDS_CONFIG.find((e) => e.match.some((match) => link.includes(match)));
   const url = new URL(link);
-  if (config) {
+  if (config && autoplay !== undefined) {
     block.innerHTML = config.embed(url, autoplay);
     block.classList = `block embed embed-${config.match[0]}`;
   } else {
@@ -363,6 +363,17 @@ export default function decorate(block) {
 
       divmain.prepend(tabDrodpwon);
 
+      // // coverage dropdown should be visible onle after more than 1
+      const wcsCoverageDrpdownOpt = divmain.querySelectorAll('.tab-dropdown-wrap .tabs-list .tabs-tab');
+      const wcsCoverageDrpdown = divmain.querySelector('.selected-tab');
+      if (wcsCoverageDrpdownOpt.length <= 1) {
+        wcsCoverageDrpdown.style.pointerEvents = 'none';
+        wcsCoverageDrpdown.classList.add('no-dropdown-icon');
+      } else {
+        wcsCoverageDrpdown.style.removeProperty('pointer-events');
+        wcsCoverageDrpdown.classList.remove('no-dropdown-icon');
+      }
+
       const tabmainclick = divmain.querySelector('.tab-dropdown-wrap');
       tabmainclick.addEventListener('click', () => {
         const selectedTab = tabmainclick.querySelector('.selected-tab');
@@ -379,7 +390,7 @@ export default function decorate(block) {
           //var pPostvalbtn = arr.split(' ')[1]
           var pPostvalbtn = arr.split(' ').slice(1).join(' ')
           btn.innerHTML = '';
-          btn.appendChild(span({ class: 'studytab-title' }, pPreValbtn, sup({ class: 'test' }, supValuebtn), " ", pPostvalbtn));        
+          btn.appendChild(span({ class: 'studytab-title' }, pPreValbtn, sup({ class: 'test' }, supValuebtn), " ", pPostvalbtn));
           tabmainclick.classList.toggle('active');
         });
 

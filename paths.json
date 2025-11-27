@@ -1,6 +1,7 @@
 {
   "mappings": [
     "/content/mosleds/:/",
+    "/content/moamc-eds/:/",
     "/content/moamc-eds/wcs/in/en/:/",
     "/content/mosleds/configuration:/.helix/config.json",
     "/content/mosleds/metadata:/metadata.json",

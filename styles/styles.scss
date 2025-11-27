@@ -1731,6 +1731,10 @@ main > .section.media-coverage .default-content-wrapper h6 {
     height: 40px;
 }
 
+.maintab > .tab-dropdown-wrap .selected-tab .studytab-title {
+    margin: unset;
+}
+
 .maintab > .tab-dropdown-wrap .selected-tab::after {
     content: "";
     background: url("../icons/arrow-black-down.svg") no-repeat center center;
@@ -1738,6 +1742,10 @@ main > .section.media-coverage .default-content-wrapper h6 {
     height: 24px;
     display: block;
     transition: all 0.3s;
+}
+
+.maintab > .tab-dropdown-wrap .selected-tab.no-dropdown-icon::after {
+    display: none;
 }
 
 .maintab > .tab-dropdown-wrap .tab-droplist {

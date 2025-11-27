@@ -685,6 +685,10 @@
           {
             "name": "Fund Investment Options",
             "value": "fund-investment-options"
+          },
+          {
+            "name": "Thank You Screen",
+            "value": "thank-you-screen"
           }
         ]
       },
