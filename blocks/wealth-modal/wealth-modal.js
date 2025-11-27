@@ -110,214 +110,226 @@ export default function decorate(block) {
   const assocInput = assocDiv.querySelector('.associated-inp');
   const assocDrop = assocDiv.querySelector('.assoc-drop');
   const arrow = assocDiv.querySelector('.dropdown-arrow');
+  const formDropdownList = assocDiv.querySelectorAll('.assoc-drop li');
 
   function toggleDropdown(e) {
     e.stopPropagation();
     assocDiv.classList.toggle('active');
     assocDrop.classList.toggle('open');
-  }
+}
 
-  assocInput.addEventListener('click', toggleDropdown);
-  arrow.addEventListener('click', toggleDropdown);
+assocInput.addEventListener('click', toggleDropdown);
+arrow.addEventListener('click', toggleDropdown);
 
-  assocDrop.querySelectorAll('li').forEach((liarg) => {
-    liarg.addEventListener('click', () => {
-      const touchedFields = new Set();
-      assocInput.value = liarg.textContent;
-      assocDrop.classList.remove('open');
-      assocDiv.classList.remove('active');
-      const labelagr = assocInput.parentElement.querySelector('.label');
-      labelagr.classList.add('filled');
-      touchedFields.add(assocInput);
-      dataMapMoObj.validateField(assocInput);
-      dataMapMoObj.toggleSubmitButton();
+assocDrop.querySelectorAll('li').forEach((liarg) => {
+  liarg.addEventListener('click', () => {
+    const touchedFields = new Set();
+    formDropdownList.forEach(li => {
+      li.setAttribute('aria-selected', 'false');
+      li.classList.remove('active');
     });
-  });
 
-  document.addEventListener('click', () => {
+    liarg.setAttribute('aria-selected', 'true');
+    liarg.classList.add('active');
+    if (liarg.getAttribute('aria-selected') === 'true') {
+      assocInput.innerHTML = '';
+      assocInput.innerHTML += liarg.innerHTML;
+    }
+    assocInput.value = liarg.textContent;
     assocDrop.classList.remove('open');
     assocDiv.classList.remove('active');
+    const labelagr = assocInput.parentElement.querySelector('.label');
+    labelagr.classList.add('filled');
+    touchedFields.add(assocInput);
+    dataMapMoObj.validateField(assocInput);
+    dataMapMoObj.toggleSubmitButton();
   });
+});
 
-  const closeIcon = wealthModal.querySelector('.icon-modal-cross-btn');
+document.addEventListener('click', () => {
+  assocDrop.classList.remove('open');
+  assocDiv.classList.remove('active');
+});
 
-  if (closeIcon) {
-    closeIcon.addEventListener('click', () => {
-      const dialogEl = block.closest('dialog');
-      if (dialogEl && dialogEl.hasAttribute('open')) {
-        dialogEl.close();
-        return;
-      }
-      const modalSection = block.closest('.wealth-register');
-      if (modalSection) {
-        modalSection.classList.remove('modal-show');
-        modalSection.style.display = 'none';
-      }
-    });
-  }
+const closeIcon = wealthModal.querySelector('.icon-modal-cross-btn');
 
-  const crossButton = wealthModal.querySelector('.cross-btn');
-  crossButton.addEventListener('click', () => wealthModal.remove());
-
-  const nameInput = wealthModal.querySelector('.name-inp');
-  const emailInput = wealthModal.querySelector('.email-inp');
-  const phoneInput = wealthModal.querySelector('.num-inp');
-  const submitButton = wealthModal.querySelector('.btn');
-
-  const fields = [nameInput, emailInput, phoneInput, assocInput];
-  const touchedFields = new Set();
-
-  function validateForm() {
-    // Ensure all fields are validated, including the associated dropdown
-    return fields.every((f) => dataMapMoObj.validateField(f));
-  }
-
-  function toggleSubmitButton() {
-    // FIX: removed hasAttribute('readonly') logic that was incorrectly marking assocInput as filled
-    const allFilled = fields.every((f) => f.value.trim() !== '');
-    const allValid = fields
-      .every((f) => (touchedFields.has(f) ? dataMapMoObj.validateField(f) : true));
-
-    submitButton.disabled = !(allFilled && allValid);
-    submitButton.classList.toggle('active', allFilled && allValid);
-  }
-  dataMapMoObj.toggleSubmitButton = toggleSubmitButton;
-
-  function toggleErrorIcon(inputarg, isValid) {
-    const icon = inputarg.parentElement.querySelector('.error-icon');
-    if (!icon) return;
-    if (!isValid && inputarg.value.trim() !== '') icon.style.display = 'inline';
-    else icon.style.display = 'none';
-    icon.onclick = () => {
-      inputarg.value = '';
-      const errorMsg = inputarg.parentElement.querySelector('.error-msg');
-      if (errorMsg) errorMsg.textContent = '';
-      icon.style.display = 'none';
-      inputarg.classList.remove('error');
-      toggleSubmitButton();
-    };
-  }
-
-  async function validateField(inputarg) {
-    const nameError = wealthModal.querySelector('.name-error');
-    const emailError = wealthModal.querySelector('.email-error');
-    const phoneError = wealthModal.querySelector('.num-error');
-    const assocError = wealthModal.querySelector('.assoc-error');
-    let valid = true;
-
-    if (inputarg.classList.contains('name-inp')) {
-      const nameRegex = /^[a-zA-Z\s]*$/;
-      if (inputarg.value.trim() && !nameRegex.test(inputarg.value.trim())) {
-        valid = false;
-        nameError.textContent = 'Only letters and spaces allowed.';
-      } else nameError.textContent = '';
+if (closeIcon) {
+  closeIcon.addEventListener('click', () => {
+    const dialogEl = block.closest('dialog');
+    if (dialogEl && dialogEl.hasAttribute('open')) {
+      dialogEl.close();
+      return;
     }
-
-    if (inputarg.classList.contains('email-inp')) {
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (inputarg.value.trim() && !emailRegex.test(inputarg.value.trim())) {
-        valid = false;
-        emailError.textContent = 'Please enter a valid email.';
-      } else emailError.textContent = '';
-    }
-
-    if (inputarg.classList.contains('num-inp')) {
-      const phoneRegex = /^(?!([6-9])\1{9})[6-9]\d{9}$/;
-      if (inputarg.value.trim() && !phoneRegex.test(inputarg.value.trim())) {
-        valid = false;
-        phoneError.textContent = 'Enter a valid 10-digit Indian number.';
-      } else phoneError.textContent = '';
-    }
-
-    if (inputarg.classList.contains('associated-inp')) {
-      if (!inputarg.value.trim()) {
-        valid = false;
-        assocError.textContent = 'Please select an association.';
-      } else assocError.textContent = '';
-    }
-    inputarg.classList.toggle('error', !valid && inputarg.value.trim() !== '');
-    toggleErrorIcon(inputarg, valid);
-    return valid;
-  }
-  dataMapMoObj.validateField = validateField;
-
-  fields.forEach((field) => {
-    const labelval = field.parentElement.querySelector('.label');
-    field.addEventListener('focus', () => labelval.classList.add('filled'));
-    field.addEventListener('blur', () => {
-      if (field.value.trim() === '') labelval.classList.remove('filled');
-      else labelval.classList.add('filled');
-    });
-    field.addEventListener('input', () => {
-      if (field.classList.contains('name-inp')) field.value = field.value.replace(/[^a-zA-Z\s]/g, '');
-      if (field.classList.contains('num-inp')) field.value = field.value.replace(/\D/g, '').slice(0, 10);
-      touchedFields.add(field);
-      validateField(field);
-      toggleSubmitButton();
-    });
-    if (field.value.trim() !== '') label.classList.add('filled');
-  });
-
-  submitButton.addEventListener('click', async (e) => {
-    e.preventDefault();
-    fields.forEach((f) => touchedFields.add(f));
-    if (validateForm()) {
-      // console.log('Form is valid. Submitting...');
-      try {
-        const objreq = {
-          name: nameInput.value.trim(),
-          mobile: phoneInput.value.trim(),
-          email: emailInput.value.trim(),
-          state: 'MH',
-          city: 'M',
-          customField01: 'NULL',
-          customField02: 'NULL',
-          customField03: 'NULL',
-          userIp: '156.67.260.62',
-          type: 'other',
-          code: 'NA',
-        };
-        const headers = {
-          'Content-Type': 'application/json',
-          'X-Encrypted': 'N',
-          appid: generateAppId(),
-        };
-
-        const response = await myAPI(
-          'POST',
-          'https://mf.moamc.com/ums/api/SaveLead/create-leads',
-          objreq,
-          headers,
-        );
-
-        const result = await response; // .json();
-        // console.log('API Response:', result);
-
-        if (result) {
-          // alert
-          popup(div('Your details have been submitted successfully!'));
-          // Reset form
-          fields.forEach((f) => {
-            f.value = '';
-            const labelvar = f.parentElement.querySelector('.label');
-            if (labelvar) labelvar.classList.remove('filled');
-          });
-          // block.querySelector('.btn-mand .btn').classList.remove('active');
-          toggleSubmitButton();
-          block.querySelector('.associated-drop .error-msg').textContent = '';
-        } else {
-          // alert
-          popup(div(`Something went wrong: ${result.message || 'Unknown error'}`));
-        }
-      } catch (error) {
-        // console.error('API Error:', error);
-        popup(div('Failed to submit form. Please try again later.'));
-      }
-    } else {
-      toggleSubmitButton();
+    const modalSection = block.closest('.wealth-register');
+    if (modalSection) {
+      modalSection.classList.remove('modal-show');
+      modalSection.style.display = 'none';
     }
   });
+}
 
-  block.closest('.wealth-register')
-    .classList.add('modal-show');
+const crossButton = wealthModal.querySelector('.cross-btn');
+crossButton.addEventListener('click', () => wealthModal.remove());
+
+const nameInput = wealthModal.querySelector('.name-inp');
+const emailInput = wealthModal.querySelector('.email-inp');
+const phoneInput = wealthModal.querySelector('.num-inp');
+const submitButton = wealthModal.querySelector('.btn');
+
+const fields = [nameInput, emailInput, phoneInput, assocInput];
+const touchedFields = new Set();
+
+function validateForm() {
+  // Ensure all fields are validated, including the associated dropdown
+  return fields.every((f) => dataMapMoObj.validateField(f));
+}
+
+function toggleSubmitButton() {
+  // FIX: removed hasAttribute('readonly') logic that was incorrectly marking assocInput as filled
+  const allFilled = fields.every((f) => f.value.trim() !== '');
+  const allValid = fields
+    .every((f) => (touchedFields.has(f) ? dataMapMoObj.validateField(f) : true));
+
+  submitButton.disabled = !(allFilled && allValid);
+  submitButton.classList.toggle('active', allFilled && allValid);
+}
+dataMapMoObj.toggleSubmitButton = toggleSubmitButton;
+
+function toggleErrorIcon(inputarg, isValid) {
+  const icon = inputarg.parentElement.querySelector('.error-icon');
+  if (!icon) return;
+  if (!isValid && inputarg.value.trim() !== '') icon.style.display = 'inline';
+  else icon.style.display = 'none';
+  icon.onclick = () => {
+    inputarg.value = '';
+    const errorMsg = inputarg.parentElement.querySelector('.error-msg');
+    if (errorMsg) errorMsg.textContent = '';
+    icon.style.display = 'none';
+    inputarg.classList.remove('error');
+    toggleSubmitButton();
+  };
+}
+
+async function validateField(inputarg) {
+  const nameError = wealthModal.querySelector('.name-error');
+  const emailError = wealthModal.querySelector('.email-error');
+  const phoneError = wealthModal.querySelector('.num-error');
+  const assocError = wealthModal.querySelector('.assoc-error');
+  let valid = true;
+
+  if (inputarg.classList.contains('name-inp')) {
+    const nameRegex = /^[a-zA-Z\s]*$/;
+    if (inputarg.value.trim() && !nameRegex.test(inputarg.value.trim())) {
+      valid = false;
+      nameError.textContent = 'Only letters and spaces allowed.';
+    } else nameError.textContent = '';
+  }
+
+  if (inputarg.classList.contains('email-inp')) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (inputarg.value.trim() && !emailRegex.test(inputarg.value.trim())) {
+      valid = false;
+      emailError.textContent = 'Please enter a valid email.';
+    } else emailError.textContent = '';
+  }
+
+  if (inputarg.classList.contains('num-inp')) {
+    const phoneRegex = /^(?!([6-9])\1{9})[6-9]\d{9}$/;
+    if (inputarg.value.trim() && !phoneRegex.test(inputarg.value.trim())) {
+      valid = false;
+      phoneError.textContent = 'Enter a valid 10-digit Indian number.';
+    } else phoneError.textContent = '';
+  }
+
+  if (inputarg.classList.contains('associated-inp')) {
+    if (!inputarg.value.trim()) {
+      valid = false;
+      assocError.textContent = 'Please select an association.';
+    } else assocError.textContent = '';
+  }
+  inputarg.classList.toggle('error', !valid && inputarg.value.trim() !== '');
+  toggleErrorIcon(inputarg, valid);
+  return valid;
+}
+dataMapMoObj.validateField = validateField;
+
+fields.forEach((field) => {
+  const labelval = field.parentElement.querySelector('.label');
+  field.addEventListener('focus', () => labelval.classList.add('filled'));
+  field.addEventListener('blur', () => {
+    if (field.value.trim() === '') labelval.classList.remove('filled');
+    else labelval.classList.add('filled');
+  });
+  field.addEventListener('input', () => {
+    if (field.classList.contains('name-inp')) field.value = field.value.replace(/[^a-zA-Z\s]/g, '');
+    if (field.classList.contains('num-inp')) field.value = field.value.replace(/\D/g, '').slice(0, 10);
+    touchedFields.add(field);
+    validateField(field);
+    toggleSubmitButton();
+  });
+  if (field.value.trim() !== '') label.classList.add('filled');
+});
+
+submitButton.addEventListener('click', async (e) => {
+  e.preventDefault();
+  fields.forEach((f) => touchedFields.add(f));
+  if (validateForm()) {
+    // console.log('Form is valid. Submitting...');
+    try {
+      const objreq = {
+        name: nameInput.value.trim(),
+        mobile: phoneInput.value.trim(),
+        email: emailInput.value.trim(),
+        state: 'MH',
+        city: 'M',
+        customField01: 'NULL',
+        customField02: 'NULL',
+        customField03: 'NULL',
+        userIp: '156.67.260.62',
+        type: 'other',
+        code: 'NA',
+      };
+      const headers = {
+        'Content-Type': 'application/json',
+        'X-Encrypted': 'N',
+        appid: generateAppId(),
+      };
+
+      const response = await myAPI(
+        'POST',
+        'https://mf.moamc.com/ums/api/SaveLead/create-leads',
+        objreq,
+        headers,
+      );
+
+      const result = await response; // .json();
+      // console.log('API Response:', result);
+
+      if (result) {
+        // alert
+        popup(div('Your details have been submitted successfully!'));
+        // Reset form
+        fields.forEach((f) => {
+          f.value = '';
+          const labelvar = f.parentElement.querySelector('.label');
+          if (labelvar) labelvar.classList.remove('filled');
+        });
+        // block.querySelector('.btn-mand .btn').classList.remove('active');
+        toggleSubmitButton();
+        block.querySelector('.associated-drop .error-msg').textContent = '';
+      } else {
+        // alert
+        popup(div(`Something went wrong: ${result.message || 'Unknown error'}`));
+      }
+    } catch (error) {
+      // console.error('API Error:', error);
+      popup(div('Failed to submit form. Please try again later.'));
+    }
+  } else {
+    toggleSubmitButton();
+  }
+});
+
+block.closest('.wealth-register')
+  .classList.add('modal-show');
 }

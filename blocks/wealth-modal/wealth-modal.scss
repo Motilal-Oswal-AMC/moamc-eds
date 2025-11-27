@@ -1,6 +1,6 @@
 @use "sass:map";
-@use "../../styles/common-theme/css/variables_mixins"as *;
-@use "../../styles/common-theme/css/fluid-typography"as *;
+@use "../../styles/common-theme/css/variables_mixins" as *;
+@use "../../styles/common-theme/css/fluid-typography" as *;
 
 .modal dialog .section.wealth-register {
   max-width: 379px;
@@ -137,11 +137,16 @@
         &.active,
         &:focus-within {
           .label {
-            top: -8px;
+            top: -10px;
             transform: unset;
             background-color: #fff;
             padding: 0 4px;
             z-index: 3;
+            font-size: 14px;
+
+            @include media(mobile) {
+              font-size: 12px;
+            }
           }
         }
 
@@ -162,7 +167,9 @@
           height: 40px;
 
           &:read-only {
-            color: #333;
+            // color: #333;
+            color: var(--blue-1-800-primary);
+            font-weight: 600;
           }
         }
 
@@ -230,12 +237,35 @@
             font-family: var(--body);
             font-size: var(--body-medium-regular-size);
             color: var(--neutrals-900);
-            font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
+            font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
             font-weight: 400;
             line-height: var(--body-medium-regular-line-height);
+            position: relative;
+
+            &.active {
+              color: var(--blue-1-800-primary);
+              font-size: var(--body-medium-semibold-size);
+              line-height: var(--body-medium-semibold-line-height);
+              font-weight: 600;
+            }
 
             &:hover {
-              background: var(--neutrals-light-gray);
+              background: var(--blue-1-25);
+            }
+
+            &::after {
+              content: '';
+              background: url(../../icons/dropdown-tick.svg) center center no-repeat;
+              width: 24px;
+              height: 24px;
+              display: none;
+              position: absolute;
+              right: 16px;
+              top: 15px;
+            }
+
+            &.active::after {
+              display: block;
             }
           }
         }

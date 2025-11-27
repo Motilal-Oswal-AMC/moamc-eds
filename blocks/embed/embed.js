@@ -8,7 +8,7 @@
 import buildtabblock from '../tabs/tabs.js';
 import dataMapMoObj from '../../scripts/constant.js';
 import {
-  div, table, thead, tbody, tr, p,
+  div, table, thead, tbody, tr, p, sup, span
 } from '../../scripts/dom-helpers.js';
 import { createModal } from '../modal/modal.js';
 
@@ -264,10 +264,16 @@ export default function decorate(block) {
         const paneldata = dataMapMoObj.objdata[headkey][key];
         const htmldata = paneldata.querySelector('ul ul').querySelectorAll('ul');
         const selectedLabelTab = paneldata.querySelector('p').textContent.trim();
+        var pPreVal = selectedLabelTab.split(' ')[0].slice(0, -2)
+        var supValue = selectedLabelTab.split(' ')[0].slice(-2)
+        //var pPostval = selectedLabelTab.split(' ')[1]
+        var pPostval = selectedLabelTab.split(' ').slice(1).join(' ')
+
         if (window.location.pathname.includes('/wcs/in/en/coverage')) {
           const tableMain = div(
             { class: 'coverage-table-container' },
-            p({ class: 'studytab-title' }, selectedLabelTab),
+            // p({ class: 'studytab-title' }, selectedLabelTab),
+            p({ class: 'studytab-title' }, pPreVal, sup({ class: 'test' }, supValue), " ", pPostval),
             table(
               { class: 'coverage-table' },
               thead(
@@ -342,9 +348,15 @@ export default function decorate(block) {
           activeTab = el.textContent;
         }
       });
+      // sup
+      var pPreValactive = activeTab.split(' ')[0].slice(0, -2)
+      var supValueactive = activeTab.split(' ')[0].slice(-2)
+      //var pPostvalactive = activeTab.split(' ')[1]
+      var pPostvalactive = activeTab.split(' ').slice(1).join(' ')
       const tabDrodpwon = div(
         { class: 'tab-dropdown-wrap' },
-        p({ class: 'selected-tab' }, activeTab),
+        // p({ class: 'selected-tab' }, activeTab),
+        p({ class: 'selected-tab' }, p({ class: 'studytab-title' }, pPreValactive, sup({ class: 'test' }, supValueactive), " ", pPostvalactive),),
         div({ class: 'tab-droplist' }),
       );
       tabDrodpwon.querySelector('.tab-droplist').append(dropdownlist);
@@ -356,12 +368,27 @@ export default function decorate(block) {
         const selectedTab = tabmainclick.querySelector('.selected-tab');
         const tabslistwrap = tabmainclick.querySelector('.tab-droplist');
         const tabslist = tabmainclick.querySelectorAll('.tabs-list .tabs-tab');
-        tabmainclick.classList.toggle('active');
+        const a = tabmainclick.querySelectorAll('button');
+
+        a.forEach(btn => {
+          let arr = btn.textContent;
+          console.log(arr);
+          // sup
+          var pPreValbtn = arr.split(' ')[0].slice(0, -2)
+          var supValuebtn = arr.split(' ')[0].slice(-2)
+          //var pPostvalbtn = arr.split(' ')[1]
+          var pPostvalbtn = arr.split(' ').slice(1).join(' ')
+          btn.innerHTML = '';
+          btn.appendChild(span({ class: 'studytab-title' }, pPreValbtn, sup({ class: 'test' }, supValuebtn), " ", pPostvalbtn));        
+          tabmainclick.classList.toggle('active');
+        });
 
         if (!tabslistwrap.classList.contains('active')) {
           tabslist.forEach((tab) => {
             if (tab.getAttribute('aria-selected') === 'true') {
-              selectedTab.textContent = tab.textContent;
+              // selectedTab.textContent = tab.textContent;
+              selectedTab.innerHTML = "";
+              selectedTab.innerHTML = tab.innerHTML
             }
           });
         }
