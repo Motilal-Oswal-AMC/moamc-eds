@@ -115,9 +115,9 @@ export default function decorate(block) {
   assocDrop.querySelectorAll('li').forEach((liarg) => {
     liarg.addEventListener('click', () => {
       const touchedFields = new Set();
-      formDropdownList.forEach((li) => {
-        li.setAttribute('aria-selected', 'false');
-        li.classList.remove('active');
+      formDropdownList.forEach((liinner) => {
+        liinner.setAttribute('aria-selected', 'false');
+        liinner.classList.remove('active');
       });
 
       liarg.setAttribute('aria-selected', 'true');
@@ -171,12 +171,12 @@ export default function decorate(block) {
   const touchedFields = new Set();
 
   function validateForm() {
-  // Ensure all fields are validated, including the associated dropdown
+    // Ensure all fields are validated, including the associated dropdown
     return fields.every((f) => dataMapMoObj.validateField(f));
   }
 
   function toggleSubmitButton() {
-  // FIX: removed hasAttribute('readonly') logic that was incorrectly marking assocInput as filled
+    // FIX: removed hasAttribute('readonly') logic that was incorrectly marking assocInput as filled
     const allFilled = fields.every((f) => f.value.trim() !== '');
     const allValid = fields
       .every((f) => (touchedFields.has(f) ? dataMapMoObj.validateField(f) : true));

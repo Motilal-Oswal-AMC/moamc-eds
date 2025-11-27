@@ -311,6 +311,7 @@ export default function decorate(block) {
     listContainer.addEventListener('click', (event) => {
       closeBtn.style.display = 'block';
       searchFld.value = event.target.textContent;
+      searchFld.classList.add('active');
       let dataref = '';
       if ([...event.target.classList].includes('result-item')) {
         dataref = event.target.querySelector('a').getAttribute('href');

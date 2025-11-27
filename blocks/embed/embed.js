@@ -8,7 +8,7 @@
 import buildtabblock from '../tabs/tabs.js';
 import dataMapMoObj from '../../scripts/constant.js';
 import {
-  div, table, thead, tbody, tr, p, sup, span
+  div, table, thead, tbody, tr, p, sup, span,
 } from '../../scripts/dom-helpers.js';
 import { createModal } from '../modal/modal.js';
 
@@ -86,7 +86,7 @@ export const loadEmbed = (block, link, autoplay) => {
 
   const config = EMBEDS_CONFIG.find((e) => e.match.some((match) => link.includes(match)));
   const url = new URL(link);
-  if (config) {
+  if (config && autoplay !== undefined) {
     block.innerHTML = config.embed(url, autoplay);
     block.classList = `block embed embed-${config.match[0]}`;
   } else {
@@ -264,16 +264,16 @@ export default function decorate(block) {
         const paneldata = dataMapMoObj.objdata[headkey][key];
         const htmldata = paneldata.querySelector('ul ul').querySelectorAll('ul');
         const selectedLabelTab = paneldata.querySelector('p').textContent.trim();
-        var pPreVal = selectedLabelTab.split(' ')[0].slice(0, -2)
-        var supValue = selectedLabelTab.split(' ')[0].slice(-2)
-        //var pPostval = selectedLabelTab.split(' ')[1]
-        var pPostval = selectedLabelTab.split(' ').slice(1).join(' ')
+        const pPreVal = selectedLabelTab.split(' ')[0].slice(0, -2);
+        const supValue = selectedLabelTab.split(' ')[0].slice(-2);
+        // var pPostval = selectedLabelTab.split(' ')[1]
+        const pPostval = selectedLabelTab.split(' ').slice(1).join(' ');
 
         if (window.location.pathname.includes('/wcs/in/en/coverage')) {
           const tableMain = div(
             { class: 'coverage-table-container' },
             // p({ class: 'studytab-title' }, selectedLabelTab),
-            p({ class: 'studytab-title' }, pPreVal, sup({ class: 'test' }, supValue), " ", pPostval),
+            p({ class: 'studytab-title' }, pPreVal, sup({ class: 'test' }, supValue), ' ', pPostval),
             table(
               { class: 'coverage-table' },
               thead(
@@ -349,19 +349,30 @@ export default function decorate(block) {
         }
       });
       // sup
-      var pPreValactive = activeTab.split(' ')[0].slice(0, -2)
-      var supValueactive = activeTab.split(' ')[0].slice(-2)
-      //var pPostvalactive = activeTab.split(' ')[1]
-      var pPostvalactive = activeTab.split(' ').slice(1).join(' ')
+      const pPreValactive = activeTab.split(' ')[0].slice(0, -2);
+      const supValueactive = activeTab.split(' ')[0].slice(-2);
+      // var pPostvalactive = activeTab.split(' ')[1]
+      const pPostvalactive = activeTab.split(' ').slice(1).join(' ');
       const tabDrodpwon = div(
         { class: 'tab-dropdown-wrap' },
         // p({ class: 'selected-tab' }, activeTab),
-        p({ class: 'selected-tab' }, p({ class: 'studytab-title' }, pPreValactive, sup({ class: 'test' }, supValueactive), " ", pPostvalactive),),
+        p({ class: 'selected-tab' }, p({ class: 'studytab-title' }, pPreValactive, sup({ class: 'test' }, supValueactive), ' ', pPostvalactive)),
         div({ class: 'tab-droplist' }),
       );
       tabDrodpwon.querySelector('.tab-droplist').append(dropdownlist);
 
       divmain.prepend(tabDrodpwon);
+
+      // // coverage dropdown should be visible onle after more than 1
+      const wcsCoverageDrpdownOpt = divmain.querySelectorAll('.tab-dropdown-wrap .tabs-list .tabs-tab');
+      const wcsCoverageDrpdown = divmain.querySelector('.selected-tab');
+      if (wcsCoverageDrpdownOpt.length <= 1) {
+        wcsCoverageDrpdown.style.pointerEvents = 'none';
+        wcsCoverageDrpdown.classList.add('no-dropdown-icon');
+      } else {
+        wcsCoverageDrpdown.style.removeProperty('pointer-events');
+        wcsCoverageDrpdown.classList.remove('no-dropdown-icon');
+      }
 
       const tabmainclick = divmain.querySelector('.tab-dropdown-wrap');
       tabmainclick.addEventListener('click', () => {
@@ -370,16 +381,16 @@ export default function decorate(block) {
         const tabslist = tabmainclick.querySelectorAll('.tabs-list .tabs-tab');
         const a = tabmainclick.querySelectorAll('button');
 
-        a.forEach(btn => {
-          let arr = btn.textContent;
+        a.forEach((btn) => {
+          const arr = btn.textContent;
           console.log(arr);
           // sup
-          var pPreValbtn = arr.split(' ')[0].slice(0, -2)
-          var supValuebtn = arr.split(' ')[0].slice(-2)
-          //var pPostvalbtn = arr.split(' ')[1]
-          var pPostvalbtn = arr.split(' ').slice(1).join(' ')
+          const pPreValbtn = arr.split(' ')[0].slice(0, -2);
+          const supValuebtn = arr.split(' ')[0].slice(-2);
+          // var pPostvalbtn = arr.split(' ')[1]
+          const pPostvalbtn = arr.split(' ').slice(1).join(' ');
           btn.innerHTML = '';
-          btn.appendChild(span({ class: 'studytab-title' }, pPreValbtn, sup({ class: 'test' }, supValuebtn), " ", pPostvalbtn));        
+          btn.appendChild(span({ class: 'studytab-title' }, pPreValbtn, sup({ class: 'test' }, supValuebtn), ' ', pPostvalbtn));
           tabmainclick.classList.toggle('active');
         });
 
@@ -387,8 +398,8 @@ export default function decorate(block) {
           tabslist.forEach((tab) => {
             if (tab.getAttribute('aria-selected') === 'true') {
               // selectedTab.textContent = tab.textContent;
-              selectedTab.innerHTML = "";
-              selectedTab.innerHTML = tab.innerHTML
+              selectedTab.innerHTML = '';
+              selectedTab.innerHTML = tab.innerHTML;
             }
           });
         }
