@@ -2,6 +2,7 @@
   "mappings": [
     "/content/moamc-eds/:/",
     "/content/moamc-eds/wcs/in/en/:/wcs/",
+    "/content/moamc-eds/wcs/in/en:/wcs",
     "/content/moamc-eds/mutual-fund/in/en/:/mutual-fund/",
     "/content/moamc-eds/pms/in/en/:/pms/",
     "/content/moamc-eds/aif/in/en/:/aif/",
@@ -15,7 +16,6 @@
     "/content/moamc-eds/headers:/.helix/headers.json",
     "/content/moamc-eds/redirects:/.helix/redirects.json",
     "/content/moamc-eds/configuration:/.helix/config.json"
-
   ],
   "includes": [
     "/content/moamc-eds/"
