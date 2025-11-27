@@ -359,6 +359,13 @@ export function generateAppId() {
   // return "877C010EM8A9CA4820M987BCB394B48563BE";
 }
 
+export async function listingAPI() {
+  const resp = await myAPI('GET', 'https://m71vqgw4cj.execute-api.ap-south-1.amazonaws.com/dev/api/public/v1/funds/listing');
+  const respText = await resp.json();
+  return respText;
+}
+dataMapMoObj.listingAPI = listingAPI;
+
 // export async function myAPI(method, url, body = null, header) {
 //   const options = { method };
 //   if (body) {
