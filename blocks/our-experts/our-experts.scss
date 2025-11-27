@@ -388,8 +388,10 @@
 }
 
 .section.our-experts-container.listing-our-expert {
+    margin: 16px auto var(--spacing-40);
+
     @include media(mobile) {
-        margin: 24px auto var(--spacing-40);
+        margin: 0 auto var(--spacing-40);
     }
 }
 
