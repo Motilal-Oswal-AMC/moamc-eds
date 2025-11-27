@@ -1,5 +1,14 @@
 @import"../styles/tokens-variable.css";
 
+@media screen and (width <=768px) {
+    body:has(.previous-studies-coverage) {
+        main .tabs-list {
+            margin-top: 32px;
+            padding-top: 64px;
+        }
+    }
+}
+
 html,
 body,
 * {
