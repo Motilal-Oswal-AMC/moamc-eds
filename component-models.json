@@ -175,6 +175,10 @@
             "value": "highlight"
           },
           {
+            "name": "Previous Studies Coverage",
+            "value": "previous-studies-coverage"
+          },
+          {
             "name": "Calculators Card",
             "value": "calculators-card"
           },
@@ -611,20 +615,20 @@
             "value": "testing"
           },
           {
-            "name":"High Skin Text",
-            "value":"high-skin-text"
+            "name": "High Skin Text",
+            "value": "high-skin-text"
           },
           {
-            "name":"High Image Component",
-            "value":"high-image-component"
+            "name": "High Image Component",
+            "value": "high-image-component"
           },
           {
-            "name":"Skin Moamc Component",
-            "value":"skin-moamc-component"
+            "name": "Skin Moamc Component",
+            "value": "skin-moamc-component"
           },
           {
-            "name":"Why Matters Component",
-            "value":"why-matters-component"
+            "name": "Why Matters Component",
+            "value": "why-matters-component"
           },
           {
             "name": "Mo Inter Business",
