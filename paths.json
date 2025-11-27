@@ -11,7 +11,8 @@
     "/content/mosleds/mutual-fund/in/schememaster:/schememaster.json",
     "/content/mosleds/mutual-fund/in/api/nav-and-dividendupload:/api/nav-and-dividendupload.json",
     "/content/moamc-eds/headers:/.helix/headers.json",
-    "/content/moamc-eds/redirects:/.helix/redirects.json"
+    "/content/moamc-eds/redirects:/.helix/redirects.json",
+    "/content/moamc-eds/configuration:/.helix/configuration.json"
 
   ],
   "includes": [
