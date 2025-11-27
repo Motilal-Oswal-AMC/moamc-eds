@@ -154,18 +154,3 @@ export function th(...items) { return domEl('th', ...items); }
 export function tr(...items) { return domEl('tr', ...items); }
 export function td(...items) { return domEl('td', ...items); }
 export function sup(...items) { return domEl('sup', ...items); }
-
-/**
- * Convert all lazy-loaded images to eager loading within a container
- * @param {Element} container The DOM element to search within (e.g., block or document)
- * @returns {number} Number of images converted
- */
-export function setEagerLoading(container = document) {
-  const images = container.querySelectorAll('img[loading="lazy"]');
-  let count = 0;
-  images.forEach((img) => {
-    img.setAttribute('loading', 'eager');
-    count += 1;
-  });
-  return count;
-}

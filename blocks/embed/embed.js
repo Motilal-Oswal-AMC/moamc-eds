@@ -26,7 +26,7 @@ const loadScript = (url, callback, type) => {
 
 const getDefaultEmbed = (url) => `<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;">
       <iframe src="${url.href}" style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;" allowfullscreen=""
-        scrolling="no" allow="encrypted-media" title="Content from ${url.hostname}" loading="eager">
+        scrolling="no" allow="encrypted-media" title="Content from ${url.hostname}" loading="lazy">
       </iframe>
     </div>`;
 
@@ -41,7 +41,7 @@ const embedYoutube = (url, autoplay) => {
   }
   const embedHTML = `<div style="left: 0; width: 100%; height: 0; position: relative; padding-bottom: 56.25%;">
         <iframe src="https://www.youtube.com${vid ? `/embed/${vid}?rel=0&v=${vid}${suffix}` : `${embed}?${autoplay}`}" style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;" 
-        allow="autoplay; fullscreen; picture-in-picture; encrypted-media; accelerometer; gyroscope; picture-in-picture" allowfullscreen="" scrolling="no" title="Content from Youtube" loading="eager"></iframe>
+        allow="autoplay; fullscreen; picture-in-picture; encrypted-media; accelerometer; gyroscope; picture-in-picture" allowfullscreen="" scrolling="no" title="Content from Youtube" loading="lazy"></iframe>
       </div>`;
   return embedHTML;
 };
@@ -53,7 +53,7 @@ const embedVimeo = (url, autoplay) => {
         <iframe src="https://player.vimeo.com/video/${video}${suffix}" 
         style="border: 0; top: 0; left: 0; width: 100%; height: 100%; position: absolute;" 
         frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen  
-        title="Content from Vimeo" loading="eager"></iframe>
+        title="Content from Vimeo" loading="lazy"></iframe>
       </div>`;
   return embedHTML;
 };
@@ -118,6 +118,10 @@ export default function decorate(block) {
   if (main !== null) {
     const prevStudieswrapper = main.querySelectorAll('.prev-studies-wrapper');
     if (prevStudieswrapper.length !== 0) {
+      const imgEl = placeholder && placeholder.querySelector ? placeholder.querySelector('img') : null;
+      if (imgEl) {
+        imgEl.setAttribute('loading', 'eager');
+      }
       prevStudieswrapper.forEach((el) => {
         dataMapMoObj.CLASS_PREFIXES = ['annual-wealth-wrap', 'aw-ctn', 'aw-subctn', 'aw-subctnin'];
         dataMapMoObj.addIndexed(el);
@@ -171,6 +175,10 @@ export default function decorate(block) {
       const wrapper = document.createElement('div');
       wrapper.className = 'embed-placeholder';
       wrapper.innerHTML = '<div class="embed-placeholder-play"><button type="button" title="Play"></button></div>';
+      const placeholderImg = placeholder.querySelector('img');
+      if (placeholderImg) {
+        placeholderImg.setAttribute('loading', 'eager');
+      }
       wrapper.prepend(placeholder);
       wrapper.addEventListener('click', async (event) => {
         if (block.closest('.article-left-wrapper')) {
@@ -417,6 +425,7 @@ export default function decorate(block) {
       });
       block.closest('.section').style.display = 'block';
       document.addEventListener('click', (event) => {
+        f
         const selectedTab = tabmainclick.querySelector('.selected-tab');
         const tabslistwrap = tabmainclick.querySelector('.tab-droplist');
         if (!selectedTab.contains(event.target) && !tabslistwrap.contains(event.target)) {

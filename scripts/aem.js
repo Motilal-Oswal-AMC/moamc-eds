@@ -19,7 +19,7 @@ function sampleRUM(checkpoint, data) {
   try {
     window.hlx = window.hlx || {};
     if (!window.hlx.rum || !window.hlx.rum.collector) {
-      sampleRUM.enhance = () => {};
+      sampleRUM.enhance = () => { };
       const param = new URLSearchParams(window.location.search).get('rum');
       const weight = (param === 'on' && 1)
         || (window.SAMPLE_PAGEVIEWS_AT_RATE === 'high' && 10)
@@ -113,8 +113,7 @@ function sampleRUM(checkpoint, data) {
             script.setAttribute('crossorigin', 'anonymous');
           }
           script.src = new URL(
-            `.rum/@adobe/helix-rum-enhancer@${
-              enhancerVersion || '^2'
+            `.rum/@adobe/helix-rum-enhancer@${enhancerVersion || '^2'
             }/src/index.js`,
             sampleRUM.baseURL,
           ).href;
@@ -468,7 +467,7 @@ function decorateIcon(span, prefix = '', alt = '') {
   img.dataset.iconName = iconName;
   img.src = `${window.hlx.codeBasePath}${prefix}/icons/${iconName}.svg`;
   img.alt = alt;
-  img.loading = 'lazy';
+  img.loading = 'eager';
   img.width = 16;
   img.height = 16;
   span.append(img);
