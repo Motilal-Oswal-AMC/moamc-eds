@@ -297,7 +297,8 @@ export default function decorate(block) {
         } else if (window.Location.href('motilal-oswal-amc.aem.live')) {
           response = await myAPI(
             'POST',
-            'https://mf.moamc.com/ums/api/SaveLead/create-leads',
+            'https://www.motilaloswalmf.com/ums/api/SaveLead/create-leads',
+            // 'https://mf.moamc.com/ums/api/SaveLead/create-leads',
             objreq,
             headers,
           );
