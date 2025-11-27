@@ -1729,11 +1729,16 @@ main > .section.media-coverage .default-content-wrapper h6 {
     padding: var(--spacing-8) var(--spacing-12);
     margin: 0;
     height: 40px;
+    pointer-events: none;
+}
+
+.maintab > .tab-dropdown-wrap .selected-tab .studytab-title {
+    margin: unset;
 }
 
 .maintab > .tab-dropdown-wrap .selected-tab::after {
     content: "";
-    background: url("../icons/arrow-black-down.svg") no-repeat center center;
+    // background: url("../icons/arrow-black-down.svg") no-repeat center center;
     width: 24px;
     height: 24px;
     display: block;
