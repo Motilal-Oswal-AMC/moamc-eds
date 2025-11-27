@@ -523,6 +523,10 @@ export default async function decorate(block) {
     }
   }
 
+  document.querySelectorAll('.contact-main1 a').forEach((el) => {
+    el.classList.add('inner-link');
+  });
+
   pinCode.addEventListener('focus', toggleLabel);
   pinCode.addEventListener('blur', toggleLabel);
   pinCode.addEventListener('input', toggleLabel);

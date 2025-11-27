@@ -1,11 +1,13 @@
 @use "sass:map";
-@use "../../styles/common-theme/css/variables_mixins"as *;
-@use "../../styles/common-theme/css/fluid-typography"as *;
+@use "../../styles/common-theme/css/variables_mixins" as *;
+@use "../../styles/common-theme/css/fluid-typography" as *;
 
 .section.our-experts-container {
-    margin-bottom: 0;
+    // margin-top: 24px;
 
-    // @include media mobile {}
+    @include media(mobile) {
+        margin-top: 0;
+    }
 
     .our-experts-wrapper {
         ul {
@@ -24,7 +26,7 @@
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            padding: 40px 0;
+            padding: 0;
             padding-bottom: 0;
 
             @include media(mobile) {
@@ -32,7 +34,8 @@
                 align-items: flex-start;
                 gap: 40px;
                 padding: 0;
-                padding-top: 24px;
+
+                // padding-top: 24px;
             }
 
             &-cont1 {
@@ -45,7 +48,7 @@
                     h6 {
                         margin: 0;
                         padding: 0;
-                        color: var(--blue-1800-primary, #2E2A94);
+                        color: var(--blue-1-800-primary, #2e2a94);
                         font-feature-settings: var(--font-features-default);
                         font-family: var(--title);
                         font-size: var(--heading-h4-size);
@@ -58,6 +61,7 @@
                             font-style: normal;
                             font-weight: 600;
                             line-height: var(--sub-header-large-line-height);
+                            text-wrap-style: balance;
                         }
                     }
                 }
@@ -75,6 +79,7 @@
                     align-items: flex-start;
                     gap: 12px;
                     flex-shrink: 0;
+                    position: relative;
 
                     @include media(mobile) {
                         margin-right: -16px;
@@ -83,13 +88,13 @@
                     .our-expert-sub1 {
                         display: flex;
                         height: 44px;
-                        padding: 10px 8px;
+                        padding: var(--spacing-10) var(--spacing-8);
                         justify-content: flex-start;
                         align-items: center;
                         gap: 8px;
                         align-self: stretch;
                         border-radius: var(--border-radius-6);
-                        border: var(--border-width-01, 1px) solid var(--strokes-default, #9E9E9E);
+                        border: var(--border-width-01, 1px) solid var(--strokes-default, #9e9e9e);
                         margin: 0;
                         position: relative;
 
@@ -98,7 +103,7 @@
                         }
 
                         &.input-focused {
-                            border: 1px solid #2E2A94;
+                            border: 1px solid #2e2a94;
                         }
 
                         input {
@@ -110,12 +115,18 @@
                             font-style: normal;
                             font-weight: 400;
                             line-height: var(--body-medium-regular-line-height, 20px);
+
+                            ::placeholder {
+                                color: var(--text-body-2);
+                            }
                         }
 
                         .floating-label-wrapper {
                             line-height: 0;
+                            width: 100%;
 
                             label {
+                                display: none;
                                 position: absolute;
                                 top: 12px;
                                 left: 45px;
@@ -132,94 +143,206 @@
 
                             input {
                                 width: 100%;
-
                             }
                         }
 
-                        .floating-label-wrapper input:focus+label,
-                        .floating-label-wrapper input:not(:placeholder-shown)+label {
+                        .floating-label-wrapper input:focus + label,
+                        .floating-label-wrapper input:not(:placeholder-shown) + label {
                             top: -8px;
                             left: 25px;
                             padding: 0 4px;
-                            color: #2E2A94;
+                            color: #2e2a94;
                             font-feature-settings: var(--font-features-default);
                             font-family: var(--body);
                             font-size: var(--text-link-xsmall-size);
                             font-style: normal;
                             font-weight: 400;
                             line-height: var(--text-link-xsmall-line-height, 16px);
-                            background-color: #FFF;
+                            background-color: #fff;
                         }
 
                         &:focus {
-                            border: 2px solid #2E2A94;
+                            border: 2px solid #2e2a94;
+                        }
+
+                        .icon.expert-lists1 {
+                            min-width: 24px;
+                            width: 24px;
+                            height: 24px;
                         }
                     }
 
                     .our-expert-sub2 {
-                        display: flex;
-                        align-items: center;
-                        gap: 8px;
+                        display: none;
 
-                        @include media(mobile) {
-                            max-width: 350px;
-                            width: 100%;
-                            overflow: auto;
-                        }
+                        // display: flex;
+                        // align-items: center;
+                        // gap: 8px;
 
-                        .expert-lists1 {
-                            display: flex;
-                            align-items: center;
-                            gap: 4px;
-                            color: var(--neutrals-black);
-                            font-feature-settings: var(--font-features-default);
-                            font-family: var(--body);
-                            font-size: var(--body-small-medium-size);
-                            font-style: normal;
-                            font-weight: 500;
-                            line-height: var(--body-small-medium-line-height);
+                        // @include media(mobile) {
+                        //     max-width: 350px;
+                        //     width: 100%;
+                        //     overflow: auto;
+                        // }
 
-                            .icon {
-                                width: 16px;
-                                height: 16px;
-                                aspect-ratio: 1/1;
-                            }
-                        }
+                        // .expert-lists1 {
+                        //     display: flex;
+                        //     align-items: center;
+                        //     gap: 4px;
+                        //     color: var(--neutrals-black);
+                        //     font-feature-settings: var(--font-features-default);
+                        //     font-family: var(--body);
+                        //     font-size: var(--body-small-medium-size);
+                        //     font-style: normal;
+                        //     font-weight: 500;
+                        //     line-height: var(--body-small-medium-line-height);
 
-                        li {
-                            display: flex;
-                            align-items: center;
-                            gap: 8px;
+                        //     .icon {
+                        //         width: 16px;
+                        //         height: 16px;
+                        //         aspect-ratio: 1/1;
+                        //     }
+                        // }
 
-                            a {
-                                color: #2E2A94;
-                                font-feature-settings: var(--font-features-default);
-                                font-family: var(--body);
-                                font-size: var(--text-link-xsmall-size);
-                                font-style: normal;
-                                font-weight: 400;
-                                line-height: var(--text-link-xsmall-line-height, 16px);
-                                text-decoration-line: underline;
-                                text-decoration-style: solid;
-                                text-decoration-skip-ink: auto;
-                                text-decoration-thickness: auto;
-                                text-underline-offset: 4.9%;
-                                text-underline-position: from-font;
-                                white-space: nowrap;
+                        // li {
+                        //     display: flex;
+                        //     align-items: center;
+                        //     gap: 8px;
 
-                                @include media (mobile) {
-                                    font-size: var(--text-link-small-size);
-                                    line-height: var(--text-link-small-line-height);
-                                }
-                            }
-                        }
+                        //     a {
+                        //         color: #2E2A94;
+                        //         font-feature-settings: var(--font-features-default);
+                        //         font-family: var(--body);
+                        //         font-size: var(--text-link-xsmall-size);
+                        //         font-style: normal;
+                        //         font-weight: 400;
+                        //         line-height: var(--text-link-xsmall-line-height, 16px);
+                        //         text-decoration-line: underline;
+                        //         text-decoration-style: solid;
+                        //         text-decoration-skip-ink: auto;
+                        //         text-decoration-thickness: auto;
+                        //         text-underline-offset: 4.9%;
+                        //         text-underline-position: from-font;
+                        //         white-space: nowrap;
 
-                        .expert-lists2 {
-                            padding-right: 8px;
-                        }
+                        //         @include media (mobile) {
+                        //             font-size: var(--text-link-small-size);
+                        //             line-height: var(--text-link-small-line-height);
+                        //         }
+                        //     }
+                        // }
+
+                        // .expert-lists2 {
+                        //     padding-right: 8px;
+                        // }
                     }
 
                     .our-expert-sub3 {
+                        display: none;
+                    }
+
+                    .search-results {
+                        // position: absolute;
+                        // top: 45px;
+                        // display: block;
+                        // background-color: var(--neutrals-white);
+                        // border: 1px solid var(--neutrals-200);
+                        // border-radius: 6px;
+                        // width: 100%;
+                        // margin: 4px 0 0;
+                        // max-height: 220px;
+                        // height: auto;
+                        // overflow: auto;
+                        // z-index: 10;
+                        // margin-right: 16px;
+                        position: absolute;
+                        top: 100%;
+                        left: 0;
+                        z-index: 10;
+                        background-color: var(--neutrals-white);
+                        box-shadow: 0 4px 16px 0 rgb(47 64 84 / 12%);
+                        border-radius: 8px;
+                        width: 100%;
+                        margin: 6px 0 0;
+                        max-height: 352px;
+                        overflow: auto;
+                        list-style: none;
+
+                        @include media(mobile) {
+                            width: 95.3%;
+                        }
+
+                        &::-webkit-scrollbar {
+                            width: 3px;
+                            background-color: #464343;
+                        }
+
+                        &::-webkit-scrollbar-thumb {
+                            width: 3px;
+                            background-color: #424242;
+                            border-radius: 0 5px 5px 0;
+                        }
+
+                        &::-webkit-scrollbar-track {
+                            width: 3px;
+                            background-color: var(--neutrals-white);
+                            border-radius: 0 6px 6px 0;
+                        }
+
+                        .result-item {
+                            margin: unset;
+                            cursor: pointer;
+                            padding: 16px;
+                            background: var(--surface-background-neutral-subtle);
+
+                            &:hover {
+                                background-color: var(--blue-1-25);
+                            }
+
+                            &:focus {
+                                background-color: var(--blue-1-50);
+                            }
+
+                            .list {
+                                color: var(--neutrals-900);
+                                font-feature-settings: var(--font-features-default);
+                                font-family: var(--body);
+                                font-size: var(--body-medium-regular-size);
+                                font-weight: 400;
+                                line-height: var(--body-medium-regular-line-height);
+                                word-break: unset;
+                                width: 100%;
+                                display: block;
+                            }
+                        }
+
+                        .no-results-message {
+                            font-size: var(--body-small-regular-size);
+                            line-height: var(--label-large-line-height);
+                            color: var(--neutrals-black);
+                            font-family: var(--body);
+                            font-feature-settings:
+                                "ss01" on,
+                                "ss04" on,
+                                "cv01" on,
+                                "cv02" on,
+                                "cv03" on,
+                                "cv04" on,
+                                "cv06" on,
+                                "cv09" on,
+                                "cv10" on,
+                                "cv11" on;
+                            font-weight: 400;
+                            padding: 12px 20px 12px 40px;
+                            cursor: pointer;
+                            position: relative;
+                            top: 0;
+                            border: none;
+                            z-index: 10;
+                        }
+                    }
+
+                    .search-results.dsp-none {
                         display: none;
                     }
                 }
@@ -247,12 +370,17 @@
                     }
                 }
             }
-
         }
     }
 }
 
 .section.out-expert-listing.our-experts-container {
+    // margin-bottom: 24px;
+
+    @include media(mobile) {
+        margin-bottom: 32px;
+    }
+
     .our-experts-wrapper {
         .our-experts {
             .our-experts-cont1 {
@@ -268,10 +396,18 @@
                 }
             }
 
-            .our-experts-cont2 {
-                display: none;
-            }
+            // .our-experts-cont2 {
+            //     display: none;
+            // }
         }
+    }
+}
+
+.section.our-experts-container.listing-our-expert {
+    margin: 16px auto var(--spacing-40);
+
+    @include media(mobile) {
+        margin: 0 auto var(--spacing-40);
     }
 }
 

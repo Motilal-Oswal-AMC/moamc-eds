@@ -77,7 +77,7 @@ main {
           margin: 3px 0 0;
           background-color: $primary-white;
           border-radius: 6px;
-          border: 1px solid $neutrals-200;
+          border: 1px solid #B9BBFF;
           box-shadow: 0 0 14px 0 rgb(40 40 40 / 6%);
 
           // @include media(mobile) {
@@ -103,7 +103,7 @@ main {
 
           &::-webkit-scrollbar-thumb {
             width: 3px;
-            background-color: #424242; //$primary-blue;
+            background-color: #424242; // $primary-blue;
             border-radius: 0 1px 1px 0;
           }
 
@@ -779,7 +779,7 @@ main {
 
           &::-webkit-scrollbar-thumb {
             width: 3px;
-            background-color: #464343; //#eee;
+            background-color: #464343; // #eee;
           }
         }
       }

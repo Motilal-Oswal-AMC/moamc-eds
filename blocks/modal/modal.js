@@ -21,6 +21,9 @@ export async function createModal(contentNodes) {
   const dialogContent = document.createElement('div');
   dialogContent.classList.add('modal-content');
   dialogContent.append(...contentNodes);
+  if (dialogContent.querySelector('.maintab') && window.location.pathname.includes('/coverage')) {
+    dialogContent.querySelector('.maintab').remove();
+  }
   dialog.append(dialogContent);
 
   const closeButton = document.createElement('button');
@@ -375,6 +378,18 @@ export function initializeModalHandlers() {
       document.querySelector('.modal').classList.add('modal-journey-fund');
     } else if (!modal.querySelector('.embed')) {
       document.querySelector('.modal').classList.add('modal-journey');
+    }
+
+    // Media coverage page - Adding class to modal
+    if (window.location.pathname.includes('/wcs/in/en/coverage')) {
+      if (!modal.querySelector('.embed')) {
+        modal.classList.add('coverage-image-modal');
+        if (!modal.querySelector('.modal-content .close-button')) {
+          modal.querySelector('.modal-content').prepend(modal.querySelector('.close-button'));
+        }
+      } else {
+        modal.classList.add('coverage-video-modal');
+      }
     }
   });
 }

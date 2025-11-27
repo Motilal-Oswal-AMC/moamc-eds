@@ -1,6 +1,92 @@
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
-<script src="/scripts/aem.js" type="module"></script>
-<script src="/scripts/scripts.js" type="module"></script>
-<link rel="stylesheet" href="/styles/styles.css"/>
-<script src="https://universal-editor-service.adobe.io/cors.js" async></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- <script src="https://universal-editor-service.adobe.io/cors.js" async></script> -->
 
+<!-- Inter -->
+<link
+  rel="preload"
+  crossorigin="anonymous"
+  href="/fonts/Inter-Regular.woff2"
+  as="font"
+  type="font/woff2"
+/>
+<link
+  rel="preload"
+  crossorigin="anonymous"
+  href="/fonts/Inter-Medium.woff2"
+  as="font"
+  type="font/woff2"
+/>
+<link
+  rel="preload"
+  crossorigin="anonymous"
+  href="/fonts/Inter-SemiBold.woff2"
+  as="font"
+  type="font/woff2"
+/>
+
+<!-- Non-blocking stylesheet loading: preload then swap to stylesheet on load -->
+<link rel="stylesheet" href="/styles/styles.css" />
+<link rel="preload" href="/styles/common.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+<!-- Fallback for browsers without preload support or users with JS disabled -->
+<noscript>
+  <link rel="stylesheet" href="/styles/common.css" />
+</noscript>
+
+<style>
+  /* Inter Regular (400) */
+  @font-face {
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("/fonts/Inter-Regular.woff2") format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+      U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212,
+      U+2215, U+FEFF, U+FFFD;
+  }
+
+  /* Inter Medium (500) */
+  @font-face {
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url("/fonts/Inter-Medium.woff2") format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+      U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212,
+      U+2215, U+FEFF, U+FFFD;
+  }
+
+  /* Inter SemiBold (600) */
+  @font-face {
+    font-family: Inter;
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url("/fonts/Inter-SemiBold.woff2") format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
+      U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212,
+      U+2215, U+FEFF, U+FFFD;
+  }
+</style>
+
+<script>
+  if (window.location.pathname.includes("/investor-education/all-articles")) {
+    document.write(
+      '<link rel="stylesheet" href="/blocks/Investor-details/investor-details.css" />'
+    );
+  }
+  if (window.location.href.includes("/motilal-oswal-edge/")) {
+    document.write(
+      '<link rel="stylesheet" href="/blocks/moedge-article-details/moedge-article-details.css" />'
+    );
+  }
+  if (window.location.href.includes("/error-screen/")) {
+    document.write(
+      '<link rel="stylesheet" href="/blocks/error-screen/error-screen.css" />'
+    );
+  }
+</script>
+
+<script src="/scripts/aem.js" defer type="module"></script>
+<script src="/scripts/scripts.js" defer type="module"></script>

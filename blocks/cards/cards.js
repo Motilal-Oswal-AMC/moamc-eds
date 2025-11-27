@@ -1,7 +1,7 @@
 import { createOptimizedPicture } from '../../scripts/aem.js';
 import dataMapMoObj from '../../scripts/constant.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
-import formBlock from '../form/form.js';
+// import formBlock from '../form/form.js';
 
 export default function decorate(block) {
   /* change to ul, li */
@@ -24,79 +24,79 @@ export default function decorate(block) {
   block.textContent = '';
   block.append(ulblk);
 
-  function setupAuthorListToggle() {
-    const sections = document.querySelectorAll('.behind-the-content.our-author-list');
-    sections.forEach((section) => {
-      const cardsBlock = section.querySelector('.cards.block');
-      if (!cardsBlock) return;
+  // function setupAuthorListToggle() {
+  //   const sections = document.querySelectorAll('.behind-the-content.our-author-list');
+  //   sections.forEach((section) => {
+  //     const cardsBlock = section.querySelector('.cards.block');
+  //     if (!cardsBlock) return;
 
-      const ul = cardsBlock.querySelector('ul');
-      if (!ul) return;
+  //     const ul = cardsBlock.querySelector('ul');
+  //     if (!ul) return;
 
-      const allItems = Array.from(ul.querySelectorAll('li'));
-      const SHOW_COUNT = 12;
+  //     const allItems = Array.from(ul.querySelectorAll('li'));
+  //     const SHOW_COUNT = 12;
 
-      if (allItems.length <= SHOW_COUNT) return;
+  //     if (allItems.length <= SHOW_COUNT) return;
 
-      const hiddenItems = allItems.slice(SHOW_COUNT);
-      hiddenItems.forEach((li) => li.classList.add('cards-card-hidden'));
+  //     const hiddenItems = allItems.slice(SHOW_COUNT);
+  //     hiddenItems.forEach((li) => li.classList.add('cards-card-hidden'));
 
-      let viewAllBtn = section.querySelector('.default-content-wrapper .button');
-      if (!viewAllBtn) {
-        const wrapper = section.querySelector('.default-content-wrapper') || section;
-        viewAllBtn = document.createElement('a');
-        viewAllBtn.className = 'button view-all';
-        viewAllBtn.setAttribute('href', '#');
-        viewAllBtn.textContent = 'View All';
-        const p = document.createElement('p');
-        p.className = 'button-container';
-        p.appendChild(viewAllBtn);
-        wrapper.appendChild(p);
-      } else {
-        // normalize to act as button (prevent navigation)
-        viewAllBtn.classList.add('view-all');
-      }
+  //     let viewAllBtn = section.querySelector('.default-content-wrapper .button');
+  //     if (!viewAllBtn) {
+  //       const wrapper = section.querySelector('.default-content-wrapper') || section;
+  //       viewAllBtn = document.createElement('a');
+  //       viewAllBtn.className = 'button view-all';
+  //       viewAllBtn.setAttribute('href', '#');
+  //       viewAllBtn.textContent = 'View All';
+  //       const p = document.createElement('p');
+  //       p.className = 'button-container';
+  //       p.appendChild(viewAllBtn);
+  //       wrapper.appendChild(p);
+  //     } else {
+  //       // normalize to act as button (prevent navigation)
+  //       viewAllBtn.classList.add('view-all');
+  //     }
 
-      // Accessibility: set aria-controls and aria-expanded
-      const ulId = ul.id || `cards-${Math.random().toString(36).slice(2, 8)}`;
-      ul.id = ulId;
-      viewAllBtn.setAttribute('aria-controls', ulId);
-      viewAllBtn.setAttribute('aria-expanded', 'false');
-      viewAllBtn.setAttribute('role', 'button');
+  //     // Accessibility: set aria-controls and aria-expanded
+  //     const ulId = ul.id || `cards-${Math.random().toString(36).slice(2, 8)}`;
+  //     ul.id = ulId;
+  //     viewAllBtn.setAttribute('aria-controls', ulId);
+  //     viewAllBtn.setAttribute('aria-expanded', 'false');
+  //     viewAllBtn.setAttribute('role', 'button');
 
-      let isExpanded = false;
+  //     let isExpanded = false;
 
-      const toggleShowAll = (e) => {
-        e.preventDefault();
-        if (!isExpanded) {
-          // show all
-          hiddenItems.forEach((li) => li.classList.remove('cards-card-hidden'));
-          viewAllBtn.textContent = 'View Less'; // optional: change label
-          viewAllBtn.setAttribute('aria-expanded', 'true');
-          isExpanded = true;
-        } else {
-          // hide them again
-          hiddenItems.forEach((li) => li.classList.add('cards-card-hidden'));
-          viewAllBtn.textContent = 'View All';
-          viewAllBtn.setAttribute('aria-expanded', 'false');
-          isExpanded = false;
+  //     const toggleShowAll = (e) => {
+  //       e.preventDefault();
+  //       if (!isExpanded) {
+  //         // show all
+  //         hiddenItems.forEach((li) => li.classList.remove('cards-card-hidden'));
+  //         viewAllBtn.textContent = 'View Less'; // optional: change label
+  //         viewAllBtn.setAttribute('aria-expanded', 'true');
+  //         isExpanded = true;
+  //       } else {
+  //         // hide them again
+  //         hiddenItems.forEach((li) => li.classList.add('cards-card-hidden'));
+  //         viewAllBtn.textContent = 'View All';
+  //         viewAllBtn.setAttribute('aria-expanded', 'false');
+  //         isExpanded = false;
 
-          // optionally scroll to top of section so user sees beginning again
-          // section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      };
+  //         // optionally scroll to top of section so user sees beginning again
+  //         // section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  //       }
+  //     };
 
-      viewAllBtn.addEventListener('click', toggleShowAll);
-      // also allow keyboard activation on Enter/Space for anchor acting as button
-      viewAllBtn.addEventListener('keydown', (ev) => {
-        if (ev.key === 'Enter' || ev.key === ' ') {
-          ev.preventDefault();
-          toggleShowAll(ev);
-        }
-      });
-    });
-  }
-  setupAuthorListToggle();
+  //     viewAllBtn.addEventListener('click', toggleShowAll);
+  //     // also allow keyboard activation on Enter/Space for anchor acting as button
+  //     viewAllBtn.addEventListener('keydown', (ev) => {
+  //       if (ev.key === 'Enter' || ev.key === ' ') {
+  //         ev.preventDefault();
+  //         toggleShowAll(ev);
+  //       }
+  //     });
+  //   });
+  // }
+  // setupAuthorListToggle();
 
   const blkmain = block.closest('.contact-card');
   if (blkmain !== null) {
@@ -184,40 +184,41 @@ export default function decorate(block) {
   }
   // aif component end
 
-  // Investor Education article left and right wrapper
-  if (window.location.href.includes('/investor-education/all-articles/') || window.location.href.includes('/motilal-oswal-edge/article-details')) {
-    const maincloser = block.closest('main');
-    const rightSub = maincloser.querySelectorAll('.article-sub-right');
-    const rightarticle = maincloser.querySelector('.article-right-wrapper');
-    Array.from(rightSub).forEach((rightel) => {
-      rightarticle.append(rightel);
-    });
-    const leftSub = maincloser.querySelectorAll('.article-sub-left');
-    const leftarticle = maincloser.querySelector('.article-left-wrapper');
-    Array.from(leftSub).forEach((leftel) => {
-      leftarticle.append(leftel);
-    });
-    if (maincloser.querySelector('.moedge-article-details')) {
-      dataMapMoObj.CLASS_PREFIXES = ['articlemain', 'articlesub', 'articleitem',
-        'subarticle', 'mainarticle', 'itemarticle', 'itemsubart',
-        'mainitemart', 'itemmainart', 'submainart'];
-      dataMapMoObj.addIndexed(
-        maincloser.querySelector('.moedge-article-details'),
-      );
+  // // Investor Education article left and right wrapper
+  // if (window.location.href.includes('/investor-education/all-articles/')
+  // || window.location.href.includes('/motilal-oswal-edge/article-details')) {
+  //   const maincloser = block.closest('main');
+  //   const rightSub = maincloser.querySelectorAll('.article-sub-right');
+  //   const rightarticle = maincloser.querySelector('.article-right-wrapper');
+  //   Array.from(rightSub).forEach((rightel) => {
+  //     rightarticle.append(rightel);
+  //   });
+  //   const leftSub = maincloser.querySelectorAll('.article-sub-left');
+  //   const leftarticle = maincloser.querySelector('.article-left-wrapper');
+  //   Array.from(leftSub).forEach((leftel) => {
+  //     leftarticle.append(leftel);
+  //   });
+  //   if (maincloser.querySelector('.moedge-article-details')) {
+  //     dataMapMoObj.CLASS_PREFIXES = ['articlemain', 'articlesub', 'articleitem',
+  //       'subarticle', 'mainarticle', 'itemarticle', 'itemsubart',
+  //       'mainitemart', 'itemmainart', 'submainart'];
+  //     dataMapMoObj.addIndexed(
+  //       maincloser.querySelector('.moedge-article-details'),
+  //     );
 
-      const mainleft = maincloser.querySelector('.article-left-wrapper');
-      dataMapMoObj.CLASS_PREFIXES = ['leftartmain', 'leftartsub', 'leftartitem',
-        'subleftart', 'mainleftart', 'itemleftart', 'itemleftart',
-        'mainitemleftart', 'itemmainleftart', 'submainleftart'];
-      dataMapMoObj.addIndexed(
-        mainleft,
-      );
-    }
-    const formpath = maincloser.querySelector('.article-right-wrapper .subscribe-email');
-    const formdiv = formpath
-      .querySelector('.subscribe-email .button-container');
-    formBlock(formdiv);
-  }
+  //     const mainleft = maincloser.querySelector('.article-left-wrapper');
+  //     dataMapMoObj.CLASS_PREFIXES = ['leftartmain', 'leftartsub', 'leftartitem',
+  //       'subleftart', 'mainleftart', 'itemleftart', 'itemleftart',
+  //       'mainitemleftart', 'itemmainleftart', 'submainleftart'];
+  //     dataMapMoObj.addIndexed(
+  //       mainleft,
+  //     );
+  //   }
+  //   const formpath = maincloser.querySelector('.article-right-wrapper .subscribe-email');
+  //   const formdiv = formpath
+  //     .querySelector('.subscribe-email .button-container');
+  //   formBlock(formdiv);
+  // }
 
   // WCS Series
   if (block.closest('.wcs-series-pdf')) {
@@ -234,6 +235,36 @@ export default function decorate(block) {
     dataMapMoObj.addIndexed(calClass);
   }
   // cal class end
+
+  if (block.closest('main').querySelector('.behind-the-content')) {
+    // Find the container that has your special classes
+    const mainContainer = block.closest('main')
+      .querySelector('.behind-the-content .cards');
+
+    // Only run this pagination logic if we are in the correct block
+    if (mainContainer) {
+      // Select all the card items
+      const items = Array.from(mainContainer.querySelectorAll('li'));
+      const itemsPerPage = items.slice(0, 12).length;
+
+      if (items.length > itemsPerPage) {
+        dataMapMoObj.setupPagination(mainContainer, items, itemsPerPage);
+      }
+    }
+  }
+
+  // Error Screen adding
+  const error = block.closest('.section.screen-400, .section.screen-401, .section.screen-403, .section.screen-408, .section.screen-500, .section.service-screen');
+  if (error) {
+    const newEle = document.createElement('div');
+    newEle.classList.add('errscn-txtwrap');
+    const secondP = document.querySelector('.cards-container .cards-card-body p:nth-child(2)');
+    const errscnCont = document.querySelector('.cards-container .cards-card-body');
+    errscnCont.append(newEle);
+    newEle.append(secondP);
+    dataMapMoObj.CLASS_PREFIXES = ['error-screen-wrapper', 'error-screen-wrap', 'error-screen-ul', 'error-screen-li', 'errscrn-img-cont', 'errscrn-cont', 'errscrn-inner-cont'];
+    dataMapMoObj.addIndexed(error);
+  }
 }
 
 function decorateArticlePage() {
@@ -280,6 +311,18 @@ subSection.forEach((sublist) => {
   dataMapMoObj.addIndexed(sublist);
 });
 
+const newSection = document.querySelectorAll('.our-investing-style.cards-container');
+dataMapMoObj.CLASS_PREFIXES = [
+  'our-invest-cont',
+  'our-invest-sec',
+  'our-invest-sub',
+  'our-invest-inner-text',
+  'our-invest-list',
+  'our-invest-list-content',
+  'our-invest-list-row',
+];
+newSection.forEach((sublist) => dataMapMoObj.addIndexed(sublist));
+
 // const emailFields = document.querySelectorAll(
 //   '.section.article-sub-right.subscribe-email .field-wrapper.email-wrapper input'
 // );
@@ -300,4 +343,15 @@ subSection.forEach((sublist) => {
 //   input.addEventListener('focus', toggleLabel);
 //   input.addEventListener('blur', toggleLabel);
 //   input.addEventListener('input', toggleLabel);
+// });
+
+// const listItems = document.querySelectorAll('.behind-the-content.our-author-list li');
+
+// listItems.forEach((item) => {
+//   const buttonsInBody = item.querySelectorAll('.cards-card-body .button-container:nth-child(2)');
+//   const buttonToMove = buttonsInBody[buttonsInBody.length - 1];
+//   const destination = item.querySelector('.cards-card-image');
+//   if (buttonToMove && destination) {
+//     destination.appendChild(buttonToMove);
+//   }
 // });

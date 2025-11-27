@@ -11,11 +11,14 @@ import * as am5themes_Animated from '../../scripts/Animated.js';
 import chartsDataReturn from './datareturn.js';
 import { initObserver, myAPI } from '../../scripts/scripts.js';
 
+window.am5.addLicense('AM5C-253273928');
+
 export default function decorate(block) {
   // Extract authored content
   const container = block.closest('.performance-graph-returning-container');
   if (container) {
     const defaultContent = container.querySelector('.default-content-wrapper');
+    const performanceGraphReturningWrapper = container.querySelector('.performance-graph-returning-wrapper');
     const performanceWrapper = container.querySelector(
       '.performance-graph-returning-wrapper',
     );
@@ -31,6 +34,11 @@ export default function decorate(block) {
       newWrapper.classList.add('performance-graph-wrapper');
       container.insertBefore(newWrapper, defaultContent);
       newWrapper.appendChild(defaultContent);
+      newWrapper.appendChild(performanceWrapper);
+    } else {
+      const newWrapper = document.createElement('div');
+      newWrapper.classList.add('performance-graph-wrapper');
+      container.insertBefore(newWrapper, performanceGraphReturningWrapper);
       newWrapper.appendChild(performanceWrapper);
     }
   }
@@ -349,7 +357,7 @@ export default function decorate(block) {
           //   span({ class: 'value' }, '15.28%'),
           // )
           span({ class: 'fund-returns' }, 'Returns '),
-          span({ class: 'value' }, '15.28%'),
+          span({ class: 'value' }, '15.28', span({ class: 'fund-percentage' }, '%')),
         ),
       ),
     ),

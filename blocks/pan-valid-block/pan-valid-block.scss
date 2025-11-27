@@ -1374,7 +1374,7 @@
       height: 24px;
 
       .sub-otp-con1,
-      .sub-otp-con1 .icon {
+      .sub-otp-con1 .icon.icon-modal-cross-btn {
         margin: 0;
         width: 100%;
         height: 100%;
@@ -1404,7 +1404,7 @@
     }
 
     .pan-wrap {
-      .pan-field {
+      .pan-field.comlist {
         position: relative;
         padding: var(--spacing-8) var(--spacing-12);
         border-radius: var(--border-radius-8, 8px);
@@ -1412,7 +1412,7 @@
         line-height: 0;
         margin: 0 0 var(--spacing-8);
 
-        .pan-label {
+        .pan-label.comlist {
           position: absolute;
           top: 50%;
           left: 10px;
@@ -1435,7 +1435,7 @@
           }
         }
 
-        .pan-inp {
+        .pan-inp.comlist {
           border: none;
           outline: none;
           background-color: transparent;
@@ -1459,7 +1459,7 @@
 
         &:focus-within,
         &.active {
-          .pan-label {
+          .pan-label.comlist {
             top: -8px;
             transform: unset;
             z-index: 2;
@@ -1586,7 +1586,7 @@
           }
         }
 
-        .otp-wrap {
+        .otp-wrap.comlist {
           width: 40px;
           height: 40px;
           border-radius: var(--border-radius-8);
@@ -1604,7 +1604,7 @@
             }
           }
 
-          .otp-inp {
+          .otp-inp.comlist {
             width: 100%;
             height: 100%;
             border: none;
@@ -1627,7 +1627,7 @@
         }
       }
 
-      .resend-btn {
+      .resend-btn.comlist {
         margin: 0 0 var(--spacing-36);
         padding: var(--spacing-8) 0;
         border-radius: 0;
@@ -1797,7 +1797,7 @@
       cursor: pointer;
 
       .innerpasscode1,
-      .innerpasscode1 .icon {
+      .innerpasscode1 .icon.icon-modal-cross-btn {
         margin: 0;
         width: 24px;
         height: 24px;
@@ -1897,7 +1897,7 @@
             justify-content: center;
             align-items: center;
 
-            .otp-inp {
+            .otp-inp.comlist {
               width: 100%;
               height: 100%;
               border: none;
@@ -1948,7 +1948,7 @@
           }
         }
 
-        .resend-btn {
+        .resend-btn.comlist {
           text-decoration: underline;
           text-underline-offset: 2.8px;
           background-color: transparent;
@@ -2028,8 +2028,9 @@
             content: "";
             min-width: 12px;
             height: 12px;
+
             // background-color: var(--neutrals-black);
-            background-color: rgba(0,0,0,0.4);
+            background-color: rgb(0 0 0 / 40%);
             border-radius: 50%;
             position: absolute;
             top: 50%;

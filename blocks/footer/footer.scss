@@ -59,8 +59,6 @@
             padding: 0 16px;
             display: flex;
             flex-direction: column;
-
-            // row-gap: 36px;
             row-gap: 24px;
         }
 
@@ -71,9 +69,14 @@
             gap: 32px;
             text-align: center;
 
-            .footer-sub-cont1 img {
-                max-width: 140px;
-                height: 100%;
+            .footer-sub-cont1 {
+                width: 140px;
+                height: 80px;
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                }
             }
 
             .footer-sub-cont2 {
@@ -181,8 +184,6 @@
                                     width: 100%;
                                     max-width: 346px;
                                     display: flex;
-
-                                    // padding: var(--spacing-8) var(--spacing-12);
                                     flex-direction: column;
                                     justify-content: flex-end;
                                     align-items: flex-start;
@@ -196,9 +197,6 @@
                                     font-style: normal;
                                     font-weight: 400;
                                     line-height: var(--body-medium-regular-line-height);
-
-                                    // border-radius: var(--border-radius-8);
-                                    // border: var(--border-width-01) solid var(--neutrals-white);
                                     background: transparent;
                                     border: none;
                                     outline: none;
@@ -206,15 +204,6 @@
                                     @include media(mobile) {
                                         max-width: 182px;
                                     }
-
-                                    // &::placeholder {
-                                    //     color: var(--neutrals-200);
-                                    //     font-feature-settings: var(--font-features-default);
-                                    //     font-family: var(--body);
-                                    //     font-size: var(--body-medium-regular-size);
-                                    //     font-weight: 400;
-                                    //     line-height: var(--body-medium-regular-line-height);
-                                    // }
                                 }
 
                                 .crossimg {
@@ -242,33 +231,12 @@
 
                             .wrapimgform.email-fail {
                                 border: var(--border-width-01) solid #ff8088;
-
-                                // padding: 10px 40px 10px 12px;
                                 background: url("/icons/error-cross.svg") no-repeat right 12px center;
-
-                                // &::after {
-                                //     content: "";
-                                //     background-image: url("/icons/error-cross.svg");
-                                //     background-position: center;
-                                //     background-repeat: no-repeat;
-                                //     background-size: cover;
-                                //     width: 24px;
-                                //     height: 24px;
-                                //     display: block;
-                                //     position: absolute;
-                                //     top: 50%;
-                                //     right: 12px;
-                                //     transform: translateY(-50%);
-                                // }
                             }
 
                             .wrapimgform.email-success {
                                 border: var(--border-width-01) solid #00c35d;
                                 background: url("/icons/success-cross.svg") no-repeat right 12px center;
-
-                                // &::after {
-                                //     background-image: url("/icons/success-cross.svg");
-                                // }
 
                                 &+.errormsg {
                                     color: #00c35d;
@@ -278,7 +246,6 @@
 
                         &.submit-btn {
                             .button {
-                                // width: 102px;
                                 display: flex;
                                 padding: 10px 12px;
                                 justify-content: center;
@@ -356,7 +323,6 @@
                     }
 
                     .accordion-item-body {
-                        // display: block !important;
                         background: transparent;
                         border: none;
                         padding: 0;
@@ -386,8 +352,6 @@
                 }
 
                 .accordion-item[open] {
-                    // padding-top: 0;
-
                     .accordion-item-body {
                         padding-top: 12px;
                         padding-bottom: 0;
@@ -404,15 +368,10 @@
                 gap: map.get($spacing, md);
                 align-items: flex-start;
 
-                // padding: 0 20px;
-                // margin-bottom: 24px;
-
                 .footer-sub-cont1 {
                     width: 100%;
                     display: flex;
                     gap: 32px;
-
-                    // justify-content: space-between;
 
                     .section-content1 {
                         display: none;
@@ -491,8 +450,6 @@
                     flex-direction: column;
                     gap: 20px;
 
-                    // flex-wrap: wrap;
-
                     li {
                         a.list-items1 {
                             @include flex-center($justify: flex-start);
@@ -512,8 +469,6 @@
                                 height: 16px;
                                 justify-content: center;
                                 align-items: center;
-
-                                // padding: 0 1.334px 2px 1.333px;
                             }
                         }
                     }
@@ -562,12 +517,11 @@
         // ========================================================================
         @media (width >=900px) {
             .footer-container1 {
+                // grid-template-columns: minmax(auto, 190px) 1fr;
                 display: grid;
                 grid-template-areas:
-                    "info links"
-                    "contact contact";
-
-                // grid-template-columns: minmax(auto, 190px) 1fr;
+                "info links"
+                "contact contact";
                 grid-template-columns: 12.3% 76.3%;
                 row-gap: 60px;
                 justify-content: space-between;
@@ -610,8 +564,6 @@
                         .footer-sub-cont3 {
                             display: flex;
                             flex-direction: column;
-
-                            // gap: map.get($spacing, md);
                             align-items: flex-start;
 
                             .section-content1 {
@@ -690,8 +642,6 @@
                     margin: 0;
                     padding-bottom: 32px;
 
-                    // border-bottom: 2px solid #FFF3;
-
                     .footer-sub-cont1 {
                         width: 37.3%;
                         color: var(--neutrals-white);
@@ -725,10 +675,7 @@
                                     }
 
                                     input {
-                                        // width: 100%;
                                         display: flex;
-
-                                        // padding: var(--spacing-10) var(--spacing-12);
                                         flex-direction: column;
                                         justify-content: flex-end;
                                         align-items: flex-start;
@@ -760,8 +707,6 @@
 
                                     .wrapimgform.email-fail {
                                         border: var(--border-width-01) solid #ff8088;
-
-                                        // padding: 10px 40px 10px 12px;
                                         background: url("/icons/error-cross.svg") no-repeat right 12px center;
                                     }
 
@@ -904,8 +849,6 @@
                                     height: 16px;
                                     justify-content: center;
                                     align-items: center;
-
-                                    // padding: 0 0 1.5px;
                                 }
                             }
                         }
@@ -955,7 +898,6 @@
         position: absolute;
         right: 67px;
         top: -28px;
-        bottom: 70px;
         width: 56px;
         height: 56px;
         border-radius: 28px;
@@ -978,10 +920,8 @@
         white-space: unset;
 
         @include media(mobile) {
-            position: fixed;
             right: 16px;
-            top: unset;
-            bottom: 150px;
+            top: -28px;
         }
     }
 

@@ -126,6 +126,10 @@
                             font-weight: 500;
                             line-height: var(--button-medium-line-height);
 
+                            // @include media (mobile-md) {
+                            //     padding: 12px;
+                            // }
+
                             &:hover {
                                 background-color: map.get($button-secondary, hover);
                             }
@@ -176,7 +180,7 @@
                             width: 224px;
 
                             a.button {
-                                padding: 8px 12px;
+                                padding: 12px;
                                 height: 40px;
                                 display: flex;
                                 align-items: center;

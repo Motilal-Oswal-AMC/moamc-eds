@@ -2,7 +2,17 @@ import dataMapMoObj from '../../scripts/constant.js';
 import {
   div, ul, li, p, input, label, button, img,
 } from '../../scripts/dom-helpers.js';
+import { myAPI, generateAppId } from '../../scripts/scripts.js';
+import { createModal } from '../modal/modal.js';
 
+async function popup(param) {
+  // Create NEW container for the modal
+  const videoContainer = document.createElement('div');
+  videoContainer.append(param);
+  // Open Modal
+  const { showModal } = await createModal([videoContainer]);
+  showModal();
+}
 export default function decorate(block) {
   const wealthModalData = Array.from(block.children);
   const wealthModal = wealthModalData[0];
@@ -100,6 +110,7 @@ export default function decorate(block) {
   const assocInput = assocDiv.querySelector('.associated-inp');
   const assocDrop = assocDiv.querySelector('.assoc-drop');
   const arrow = assocDiv.querySelector('.dropdown-arrow');
+  const formDropdownList = assocDiv.querySelectorAll('.assoc-drop li');
 
   function toggleDropdown(e) {
     e.stopPropagation();
@@ -111,8 +122,19 @@ export default function decorate(block) {
   arrow.addEventListener('click', toggleDropdown);
 
   assocDrop.querySelectorAll('li').forEach((liarg) => {
-    li.addEventListener('click', () => {
+    liarg.addEventListener('click', () => {
       const touchedFields = new Set();
+      formDropdownList.forEach((liinner) => {
+        liinner.setAttribute('aria-selected', 'false');
+        liinner.classList.remove('active');
+      });
+
+      liarg.setAttribute('aria-selected', 'true');
+      liarg.classList.add('active');
+      if (liarg.getAttribute('aria-selected') === 'true') {
+        assocInput.innerHTML = '';
+        assocInput.innerHTML += liarg.innerHTML;
+      }
       assocInput.value = liarg.textContent;
       assocDrop.classList.remove('open');
       assocDiv.classList.remove('active');
@@ -188,7 +210,7 @@ export default function decorate(block) {
     };
   }
 
-  function validateField(inputarg) {
+  async function validateField(inputarg) {
     const nameError = wealthModal.querySelector('.name-error');
     const emailError = wealthModal.querySelector('.email-error');
     const phoneError = wealthModal.querySelector('.num-error');
@@ -204,7 +226,9 @@ export default function decorate(block) {
     }
 
     if (inputarg.classList.contains('email-inp')) {
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      // const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      // const emailRegex = /^(?=.{1,30}@)[a-z0-9]+(\.[a-z0-9]+)*@[a-z0-9.-]+\.[a-z]{2,}$/i;
+      const emailRegex = /^(?!.*\.\.)(?!.*\.$)(?!^\.)[a-zA-Z0-9]+(?:[._-][a-zA-Z0-9]+)*@[a-zA-Z0-9]+(?:[-.][a-zA-Z0-9]+)*\.[a-zA-Z]{2,}$/;
       if (inputarg.value.trim() && !emailRegex.test(inputarg.value.trim())) {
         valid = false;
         emailError.textContent = 'Please enter a valid email.';
@@ -225,9 +249,8 @@ export default function decorate(block) {
         assocError.textContent = 'Please select an association.';
       } else assocError.textContent = '';
     }
-
-    inputarg.classList.toggle('error', !valid && input.value.trim() !== '');
-    toggleErrorIcon(input, valid);
+    inputarg.classList.toggle('error', !valid && inputarg.value.trim() !== '');
+    toggleErrorIcon(inputarg, valid);
     return valid;
   }
   dataMapMoObj.validateField = validateField;
@@ -249,11 +272,64 @@ export default function decorate(block) {
     if (field.value.trim() !== '') label.classList.add('filled');
   });
 
-  submitButton.addEventListener('click', (e) => {
+  submitButton.addEventListener('click', async (e) => {
     e.preventDefault();
     fields.forEach((f) => touchedFields.add(f));
-    if (validateForm()) console.log('Form is valid. Submitting...');
-    else toggleSubmitButton();
+    if (validateForm()) {
+      // console.log('Form is valid. Submitting...');
+      try {
+        const objreq = {
+          name: nameInput.value.trim(),
+          mobile: phoneInput.value.trim(),
+          email: emailInput.value.trim(),
+          state: 'MH',
+          city: 'M',
+          customField01: 'NULL',
+          customField02: 'NULL',
+          customField03: 'NULL',
+          userIp: '156.67.260.62',
+          type: 'other',
+          code: 'NA',
+        };
+        const headers = {
+          'Content-Type': 'application/json',
+          'X-Encrypted': 'N',
+          appid: generateAppId(),
+        };
+
+        const response = await myAPI(
+          'POST',
+          'https://mf.moamc.com/ums/api/SaveLead/create-leads',
+          objreq,
+          headers,
+        );
+
+        const result = await response; // .json();
+        // console.log('API Response:', result);
+
+        if (result) {
+          // alert
+          popup(div('Your details have been submitted successfully!'));
+          // Reset form
+          fields.forEach((f) => {
+            f.value = '';
+            const labelvar = f.parentElement.querySelector('.label');
+            if (labelvar) labelvar.classList.remove('filled');
+          });
+          // block.querySelector('.btn-mand .btn').classList.remove('active');
+          toggleSubmitButton();
+          block.querySelector('.associated-drop .error-msg').textContent = '';
+        } else {
+          // alert
+          popup(div(`Something went wrong: ${result.message || 'Unknown error'}`));
+        }
+      } catch (error) {
+        // console.error('API Error:', error);
+        popup(div('Failed to submit form. Please try again later.'));
+      }
+    } else {
+      toggleSubmitButton();
+    }
   });
 
   block.closest('.wealth-register')

@@ -17,7 +17,7 @@
         padding: 58px 0 40px;
 
         @include media (mobile) {
-            padding: 40px 15px;
+            padding: 40px 16px;
         }
 
         h4 {
@@ -33,7 +33,7 @@
             line-height: var(--heading-h4-line-height);
 
             @include media(mobile) {
-                font-size: var(--heading-h5-size);
+                font-size: var(--heading-h4-size);
                 line-height: var(--sub-header-large-line-height);
                 word-break: auto-phrase;
                 padding: 0 21px 4px;
@@ -68,7 +68,7 @@
             width: auto;
 
             ul {
-                grid-gap: 16px;
+                gap: 16px;
 
                 li {
                     // width: 296px;
