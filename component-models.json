@@ -689,6 +689,10 @@
           {
             "name": "Thank You Screen",
             "value": "thank-you-screen"
+          },
+          {
+            "name": "Privacy Policy Container",
+            "value": "privacy-policy-container"
           }
         ]
       },
