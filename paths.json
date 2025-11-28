@@ -3,7 +3,7 @@
     "/content/moamc-eds/wcs/in/:/",
     "/content/moamc-eds/wcs/in/en/:/",
     "/content/moamc-eds/mutual-fund/in/:/",
-    "/content/moamc-eds/mutual-fund/in/en/:/",
+    "/content/moamc-eds/mutual-fund/in/en/:home-page",
     "/content/moamc-eds/aif/in/:/",
     "/content/moamc-eds/aif/in/en/:/",
     "/content/moamc-eds/pms/in/:/",
