@@ -691,8 +691,8 @@
             "value": "thank-you-screen"
           },
           {
-            "name": "Privacy Policy Container",
-            "value": "privacy-policy-container"
+            "name": "Privacy Policy Banner",
+            "value": "privacy-policy-banner"
           }
         ]
       },
