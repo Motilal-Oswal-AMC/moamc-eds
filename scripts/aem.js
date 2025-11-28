@@ -757,6 +757,37 @@ async function loadSections(element) {
 
 init();
 
+// Ensure images/iframes are eager-loaded across the page.
+// Some markup or third-party libs may add `loading="lazy"` at runtime;
+// this enforcer sets `loading="eager"` on present elements during
+// DOMContentLoaded and again on window load as a fallback.
+function enforceEagerLoading() {
+  const setAllEager = () => {
+    try {
+      document.querySelectorAll('img').forEach((img) => {
+        // Only change if attribute differs to avoid unnecessary mutations
+        if (img.getAttribute('loading') !== 'eager') img.setAttribute('loading', 'eager');
+      });
+      document.querySelectorAll('iframe').forEach((fr) => {
+        if (fr.getAttribute('loading') !== 'eager') fr.setAttribute('loading', 'eager');
+      });
+    } catch (e) {
+      // ignore in environments without DOM
+    }
+  };
+
+  if (typeof document !== 'undefined') {
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', setAllEager);
+    } else {
+      setAllEager();
+    }
+    window.addEventListener('load', setAllEager);
+  }
+}
+
+enforceEagerLoading();
+
 export {
   buildBlock,
   createOptimizedPicture,
