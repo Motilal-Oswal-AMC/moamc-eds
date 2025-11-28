@@ -412,14 +412,14 @@ main > .section.our-service-container {
               }
 
               .embedsub3 {
-                margin: 20px 0 0;
+                margin: 12px 0 0;
                 display: flex;
                 align-items: center;
                 gap: 20px;
                 list-style: none;
 
                 @include media(mobile) {
-                  margin: 16px 0 0;
+                  margin: 8px 0 0;
                   gap: 16px;
                 }
 

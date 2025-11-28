@@ -8,7 +8,7 @@
 import buildtabblock from '../tabs/tabs.js';
 import dataMapMoObj from '../../scripts/constant.js';
 import {
-  div, table, thead, tbody, tr, p,
+  div, table, thead, tbody, tr, p, sup, span,
 } from '../../scripts/dom-helpers.js';
 import { createModal } from '../modal/modal.js';
 
@@ -86,7 +86,7 @@ export const loadEmbed = (block, link, autoplay) => {
 
   const config = EMBEDS_CONFIG.find((e) => e.match.some((match) => link.includes(match)));
   const url = new URL(link);
-  if (config) {
+  if (config && autoplay !== undefined) {
     block.innerHTML = config.embed(url, autoplay);
     block.classList = `block embed embed-${config.match[0]}`;
   } else {
@@ -203,7 +203,7 @@ export default function decorate(block) {
     }
   }
   const data = block.closest('main');
-  if (data !== null && window.location.href.includes('/wcs/in/en/coverage')) {
+  if (data !== null && window.location.href.includes('/coverage')) {
     if (!data.querySelector('.maintab')) {
       const subdata = data.querySelectorAll('.section');
       if (dataMapMoObj.objdata === undefined) {
@@ -221,6 +221,12 @@ export default function decorate(block) {
       // console.log(dataMapMoObj.objdata);
       const divmain = div({ class: 'maintab' });
       Object.keys(dataMapMoObj.objdata).forEach((elobj, index) => {
+        if (dataMapMoObj.objdata[elobj].Digital) {
+          const digi = dataMapMoObj.objdata[elobj].Digital;
+          Array.from(digi.querySelectorAll('a')).forEach((adigi) => {
+            adigi.setAttribute('target', '_blank');
+          });
+        }
         const innerdiv = div({ class: 'innerdiv' });
         const valueAry = Object.values(dataMapMoObj.objdata);
         Object.keys(valueAry[index]).forEach((inner) => {
@@ -252,6 +258,11 @@ export default function decorate(block) {
         container.querySelector('.maininnerdiv').innerHTML += innerdiv.outerHTML;
         divmain.append(container);
       });
+      // Array.from(data.querySelectorAll(dataMapMoObj.objdata.Digital)).forEach((digi) => {
+      // Array.from(digi.querySelectorAll('a')).forEach((adigi) => {
+      //   adigi.setAttribute('target', '_blank');
+      // });
+      // });
       // console.log(divmain);
       buildtabblock(divmain);
       if (!data.classList.contains('modal-wrapper')) {
@@ -264,10 +275,16 @@ export default function decorate(block) {
         const paneldata = dataMapMoObj.objdata[headkey][key];
         const htmldata = paneldata.querySelector('ul ul').querySelectorAll('ul');
         const selectedLabelTab = paneldata.querySelector('p').textContent.trim();
-        if (window.location.pathname.includes('/wcs/in/en/coverage')) {
+        const pPreVal = selectedLabelTab.split(' ')[0].slice(0, -2);
+        const supValue = selectedLabelTab.split(' ')[0].slice(-2);
+        // var pPostval = selectedLabelTab.split(' ')[1]
+        const pPostval = selectedLabelTab.split(' ').slice(1).join(' ');
+
+        if (window.location.pathname.includes('/coverage')) {
           const tableMain = div(
             { class: 'coverage-table-container' },
-            p({ class: 'studytab-title' }, selectedLabelTab),
+            // p({ class: 'studytab-title' }, selectedLabelTab),
+            p({ class: 'studytab-title' }, pPreVal, sup({ class: 'test' }, supValue), ' ', pPostval),
             table(
               { class: 'coverage-table' },
               thead(
@@ -342,26 +359,58 @@ export default function decorate(block) {
           activeTab = el.textContent;
         }
       });
+      // sup
+      const pPreValactive = activeTab.split(' ')[0].slice(0, -2);
+      const supValueactive = activeTab.split(' ')[0].slice(-2);
+      // var pPostvalactive = activeTab.split(' ')[1]
+      const pPostvalactive = activeTab.split(' ').slice(1).join(' ');
       const tabDrodpwon = div(
         { class: 'tab-dropdown-wrap' },
-        p({ class: 'selected-tab' }, activeTab),
+        // p({ class: 'selected-tab' }, activeTab),
+        p({ class: 'selected-tab' }, p({ class: 'studytab-title' }, pPreValactive, sup({ class: 'test' }, supValueactive), ' ', pPostvalactive)),
         div({ class: 'tab-droplist' }),
       );
       tabDrodpwon.querySelector('.tab-droplist').append(dropdownlist);
 
       divmain.prepend(tabDrodpwon);
 
+      // // coverage dropdown should be visible onle after more than 1
+      const wcsCoverageDrpdownOpt = divmain.querySelectorAll('.tab-dropdown-wrap .tabs-list .tabs-tab');
+      const wcsCoverageDrpdown = divmain.querySelector('.selected-tab');
+      if (wcsCoverageDrpdownOpt.length <= 1) {
+        wcsCoverageDrpdown.style.pointerEvents = 'none';
+        wcsCoverageDrpdown.classList.add('no-dropdown-icon');
+      } else {
+        wcsCoverageDrpdown.style.removeProperty('pointer-events');
+        wcsCoverageDrpdown.classList.remove('no-dropdown-icon');
+      }
+
       const tabmainclick = divmain.querySelector('.tab-dropdown-wrap');
       tabmainclick.addEventListener('click', () => {
         const selectedTab = tabmainclick.querySelector('.selected-tab');
         const tabslistwrap = tabmainclick.querySelector('.tab-droplist');
         const tabslist = tabmainclick.querySelectorAll('.tabs-list .tabs-tab');
-        tabmainclick.classList.toggle('active');
+        const a = tabmainclick.querySelectorAll('button');
+
+        a.forEach((btn) => {
+          const arr = btn.textContent;
+          console.log(arr);
+          // sup
+          const pPreValbtn = arr.split(' ')[0].slice(0, -2);
+          const supValuebtn = arr.split(' ')[0].slice(-2);
+          // var pPostvalbtn = arr.split(' ')[1]
+          const pPostvalbtn = arr.split(' ').slice(1).join(' ');
+          btn.innerHTML = '';
+          btn.appendChild(span({ class: 'studytab-title' }, pPreValbtn, sup({ class: 'test' }, supValuebtn), ' ', pPostvalbtn));
+          tabmainclick.classList.toggle('active');
+        });
 
         if (!tabslistwrap.classList.contains('active')) {
           tabslist.forEach((tab) => {
             if (tab.getAttribute('aria-selected') === 'true') {
-              selectedTab.textContent = tab.textContent;
+              // selectedTab.textContent = tab.textContent;
+              selectedTab.innerHTML = '';
+              selectedTab.innerHTML = tab.innerHTML;
             }
           });
         }

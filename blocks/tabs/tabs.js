@@ -922,7 +922,7 @@ export default async function decorate(block) {
     const mainblk = block.closest('main');
     Array.from(block.querySelector('.tabs-list').children)
       .forEach((tabtitle) => {
-        console.log(tabtitle.textContent);
+        // console.log(tabtitle.textContent);
         const tabheada = `<span class='selcontent'>${dataMapMoObj.getOrdinalSuperscript(parseInt(tabtitle.textContent, 10))}</span>`;
         const tabheadb = tabtitle.textContent
           .replace(parseInt(tabtitle.textContent, 10), '').slice(2);

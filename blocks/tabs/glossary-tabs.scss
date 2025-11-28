@@ -3,8 +3,8 @@
 @use "../../styles/common-theme/css/fluid-typography" as *;
 
 .section.our-experts-container.glossary-tabs {
-  padding: 24px 0 0;
-  margin-bottom: 0;
+  padding: 0;
+  margin: 0;
 
   .our-experts-wrapper {
     .our-experts {
@@ -53,8 +53,13 @@
       justify-content: space-between;
       padding: 24px 0;
       gap: 16px 36px;
-
+      
+      @include media(desktop-sm){
+        justify-content: unset;
+      }
+      
       @include media(mobile) {
+        justify-content: space-between;
         gap: 16px;
         padding: 28px 0;
       }

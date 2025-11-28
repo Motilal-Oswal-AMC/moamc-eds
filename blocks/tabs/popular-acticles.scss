@@ -90,9 +90,10 @@
                     font-style: normal;
                     font-weight: 400;
                     line-height: var(--label-large-line-height);
-
+                    
                     @include media(mobile) {
                         line-height: 16px;
+                        font-weight: 500;
                     }
                 }
 
@@ -155,21 +156,21 @@
             li {
                 min-width: 164px;
                 display: flex;
-                height: 40px;
-                padding: var(--spacing-12);
+                height: 44px;
                 justify-content: center;
                 align-items: center;
                 gap: var(--spacing-8);
-                border-radius: var(--border-radius-8);
                 background: var(--button-primary-default);
+                border-radius: var(--border-radius-4);
                 
                 @include media(mobile) {
-                    border-radius: var(--border-radius-8);
                     height: 40px;
-                    padding: 10px var(--spacing-12);
+                    border-radius: var(--border-radius-8);
                 }
-
+                
                 a {
+                    border-radius: var(--border-radius-4);
+                    padding: var(--spacing-12);
                     width: 100%;
                     background: var(--button-primary-default);
                     color: var(--neutrals-white, #fff);
@@ -178,10 +179,12 @@
                     font-family: var(--body);
                     font-size: var(--body-medium-regular-size, 16px);
                     font-style: normal;
-                    font-weight: 500;
+                    font-weight: 400;
                     line-height: var(--body-medium-regular-line-height);
-
+                    
                     @include media(mobile) {
+                        border-radius: var(--border-radius-8);
+                        padding: var(--spacing-10) var(--spacing-12);
                         font-weight: 500;
                         font-size: var(--button-medium-size);
                         line-height: var(--button-medium-line-height);
@@ -339,11 +342,11 @@
         padding: 0;
     }
 
-    .default-content-wrapper {
+    .default-content-wrapper:first-of-type {
         padding: 0;
         
         @include media(mobile) {
-            padding: 24px 16px 0;
+            padding: 0 16px;
         }
         
         h1,h2,h3,h4,h5,h6{
@@ -358,6 +361,7 @@
 
         &-list {
             display: flex;
+            gap: 8px;
             position: absolute;
             right: 0;
             top: 0;
@@ -374,12 +378,12 @@
 
             @media screen and (width <= 1200px) {
                 position: unset;
-                margin: 0 0 40px;
+                margin: 0 16px 40px;
             }
 
-            @include media(mobile){
-                padding: 0 16px;
-            }
+            // @include media(mobile){
+            //     padding: 0 16px;
+            // }
         }
 
         &-panel {

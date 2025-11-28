@@ -14,6 +14,9 @@ async function popup(param) {
   showModal();
 }
 export default function decorate(block) {
+  const delay = (ms) => new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  });
   const wealthModalData = Array.from(block.children);
   const wealthModal = wealthModalData[0];
 
@@ -110,6 +113,7 @@ export default function decorate(block) {
   const assocInput = assocDiv.querySelector('.associated-inp');
   const assocDrop = assocDiv.querySelector('.assoc-drop');
   const arrow = assocDiv.querySelector('.dropdown-arrow');
+  const formDropdownList = assocDiv.querySelectorAll('.assoc-drop li');
 
   function toggleDropdown(e) {
     e.stopPropagation();
@@ -123,6 +127,17 @@ export default function decorate(block) {
   assocDrop.querySelectorAll('li').forEach((liarg) => {
     liarg.addEventListener('click', () => {
       const touchedFields = new Set();
+      formDropdownList.forEach((liinner) => {
+        liinner.setAttribute('aria-selected', 'false');
+        liinner.classList.remove('active');
+      });
+
+      liarg.setAttribute('aria-selected', 'true');
+      liarg.classList.add('active');
+      if (liarg.getAttribute('aria-selected') === 'true') {
+        assocInput.innerHTML = '';
+        assocInput.innerHTML += liarg.innerHTML;
+      }
       assocInput.value = liarg.textContent;
       assocDrop.classList.remove('open');
       assocDiv.classList.remove('active');
@@ -198,6 +213,13 @@ export default function decorate(block) {
     };
   }
 
+  delay(800).then(() => {
+    const thankYouScreen = document.querySelector('.modal-content .thank-you-screen');
+
+    if (thankYouScreen) {
+
+    }
+  });
   async function validateField(inputarg) {
     const nameError = wealthModal.querySelector('.name-error');
     const emailError = wealthModal.querySelector('.email-error');
@@ -214,7 +236,9 @@ export default function decorate(block) {
     }
 
     if (inputarg.classList.contains('email-inp')) {
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      // const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      // const emailRegex = /^(?=.{1,30}@)[a-z0-9]+(\.[a-z0-9]+)*@[a-z0-9.-]+\.[a-z]{2,}$/i;
+      const emailRegex = /^(?!.*\.\.)(?!.*\.$)(?!^\.)[a-zA-Z0-9]+(?:[._-][a-zA-Z0-9]+)*@[a-zA-Z0-9]+(?:[-.][a-zA-Z0-9]+)*\.[a-zA-Z]{2,}$/;
       if (inputarg.value.trim() && !emailRegex.test(inputarg.value.trim())) {
         valid = false;
         emailError.textContent = 'Please enter a valid email.';
@@ -258,6 +282,20 @@ export default function decorate(block) {
     if (field.value.trim() !== '') label.classList.add('filled');
   });
 
+  const mop = block.closest('main').querySelectorAll('.thank-you-screen p');
+  // eslint-disable-next-line prefer-destructuring
+  dataMapMoObj.msgError = mop[1];
+  dataMapMoObj.CLASS_PREFIXES = [
+    'thank-you-scr-cont',
+    'thank-you-scr-sec',
+    'thank-you-scr-sub',
+    'thank-you-scr-inner-text',
+    'thank-you-scr-list',
+    'thank-you-scr-list-content',
+  ];
+
+  dataMapMoObj.addIndexed(block.closest('main').querySelector('.thank-you-screen'));
+  block.closest('main').querySelectorAll('.thank-you-screen p')[2].style.display = 'none';
   submitButton.addEventListener('click', async (e) => {
     e.preventDefault();
     fields.forEach((f) => touchedFields.add(f));
@@ -295,7 +333,8 @@ export default function decorate(block) {
 
         if (result) {
           // alert
-          popup(div('Your details have been submitted successfully!'));
+          dataMapMoObj.msgError.innerText = '';
+          dataMapMoObj.msgError.innerText = 'Your details have been submitted successfully!';
           // Reset form
           fields.forEach((f) => {
             f.value = '';
@@ -306,12 +345,15 @@ export default function decorate(block) {
           toggleSubmitButton();
           block.querySelector('.associated-drop .error-msg').textContent = '';
         } else {
+          dataMapMoObj.msgError.innerText = '';
+          dataMapMoObj.msgError.innerText = `Something went wrong: ${result.message || 'Unknown error'}`;
           // alert
-          popup(div(`Something went wrong: ${result.message || 'Unknown error'}`));
+          // popup(div(`Something went wrong: ${result.message || 'Unknown error'}`));
         }
       } catch (error) {
         // console.error('API Error:', error);
-        popup(div('Failed to submit form. Please try again later.'));
+        dataMapMoObj.msgError.innerText = '';
+        dataMapMoObj.msgError.innerText = 'Failed to submit form. Please try again later.';
       }
     } else {
       toggleSubmitButton();
