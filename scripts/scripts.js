@@ -777,6 +777,19 @@ if (skinmoamcComponent != null) {
   dataMapMoObj.addIndexed(skinmoamcComponent);
 }
 
+const privacyPolicy = document.querySelector('.privacy-policy-banner');
+if (privacyPolicy != null) {
+  dataMapMoObj.CLASS_PREFIXES = [
+    'pp-banner-wrap',
+    'pp-banner-block',
+    'pp-banner-img',
+    'pp-banner-imginner',
+    'pp-banner-picture',
+    'pp-banner-pictureinner',
+  ];
+  dataMapMoObj.addIndexed(privacyPolicy);
+}
+
 // Adding custom scrollbar to WCS pages
 try {
   if (document.querySelector('header [data-id="wcs-header"]')) {
