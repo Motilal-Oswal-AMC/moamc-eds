@@ -764,13 +764,32 @@ init();
 function enforceEagerLoading() {
   const setAllEager = () => {
     try {
+      let imgCount = 0;
+      let iframeCount = 0;
       document.querySelectorAll('img').forEach((img) => {
         // Only change if attribute differs to avoid unnecessary mutations
-        if (img.getAttribute('loading') !== 'eager') img.setAttribute('loading', 'eager');
+        if (img.getAttribute('loading') !== 'eager') {
+          img.setAttribute('loading', 'eager');
+          img.setAttribute('fetchpriority', 'high');
+          imgCount += 1;
+        }
+        // still ensure fetchpriority is set
+        if (img.getAttribute('fetchpriority') !== 'high') img.setAttribute('fetchpriority', 'high');
+        // also ensure any <source> siblings get fetchpriority
+        const parent = img.parentElement;
+        if (parent) {
+          parent.querySelectorAll('source').forEach((s) => { if (s.getAttribute('fetchpriority') !== 'high') s.setAttribute('fetchpriority', 'high'); });
+        }
       });
       document.querySelectorAll('iframe').forEach((fr) => {
-        if (fr.getAttribute('loading') !== 'eager') fr.setAttribute('loading', 'eager');
+        if (fr.getAttribute('loading') !== 'eager') {
+          fr.setAttribute('loading', 'eager');
+          iframeCount += 1;
+        }
       });
+      // debug info
+      // eslint-disable-next-line no-console
+      console.debug(`enforceEagerLoading: updated ${imgCount} img(s), ${iframeCount} iframe(s)`);
     } catch (e) {
       // ignore in environments without DOM
     }
