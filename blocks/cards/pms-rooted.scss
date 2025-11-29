@@ -1,6 +1,6 @@
 @use "sass:map";
-@use "../../styles/common-theme/css/variables_mixins"as *;
-@use "../../styles/common-theme/css/fluid-typography"as *;
+@use "../../styles/common-theme/css/variables_mixins" as *;
+@use "../../styles/common-theme/css/fluid-typography" as *;
 
 $breakpoint-desktop-s: 1100px;
 $breakpoint-desktop-ss: 1280px;
@@ -568,7 +568,7 @@ $breakpoint-tablet: 900px;
                         color: var(--blue-1800-primary, #2E2A94);
                         font-weight: 600;
                         text-align: center;
-                        font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
+                        font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
                         font-family: var(--title, Inter);
                         font-size: var(--heading-h4-size, 32px);
                         font-style: normal;
@@ -608,4 +608,47 @@ $breakpoint-tablet: 900px;
 
 
     }
+}
+
+.section.high-skin.gift-high-skin {
+    max-width: 1232px;
+    width: 100%;
+    margin: 0 auto;
+
+    .pms-high-skin1 {
+        .pms-high-skin-card1 {
+            .pms-high-skin-card-cont1 {
+                .pms-high-skin-card-subcont1 {
+                    .cards-card-body {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 24px;
+
+                        h2 {
+                            color: #2E2A94;
+                            text-align: center;
+                            font-family: var(--title);
+                            font-size: 28px;
+                            font-style: normal;
+                            font-weight: 600;
+                            line-height: 32px;
+
+                            @include media(mobile) {
+                                font-size: 24px;
+                                line-height: 28px;
+
+                            }
+
+                        }
+
+                        p {
+                            max-width: 496px;
+                            margin: 0 0 57px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
 }
