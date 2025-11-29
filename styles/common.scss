@@ -1968,7 +1968,7 @@ main.nfo-nav {
 .section.high-skin-text.gift-high-skin {
   .high-skin-wrap-one1 {
     .high-skin-wrap-two1 {
-        @include media(mobile) {
+      @include media(mobile) {
         margin: 0;
       }
 
@@ -1999,7 +1999,7 @@ main.nfo-nav {
           .high-skin-subheading2 {
             .high-skin-paragraph1 {
 
-      
+
               .high-skin-paragraph-one1 {
                 color: var(--text-body);
                 font-family: var(--body);
