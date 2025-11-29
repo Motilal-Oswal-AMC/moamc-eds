@@ -265,6 +265,14 @@ export default function decorate(block) {
     dataMapMoObj.CLASS_PREFIXES = ['error-screen-wrapper', 'error-screen-wrap', 'error-screen-ul', 'error-screen-li', 'errscrn-img-cont', 'errscrn-cont', 'errscrn-inner-cont'];
     dataMapMoObj.addIndexed(error);
   }
+
+  if (window.location.pathname.includes('/static-pages/about')) {
+    const aboutSection = block.closest('.section.trusted-about');
+    if (aboutSection) {
+      dataMapMoObj.CLASS_PREFIXES = ['about-asset', 'about-asset-inner', 'about-asset-sub', 'asset-subinner', 'asset-item', 'asset-inneritem', 'assest-childitem'];
+      dataMapMoObj.addIndexed(aboutSection);
+    }
+  }
 }
 
 function decorateArticlePage() {
