@@ -5,7 +5,7 @@
 .section.trusted-asset {
     padding: 40px 0;
 
-    @include media(mobile){
+    @include media(mobile) {
         padding: 36px 0 0;
     }
 
@@ -21,7 +21,7 @@
                     gap: 48.5px;
                     border: none;
 
-                    @include media(mobile){
+                    @include media(mobile) {
                         flex-direction: column-reverse;
                         gap: 22px;
                     }
@@ -34,12 +34,12 @@
                             min-height: 260px;
                             height: auto;
 
-                            @include media(tab){
+                            @include media(tab) {
                                 margin: 0;
                                 min-height: auto;
                             }
 
-                            @include media(mobile){
+                            @include media(mobile) {
                                 max-width: 100%;
                                 margin: 0;
                                 min-height: 156px;
@@ -64,8 +64,8 @@
                             max-width: 44.4%;
                             width: 100%;
 
-                            @include media(mobile){
-                                max-width: 100%
+                            @include media(mobile) {
+                                max-width: 100%;
                             }
 
                             .asset-inneritem1 {
@@ -110,8 +110,8 @@
 
         &2 {
             padding: 40px 0 0;
-            
-            @include media(desktop-sm){
+
+            @include media(desktop-sm) {
                 padding: 40px 16px 0;
             }
 
@@ -122,13 +122,13 @@
                 list-style: none;
                 margin: 0;
 
-                @include media(tab){
+                @include media(tab) {
                     flex-wrap: wrap;
                     justify-content: unset;
                     gap: 23px;
                 }
 
-                @include media(mobile){
+                @include media(mobile) {
                     gap: 16px;
                 }
 
@@ -136,7 +136,7 @@
                     max-width: 230px;
                     width: 100%;
 
-                    @include media(mobile){
+                    @include media(mobile) {
                         max-width: 100%;
                     }
 
@@ -147,7 +147,7 @@
                         flex-direction: column;
                         gap: 4px;
 
-                        @include media(mobile){
+                        @include media(mobile) {
                             flex-direction: row;
                             gap: 24px;
                         }
@@ -162,7 +162,7 @@
                                     var(--title)
                                 );
 
-                                @include media(mobile){
+                                @include media(mobile) {
                                     font-family: var(--body);
                                     font-size: var(--body-medium-semibold-size);
                                     line-height: var(--body-medium-semibold-line-height);
@@ -181,8 +181,8 @@
                                 );
 
                                 text-wrap-style: balance;
-                                
-                                @include media(mobile){
+
+                                @include media(mobile) {
                                     color: var(--text-body);
                                     font-size: var(--paragraph-small-regular-size);
                                     line-height: var(--paragraph-small-regular-line-height);
@@ -195,6 +195,139 @@
                             }
                         }
                     }
+                }
+            }
+        }
+    }
+}
+
+.section.about-invest-philosophy {
+    background-color: var(--blue-1-800-primary);
+    padding: 62px 0;
+
+    @include media(mobile) {
+        padding: 40px 16px;
+    }
+
+    .investment-main1 {
+        .investment-inner {
+            &1 {
+                margin: 0 0 4px;
+                text-align: center;
+
+                @include font-style(
+                    var(--heading-h4-size),
+                    var(--heading-h4-line-height),
+                    var(--neutrals-white),
+                    600,
+                    var(--title)
+                );
+
+                @include media(mobile) {
+                    font-size: 28px;
+                    line-height: var(--sub-header-large-line-height);
+                }
+            }
+
+            &2 {
+                text-align: center;
+
+                @include font-style(
+                    var(--body-small-regular-size),
+                    var(--body-small-regular-line-height),
+                    var(--neutrals-white),
+                    400,
+                    var(--body)
+                );
+
+                @include media(mobile) {
+                    font-size: var(--paragraph-small-regular-size);
+                    line-height: var(--paragraph-small-regular-line-height);
+                }
+            }
+
+            &3 {
+                margin: 40px 0 0;
+                display: flex;
+                align-items: center;
+                gap: 16px;
+                list-style: none;
+
+                > li.comlist {
+                    .investment-subinner1 {
+                        width: 296px;
+                        height: 296px;
+                        border-radius: 8px;
+                        border: 1px solid #b9bbff;
+                        background: var(--neutrals-white);
+                        box-shadow: 0 0 8px 0 rgb(0 0 0 / 6%);
+                        list-style: none;
+                        margin: 0;
+                        padding: 16px;
+
+                        .investment-item {
+                            &1 {
+                                border-radius: 12px;
+                                border: 1px solid var(--neutrals-200);
+                                background: #f8f8ff;
+                                box-shadow: 0 0 24px 0 rgb(0 0 0 / 4%);
+                                padding: 24px 12px;
+                                width: 264px;
+                                height: 236px;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+
+                                @include font-style(
+                                    158px,
+                                    var(--label-small-line-height),
+                                    var(--blue-1-800-primary),
+                                    400 var(--body)
+                                );
+
+                                @include media(mobile) {
+                                    font-size: 80px;
+                                    line-height: 88px;
+                                    padding: 5.36px 2.68px;
+                                    border-radius: 2.682px;
+                                    box-shadow: 0 0 5.365px 0 rgb(0 0 0 / 4%);
+                                }
+                            }
+
+                            &2 {
+                                @include font-style(
+                                    var(--label-small-size),
+                                    var(--label-small-line-height),
+                                    var(--blue-1-800-primary),
+                                    400,
+                                    var(--body)
+                                );
+
+                                margin: 12px 0 0;
+
+                                @include media(mobile) {
+                                    font-size: var(--body-small-regular-size);
+                                    line-height: var(--body-small-regular-line-height);
+                                    margin: 4px 0 0;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            &4 {
+                margin: 40px 0 0;
+                text-align: center;
+
+                .investment-sub1 {
+                    margin: 0;
+                    border-radius: var(--border-radius-8);
+                    border: 1px solid var(--neutrals-white);
+                    padding: 10px 12px;
+                    background-color: transparent;
+                    min-width: 164px;
+                    // height: 40px;
                 }
             }
         }

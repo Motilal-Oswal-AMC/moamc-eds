@@ -267,10 +267,16 @@ export default function decorate(block) {
   }
 
   if (window.location.pathname.includes('/static-pages/about')) {
-    const aboutSection = block.closest('.section.trusted-asset');
+    const aboutSection = block.closest('main').querySelector('.section.trusted-asset');
     if (aboutSection) {
       dataMapMoObj.CLASS_PREFIXES = ['trusted-main', 'asset-inner', 'asset-sub', 'asset-subinner', 'asset-item', 'asset-inneritem', 'assest-childitem'];
       dataMapMoObj.addIndexed(aboutSection);
+    }
+
+    const investPhilosophy = block.closest('main').querySelector('.section.about-invest-philosophy');
+    if (investPhilosophy) {
+      dataMapMoObj.CLASS_PREFIXES = ['investment-main', 'investment-inner', 'investment-sub', 'investment-subinner', 'investment-item', 'investment-inneritem'];
+      dataMapMoObj.addIndexed(investPhilosophy);
     }
   }
 }
