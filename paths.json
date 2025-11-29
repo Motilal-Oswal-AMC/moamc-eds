@@ -2,7 +2,7 @@
   "mappings": [
     "/content/mosleds/:/",
     "/content/moamc-eds/:/",
-    "/content/moamc-eds/wcs/in/en/:/",
+    "/content/moamc-eds/wcs/in/en/:/wcs-series",
     "/content/mosleds/configuration:/.helix/config.json",
     "/content/mosleds/metadata:/metadata.json",
     "/content/mosleds/mutual-fund/in/api/faq:/api/faq.json",
