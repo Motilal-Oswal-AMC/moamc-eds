@@ -691,8 +691,12 @@
             "value": "thank-you-screen"
           },
           {
-            "name": "Trusted Asset",
+            "name": "About Trusted Asset",
             "value": "trusted-asset"
+          },
+          {
+            "name": "About Investment Philosophy",
+            "value": "investment-philosophy"
           }
         ]
       },
