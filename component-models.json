@@ -238,7 +238,11 @@
             "name": "Gift Hero",
             "value": "gift-hero"
           },
-           {
+          {
+            "name": "Gift Investing Style",
+            "value": "gift-investing-style"
+          },
+          {
             "name": "Gift High Skin",
             "value": "gift-high-skin"
           },

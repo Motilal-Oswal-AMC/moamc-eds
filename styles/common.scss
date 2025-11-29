@@ -3,8 +3,8 @@
 /* media-feature-range-notation */
 
 @use "sass:map";
-@use "../styles/common-theme/css/variables_mixins"as *;
-@use "../styles/common-theme/css/fluid-typography"as *;
+@use "../styles/common-theme/css/variables_mixins" as *;
+@use "../styles/common-theme/css/fluid-typography" as *;
 
 // @import "../blocks/moedge-article-details/moedge-article-details.css";
 // @import '../blocks/Investor-details/investor-details.css';
@@ -631,6 +631,7 @@ main>.section.previous-studies-tab.tabs-container {
 }
 
 .default-content-wrapper.annual-wealth-wrap1 {
+
   h1,
   h2,
   h3,
@@ -1434,7 +1435,7 @@ main>.section.previous-studies-tab.tabs-container {
 
     .choose-us-para1 {
       color: var(--blue-1-800-primary);
-      font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on, 'liga'off;
+      font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on, 'liga' off;
       font-family: var(--title);
       font-size: var(--heading-h2-size);
       font-style: normal;
@@ -1454,7 +1455,7 @@ main>.section.previous-studies-tab.tabs-container {
 
     .choose-us-para2 {
       color: var(--text-sub-header);
-      font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
+      font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
       font-family: var(--body);
       font-size: var(--body-medium-regular-size);
       font-style: normal;
@@ -1478,7 +1479,7 @@ main>.section.previous-studies-tab.tabs-container {
       a {
         color: var(--text-white, #FFF);
         text-align: center;
-        font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
+        font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
         font-family: var(--body);
         font-size: 14px;
         font-style: normal;
@@ -1592,7 +1593,7 @@ main>.section.previous-studies-tab.tabs-container {
 
           h2 {
             color: var(--blue-1-800-primary);
-            font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
+            font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
             font-family: var(--body);
             font-size: var(--body-large-semibold-size);
             font-style: normal;
@@ -1609,7 +1610,7 @@ main>.section.previous-studies-tab.tabs-container {
 
           p {
             color: var(--text-sub-header);
-            font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
+            font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
             font-family: var(--body);
             font-size: var(--body-small-regular-size);
             font-style: normal;
@@ -1895,7 +1896,7 @@ main.nfo-nav {
             .high-skin-paragraph1 {
               color: var(--blue-1-800-primary);
               font-variant-numeric: lining-nums proportional-nums;
-              font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on, 'liga'off;
+              font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on, 'liga' off;
               font-family: var(--title);
               font-size: var(--heading-h1-size);
               font-style: normal;
@@ -1926,7 +1927,7 @@ main.nfo-nav {
               .high-skin-paragraph-one1 {
                 list-style: none;
                 color: var(--blue-1-800-primary);
-                font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
+                font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
                 font-family: var(--body);
                 font-size: var(--sub-header-medium-size);
                 font-style: normal;
@@ -1945,7 +1946,7 @@ main.nfo-nav {
               .high-skin-paragraph-one2 {
                 list-style: none;
                 color: var(--neutrals-800);
-                font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
+                font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
                 font-family: var(--body);
                 font-size: var(--body-medium-regular-size);
                 font-style: normal;
@@ -1955,6 +1956,58 @@ main.nfo-nav {
                 max-width: 712px;
                 margin-top: 0;
                 margin-bottom: 44px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.section.high-skin-text.gift-high-skin {
+  .high-skin-wrap-one1 {
+    .high-skin-wrap-two1 {
+        @include media(mobile) {
+        margin: 0;
+      }
+
+      .high-skin-wrap-three1 {
+        .high-skin-heading1 {
+          .high-skin-subheading1 {
+            max-width: 413px;
+            width: 100%;
+
+            .high-skin-paragraph1 {
+              max-width: 100%;
+              color: var(--blue-1-800-primary);
+              font-family: var(--title);
+              font-size: var(--heading-h5-size);
+              font-style: normal;
+              font-weight: 600;
+              line-height: var(--heading-h5-line-height);
+
+              @include media(mobile) {
+                font-size: var(--sub-header-large-size);
+                line-height: var(--sub-header-medium-line-height);
+                margin: 0 0 24px;
+              }
+
+            }
+          }
+
+          .high-skin-subheading2 {
+            .high-skin-paragraph1 {
+
+      
+              .high-skin-paragraph-one1 {
+                color: var(--text-body);
+                font-family: var(--body);
+                font-size: var(--body-medium-regular-size);
+                font-style: normal;
+                font-weight: 400;
+                line-height: var(--body-medium-regular-line-height);
+                /* 150% */
               }
             }
           }
@@ -2035,7 +2088,7 @@ main.nfo-nav {
 
           .high-skin-component-external1 {
             color: var(--neutrals-white);
-            font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
+            font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
             font-family: var(--title);
             font-size: var(--heading-h6-size);
             font-style: normal;
@@ -2055,7 +2108,7 @@ main.nfo-nav {
 
           .high-skin-component-external2 {
             color: var(--neutrals-white);
-            font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
+            font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
             font-family: var(--body);
             font-size: var(--body-small-regular-size);
             font-style: normal;
@@ -2078,7 +2131,7 @@ main.nfo-nav {
 
   .moamc-component-main-head1 {
     color: var(--blue-1-800-primary);
-    font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
+    font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
     font-family: var(--title);
     font-size: var(--heading-h3-size);
     font-style: normal;
@@ -2127,7 +2180,7 @@ main.nfo-nav {
 
     .moamc-component-para-three1 {
       color: var(--blue-1800-primary, #2E2A94);
-      font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on, 'liga'off;
+      font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on, 'liga' off;
       font-family: var(--body);
       font-size: var(--body-xlarge-bold-size);
       font-style: normal;
@@ -2145,7 +2198,7 @@ main.nfo-nav {
 
     .moamc-component-para-three2 {
       color: var(--neutrals-800);
-      font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
+      font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
       font-family: var(--body);
       font-size: var(--body-medium-regular-size);
       font-style: normal;
@@ -2193,7 +2246,7 @@ main.nfo-nav {
 
       .why-matters-heading1 {
         color: var(--blue-1-800-primary);
-        font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
+        font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
         font-family: var(--title);
         font-size: 36px;
         font-weight: 600;
@@ -2263,7 +2316,7 @@ main.nfo-nav {
           .why-matters-sub-title1 {
             list-style: none;
             color: var(--blue-1-800-primary);
-            font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
+            font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
             font-family: var(--body);
             font-size: var(--body-large-medium-size);
             font-style: normal;
@@ -2277,7 +2330,7 @@ main.nfo-nav {
           .why-matters-sub-title2 {
             list-style: none;
             color: var(--neutrals-800);
-            font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
+            font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
             font-family: var(--body);
             font-size: var(--body-small-regular-size);
             font-style: normal;
