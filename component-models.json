@@ -235,6 +235,10 @@
             "value": "fdp-kyc-form"
           },
           {
+            "name": "Gift Hero",
+            "value": "gift-hero"
+          },
+          {
             "name": "pan-details-modal",
             "value": "pan-details-modal"
           },
