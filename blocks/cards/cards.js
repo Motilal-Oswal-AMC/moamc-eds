@@ -269,7 +269,7 @@ export default function decorate(block) {
   if (window.location.pathname.includes('/static-pages/about')) {
     const aboutSection = block.closest('.section.trusted-asset');
     if (aboutSection) {
-      dataMapMoObj.CLASS_PREFIXES = ['trusted-asset', 'trusted-asset-inner', 'trusted-asset-sub', 'asset-subinner', 'asset-item', 'asset-inneritem', 'assest-childitem'];
+      dataMapMoObj.CLASS_PREFIXES = ['trusted-main', 'asset-inner', 'asset-sub', 'asset-subinner', 'asset-item', 'asset-inneritem', 'assest-childitem'];
       dataMapMoObj.addIndexed(aboutSection);
     }
   }

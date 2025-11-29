@@ -2,16 +2,16 @@
 @use "../../styles/common-theme/css/variables_mixins" as *;
 @use "../../styles/common-theme/css/fluid-typography" as *;
 
-.section.about-static {
+.section.trusted-asset {
     padding: 40px 0;
 
     @include media(mobile){
         padding: 36px 0 0;
     }
 
-    .trusted-asset {
+    .trusted-main {
         &1 {
-            .about-asset-sub1 {
+            .asset-sub1 {
                 display: flex;
 
                 .asset-subinner1 {
@@ -115,7 +115,7 @@
                 padding: 40px 16px 0;
             }
 
-            .about-asset-inner1 {
+            .asset-inner1 {
                 display: flex;
                 justify-content: space-between;
                 gap: 78px;
