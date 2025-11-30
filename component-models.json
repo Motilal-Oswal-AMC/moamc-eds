@@ -611,20 +611,20 @@
             "value": "testing"
           },
           {
-            "name":"High Skin Text",
-            "value":"high-skin-text"
+            "name": "High Skin Text",
+            "value": "high-skin-text"
           },
           {
-            "name":"High Image Component",
-            "value":"high-image-component"
+            "name": "High Image Component",
+            "value": "high-image-component"
           },
           {
-            "name":"Skin Moamc Component",
-            "value":"skin-moamc-component"
+            "name": "Skin Moamc Component",
+            "value": "skin-moamc-component"
           },
           {
-            "name":"Why Matters Component",
-            "value":"why-matters-component"
+            "name": "Why Matters Component",
+            "value": "why-matters-component"
           },
           {
             "name": "Mo Inter Business",
@@ -689,6 +689,30 @@
           {
             "name": "Thank You Screen",
             "value": "thank-you-screen"
+          },
+          {
+            "name": "Invest Minor Account",
+            "value": "invest-minor-account"
+          },
+          {
+            "name": "Why Invest Minor",
+            "value": "why-invest-minor"
+          },
+          {
+            "name": "How To Invest",
+            "value": "how-to-invest"
+          },
+          {
+            "name": "Pros of Investing",
+            "value": "pros-of-investing"
+          },
+          {
+            "name": "Things Keep Mind",
+            "value": "things-keep-mind"
+          },
+          {
+            "name": "Conclusion",
+            "value": "conclusion"
           }
         ]
       },
