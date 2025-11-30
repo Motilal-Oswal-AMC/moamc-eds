@@ -1,6 +1,6 @@
 @use "sass:map";
-@use "../../styles/common-theme/css/variables_mixins" as *;
-@use "../../styles/common-theme/css/fluid-typography" as *;
+@use "../../styles/common-theme/css/variables_mixins"as *;
+@use "../../styles/common-theme/css/fluid-typography"as *;
 
 .section {
   .card-container {
@@ -604,6 +604,7 @@
           }
 
           &.know-more {
+            min-width: 128px;
             padding: var(--spacing-8) var(--spacing-12);
             cursor: pointer;
             text-align: center;
@@ -630,6 +631,7 @@
           }
 
           &.invest-now {
+            min-width: 128px;
             border-radius: var(--border-radius-8);
             background: var(--button-primary-default);
             padding: var(--spacing-8) var(--spacing-12);
@@ -642,6 +644,7 @@
               var(--body));
 
             @include media(mobile) {
+              min-width: 148px;
               font-size: 14px;
               line-height: 16px;
             }
@@ -1037,6 +1040,10 @@
         h1 {
           color: var(--neutrals-white);
           margin: 0 0 8px;
+
+          @include media (mobile) {
+            margin: 0 0 5px;
+          }
         }
       }
 
