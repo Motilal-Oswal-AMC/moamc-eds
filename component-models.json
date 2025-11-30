@@ -255,6 +255,10 @@
             "value": "gift-high-skin"
           },
           {
+            "name": "Choose Gift",
+            "value": "choose-gift"
+          },
+          {
             "name": "pan-details-modal",
             "value": "pan-details-modal"
           },
