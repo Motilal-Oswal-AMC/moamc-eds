@@ -697,6 +697,10 @@
           {
             "name": "About Investment Philosophy",
             "value": "about-invest-philosophy"
+          },
+          {
+            "name": "About Structure Governance",
+            "value": "structure-governance"
           }
         ]
       },
