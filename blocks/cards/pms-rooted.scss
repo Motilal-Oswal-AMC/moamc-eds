@@ -616,6 +616,8 @@ $breakpoint-tablet: 900px;
     max-width: 1232px;
     width: 100%;
     margin: 0 auto;
+    padding: 0 0 80px 0px;
+    background: unset;
 
     @include media(mobile) {
        padding: 0 16px 80px 16px;
@@ -625,10 +627,13 @@ $breakpoint-tablet: 900px;
 
 
     .pms-high-skin1 {
+       background: #F5F5F5;
+       padding: 40px 0 0 0;
+       border-radius: 12px;
 
         @include media(mobile) {
             padding: 40px 16px 0px 16px;
-            background: #F5F5F5;
+            // background: #F5F5F5;
             border-radius: 24px;
         }
 
