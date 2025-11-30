@@ -259,6 +259,10 @@
             "value": "choose-gift"
           },
           {
+            "name": "Gift Accordion",
+            "value": "choose-accordion"
+          },
+          {
             "name": "pan-details-modal",
             "value": "pan-details-modal"
           },

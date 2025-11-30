@@ -610,12 +610,27 @@ $breakpoint-tablet: 900px;
     }
 }
 
+// Gift City //
+
 .section.high-skin.gift-high-skin {
     max-width: 1232px;
     width: 100%;
     margin: 0 auto;
 
+    @include media(mobile) {
+        padding: 0 16px;
+        background: yellow;
+    }
+
+
     .pms-high-skin1 {
+
+        @include media(mobile) {
+            padding: 40px 16px 0px 16px;
+            background: red;
+            border-radius: 24px;
+        }
+
         .pms-high-skin-card1 {
             .pms-high-skin-card-cont1 {
                 .pms-high-skin-card-subcont1 {
@@ -652,3 +667,133 @@ $breakpoint-tablet: 900px;
     }
 
 }
+
+
+// Gift City Card Start //
+
+.section.choose-gift {
+    max-width: 100%;
+    width: 100%;
+    background: #FAFAFA;
+    display: flex;
+    padding: 60px 0 80px 0;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 64px;
+
+    @include media(mobile) {
+        padding: 40px 16px;
+        gap: 24px;
+    }
+
+    .gift-choose1 {
+        .gift-choose-inner1 {
+            text-align: center;
+            color: var(--blue-1-800-primary);
+            text-align: center;
+            font-family: var(--title);
+            font-size: 28px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: 32px;
+            margin: 0;
+
+            @include media(mobile) {
+                font-size: 24px;
+                line-height: 28px;
+            }
+        }
+    }
+
+    .gift-choose2 {
+        max-width: 1232px;
+        width: 100%;
+        height: 454px;
+
+        @include media(mobile) {
+            padding: 0;
+        }
+
+        .gift-choose-inner1 {
+            ul {
+                display: unset;
+
+                li {
+                    display: flex;
+                    gap: 24px;
+                    align-items: center;
+                    border: none;
+                    background: #FAFAFA;
+
+                    @include media(mobile) {
+                        flex-direction: column;
+                    }
+
+
+                    .cards-card-image {
+                        max-width: 660px;
+                        height: 454px;
+                        flex-shrink: 0;
+                        aspect-ratio: unset;
+
+                        @include media(mobile) {
+                            height: 205px;
+                        }
+
+
+                        img {
+                            border-radius: 12px;
+                            aspect-ratio: unset;
+                            height: 100%;
+                            object-fit: cover;
+                        }
+                    }
+
+                    .cards-card-body {
+                        height: auto;
+                        margin: 0px;
+
+                        .gift-choose-sub-inner-sub-inner1 {
+                            display: flex;
+                            flex-direction: column;
+                            gap: 12px;
+                            justify-content: center;
+                            margin: 0;
+
+
+                            li.comlist {
+                                padding: 20px 16px;
+                                color: #212121;
+                                font-family: var(--body);
+                                font-size: var(--body-large-medium-size);
+                                font-style: normal;
+                                font-weight: 500;
+                                line-height: var(--body-large-medium-line-height);
+
+                                /* 133.333% */
+                                @include media(mobile) {
+                                    padding: 7px 0;
+                                    gap: 24px;
+                                    flex-direction: row;
+                                    gap: auto;
+
+
+                                }
+
+
+                                .icon-skin-game {
+                                    width: 50px;
+                                    height: 50px;
+                                }
+                            }
+                        }
+                    }
+
+                }
+            }
+        }
+    }
+}
+
+// Gift City Card End //
