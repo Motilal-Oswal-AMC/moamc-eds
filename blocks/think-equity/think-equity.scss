@@ -336,6 +336,9 @@
 }
 
 .invest-minor-account.think-equity-container {
+  padding: 38px 0;
+  padding-bottom: 0;
+
   .think-equity {
     margin: 0;
     gap: 16px;
@@ -349,20 +352,94 @@
         display: flex;
         flex-direction: column;
         align-items: flex-start;
+        gap: 20px;
         margin-top: 43px;
 
         &::before {
           content: unset;
         }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+          color: var(--blue-1800-primary, #2E2A94);
+          font-feature-settings: var(--font-feature-default);
+          font-family: var(--title, Inter);
+          font-size: var(--heading-h4-size, 32px);
+          font-style: normal;
+          font-weight: 600;
+          line-height: var(--heading-h4-line-height, 40px);
+        }
+
+        p {
+          margin: 0;
+          padding: 0;
+
+          a {
+            margin: 0;
+            padding: 0;
+          }
+
+          &.button-container {
+            display: flex;
+            width: 240px;
+            height: 48px;
+            padding: var(--spacing-20, 20px) var(--spacing-12, 12px);
+            justify-content: center;
+            align-items: center;
+            gap: var(--spacing-8, 8px);
+            border-radius: var(--border-radius-8, 8px);
+            background: var(--blue-1800-primary, #2E2A94);
+            margin-top: 20px;
+
+            .button {
+              color: var(--neutrals-white, #FFF);
+              text-align: center;
+              font-feature-settings: var(--font-feature-default);
+              font-family: var(--body, Inter);
+              font-size: var(--button-large-size, 18px);
+              font-style: normal;
+              font-weight: 500;
+              line-height: var(--button-large-line-height, 20px);
+              border: unset;
+              background: unset;
+            }
+          }
+        }
+
+        p:nth-child(2) {
+          color: var(--blue-1800-primary, #2E2A94);
+          font-feature-settings: var(--font-feature-default);
+          font-family: var(--body, Inter);
+          font-size: var(--body-small-semibold-size, 14px);
+          font-style: normal;
+          font-weight: 600;
+          line-height: var(--body-small-semibold-line-height, 16px);
+        }
+
+        p:nth-child(3) {
+          color: var(--text-body, #424242);
+          font-feature-settings: var(--font-feature-default);
+          font-family: var(--body, Inter);
+          font-size: var(--body-medium-regular-size, 16px);
+          font-style: normal;
+          font-weight: 400;
+          line-height: var(--body-medium-regular-line-height, 20px);
+        }
+
       }
     }
 
     .imagelist2 {
       flex-basis: 49.4%;
-      height: 360px;
+      height: 100%;
 
-      // width: 608px;
-      // width: inherit;
+      .subimagelist {
+        height: 403px;
+      }
     }
   }
 }
