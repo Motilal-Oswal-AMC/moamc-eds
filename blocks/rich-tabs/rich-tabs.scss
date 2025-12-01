@@ -1,3 +1,7 @@
+@use "sass:map";
+@use "../../styles/common-theme/css/variables_mixins" as *;
+@use "../../styles/common-theme/css/fluid-typography" as *;
+
 .rich-tabs .tabs-list {
   display: flex;
   gap: 0.5ch;
@@ -39,7 +43,7 @@
   margin: 0;
 }
 
-.rich-tabs .tabs-list button[aria-selected='true'] {
+.rich-tabs .tabs-list button[aria-selected="true"] {
   border-bottom: 1px solid var(--background-color);
   background-color: var(--background-color);
   cursor: initial;
@@ -52,6 +56,94 @@
   overflow: auto;
 }
 
-.rich-tabs .tabs-panel[aria-hidden='true'] {
+.rich-tabs .tabs-panel[aria-hidden="true"] {
   display: none;
+}
+
+// section structure-governance start
+.section.structure-governance {
+  padding: 0 0 56px;
+
+  .goverstr-main {
+    &1 {
+      .goverstr-inner1 {
+        @include font-style(
+          var(--heading-h4-size),
+          var(--heading-h4-line-height),
+          var(--blue-1-800-primary),
+          600,
+          var(--titlea)
+        );
+      }
+    }
+
+    &2 {
+      position: relative;
+
+      .tabs-list {
+        position: absolute;
+        right: 0;
+        bottom: 100%;
+        display: flex;
+        gap: 16px;
+
+        .tabs-tab {
+          border-radius: var(--border-radius-circle);
+          border: var(--border-width-01) solid var(--strokes-disabled);
+          background: var(--surface-disabled);
+          padding: 6px var(--spacing-12);
+
+          .goverstr-subchild1 {
+            @include font-style(
+              var(--body-small-regular-size),
+              var(--label-large-line-height),
+              var(--text-body),
+              400,
+              var(--body)
+            );
+          }
+
+          &[aria-selected="true"] {
+            border: var(--border-width-01) solid var(--strokes-selected);
+            background: var(--surface-selected);
+
+            .goverstr-subchild1 {
+              @include font-style(
+                var(--body-small-medium-size),
+                var(--body-small-medium-line-height),
+                var(--text-button-default),
+                500,
+                var(--body)
+              );
+            }
+          }
+        }
+      }
+
+      .tabs-panel {
+        padding: 24px 0 0;
+        margin: 0;
+        border: none;
+
+        .goverstr-child1 {
+          padding: 24px 0 0;
+          border-radius: 8px;
+          background: var(--surface-selected);
+          padding: 20px;
+
+          .goverstr-subchild1 {
+            margin: 0;
+
+            @include font-style(
+              var(--body-small-regular-size),
+              var(--label-large-line-height),
+              var(--blue-1-800-primary),
+              400,
+              var(--body)
+            );
+          }
+        }
+      }
+    }
+  }
 }
