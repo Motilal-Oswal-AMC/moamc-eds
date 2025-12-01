@@ -1,6 +1,6 @@
 @use "sass:map";
-@use "../../styles/common-theme/css/variables_mixins" as *;
-@use "../../styles/common-theme/css/fluid-typography" as *;
+@use "../../styles/common-theme/css/variables_mixins"as *;
+@use "../../styles/common-theme/css/fluid-typography"as *;
 
 .think-equity {
   background-color: transparent;
@@ -73,13 +73,11 @@
                 text-wrap: balance;
 
                 @include media(mobile) {
-                  @include font-style(
-                    var(--body-medium-semibold-size),
+                  @include font-style(var(--body-medium-semibold-size),
                     var(--body-medium-semibold-line-height),
                     var(--blue-1-800-primary),
                     600,
-                    var(--body)
-                  );
+                    var(--body));
 
                   margin: 0;
                   max-width: 32.36%;
@@ -90,13 +88,11 @@
               &-2 {
                 margin: 0;
 
-                @include font-style(
-                  var(--body-small-regular-size),
+                @include font-style(var(--body-small-regular-size),
                   var(--label-large-line-height),
                   var(--text-body-2),
                   400,
-                  var(--body)
-                );
+                  var(--body));
 
                 @include media(mobile) {
                   font-size: var(--paragraph-small-size);
@@ -153,13 +149,11 @@
           margin: 0;
           text-align: left;
 
-          @include font-style(
-            var(--body-xlarge-semibold-size),
+          @include font-style(var(--body-xlarge-semibold-size),
             var(--body-xlarge-semibold-line-height),
             var(--blue-1-800-primary),
             500,
-            var(--body)
-          );
+            var(--body));
 
           @include media(mobile) {
             font-size: var(--body-xlarge-semibold-size);
@@ -191,13 +185,11 @@
             background: var(--button-primary-default);
             margin: 0;
 
-            @include font-style(
-              var(--button-medium-size),
+            @include font-style(var(--button-medium-size),
               var(--button-medium-line-height),
               var(--text-white),
               500,
-              var(--body)
-            );
+              var(--body));
 
             @include media(mobile) {
               font-size: var(--button-medium-size);
@@ -282,13 +274,11 @@
           margin: 0;
           padding: 0;
 
-          @include font-style(
-            var(--heading-h4-size),
+          @include font-style(var(--heading-h4-size),
             var(--heading-h4-line-height),
             var(--blue-1-800-primary),
             600,
-            var(--title)
-          );
+            var(--title));
 
           @include media(mobile) {
             font-size: var(--sub-header-large-size);
@@ -326,7 +316,7 @@
 
       @include media(mobile) {
         // margin: 0 9px;
-         width: 340px;
+        width: 340px;
         height: 145px;
 
         .subimagelist,
@@ -341,6 +331,38 @@
           }
         }
       }
+    }
+  }
+}
+
+.invest-minor-account.think-equity-container {
+  .think-equity {
+    margin: 0;
+    gap: 16px;
+
+    .imagelist1 {
+      min-height: unset;
+      padding: unset;
+      flex-basis: 49.4%;
+
+      .subimagelist {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-top: 43px;
+
+        &::before {
+          content: unset;
+        }
+      }
+    }
+
+    .imagelist2 {
+      flex-basis: 49.4%;
+      height: 360px;
+
+      // width: 608px;
+      // width: inherit;
     }
   }
 }
