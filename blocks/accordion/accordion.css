@@ -387,6 +387,14 @@
   background: #242177;
 }
 
+.section.freq-ask-ques.nri-accordion {
+  margin-top: 80px;
+}
+@media (max-width: 768px) {
+  .section.freq-ask-ques.nri-accordion {
+    margin-top: 40px;
+  }
+}
 .section.freq-ask-ques.nri-accordion .faq-our-fund > .default-content-wrapper:nth-child(1) p {
   font-size: 28px;
   line-height: 32px;

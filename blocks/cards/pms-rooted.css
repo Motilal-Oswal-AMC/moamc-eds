@@ -563,7 +563,8 @@
 }
 @media (max-width: 768px) {
   .section.high-skin.nri-high-skin {
-    padding: 40px 16px 80px;
+    padding: 40px 16px 0px;
+    margin-bottom: 80px;
   }
 }
 .section.high-skin.nri-high-skin .cards-wrapper .cards .comlist .pms-high-skin-card-subcont1 {

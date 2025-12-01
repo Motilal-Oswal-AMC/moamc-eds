@@ -535,6 +535,10 @@
 // NRI accordion Start //
 
 .section.freq-ask-ques.nri-accordion {
+  margin-top: 80px;
+  @include media(mobile) {
+          margin-top: 40px;
+        }
   .faq-our-fund {
      &>.default-content-wrapper:nth-child(1){
       p {

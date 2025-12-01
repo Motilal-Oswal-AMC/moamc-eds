@@ -622,7 +622,8 @@ $breakpoint-tablet: 900px;
     margin-bottom: 60px;
 
     @include media (mobile) {
-        padding: 40px 16px 80px;
+        padding: 40px 16px 0px;
+        margin-bottom:80px;
     }
 
     .cards-wrapper {
