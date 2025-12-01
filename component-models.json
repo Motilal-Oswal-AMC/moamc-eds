@@ -627,6 +627,10 @@
             "value":"why-matters-component"
           },
           {
+            "name":"What Stake Component",
+            "value":"what-stake-component"
+          },
+          {
             "name": "Mo Inter Business",
             "value": "mo-inter-business"
           },
