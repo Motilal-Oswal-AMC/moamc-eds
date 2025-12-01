@@ -59,7 +59,7 @@
       }
       
       @include media(mobile) {
-        justify-content: space-between;
+        // justify-content: space-between;
         gap: 16px;
         padding: 28px 0;
       }
