@@ -291,29 +291,31 @@
     //     position: unset;
     // }
 
-    .swiper-pagination.swiper-pagination-bullets.swiper-pagination-horizontal {
-        bottom: 70px;
+    .make-index-funds-container {
+        .swiper-pagination.swiper-pagination-bullets.swiper-pagination-horizontal {
+            bottom: 70px;
 
-        @include media(mobile) {
-            bottom: 115px;
-            top: unset;
-        }
+            @include media(mobile) {
+                bottom: 115px;
+                top: unset;
+            }
 
-        .swiper-pagination-bullet {
-            width: 50px;
-            height: 2px;
-            margin: 0 !important;
-            background-color: #9DADFE;
-            border-radius: unset;
-            opacity: unset;
-
-            &-active {
-                // width: 50px;
-                // height: 2px;
-                // margin: 0;
-                background-color: #2E2A94;
-                border-radius: 2px;
+            .swiper-pagination-bullet {
+                width: 50px;
+                height: 2px;
+                margin: 0 !important;
+                background-color: #9DADFE;
+                border-radius: unset;
                 opacity: unset;
+
+                &-active {
+                    // width: 50px;
+                    // height: 2px;
+                    // margin: 0;
+                    background-color: #2E2A94;
+                    border-radius: 2px;
+                    opacity: unset;
+                }
             }
         }
     }

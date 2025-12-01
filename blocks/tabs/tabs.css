@@ -854,8 +854,8 @@ table>tbody>tr>td:nth-child(7) {
   cursor: pointer;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 5px;
+  justify-content: flex-start;
+  gap: 15px;
 }
 
 .section.previous-studies-tab .tabs-wrapper .tabs .tabs-list .tabs-tab::after {
@@ -864,6 +864,8 @@ table>tbody>tr>td:nth-child(7) {
   width: 24px;
   height: 24px;
   display: none;
+  position: absolute;
+  right: 20px;
 }
 
 .section.previous-studies-tab .tabs-wrapper .tabs .tabs-list .tabs-tab:hover {

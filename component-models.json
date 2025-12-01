@@ -375,10 +375,6 @@
             "value": "nfo-banner"
           },
           {
-            "name": "Show Contact Error",
-            "value": "show-contact-error"
-          },
-          {
             "name": "Out Expert Listing",
             "value": "out-expert-listing"
           },
@@ -627,20 +623,20 @@
             "value": "testing"
           },
           {
-            "name":"High Skin Text",
-            "value":"high-skin-text"
+            "name": "High Skin Text",
+            "value": "high-skin-text"
           },
           {
-            "name":"High Image Component",
-            "value":"high-image-component"
+            "name": "High Image Component",
+            "value": "high-image-component"
           },
           {
-            "name":"Skin Moamc Component",
-            "value":"skin-moamc-component"
+            "name": "Skin Moamc Component",
+            "value": "skin-moamc-component"
           },
           {
-            "name":"Why Matters Component",
-            "value":"why-matters-component"
+            "name": "Why Matters Component",
+            "value": "why-matters-component"
           },
           {
             "name": "Mo Inter Business",
@@ -661,6 +657,86 @@
           {
             "name": "Decoding QGLP Static",
             "value": "decoding-qglp-static"
+          },
+          {
+            "name": "Article Detail Library",
+            "value": "article-detail-library"
+          },
+          {
+            "name": "Screen 400",
+            "value": "screen-400"
+          },
+          {
+            "name": "Screen 401",
+            "value": "screen-401"
+          },
+          {
+            "name": "Screen 403",
+            "value": "screen-403"
+          },
+          {
+            "name": "Screen 408",
+            "value": "screen-408"
+          },
+          {
+            "name": "Screen 500",
+            "value": "screen-500"
+          },
+          {
+            "name": "Service Screen",
+            "value": "service-screen"
+          },
+          {
+            "name": "Investor Listing Edge Filter",
+            "value": "listing-edge-filter"
+          },
+          {
+            "name": "Investor Listing Our Expert",
+            "value": "listing-our-expert"
+          },
+          {
+            "name": "Fund Investment Options",
+            "value": "fund-investment-options"
+          },
+          {
+            "name": "Thank You Screen",
+            "value": "thank-you-screen"
+          },
+          {
+            "name": "Invest Minor Account",
+            "value": "invest-minor-account"
+          },
+          {
+            "name": "Why Invest Minor",
+            "value": "why-invest-minor"
+          },
+          {
+            "name": "How To Invest",
+            "value": "how-to-invest"
+          },
+          {
+            "name": "Pros of Investing",
+            "value": "pros-of-investing"
+          },
+          {
+            "name": "Things Keep Mind",
+            "value": "things-keep-mind"
+          },
+          {
+            "name": "Conclusion",
+            "value": "conclusion"
+          },
+          {
+            "name": "About Trusted Asset",
+            "value": "trusted-asset"
+          },
+          {
+            "name": "About Investment Philosophy",
+            "value": "about-invest-philosophy"
+          },
+          {
+            "name": "About Structure Governance",
+            "value": "structure-governance"
           }
         ]
       },

@@ -119,14 +119,14 @@ main .previous-studies-blog-container.section.previous-studies-each-details {
 
                 .ps-in3 {
                     position: absolute;
-                    top: 87px;
+                    top: 50%;
                     left: 50%;
-                    transform: translateX(-50%);
+                    transform: translate(-50% , -50%);
                     z-index: 10;
 
-                    @include media(mobile) {
-                        top: 49px;
-                    }
+                    // @include media(mobile) {
+                    //     top: 49px;
+                    // }
 
                     .ps-cont1 {
                         margin: 0;
@@ -138,6 +138,7 @@ main .previous-studies-blog-container.section.previous-studies-each-details {
                             background-color: unset;
                             border: 0;
                             padding: 0;
+                            border-radius: 0;
 
                             .icon {
                                 width: 100%;

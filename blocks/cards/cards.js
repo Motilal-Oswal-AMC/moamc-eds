@@ -252,6 +252,33 @@ export default function decorate(block) {
       }
     }
   }
+
+  // Error Screen adding
+  const error = block.closest('.section.screen-400, .section.screen-401, .section.screen-403, .section.screen-408, .section.screen-500, .section.service-screen');
+  if (error) {
+    const newEle = document.createElement('div');
+    newEle.classList.add('errscn-txtwrap');
+    const secondP = document.querySelector('.cards-container .cards-card-body p:nth-child(2)');
+    const errscnCont = document.querySelector('.cards-container .cards-card-body');
+    errscnCont.append(newEle);
+    newEle.append(secondP);
+    dataMapMoObj.CLASS_PREFIXES = ['error-screen-wrapper', 'error-screen-wrap', 'error-screen-ul', 'error-screen-li', 'errscrn-img-cont', 'errscrn-cont', 'errscrn-inner-cont'];
+    dataMapMoObj.addIndexed(error);
+  }
+
+  if (window.location.pathname.includes('/static-pages/about')) {
+    const aboutSection = block.closest('main').querySelector('.section.trusted-asset');
+    if (aboutSection) {
+      dataMapMoObj.CLASS_PREFIXES = ['trusted-main', 'asset-inner', 'asset-sub', 'asset-subinner', 'asset-item', 'asset-inneritem', 'assest-childitem'];
+      dataMapMoObj.addIndexed(aboutSection);
+    }
+
+    const investPhilosophy = block.closest('main').querySelector('.section.about-invest-philosophy');
+    if (investPhilosophy) {
+      dataMapMoObj.CLASS_PREFIXES = ['investment-main', 'investment-inner', 'investment-sub', 'investment-subinner', 'investment-item', 'investment-inneritem'];
+      dataMapMoObj.addIndexed(investPhilosophy);
+    }
+  }
 }
 
 function decorateArticlePage() {

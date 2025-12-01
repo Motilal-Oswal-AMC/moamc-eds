@@ -4,7 +4,7 @@
 
 main.nfo-nav {
   .section.decoding-qglp-container {
-    margin-top: 33px;
+    margin-top: 32px;
 
     @include media (mobile) {
       margin-top: 0;
@@ -19,9 +19,9 @@ main.nfo-nav {
   width: 100%;
   padding-top: 40px;
 
-  @include media(mobile) {
-    padding-top: 56px;
-  }
+  // @include media(mobile) {
+  //   padding-top: 56px;
+  // }
 
   .decoding-qglp {
     display: flex;
@@ -46,7 +46,8 @@ main.nfo-nav {
         display: flex;
         flex-direction: column;
         gap: 12px;
-        margin-top: 47px;
+        
+        // margin-top: 47px;
 
         @include media(mobile) {
           margin-top: 0;

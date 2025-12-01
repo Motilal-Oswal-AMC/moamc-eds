@@ -118,6 +118,7 @@
 
             .globalsubinner1 {
               display: flex;
+              min-width: 86px;
               height: 24px;
               padding: 0 var(--spacing-12);
               align-items: center;
@@ -135,7 +136,18 @@
               );
 
               @include media(mobile){
+                min-width: 74px;
                 padding: 0 var(--spacing-8);
+              }
+
+              span.icon{
+                width: 20px;
+                height: 20px;
+                
+                @include media(mobile){
+                  width: 16px;
+                  height: 16px;
+                }
               }
             }
           }
