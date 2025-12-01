@@ -733,6 +733,14 @@
           {
             "name": "About Behind Mission Tab",
             "value": "behind-mission-tab"
+          },
+          {
+            "name": "About Structure Governance",
+            "value": "structure-governance"
+          },
+          {
+            "name": "About Structure Governance Tab",
+            "value": "structure-governance-tab"
           }
         ]
       },
