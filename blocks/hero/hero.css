@@ -588,7 +588,7 @@
   }
 }
 
-/*NRI Account Start */
+/* NRI Account Start */
 .section.mo-inter-business.hero-container.nri-hero {
   max-width: 100%;
   width: 100%;
@@ -600,7 +600,7 @@
 }
 @media (max-width: 768px) {
   .section.mo-inter-business.hero-container.nri-hero .hero-wrapper {
-    padding: 0px;
+    padding: 0;
   }
 }
 .section.mo-inter-business.hero-container.nri-hero .hero-wrapper .hero {
@@ -669,11 +669,11 @@
 }
 @media (max-width: 768px) {
   .section.mo-inter-business.hero-container.nri-hero .hero-wrapper .hero .mo-inter-sub2 {
-    padding: 37px 16px 0px 16px;
+    padding: 37px 16px 0;
   }
 }
 .section.mo-inter-business.hero-container.nri-hero .hero-wrapper .hero .mo-inter-sub2 .mo-inter-inner-text1 .mo-inter-list2 {
   padding: 0;
 }
 
-/*NRI Account End *//*# sourceMappingURL=hero.css.map */
+/* NRI Account End *//*# sourceMappingURL=hero.css.map */

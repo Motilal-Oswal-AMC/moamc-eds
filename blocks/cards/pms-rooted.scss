@@ -618,6 +618,7 @@ $breakpoint-tablet: 900px;
     padding: 40px 48px;
     border-radius: 12px;
     background-color: #F5F5F5;
+    margin-bottom: 60px;
 
     @include media (mobile) {
         padding: 40px 16px 80px;

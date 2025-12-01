@@ -553,17 +553,17 @@
 }
 
 .section.high-skin.nri-high-skin {
-  background-color: red;
   max-width: 1232px;
   width: 100%;
   margin: 0 auto;
   padding: 40px 48px;
   border-radius: 12px;
   background-color: #F5F5F5;
+  margin-bottom: 60px;
 }
 @media (max-width: 768px) {
   .section.high-skin.nri-high-skin {
-    padding: 40px 16px 80px 16px;
+    padding: 40px 16px 80px;
   }
 }
 .section.high-skin.nri-high-skin .cards-wrapper .cards .comlist .pms-high-skin-card-subcont1 {

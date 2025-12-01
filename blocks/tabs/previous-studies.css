@@ -1,6 +1,6 @@
 @import "../../../styles/fonts.css";
 main.nfo-nav .previous-studies-ctn.section:first-of-type {
-  margin-top: 0px;
+  margin-top: 0;
 }
 
 .section.previous-studies-ctn.tabs-container {
