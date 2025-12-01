@@ -278,6 +278,12 @@ export default function decorate(block) {
       dataMapMoObj.CLASS_PREFIXES = ['investment-main', 'investment-inner', 'investment-sub', 'investment-subinner', 'investment-item', 'investment-inneritem'];
       dataMapMoObj.addIndexed(investPhilosophy);
     }
+
+    const missionTabCard = block.closest('main').querySelector('.behind-mission-tab .cards');
+    if (missionTabCard) {
+      dataMapMoObj.CLASS_PREFIXES = ['missioncard-main', 'missioncard-inner', 'missioncard-sub', 'missioncard-subinner', 'missioncard-item', 'missioncard-inneritem'];
+      dataMapMoObj.addIndexed(investPhilosophy);
+    }
   }
 }
 
