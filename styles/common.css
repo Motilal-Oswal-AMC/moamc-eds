@@ -2119,6 +2119,8 @@ main.nfo-nav .section.decoding-qglp-container.decoding-qglp-static .decoding-qgl
   align-self: stretch;
 }
 .section.fund-tax .fund-tax-txt1 {
+  max-width: 343px;
+  width: 100%;
   color: var(--blue-1-800-primary);
   font-feature-settings: "ss01" on, "ss04" on, "cv01" on, "cv02" on, "cv03" on, "cv04" on, "cv06" on, "cv09" on, "cv10" on, "cv11" on;
   font-family: var(--TItle, Inter);
@@ -2129,6 +2131,8 @@ main.nfo-nav .section.decoding-qglp-container.decoding-qglp-static .decoding-qgl
   /* 114.286% */
 }
 .section.fund-tax .fund-tax-txt2 {
+  max-width: 608px;
+  width: 100%;
   color: var(--neutrals-800);
   font-feature-settings: "ss01" on, "ss04" on, "cv01" on, "cv02" on, "cv03" on, "cv04" on, "cv06" on, "cv09" on, "cv10" on, "cv11" on;
   font-family: var(--Body, Inter);
@@ -2141,7 +2145,7 @@ main.nfo-nav .section.decoding-qglp-container.decoding-qglp-static .decoding-qgl
 
 .section.invest-blog .invest-blog-contain1 {
   display: flex;
-  padding: 8px 24px;
+  padding: 24px;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
@@ -2151,6 +2155,7 @@ main.nfo-nav .section.decoding-qglp-container.decoding-qglp-static .decoding-qgl
   background: linear-gradient(257deg, rgba(154, 148, 255, 0.5) -5.54%, rgba(235, 234, 255, 0.5) 100%);
 }
 .section.invest-blog .invest-blog-txt1 {
+  margin: unset;
   color: var(--blue-1-800-primary);
   font-feature-settings: "ss01" on, "ss04" on, "cv01" on, "cv02" on, "cv03" on, "cv04" on, "cv06" on, "cv09" on, "cv10" on, "cv11" on;
   font-family: var(--Body, Inter);
@@ -2160,6 +2165,7 @@ main.nfo-nav .section.decoding-qglp-container.decoding-qglp-static .decoding-qgl
   line-height: 28px;
 }
 .section.invest-blog .invest-blog-txt2 {
+  margin: unset;
   color: var(--blue-1-800-primary);
   font-feature-settings: "ss01" on, "ss04" on, "cv01" on, "cv02" on, "cv03" on, "cv04" on, "cv06" on, "cv09" on, "cv10" on, "cv11" on;
   font-family: var(--Body, Inter);
@@ -2171,6 +2177,8 @@ main.nfo-nav .section.decoding-qglp-container.decoding-qglp-static .decoding-qgl
 
 .section.tax-blog {
   background: var(--Neutrals-100, #F5F5F5);
+  padding: 80px 67px 64px;
+  margin: unset;
 }
 .section.tax-blog .tax-blog-contain1 {
   display: flex;
@@ -2187,6 +2195,10 @@ main.nfo-nav .section.decoding-qglp-container.decoding-qglp-static .decoding-qgl
   font-weight: 600;
   line-height: 32px;
   /* 114.286% */
+}
+.section.tax-blog .tax-blog-contain1 .tax-blog-txt2 {
+  max-width: 728px;
+  width: 100%;
 }
 .section.tax-blog .tax-blog-contain1 .tax-blog-txt2 .tax-blog-subtxt1 {
   color: var(--text-body);
@@ -2211,11 +2223,13 @@ main.nfo-nav .section.decoding-qglp-container.decoding-qglp-static .decoding-qgl
 
 .section.sip-blog {
   background: var(--Neutrals-100, #F5F5F5);
+  padding-bottom: 80px;
+  margin: unset;
 }
 .section.sip-blog .sip-blog-contain1 {
   display: flex;
   align-items: flex-start;
-  gap: 146px;
+  gap: 111px;
   align-self: stretch;
 }
 .section.sip-blog .sip-blog-contain1 .sip-blog-txt1 {
@@ -2227,6 +2241,12 @@ main.nfo-nav .section.decoding-qglp-container.decoding-qglp-static .decoding-qgl
   font-weight: 600;
   line-height: 32px;
   /* 114.286% */
+}
+.section.sip-blog .sip-blog-contain1 .sip-blog-txt2 {
+  display: flex;
+  gap: 60px;
+  max-width: 735px;
+  width: 100%;
 }
 .section.sip-blog .sip-blog-contain1 .sip-blog-txt2 .sip-blog-subtxt1 {
   color: var(--text-body);

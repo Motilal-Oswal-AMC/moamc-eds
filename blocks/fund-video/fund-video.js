@@ -38,5 +38,9 @@ export default function decorate(block) {
     const sipBlog = block.closest('main').querySelector('.section.sip-blog');
     dataMapMoObj.CLASS_PREFIXES = ['sip-blog-contain', 'sip-blog-txt', 'sip-blog-subtxt'];
     dataMapMoObj.addIndexed(sipBlog);
+
+    const sebiBlog = block.closest('main').querySelector('.section.sebi-blog');
+    dataMapMoObj.CLASS_PREFIXES = ['sebi-blog-contain', 'sebi-blog-txt', 'sebi-blog-subtxt'];
+    dataMapMoObj.addIndexed(sebiBlog);
   }
 }
