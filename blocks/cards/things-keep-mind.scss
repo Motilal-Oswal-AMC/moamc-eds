@@ -36,6 +36,10 @@
                         border-radius: 8px;
                         background: var(--blue-1-50, #D5DEFF);
 
+                        @include media (mobile-ed) {
+                            width: 340px;
+                        }
+
                         img {
                             aspect-ratio: inherit;
                         }
