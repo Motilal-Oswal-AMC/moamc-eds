@@ -2257,7 +2257,12 @@ main.nfo-nav .section.decoding-qglp-container.decoding-qglp-static .decoding-qgl
   font-style: normal;
   font-weight: 400;
   line-height: 20px;
+  list-style-type: none;
   /* 142.857% */
+}
+.section.sip-blog .sip-blog-contain1 .sip-blog-txt2 .sip-blog-subtxt1 p .icon-elss-sip1 {
+  width: 68px;
+  height: 68px;
 }
 .section.sip-blog .sip-blog-contain1 .sip-blog-txt2 .sip-blog-subtxt2 {
   color: var(--text-body);
@@ -2267,7 +2272,12 @@ main.nfo-nav .section.decoding-qglp-container.decoding-qglp-static .decoding-qgl
   font-style: normal;
   font-weight: 400;
   line-height: 20px;
+  list-style-type: none;
   /* 142.857% */
+}
+.section.sip-blog .sip-blog-contain1 .sip-blog-txt2 .sip-blog-subtxt2 p .icon-elss-sip2 {
+  width: 68px;
+  height: 68px;
 }
 
 .section.sebi-blog {

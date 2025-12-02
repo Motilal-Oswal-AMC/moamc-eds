@@ -2751,6 +2751,15 @@ main.nfo-nav {
         font-style: normal;
         font-weight: 400;
         line-height: 20px;
+        list-style-type: none;
+
+        p {
+          .icon-elss-sip1 {
+            width: 68px;
+            height: 68px;
+          }
+        }
+
         /* 142.857% */
       }
 
@@ -2762,7 +2771,15 @@ main.nfo-nav {
         font-style: normal;
         font-weight: 400;
         line-height: 20px;
+        list-style-type: none;
+
         /* 142.857% */
+        p {
+          .icon-elss-sip2 {
+            width: 68px;
+            height: 68px;
+          }
+        }
       }
     }
   }
