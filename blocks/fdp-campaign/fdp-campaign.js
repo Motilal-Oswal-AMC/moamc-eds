@@ -140,4 +140,10 @@ export default function decorate(block) {
       window.location.href = compaignLink.href;
     });
   }
+
+  // Privacy Policy Functionality Start
+  const newSection  = block.createElement('div');
+  
+  // Privacy Policy Functionality End
+
 }

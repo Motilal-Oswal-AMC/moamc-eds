@@ -729,6 +729,10 @@
           {
             "name": "About Structure Governance",
             "value": "structure-governance"
+          },
+          {
+            "name": "Privacy Policy Conatiner",
+            "value": "privacypolicy-container"
           }
         ]
       },
