@@ -1818,7 +1818,9 @@ main.nfo-nav {
   .high-skin-wrap-one1 {
     .high-skin-wrap-two1 {
       list-style: none;
-
+      @media screen and (width > 768px){
+        margin-bottom: 0px;
+      }
       .high-skin-wrap-three1 {
         .high-skin-heading1 {
           display: flex;
@@ -1828,6 +1830,7 @@ main.nfo-nav {
           @media screen and (width > 768px) {
             justify-content: space-between;
             flex-direction: row;
+            margin-bottom: 0px;
           }
 
           .high-skin-subheading1 {
@@ -1899,6 +1902,7 @@ main.nfo-nav {
 
                 @media screen and (width > 768px) {
                   max-width: 712px;
+                  margin-bottom: 40px;
                 }
               }
             }
@@ -1945,25 +1949,32 @@ main.nfo-nav {
         rgb(154 148 255 / 50%) -40.11%,
         rgb(214 211 255 / 50%) 100%
       );
+       @media screen and (width > 768px) {
+        height: 328px;
+        align-items: end;
+       }
 
       .icon.icon-rupees.comlist.high-skin-component-paragraph1 {
         display: inline-flex;
         justify-content: center;
         align-items: center;
-        width: 202px;
-        height: 224px;
-        margin: 37.5px 0;
-
-        img.comlist.high-skin-component-image1 {
-          object-fit: contain;
-          filter: drop-shadow(0 4px 12px rgb(0 0 0 / 15%));
+        width: 300px;
+        height: 300px;
+        margin: 28px 0px 0px 0px;
+      //  @media screen and (width > 768px) {
+      //   margin: 28px;
+      //  }
+      .high-skin-component-ctn1{
+        @media screen and (width > 768px){
+          object-fit: none;
         }
+      }
       }
     }
 
     .high-skin-component-heading2 {
       width: 100%;
-      margin-top: 0;
+      margin: 0px;
 
       .high-skin-component-paragraph1 {
         list-style: none;
@@ -2117,6 +2128,9 @@ main.nfo-nav {
 
 
 .section.what-stake-component {
+  @media screen and (width > 768px) {
+    margin: 80px 0px 80px 0px;
+  }
   .stake-component-wrap1 {
     .stake-component-main-head1 {
       padding: 40px;
@@ -2260,14 +2274,13 @@ main.nfo-nav {
         font-family: var(--body);
         font-size: 16px;
         font-weight: 400;
-        line-height: var(--label-large-line-height);
+        line-height: 24px;
         max-width: none;
         width: 100%;
         margin: 0;
 
         @media screen and (width > 768px) {
           max-width: 504px;
-          font-size: var(--body-small-regular-size);
         }
       }
     }

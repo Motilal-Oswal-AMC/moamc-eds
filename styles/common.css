@@ -1723,6 +1723,11 @@ main.nfo-nav .section.decoding-qglp-container.decoding-qglp-static .decoding-qgl
 .section.high-skin-text .high-skin-wrap-one1 .high-skin-wrap-two1 {
   list-style: none;
 }
+@media screen and (width > 768px) {
+  .section.high-skin-text .high-skin-wrap-one1 .high-skin-wrap-two1 {
+    margin-bottom: 0px;
+  }
+}
 .section.high-skin-text .high-skin-wrap-one1 .high-skin-wrap-two1 .high-skin-wrap-three1 .high-skin-heading1 {
   display: flex;
   flex-direction: column;
@@ -1732,6 +1737,7 @@ main.nfo-nav .section.decoding-qglp-container.decoding-qglp-static .decoding-qgl
   .section.high-skin-text .high-skin-wrap-one1 .high-skin-wrap-two1 .high-skin-wrap-three1 .high-skin-heading1 {
     justify-content: space-between;
     flex-direction: row;
+    margin-bottom: 0px;
   }
 }
 .section.high-skin-text .high-skin-wrap-one1 .high-skin-wrap-two1 .high-skin-wrap-three1 .high-skin-heading1 .high-skin-subheading1 {
@@ -1803,6 +1809,7 @@ main.nfo-nav .section.decoding-qglp-container.decoding-qglp-static .decoding-qgl
 @media screen and (width > 768px) {
   .section.high-skin-text .high-skin-wrap-one1 .high-skin-wrap-two1 .high-skin-wrap-three1 .high-skin-heading1 .high-skin-subheading2 .high-skin-paragraph1 .high-skin-paragraph-one2 {
     max-width: 712px;
+    margin-bottom: 40px;
   }
 }
 
@@ -1841,22 +1848,29 @@ main.nfo-nav .section.decoding-qglp-container.decoding-qglp-static .decoding-qgl
   justify-content: center;
   background: linear-gradient(256deg, rgba(154, 148, 255, 0.5) -40.11%, rgba(214, 211, 255, 0.5) 100%);
 }
+@media screen and (width > 768px) {
+  .section.high-image-component .default-content-wrapper.comlist.high-skin-component-wrap1 .comlist.high-skin-component-heading1 {
+    height: 328px;
+    align-items: end;
+  }
+}
 .section.high-image-component .default-content-wrapper.comlist.high-skin-component-wrap1 .comlist.high-skin-component-heading1 .icon.icon-rupees.comlist.high-skin-component-paragraph1 {
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  width: 202px;
-  height: 224px;
-  margin: 37.5px 0;
+  width: 300px;
+  height: 300px;
+  margin: 28px 0px 0px 0px;
 }
-.section.high-image-component .default-content-wrapper.comlist.high-skin-component-wrap1 .comlist.high-skin-component-heading1 .icon.icon-rupees.comlist.high-skin-component-paragraph1 img.comlist.high-skin-component-image1 {
-  -o-object-fit: contain;
-     object-fit: contain;
-  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.15));
+@media screen and (width > 768px) {
+  .section.high-image-component .default-content-wrapper.comlist.high-skin-component-wrap1 .comlist.high-skin-component-heading1 .icon.icon-rupees.comlist.high-skin-component-paragraph1 .high-skin-component-ctn1 {
+    -o-object-fit: none;
+       object-fit: none;
+  }
 }
 .section.high-image-component .default-content-wrapper.comlist.high-skin-component-wrap1 .high-skin-component-heading2 {
   width: 100%;
-  margin-top: 0;
+  margin: 0px;
 }
 .section.high-image-component .default-content-wrapper.comlist.high-skin-component-wrap1 .high-skin-component-heading2 .high-skin-component-paragraph1 {
   list-style: none;
@@ -2011,6 +2025,11 @@ main.nfo-nav .section.decoding-qglp-container.decoding-qglp-static .decoding-qgl
   }
 }
 
+@media screen and (width > 768px) {
+  .section.what-stake-component {
+    margin: 80px 0px 80px 0px;
+  }
+}
 .section.what-stake-component .stake-component-wrap1 .stake-component-main-head1 {
   padding: 40px;
   border-radius: 12px;
@@ -2145,7 +2164,7 @@ main.nfo-nav .section.decoding-qglp-container.decoding-qglp-static .decoding-qgl
   font-family: var(--body);
   font-size: 16px;
   font-weight: 400;
-  line-height: var(--label-large-line-height);
+  line-height: 24px;
   max-width: none;
   width: 100%;
   margin: 0;
@@ -2153,7 +2172,6 @@ main.nfo-nav .section.decoding-qglp-container.decoding-qglp-static .decoding-qgl
 @media screen and (width > 768px) {
   .section.why-matters-component .why-matters-wrapper-in .why-matters-wrap1 .why-matters-heading2 {
     max-width: 504px;
-    font-size: var(--body-small-regular-size);
   }
 }
 .section.why-matters-component .why-matters-wrapper-in .why-matters-wrap2 {
