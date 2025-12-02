@@ -2134,7 +2134,7 @@ main.nfo-nav {
           display: flex;
           flex-direction: column-reverse;
           justify-content: flex-start;
-          background: var(--Neutrals-100, #F5F5F5);
+          background: var(--neutrals-100, #F5F5F5);
           width: 100%;
           border: none;
 
@@ -2173,7 +2173,7 @@ main.nfo-nav {
     line-height: var(--heading-h5-line-height);
     max-width: 568px;
     width: 100%;
-    margin: 0 0 31px 0;
+    margin: 0 0 31px;
 
     @media screen and (width > 768px) {
       margin-bottom: 23px;
@@ -2190,7 +2190,7 @@ main.nfo-nav {
     line-height: var(--body-large-semibold-line-height);
     max-width: 628px;
     width: 100%;
-    margin: 0 0 4px 0;
+    margin: 0 0 4px;
   }
 
   .stake-component-para-one3 {
