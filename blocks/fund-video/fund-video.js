@@ -34,5 +34,10 @@ export default function decorate(block) {
     const taxBlog = block.closest('main').querySelector('.section.tax-blog');
     dataMapMoObj.CLASS_PREFIXES = ['tax-blog-contain', 'tax-blog-txt', 'tax-blog-subtxt'];
     dataMapMoObj.addIndexed(taxBlog);
+
+    const sipBlog = block.closest('main').querySelector('.section.sip-blog');
+    dataMapMoObj.CLASS_PREFIXES = ['sip-blog-contain', 'sip-blog-txt', 'sip-blog-subtxt'];
+    dataMapMoObj.addIndexed(sipBlog);
   }
+}
 }

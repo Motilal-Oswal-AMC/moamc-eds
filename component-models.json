@@ -187,6 +187,10 @@
             "value": "tax-blog"
           },
           {
+            "name": "Sip Blog",
+            "value": "sip-blog"
+          },
+          {
             "name": "Calculators Card",
             "value": "calculators-card"
           },
