@@ -40,4 +40,3 @@ export default function decorate(block) {
     dataMapMoObj.addIndexed(sipBlog);
   }
 }
-}
