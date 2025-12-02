@@ -1365,49 +1365,48 @@ main>.section.previous-studies-tab.tabs-container {
 
 .why-choose-us {
   .choose-title1 {
-    padding-top: 64px;
+    padding-top: 44px;
 
-    @include media(mobile) {
-      padding-top: 44px;
+    @media screen and (width > 768px) {
+      padding-top: 64px;
     }
 
     .choose-us-para1 {
       color: var(--blue-1-800-primary);
-      font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on, 'liga'off;
+      font-feature-settings: var(--font-features-default);
       font-family: var(--title);
-      font-size: var(--heading-h2-size);
+      font-size: 34px;
+      line-height: 40px;
       font-style: normal;
       font-weight: 600;
-      line-height: var(--heading-h2-line-height);
       margin-bottom: 8px;
+      margin-top: 0;
       max-width: 712px;
       width: 100%;
 
-      @include media(mobile) {
-        font-size: 34px;
-        line-height: 40px;
-        margin-bottom: 8px;
-        margin-top: 0;
+      @media screen and (width > 768px) {
+        font-size: var(--heading-h2-size);
+        line-height: var(--heading-h2-line-height);
       }
     }
 
     .choose-us-para2 {
       color: var(--text-sub-header);
-      font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
+      font-feature-settings: var(--font-features-default);
       font-family: var(--body);
-      font-size: var(--body-medium-regular-size);
+      font-size: var(--paragraph-small-regular-size);
+      line-height: var(--paragraph-small-regular-line-height);
       font-style: normal;
       font-weight: 400;
-      line-height: 24px;
       margin-top: 0;
-      margin-bottom: 28px;
-      max-width: 712px;
+      margin-bottom: 20px;
       width: 100%;
+      max-width: 712px;
 
-      @include media(mobile) {
-        font-size: var(--paragraph-small-regular-size);
-        line-height: var(--paragraph-small-regular-line-height);
-        margin-bottom: 20px;
+      @media screen and (width > 768px) {
+        font-size: var(--body-medium-regular-size);
+        line-height: 24px;
+        margin-bottom: 28px;
       }
     }
 
@@ -1415,9 +1414,9 @@ main>.section.previous-studies-tab.tabs-container {
       margin: 0;
 
       a {
-        color: var(--text-white, #FFF);
+        color: var(--text-white);
         text-align: center;
-        font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
+        font-feature-settings: var(--font-features-default);
         font-family: var(--body);
         font-size: 14px;
         font-style: normal;
@@ -1428,52 +1427,47 @@ main>.section.previous-studies-tab.tabs-container {
         max-width: 169px;
         border-radius: var(--border-radius-8);
         padding: 8px 12px;
-        display: none;
+        display: block;
         border: none;
+        margin-top: 0;
+        margin-bottom: 30px;
 
-        @include media(mobile) {
-          margin-top: 0;
-          margin-bottom: 30px;
-          display: block;
+        @media screen and (width > 768px) {
+          display: none;
         }
       }
     }
 
     .choose-us-para5 {
-      display: none;
+      display: block;
       margin: 0;
 
-      @include media(mobile) {
-        display: block;
+      @media screen and (width > 768px) {
+        display: none;
       }
 
       .choose-us-img1 {
         margin: 0;
         height: 100%;
         display: block;
-
-        @include media(mobile) {
-          display: block;
-          line-height: 0px;
-        }
+        line-height: 0;
       }
     }
 
     .choose-us-para4 {
+      display: none;
       margin: 0;
 
-      @include media(mobile) {
-        display: none;
-        margin: 0;
+      @media screen and (width > 768px) {
+        display: block;
       }
 
       .choose-us-img1 {
         height: 100%;
         display: block;
 
-        @include media(mobile) {
-          display: none;
-          margin: 0;
+        @media screen and (width > 768px) {
+          display: block;
         }
       }
     }
@@ -1481,12 +1475,12 @@ main>.section.previous-studies-tab.tabs-container {
 }
 
 .section.why-choose-card {
-  padding: 20px 0;
-  margin: 80px 0;
+  padding: 0;
+  margin: 0 0 80px 0;
 
-  @include media(mobile) {
-    padding: 0;
-    margin-bottom: 80px;
+  @media screen and (width > 768px) {
+    padding: 20px 0;
+    margin: 80px 0;
   }
 
   .cards-wrapper {
@@ -1497,30 +1491,39 @@ main>.section.previous-studies-tab.tabs-container {
         list-style: none;
         margin: 0;
         padding: 0;
+
+        gap: 32px 0;
         display: flex;
         flex-wrap: wrap;
-        gap: 60px 64px;
+
+        @media screen and (width > 768px) {
+          gap: 60px 64px;
+        }
       }
 
       li {
-        flex: 0 0 calc(50% - 32px);
+        flex: 0 0 100%;
         display: flex;
         align-items: flex-start;
         gap: 8px;
         border: none;
+
+        @media screen and (width > 768px) {
+          flex: 0 0 calc(50% - 32px);
+        }
 
         .cards-card-image {
           width: 68px;
           flex-shrink: 0;
 
           img {
-            width: 68px;
-            height: 68px;
+            width: 48px;
+            height: 48px;
             display: block;
 
-            @include media(mobile) {
-              width: 48px;
-              height: 48px;
+            @media screen and (width > 768px) {
+              width: 68px;
+              height: 68px;
             }
           }
         }
@@ -1531,51 +1534,39 @@ main>.section.previous-studies-tab.tabs-container {
 
           h2 {
             color: var(--blue-1-800-primary);
-            font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
+            font-feature-settings: var(--font-features-default);
             font-family: var(--body);
             font-size: var(--body-large-semibold-size);
             font-style: normal;
             font-weight: 600;
             line-height: var(--body-large-semibold-line-height);
             margin: 0 0 8px;
-            max-width: 510px;
             width: 100%;
+            max-width: unset;
 
-            @include media(mobile) {
-              max-width: unset;
+            @media screen and (width > 768px) {
+              max-width: 510px;
             }
           }
 
           p {
             color: var(--text-sub-header);
-            font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
+            font-feature-settings: var(--font-features-default);
             font-family: var(--body);
             font-size: var(--body-small-regular-size);
             font-style: normal;
             font-weight: 400;
             line-height: var(--label-large-line-height);
             margin: 0;
-            max-width: 510px;
             width: 100%;
+            max-width: unset;
 
-            @include media(mobile) {
-              max-width: unset;
+            @media screen and (width > 768px) {
+              max-width: 510px;
             }
           }
         }
       }
-    }
-  }
-}
-
-@media (width <=768px) {
-  .section.why-choose-card {
-    .cards-wrapper .cards ul {
-      gap: 32px 0;
-    }
-
-    .cards-wrapper .cards li {
-      flex: 0 0 100%;
     }
   }
 }
