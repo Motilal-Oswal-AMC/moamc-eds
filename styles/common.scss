@@ -1409,7 +1409,11 @@ main>.section.previous-studies-tab.tabs-container {
 
     .choose-us-para3 {
       margin: 0;
-
+    @media  screen and (width > 768px) {
+      display: flex;
+      justify-content: flex-end;
+      position: relative;
+    }
       a {
         color: var(--text-white);
         text-align: center;
@@ -1430,7 +1434,9 @@ main>.section.previous-studies-tab.tabs-container {
         margin-bottom: 30px;
 
         @media screen and (width > 768px) {
-          display: none;
+          position: absolute;
+          top: -80px;
+          margin: 0px;
         }
       }
     }
@@ -1463,7 +1469,6 @@ main>.section.previous-studies-tab.tabs-container {
         height: 100%;
         display: block;
         line-height: 0px;
-
         @media screen and (width > 768px) {
           display: block;
         }

@@ -1349,6 +1349,13 @@ main > .section.previous-studies-tab.tabs-container .tab-dropdown-wrap .tab-drop
 .section.why-choose-us .choose-title1 .choose-us-para3 {
   margin: 0;
 }
+@media screen and (width > 768px) {
+  .section.why-choose-us .choose-title1 .choose-us-para3 {
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+  }
+}
 .section.why-choose-us .choose-title1 .choose-us-para3 a {
   color: var(--text-white);
   text-align: center;
@@ -1370,7 +1377,9 @@ main > .section.previous-studies-tab.tabs-container .tab-dropdown-wrap .tab-drop
 }
 @media screen and (width > 768px) {
   .section.why-choose-us .choose-title1 .choose-us-para3 a {
-    display: none;
+    position: absolute;
+    top: -80px;
+    margin: 0px;
   }
 }
 .section.why-choose-us .choose-title1 .choose-us-para5 {
