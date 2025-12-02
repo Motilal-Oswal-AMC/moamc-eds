@@ -18,7 +18,7 @@
                     display: flex;
                     flex-direction: row-reverse;
                     align-items: start;
-                    gap: 48.5px;
+                    // gap: 48.5px;
                     border: none;
 
                     @include media(mobile) {
@@ -28,15 +28,16 @@
 
                     .asset-item {
                         &1 {
-                            margin: 0 48.5px 0 0;
-                            max-width: 48%;
+                            // margin: 0 48.5px 0 0;
+                            max-width: 55.61%;
                             width: 100%;
-                            min-height: 260px;
-                            height: auto;
+                            // min-height: 260px;
+                            height: 260px;
 
-                            @include media(tab) {
+                            @include media(desktop-sm) {
                                 margin: 0;
-                                min-height: auto;
+                                // min-height: auto;
+                                height: auto;
                             }
 
                             @include media(mobile) {
@@ -55,6 +56,10 @@
                                     height: 100%;
                                     aspect-ratio: unset;
                                     object-fit: contain;
+                                    
+                                    @include media(mobile){
+                                        object-fit: cover;
+                                    }
                                 }
                             }
                         }
@@ -164,6 +169,7 @@
                         @include media(mobile) {
                             flex-direction: row;
                             gap: 24px;
+                            align-items: center;
                         }
 
                         .asset-item {
@@ -258,6 +264,7 @@
                 @include media(mobile) {
                     font-size: var(--paragraph-small-regular-size);
                     line-height: var(--paragraph-small-regular-line-height);
+                    text-wrap-style: balance;
                 }
             }
 
@@ -298,6 +305,8 @@
                     @include media(mobile) {
                         max-width: 48.236%;
                         padding: 4px;
+                        border: 0.224px solid #B9BBFF;
+                        box-shadow: 0 0 1.788px 0 rgba(0, 0, 0, 0.06);
                     }
 
                     .investment-subinner1 {
@@ -305,8 +314,6 @@
                         margin: 0;
                         width: 100%;
                         height: 100%;
-
-                        // background-color: brown;
                         display: flex;
                         flex-direction: column;
                         justify-content: space-between;
@@ -315,8 +322,6 @@
                             &1 {
                                 border-radius: 12px;
                                 border: 1px solid var(--neutrals-200);
-
-                                // background: gray;
                                 background: #f8f8ff;
                                 box-shadow: 0 0 24px 0 rgb(0 0 0 / 4%);
                                 padding: 24px 12px;
@@ -335,8 +340,11 @@
                                     158px,
                                     var(--label-small-line-height),
                                     var(--blue-1-800-primary),
-                                    400 var(--body)
+                                    400,
+                                    var(--body)
                                 );
+
+                                font-feature-settings: unset;
 
                                 @include media(desktop-sm) {
                                     font-size: 125px;
@@ -355,7 +363,7 @@
                                 @include media(mobile) {
                                     font-size: 80px;
                                     line-height: 88px;
-                                    padding: 5.36px 2.68px;
+                                    padding: 5.365px 2.682px;
                                     border-radius: 2.682px;
                                     box-shadow: 0 0 5.365px 0 rgb(0 0 0 / 4%);
                                     border: 0.224px solid var(--neutrals-200);
@@ -372,14 +380,12 @@
                                     var(--body)
                                 );
 
-                                margin: 12px 0 0;
-
-                                // background-color: blueviolet;
+                                padding: 12px 12px 0;
 
                                 @include media(mobile) {
                                     font-size: var(--body-small-regular-size);
                                     line-height: var(--body-small-regular-line-height);
-                                    margin: 4px 0 0;
+                                    padding: 4px 2.682px 0;
                                     text-align: center;
                                 }
                             }
@@ -400,6 +406,7 @@
                     padding: 10px 12px;
                     background-color: transparent;
                     min-width: 164px;
+                    height: 40px;
 
                     @include font-style(
                         var(--button-medium-size),
@@ -408,6 +415,10 @@
                         500,
                         var(--body)
                     );
+
+                    @include media(mobile){
+                        color: var(--text-white);
+                    }
                 }
             }
         }
