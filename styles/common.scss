@@ -1437,6 +1437,12 @@ main>.section.previous-studies-tab.tabs-container {
           position: absolute;
           top: -80px;
           margin: 0px;
+          font-size: var(--button-medium-size);
+          line-height: var(--button-medium-line-height);
+          padding: 12px;
+          display: block;
+          width: 100%;
+          max-width: 192px;
         }
       }
     }
