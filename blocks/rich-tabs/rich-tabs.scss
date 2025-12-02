@@ -1,0 +1,202 @@
+@use "sass:map";
+@use "../../styles/common-theme/css/variables_mixins" as *;
+@use "../../styles/common-theme/css/fluid-typography" as *;
+
+.rich-tabs .tabs-list {
+  display: flex;
+  gap: 0.5ch;
+  max-width: 100%;
+  font-size: var(--body-font-size-xs);
+  overflow-x: auto;
+}
+
+@media (width >= 600px) {
+  .rich-tabs .tabs-list {
+    font-size: var(--body-font-size-s);
+  }
+}
+
+@media (width >= 900px) {
+  .rich-tabs .tabs-list {
+    font-size: var(--body-font-size-m);
+  }
+}
+
+.rich-tabs .tabs-list button {
+  flex: 0 0 max-content;
+  margin: 0;
+  border: 1px solid var(--dark-color);
+  border-radius: 0;
+  padding: 0.5em;
+  background-color: #949494;
+  color: initial;
+  font-weight: bold;
+  line-height: unset;
+  text-align: initial;
+  text-overflow: unset;
+  overflow: unset;
+  white-space: unset;
+  transition: background-color 0.2s;
+}
+
+.rich-tabs .tabs-list button p {
+  margin: 0;
+}
+
+.rich-tabs .tabs-list button[aria-selected="true"] {
+  border-bottom: 1px solid var(--background-color);
+  background-color: var(--background-color);
+  cursor: initial;
+}
+
+.rich-tabs .tabs-panel {
+  margin-top: -1px;
+  padding: 24px;
+  border: 1px solid var(--dark-color);
+  overflow: auto;
+}
+
+.rich-tabs .tabs-panel[aria-hidden="true"] {
+  display: none;
+}
+
+// section structure-governance start
+.section.structure-governance {
+  padding: 0 0 56px;
+
+  @include media(mobile){
+    padding: 0 0 40px;
+  }
+
+  .goverstr-main {
+    &1 {
+      .goverstr-inner1 {
+        @include font-style(
+          var(--heading-h4-size),
+          var(--heading-h4-line-height),
+          var(--blue-1-800-primary),
+          600,
+          var(--title)
+        );
+
+        margin: 0;
+
+        @include media(mobile){
+          font-size: 28px;
+          line-height: var(--sub-header-large-line-height);
+          max-width: 66.471%;
+          width: 100%;
+        }
+      }
+    }
+
+    &2 {
+      position: relative;
+
+      @include media(tab){
+        padding: 0;
+      }
+
+      .tabs-list {
+        position: absolute;
+        right: 0;
+        bottom: 100%;
+        display: flex;
+        gap: 16px;
+
+        @include media(desktop-sm){
+          margin-right: 24px;
+        }
+
+        @media screen and (width < 1100px){
+          position: unset;
+          margin: 24px 0 0;
+          padding: 0 16px;
+          overflow: auto hidden;
+          scrollbar-width: none;
+
+          &::-webkit-scrollbar{
+            display: none;
+          }
+        }
+
+        .tabs-tab {
+          border-radius: var(--border-radius-circle);
+          border: var(--border-width-01) solid var(--strokes-disabled);
+          background: var(--surface-disabled);
+          padding: 6px var(--spacing-12);
+
+          .goverstr-subchild1 {
+            @include font-style(
+              var(--body-small-regular-size),
+              var(--label-large-line-height),
+              var(--text-body),
+              400,
+              var(--body)
+            );
+
+            font-feature-settings: unset;
+
+            @include media(mobile){
+              font-size: var(--body-small-regular-size);
+              line-height: var(--label-large-line-height);
+            }
+          }
+
+          &[aria-selected="true"] {
+            border: var(--border-width-01) solid var(--strokes-selected);
+            background: var(--surface-selected);
+            padding: var(--spacing-8) var(--spacing-12);
+
+            .goverstr-subchild1 {
+              @include font-style(
+                var(--body-small-medium-size),
+                var(--body-small-medium-line-height),
+                var(--text-button-default),
+                500,
+                var(--body)
+              );
+
+              font-feature-settings: unset;
+
+              @include media(mobile){
+                font-size: var(--body-small-medium-size);
+                line-height: var(--body-small-medium-line-height);
+              }
+            }
+          }
+        }
+      }
+
+      .tabs-panel {
+        padding: 24px 0 0;
+        margin: 0;
+        border: none;
+        overflow: unset;
+
+        .goverstr-child1 {
+          border-radius: 8px;
+          background: var(--surface-selected);
+          padding: 20px;
+
+          .goverstr-subchild1.comlist {
+            margin: 0;
+
+            @include font-style(
+              var(--body-small-regular-size),
+              var(--label-large-line-height),
+              var(--blue-1-800-primary),
+              400,
+              var(--body)
+            );
+
+            @include media(mobile){
+              font-size: var(--body-small-regular-size);
+              line-height: var(--label-large-line-height);
+            }
+          }
+        }
+      }
+    }
+  }
+}
