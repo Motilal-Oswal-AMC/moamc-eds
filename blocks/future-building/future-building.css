@@ -741,7 +741,8 @@
 }
 
 /* .section.key-investing.future-building-container .library-btn1 .keyinvest-search .keyinvest-inp:focus+label, */
-.section.key-investing.future-building-container .library-btn1 .keyinvest-search .keyinvest-inp.focus-visible+label {
+.section.key-investing.future-building-container .library-btn1 .keyinvest-search .keyinvest-inp.focus-visible+label,
+.section.key-investing.future-building-container .library-btn1 .keyinvest-search .keyinvest-inp:not(:placeholder-shown)+label {
   top: 0;
   left: 25px;
   padding: 0 4px;

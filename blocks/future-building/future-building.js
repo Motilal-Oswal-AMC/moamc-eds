@@ -183,7 +183,7 @@ export default function decorate(block) {
     if (keyInvestSection.classList.contains('key-investing')) {
       const keyInvestSearch = div(
         { class: 'keyinvest-search' },
-        input({ class: 'keyinvest-inp', id: 'keyinvest' }),
+        input({ class: 'keyinvest-inp', id: 'keyinvest', placeholder: ' ' }),
         label({ class: 'keyinvest-label', for: 'keyinvest' }, 'Search here'),
       );
       keyInvestSearchWrap.append(keyInvestSearch);
@@ -207,9 +207,7 @@ export default function decorate(block) {
     }
   });
 
-
   //  START SEARCH FUNCTIONALITY
-
 
   const keySearchSection = document.querySelector('.key-investing .keyinvest-search');
   const keySearchNewEle = document.createElement('div');
@@ -291,18 +289,27 @@ export default function decorate(block) {
 
     });
 
+    // Prevent pointerdown on the list from blurring the input so the label stays in position
+    listContainer.addEventListener('pointerdown', (e) => {
+      // Prevent default on pointerdown avoids the input losing focus on option click
+      e.preventDefault();
+    });
+
     // 👉 Click Selection
     listContainer.addEventListener('click', (event) => {
-      event.preventDefault(); // 🔥 prevent losing focus
+      event.preventDefault(); // keep default navigation off
       closeBtn.style.display = 'block';
 
+      // set the input value from clicked item
       searchFld.value = event.target.textContent;
 
-      // 🔥 KEEP INPUT FOCUSED
-      // setTimeout(() => {
-      //   // searchFld.focus();
-      //   // searchFld.classList.add('focus-visible');  // <-- Force maintain visible focus
-      // }, 0);
+      // Keep input focused and the visual focus state so the label doesn't move
+      try {
+        searchFld.focus();
+        searchFld.classList.add('focus-visible');
+      } catch (err) {
+        // ignore if focus fails in some environments
+      }
 
       listContainer.classList.add('dsp-none');
     });
@@ -358,11 +365,19 @@ export default function decorate(block) {
         }
       });
       closeBtn.style.display = event.target.value.length > 0 ? 'flex' : 'none';
+      // persist state so label stays floated even when input loses focus
     });
     closeBtn.addEventListener('click', () => {
       searchFld.value = '';
       filterListItems('');
       closeBtn.style.display = 'none';
+      // remove visual float when cleared
+      try {
+        searchFld.classList.remove('focus-visible');
+        // placeholder-driven CSS will handle the float state; no JS class needed
+      } catch (e) {
+        // ignore
+      }
     });
     searchFld.addEventListener('keydown', (event) => {
       closeBtn.style.display = 'block';
@@ -419,6 +434,12 @@ export default function decorate(block) {
       searchFld.value = '';
       filterListItems('');
       closeBtn.style.display = 'none';
+      try {
+        searchFld.classList.remove('focus-visible');
+        searchFld.classList.remove('has-value');
+      } catch (e) {
+        // ignore
+      }
     });
 
     // 👉 Keyboard Navigation
@@ -438,7 +459,6 @@ export default function decorate(block) {
             (currentFocusIndex - 1 + visibleItems().length) % visibleItems().length;
           updateActiveItem(visibleItems());
           break;
-
         case 'Enter':
           if (visibleItems().length === 0) return false;
           const selected = visibleItems()[currentFocusIndex] || visibleItems()[0];
@@ -456,7 +476,14 @@ export default function decorate(block) {
 
     if (!input.contains(event.target) && !listBox.contains(event.target)) {
       listBox.classList.add('dsp-none');
-      if (searchFld.value === '') closeBtn.style.display = 'none';
+      if (searchFld.value === '') {
+        closeBtn.style.display = 'none';
+        try {
+          input.classList.remove('focus-visible');
+        } catch (e) {
+          // ignore
+        }
+      }
     }
   });
 

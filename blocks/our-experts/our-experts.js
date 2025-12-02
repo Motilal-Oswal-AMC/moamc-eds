@@ -222,10 +222,10 @@ export default function decorate(block) {
           const newItem = document.createElement('p');
           const anchotTag = document.createElement('a');
           anchotTag.classList.add('list');
-          anchotTag.setAttribute(
-            'href',
-            'https://mosl-dev-upd--mosl-eds--motilal-oswal-amc.aem.live/mutual-fund/in/en/motilal-oswal-edge/article-details-list',
-          );
+          // anchotTag.setAttribute(
+          //   'href',
+          //   'https://mosl-dev-upd--mosl-eds--motilal-oswal-amc.aem.live/mutual-fund/in/en/motilal-oswal-edge/article-details-list',
+          // );
           newItem.classList.add('result-item');
           newItem.setAttribute('data-original-text', value);
           searchNewEle.appendChild(newItem);
@@ -234,7 +234,7 @@ export default function decorate(block) {
         });
       } else {
         listContainer.querySelectorAll('.list').forEach((item) => {
-        // Check if the item's text includes the search parameter
+          // Check if the item's text includes the search parameter
           const isVisible = item.textContent.toLocaleLowerCase()
             .includes(searchFld.value.toLocaleLowerCase());
           // 2. Perform the "side effect": Show or hide the parent
@@ -243,16 +243,20 @@ export default function decorate(block) {
       }
     });
 
+    listContainer.addEventListener('pointerdown', (e) => {
+      e.preventDefault();
+    });
+
     listContainer.addEventListener('click', (event) => {
       closeBtn.style.display = 'block';
       searchFld.value = event.target.textContent;
-      let dataref = '';
-      if ([...event.target.classList].includes('result-item')) {
-        dataref = event.target.querySelector('a').getAttribute('href');
-      } else {
-        dataref = event.target.getAttribute('href');
-      }
-      window.location.href = dataref;
+      // let dataref = '';
+      // if ([...event.target.classList].includes('result-item')) {
+      //   dataref = event.target.querySelector('a').getAttribute('href');
+      // } else {
+      //   dataref = event.target.getAttribute('href');
+      // }
+      // window.location.href = dataref;
       listContainer.classList.add('dsp-none');
     });
 
@@ -341,7 +345,7 @@ export default function decorate(block) {
         case 'ArrowUp':
           event.preventDefault();
           currentFocusIndex = ((currentFocusIndex - 1 + visibleItems().length)
-           % visibleItems().length);
+            % visibleItems().length);
           updateActiveItem(visibleItems());
           break;
         case 'Enter':
