@@ -395,12 +395,6 @@ main .section.wcs-landing.section.embed-container {
           margin: 0 auto 28px;
           border: none;
         }
-
-        .media1{
-          position: relative;
-          top: -5px;
-          padding-right: 4px;
-        }
       }
     }
   }
@@ -626,7 +620,7 @@ main>.section.previous-studies-tab.tabs-container {
   display: flex;
   flex-direction: column;
   gap: 40px;
-  padding-bottom: 88px;
+  padding-bottom: 95px;
   padding-top: 64px;
 
   @include media(mobile) {
@@ -638,7 +632,6 @@ main>.section.previous-studies-tab.tabs-container {
 }
 
 .default-content-wrapper.annual-wealth-wrap1 {
-
   h1,
   h2,
   h3,
@@ -928,31 +921,53 @@ main>.section.previous-studies-tab.tabs-container {
 
             ul.comlist {
               position: absolute;
-              top: 100%;
+              top: 0;
               margin: 0;
-              left: 0;
+              left: 70px;
               border-radius: 6px;
               border: 1px solid var(--neutrals-200);
               box-shadow: 0 0 14px 0 rgb(40 40 40 / 6%);
               width: 170px;
               background: var(--neutrals-white);
-              min-height: 90px;
-              height: 100%;
-              overflow: auto;
+              min-height: 126px;
+              height: 100px;
               padding: 2px 6px;
               scrollbar-width: auto;
               scrollbar-color: transparent;
+              list-style: none;
+
+              // overflow: auto;
 
               @include media (mobile) {
-                bottom: 150px;
+                bottom: 30px;
                 top: unset;
                 left: unset;
-                right: -56px;
+                right: -65px;
                 width: 170px;
                 min-height: 132px;
                 height: 100px;
                 padding: 5px;
               }
+
+              // &::before {
+              //   content: "";
+              //   position: absolute;
+              //   left: -18px;
+              //   top: 13px;
+              //   width: 0;
+              //   height: 0;
+              //   border-left: 12px solid transparent;
+              //   border-right: 12px solid transparent;
+              //   border-top: 12px solid #fff;
+              //   filter: drop-shadow(0 2px 4px rgb(40 40 40 / 6%));
+              //   transform: rotate(90deg);
+
+              //   @include media (mobile) {
+              //     transform: translateX(-50%);
+              //     left: 50%;
+              //     bottom: -12px;
+              //   }
+              // }
 
               &::-webkit-scrollbar {
                 width: 2px;
@@ -1071,8 +1086,6 @@ main>.section.previous-studies-tab.tabs-container {
         font-style: normal;
         font-weight: 600;
         line-height: var(--body-medium-semibold-line-height);
-
-        // margin-bottom: 4px;
         margin-top: 12px;
         padding-top: unset;
       }
@@ -1107,9 +1120,6 @@ main>.section.previous-studies-tab.tabs-container {
       font-style: normal;
       font-weight: 600;
       line-height: var(--body-medium-semibold-line-height);
-
-      // margin-top: 12px;
-      // margin-bottom: 4px;
       margin: 0;
       border-radius: 8px;
       background-color: #2c2a96;
@@ -1180,7 +1190,6 @@ main>.section.previous-studies-tab.tabs-container {
               }
 
               picture.comlist {
-
                 @include media(mobile) {
                   line-height: 0;
                   display: block;
@@ -1224,7 +1233,7 @@ main>.section.previous-studies-tab.tabs-container {
 
 @media only screen and (width <=767px) {
   .previous-studies-tab:has(.prev-studies-wrapper.embed-container) li:has(> ul[style*="display: block"]) {
-    padding-bottom: 120px
+    padding-bottom: 0;
   }
 
 }
@@ -2312,3 +2321,118 @@ main.nfo-nav {
 }
 
 // Skin in the game static end
+
+// why invest minor account css start
+.section.why-invest-minor {
+  margin: 80px 0;
+
+  @include media (mobile-ed) {
+    margin: 0;
+    padding-bottom: 40px;
+  }
+
+  .why-invest-minor-main1 {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+
+    @include media (mobile-ed) {
+      flex-direction: column;
+    }
+
+    .why-invest-minor-sub {
+      &1 {
+        margin: 0;
+        width: 32.5%;
+        color: var(--blue-1800-primary, #2E2A94);
+        font-feature-settings: var(--font-features-default);
+        font-family: var(--title, Inter);
+        font-size: var(--heading-h4-size, 28px);
+        font-style: normal;
+        font-weight: 600;
+        line-height: 32px;
+
+        @include media (mobile-ed) {
+          width: 100%;
+          font-size: 24px;
+          line-height: 28px;
+        }
+      }
+
+      &2 {
+        width: 66.2%;
+        display: inline-block;
+        margin: 0;
+        color: var(--text-body, #424242);
+        font-feature-settings: var(--font-features-default);
+        font-family: var(--body, Inter);
+        font-size: var(--body-medium-regular-size, 16px);
+        font-style: normal;
+        font-weight: 400;
+        line-height: 24px;
+
+        @include media (mobile-ed) {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+// why invest minor account css End
+
+// conclusion css start 
+
+.section.conclusion {
+  background: var(--neutrals-100, #F5F5F5);
+  padding: 80px 0;
+  margin: 0;
+
+  @include media (mobile-ed) {
+    padding: 40px 0 80px;
+  }
+
+  .default-content-wrapper.comlist {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+
+    .conclusion-title {
+      &1 {
+        margin: 0;
+        padding: 0;
+        color: var(--blue-1800-primary, #2E2A94);
+        font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
+        font-family: var(--title, Inter);
+        font-size: var(--heading-h4-size, 28px);
+        font-style: normal;
+        font-weight: 600;
+        line-height: 32px;
+      }
+
+      &2 {
+        margin: 0;
+        color: var(--text-body, #424242);
+        font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
+        font-family: var(--body, Inter);
+        font-size: var(--body-xlarge-regular-size, 20px);
+        font-style: normal;
+        font-weight: 400;
+        line-height: var(--body-xlarge-regular-line-height, 32px);
+      }
+
+      &3 {
+        margin: 0;
+        color: var(--blue-1800-primary, #2E2A94);
+        font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on, 'liga'off;
+        font-family: var(--body, Inter);
+        font-size: var(--body-xlarge-bold-size, 20px);
+        font-style: normal;
+        font-weight: 600;
+        line-height: var(--body-xlarge-bold-line-height, 24px);
+      }
+    }
+  }
+}
+
+// conclusion css start 
