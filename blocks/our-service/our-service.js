@@ -4,6 +4,7 @@ import dataMapMoObj from '../../scripts/constant.js';
 
 export default function decorate(block) {
   buildtabblock(block);
+  block.classList.add('gradient-show');
 
   const tabPanels = block.querySelectorAll('.tabs-panel');
   tabPanels.forEach((el) => {

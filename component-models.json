@@ -713,6 +713,50 @@
           {
             "name": "Cornerstones Elss Fund",
             "value": "cornerstones-elss-fund"
+          },
+          {
+            "name": "Fund Investment Options",
+            "value": "fund-investment-options"
+          },
+          {
+            "name": "Thank You Screen",
+            "value": "thank-you-screen"
+          },
+          {
+            "name": "Invest Minor Account",
+            "value": "invest-minor-account"
+          },
+          {
+            "name": "Why Invest Minor",
+            "value": "why-invest-minor"
+          },
+          {
+            "name": "How To Invest",
+            "value": "how-to-invest"
+          },
+          {
+            "name": "Pros of Investing",
+            "value": "pros-of-investing"
+          },
+          {
+            "name": "Things Keep Mind",
+            "value": "things-keep-mind"
+          },
+          {
+            "name": "Conclusion",
+            "value": "conclusion"
+          },
+          {
+            "name": "About Trusted Asset",
+            "value": "trusted-asset"
+          },
+          {
+            "name": "About Investment Philosophy",
+            "value": "about-invest-philosophy"
+          },
+          {
+            "name": "About Structure Governance",
+            "value": "structure-governance"
           }
         ]
       },

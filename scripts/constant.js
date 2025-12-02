@@ -267,5 +267,39 @@ const dataMapMoObj = {
     mainContainer.appendChild(paginationWrapper);
     goToPage(1);
   },
+  getOrdinalSuperscript: (n) => {
+  // Ensure the input is a number
+    if (typeof n !== 'number' || Number.isNaN(n)) {
+      return String(n); // Return the input as is if it's not a valid number
+    }
+
+    // Handle the special cases for 11, 12, and 13 (which always use 'th')
+    const s = n % 100;
+    if (s >= 11 && s <= 13) {
+      return `${n}<sup>th</sup>`;
+    }
+
+    // Handle the common cases using the last digit
+    const lastDigit = n % 10;
+    let suffix = '';
+
+    switch (lastDigit) {
+      case 1:
+        suffix = 'st';
+        break;
+      case 2:
+        suffix = 'nd';
+        break;
+      case 3:
+        suffix = 'rd';
+        break;
+      default:
+        suffix = 'th';
+        break;
+    }
+
+    // Return the number concatenated with the superscript suffix
+    return `${n}<sup>${suffix}</sup>`;
+  },
 };
 export default dataMapMoObj;

@@ -2,9 +2,9 @@
 @use "../../styles/common-theme/css/variables_mixins" as *;
 @use "../../styles/common-theme/css/fluid-typography" as *;
 
-.glossary-tabs.our-experts-container {
-  padding: 24px 0 0;
-  margin-bottom: 0;
+.section.our-experts-container.glossary-tabs {
+  padding: 0;
+  margin: 0;
 
   .our-experts-wrapper {
     .our-experts {
@@ -25,8 +25,16 @@
       &-cont2 {
         @include media(mobile) {
           max-width: 100%;
+        }
 
-          .our-expert {
+        .our-expert {
+          &-section1 {
+            .search-results {
+              display: none;
+            }
+          }
+
+          @include media(mobile) {
             &-section1,
             &-section1 .our-expert-sub1 {
               margin: 0;
@@ -44,7 +52,11 @@
       align-items: center;
       padding: 24px 0;
       gap: 16px 36px;
-
+      
+      @include media(desktop-sm){
+        justify-content: unset;
+      }
+      
       @include media(mobile) {
         gap: 16px;
         padding: 28px 0;
@@ -64,9 +76,6 @@
           margin: 0;
           font-size: var(--label-large-size);
           line-height: var(--label-large-line-height);
-
-          // width: 16px;
-          // flex: unset;
         }
 
         &[aria-selected="true"] {
@@ -82,6 +91,8 @@
         }
 
         .comlist {
+          width: 16px;
+          
           .button {
             all: unset;
           }
@@ -110,6 +121,7 @@
 
               @include media(mobile) {
                 flex-direction: column;
+                gap: 40px;
               }
 
               .tab-itemmain {
@@ -119,7 +131,7 @@
                   width: 88px;
                   height: 93px;
                   position: relative;
-                  background-image: url('../../icons/c-icon.svg');
+                  background-image: url("../../icons/c-icon.svg");
                   background-size: 88px 93px;
                   display: flex;
                   justify-content: center;
@@ -133,7 +145,7 @@
                     var(--title)
                   );
 
-                  @include media(mobile){
+                  @include media(mobile) {
                     font-size: 48px;
                     line-height: 56px;
                   }
@@ -227,8 +239,6 @@
         var(--body)
       );
 
-      padding-bottom: 4px;
-
       @include media(mobile) {
         font-size: var(--paragraph-xsmall-regular-size);
         line-height: var(--paragraph-xsmall-regular-line-height);
@@ -236,7 +246,6 @@
 
       &.defitem2 {
         color: var(--text-disclaimer);
-        padding-bottom: 0;
       }
     }
   }

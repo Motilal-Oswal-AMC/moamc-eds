@@ -55,6 +55,19 @@ export default async function decorate(block) {
         tabpanel.querySelector(`#${attr} .section`).style.display = 'block';
         tabpanel.querySelector(`#${attr} .section`).style.display = 'flex';
       }
+
+      // Investor Landing - Our Service Tab Gradient
+      const ourServiceTab = block.closest('main').querySelector('.our-service.block');
+      if (ourServiceTab !== null) {
+        const ourServiceTabList = ourServiceTab.querySelector('.tabs-list');
+        if ((Array.from(ourServiceTabList.children).length - 3) > i) {
+          ourServiceTab.classList.add('gradient-show');
+          ourServiceTabList.children[i].setAttribute('aria-selected', true);
+        } else {
+          ourServiceTab.classList.remove('gradient-show');
+          ourServiceTabList.children[i].setAttribute('aria-selected', true);
+        }
+      }
     });
     tablist.append(tabbtn);
     tab.remove();
@@ -907,11 +920,27 @@ export default async function decorate(block) {
   // previous studies tab end
   if (block.closest('.previous-studies-tab')) {
     const mainblk = block.closest('main');
+    Array.from(block.querySelector('.tabs-list').children)
+      .forEach((tabtitle) => {
+        // console.log(tabtitle.textContent);
+        const tabheada = `<span class='selcontent'>${dataMapMoObj.getOrdinalSuperscript(parseInt(tabtitle.textContent, 10))}</span>`;
+        const tabheadb = tabtitle.textContent
+          .replace(parseInt(tabtitle.textContent, 10), '').slice(2);
+        const tabheadfin = tabheada.concat(tabheadb);
+        tabtitle.textContent = '';
+        tabtitle.innerHTML += tabheadfin;
+      });
     const blk = mainblk.querySelectorAll('.prev-studies-wrapper');
     Array.from(blk).forEach((mainblkelem) => {
       // dataMapMoObj.CLASS_PREFIXES = ['prev-studies'];
       // dataMapMoObj.addIndexed(mainblk);
       const divwrapper = document.createElement('div');
+      const atag = dataMapMoObj.getOrdinalSuperscript(parseInt(mainblkelem.querySelector('h1').textContent, 10));
+      const btag = mainblkelem.querySelector('h1').textContent
+        .replace(parseInt(mainblkelem.querySelector('h1').textContent, 10), '').slice(2);
+      const fintag = atag.concat(btag);
+      mainblkelem.querySelector('h1').textContent = '';
+      mainblkelem.querySelector('h1').innerHTML += fintag;
       Array.from(mainblkelem.children).forEach((elblk, index) => {
         divwrapper.classList.add('prev-main-wrapper');
         if (index !== 0) {
@@ -952,7 +981,14 @@ export default async function decorate(block) {
     const selectedTab = dropdownWrap.querySelector('.selected-tab');
     Array.from(dropdownlist.children).forEach((tab) => {
       if (tab.getAttribute('aria-selected') === 'true') {
-        selectedTab.textContent = tab.textContent;
+        const tabheada = `<span class='selcontent'>${dataMapMoObj.getOrdinalSuperscript(parseInt(tab.textContent, 10))}</span>`;
+        const tabheadb = tab.textContent
+          .replace(parseInt(tab.textContent, 10), '').slice(2);
+        const tabheadfin = tabheada.concat(tabheadb);
+        tab.textContent = '';
+        tab.innerHTML += tabheadfin;
+        selectedTab.innerHTML = '';
+        selectedTab.innerHTML += tab.innerHTML;
       }
     });
 
@@ -964,7 +1000,8 @@ export default async function decorate(block) {
       } else {
         Array.from(dropdownlist.children).forEach((tab) => {
           if (tab.getAttribute('aria-selected') === 'true') {
-            selectedTab.textContent = tab.textContent;
+            selectedTab.innerHTML = '';
+            selectedTab.innerHTML += tab.innerHTML;
           }
         });
         dropList.classList.remove('active');
