@@ -887,7 +887,7 @@
           .tabs-tab {
             border: none;
             background-color: transparent;
-            padding: var(--spacing-11) var(--spacing-none);
+            padding: var(--spacing-10) var(--spacing-none);
             cursor: pointer;
 
             @include font-style(var(--body-small-regular-size),
