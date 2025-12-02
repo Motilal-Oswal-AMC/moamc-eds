@@ -18,6 +18,7 @@
                     display: flex;
                     flex-direction: row-reverse;
                     align-items: start;
+
                     // gap: 48.5px;
                     border: none;
 
@@ -31,11 +32,13 @@
                             // margin: 0 48.5px 0 0;
                             max-width: 55.61%;
                             width: 100%;
+
                             // min-height: 260px;
                             height: 260px;
 
                             @include media(desktop-sm) {
                                 margin: 0;
+
                                 // min-height: auto;
                                 height: auto;
                             }
@@ -123,6 +126,7 @@
             .asset-inner1 {
                 display: flex;
                 justify-content: space-between;
+
                 // gap: 78px;
                 gap: 150px;
                 list-style: none;
@@ -148,6 +152,7 @@
                     // max-width: 230px;
                     max-width: 100%;
                     width: 100%;
+
                     // flex: 1;
                     // flex-basis: 0;
 
@@ -306,7 +311,7 @@
                         max-width: 48.236%;
                         padding: 4px;
                         border: 0.224px solid #B9BBFF;
-                        box-shadow: 0 0 1.788px 0 rgba(0, 0, 0, 0.06);
+                        box-shadow: 0 0 1.788px 0 rgb(0 0 0 / 6%);
                     }
 
                     .investment-subinner1 {

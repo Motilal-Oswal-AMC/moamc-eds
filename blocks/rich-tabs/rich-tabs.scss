@@ -179,7 +179,7 @@
           background: var(--surface-selected);
           padding: 20px;
 
-          .goverstr-subchild1 {
+          .goverstr-subchild1.comlist {
             margin: 0;
 
             @include font-style(
