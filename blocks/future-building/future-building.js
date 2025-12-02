@@ -286,7 +286,6 @@ export default function decorate(block) {
       });
 
       console.log("Titles Array:", titleAry);
-
     });
 
     // Prevent pointerdown on the list from blurring the input so the label stays in position
@@ -338,7 +337,7 @@ export default function decorate(block) {
 
         if (match) {
           matchesFound = true;
-          item.querySelector('.list').innerHTML = item.dataset.originalText;
+          item.querySelector('.list').innerHTML = item.dataset.originalText.replace(new RegExp(`(${term?.toLocaleLowerCase()})`, 'gi'), '<strong>$1</strong>');
           item.style.display = 'block';
         } else {
           item.style.display = 'none';
@@ -399,30 +398,35 @@ export default function decorate(block) {
       };
 
       switch (event.key) {
-        case 'ArrowDown':
+        case 'ArrowDown': {
           event.preventDefault();
-          currentFocusIndex = (currentFocusIndex + 1) % visibleItems().length;
-          updateActiveItem(visibleItems());
+          const v = visibleItems();
+          if (v.length === 0) break;
+          currentFocusIndex = (currentFocusIndex + 1) % v.length;
+          updateActiveItem(v);
           break;
-        case 'ArrowUp':
+        }
+        case 'ArrowUp': {
           event.preventDefault();
-          currentFocusIndex = ((currentFocusIndex - 1 + visibleItems().length)
-            % visibleItems().length);
-          updateActiveItem(visibleItems());
+          const vUp = visibleItems();
+          if (vUp.length === 0) break;
+          currentFocusIndex = ((currentFocusIndex - 1 + vUp.length) % vUp.length);
+          updateActiveItem(vUp);
           break;
-        case 'Enter':
-          if (visibleItems().length === 0) return false;
-
-          if (currentFocusIndex < 0 || currentFocusIndex >= visibleItems().length) {
-            searchFld.value = visibleItems()[0].textContent.trim();
-            window.location.href = visibleItems()[0].getAttribute('href');
-          } else {
-            searchFld.value = visibleItems()[currentFocusIndex].textContent.trim();
-            window.location.href = visibleItems()[currentFocusIndex].getAttribute('href');
+        }
+        case 'Enter': {
+          // Prevent form submission/navigation — populate input and close dropdown
+          event.preventDefault();
+          const vEnt = visibleItems();
+          if (vEnt.length === 0) return false;
+          const sel = vEnt[(currentFocusIndex < 0 || currentFocusIndex >= vEnt.length) ? 0 : currentFocusIndex];
+          if (sel) {
+            searchFld.value = sel.textContent.trim();
+            closeBtn.style.display = 'block';
+            listContainer.classList.add('dsp-none');
           }
-
-          listContainer.classList.add('dsp-none');
           break;
+        }
         default:
           break;
       }
@@ -459,11 +463,14 @@ export default function decorate(block) {
             (currentFocusIndex - 1 + visibleItems().length) % visibleItems().length;
           updateActiveItem(visibleItems());
           break;
-        case 'Enter':
+        case 'Enter': {
           if (visibleItems().length === 0) return false;
           const selected = visibleItems()[currentFocusIndex] || visibleItems()[0];
           searchFld.value = selected.textContent.trim();
           keySearchNewEle.classList.add('dsp-none');
+          break;
+        }
+        default:
           break;
       }
     });

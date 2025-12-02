@@ -175,10 +175,10 @@ export default function decorate(block) {
   const searchFld = document.querySelector('#our-experts-search');
   let currentFocusIndex = -1;
   // const escapeRegExp = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-  const closeBtn = document.querySelector('.cross-icon-wrap');
+  const closeBtn = block.querySelector('.cross-icon-wrap');
 
   if (searchFld) {
-    const listContainer = document.querySelector('.search-results');
+    const listContainer = block.querySelector('.search-results');
 
     const updateActiveItem = (items) => {
       items.forEach((item, idx) => {
@@ -275,18 +275,19 @@ export default function decorate(block) {
         return;
       }
 
-      // const searchRegex = new RegExp(escapeRegExp(term), 'gi');
+      // Safely escape the search term for use in a RegExp
       let matchesFound = false;
+      const escaped = term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      const searchRegex = new RegExp(`(${escaped})`, 'gi');
 
       listItems.forEach((item) => {
-        const {
-          originalText,
-        } = item.dataset;
+        const { originalText } = item.dataset;
         const match = originalText.toLowerCase().includes(term.toLowerCase());
         if (match) {
           matchesFound = true;
-          const highlightedText = originalText;
+          const highlightedText = originalText.replace(searchRegex, '<strong>$1</strong>');
           item.querySelector('.list').innerHTML = highlightedText;
+          item.style.display = 'list-item';
         } else {
           item.style.display = 'none';
         }
@@ -337,30 +338,34 @@ export default function decorate(block) {
       };
 
       switch (event.key) {
-        case 'ArrowDown':
+        case 'ArrowDown': {
           event.preventDefault();
-          currentFocusIndex = (currentFocusIndex + 1) % visibleItems().length;
-          updateActiveItem(visibleItems());
+          const vItems = visibleItems();
+          if (vItems.length === 0) break;
+          currentFocusIndex = (currentFocusIndex + 1) % vItems.length;
+          updateActiveItem(vItems);
           break;
-        case 'ArrowUp':
+        }
+        case 'ArrowUp': {
           event.preventDefault();
-          currentFocusIndex = ((currentFocusIndex - 1 + visibleItems().length)
-            % visibleItems().length);
-          updateActiveItem(visibleItems());
+          const vItemsUp = visibleItems();
+          if (vItemsUp.length === 0) break;
+          currentFocusIndex = ((currentFocusIndex - 1 + vItemsUp.length) % vItemsUp.length);
+          updateActiveItem(vItemsUp);
           break;
-        case 'Enter':
-          if (visibleItems().length === 0) return false;
-
-          if (currentFocusIndex < 0 || currentFocusIndex >= visibleItems().length) {
-            searchFld.value = visibleItems()[0].textContent.trim();
-            window.location.href = visibleItems()[0].getAttribute('href');
-          } else {
-            searchFld.value = visibleItems()[currentFocusIndex].textContent.trim();
-            window.location.href = visibleItems()[currentFocusIndex].getAttribute('href');
-          }
-
+        }
+        case 'Enter': {
+          event.preventDefault();
+          const vItemsEnter = visibleItems();
+          if (vItemsEnter.length === 0) return false;
+          const idx = (currentFocusIndex < 0 || currentFocusIndex >= vItemsEnter.length) ? 0 : currentFocusIndex;
+          const selected = vItemsEnter[idx];
+          // Populate input with the selected item's text but do NOT redirect
+          searchFld.value = selected.textContent.trim();
+          closeBtn.style.display = 'block';
           listContainer.classList.add('dsp-none');
           break;
+        }
         default:
           break;
       }
