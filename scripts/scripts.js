@@ -657,6 +657,12 @@ if (chooseUs != null) {
     'choose-us-img',
   ];
   dataMapMoObj.addIndexed(chooseUs);
+  Array.from(chooseUs.querySelectorAll('img')).forEach((ele, index) => {
+    if (index === 0) {
+        ele.setAttribute("fetchpriority", "high");
+    }
+});
+
 }
 
 const chooseusCard = document.querySelector('.why-choose-card');
