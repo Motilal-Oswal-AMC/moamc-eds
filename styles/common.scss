@@ -1875,6 +1875,7 @@ main.nfo-nav {
                 line-height: var(--sub-header-medium-line-height);
                 width: 100%;
                 list-style: none;
+                margin-bottom: 12px;
 
                 @media screen and (width > 768px) {
                   max-width: 712px;
@@ -2342,30 +2343,30 @@ main.nfo-nav {
   }
 }
 
-.skin-in-the-game-wrapper {
-  margin: 72px 16px;
-  padding: 0;
+// .skin-in-the-game-wrapper {
+//   margin: 72px 16px;
+//   padding: 0;
 
-  @media screen and (width > 768px) {
-    margin: 80px 67px;
-  }
+//   @media screen and (width > 768px) {
+//     margin: 80px 67px;
+//   }
 
-  .promise-qglp {
-    padding: 0;
-    margin: 0;
+//   .promise-qglp {
+//     padding: 0;
+//     margin: 0;
 
-    .promise-qglp-wrapper {
-      .promise-qglp-ctn3 {
-        line-height: 24px;
-        width: 100%;
-        max-width: 360px;
+//     .promise-qglp-wrapper {
+//       .promise-qglp-ctn3 {
+//         line-height: 24px;
+//         width: 100%;
+//         max-width: 360px;
 
-        @media screen and (width > 768px) {
-          max-width: 532px;
-        }
-      }
-    }
-  }
-}
+//         @media screen and (width > 768px) {
+//           max-width: 532px;
+//         }
+//       }
+//     }
+//   }
+// }
 
 // Skin in the game static end
