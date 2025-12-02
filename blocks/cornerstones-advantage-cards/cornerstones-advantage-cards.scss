@@ -182,3 +182,14 @@
     }
   }
 }
+
+.section.cornerstones-elss-fund {
+  .cornerstones-advantage-cards-wrapper {
+    .cornerstones-advantage-cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      justify-content: space-between;
+    }
+  }
+}

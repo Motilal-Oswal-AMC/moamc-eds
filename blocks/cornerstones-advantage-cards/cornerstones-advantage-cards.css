@@ -185,4 +185,11 @@
     font-size: var(--text-link-small-size);
     line-height: var(--text-link-small-line-height);
   }
+}
+
+.section.cornerstones-elss-fund .cornerstones-advantage-cards-wrapper .cornerstones-advantage-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: space-between;
 }/*# sourceMappingURL=cornerstones-advantage-cards.css.map */
