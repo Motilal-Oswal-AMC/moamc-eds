@@ -2027,27 +2027,27 @@
       {
         "component": "reference",
         "valueType": "string",
-        "name": "col1_image2",
+        "name": "col2_image2",
         "label": "Image for Mobile",
         "multi": false
       },
       {
         "component": "text",
         "valueType": "string",
-        "name": "col1_image2Alt",
+        "name": "col2_image2Alt",
         "label": "Alt for mobile",
         "value": ""
       },
       {
         "component": "richtext",
-        "name": "col2_text",
+        "name": "col3_text",
         "value": "",
         "label": "Text",
         "valueType": "string"
       },
        {
         "component": "text",
-        "name": "col2_id",
+        "name": "col3_id",
         "label": "Enter Block Id"
       }
     ]
