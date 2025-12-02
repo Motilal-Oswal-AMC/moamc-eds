@@ -181,9 +181,12 @@ export default function decorate(block) {
     const keyInvestSearchWrap = keyInvestSection.querySelector('.default-content-wrapper');
     if (keyInvestSection.classList.contains('key-investing')) {
       const keyInvestSearch = div(
-        { class: 'keyinvest-search' },
-        input({ class: 'keyinvest-inp', id: 'keyinvest' }),
-        label({ class: 'keyinvest-label', for: 'keyinvest' }, 'Search here'),
+        { class: 'keyinvest-wrap' },
+        div(
+          { class: 'keyinvest-search' },
+          input({ class: 'keyinvest-inp', id: 'keyinvest' }),
+          label({ class: 'keyinvest-label', for: 'keyinvest' }, 'Search here'),
+        ),
       );
       keyInvestSearchWrap.append(keyInvestSearch);
     }
