@@ -2267,4 +2267,18 @@ main.nfo-nav .section.decoding-qglp-container.decoding-qglp-static .decoding-qgl
   font-weight: 400;
   line-height: 20px;
   /* 142.857% */
+}
+
+.section.sebi-blog {
+  margin: unset;
+  padding-bottom: 80px;
+}
+.section.sebi-blog .sebi-blog-contain1 .sebi-blog-txt1 {
+  margin: unset;
+  color: var(--neutrals-700);
+  font-family: var(--Body, Inter);
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px;
 }/*# sourceMappingURL=common.css.map */

@@ -701,6 +701,10 @@
           {
             "name": "Investor Listing Our Expert",
             "value": "listing-our-expert"
+          },
+          {
+            "name": "Investor term blog",
+            "value": "investor-term-blog"
           }
         ]
       },
