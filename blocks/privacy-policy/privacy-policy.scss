@@ -2,53 +2,121 @@
 @use "../../styles/common-theme/css/variables_mixins" as *;
 @use "../../styles/common-theme/css/fluid-typography" as *;
 
+
 .section.privacy-policy-banner {
+  padding: 40px 0 80px;
 
-  .pp-banner-block1 {
-    display: flex;
-    flex-direction: row-reverse;
-    gap: 97px;
-    border-radius: 15px;
-    background: linear-gradient(100deg, rgba(221, 219, 255, 0.00) 54.34%, #DDDBFF 102.92%);
+  @include media(mobile) {
+    padding: 20px 0 40px;
+  }
 
-    // max-height: 272px;
-    // height: 100%;
-    .pp-banner-img1 {
-      max-width: 527px;
-      width: 100%;
+  .pp-banner-wrap1 {
+    .pp-banner-block1 {
+      display: flex;
+      flex-direction: row-reverse;
+      gap: 97px;
+      border-radius: 15px;
+      background: linear-gradient(100deg, rgba(221, 219, 255, 0.00) 54.34%, #DDDBFF 102.92%);
 
-      .pp-banner-pictureinner4 {
-        display: flex;
+      // max-height: 272px;
+      // height: 100%;
+      .pp-banner-img1 {
+        max-width: 527px;
         width: 100%;
+
+        .pp-banner-pictureinner4 {
+          display: flex;
+          width: 100%;
+        }
+      }
+
+      .pp-banner-img2 {
+
+        .pp-banner-imginner1 {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+          min-width: 608px;
+          width: 100%;
+
+          .comlist {
+            margin: unset;
+
+            &.pp-banner-picture1 {
+              color: var(--blue-1-800-primary);
+              font-family: var(--title);
+              font-size: var(--heading-h4-size);
+              font-weight: 600;
+              line-height: var(--heading-h4-line-height);
+            }
+
+            &.pp-banner-picture2 {
+              color: var(--text-body-2);
+              font-family: var(--body);
+              font-size: var(--body-medium-regular-size);
+              font-weight: 400;
+              line-height: var(--body-medium-regular-line-height);
+            }
+          }
+        }
       }
     }
+  }
 
-    .pp-banner-img2 {
+  .fdp-campaign-wrapper {
+    .pp-banner-block1 {
+      display: flex;
+      flex-direction: row-reverse;
+      gap: 97px;
+      border-radius: 15px;
+      background: linear-gradient(100deg, rgba(221, 219, 255, 0) 54.34%, #DDDBFF 102.92%);
 
-      .pp-banner-imginner1 {
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-        min-width: 608px;
+      .pp-banner-img1 {
+        max-width: 527px;
         width: 100%;
 
-        .comlist {
-          margin: unset;
-
-          &.pp-banner-picture1 {
-            color: var(--blue-1-800-primary);
-            font-family: var(--title);
-            font-size: var(--heading-h4-size);
-            font-weight: 600;
-            line-height: var(--heading-h4-line-height);
+        .pp-banner-imginner1 {
+          .pp-banner-pictureinner4 {
+            display: flex;
+            width: 100%;
           }
+        }
+      }
 
-          &.pp-banner-picture2 {
-            color: var(--text-body-2);
-            font-family: var(--body);
-            font-size: var(--body-medium-regular-size);
-            font-weight: 400;
-            line-height: var(--body-medium-regular-line-height);
+      .pp-banner-img2 {
+        display: none;
+
+        @include media(mobile) {
+          display: block;
+        }
+      }
+
+      .pp-banner-img3 {
+        .pp-banner-imginner1 {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+          min-width: 608px;
+          width: 100%;
+
+          .comlist {
+            margin: unset;
+
+            &.pp-banner-picture1 {
+              color: var(--blue-1-800-primary);
+              font-family: var(--title);
+              font-size: var(--heading-h4-size);
+              font-weight: 600;
+              line-height: var(--heading-h4-line-height);
+            }
+
+            &.pp-banner-picture2 {
+              color: var(--text-body-2);
+              font-family: var(--body);
+              font-size: var(--body-medium-regular-size);
+              font-weight: 400;
+              line-height: var(--body-medium-regular-line-height);
+            }
           }
         }
       }
