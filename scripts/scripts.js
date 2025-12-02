@@ -665,6 +665,21 @@ if (skinmoamcComponent != null) {
   ];
   dataMapMoObj.addIndexed(skinmoamcComponent);
 }
+const skinstakeComponent = document.querySelector('.what-stake-component');
+if (skinstakeComponent != null) {
+  dataMapMoObj.CLASS_PREFIXES = [
+    'stake-component-wrap',
+    'stake-component-main-head',
+    'stake-component-title',
+    'stake-component-para',
+    'stake-component-para-one',
+    'stake-component-para-two',
+    'stake-component-img',
+    'stake-img-card-wrap',
+    'stake-img-card-wrap-img'
+  ];
+  dataMapMoObj.addIndexed(skinstakeComponent);
+}
 
 try {
   const whymattersComponent = document.querySelector('.why-matters-component');
