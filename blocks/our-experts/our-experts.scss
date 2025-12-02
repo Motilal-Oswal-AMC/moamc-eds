@@ -70,6 +70,7 @@
             &-cont2 {
                 max-width: 504px;
                 width: 100%;
+                position: relative;
 
                 .our-expert-section1 {
                     // max-width: 504px;
@@ -79,7 +80,6 @@
                     align-items: flex-start;
                     gap: 12px;
                     flex-shrink: 0;
-                    position: relative;
 
                     @include media(mobile) {
                         margin-right: -16px;
@@ -269,7 +269,8 @@
                         list-style: none;
 
                         @include media(mobile) {
-                            width: 95.3%;
+                            // width: 95.3%;
+                            width: 100%;
                         }
 
                         &::-webkit-scrollbar {
