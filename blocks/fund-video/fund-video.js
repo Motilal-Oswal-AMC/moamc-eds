@@ -42,5 +42,9 @@ export default function decorate(block) {
     const sebiBlog = block.closest('main').querySelector('.section.sebi-blog');
     dataMapMoObj.CLASS_PREFIXES = ['sebi-blog-contain', 'sebi-blog-txt', 'sebi-blog-subtxt'];
     dataMapMoObj.addIndexed(sebiBlog);
+
+    const elssStockTable = block.closest('main').querySelector('.section.elss-stock-table');
+    dataMapMoObj.CLASS_PREFIXES = ['elss-stock-table-contain', 'elss-stock-table-txt', 'elss-stock-table-subtxt'];
+    dataMapMoObj.addIndexed(elssStockTable);
   }
 }
