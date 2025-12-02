@@ -20,7 +20,7 @@ import formBlock, { createForm } from '../blocks/form/form.js';
 // eslint-disable-next-line import/no-cycle
 import { initializeModalHandlers } from '../blocks/modal/modal.js';
 
-console.log('f1 code');
+// console.log('f1 code');
 
 /**
  * Moves all the attributes from a given elmenet to another given element.
@@ -299,8 +299,7 @@ export function wishlist() {
   const count = stars.length;
   const watchlistSpan = document.querySelector('.watchlisttext span');
   if (watchlistSpan) {
-    watchlistSpan.textContent = `My Watchlist (${
-      count < 10 ? '0' : ''
+    watchlistSpan.textContent = `My Watchlist (${count < 10 ? '0' : ''
     }${count})`;
   }
 }
@@ -658,6 +657,12 @@ if (chooseUs != null) {
     'choose-us-img',
   ];
   dataMapMoObj.addIndexed(chooseUs);
+  Array.from(chooseUs.querySelectorAll('img')).forEach((ele, index) => {
+    if (index === 0) {
+        ele.setAttribute("fetchpriority", "high");
+    }
+});
+
 }
 
 const chooseusCard = document.querySelector('.why-choose-card');
@@ -831,3 +836,28 @@ try {
 }
 
 // Skin the game static end
+
+// conclusion container start
+const conclusion = document.querySelector('.section.conclusion');
+if (conclusion != null) {
+  dataMapMoObj.CLASS_PREFIXES = [
+    'conclusion-main',
+    'conclusion-title',
+    'conclusion-para',
+    'conclusion-para-one',
+    'conclusion-para-two',
+  ];
+  dataMapMoObj.addIndexed(conclusion);
+}
+// conclusion container end
+
+// why-invest-minor section start
+const whyInvestminor = document.querySelector('.section.why-invest-minor');
+if (whyInvestminor != null) {
+  dataMapMoObj.CLASS_PREFIXES = [
+    'why-invest-minor-main',
+    'why-invest-minor-sub',
+    'why-invest-minor-inner',
+  ];
+  dataMapMoObj.addIndexed(whyInvestminor);
+}
