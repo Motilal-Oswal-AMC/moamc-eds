@@ -48,6 +48,9 @@ function initScrollToTop() {
 export default async function decorate(block) {
   const mainBlock = block.closest('body');
   const download = mainBlock.querySelector('main .download');
+  if (mainBlock.querySelector('header [data-id="wcs-header"]')) {
+    block.closest('footer').style.display = 'none';
+  }
   if (download != null) {
     dataMapMoObj.CLASS_PREFIXES = [
       'download-p',

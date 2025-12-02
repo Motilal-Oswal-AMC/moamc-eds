@@ -38,6 +38,34 @@
                 padding-top: 20px;
             }
 
+            .edge-filter-cont1 {
+                width: 66.24%;
+
+                .edge-filter-section1 {
+                    .edge-filter-sub1 {
+                        li {
+                            width: 49%;
+                        }
+                    }
+                }
+            }
+
+            .edge-filter-cont2 {
+                width: 32.47%;
+
+                .edge-filter-section1 {
+                    .edge-filter-sub1 {
+                        .filter-lists1 {
+                            border: none;
+                        }
+
+                        li {
+                           width: 100%;
+                        }
+                    }
+                }
+            }
+
             .edge-filter-cont1,
             .edge-filter-cont2 {
                 // @include media (mobile) {
@@ -45,7 +73,7 @@
                 // }
 
                 .edge-filter-sub1 {
-                    .filter-lists1 {
+                    .filter-lists1.comlist {
                         display: none;
 
                         @include media (mobile) {
@@ -75,15 +103,15 @@
                 }
             }
 
-            .edge-filter-cont2 {
-                // display: none;
+            // .edge-filter-cont2 {
+            //     // display: none;
 
-                .edge-filter-sub1 {
-                    .filter-lists1 {
-                        border: none;
-                    }
-                }
-            }
+            //     .edge-filter-sub1 {
+            //         .filter-lists1 {
+            //             border: none;
+            //         }
+            //     }
+            // }
 
             .edge-filter-sub1 {
                 display: flex;
@@ -93,7 +121,7 @@
                 padding: 0;
                 margin: 0;
 
-                >li {
+                >li.comlist {
                     position: relative;
 
                     p {
@@ -242,8 +270,8 @@
                     // justify-content: flex-end;
                     // gap: 4px;
                     // align-self: stretch;
-                    width: 400px;
-                    height: 40px;
+                    // width: 400px;
+                    // height: 40px;
                     align-items: center;
                     flex-shrink: 0;
                     border-radius: var(--border-radius-8, 8px);

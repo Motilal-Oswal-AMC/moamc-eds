@@ -33,18 +33,14 @@
         h6 {
             text-align: left;
             margin: 0;
-            margin-bottom: 40px;
-
-            // margin-bottom: -30px;
+            margin-bottom: 24px;
             color: #2E2A94;
-            font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
+            font-feature-settings: var(--font-features-default);
             font-family: var(--title);
             font-size: 24px;
             font-style: normal;
             font-weight: 600;
             line-height: 28px;
-
-            // padding: 2px 0;
 
             @include media(mobile) {
                 margin-bottom: 16px;
@@ -90,7 +86,7 @@
                     font-style: normal;
                     font-weight: 400;
                     line-height: var(--label-large-line-height);
-                    
+
                     @include media(mobile) {
                         line-height: 16px;
                         font-weight: 500;
@@ -132,19 +128,18 @@
 
     .default-content-wrapper:last-of-type {
         text-align: center;
-        padding: 40px 0 var(--spacing-40);
+        padding: 40px 0 0;
 
         @include media(mobile) {
             padding: 24px 0 0;
         }
 
-        > ul {
+        >ul {
             margin: 0;
             list-style: none;
             display: flex;
             width: 100%;
-
-            // padding: 16px 0;
+            padding: 16px 0;
             justify-content: center;
             align-items: center;
             gap: 16px;
@@ -162,12 +157,12 @@
                 gap: var(--spacing-8);
                 background: var(--button-primary-default);
                 border-radius: var(--border-radius-4);
-                
+
                 @include media(mobile) {
                     height: 40px;
                     border-radius: var(--border-radius-8);
                 }
-                
+
                 a {
                     border-radius: var(--border-radius-4);
                     padding: var(--spacing-12);
@@ -181,7 +176,7 @@
                     font-style: normal;
                     font-weight: 400;
                     line-height: var(--body-medium-regular-line-height);
-                    
+
                     @include media(mobile) {
                         border-radius: var(--border-radius-8);
                         padding: var(--spacing-10) var(--spacing-12);
@@ -224,7 +219,7 @@
         h6 {
             text-align: center;
             color: #2E2A94;
-            font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
+            font-feature-settings: var(--font-features-default);
             font-family: var(--title);
             font-size: var(--heading-h4-size, 32px);
             font-weight: 600;
@@ -274,6 +269,22 @@
                 }
             }
         }
+
+        .tabs-panel {
+            .button-container:nth-child(2) {
+                .moedge-building {
+                    >div {
+                        .moedge-build-sec3 {
+                            .moedge-build-inner-text2 {
+                                .button-container .button {
+                                    max-inline-size: 31ch;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 
     .learn-about.moedge-building-container {
@@ -288,7 +299,7 @@
         .tabpanel1 {
             .learn-about.moedge-building-container {
                 .moedge-building {
-                    > div {
+                    >div {
                         @include media(mobile) {
                             gap: 40px;
                         }
@@ -344,12 +355,17 @@
 
     .default-content-wrapper:first-of-type {
         padding: 0;
-        
+
         @include media(mobile) {
             padding: 0 16px;
         }
-        
-        h1,h2,h3,h4,h5,h6{
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
             padding: 2px 0;
         }
     }
@@ -376,7 +392,7 @@
                 right: 24px;
             }
 
-            @media screen and (width <= 1200px) {
+            @media screen and (width <=1200px) {
                 position: unset;
                 margin: 0 16px 40px;
             }
@@ -392,60 +408,60 @@
             }
 
             // .moedge-building {
-                // @include media(desktop-sm) {
-                //     flex-direction: unset;
-                //     flex-wrap: wrap;
-                //     justify-content: space-between;
-                //     gap: 16px;
-                // }
+            // @include media(desktop-sm) {
+            //     flex-direction: unset;
+            //     flex-wrap: wrap;
+            //     justify-content: space-between;
+            //     gap: 16px;
+            // }
 
-                // > .comlist {
-                    // @include media(desktop-sm) {
-                    //     max-width: 32.24%;
-                    //     flex: 0 0 32.24%;
-                    // }
+            // > .comlist {
+            // @include media(desktop-sm) {
+            //     max-width: 32.24%;
+            //     flex: 0 0 32.24%;
+            // }
 
-                    // @include media(tab) {
-                    //     max-width: 31.8%;
-                    //     flex: 0 0 31.8%;
-                    // }
+            // @include media(tab) {
+            //     max-width: 31.8%;
+            //     flex: 0 0 31.8%;
+            // }
 
-                    // @include media(mobile) {
-                    //     max-width: 100%;
-                    //     flex: 0 0 100%;
-                    // }
+            // @include media(mobile) {
+            //     max-width: 100%;
+            //     flex: 0 0 100%;
+            // }
 
-                    // .moedge-build-sec3 {
-                        // .moedge-build-inner-text {
-                            // &1 {
-                            //     .moedge-build-list {
-                            //         &1,
-                            //         &2 .comlist {
-                                        // @include media(mobile) {
-                                        //     font-size: var(--label-small-size);
-                                        //     line-height: var(--label-small-line-height);
-                                        // }
-                            //         }
-                            //     }
-                            // }
+            // .moedge-build-sec3 {
+            // .moedge-build-inner-text {
+            // &1 {
+            //     .moedge-build-list {
+            //         &1,
+            //         &2 .comlist {
+            // @include media(mobile) {
+            //     font-size: var(--label-small-size);
+            //     line-height: var(--label-small-line-height);
+            // }
+            //         }
+            //     }
+            // }
 
-                            // &2 {
-                            //     .button-container {
-                            //         .button {
-                            //             @include media(mobile){
-                            //                 font-size: var(--body-large-medium-size);
-                            //                 line-height: var(--body-large-medium-line-height);
-                            //             }
-                            //         }
-                            //     }
-                            // }
+            // &2 {
+            //     .button-container {
+            //         .button {
+            //             @include media(mobile){
+            //                 font-size: var(--body-large-medium-size);
+            //                 line-height: var(--body-large-medium-line-height);
+            //             }
+            //         }
+            //     }
+            // }
 
-                            // &3{
-                            //     background-color: red;
-                            // }
-                        // }
-                    // }
-                // }
+            // &3{
+            //     background-color: red;
+            // }
+            // }
+            // }
+            // }
             // }
         }
     }

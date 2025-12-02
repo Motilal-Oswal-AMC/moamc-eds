@@ -159,3 +159,61 @@
         }
     }
 }
+
+.how-to-invest.global-gateway-container {
+    width: 100%;
+
+    .global-gateway-wrapper {
+        .global-gateway {
+            .global-cont1 {
+                width: 49.5%;
+            }
+
+            .global-cont2 {
+                width: 49.5%;
+
+                .global-sec1 {
+                    display: block;
+                    width: inherit;
+                    height: inherit;
+                    padding: inherit;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: flex-start;
+                    gap: 16px;
+                    border-radius: unset;
+                    background: unset;
+                }
+            }
+        }
+    }
+}
+
+.pros-of-investing.global-gateway-container {
+    width: 100%;
+
+    .global-gateway-wrapper {
+        .global-gateway {
+            .global-cont1 {
+                width: 49.5%;
+            }
+
+            .global-cont2 {
+                width: 49.5%;
+
+                .global-sec1 {
+                    display: block;
+                    width: inherit;
+                    height: inherit;
+                    padding: inherit;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: flex-start;
+                    gap: 16px;
+                    border-radius: unset;
+                    background: unset;
+                }
+            }
+        }
+    }
+}

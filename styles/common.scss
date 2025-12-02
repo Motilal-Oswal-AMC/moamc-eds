@@ -305,14 +305,13 @@ main .section.wcs-landing.section.embed-container {
     .text1 {
       max-width: 504px;
       width: 100%;
-      margin-top: 0;
       color: var(--blue-1-800-primary);
       font-family: var(--title);
       font-size: var(--heading-h1-size);
       font-style: normal;
       font-weight: 600;
       line-height: var(--heading-h1-line-height);
-      margin-bottom: 12px;
+      margin: 0;
 
       @include media(mobile) {
         font-size: 28px;
@@ -321,6 +320,24 @@ main .section.wcs-landing.section.embed-container {
     }
 
     .text2 {
+      margin: 0;
+      padding: 12px 0;
+      color: var(--blue-1800-primary, #2E2A94);
+      font-feature-settings: var(--font-features-default);
+      font-family: var(--body, Inter);
+      font-size: var(--body-medium-medium-size, 16px);
+      font-style: normal;
+      font-weight: 500;
+      line-height: var(--body-medium-medium-line-height, 20px);
+
+      @include media (mobile) {
+        font-size: var(--body-small-medium-size, 14px);
+        line-height: var(--body-small-medium-line-height, 16px);
+      }
+    }
+
+    .text3 {
+      margin: 0;
       margin-top: 0;
       max-width: 504px;
       width: 100%;
@@ -337,8 +354,9 @@ main .section.wcs-landing.section.embed-container {
       }
     }
 
-    .text3 {
+    .text4 {
       padding: 0 4px 0 0;
+      margin: 0;
 
       @include media(mobile) {
         padding: 0 16px 0 20px;
@@ -351,6 +369,10 @@ main .section.wcs-landing.section.embed-container {
       }
 
       .cta1 {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
         color: var(--text-white);
         text-align: center;
         font-family: var(--body);
@@ -471,6 +493,7 @@ main>.section.previous-studies-tab.tabs-container {
       .tabs-panel {
         border: none;
         padding: unset;
+        overflow: unset;
 
         .prev-studies-wrapper.embed-container {
           .default-content-wrapper.annual-wealth-wrap1 {
@@ -596,7 +619,7 @@ main>.section.previous-studies-tab.tabs-container {
   display: flex;
   flex-direction: column;
   gap: 40px;
-  padding-bottom: 88px;
+  padding-bottom: 95px;
   padding-top: 64px;
 
   @include media(mobile) {
@@ -626,12 +649,12 @@ main>.section.previous-studies-tab.tabs-container {
 
   @include media(tab) {
     flex-direction: column;
-    gap: 0;
+    gap: 12px;
   }
 
   @include media(mobile) {
     flex-direction: column;
-    gap: 0;
+    gap: 12px;
   }
 
   .co-branding-wrapper {
@@ -643,7 +666,6 @@ main>.section.previous-studies-tab.tabs-container {
     }
 
     .comlist {
-      // background-color: red;
       p {
         &.awsubctn-innerchild1 {
           color: var(--neutrals-900);
@@ -852,8 +874,8 @@ main>.section.previous-studies-tab.tabs-container {
             cursor: pointer;
 
             @include media(mobile) {
-              // width: 98%;
-              justify-content: start;
+              justify-content: end;
+              margin-right: -26px;
             }
 
             p.comlist {
@@ -898,40 +920,73 @@ main>.section.previous-studies-tab.tabs-container {
 
             ul.comlist {
               position: absolute;
-              top: 21px;
-              margin: 9px 0 0;
-              left: 0;
+              top: 0;
+              margin: 0;
+              left: 70px;
               border-radius: 6px;
               border: 1px solid var(--neutrals-200);
               box-shadow: 0 0 14px 0 rgb(40 40 40 / 6%);
               width: 170px;
               background: var(--neutrals-white);
+              min-height: 126px;
               height: 100px;
-              overflow: auto;
               padding: 2px 6px;
+              scrollbar-width: auto;
+              scrollbar-color: transparent;
+              list-style: none;
+
+              // overflow: auto;
 
               @include media (mobile) {
-                bottom: 27px;
-                right: 3px;
+                bottom: 30px;
+                top: unset;
+                left: unset;
+                right: -65px;
                 width: 170px;
+                min-height: 132px;
                 height: 100px;
                 padding: 5px;
               }
 
+              // &::before {
+              //   content: "";
+              //   position: absolute;
+              //   left: -18px;
+              //   top: 13px;
+              //   width: 0;
+              //   height: 0;
+              //   border-left: 12px solid transparent;
+              //   border-right: 12px solid transparent;
+              //   border-top: 12px solid #fff;
+              //   filter: drop-shadow(0 2px 4px rgb(40 40 40 / 6%));
+              //   transform: rotate(90deg);
+
+              //   @include media (mobile) {
+              //     transform: translateX(-50%);
+              //     left: 50%;
+              //     bottom: -12px;
+              //   }
+              // }
+
               &::-webkit-scrollbar {
-                width: 3px;
+                width: 2px;
                 background-color: #464343;
               }
 
               &::-webkit-scrollbar-track {
-                width: 3px;
+                width: 2px;
                 background-color: $primary-white;
                 border-radius: 0 1px 1px 0;
               }
 
               &::-webkit-scrollbar-thumb {
-                width: 3px;
+                width: 2px;
                 background-color: #464343;
+                border-radius: 10px;
+
+                &:hover {
+                  background: #333;
+                }
               }
 
               li.comlist {
@@ -999,7 +1054,8 @@ main>.section.previous-studies-tab.tabs-container {
     }
 
     .embed-wrapper {
-      max-width: 530px;
+      // max-width: 530px;
+      max-width: 100%;
       width: 100%;
       height: 284px;
 
@@ -1008,9 +1064,8 @@ main>.section.previous-studies-tab.tabs-container {
       }
 
       @include media(mobile) {
-        // width: 100%;
+        width: 100%;
         height: 160px;
-        width: 340px;
         padding: 0;
       }
     }
@@ -1030,8 +1085,6 @@ main>.section.previous-studies-tab.tabs-container {
         font-style: normal;
         font-weight: 600;
         line-height: var(--body-medium-semibold-line-height);
-
-        // margin-bottom: 4px;
         margin-top: 12px;
         padding-top: unset;
       }
@@ -1066,9 +1119,6 @@ main>.section.previous-studies-tab.tabs-container {
       font-style: normal;
       font-weight: 600;
       line-height: var(--body-medium-semibold-line-height);
-
-      // margin-top: 12px;
-      // margin-bottom: 4px;
       margin: 0;
       border-radius: 8px;
       background-color: #2c2a96;
@@ -1084,7 +1134,8 @@ main>.section.previous-studies-tab.tabs-container {
 
           @include media (mobile) {
             height: inherit;
-            margin-top: 1px;
+            margin-top: 1.5px;
+            width: 100%;
           }
         }
 
@@ -1138,6 +1189,12 @@ main>.section.previous-studies-tab.tabs-container {
               }
 
               picture.comlist {
+                @include media(mobile) {
+                  line-height: 0;
+                  display: block;
+                  height: 100%;
+                }
+
                 img.picture-child4 {
                   width: 530px;
                   height: 286px;
@@ -1146,9 +1203,11 @@ main>.section.previous-studies-tab.tabs-container {
 
                   @include media(mobile) {
                     &:last-child {
-                      height: 100%;
-                      margin-top: -2px;
+                      height: 102%;
+                      margin-top: -3px;
                       object-fit: fill;
+                      border-radius: 8px;
+                      width: 100%;
                     }
                   }
                 }
@@ -1173,7 +1232,7 @@ main>.section.previous-studies-tab.tabs-container {
 
 @media only screen and (width <=767px) {
   .previous-studies-tab:has(.prev-studies-wrapper.embed-container) li:has(> ul[style*="display: block"]) {
-    padding-bottom: 120px
+    padding-bottom: 0;
   }
 
 }
@@ -1206,6 +1265,8 @@ main>.section.previous-studies-tab.tabs-container {
       padding: 0 16px;
       overflow-x: auto;
       margin-right: 25px;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
     }
 
     &::-webkit-scrollbar {

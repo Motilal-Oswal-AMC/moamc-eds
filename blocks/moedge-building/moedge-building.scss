@@ -1,13 +1,17 @@
 @use "sass:map";
-@use "../../styles/common-theme/css/variables_mixins" as *;
-@use "../../styles/common-theme/css/fluid-typography" as *;
+@use "../../styles/common-theme/css/variables_mixins"as *;
+@use "../../styles/common-theme/css/fluid-typography"as *;
 
 .moedge-building {
     display: flex;
     flex-direction: column;
     gap: 16px;
 
-    & > div {
+    @include media (mobile) {
+        gap: 0;
+    }
+
+    &>div {
         display: flex;
         flex-direction: column;
         gap: var(--spacing-24);
@@ -38,7 +42,7 @@
                 // @include media (mobile) {
                 // }
 
-                @media screen and (width <= 390px) {
+                @media screen and (width <=390px) {
                     height: 188px;
                 }
             }
@@ -54,7 +58,7 @@
             flex-direction: column;
             flex-grow: 1;
 
-            > .moedge-build-sub1 {
+            >.moedge-build-sub1 {
                 list-style: none;
                 padding: 0;
                 margin: 0;
@@ -75,7 +79,7 @@
                 font-size: 0.875rem;
                 margin-bottom: 24px;
 
-                > .moedge-build-list1 {
+                >.moedge-build-list1 {
                     margin: 0;
                     min-width: 74px;
                     display: flex;
@@ -104,7 +108,7 @@
                     }
                 }
 
-                > .moedge-build-list2 {
+                >.moedge-build-list2 {
                     display: contents;
                     list-style: none;
                     padding: 0;
@@ -147,7 +151,7 @@
                     }
                 }
 
-                .moedge-build-list2 > li:first-child::before {
+                .moedge-build-list2>li:first-child::before {
                     display: none;
                 }
             }
@@ -175,7 +179,7 @@
                         margin: 0;
                         padding: 0;
                         text-align: left;
-                        word-break: auto-phrase;
+                        word-break: inherit;
                         white-space: unset;
                         overflow: unset;
 
@@ -213,7 +217,7 @@
             .moedge-build-inner-text4 {
                 margin: 0;
                 line-height: 0;
-                
+
                 p {
                     margin: 0;
                     line-height: 0;
@@ -342,9 +346,9 @@
             line-height: 18px;
         }
 
-        &[data-id='listing-article-cards']{
-            .pagination-wrapper{
-                @include media(mobile){
+        &[data-id='listing-article-cards'] {
+            .pagination-wrapper {
+                @include media(mobile) {
                     padding: 5px 0;
                     margin: 16px auto var(--spacing-80);
                 }
@@ -458,7 +462,7 @@
         }
     }
 
-    .moedge-building > div {
+    .moedge-building>div {
         max-width: 32.468%;
         flex: 0 0 32.468%;
 
@@ -496,7 +500,7 @@
 
         .moedge-build-sec3 {
             .moedge-build-inner-text1 {
-                > .moedge-build-list1 {
+                >.moedge-build-list1 {
                     padding: 0 var(--spacing-12);
                     min-width: 86px;
                     gap: 4px;
@@ -515,13 +519,13 @@
                 }
             }
 
-            > .moedge-build-sub1 {
+            >.moedge-build-sub1 {
                 padding-bottom: var(--spacing-24);
             }
         }
     }
 
-    .learn-about.moedge-building > div {
+    .learn-about.moedge-building>div {
         max-width: 100%;
         flex: 100%;
     }
@@ -571,7 +575,7 @@
     }
 
     .moedge-building {
-        & > div {
+        &>div {
             flex-direction: column;
 
             @include media(mobile) {
@@ -605,7 +609,7 @@
     .learn-about.moedge-building-container {
         margin-bottom: 40px;
 
-        .moedge-building > div {
+        .moedge-building>div {
             max-width: 100%;
             flex: 0 0 100%;
             gap: 16px;
@@ -662,7 +666,7 @@
             display: none;
         }
 
-        & > div {
+        &>div {
             gap: 0;
 
             .moedge-build-sec1 {
@@ -767,7 +771,7 @@
             padding-bottom: 0;
         }
 
-        > div .moedge-build-sec3 {
+        >div .moedge-build-sec3 {
             .moedge-build-inner-text1 {
                 display: none;
             }
@@ -807,14 +811,14 @@
             display: none;
         }
 
-        > div .moedge-build-sec3 {
-            > .moedge-build-sub1 {
+        >div .moedge-build-sec3 {
+            >.moedge-build-sub1 {
                 padding-bottom: 24px;
             }
         }
     }
 
-    > div.default-content-wrapper {
+    >div.default-content-wrapper {
         @include media(mobile) {
             padding-top: 0;
         }
@@ -826,8 +830,6 @@
 
     @include media(mobile) {
         padding-top: 16px;
-
-        // margin-top: 0;
     }
 
     p.comlist,
@@ -837,7 +839,7 @@
         line-height: 10px;
     }
 
-    > div.default-content-wrapper:nth-child(2) {
+    >div.default-content-wrapper:nth-child(2) {
         padding-top: 40px;
 
         @include media(mobile) {
@@ -914,7 +916,7 @@
     .default-content-wrapper:last-of-type {
         @include media(mobile) {
             padding: 0;
-            padding: 48px 0 0;
+            padding: 24px 0 0;
         }
 
         ul:first-child {
@@ -935,7 +937,7 @@
     margin-top: 0;
 
     .moedge-building {
-        > div {
+        >div {
             @include media(mobile) {
                 gap: 24px;
             }
@@ -944,6 +946,10 @@
 }
 
 .popular-artical.moedge-list.moedge-building-container {
+    @include media(mobile) {
+        padding: 0;
+    }
+
     .moedge-building-wrapper {
         .moedge-building {
             row-gap: 40px;

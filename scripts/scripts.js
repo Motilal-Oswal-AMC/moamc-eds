@@ -1,7 +1,5 @@
 // eslint-disable-next-line
-import {
-  loadEmbed,
-} from '../blocks/embed/embed.js';
+import { loadEmbed } from "../blocks/embed/embed.js";
 import {
   loadHeader,
   loadFooter,
@@ -17,14 +15,12 @@ import {
 } from './aem.js';
 
 import dataMapMoObj from './constant.js';
-import formBlock, {
-  createForm,
-} from '../blocks/form/form.js';
+import formBlock, { createForm } from '../blocks/form/form.js';
 
 // eslint-disable-next-line import/no-cycle
-import {
-  initializeModalHandlers,
-} from '../blocks/modal/modal.js';
+import { initializeModalHandlers } from '../blocks/modal/modal.js';
+
+console.log('f1 code');
 
 /**
  * Moves all the attributes from a given elmenet to another given element.
@@ -45,9 +41,7 @@ function wrapImgsInLinks(container) {
 export function moveAttributes(from, to, attributes) {
   let attrs = attributes;
   if (!attrs) {
-    attrs = [...from.attributes].map(({
-      nodeName,
-    }) => nodeName);
+    attrs = [...from.attributes].map(({ nodeName }) => nodeName);
   }
   attrs.forEach((attr) => {
     const value = from.getAttribute(attr);
@@ -63,9 +57,7 @@ export function moveInstrumentation(from, to) {
     from,
     to,
     [...from.attributes]
-      .map(({
-        nodeName,
-      }) => nodeName)
+      .map(({ nodeName }) => nodeName)
       .filter(
         (attr) => attr.startsWith('data-aue-') || attr.startsWith('data-richtext-'),
       ),
@@ -148,7 +140,10 @@ export async function loadFragment(path) {
 
       const resetAttributeBase = (tag, attr) => {
         main.querySelectorAll(`${tag}[${attr}^="./media_"]`).forEach((elem) => {
-          elem[attr] = new URL(elem.getAttribute(attr), new URL(cleanPath, window.location)).href;
+          elem[attr] = new URL(
+            elem.getAttribute(attr),
+            new URL(cleanPath, window.location),
+          ).href;
         });
       };
       resetAttributeBase('img', 'src');
@@ -187,7 +182,11 @@ function decorateAutoBlock(element) {
       div.append(origin);
       parent.append(div);
       decorateFragment(div);
-    } else if (origin && origin.href && origin.href.includes('/www.youtube.com/')) {
+    } else if (
+      origin
+      && origin.href
+      && origin.href.includes('/www.youtube.com/')
+    ) {
       loadEmbed(origin, origin.href);
     }
   });
@@ -201,6 +200,7 @@ async function loadEager(doc) {
     decorateMain(main);
     buildAutoBlocks(main);
     decorateAutoBlock(doc);
+    await loadHeader(doc.querySelector('header'));
     document.body.classList.add('appear');
     await loadSection(main.querySelector('.section'), waitForFirstImage);
   }
@@ -216,7 +216,22 @@ async function loadEager(doc) {
 async function loadLazy(doc) {
   autolinkVideo(doc);
   const main = doc.querySelector('main');
-  if (window.location.href.includes('/investor-education/all-articles/') || window.location.href.includes('/motilal-oswal-edge/article-details') || window.location.href.includes('/motilal-oswal-edge/mo-edge-article-image') || window.location.href.includes('/motilal-oswal-edge/mo-edge-article-details-d') || window.location.href.includes('/motilal-oswal-edge/mo-edge-article-details-image') || window.location.href.includes('/motilal-oswal-edge/mo-edge-article-details-video')) {
+  if (
+    window.location.href.includes('/investor-education/all-articles/')
+    || window.location.href.includes('/motilal-oswal-edge/article-details')
+    || window.location.href.includes(
+      '/motilal-oswal-edge/mo-edge-article-image',
+    )
+    || window.location.href.includes(
+      '/motilal-oswal-edge/mo-edge-article-details-d',
+    )
+    || window.location.href.includes(
+      '/motilal-oswal-edge/mo-edge-article-details-image',
+    )
+    || window.location.href.includes(
+      '/motilal-oswal-edge/mo-edge-article-details-video',
+    )
+  ) {
     const maindiv = main.querySelector('.main-wrapper');
     // maindiv.classList.add('main-wrapper');
     maindiv.append(main.querySelector('.article-left-wrapper'));
@@ -228,13 +243,10 @@ async function loadLazy(doc) {
   dataMapMoObj.article();
   // dataMapMoObj.qglpwcs();
 
-  const {
-    hash,
-  } = window.location;
+  const { hash } = window.location;
   const element = hash ? doc.getElementById(hash.substring(1)) : false;
   if (hash && element) element.scrollIntoView();
 
-  loadHeader(doc.querySelector('header'));
   loadFooter(doc.querySelector('footer'));
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
@@ -287,7 +299,9 @@ export function wishlist() {
   const count = stars.length;
   const watchlistSpan = document.querySelector('.watchlisttext span');
   if (watchlistSpan) {
-    watchlistSpan.textContent = `My Watchlist (${count < 10 ? '0' : ''}${count})`;
+    watchlistSpan.textContent = `My Watchlist (${
+      count < 10 ? '0' : ''
+    }${count})`;
   }
 }
 
@@ -380,9 +394,11 @@ const initComponent = (selector, prefixes) => {
     dataMapMoObj.addIndexed(el);
   }
   if (document.querySelector('.quicksubactmain2') !== null) {
-    Array.from(document.querySelector('.quicksubactmain2').children).forEach((elmain) => {
-      elmain.classList.add('quicksubactlist');
-    });
+    Array.from(document.querySelector('.quicksubactmain2').children).forEach(
+      (elmain) => {
+        elmain.classList.add('quicksubactlist');
+      },
+    );
   }
 };
 
@@ -400,13 +416,21 @@ async function loadPage() {
 loadPage();
 
 initComponent('.quick-actions', [
-  'quckactmain', 'quckactmain-sub', 'quckactmain-sub-wrp',
-  'quicksubactmain', 'quicksubinnactmain', 'quckaqweactmain',
+  'quckactmain',
+  'quckactmain-sub',
+  'quckactmain-sub-wrp',
+  'quicksubactmain',
+  'quicksubinnactmain',
+  'quckaqweactmain',
 ]);
 
 initComponent('.welcome-component', [
-  'welcomemain', 'welcomemain-sub', 'welcomemain-sub-wrp',
-  'welcomeactmain', 'welcomeinnactmain', 'welcomeaqweactmain',
+  'welcomemain',
+  'welcomemain-sub',
+  'welcomemain-sub-wrp',
+  'welcomeactmain',
+  'welcomeinnactmain',
+  'welcomeaqweactmain',
 ]);
 
 export async function decorateForm(block) {
@@ -462,24 +486,29 @@ if (glpDecoding != null) {
 
 const tabLinks = document.querySelectorAll('.table-wrapper');
 
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) {
-      Array.from(document.querySelectorAll('.fdp-tab .comlist')).forEach((el) => {
-        const b = el.querySelector('a').getAttribute('href');
-        if (entry.target.getAttribute('data-id') === b) {
-          el.children[0].classList.add('active');
-        } else {
-          el.children[0].classList.remove('active');
-        }
-      });
-    }
-  });
-}, {
-  root: null, // viewport
-  threshold: 0, // trigger when 0.3 30% of the section is visible
-  rootMargin: '0px 0px -40% 0px', // triggers a bit earlier
-});
+const observer = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        Array.from(document.querySelectorAll('.fdp-tab .comlist')).forEach(
+          (el) => {
+            const b = el.querySelector('a').getAttribute('href');
+            if (entry.target.getAttribute('data-id') === b) {
+              el.children[0].classList.add('active');
+            } else {
+              el.children[0].classList.remove('active');
+            }
+          },
+        );
+      }
+    });
+  },
+  {
+    root: null, // viewport
+    threshold: 0, // trigger when 0.3 30% of the section is visible
+    rootMargin: '0px 0px -40% 0px', // triggers a bit earlier
+  },
+);
 
 tabLinks.forEach((section) => observer.observe(section));
 
@@ -502,7 +531,22 @@ if (calculatorsCard != null) {
 // // article
 function articleStructure() {
   // Investor Education article left and right wrapper
-  if (window.location.href.includes('/investor-education/all-articles/') || window.location.href.includes('/motilal-oswal-edge/article-details') || window.location.href.includes('/motilal-oswal-edge/mo-edge-article-image') || window.location.href.includes('/motilal-oswal-edge/mo-edge-article-details-d') || window.location.href.includes('/motilal-oswal-edge/mo-edge-article-details-image') || window.location.href.includes('/motilal-oswal-edge/mo-edge-article-details-video')) {
+  if (
+    window.location.href.includes('/investor-education/all-articles/')
+    || window.location.href.includes('/motilal-oswal-edge/article-details')
+    || window.location.href.includes(
+      '/motilal-oswal-edge/mo-edge-article-image',
+    )
+    || window.location.href.includes(
+      '/motilal-oswal-edge/mo-edge-article-details-d',
+    )
+    || window.location.href.includes(
+      '/motilal-oswal-edge/mo-edge-article-details-image',
+    )
+    || window.location.href.includes(
+      '/motilal-oswal-edge/mo-edge-article-details-video',
+    )
+  ) {
     const maincloser = document.querySelector('main');
     const rightSub = maincloser.querySelectorAll('.article-sub-right');
     const rightarticle = maincloser.querySelector('.article-right-wrapper');
@@ -516,40 +560,85 @@ function articleStructure() {
     });
 
     Array.from(leftSub).forEach((subleft) => {
-      dataMapMoObj.CLASS_PREFIXES = ['investarticle-leftmain', 'investarticle-leftsub', 'investarticle-leftinner', 'investsub-leftarticle', 'investleft-subinner', 'investleft-articleitem', 'investleft-itemchild', 'investleft-subchild'];
+      dataMapMoObj.CLASS_PREFIXES = [
+        'investarticle-leftmain',
+        'investarticle-leftsub',
+        'investarticle-leftinner',
+        'investsub-leftarticle',
+        'investleft-subinner',
+        'investleft-articleitem',
+        'investleft-itemchild',
+        'investleft-subchild',
+      ];
       dataMapMoObj.addIndexed(subleft);
     });
 
     Array.from(rightSub).forEach((subright) => {
-      dataMapMoObj.CLASS_PREFIXES = ['investarticle-rightmain', 'investarticle-rightsub', 'investarticle-rightinner', 'investsub-rightarticle', 'investright-subinner', 'investright-articleitem', 'investright-itemchild', 'investright-subchild'];
+      dataMapMoObj.CLASS_PREFIXES = [
+        'investarticle-rightmain',
+        'investarticle-rightsub',
+        'investarticle-rightinner',
+        'investsub-rightarticle',
+        'investright-subinner',
+        'investright-articleitem',
+        'investright-itemchild',
+        'investright-subchild',
+      ];
       dataMapMoObj.addIndexed(subright);
     });
 
     if (maincloser.querySelector('.moedge-article-details')) {
-      dataMapMoObj.CLASS_PREFIXES = ['articlemain', 'articlesub', 'articleitem',
-        'subarticle', 'mainarticle', 'itemarticle', 'itemsubart',
-        'mainitemart', 'itemmainart', 'submainart'];
+      dataMapMoObj.CLASS_PREFIXES = [
+        'articlemain',
+        'articlesub',
+        'articleitem',
+        'subarticle',
+        'mainarticle',
+        'itemarticle',
+        'itemsubart',
+        'mainitemart',
+        'itemmainart',
+        'submainart',
+      ];
       dataMapMoObj.addIndexed(
         maincloser.querySelector('.moedge-article-details'),
       );
 
       const mainleft = maincloser.querySelector('.article-left-wrapper');
-      dataMapMoObj.CLASS_PREFIXES = ['leftartmain', 'leftartsub', 'leftartitem',
-        'subleftart', 'mainleftart', 'itemleftart', 'itemleftart',
-        'mainitemleftart', 'itemmainleftart', 'submainleftart'];
-      dataMapMoObj.addIndexed(
-        mainleft,
-      );
+      dataMapMoObj.CLASS_PREFIXES = [
+        'leftartmain',
+        'leftartsub',
+        'leftartitem',
+        'subleftart',
+        'mainleftart',
+        'itemleftart',
+        'itemleftart',
+        'mainitemleftart',
+        'itemmainleftart',
+        'submainleftart',
+      ];
+      dataMapMoObj.addIndexed(mainleft);
     }
-    const formpath = maincloser.querySelector('.article-right-wrapper .subscribe-email');
-    const formdiv = formpath
-      .querySelector('.subscribe-email .button-container');
+    const formpath = maincloser.querySelector(
+      '.article-right-wrapper .subscribe-email',
+    );
+    const formdiv = formpath.querySelector(
+      '.subscribe-email .button-container',
+    );
     formBlock(formdiv);
 
-    const mainArticle1 = maincloser.querySelector('.moedge-article-video .mainarticle1');
-    const mainArticle2 = maincloser.querySelector('.moedge-article-video .mainarticle2');
+    const mainArticle1 = maincloser.querySelector(
+      '.moedge-article-video .mainarticle1',
+    );
+    const mainArticle2 = maincloser.querySelector(
+      '.moedge-article-video .mainarticle2',
+    );
 
-    if (mainArticle1 && mainArticle2 && mainArticle1.parentNode === mainArticle2.parentNode) {
+    if (
+      mainArticle1
+      && mainArticle2
+      && mainArticle1.parentNode === mainArticle2.parentNode
+    ) {
       const parent = mainArticle1.parentNode;
       const wrapperDiv = document.createElement('div');
       wrapperDiv.classList.add('articles-wrapper');
@@ -573,33 +662,55 @@ if (chooseUs != null) {
 
 const chooseusCard = document.querySelector('.why-choose-card');
 if (chooseusCard != null) {
-  dataMapMoObj.CLASS_PREFIXES = [
-    'card-image',
-    'card-title',
-    'card-subtitle',
-  ];
+  dataMapMoObj.CLASS_PREFIXES = ['card-image', 'card-title', 'card-subtitle'];
   dataMapMoObj.addIndexed(chooseusCard);
 }
 
 // qglp static class appending
 const qglpStaticComponent = document.querySelector('.qglp-static-component');
 if (qglpStaticComponent != null) {
-  dataMapMoObj.CLASS_PREFIXES = ['qglp-static-ctn', 'qglp-static-ext', 'qglp-static-int', 'qglp-static-wrp', 'qglp-static-box', 'qglp-static-ls-ul', 'qglp-static-ls-li'];
+  dataMapMoObj.CLASS_PREFIXES = [
+    'qglp-static-ctn',
+    'qglp-static-ext',
+    'qglp-static-int',
+    'qglp-static-wrp',
+    'qglp-static-box',
+    'qglp-static-ls-ul',
+    'qglp-static-ls-li',
+  ];
   dataMapMoObj.addIndexed(qglpStaticComponent);
 }
 
 // why qglp componet  start
-const whyQGLPComponent = document.querySelector('.why-qglp .default-content-wrapper');
+const whyQGLPComponent = document.querySelector(
+  '.why-qglp .default-content-wrapper',
+);
 if (whyQGLPComponent != null) {
-  dataMapMoObj.CLASS_PREFIXES = ['why-qglp-ctn', 'why-qglp-ext', 'why-qglp-int', 'why-qglp-wrp', 'why-qglp-box', 'why-qglp-ls-ul', 'why-qglp-ls-li'];
+  dataMapMoObj.CLASS_PREFIXES = [
+    'why-qglp-ctn',
+    'why-qglp-ext',
+    'why-qglp-int',
+    'why-qglp-wrp',
+    'why-qglp-box',
+    'why-qglp-ls-ul',
+    'why-qglp-ls-li',
+  ];
   dataMapMoObj.addIndexed(whyQGLPComponent);
 }
 // why qglp componet end
 
 // why qglp componet  start
-const promiseQGLP = document.querySelector('.promise-qglp .default-content-wrapper');
+const promiseQGLP = document.querySelector(
+  '.promise-qglp .default-content-wrapper',
+);
 if (promiseQGLP != null) {
-  dataMapMoObj.CLASS_PREFIXES = ['promise-qglp-ctn', 'promise-qglp-ext', 'promise-qglp-int', 'promise-qglp-wrp', 'promise-qglp-box'];
+  dataMapMoObj.CLASS_PREFIXES = [
+    'promise-qglp-ctn',
+    'promise-qglp-ext',
+    'promise-qglp-int',
+    'promise-qglp-wrp',
+    'promise-qglp-box',
+  ];
   dataMapMoObj.addIndexed(promiseQGLP);
 }
 // why qglp componet end
@@ -614,7 +725,9 @@ if (whyQGLPWrp) {
 // why qglp css lent end
 
 // promise qglp css lent start
-const promiseQGLPWrp = document.querySelector('.promise-qglp .default-content-wrapper');
+const promiseQGLPWrp = document.querySelector(
+  '.promise-qglp .default-content-wrapper',
+);
 
 if (promiseQGLPWrp) {
   promiseQGLPWrp.classList.add('promise-qglp-wrapper');
@@ -646,7 +759,6 @@ if (highimageComponent != null) {
     'high-skin-component-ctn',
     'high-skin-component-external',
     'high-skin-component-internal',
-
   ];
   dataMapMoObj.addIndexed(highimageComponent);
 }
@@ -661,9 +773,17 @@ if (skinmoamcComponent != null) {
     'moamc-component-para-one',
     'moamc-component-para-two',
     'moamc-component-para-three',
-
   ];
   dataMapMoObj.addIndexed(skinmoamcComponent);
+}
+
+// Adding custom scrollbar to WCS pages
+try {
+  if (document.querySelector('header [data-id="wcs-header"]')) {
+    document.body.classList.add('custom-scroll');
+  }
+} catch (error) {
+  // console.log(error);
 }
 
 try {
@@ -686,7 +806,9 @@ try {
     dataMapMoObj.addIndexed(whymattersComponent);
   }
 
-  const container = document.querySelector('.section.why-matters-component.cards-container');
+  const container = document.querySelector(
+    '.section.why-matters-component.cards-container',
+  );
 
   const wrapper = document.createElement('div');
   wrapper.classList.add('why-matters-wrapper-in');
@@ -706,7 +828,6 @@ try {
   skinwrapper.appendChild(section);
 } catch (error) {
   // console.log(error);
-
 }
 
 // Skin the game static end
