@@ -2181,11 +2181,23 @@ main.nfo-nav .section.decoding-qglp-container.decoding-qglp-static .decoding-qgl
   padding: 80px 67px 64px;
   margin: unset;
 }
+@media (max-width: 768px) {
+  .section.tax-blog {
+    padding: 80px 16px 40px;
+  }
+}
 .section.tax-blog .tax-blog-contain1 {
   display: flex;
   align-items: flex-start;
   gap: 146px;
   align-self: stretch;
+}
+@media (max-width: 768px) {
+  .section.tax-blog .tax-blog-contain1 {
+    flex-direction: column;
+    gap: 12px;
+    margin: unset;
+  }
 }
 .section.tax-blog .tax-blog-contain1 .tax-blog-txt1 {
   color: var(--blue-1-800-primary);
@@ -2195,7 +2207,11 @@ main.nfo-nav .section.decoding-qglp-container.decoding-qglp-static .decoding-qgl
   font-style: normal;
   font-weight: 600;
   line-height: 32px;
-  /* 114.286% */
+}
+@media (max-width: 768px) {
+  .section.tax-blog .tax-blog-contain1 .tax-blog-txt1 {
+    margin: unset;
+  }
 }
 .section.tax-blog .tax-blog-contain1 .tax-blog-txt2 {
   max-width: 728px;
@@ -2233,6 +2249,12 @@ main.nfo-nav .section.decoding-qglp-container.decoding-qglp-static .decoding-qgl
   gap: 111px;
   align-self: stretch;
 }
+@media (max-width: 768px) {
+  .section.sip-blog .sip-blog-contain1 {
+    flex-direction: column;
+    gap: 20px;
+  }
+}
 .section.sip-blog .sip-blog-contain1 .sip-blog-txt1 {
   color: var(--blue-1-800-primary);
   font-feature-settings: "ss01" on, "ss04" on, "cv01" on, "cv02" on, "cv03" on, "cv04" on, "cv06" on, "cv09" on, "cv10" on, "cv11" on;
@@ -2241,13 +2263,23 @@ main.nfo-nav .section.decoding-qglp-container.decoding-qglp-static .decoding-qgl
   font-style: normal;
   font-weight: 600;
   line-height: 32px;
-  /* 114.286% */
+}
+@media (max-width: 768px) {
+  .section.sip-blog .sip-blog-contain1 .sip-blog-txt1 {
+    margin: unset;
+  }
 }
 .section.sip-blog .sip-blog-contain1 .sip-blog-txt2 {
   display: flex;
   gap: 60px;
   max-width: 735px;
   width: 100%;
+}
+@media (max-width: 768px) {
+  .section.sip-blog .sip-blog-contain1 .sip-blog-txt2 {
+    flex-direction: column;
+    gap: 32px;
+  }
 }
 .section.sip-blog .sip-blog-contain1 .sip-blog-txt2 .sip-blog-subtxt1 {
   color: var(--text-body);
@@ -2259,6 +2291,12 @@ main.nfo-nav .section.decoding-qglp-container.decoding-qglp-static .decoding-qgl
   line-height: 20px;
   list-style-type: none;
   /* 142.857% */
+}
+@media (max-width: 768px) {
+  .section.sip-blog .sip-blog-contain1 .sip-blog-txt2 .sip-blog-subtxt1 {
+    display: flex;
+    gap: 8px;
+  }
 }
 .section.sip-blog .sip-blog-contain1 .sip-blog-txt2 .sip-blog-subtxt1 p .icon-elss-sip1 {
   width: 68px;
@@ -2274,6 +2312,12 @@ main.nfo-nav .section.decoding-qglp-container.decoding-qglp-static .decoding-qgl
   line-height: 20px;
   list-style-type: none;
   /* 142.857% */
+}
+@media (max-width: 768px) {
+  .section.sip-blog .sip-blog-contain1 .sip-blog-txt2 .sip-blog-subtxt2 {
+    display: flex;
+    gap: 8px;
+  }
 }
 .section.sip-blog .sip-blog-contain1 .sip-blog-txt2 .sip-blog-subtxt2 p .icon-elss-sip2 {
   width: 68px;
@@ -2292,4 +2336,39 @@ main.nfo-nav .section.decoding-qglp-container.decoding-qglp-static .decoding-qgl
   font-style: normal;
   font-weight: 400;
   line-height: 16px;
+}
+
+.section.elss-stock-table .elss-stock-table-contain1 .elss-stock-table-txt1 {
+  color: var(--blue-1-800-primary);
+  font-feature-settings: "ss01" on, "ss04" on, "cv01" on, "cv02" on, "cv03" on, "cv04" on, "cv06" on, "cv09" on, "cv10" on, "cv11" on;
+  font-family: var(--TItle, Inter);
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 32px;
+  padding-bottom: 24px;
+  /* 114.286% */
+}
+@media (max-width: 768px) {
+  .section.elss-stock-table .elss-stock-table-contain1 .elss-stock-table-txt2 {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .section.elss-stock-table .elss-stock-table-contain1 .elss-stock-table-txt2 .elss-stock-table-txt2::-webkit-scrollbar {
+    display: none;
+  }
+}
+.section.elss-stock-table .elss-stock-table-contain1 .elss-stock-table-txt2 .elss-stock-table-subtxt1 {
+  width: 1188px;
+  height: auto;
+}
+@media (max-width: 768px) {
+  .section.elss-stock-table .elss-stock-table-contain1 .elss-stock-table-txt2 .elss-stock-table-subtxt1 {
+    width: 1188px;
+    /* your span width */
+    display: inline-block;
+  }
 }/*# sourceMappingURL=common.css.map */
