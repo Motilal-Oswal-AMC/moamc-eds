@@ -233,7 +233,11 @@ export default function decorate(block) {
   const searchFld = document.querySelector('#keyinvest');
   const closeBtn = document.querySelector('.cross-icon-wrap');
   let currentFocusIndex = -1;
-
+  let inputField = document.querySelector(".keyinvest-search input");
+  inputField.addEventListener('click', () => {
+    inputField.focus();
+    inputField.classList.add('focus-visible');
+  });
   if (searchFld) {
     const listContainer = keySearchNewEle;
 
@@ -266,17 +270,16 @@ export default function decorate(block) {
       console.log("Titles Array:", uniqueTitleAry);
 
       uniqueTitleAry.forEach((value) => {
-
         const newItem = document.createElement('p');
         newItem.classList.add('result-item');
         newItem.setAttribute('data-original-text', value);
 
         const anchorTag = document.createElement('a');
         anchorTag.classList.add('list');
-        anchorTag.setAttribute(
-          'href',
-          'https://mosl-dev-upd--mosl-eds--motilal-oswal-amc.aem.live/mutual-fund/in/en/motilal-oswal-edge/article-details-list'
-        );
+        // anchorTag.setAttribute(
+        //   'href',
+        //   'https://mosl-dev-upd--mosl-eds--motilal-oswal-amc.aem.live/mutual-fund/in/en/motilal-oswal-edge/article-details-list'
+        // );
 
         anchorTag.textContent = value;
 
@@ -285,23 +288,24 @@ export default function decorate(block) {
       });
 
       console.log("Titles Array:", titleAry);
+
     });
 
     // 👉 Click Selection
     listContainer.addEventListener('click', (event) => {
+      event.preventDefault(); // 🔥 prevent losing focus
       closeBtn.style.display = 'block';
+
       searchFld.value = event.target.textContent;
-      let dataref = '';
-      if ([...event.target.classList].includes('result-item')) {
-        dataref = event.target.querySelector('a').getAttribute('href');
-      } else {
-        dataref = event.target.getAttribute('href');
-      }
-      window.location.href = dataref;
+
+      // 🔥 KEEP INPUT FOCUSED
+      // setTimeout(() => {
+      //   // searchFld.focus();
+      //   // searchFld.classList.add('focus-visible');  // <-- Force maintain visible focus
+      // }, 0);
+
       listContainer.classList.add('dsp-none');
     });
-
-
 
     // 👉 Filter Function
     const filterListItems = (searchTerm) => {
@@ -410,8 +414,6 @@ export default function decorate(block) {
       return event;
     });
 
-
-
     // 👉 Clear Button
     closeBtn.addEventListener('click', () => {
       searchFld.value = '';
@@ -424,14 +426,12 @@ export default function decorate(block) {
       const visibleItems = () =>
         Array.from(listContainer.querySelectorAll('.list'))
           .filter((item) => item.parentElement.style.display !== 'none');
-
       switch (event.key) {
         case 'ArrowDown':
           event.preventDefault();
           currentFocusIndex = (currentFocusIndex + 1) % visibleItems().length;
           updateActiveItem(visibleItems());
           break;
-
         case 'ArrowUp':
           event.preventDefault();
           currentFocusIndex =
@@ -459,8 +459,6 @@ export default function decorate(block) {
       if (searchFld.value === '') closeBtn.style.display = 'none';
     }
   });
-
-
 
   // if(window.innerWidth <= 767){
   // const futureBuildingSection = document.querySelector('.future-building-container');
@@ -507,7 +505,4 @@ export default function decorate(block) {
   // }
   // Swiper(block, config);
   // return block;
-
-
-
 }
