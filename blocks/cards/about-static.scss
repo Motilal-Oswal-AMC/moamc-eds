@@ -118,9 +118,14 @@
             .asset-inner1 {
                 display: flex;
                 justify-content: space-between;
-                gap: 78px;
+                // gap: 78px;
+                gap: 150px;
                 list-style: none;
                 margin: 0;
+                
+                @include media(desktop-sm){
+                    gap: 78px;
+                }
 
                 @include media(tab) {
                     flex-wrap: wrap;
@@ -130,11 +135,20 @@
 
                 @include media(mobile) {
                     gap: 16px;
+                    flex-wrap: unset;
+                    flex-direction: column;
                 }
 
                 li.comlist {
-                    max-width: 230px;
+                    // max-width: 230px;
+                    max-width: 100%;
                     width: 100%;
+                    // flex: 1;
+                    // flex-basis: 0;
+
+                    @include media(tab){
+                        max-width: 230px;
+                    }
 
                     @include media(mobile) {
                         max-width: 100%;
