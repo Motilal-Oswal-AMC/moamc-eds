@@ -714,11 +714,11 @@ try {
   wrapper.appendChild(wrap1);
   wrapper.appendChild(wrap2);
 
-  const section = document.querySelector('.promise-qglp');
-  const skinwrapper = document.createElement('div');
-  skinwrapper.classList.add('skin-in-the-game-wrapper');
-  section.parentNode.insertBefore(skinwrapper, section);
-  skinwrapper.appendChild(section);
+  // const section = document.querySelector('.promise-qglp');
+  // const skinwrapper = document.createElement('div');
+  // skinwrapper.classList.add('skin-in-the-game-wrapper');
+  // section.parentNode.insertBefore(skinwrapper, section);
+  // skinwrapper.appendChild(section);
 } catch (error) {
   // console.log(error);
 
