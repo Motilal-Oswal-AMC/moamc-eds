@@ -586,7 +586,11 @@ function articleStructure() {
       ];
       dataMapMoObj.addIndexed(subright);
     });
-
+      const maindiv = maincloser.querySelector('.main-wrapper');
+      // maindiv.classList.add('main-wrapper');
+      maindiv.append(maincloser.querySelector('.article-left-wrapper'));
+      maindiv.append(maincloser.querySelector('.article-right-wrapper'));
+      maincloser.prepend(maindiv);
     if (maincloser.querySelector('.moedge-article-details')) {
       dataMapMoObj.CLASS_PREFIXES = [
         'articlemain',
@@ -603,7 +607,6 @@ function articleStructure() {
       dataMapMoObj.addIndexed(
         maincloser.querySelector('.moedge-article-details'),
       );
-
       const mainleft = maincloser.querySelector('.article-left-wrapper');
       dataMapMoObj.CLASS_PREFIXES = [
         'leftartmain',
