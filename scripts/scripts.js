@@ -819,7 +819,7 @@ if (skinstakeComponent != null) {
     'stake-component-para-two',
     'stake-component-img',
     'stake-img-card-wrap',
-    'stake-img-card-wrap-img'
+    'stake-img-card-wrap-img',
   ];
   dataMapMoObj.addIndexed(skinstakeComponent);
 }
@@ -861,7 +861,6 @@ try {
 }
 // Skin the game static end
 
-
 // conclusion container start
 const conclusion = document.querySelector('.section.conclusion');
 if (conclusion != null) {
@@ -895,3 +894,27 @@ try {
 } catch (error) {
   // console.log(error);
 }
+
+async function getlisting() {
+  const resp = await myAPI('GET', 'https://m71vqgw4cj.execute-api.ap-south-1.amazonaws.com/dev/api/public/v1/funds/listing');
+  return resp;
+}
+dataMapMoObj.getlisting = getlisting;
+
+async function getscheme(param) {
+  const resp = await myAPI('GET', `https://m71vqgw4cj.execute-api.ap-south-1.amazonaws.com/dev/api/public/v1/funds?schcode=${param}`);
+  return resp;
+}
+dataMapMoObj.getscheme = getscheme;
+
+async function getfundmanager(param) {
+  const resp = await myAPI('GET', `https://m71vqgw4cj.execute-api.ap-south-1.amazonaws.com/dev/api/public/v1/funds/manager?schcode=${param}`);
+  return resp;
+}
+dataMapMoObj.getfundmanager = getfundmanager;
+
+async function getinsights() {
+  const resp = await myAPI('GET', 'https://main--moamc-eds--motilal-oswal-amc.aem.live/query-index-insights.json');
+  return resp;
+}
+dataMapMoObj.getinsights = getinsights;
