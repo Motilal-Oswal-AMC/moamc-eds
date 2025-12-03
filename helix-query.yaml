@@ -45,6 +45,9 @@ indices:
       date:
         select: head > meta[name="modified-time"]
         value: attribute(el, "content")
+      readmoreurl:
+        select: head > link[rel="canonical"]
+        value: attribute(el, "href")  
       lastModified:
         select: none
         value: parseTimestamp(headers["last-modified"], "ddd, DD MMM YYYY hh:mm:ss GMT")
