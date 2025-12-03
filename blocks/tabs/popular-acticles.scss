@@ -128,7 +128,7 @@
 
     .default-content-wrapper:last-of-type {
         text-align: center;
-        padding: 40px 0 0;
+        padding: 40px 0;
 
         @include media(mobile) {
             padding: 24px 0 0;
