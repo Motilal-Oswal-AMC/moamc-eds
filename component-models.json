@@ -611,20 +611,20 @@
             "value": "testing"
           },
           {
-            "name":"High Skin Text",
-            "value":"high-skin-text"
+            "name": "High Skin Text",
+            "value": "high-skin-text"
           },
           {
-            "name":"High Image Component",
-            "value":"high-image-component"
+            "name": "High Image Component",
+            "value": "high-image-component"
           },
           {
-            "name":"Skin Moamc Component",
-            "value":"skin-moamc-component"
+            "name": "Skin Moamc Component",
+            "value": "skin-moamc-component"
           },
           {
-            "name":"Why Matters Component",
-            "value":"why-matters-component"
+            "name": "Why Matters Component",
+            "value": "why-matters-component"
           },
           {
             "name": "Mo Inter Business",
@@ -681,6 +681,66 @@
           {
             "name": "Investor Listing Our Expert",
             "value": "listing-our-expert"
+          },
+          {
+            "name": "Fund Investment Options",
+            "value": "fund-investment-options"
+          },
+          {
+            "name": "Thank You Screen",
+            "value": "thank-you-screen"
+          },
+          {
+            "name": "Invest Minor Account",
+            "value": "invest-minor-account"
+          },
+          {
+            "name": "Why Invest Minor",
+            "value": "why-invest-minor"
+          },
+          {
+            "name": "How To Invest",
+            "value": "how-to-invest"
+          },
+          {
+            "name": "Pros of Investing",
+            "value": "pros-of-investing"
+          },
+          {
+            "name": "Things Keep Mind",
+            "value": "things-keep-mind"
+          },
+          {
+            "name": "Conclusion",
+            "value": "conclusion"
+          },
+          {
+            "name": "About Trusted Asset",
+            "value": "trusted-asset"
+          },
+          {
+            "name": "About Investment Philosophy",
+            "value": "about-invest-philosophy"
+          },
+          {
+            "name": "About Structure Governance",
+            "value": "structure-governance"
+          },
+          {
+            "name": "About Behind Mission",
+            "value": "behind-mission"
+          },
+          {
+            "name": "About Behind Mission Tab",
+            "value": "behind-mission-tab"
+          },
+          {
+            "name": "About Structure Governance",
+            "value": "structure-governance"
+          },
+          {
+            "name": "About Structure Governance Tab",
+            "value": "structure-governance-tab"
           }
         ]
       },
@@ -2624,26 +2684,6 @@
         "value": "",
         "label": "Text",
         "valueType": "string"
-      },
-      {
-        "component": "aem-content",
-        "name": "video_url",
-        "label": "Video URL"
-      },
-      {
-        "component": "reference",
-        "name": "video_image",
-        "label": "Video Image"
-      },
-      {
-        "component": "text",
-        "name": "video_imageAlt",
-        "label": "Video Image Alt"
-      },
-      {
-        "component": "text",
-        "name": "video_imageTitle",
-        "label": "Video Image Title"
       }
     ]
   },

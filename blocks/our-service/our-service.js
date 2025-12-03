@@ -55,18 +55,18 @@ export default function decorate(block) {
         alreadyWrapped.remove();
       }
     });
-    const tabsList = block.querySelector('.tabs-list');
-    tabsList.addEventListener('click', (e) => {
-      const isSelected = e.target.getAttribute('aria-selected') === 'true';
-      const button = e.target.parentElement;
-      if (isSelected) {
-        e.target.setAttribute('aria-selected', false);
-        button.setAttribute('aria-selected', true);
-      } else {
-        e.target.setAttribute('aria-selected', true);
-      }
-      // console.log(isSelected);
-    });
+    // const tabsList = block.querySelector('.tabs-list');
+    // tabsList.addEventListener('click', (e) => {
+    //   const isSelected = e.target.getAttribute('aria-selected') === 'true';
+    //   const button = e.target.parentElement;
+    //   if (isSelected) {
+    //     e.target.setAttribute('aria-selected', false);
+    //     button.setAttribute('aria-selected', true);
+    //   } else {
+    //     e.target.setAttribute('aria-selected', true);
+    //   }
+    //   // console.log(isSelected);
+    // });
   }
   updateTabsForMobile();
 
@@ -112,6 +112,8 @@ export default function decorate(block) {
     'embedsub',
     'embedinner',
     'embedsubinner',
+    'embedsublist',
+    'embedlistinner',
   ];
   Array.from(classEmbed).forEach((elfor) => dataMapMoObj.addIndexed(elfor));
 

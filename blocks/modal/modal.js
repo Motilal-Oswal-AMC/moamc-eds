@@ -21,7 +21,7 @@ export async function createModal(contentNodes) {
   const dialogContent = document.createElement('div');
   dialogContent.classList.add('modal-content');
   dialogContent.append(...contentNodes);
-  if (dialogContent.querySelector('.maintab') && window.location.pathname.includes('/wcs/in/en/coverage')) {
+  if (dialogContent.querySelector('.maintab') && window.location.pathname.includes('/coverage')) {
     dialogContent.querySelector('.maintab').remove();
   }
   dialog.append(dialogContent);

@@ -265,6 +265,29 @@ export default function decorate(block) {
     dataMapMoObj.CLASS_PREFIXES = ['error-screen-wrapper', 'error-screen-wrap', 'error-screen-ul', 'error-screen-li', 'errscrn-img-cont', 'errscrn-cont', 'errscrn-inner-cont'];
     dataMapMoObj.addIndexed(error);
   }
+
+  if (window.location.pathname.includes('/static-pages/about')) {
+    const aboutSection = block.closest('main').querySelector('.section.trusted-asset');
+    if (aboutSection) {
+      dataMapMoObj.CLASS_PREFIXES = ['trusted-main', 'asset-inner', 'asset-sub', 'asset-subinner', 'asset-item', 'asset-inneritem', 'assest-childitem'];
+      dataMapMoObj.addIndexed(aboutSection);
+    }
+
+    const investPhilosophy = block.closest('main').querySelector('.section.about-invest-philosophy');
+    if (investPhilosophy) {
+      dataMapMoObj.CLASS_PREFIXES = ['investment-main', 'investment-inner', 'investment-sub', 'investment-subinner', 'investment-item', 'investment-inneritem'];
+      dataMapMoObj.addIndexed(investPhilosophy);
+    }
+
+    const missionTab = block.closest('main').querySelectorAll('.behind-mission-tab');
+    missionTab.forEach((el) => {
+      const missionTabCard = el.querySelector('.cards');
+      if (missionTabCard) {
+        dataMapMoObj.CLASS_PREFIXES = ['missioncard-main', 'missioncard-inner', 'missioncard-sub', 'missioncard-subinner', 'missioncard-item', 'missioncard-inneritem'];
+        dataMapMoObj.addIndexed(missionTabCard);
+      }
+    });
+  }
 }
 
 function decorateArticlePage() {

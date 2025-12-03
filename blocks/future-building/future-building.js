@@ -182,9 +182,12 @@ export default function decorate(block) {
     const keyInvestSearchWrap = keyInvestSection.querySelector('.default-content-wrapper');
     if (keyInvestSection.classList.contains('key-investing')) {
       const keyInvestSearch = div(
-        { class: 'keyinvest-search' },
-        input({ class: 'keyinvest-inp', id: 'keyinvest' }),
-        label({ class: 'keyinvest-label', for: 'keyinvest' }, 'Search here'),
+        { class: 'keyinvest-wrap' },
+        div(
+          { class: 'keyinvest-search' },
+          input({ class: 'keyinvest-inp', id: 'keyinvest' }),
+          label({ class: 'keyinvest-label', for: 'keyinvest' }, 'Search here'),
+        ),
       );
       keyInvestSearchWrap.append(keyInvestSearch);
     }
@@ -312,6 +315,7 @@ export default function decorate(block) {
     listContainer.addEventListener('click', (event) => {
       closeBtn.style.display = 'block';
       searchFld.value = event.target.textContent;
+      searchFld.classList.add('active');
       let dataref = '';
       if ([...event.target.classList].includes('result-item')) {
         dataref = event.target.querySelector('a').getAttribute('href');

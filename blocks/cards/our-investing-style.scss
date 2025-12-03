@@ -29,8 +29,6 @@
 
             @include media (mobile) {
                 font-size: var(--sub-header-large-size, 24px);
-
-                // line-height: var(--sub-header-medium-line-height, 28px);
                 line-height: 28px;
             }
         }
@@ -94,7 +92,10 @@
 
                     .cards-card-body {
                         margin: 0;
-                        margin-right: 16px;
+                        position: absolute;
+                        top: 24px;
+
+                        // margin-right: 16px;
 
                         p {
                             margin: 0;

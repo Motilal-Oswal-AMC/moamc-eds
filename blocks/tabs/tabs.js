@@ -471,32 +471,32 @@ export default async function decorate(block) {
   if (block.closest('.tabdiv')) {
     dataMapMoObj.scheme = planObj;
     generateBarChart(planObj[0].sector);
-  }
-  const tabButtons = document.querySelectorAll('.tabs-tab');
-  tabButtons.forEach((tabBtn) => {
-    const tabIddata = tabBtn.id.replace('tab-', '');
-    if (tabIddata === 'sector-holdings' && planObj[0].sector === undefined) {
-      tabBtn.style.display = 'none';
-    }
-    if (tabIddata === 'stock-holdings' && planObj[0].holdings === undefined) {
-      tabBtn.style.display = 'none';
-    }
-    tabBtn.addEventListener('click', () => {
-      const tabId = tabBtn.id.replace('tab-', '');
-      const panel = document.getElementById(`tabpanel-${tabId}`);
-      if (tabId === 'sector-holdings') {
-        if (panel && !panel.querySelector('.chart-wrapper')) {
-          const chart = generateBarChart(dataMapMoObj.scheme[0].sector);
-          panel.appendChild(chart);
-        }
-      } else if (tabId === 'stock-holdings') {
-        if (panel && !panel.querySelector('.chart-wrapper')) {
-          const chart = generateBarChartHoldings(dataMapMoObj.scheme[0].holdings);
-          panel.appendChild(chart);
-        }
+    const tabButtons = document.querySelectorAll('.tabs-tab');
+    tabButtons.forEach((tabBtn) => {
+      const tabIddata = tabBtn.id.replace('tab-', '');
+      if (tabIddata === 'sector-holdings' && planObj[0].sector === undefined) {
+        tabBtn.style.display = 'none';
       }
+      if (tabIddata === 'stock-holdings' && planObj[0].holdings === undefined) {
+        tabBtn.style.display = 'none';
+      }
+      tabBtn.addEventListener('click', () => {
+        const tabId = tabBtn.id.replace('tab-', '');
+        const panel = document.getElementById(`tabpanel-${tabId}`);
+        if (tabId === 'sector-holdings') {
+          if (panel && !panel.querySelector('.chart-wrapper')) {
+            const chart = generateBarChart(dataMapMoObj.scheme[0].sector);
+            panel.appendChild(chart);
+          }
+        } else if (tabId === 'stock-holdings') {
+          if (panel && !panel.querySelector('.chart-wrapper')) {
+            const chart = generateBarChartHoldings(dataMapMoObj.scheme[0].holdings);
+            panel.appendChild(chart);
+          }
+        }
+      });
     });
-  });
+  }
 
   /// //////////////////////first Tab ////////////////////////////
 
@@ -928,7 +928,7 @@ export default async function decorate(block) {
     const mainblk = block.closest('main');
     Array.from(block.querySelector('.tabs-list').children)
       .forEach((tabtitle) => {
-        console.log(tabtitle.textContent);
+        // console.log(tabtitle.textContent);
         const tabheada = `<span class='selcontent'>${dataMapMoObj.getOrdinalSuperscript(parseInt(tabtitle.textContent, 10))}</span>`;
         const tabheadb = tabtitle.textContent
           .replace(parseInt(tabtitle.textContent, 10), '').slice(2);
