@@ -24,6 +24,10 @@ export async function createForm(formHref, submitHref) {
   fieldsets.forEach((fieldset) => {
     form.querySelectorAll(`[data-fieldset="${fieldset.name}"`).forEach((field) => {
       fieldset.append(field);
+      const target = fieldset.querySelector('#form-1');
+      if (target) {
+        target.setAttribute('autocomplete', 'text');
+      }
     });
   });
 

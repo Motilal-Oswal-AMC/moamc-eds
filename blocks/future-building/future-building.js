@@ -21,7 +21,7 @@ export default function decorate(block) {
   block.innerHTML = '';
 
   // 3. Process each source row to create a slide
-  sourceRows.forEach((row) => {
+  sourceRows.forEach((row, index) => {
     const picture = row.querySelector('picture');
     const anchor = row.querySelector('a');
     const textContent = row.children[2]; // Assumes text content is in the third div
@@ -37,8 +37,8 @@ export default function decorate(block) {
     if (!block.closest('.key-investing')) {
       anchor.textContent = '';
       anchor.classList.add('button');
-      anchor.setAttribute('aria-hidden',true);
-      anchor.setAttribute('tabindex',-1);
+      anchor.setAttribute('aria-hidden', true);
+      anchor.setAttribute('tabindex', -1);
       anchor.appendChild(picture);
       card1.appendChild(anchor);
     } else {
@@ -54,6 +54,18 @@ export default function decorate(block) {
       'list-child-',
       'list-grandch-',
     ];
+
+    const buttons = card2.querySelectorAll('.button-container');
+    buttons.forEach((button, btnIndex) => {
+      if (btnIndex === 0) {
+        button.setAttribute('id', `b${index + 1}`);
+      } 
+      else if (btnIndex === 1) {
+        button.setAttribute('id', `a${index + 1}`);
+        button.setAttribute('aria-labelledby', `a${index + 1} b${index + 1}`);
+      }
+    });
+
     dataMapMoObj.addIndexedTwo(card2);
     slide.appendChild(card1);
     slide.appendChild(card2);
@@ -88,7 +100,7 @@ export default function decorate(block) {
   // 4. Final assembly of the Swiper block
   block.appendChild(swiperWrapper);
 
-  Array.from(block.querySelector('.swiper-slide-cards-2 .cards-listcards1').children).forEach((ele) => {
+  Array.from(block.querySelector('.swiper-slide-cards-2 .cards-listcards1').children).forEach((ele, ind) => {
     ele.classList.add('card-list');
   });
 
@@ -194,7 +206,7 @@ export default function decorate(block) {
 
     // Key Investing Pagination
     if (block.closest('main').querySelector('.key-investing')) {
-    // Find the container that has your special classes
+      // Find the container that has your special classes
       const mainContainer = block.closest('main')
         .querySelector('.key-investing .future-building');
       // Only run this pagination logic if we are in the correct block
@@ -455,7 +467,7 @@ export default function decorate(block) {
         case 'ArrowUp':
           event.preventDefault();
           currentFocusIndex = ((currentFocusIndex - 1 + visibleItems().length)
-          % visibleItems().length);
+            % visibleItems().length);
           updateActiveItem(visibleItems());
           break;
 

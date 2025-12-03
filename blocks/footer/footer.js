@@ -116,7 +116,7 @@ export default async function decorate(block) {
   const eventv3 = eventv2.querySelector('.list-inneritem-1').children;
   const pathname = '/mutual-fund/in/en/our-funds';
   Array.from(eventv3).forEach((eventElem) => {
-    eventElem.querySelector('a').setAttribute('href',`${window.location.origin}${pathname}`);
+    eventElem.querySelector('a').setAttribute('href', `${window.location.origin}${pathname}`);
     eventElem.addEventListener('click', (event) => {
       const textCurr = event.target.textContent
         .toLowerCase().replaceAll(' funds', '');
@@ -218,6 +218,12 @@ export default async function decorate(block) {
     footercls.querySelector('.footer-section3 .footer-sub-cont2').children,
   ).forEach((efthre) => {
     efthre.classList.add('footerthr');
+    const iconEl = efthre.querySelector('.icon');
+    const imgEl = iconEl?.querySelector('img');
+    const iconName = imgEl.getAttribute('data-icon-name');
+    if (iconName) {
+      imgEl.setAttribute('alt', iconName);
+    };
   });
   const footerContainer = document.querySelector('.footer-sub3 .icon img');
 

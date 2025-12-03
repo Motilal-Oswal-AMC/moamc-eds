@@ -52,6 +52,7 @@ export default function decorate(block) {
     }
   });
 
+
   Swiper(block, {
     loop: true,
     autoplay: {
@@ -70,6 +71,11 @@ export default function decorate(block) {
       slideChange(customSlide) {
         const current = customSlide.realIndex + 1;
         const total = customSlide.slides.length;
+
+        customSlide.slides.forEach((slide) => {
+          slide.removeAttribute('role');
+        });
+
         if (current < 10) {
           currentSlide.textContent = `0${current} /`;
         } else {

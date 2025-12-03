@@ -1,11 +1,11 @@
 @use "sass:map";
-@use "../../styles/common-theme/css/variables_mixins"as *;
-@use "../../styles/common-theme/css/fluid-typography"as *;
+@use "../../styles/common-theme/css/variables_mixins" as *;
+@use "../../styles/common-theme/css/fluid-typography" as *;
 
 .section {
   .card-container {
     max-width: 296px;
-    height: 360px;
+    min-height: 360px;
     width: 100%;
     padding: 20px 16px 16px;
     border-radius: 16px;
@@ -56,6 +56,11 @@
             display: flex;
             align-items: center;
             gap: 4px;
+
+            button {
+              background: unset;
+              pointer-events: none;
+            }
 
             .watchlistlabel {
               @include font-style(var(--label-small-size),
@@ -665,6 +670,11 @@
               .watchlistlabel {
                 color: var(--text-white);
               }
+
+              // button {
+              //   background: unset;
+              //   pointer-events: none;
+              // }
             }
           }
 
@@ -967,6 +977,8 @@
       border-radius: var(--border-radius-8);
       border: none;
 
+      text-align: center;
+
       a {
         border-radius: var(--border-radius-8);
         border: 1px solid var(--button-primary-default);
@@ -1049,6 +1061,8 @@
 
       .btnmob,
       .btndesk {
+        text-align: center;
+
         border-radius: var(--border-radius-4);
 
         @include media(mobile) {
