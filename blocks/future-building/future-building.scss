@@ -749,6 +749,7 @@
                     width: 100%;
                     border: none;
                     outline: none;
+                    color: var(--text-black);
 
                     &.active + label,
                     &:focus + label {
@@ -841,15 +842,15 @@
                     }
 
                     .no-results-message {
-                        font-size: var(--body-small-regular-size);
-                        line-height: var(--label-large-line-height);
-                        color: var(--neutrals-black);
-                        font-family: var(--body);
+                        color: var(--neutrals-900);
                         font-feature-settings: var(--font-features-default);
+                        font-family: var(--body);
+                        font-size: var(--body-medium-regular-size);
                         font-weight: 400;
+                        line-height: var(--body-medium-regular-line-height);
                         position: relative;
                         top: 0;
-                        padding-left: 13px;
+                        padding: 16px;
                         border: none;
                         z-index: 10;
                     }
