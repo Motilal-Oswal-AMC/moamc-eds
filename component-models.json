@@ -725,6 +725,22 @@
           {
             "name": "About Structure Governance",
             "value": "structure-governance"
+          },
+          {
+            "name": "About Behind Mission",
+            "value": "behind-mission"
+          },
+          {
+            "name": "About Behind Mission Tab",
+            "value": "behind-mission-tab"
+          },
+          {
+            "name": "About Structure Governance",
+            "value": "structure-governance"
+          },
+          {
+            "name": "About Structure Governance Tab",
+            "value": "structure-governance-tab"
           }
         ]
       },
@@ -2668,26 +2684,6 @@
         "value": "",
         "label": "Text",
         "valueType": "string"
-      },
-      {
-        "component": "aem-content",
-        "name": "video_url",
-        "label": "Video URL"
-      },
-      {
-        "component": "reference",
-        "name": "video_image",
-        "label": "Video Image"
-      },
-      {
-        "component": "text",
-        "name": "video_imageAlt",
-        "label": "Video Image Alt"
-      },
-      {
-        "component": "text",
-        "name": "video_imageTitle",
-        "label": "Video Image Title"
       }
     ]
   },

@@ -400,6 +400,12 @@
             // @include media(mobile){
             //     padding: 0 16px;
             // }
+
+            .tabs-tab{
+                &:hover{
+                    background-color: transparent;
+                }
+            }
         }
 
         &-panel {

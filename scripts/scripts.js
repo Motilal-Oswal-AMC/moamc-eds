@@ -532,6 +532,7 @@ function articleStructure() {
   // Investor Education article left and right wrapper
   if (
     window.location.href.includes('/investor-education/all-articles/')
+    || window.location.href.includes('/motilal-oswal-edge/insights/blogs')
     || window.location.href.includes('/motilal-oswal-edge/article-details')
     || window.location.href.includes(
       '/motilal-oswal-edge/mo-edge-article-image',
@@ -644,6 +645,12 @@ function articleStructure() {
       parent.insertBefore(wrapperDiv, mainArticle1);
       wrapperDiv.appendChild(mainArticle1);
       wrapperDiv.appendChild(mainArticle2);
+    } else if (maincloser.querySelector('.moedge-article-details')) {
+      const main1 = maincloser.querySelector('.article-left-wrapper');
+      const main2 = maincloser.querySelector('.article-right-wrapper');
+      const mainwrapperDiv = maincloser.querySelector('.main-wrapper');
+      mainwrapperDiv.appendChild(main1);
+      mainwrapperDiv.appendChild(main2);
     }
   }
 }
@@ -657,6 +664,11 @@ if (chooseUs != null) {
     'choose-us-img',
   ];
   dataMapMoObj.addIndexed(chooseUs);
+  Array.from(chooseUs.querySelectorAll('img')).forEach((ele, index) => {
+    if (index === 0) {
+      ele.setAttribute('fetchpriority', 'high');
+    }
+  });
 }
 
 const chooseusCard = document.querySelector('.why-choose-card');
