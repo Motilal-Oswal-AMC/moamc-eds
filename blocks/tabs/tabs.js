@@ -117,11 +117,13 @@ export default async function decorate(block) {
     wrapperTablist.classList.add('wrappertablist');
     wrapperTablist.append(block.querySelector('.tabs-list'));
     wrapperTablist.append(
-      button(
+      div(
         { class: 'btndesk' },
         a(
           {
-            class: 'btndesk', href: block.closest('.section').querySelector('.button-container a').getAttribute('href')
+            class: 'btndesk', 
+            href: block.closest('.section').querySelector('.button-container a').getAttribute('href'),
+            'aria-label': block.closest('.section').querySelector('.button-container a').textContent.trim(),
           },
           block.closest('.section').querySelector('.button-container a').textContent.trim(),
         ),
@@ -188,12 +190,13 @@ export default async function decorate(block) {
     wrapperTablist.classList.add('wrappertablist');
     wrapperTablist.append(block.querySelector('.tabs-list'));
     wrapperTablist.append(
-      button(
+      div(
         { class: 'btndesk' },
         a(
           {
             class: 'bthref',
             linkattr: block.closest('.section').querySelector('.button-container a').getAttribute('href'),
+            'aria-label': block.closest('.section').querySelector('.button-container a').textContent.trim(),
             onclick: () => {
               const closer = block.closest('.section');
               const pathname = closer.querySelector('.bthref').getAttribute('linkattr');

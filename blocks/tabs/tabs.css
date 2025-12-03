@@ -230,6 +230,11 @@ td {
   border-radius: 8px;
 }
 
+.tabdiv.tabs-container div.btndesk,
+.tabdiv.tabs-container div.btnmob {
+  text-align: center;
+}
+
 .tabdiv.tabs-container .btndesk a,
 .tabdiv.tabs-container .btnmob a {
   border-radius: 8px;

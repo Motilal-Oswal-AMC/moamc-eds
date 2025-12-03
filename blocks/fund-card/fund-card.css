@@ -59,6 +59,12 @@
   font-feature-settings: "ss01" on, "ss04" on, "cv01" on, "cv02" on, "cv03" on, "cv04" on, "cv06" on, "cv09" on, "cv10" on, "cv11" on;
   font-weight: 400;
 }
+
+.section .card-container .card-wrapper .card-upper-title .brand-star-wrap .star-wrap button.watchlistlabel {
+  background-color: unset;
+  cursor: unset;
+}
+
 @media (max-width: 768px) {
   .section .card-container .card-wrapper .card-upper-title .brand-star-wrap .star-wrap .watchlistlabel {
     font-size: var(--label-small-size);
@@ -783,6 +789,12 @@
   display: block;
   margin: 0;
 }
+
+.section.fund-tab.tabs-container div.btndesk,
+.section.fund-tab.tabs-container div.btnmob {
+  text-align: center;
+}
+
 @media (max-width: 768px) {
   .section.fund-tab.tabs-container .btndesk a,
   .section.fund-tab.tabs-container .btnmob a {

@@ -8,6 +8,7 @@ import {
   img,
   a,
   h3,
+  button,
 } from '../../scripts/dom-helpers.js';
 import dataMapMoObj from '../../scripts/constant.js';
 import dataCfObj from '../../scripts/dataCfObj.js';
@@ -92,7 +93,7 @@ export default function decorate(block, index) {
               ),
               div(
                 { class: 'star-wrap' },
-                span({ class: 'watchlistlabel' }, 'Watchlist'),
+                button({ class: 'watchlistlabel' }, 'Watchlist'),
                 div(
                   {
                     class: `star ${starClass}`,
@@ -227,7 +228,7 @@ export default function decorate(block, index) {
             ),
             div(
               { class: 'star-wrap' },
-              span({ class: 'watchlistlabel' }, 'Watchlist'),
+              button({ class: 'watchlistlabel' }, 'Watchlist'),
               div(
                 {
                   class: `star ${starClass}`,

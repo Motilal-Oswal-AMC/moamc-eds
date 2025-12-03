@@ -76,7 +76,7 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
   const expanded = forceExpanded !== null ? !forceExpanded : nav.getAttribute('aria-expanded') === 'true';
   const button = nav.querySelector('.nav-hamburger button');
   document.body.style.overflowY = (expanded || isDesktop.matches) ? '' : 'hidden';
-  // nav.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+  nav.setAttribute('aria-expanded', expanded ? 'false' : 'true');
   toggleAllNavSections(navSections, expanded || isDesktop.matches ? 'false' : 'true');
   button.setAttribute('aria-label', expanded ? 'Open navigation' : 'Close navigation');
   // enable nav dropdown keyboard accessibility
@@ -459,7 +459,10 @@ export default async function decorate(block) {
         'sub-popup-list-content',
         'sub-popup-list-row',
       ];
-      subHeader.forEach((sublist) => dataMapMoObj.addIndexed(sublist));
+      subHeader.forEach((sublist) => {
+        dataMapMoObj.addIndexed(sublist);
+        sublist.setAttribute('aria-label','');
+      });
 
       // Find the main container of your component
       const container = navSection.querySelector('.sub-popup-sec1');
@@ -481,9 +484,9 @@ export default async function decorate(block) {
           // FIX 2: Used object destructuring to get iconName from img.dataset
           const { iconName } = img.dataset;
           const altText = altTextMap[iconName];
-
           if (altText !== undefined) {
             img.setAttribute('alt', altText);
+            img.setAttribute('aria-label', "Videos");
           }
         });
       }
@@ -516,7 +519,7 @@ export default async function decorate(block) {
     ];
     dataMapMoObj.addIndexed(navTools);
   }
-  
+
   const headerTop = nav.querySelector('.section.header-top');
   if (headerTop) {
     dataMapMoObj.CLASS_PREFIXES = [
@@ -776,11 +779,11 @@ export default async function decorate(block) {
   const loginevent = block.querySelector('.nav-tools .nav-tools-sub4');// .nav-tools-inner-net1');
 
   const getLogineventab = loginevent.querySelector('.nav-tools .nav-tools-sub4 .nav-tools-inner-net1');
-  const createLoginbutton = document.createElement('button');
-  createLoginbutton.className = getLogineventab.className;
-  createLoginbutton.innerHTML = getLogineventab.innerHTML;
-  createLoginbutton.setAttribute('aria-label', getLogineventab.innerHTML);
-  getLogineventab.replaceWith(createLoginbutton);
+  // const createLoginbutton = document.createElement('button');
+  // createLoginbutton.className = getLogineventab.className;
+  // createLoginbutton.innerHTML = getLogineventab.innerHTML;
+  // createLoginbutton.setAttribute('aria-label', getLogineventab.innerHTML);
+  // getLogineventab.replaceWith(createLoginbutton);
 
   loginevent.addEventListener('click', () => {
     const nextel = loginevent.querySelector('ul');

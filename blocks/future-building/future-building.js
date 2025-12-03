@@ -37,6 +37,8 @@ export default function decorate(block) {
     if (!block.closest('.key-investing')) {
       anchor.textContent = '';
       anchor.classList.add('button');
+      anchor.setAttribute('aria-hidden',true);
+      anchor.setAttribute('tabindex',-1);
       anchor.appendChild(picture);
       card1.appendChild(anchor);
     } else {
@@ -55,7 +57,6 @@ export default function decorate(block) {
     dataMapMoObj.addIndexedTwo(card2);
     slide.appendChild(card1);
     slide.appendChild(card2);
-
     swiperWrapper.appendChild(slide);
   });
 

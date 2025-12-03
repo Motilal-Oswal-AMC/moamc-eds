@@ -264,7 +264,7 @@
     }
 }
 
-.section.risk-o-meter-container>.default-content-wrapper p.defone3 a.deftwo1 {
+.section.risk-o-meter-container>.default-content-wrapper p.defone3 a.deftwo1, .section.risk-o-meter-container>.default-content-wrapper p.defone3 sup.deftwo1 {
     font-size: var(--body-small-regular-size);
     line-height: var(--label-large-line-height);
     color: var(--blue-1-400);
@@ -274,14 +274,19 @@
     text-decoration: none;
 }
 
+.section.risk-o-meter-container>.default-content-wrapper p.defone3 p.deftwo1{
+    margin-top: unset;
+
+}
+
 @media (max-width: 768px) {
-    .section.risk-o-meter-container>.default-content-wrapper p.defone3 a.deftwo1 {
+    .section.risk-o-meter-container>.default-content-wrapper p.defone3 a.deftwo1 , .section.risk-o-meter-container>.default-content-wrapper p.defone3 sup.deftwo1 {
         font-size: var(--paragraph-small-size);
         line-height: var(--paragraph-small-line-height);
     }
 }
 
-.section.risk-o-meter-container>.default-content-wrapper p.defone3 a.deftwo1:focus-visible {
+.section.risk-o-meter-container>.default-content-wrapper p.defone3 a.deftwo1:focus-visible , .section.risk-o-meter-container>.default-content-wrapper p.defone3 sup.deftwo1:focus-visible {
     outline: 2px dashed #5659FA;
     outline-offset: 3px;
 }
