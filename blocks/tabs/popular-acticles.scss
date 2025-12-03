@@ -139,7 +139,6 @@
             list-style: none;
             display: flex;
             width: 100%;
-            // padding: 16px 0;
             justify-content: center;
             align-items: center;
             gap: 16px;
@@ -230,7 +229,7 @@
             @include media(mobile) {
                 font-size: var(--sub-header-large-size);
                 line-height: 28px;
-                margin-bottom: 24px;
+                margin-bottom: 16px;
 
                 // @media (width <=400px) {
                 //     padding: 0 56px;

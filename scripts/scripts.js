@@ -790,6 +790,7 @@ if (highimageComponent != null) {
     'high-skin-component-ctn',
     'high-skin-component-external',
     'high-skin-component-internal',
+
   ];
   dataMapMoObj.addIndexed(highimageComponent);
 }
@@ -804,17 +805,24 @@ if (skinmoamcComponent != null) {
     'moamc-component-para-one',
     'moamc-component-para-two',
     'moamc-component-para-three',
+
   ];
   dataMapMoObj.addIndexed(skinmoamcComponent);
 }
-
-// Adding custom scrollbar to WCS pages
-try {
-  if (document.querySelector('header [data-id="wcs-header"]')) {
-    document.body.classList.add('custom-scroll');
-  }
-} catch (error) {
-  // console.log(error);
+const skinstakeComponent = document.querySelector('.what-stake-component');
+if (skinstakeComponent != null) {
+  dataMapMoObj.CLASS_PREFIXES = [
+    'stake-component-wrap',
+    'stake-component-main-head',
+    'stake-component-title',
+    'stake-component-para',
+    'stake-component-para-one',
+    'stake-component-para-two',
+    'stake-component-img',
+    'stake-img-card-wrap',
+    'stake-img-card-wrap-img'
+  ];
+  dataMapMoObj.addIndexed(skinstakeComponent);
 }
 
 try {
@@ -837,9 +845,7 @@ try {
     dataMapMoObj.addIndexed(whymattersComponent);
   }
 
-  const container = document.querySelector(
-    '.section.why-matters-component.cards-container',
-  );
+  const container = document.querySelector('.section.why-matters-component.cards-container');
 
   const wrapper = document.createElement('div');
   wrapper.classList.add('why-matters-wrapper-in');
@@ -851,17 +857,11 @@ try {
 
   wrapper.appendChild(wrap1);
   wrapper.appendChild(wrap2);
-
-  const section = document.querySelector('.promise-qglp');
-  const skinwrapper = document.createElement('div');
-  skinwrapper.classList.add('skin-in-the-game-wrapper');
-  section.parentNode.insertBefore(skinwrapper, section);
-  skinwrapper.appendChild(section);
 } catch (error) {
   // console.log(error);
 }
-
 // Skin the game static end
+
 
 // conclusion container start
 const conclusion = document.querySelector('.section.conclusion');
@@ -886,4 +886,13 @@ if (whyInvestminor != null) {
     'why-invest-minor-inner',
   ];
   dataMapMoObj.addIndexed(whyInvestminor);
+}
+
+// Adding custom scrollbar to WCS pages
+try {
+  if (document.querySelector('header [data-id="wcs-header"]')) {
+    document.body.classList.add('custom-scroll');
+  }
+} catch (error) {
+  // console.log(error);
 }
