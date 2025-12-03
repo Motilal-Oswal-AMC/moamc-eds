@@ -29,6 +29,12 @@
 
         .our-expert {
           &-section1 {
+            .our-expert-sub1.input-focused {
+              border-radius: var(--border-radius-6);
+              border: var(--border-width-01, 1px) solid
+                var(--strokes-default, #9e9e9e);
+            }
+
             .search-results {
               display: none;
             }
@@ -50,13 +56,14 @@
       display: flex;
       flex-wrap: wrap;
       align-items: center;
+      justify-content: space-between;
       padding: 24px 0;
       gap: 16px 36px;
-      
-      @include media(desktop-sm){
+
+      @include media(desktop-sm) {
         justify-content: unset;
       }
-      
+
       @include media(mobile) {
         gap: 16px;
         padding: 28px 0;
@@ -71,6 +78,10 @@
         border: none;
         background-color: var(--neutrals-white);
         padding: 0;
+
+        .tab-subinner1{
+          all: inherit;
+        }
 
         @include media(mobile) {
           margin: 0;
@@ -91,8 +102,10 @@
         }
 
         .comlist {
-          width: 16px;
-          
+          @include media(mobile) {
+            width: 16px;
+          }
+
           .button {
             all: unset;
           }
@@ -204,7 +217,9 @@
 
                         @include media(mobile) {
                           font-size: var(--paragraph-small-regular-size);
-                          line-height: var(--paragraph-small-regular-line-height);
+                          line-height: var(
+                            --paragraph-small-regular-line-height
+                          );
                         }
                       }
                     }

@@ -499,11 +499,10 @@ export default function decorate(block) {
                 },
                 ...tempReturns.map((eloption) => li(
                   {
-                    class: `listval ${
-                      textvalret === eloption.replace('Since', '')
-                        ? 'active'
-                        : ''
-                    }`,
+                    class: `listval ${textvalret === eloption.replace('Since', '')
+                      ? 'active'
+                      : ''
+                      }`,
                     value: dataMapMoObj.ObjTempfdp[eloption],
                   },
                   eloption,
@@ -688,7 +687,7 @@ export default function decorate(block) {
       const { overflowY } = style;
       if (
         (overflowY === 'auto' || overflowY === 'scroll')
-          && el.scrollHeight > el.clientHeight
+        && el.scrollHeight > el.clientHeight
       ) {
         return true;
       }
@@ -1054,7 +1053,7 @@ export default function decorate(block) {
     }
     if (window.innerWidth < 768) {
       if (!dropbk.contains(event.target)
-      && !dropsel.contains(event.target)) {
+        && !dropsel.contains(event.target)) {
         if (mainblk.querySelector('.fdp-card-container .item2-ul').style.display === 'block') {
           mainblk.querySelector('.fdp-card-container .item2-ul')
             .style.display = 'none';
@@ -1120,75 +1119,109 @@ export default function decorate(block) {
   dataMapMoObj.altFunction(imgAltmain.querySelector('.subbreadcrb4 img'), 'branded-page');
   dataMapMoObj.altFunction(imgAltmain.querySelector('.subbreadcrb4 img'), 'branded-page');
 
-  // Select the parent container once
+  // ---------------- SHARE CONTAINER ----------------
   const shareContainer = imgAltmain.querySelector('.subbreadcrb2 .breadcrbmain2');
 
-  // Loop through children just to prepare them (e.g., remove href)
+  // Add index classes & remove href from each <a>
   Array.from(shareContainer.children).forEach((listItem, index) => {
-    // Find the list item that contains the text 'Copy'
     listItem.classList.add(`listindex${index + 1}`);
-    if (listItem.textContent.trim().includes('Copy')) {
-      const link = listItem.querySelector('a');
-      if (link) {
-        link.removeAttribute('href');
-        // Add a class or data-attribute for easier targeting
-        listItem.dataset.action = 'copy';
+
+    const link = listItem.querySelector('a');
+    if (link) link.removeAttribute('href');
+  });
+
+  // ---------------- SHARE DATA ----------------
+  const getShareData = () => {
+    const shareUrl = window.location.href;
+    const shareText = dataMapMoObj.planText || "Check this out";
+    return { shareUrl, shareText };
+  };
+
+  // ---------------- FACEBOOK ----------------
+  const fbBtn = shareContainer.querySelector('.listindex1');
+  if (fbBtn) {
+    fbBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const { shareUrl } = getShareData();
+      const fb = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`;
+      window.open(fb, '_blank');
+    });
+  }
+
+  // ---------------- WHATSAPP ----------------
+  const wpBtn = shareContainer.querySelector('.listindex2');
+  if (wpBtn) {
+    wpBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const { shareUrl, shareText } = getShareData();
+      const wp = `https://wa.me/?text=${encodeURIComponent(`${shareText} ${shareUrl}`)}`;
+      window.open(wp, '_blank');
+    });
+  }
+
+  // ---------------- X / TWITTER ----------------
+  const twBtn = shareContainer.querySelector('.listindex3');
+  if (twBtn) {
+    twBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const { shareUrl, shareText } = getShareData();
+      const tw = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`;
+      window.open(tw, '_blank');
+    });
+  }
+
+  // ---------------- COPY URL ----------------
+  const copyBtn = shareContainer.querySelector('.listindex4');
+  const msgBox = shareContainer.querySelector('.listindex5');
+
+  if (copyBtn) {
+    copyBtn.addEventListener('click', async (e) => {
+      e.stopPropagation();
+      try {
+        const { shareUrl } = getShareData();
+        await navigator.clipboard.writeText(shareUrl);
+
+        msgBox.style.display = 'block';
+        setTimeout(() => msgBox.style.display = 'none', 1000);
+
+      } catch (err) {
+        msgBox.textContent = 'Could not copy URL. Please check browser settings.';
+        msgBox.style.display = 'block';
+        setTimeout(() => msgBox.style.display = 'none', 1000);
       }
-    }
-  });
+    });
+  }
 
-  // Add ONE event listener to the parent container
-  shareContainer.addEventListener('click', async (event) => {
-    // Find the list item that was actually clicked
-    const clickedItem = event.target.closest('[data-action="copy"]');
-
-    // If the click wasn't on our copy button, do nothing
-    if (!clickedItem) {
-      // console.log('copy');
-    }
-  });
-
-  // plantext
+  // ---------------- PLAN TEXT CAPTURE ----------------
   block.querySelector('.btn-wrapper').addEventListener('click', () => {
     const plantext = block.querySelector('.middlediv .selecttext');
     dataMapMoObj.planText = plantext.textContent.trim();
   });
 
+  // ---------------- REDIRECT MODIFICATION ----------------
   const redirect = mainBlock.querySelector('.fdp-card-container .fdp-card');
   const redirectbrn = redirect.querySelector('.btn-wrapper a');
   const link = redirectbrn.getAttribute('href');
+
   const stky = mainBlock.querySelector('.fdp-sticky-nav');
   const textVal = stky.querySelector('.sticky-sub-item2').textContent;
+
   stky.querySelector('.sticky-sub-item2').innerHTML = '';
   stky.querySelector('.sticky-sub-item2').append(a({
     href: link,
     class: 'submit',
   }, textVal));
+
+  // ---------------- CLOSE POPUP WHEN CLICKED OUTSIDE ----------------
   document.addEventListener('click', (event) => {
-    if (!mainBlock.querySelector('.subbreadcrb2').contains(event.target)) {
-      const breadcrumb = document.querySelector('.breadcrbmain2');
-      breadcrumb.style.display = 'none';
+    if (!shareContainer.contains(event.target) &&
+      !imgAltmain.querySelector('.subbreadcrb2').contains(event.target)) {
+      shareContainer.style.display = 'none';
     }
   });
 
+  // Remove title attribute from all tab anchors
   document.querySelectorAll('.fdp-tab a').forEach((anc) => {
     anc.removeAttribute('title');
   });
-
-  // const itemsc = mainBlock.querySelector('.fdp-card-container');
-  // // itemsc.style.overflowY = 'scroll';
-  // itemsc.addEventListener('scroll', () => {
-  //   console.log('Hello');
-  // });
-  // const container = document.querySelector('.fdp-card-container');
-
-  // // The rest of your code works exactly the same
-  // if (container) {
-  //   document.addEventListener('scroll', (event) => {
-  //     console.log('Scrolling the container with a CLASS!');
-  //     console.log('Current scroll position:', event.target.querySelector('main'));
-  //   });
-  // } else {
-  //   console.error('Could not find element with class "myContainer"');
-  // }
 }
