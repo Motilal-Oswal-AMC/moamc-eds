@@ -299,8 +299,7 @@ export function wishlist() {
   const count = stars.length;
   const watchlistSpan = document.querySelector('.watchlisttext span');
   if (watchlistSpan) {
-    watchlistSpan.textContent = `My Watchlist (${count < 10 ? '0' : ''
-      }${count})`;
+    watchlistSpan.textContent = `My Watchlist (${count < 10 ? '0' : ''}${count})`;
   }
 }
 
@@ -661,11 +660,11 @@ function articleStructure() {
       parent.insertBefore(wrapperDiv, mainArticle3);
       wrapperDiv.appendChild(mainArticle3);
       wrapperDiv.appendChild(mainArticle4);
-      const maindiv = maincloser.querySelector('.main-wrapper');
+      const maindiver = maincloser.querySelector('.main-wrapper');
       // maindiv.classList.add('main-wrapper');
-      maindiv.append(maincloser.querySelector('.article-left-wrapper'));
-      maindiv.append(maincloser.querySelector('.article-right-wrapper'));
-      maincloser.prepend(maindiv);
+      maindiver.append(maincloser.querySelector('.article-left-wrapper'));
+      maindiver.append(maincloser.querySelector('.article-right-wrapper'));
+      maincloser.prepend(maindiver);
       // const main1 = maincloser.querySelector('.article-left-wrapper');
       // const main2 = maincloser.querySelector('.article-right-wrapper');
       // const mainwrapperDiv = maincloser.querySelector('.main-wrapper');
@@ -820,7 +819,7 @@ if (skinstakeComponent != null) {
     'stake-component-para-two',
     'stake-component-img',
     'stake-img-card-wrap',
-    'stake-img-card-wrap-img'
+    'stake-img-card-wrap-img',
   ];
   dataMapMoObj.addIndexed(skinstakeComponent);
 }
@@ -862,7 +861,6 @@ try {
 }
 // Skin the game static end
 
-
 // conclusion container start
 const conclusion = document.querySelector('.section.conclusion');
 if (conclusion != null) {
@@ -896,3 +894,27 @@ try {
 } catch (error) {
   // console.log(error);
 }
+
+async function getlisting() {
+  const resp = await myAPI('GET', 'https://m71vqgw4cj.execute-api.ap-south-1.amazonaws.com/dev/api/public/v1/funds/listing');
+  return resp;
+}
+dataMapMoObj.getlisting = getlisting;
+
+async function getscheme(param) {
+  const resp = await myAPI('GET', `https://m71vqgw4cj.execute-api.ap-south-1.amazonaws.com/dev/api/public/v1/funds?schcode=${param}`);
+  return resp;
+}
+dataMapMoObj.getscheme = getscheme;
+
+async function getfundmanager(param) {
+  const resp = await myAPI('GET', `https://m71vqgw4cj.execute-api.ap-south-1.amazonaws.com/dev/api/public/v1/funds/manager?schcode=${param}`);
+  return resp;
+}
+dataMapMoObj.getfundmanager = getfundmanager;
+
+async function getinsights() {
+  const resp = await myAPI('GET', 'https://main--moamc-eds--motilal-oswal-amc.aem.live/query-index-insights.json');
+  return resp;
+}
+dataMapMoObj.getinsights = getinsights;
