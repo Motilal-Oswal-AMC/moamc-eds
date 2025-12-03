@@ -1949,21 +1949,24 @@ main.nfo-nav {
         rgb(154 148 255 / 50%) -40.11%,
         rgb(214 211 255 / 50%) 100%
       );
+      padding: 42.5px 55.259px 31.502px 55.242px;
        @media screen and (width > 768px) {
         height: 328px;
         align-items: end;
+        padding: 0px;
        }
 
       .icon.icon-rupees.comlist.high-skin-component-paragraph1 {
         display: inline-flex;
         justify-content: center;
         align-items: center;
+        width: 229.499px;
+        height: 254.998px;
+       @media screen and (width > 768px) {
         width: 300px;
         height: 300px;
         margin: 28px 0px 0px 0px;
-      //  @media screen and (width > 768px) {
-      //   margin: 28px;
-      //  }
+       }
       .high-skin-component-ctn1{
         @media screen and (width > 768px){
           object-fit: none;
@@ -2133,9 +2136,12 @@ main.nfo-nav {
   }
   .stake-component-wrap1 {
     .stake-component-main-head1 {
-      padding: 40px;
+      padding: 40px 12px 0px 12px;
       border-radius: 12px;
       background: var(--neutrals-100);
+      @media screen and (width >786px) {
+        padding: 40px;
+      }
 
       ul {
         display: flex;
@@ -2159,12 +2165,20 @@ main.nfo-nav {
           }
 
           .cards-card-image {
+            padding: 36px 43.22px 69px 42.22px;
+            @media screen  and (width > 768px){
+              padding: 0px;
+            }
             picture {
               img {
-                max-height: 286.615px;
-                height: 100%;
-                display: block;
-                aspect-ratio: unset;
+               width: 250px;
+               height: 234px;
+                 @media screen and (width > 768px) {
+                    width: unset;
+                    height: 286.615px;
+                    display: block;
+                    aspect-ratio: unset;
+                 }
               }
             }
           }
@@ -2172,6 +2186,7 @@ main.nfo-nav {
           .cards-card-body {
             max-width: 628px;
             width: 100%;
+            margin: 0px;
           }
         }
       }
@@ -2186,12 +2201,14 @@ main.nfo-nav {
     font-style: normal;
     font-weight: 600;
     line-height: var(--heading-h5-line-height);
-    max-width: 568px;
     width: 100%;
     margin: 0 0 31px;
+    max-width: 309px;
+    width: 100%;
 
     @media screen and (width > 768px) {
       margin-bottom: 23px;
+      max-width: 568px;
     }
   }
 
@@ -2203,9 +2220,12 @@ main.nfo-nav {
     font-style: normal;
     font-weight: 600;
     line-height: var(--body-large-semibold-line-height);
-    max-width: 628px;
+    max-width: 309px;
     width: 100%;
     margin: 0 0 4px;
+    @media screen and (width > 768px) {
+      max-width: 628px;
+    }
   }
 
   .stake-component-para-one3 {
@@ -2357,45 +2377,58 @@ main.nfo-nav {
 }
 .section.our-commitment-component{
   padding:0px;
-  margin: 80px 0px 80px 0px;
+  width: 100%;
+   margin: 56px 0px 0px 0px;
+   @media screen and (width > 768px){
+      margin: 80px 0px 80px 0px;
+     }
+
   .promise-qglp-wrapper{
+    padding: 0px;
+    .promise-qglp-ctn1{
+      position: unset;
+      margin-left: 16px;
+    }
    .promise-qglp-ctn2{
-    color: var(--blue-1800-primary, #2E2A94);
+    position: absolute;
+    top: 45px;
+    color: var(--blue-1-800-primary);
     font-feature-settings: var(--font-features-default);
     font-family: var(--title, Inter);
-    font-size: var(--heading-h4-size, 32px);
+    font-size: var(--heading-h4-size);
     font-style: normal;
     font-weight: 600;
     line-height: var(--heading-h4-line-height);
-    max-width: 332px;
+    max-width: 242px;
+    // New styles
+    padding: 0px;
+    width: 57%;
+    top: 16px;
+    left: 16px;
+    @media screen and (width > 768px){
+      padding: 0px;
+      width: 100%;
+      top: unset;
+      left: unset;
+     }
+   }
+   .promise-qglp-ctn3{
+    color: var(--n  eutrals-800);
+    font-feature-settings: var(--font-features-default);
+    font-family: var(--body);
+    font-style: normal;
+    font-weight: 500;
+    line-height: var(--sub-header-large-line-height);
     width: 100%;
+    font-size: 22px;
+    padding: 0px 16px;
+    margin-bottom: 53px;
+     @media screen and (width > 768px){
+      padding: 0px;
+      font-size: var(--sub-header-large-size);
+      max-width: 708px;
+     }
    }
   }
 }
-// .skin-in-the-game-wrapper {
-//   margin: 72px 16px;
-//   padding: 0;
-
-//   @media screen and (width > 768px) {
-//     margin: 80px 67px;
-//   }
-
-//   .promise-qglp {
-//     padding: 0;
-//     margin: 0;
-
-//     .promise-qglp-wrapper {
-//       .promise-qglp-ctn3 {
-//         line-height: 24px;
-//         width: 100%;
-//         max-width: 360px;
-
-//         @media screen and (width > 768px) {
-//           max-width: 532px;
-//         }
-//       }
-//     }
-//   }
-// }
-
 // Skin in the game static end
