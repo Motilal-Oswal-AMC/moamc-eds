@@ -300,7 +300,7 @@ export function wishlist() {
   const watchlistSpan = document.querySelector('.watchlisttext span');
   if (watchlistSpan) {
     watchlistSpan.textContent = `My Watchlist (${count < 10 ? '0' : ''
-    }${count})`;
+      }${count})`;
   }
 }
 
@@ -586,11 +586,11 @@ function articleStructure() {
       ];
       dataMapMoObj.addIndexed(subright);
     });
-      const maindiv = maincloser.querySelector('.main-wrapper');
-      // maindiv.classList.add('main-wrapper');
-      maindiv.append(maincloser.querySelector('.article-left-wrapper'));
-      maindiv.append(maincloser.querySelector('.article-right-wrapper'));
-      maincloser.prepend(maindiv);
+    const maindiv = maincloser.querySelector('.main-wrapper');
+    // maindiv.classList.add('main-wrapper');
+    maindiv.append(maincloser.querySelector('.article-left-wrapper'));
+    maindiv.append(maincloser.querySelector('.article-right-wrapper'));
+    maincloser.prepend(maindiv);
     if (maincloser.querySelector('.moedge-article-details')) {
       dataMapMoObj.CLASS_PREFIXES = [
         'articlemain',
