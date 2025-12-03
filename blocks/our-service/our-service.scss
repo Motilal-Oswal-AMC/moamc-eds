@@ -489,6 +489,10 @@ main > .section.our-service-container {
                     scrollbar-color: rgba(0,0,0,0);
                     list-style: none;
                     // display: none;
+
+                    @include media(mobile){
+                      width: max-content;
+                    }
                     
                     li.comlist{
                       max-width: unset;
