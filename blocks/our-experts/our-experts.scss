@@ -40,7 +40,6 @@
 
             &-cont1 {
                 .our-expert-section1 {
-
                     h1,
                     h2,
                     h3,
@@ -122,6 +121,10 @@
                                 color: var(--text-body-2);
                                 visibility: hidden;
                             }
+
+                            &::placeholder {
+                                visibility: hidden;
+                            }
                         }
 
                         .floating-label-wrapper {
@@ -142,6 +145,11 @@
                                 line-height: var(--body-medium-regular-line-height);
                                 pointer-events: none;
                                 transition: all 0.2s ease;
+
+                                @include media (mobile) {
+                                    top: 11px;
+                                    left: 38px;
+                                }
                             }
 
                             input {
@@ -173,6 +181,12 @@
                             min-width: 24px;
                             width: 24px;
                             height: 24px;
+
+                            // @include media (mobile) {
+                            //     min-width: 20px;
+                            //     width: 20px;
+                            //     height: 20px;
+                            // }
                         }
                     }
 
