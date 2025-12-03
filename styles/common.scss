@@ -1826,7 +1826,6 @@ main.nfo-nav {
           display: flex;
           flex-direction: column;
           justify-content: flex-start;
-
           @media screen and (width > 768px) {
             justify-content: space-between;
             flex-direction: row;
@@ -1837,8 +1836,6 @@ main.nfo-nav {
             list-style: none;
 
             .high-skin-paragraph1 {
-              /* MOBILE DEFAULTS */
-              max-width: unset;
               font-size: var(--heading-h5-size);
               line-height: var(--sub-header-large-line-height);
               margin-bottom: 24px;
@@ -1850,7 +1847,6 @@ main.nfo-nav {
               font-style: normal;
               font-weight: 600;
               width: 100%;
-
               @media screen and (width > 768px) {
                 max-width: 147px;
                 font-size: var(--heading-h4-size);
@@ -1904,6 +1900,9 @@ main.nfo-nav {
                   max-width: 712px;
                   margin-bottom: 40px;
                 }
+                @media (min-width: 768px) and (max-width: 1000px) {
+                   max-width: 585px;
+                }
               }
             }
           }
@@ -1934,7 +1933,6 @@ main.nfo-nav {
 
     @media screen and (width > 768px) {
       max-width: 1240px;
-      margin: 0;
     }
 
     .comlist.high-skin-component-heading1 {
@@ -2008,6 +2006,7 @@ main.nfo-nav {
             width: 100%;
             list-style: none;
             margin-bottom: 23px;
+            max-width: 181px;
 
             @media screen and (width > 768px) {
               max-width: 217px;
@@ -2053,7 +2052,6 @@ main.nfo-nav {
     font-weight: 600;
     width: 100%;
     margin: 80px 0 40px;
-
     @media screen and (width > 768px) {
       font-size: var(--heading-h5-size);
       line-height: var(--heading-h5-line-height);
@@ -2173,6 +2171,7 @@ main.nfo-nav {
               img {
                width: 250px;
                height: 234px;
+               object-fit: unset;
                  @media screen and (width > 768px) {
                     width: unset;
                     height: 286.615px;
@@ -2184,9 +2183,18 @@ main.nfo-nav {
           }
 
           .cards-card-body {
-            max-width: 628px;
+            max-width: 100%;
             width: 100%;
             margin: 0px;
+            max-width: unset;
+
+            @media screen and (width > 768px) {
+             max-width: 58.16%;
+            }
+
+            @media screen and (width > 1299px) {
+             max-width: 54.514%;
+            }
           }
         }
       }
@@ -2247,11 +2255,11 @@ main.nfo-nav {
   background-color: $neutrals-100;
   display: flex;
   justify-content: center;
-  padding: 0 16px;
+  // padding: 0 16px;
 
-  @media screen and (width > 768px) {
-    padding: 0;
-  }
+  // @media screen and (width > 768px) {
+  //   padding: 0;
+  // }
 
   .why-matters-wrapper-in {
     position: relative;
@@ -2262,10 +2270,15 @@ main.nfo-nav {
     gap: 40px;
     max-width: 1232px;
     width: 100%;
-
+    
+    
     @media screen and (width > 768px) {
       flex-direction: row;
       gap: 120px;
+    }
+
+    @include media(desktop-sm){
+      padding: 40px 16px;
     }
 
     .why-matters-wrap1 {
@@ -2400,9 +2413,8 @@ main.nfo-nav {
     font-weight: 600;
     line-height: var(--heading-h4-line-height);
     max-width: 242px;
-    // New styles
     padding: 0px;
-    width: 57%;
+    width: 192.425px;
     top: 16px;
     left: 16px;
     @media screen and (width > 768px){
@@ -2411,6 +2423,9 @@ main.nfo-nav {
       top: unset;
       left: unset;
      }
+     @media (min-width: 768px) and (max-width: 1000px) {
+       max-width: 210px;
+    }
    }
    .promise-qglp-ctn3{
     color: var(--n  eutrals-800);
@@ -2422,12 +2437,16 @@ main.nfo-nav {
     width: 100%;
     font-size: 22px;
     padding: 0px 16px;
-    margin-bottom: 53px;
+    margin-bottom: 53px; 
      @media screen and (width > 768px){
       padding: 0px;
       font-size: var(--sub-header-large-size);
       max-width: 708px;
+      margin-bottom: 0px;
      }
+    @media (min-width: 769px) and (max-width: 1000px) {
+      max-width: 504px;
+    }
    }
   }
 }
