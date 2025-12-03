@@ -646,11 +646,28 @@ function articleStructure() {
       wrapperDiv.appendChild(mainArticle1);
       wrapperDiv.appendChild(mainArticle2);
     } else if (maincloser.querySelector('.moedge-article-details')) {
-      const main1 = maincloser.querySelector('.article-left-wrapper');
-      const main2 = maincloser.querySelector('.article-right-wrapper');
-      const mainwrapperDiv = maincloser.querySelector('.main-wrapper');
-      mainwrapperDiv.appendChild(main1);
-      mainwrapperDiv.appendChild(main2);
+      const mainArticle3 = maincloser.querySelector(
+        '.moedge-article-details .mainarticle1',
+      );
+      const mainArticle4 = maincloser.querySelector(
+        '.moedge-article-details .mainarticle2',
+      );
+      const parent = mainArticle3.parentNode;
+      const wrapperDiv = document.createElement('div');
+      wrapperDiv.classList.add('articles-wrapper');
+      parent.insertBefore(wrapperDiv, mainArticle3);
+      wrapperDiv.appendChild(mainArticle3);
+      wrapperDiv.appendChild(mainArticle4);
+      const maindiv = maincloser.querySelector('.main-wrapper');
+      // maindiv.classList.add('main-wrapper');
+      maindiv.append(maincloser.querySelector('.article-left-wrapper'));
+      maindiv.append(maincloser.querySelector('.article-right-wrapper'));
+      maincloser.prepend(maindiv);
+      // const main1 = maincloser.querySelector('.article-left-wrapper');
+      // const main2 = maincloser.querySelector('.article-right-wrapper');
+      // const mainwrapperDiv = maincloser.querySelector('.main-wrapper');
+      // mainwrapperDiv.appendChild(main1);
+      // mainwrapperDiv.appendChild(main2);
     }
   }
 }
