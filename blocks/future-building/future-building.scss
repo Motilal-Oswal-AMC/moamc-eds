@@ -582,30 +582,30 @@
     }
 }
 
-.moedge-article-main {
-    .section.future-building-container>.library-btn3 {
-        top: 30px;
+// .moedge-article-main {
+//     .section.future-building-container>.library-btn3 {
+//         top: 30px;
 
-        @include media(mobile) {
-            display: flex;
-            justify-content: center;
-        }
-    }
+//         @include media(mobile) {
+//             display: flex;
+//             justify-content: center;
+//         }
+//     }
 
-    .section.future-building-container.future-building-article-details>.library-btn3 {
-        top: 14px;
-    }
+//     .section.future-building-container.future-building-article-details>.library-btn3 {
+//         top: 14px;
+//     }
 
-    .section.future-building-container.future-building-article-details .future-building .swiper-wrapper .swiper-slide .swiper-slide-cards-2>ul.cards-listcards1>li.cards-list-1-cards4 .button-container a {
-        line-height: 20px;
+//     .section.future-building-container.future-building-article-details .future-building .swiper-wrapper .swiper-slide .swiper-slide-cards-2>ul.cards-listcards1>li.cards-list-1-cards4 .button-container a {
+//         line-height: 20px;
 
-        // text-underline-offset: 20%;
+//         // text-underline-offset: 20%;
 
-        @include media(mobile) {
-            line-height: 16px;
-        }
-    }
-}
+//         @include media(mobile) {
+//             line-height: 16px;
+//         }
+//     }
+// }
 
 // Investor Education - Keys of Investing
 .section.key-investing.future-building-container {
