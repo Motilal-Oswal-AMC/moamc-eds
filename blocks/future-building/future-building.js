@@ -181,9 +181,11 @@ export default function decorate(block) {
     const keyInvestSearchWrap = keyInvestSection.querySelector('.default-content-wrapper');
     if (keyInvestSection.classList.contains('key-investing')) {
       const keyInvestSearch = div(
-        { class: 'keyinvest-search' },
-        input({ class: 'keyinvest-inp', id: 'keyinvest', placeholder: ' ' }),
-        label({ class: 'keyinvest-label', for: 'keyinvest' }, 'Search here'),
+        { class: 'keyinvest-wrap' },
+        div({ class: 'keyinvest-search' },
+          input({ class: 'keyinvest-inp', id: 'keyinvest', placeholder: ' ' }),
+          label({ class: 'keyinvest-label', for: 'keyinvest' }, 'Search here'),
+        ),
       );
       keyInvestSearchWrap.append(keyInvestSearch);
     }
@@ -236,6 +238,23 @@ export default function decorate(block) {
     inputField.focus();
     inputField.classList.add('focus-visible');
   });
+  // Keep label floated when input has a value even after blur
+  if (searchFldkey) {
+    searchFldkey.addEventListener('blur', () => {
+      if (searchFldkey.value && searchFldkey.value.trim() !== '') {
+        searchFldkey.classList.add('focus-visible');
+        // CSS uses .active + label to float label when input has value
+        searchFldkey.classList.add('active');
+      } else {
+        try {
+          searchFldkey.classList.remove('focus-visible');
+          searchFldkey.classList.remove('active');
+        } catch (e) {
+          // ignore
+        }
+      }
+    });
+  }
   if (searchFldkey) {
     const listContainer = keySearchNewEle;
 
@@ -314,6 +333,7 @@ export default function decorate(block) {
       try {
         searchFldkey.focus();
         searchFldkey.classList.add('focus-visible');
+        searchFldkey.classList.add('active');
       } catch (err) {
         // ignore if focus fails in some environments
       }
@@ -372,6 +392,12 @@ export default function decorate(block) {
         }
       });
       closeBtn.style.display = event.target.value.length > 0 ? 'flex' : 'none';
+      // toggle .active used by CSS to keep the label floated when value exists
+      if (event.target.value && event.target.value.trim() !== '') {
+        searchFldkey.classList.add('active');
+      } else {
+        searchFldkey.classList.remove('active');
+      }
       // persist state so label stays floated even when input loses focus
     });
     closeBtn.addEventListener('click', () => {
@@ -382,6 +408,7 @@ export default function decorate(block) {
       try {
         searchFldkey.classList.remove('focus-visible');
         // placeholder-driven CSS will handle the float state; no JS class needed
+        searchFldkey.classList.remove('active');
       } catch (e) {
         // ignore
       }
@@ -491,10 +518,19 @@ export default function decorate(block) {
 
     if (!input.contains(event.target) && !listBox.contains(event.target)) {
       listBox.classList.add('dsp-none');
-      if (searchFldkey.value === '' && (dataMapMoObj.searchFld === undefined || dataMapMoObj.searchFld === '')) {
+      // If the input has a value, keep the label floated. Otherwise remove the float class.
+      if (searchFldkey.value && searchFldkey.value.trim() !== '') {
+        try {
+          input.classList.add('focus-visible');
+          input.classList.add('active');
+        } catch (e) {
+          // ignore
+        }
+      } else if (dataMapMoObj.searchFld === undefined || dataMapMoObj.searchFld === '') {
         closeBtn.style.display = 'none';
         try {
           input.classList.remove('focus-visible');
+          input.classList.remove('active');
         } catch (e) {
           // ignore
         }
