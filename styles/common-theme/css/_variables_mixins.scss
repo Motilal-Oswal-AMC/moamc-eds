@@ -182,7 +182,7 @@ $font-weights: (
   font-family: $family;
   font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
 
-  @if $weight != 'null' {
+  @if $weight !='null' {
     font-weight: $weight;
   }
 }

@@ -184,12 +184,23 @@
 }
 
 .section.cornerstones-elss-fund {
+  padding: 80px 0;
+
   .cornerstones-advantage-cards-wrapper {
     .cornerstones-advantage-cards {
       display: flex;
       flex-wrap: wrap;
       gap: 24px;
       justify-content: space-between;
+      margin: 64px 0 0;
+    }
+  }
+
+  .cornerstones-advantage-cards {
+    .cards-item {
+      max-width: 296px;
+      width: 100%;
+      min-height: 244px;
     }
   }
 }
