@@ -79,6 +79,10 @@
         background-color: var(--neutrals-white);
         padding: 0;
 
+        .tab-subinner1{
+          all: inherit;
+        }
+
         @include media(mobile) {
           margin: 0;
           font-size: var(--label-large-size);
