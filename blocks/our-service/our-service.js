@@ -112,6 +112,8 @@ export default function decorate(block) {
     'embedsub',
     'embedinner',
     'embedsubinner',
+    'embedsublist',
+    'embedlistinner',
   ];
   Array.from(classEmbed).forEach((elfor) => dataMapMoObj.addIndexed(elfor));
 
