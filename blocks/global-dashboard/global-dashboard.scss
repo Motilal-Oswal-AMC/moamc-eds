@@ -73,7 +73,7 @@
       }
 
       .global2 {
-        @include media(mobile){
+        @include media(mobile) {
           padding: 16px 0 0;
         }
 
@@ -135,16 +135,16 @@
                 var(--body)
               );
 
-              @include media(mobile){
+              @include media(mobile) {
                 min-width: 74px;
                 padding: 0 var(--spacing-8);
               }
 
-              span.icon{
+              span.icon {
                 width: 20px;
                 height: 20px;
-                
-                @include media(mobile){
+
+                @include media(mobile) {
                   width: 16px;
                   height: 16px;
                 }
@@ -165,7 +165,7 @@
               var(--body)
             );
 
-            @include media(mobile){
+            @include media(mobile) {
               font-size: var(--body-large-medium-size);
               line-height: var(--body-large-medium-line-height);
             }
@@ -176,9 +176,15 @@
             font-style: normal;
             padding-bottom: 16px;
 
-            @include font-style(var(--body-medium-regular-size), 24px, var(--text-body-2), 400, var(--body));
+            @include font-style(
+              var(--body-medium-regular-size),
+              24px,
+              var(--text-body-2),
+              400,
+              var(--body)
+            );
 
-            @include media(mobile){
+            @include media(mobile) {
               font-size: var(--paragraph-small-regular-size);
               line-height: var(--paragraph-small-regular-line-height);
             }
@@ -202,9 +208,15 @@
               border-radius: 0;
               border: none;
 
-              @include font-style(14px, var(--text-link-small-line-height), var(--text-text-link), 400, var(--body));
+              @include font-style(
+                14px,
+                var(--text-link-small-line-height),
+                var(--text-text-link),
+                400,
+                var(--body)
+              );
 
-              @include media(mobile){
+              @include media(mobile) {
                 font-size: var(--text-link-small-size);
                 line-height: var(--text-link-small-line-height);
               }
@@ -215,117 +227,172 @@
     }
   }
 
-  .default-content-wrapper {
+  .cards-wrapper {
     margin: 0;
     max-width: 504px;
     width: 100%;
 
-    @include media(mobile){
+    @include media(mobile) {
       max-width: 100%;
     }
 
-    .global-text1 {
-      list-style: none;
-      margin: 0;
+    // .global-text1 {
+    //   list-style: none;
+    //   margin: 0;
 
-      li.comlist {
+    //   li.comlist {
+    //     display: flex;
+    //     align-items: start;
+    //     gap: 8px;
+    //     padding: 8px 0;
+
+    //     @include media(mobile){
+    //       padding: 12px 0;
+    //     }
+
+    //     ul.comlist {
+    //       margin: 0;
+    //       list-style: none;
+
+    //       li.comlist {
+    //         padding: 0;
+    //       }
+
+    //       li.global-textsubinner1 {
+    //         display: flex;
+    //         align-items: center;
+
+    //         // gap: 4px;
+    //         font-style: normal;
+    //         padding-bottom: 8px;
+
+    //         @include font-style(var(--label-medium-size), var(--label-medium-line-height), var(--blue-1-800-primary), 400, var(--body));
+
+    //         @include media(mobile){
+    //           gap: 4px;
+    //         }
+    //       }
+
+    //       li.global-textsubinner1::before {
+    //         content: "";
+    //         display: inline-block;
+    //         align-items: center;
+    //         width: 4px;
+    //         height: 4px;
+    //         background-color: var(--blue-1-800-primary);
+    //         border-radius: 50%;
+    //         vertical-align: middle;
+    //       }
+
+    //       li.global-textsubinner2 {
+    //         font-style: normal;
+    //         padding-bottom: 4px;
+
+    //         @include font-style(
+    //           var(--body-small-medium-size),
+    //           var(--body-small-medium-line-height),
+    //           var(--neutrals-900),
+    //           500,
+    //           var(--body)
+    //         );
+
+    //         @include media(mobile){
+    //           font-size: var(--body-small-medium-size);
+    //           line-height: var(--body-small-medium-line-height);
+    //         }
+    //       }
+
+    //       li.global-textsubinner3 {
+    //         font-style: normal;
+
+    //         @include font-style(
+    //           var(--paragraph-xsmall-size),
+    //           var(--paragraph-xsmall-line-height),
+    //           var(--text-body-2),
+    //           400,
+    //           var(--body)
+    //         );
+
+    //         @include media(mobile){
+    //           font-size: var(--paragraph-xsmall-regular-size);
+    //           line-height: var(--paragraph-xsmall-regular-line-height);
+    //         }
+    //       }
+    //     }
+
+    //     p.comlist {
+    //       margin: 0;
+    //       line-height: 0;
+
+    //       .icon {
+    //         width: 80px;
+    //         height: 80px;
+
+    //         @include media(mobile){
+    //           width: 56px;
+    //           height: 56px;
+    //         }
+    //       }
+    //     }
+    //   }
+
+    //   li.global-textsub1 {
+    //     padding-top: 0;
+    //   }
+    // }
+
+    .global-card1 {
+      display: flex;
+      align-items: start;
+      flex-direction: column;
+      gap: 0;
+
+      > li.comlist {
+        padding: 8px 0;
+        border: none;
         display: flex;
         align-items: start;
         gap: 8px;
-        padding: 8px 0;
+        width: 100%;
 
-        @include media(mobile){
-          padding: 12px 0;
+        .global-cardinner1 {
+          min-width: 80px;
+          height: 80px;
+
+          .global-cardchild1 {
+            line-height: 0;
+            height: 100%;
+            display: block;
+
+            .global-carditem2 {
+              aspect-ratio: 1 / 1;
+              border-radius: 3.64px;
+            }
+          }
         }
 
-        ul.comlist {
+        .global-cardinner2 {
           margin: 0;
-          list-style: none;
 
-          li.comlist {
-            padding: 0;
-          }
-
-          li.global-textsubinner1 {
+          .global-cardchild1 {
             display: flex;
             align-items: center;
+            gap: 8px;
+            margin: 0;
 
-            // gap: 4px;
-            font-style: normal;
-            padding-bottom: 8px;
-
-            @include font-style(var(--label-medium-size), var(--label-medium-line-height), var(--blue-1-800-primary), 400, var(--body));
-
-            @include media(mobile){
+            > li.comlist {
+              display: flex;
+              align-items: center;
               gap: 4px;
-            }
-          }
 
-          li.global-textsubinner1::before {
-            content: "";
-            display: inline-block;
-            align-items: center;
-            width: 4px;
-            height: 4px;
-            background-color: var(--blue-1-800-primary);
-            border-radius: 50%;
-            vertical-align: middle;
-          }
-
-          li.global-textsubinner2 {
-            font-style: normal;
-            padding-bottom: 4px;
-
-            @include font-style(
-              var(--body-small-medium-size),
-              var(--body-small-medium-line-height),
-              var(--neutrals-900),
-              500,
-              var(--body)
-            );
-
-            @include media(mobile){
-              font-size: var(--body-small-medium-size);
-              line-height: var(--body-small-medium-line-height);
-            }
-          }
-
-          li.global-textsubinner3 {
-            font-style: normal;
-
-            @include font-style(
-              var(--paragraph-xsmall-size),
-              var(--paragraph-xsmall-line-height),
-              var(--text-body-2),
-              400,
-              var(--body)
-            );
-
-            @include media(mobile){
-              font-size: var(--paragraph-xsmall-regular-size);
-              line-height: var(--paragraph-xsmall-regular-line-height);
+              &.global-carditem1 {
+                border-radius: var(--border-radius-circle);
+                border: 1px solid var(--strokes-default);
+                padding: 0 var(--spacing-12);
+              }
             }
           }
         }
-
-        p.comlist {
-          margin: 0;
-          line-height: 0;
-
-          .icon {
-            width: 80px;
-            height: 80px;
-
-            @include media(mobile){
-              width: 56px;
-              height: 56px;
-            }
-          }
-        }
-      }
-
-      li.global-textsub1 {
-        padding-top: 0;
       }
     }
   }
