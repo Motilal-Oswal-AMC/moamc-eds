@@ -645,6 +645,12 @@ function articleStructure() {
       parent.insertBefore(wrapperDiv, mainArticle1);
       wrapperDiv.appendChild(mainArticle1);
       wrapperDiv.appendChild(mainArticle2);
+    } else if (maincloser.querySelector('.moedge-article-details')) {
+      const main1 = maincloser.querySelector('.article-left-wrapper');
+      const main2 = maincloser.querySelector('.article-right-wrapper');
+      const mainwrapperDiv = maincloser.querySelector('.main-wrapper');
+      mainwrapperDiv.appendChild(main1);
+      mainwrapperDiv.appendChild(main2);
     }
   }
 }
