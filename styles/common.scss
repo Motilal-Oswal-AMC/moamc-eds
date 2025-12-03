@@ -2645,6 +2645,48 @@ main.nfo-nav {
   }
 }
 
+.section.fund-philosophy {
+  display: flex;
+  padding: 16px 67px;
+  justify-content: center;
+  align-items: center;
+  gap: 64px;
+  align-self: stretch;
+  border-radius: 8px;
+  background: var(--blue-1800-primary, #2E2A94);
+
+  .fund-philosophy-contain1 {
+    .fund-philosophy-txt1 {
+      margin: unset;
+      color: var(--Neutrals-White, #FFF);
+      font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
+      font-family: var(--TItle, Inter);
+      font-size: var(--Heading-H5-Size, 28px);
+      font-style: normal;
+      font-weight: 600;
+      line-height: var(--Heading-H5-Line-Height, 32px);
+    }
+
+    .fund-philosophy-txt2 {
+      margin: unset;
+      color: var(--Blue-1-50, #D5DEFF);
+      font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
+      font-family: var(--Body, Inter);
+      font-size: var(--Body-Medium-regular-Size, 16px);
+      font-style: normal;
+      font-weight: 400;
+      line-height: var(--Body-Medium-regular-Line-Height, 24px);
+    }
+  }
+
+  .fund-philosophy-contain2 {
+    width: 320px;
+    height: 180px;
+    aspect-ratio: 16/9;
+  }
+}
+
+
 // why invest minor account css start
 .section.why-invest-minor {
   margin: 80px 0;
