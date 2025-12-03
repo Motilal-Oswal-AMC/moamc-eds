@@ -4,14 +4,15 @@ import dataMapMoObj from '../../scripts/constant.js';
 
 export default function decorate(block) {
   buildtabblock(block);
+  block.classList.add('gradient-show');
 
   const tabPanels = block.querySelectorAll('.tabs-panel');
   tabPanels.forEach((el) => {
     el.setAttribute('aria-hidden', true);
   });
   tabPanels[0].setAttribute('aria-hidden', false);
-  const tabs = block.querySelectorAll('.tabs-tab');
-  console.log(tabs);
+  // const tabs = block.querySelectorAll('.tabs-tab');
+  // console.log(tabs);
   if (tabPanels.length > 0) {
     const wrapper = document.createElement('div');
     wrapper.classList.add('tabs-panels-wrapper');
@@ -54,18 +55,18 @@ export default function decorate(block) {
         alreadyWrapped.remove();
       }
     });
-    const tabsList = block.querySelector('.tabs-list');
-    tabsList.addEventListener('click', (e) => {
-      const isSelected = e.target.getAttribute('aria-selected') === 'true';
-      const button = e.target.parentElement;
-      if (isSelected) {
-        e.target.setAttribute('aria-selected', false);
-        button.setAttribute('aria-selected', true);
-      } else {
-        e.target.setAttribute('aria-selected', true);
-      }
-      // console.log(isSelected);
-    });
+    // const tabsList = block.querySelector('.tabs-list');
+    // tabsList.addEventListener('click', (e) => {
+    //   const isSelected = e.target.getAttribute('aria-selected') === 'true';
+    //   const button = e.target.parentElement;
+    //   if (isSelected) {
+    //     e.target.setAttribute('aria-selected', false);
+    //     button.setAttribute('aria-selected', true);
+    //   } else {
+    //     e.target.setAttribute('aria-selected', true);
+    //   }
+    //   // console.log(isSelected);
+    // });
   }
   updateTabsForMobile();
 
@@ -111,6 +112,8 @@ export default function decorate(block) {
     'embedsub',
     'embedinner',
     'embedsubinner',
+    'embedsublist',
+    'embedlistinner',
   ];
   Array.from(classEmbed).forEach((elfor) => dataMapMoObj.addIndexed(elfor));
 

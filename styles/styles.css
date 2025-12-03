@@ -1837,8 +1837,7 @@ main>.section.media-coverage .default-content-wrapper h6 {
     .section.media-coverage.embed-container .embed-wrapper .embed-childitem1 .embed-childinner1 .button,
     .section.media-coverage.embed-container .embed-wrapper .embed-childitem1 .embed-childinner2 picture img {
         height: 100%;
-        width: 100%;
-        aspect-ratio: 2/1
+        width: 100%
     }
 
     main>.section.media-coverage {

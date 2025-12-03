@@ -111,10 +111,6 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
  * @param {Element} block The header block element
  */
 export default async function decorate(block) {
-  if (window.location.href.includes('/wcs')) {
-    block.classList.add('wealth-header');
-  }
-
   // load nav as fragment
   const navMeta = getMetadata('nav');
   const navPath = navMeta ? new URL(navMeta, window.location).pathname : '/nav';
@@ -134,12 +130,22 @@ export default async function decorate(block) {
     nav.classList.remove('nfo-nav');
   }
 
+  if ([...block.classList].includes('wealth-header')) {
+    nav.classList.remove('nfo-nav');
+  }
   const classes = ['brand', 'sections', 'tools'];
   classes.forEach((c, i) => {
     const section = nav.children[i];
     if (section) section.classList.add(`nav-${c}`);
   });
 
+  if (nav.querySelector('[data-id="wcs-header"]')) {
+    block.classList.add('wealth-header');
+  }
+
+  if (nav.querySelector('[data-id="wcs-header"]')) {
+    document.body.classList.add('custom-scroll');
+  }
   // Find the main .nav-brand container once.
   const navBrand = nav.querySelector('.nav-brand');
   // Guard clause: If the .nav-brand element doesn't exist, prevent errors.
@@ -178,7 +184,11 @@ export default async function decorate(block) {
 
       // Add the click event listener to redirect to the home page.
       container.addEventListener('click', () => {
-        window.location.href = `${window.location.origin}/mutual-fund/in/en/home-page`;
+        if (nav.querySelector('[data-id="wcs-header"]')) {
+          window.location.href = `${window.location.origin}/wcs-series`;
+        } else {
+          window.location.href = `${window.location.origin}/mutual-fund/in/en/home-page`;
+        }
       });
     });
   }
@@ -746,7 +756,7 @@ export default async function decorate(block) {
         dropdownMenu.classList.remove('open');
       }
     } catch (error) {
-      console.error('Error in scroll event handler:', error);
+      // console.error('Error in scroll event handler:', error);
     }
   });
 

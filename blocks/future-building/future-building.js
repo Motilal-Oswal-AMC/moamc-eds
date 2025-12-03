@@ -4,7 +4,6 @@ import {
   div,
   label,
   input,
-  img,
 } from '../../scripts/dom-helpers.js';
 
 export default function decorate(block) {
@@ -73,12 +72,12 @@ export default function decorate(block) {
   };
 
   const imagesToFix = swiperWrapper.querySelectorAll('img[alt=""]');
-  imagesToFix.forEach((img) => {
-    const { iconName } = img.dataset;
+  imagesToFix.forEach((imgelem) => {
+    const { iconName } = imgelem.dataset;
     const altText = altTextMap[iconName];
 
     if (altText !== undefined) {
-      img.setAttribute('alt', altText);
+      imgelem.setAttribute('alt', altText);
     }
   });
   // =================================================================
@@ -141,41 +140,41 @@ export default function decorate(block) {
       },
     };
   } else {
-    const leftarrow = document.createElement('div');
-    leftarrow.classList.add('swiper-button-prev');
-    block.appendChild(leftarrow);
-    const rightarrow = document.createElement('div');
-    rightarrow.classList.add('swiper-button-next');
-    block.appendChild(rightarrow);
-    const pagination = document.createElement('div');
-    pagination.classList.add('swiper-pagination');
-    const navigationWrap = document.createElement('div');
-    navigationWrap.classList.add('navigate-wrap');
-    navigationWrap.append(leftarrow, pagination, rightarrow);
-    // block.appendChild(pagination);
-    block.appendChild(navigationWrap);
-    config = {
-      slidesPerView: 'auto',
-      // spaceBetween: 12,
-      loop: true,
-      navigation: {
-        nextEl: block.querySelector('.swiper-button-next'),
-        prevEl: block.querySelector('.swiper-button-prev'),
-      }, // will be false if no buttons
-      pagination: {
-        el: block.querySelector('.swiper-pagination'), // Selector for your pagination container
-        clickable: true, // Makes pagination bullets clickable
-        renderBullet(index, className) {
-          // Customize the bullet content to display numbers
-          return `<span class="${className}">${index + 1}</span>`;
-        },
-      },
-      // breakpoints: {
-      //   769: {
-      //     spaceBetween: 16,
-      //   },
-      // },
-    };
+    // const leftarrow = document.createElement('div');
+    // leftarrow.classList.add('swiper-button-prev');
+    // block.appendChild(leftarrow);
+    // const rightarrow = document.createElement('div');
+    // rightarrow.classList.add('swiper-button-next');
+    // block.appendChild(rightarrow);
+    // const pagination = document.createElement('div');
+    // pagination.classList.add('swiper-pagination');
+    // const navigationWrap = document.createElement('div');
+    // navigationWrap.classList.add('navigate-wrap');
+    // navigationWrap.append(leftarrow, pagination, rightarrow);
+    // // block.appendChild(pagination);
+    // block.appendChild(navigationWrap);
+    // config = {
+    //   slidesPerView: 'auto',
+    //   // spaceBetween: 12,
+    //   loop: true,
+    //   navigation: {
+    //     nextEl: block.querySelector('.swiper-button-next'),
+    //     prevEl: block.querySelector('.swiper-button-prev'),
+    //   }, // will be false if no buttons
+    //   pagination: {
+    //     el: block.querySelector('.swiper-pagination'), // Selector for your pagination container
+    //     clickable: true, // Makes pagination bullets clickable
+    //     renderBullet(index, className) {
+    //       // Customize the bullet content to display numbers
+    //       return `<span class="${className}">${index + 1}</span>`;
+    //     },
+    //   },
+    //   // breakpoints: {
+    //   //   769: {
+    //   //     spaceBetween: 16,
+    //   //   },
+    //   // },
+    // };
 
     // creating Sear Box for Key Investing
     const keyInvestSection = block.closest('.section');
@@ -198,6 +197,7 @@ export default function decorate(block) {
         .querySelector('.article-sub-right.stay-updated.comlist.articlesub2');
 
       if (futureBuildingSection && stayUpdatedSection) {
+        // Move future-building-container above stay-updated
         // Move future-building-container above stay-updated
         stayUpdatedSection.parentNode.insertBefore(futureBuildingSection, stayUpdatedSection);
         console.log('✅ future-building-container moved above stay-updated');

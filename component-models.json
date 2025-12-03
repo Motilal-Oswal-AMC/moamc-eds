@@ -215,6 +215,10 @@
             "value": "investor-banner"
           },
           {
+            "name": "Listing Investor Banner",
+            "value": "listing-investor-banner"
+          },
+          {
             "name": "FDP FAQ Change",
             "value": "fdp-faq-change"
           },
@@ -357,10 +361,6 @@
           {
             "name": "NFO Banner",
             "value": "nfo-banner"
-          },
-          {
-            "name": "Show Contact Error",
-            "value": "show-contact-error"
           },
           {
             "name": "Out Expert Listing",
@@ -583,12 +583,12 @@
             "value": "coverage-table-panel"
           },
           {
-            "name":"Why Choose Us",
-            "value":"why-choose-us"
+            "name": "Why Choose Us",
+            "value": "why-choose-us"
           },
           {
-            "name":"Why Choose Card",
-            "value":"why-choose-card"
+            "name": "Why Choose Card",
+            "value": "why-choose-card"
           },
           {
             "name": "Section One",
@@ -604,11 +604,143 @@
           },
           {
             "name": "QGLP Static Component",
-            "value": "qglp-static-Component"
+            "value": "qglp-static-component"
           },
           {
             "name": "Testing",
             "value": "testing"
+          },
+          {
+            "name": "High Skin Text",
+            "value": "high-skin-text"
+          },
+          {
+            "name": "High Image Component",
+            "value": "high-image-component"
+          },
+          {
+            "name": "Skin Moamc Component",
+            "value": "skin-moamc-component"
+          },
+          {
+            "name": "Why Matters Component",
+            "value": "why-matters-component"
+          },
+          {
+            "name": "Mo Inter Business",
+            "value": "mo-inter-business"
+          },
+          {
+            "name": "our investing style",
+            "value": "our-investing-style"
+          },
+          {
+            "name": "Why QGLP",
+            "value": "why-qglp"
+          },
+          {
+            "name": "Promise QGLP",
+            "value": "promise-qglp"
+          },
+          {
+            "name": "Decoding QGLP Static",
+            "value": "decoding-qglp-static"
+          },
+          {
+            "name": "Article Detail Library",
+            "value": "article-detail-library"
+          },
+          {
+            "name": "Screen 400",
+            "value": "screen-400"
+          },
+          {
+            "name": "Screen 401",
+            "value": "screen-401"
+          },
+          {
+            "name": "Screen 403",
+            "value": "screen-403"
+          },
+          {
+            "name": "Screen 408",
+            "value": "screen-408"
+          },
+          {
+            "name": "Screen 500",
+            "value": "screen-500"
+          },
+          {
+            "name": "Service Screen",
+            "value": "service-screen"
+          },
+          {
+            "name": "Investor Listing Edge Filter",
+            "value": "listing-edge-filter"
+          },
+          {
+            "name": "Investor Listing Our Expert",
+            "value": "listing-our-expert"
+          },
+          {
+            "name": "Fund Investment Options",
+            "value": "fund-investment-options"
+          },
+          {
+            "name": "Thank You Screen",
+            "value": "thank-you-screen"
+          },
+          {
+            "name": "Invest Minor Account",
+            "value": "invest-minor-account"
+          },
+          {
+            "name": "Why Invest Minor",
+            "value": "why-invest-minor"
+          },
+          {
+            "name": "How To Invest",
+            "value": "how-to-invest"
+          },
+          {
+            "name": "Pros of Investing",
+            "value": "pros-of-investing"
+          },
+          {
+            "name": "Things Keep Mind",
+            "value": "things-keep-mind"
+          },
+          {
+            "name": "Conclusion",
+            "value": "conclusion"
+          },
+          {
+            "name": "About Trusted Asset",
+            "value": "trusted-asset"
+          },
+          {
+            "name": "About Investment Philosophy",
+            "value": "about-invest-philosophy"
+          },
+          {
+            "name": "About Structure Governance",
+            "value": "structure-governance"
+          },
+          {
+            "name": "About Behind Mission",
+            "value": "behind-mission"
+          },
+          {
+            "name": "About Behind Mission Tab",
+            "value": "behind-mission-tab"
+          },
+          {
+            "name": "About Structure Governance",
+            "value": "structure-governance"
+          },
+          {
+            "name": "About Structure Governance Tab",
+            "value": "structure-governance-tab"
           }
         ]
       },
@@ -619,12 +751,12 @@
       },
       {
         "component": "text",
-        "name": "tab-head-title",
+        "name": "tab_head-title",
         "label": "Tab Head Title"
       },
       {
         "component": "text",
-        "name": "tab-title",
+        "name": "tab_title",
         "label": "Tab Title"
       }
     ]
@@ -794,7 +926,7 @@
       },
       {
         "component": "aem-content",
-        "name": "Two link",
+        "name": "two_link",
         "label": "Fragment URL"
       }
     ]
@@ -990,55 +1122,55 @@
     "fields": [
       {
         "component": "text",
-        "name": "col1_search_placeholder",
+        "name": "col1_search-placeholder",
         "label": "Search Text Placeholder",
         "value": "Search a fund"
       },
       {
         "component": "text",
-        "name": "col1_default_fund",
+        "name": "col1_default-fund",
         "label": "Default Fund Name",
         "value": "Motilal Oswal Mid cap fund"
       },
       {
         "component": "text",
-        "name": "col1_sip_label",
+        "name": "col1_sip-label",
         "label": "SIP Button Label",
         "value": "SIP"
       },
       {
         "component": "text",
-        "name": "col1_lumpsum_label",
+        "name": "col1_lumpsum-label",
         "label": "Lumpsum Button Label",
         "value": "Lumpsum"
       },
       {
         "component": "text",
-        "name": "col2_sip_input_label",
+        "name": "col2_sip-input-label",
         "label": "SIP Investment Label",
         "value": "If you would have invested monthly"
       },
       {
         "component": "text",
-        "name": "col2_lumpsum_input_label",
+        "name": "col2_lumpsum-input-label",
         "label": "Lumpsum Investment Label",
         "value": "If you would have invested"
       },
       {
         "component": "number",
-        "name": "col2_default_amount",
+        "name": "col2_default-amount",
         "label": "Default Investment Amount",
         "value": 10000
       },
       {
         "component": "text",
-        "name": "col2_tenure_input_label",
+        "name": "col2_tenure-input-label",
         "label": "Tenure Input Label",
         "value": "Tenure"
       },
       {
         "component": "select",
-        "name": "col3_default_tenure",
+        "name": "col3_default-tenure",
         "label": "Default Tenure",
         "value": "10",
         "options": [
@@ -1082,56 +1214,56 @@
       },
       {
         "component": "text",
-        "name": "col3_invested_amount_label",
+        "name": "col3_invested-amount-label",
         "label": "Invested Amount Label",
         "value": "Invested Amount"
       },
       {
         "component": "number",
-        "name": "col3_invested_amount_value",
+        "name": "col3_invested-amount-value",
         "label": "Default Invested Amount",
         "value": 1200000
       },
       {
         "component": "text",
-        "name": "col3_current_value_label",
+        "name": "col3_current-value-label",
         "label": "Current Value Label",
         "value": "Current Value of Investment"
       },
       {
         "component": "number",
-        "name": "col4_default_current_value",
+        "name": "col4_default-current-value",
         "label": "Default Current Value of Investment",
         "value": 2500000
       },
       {
         "component": "text",
-        "name": "col4_return_cagr_label",
+        "name": "col4_return-cagr-label",
         "label": "Return (CAGR) Label",
         "value": "Return (CAGR)"
       },
       {
         "component": "number",
-        "name": "col4_annual_return_rate",
+        "name": "col4_annual-return-rate",
         "label": "Annual Return Rate (%)",
         "value": 18,
         "description": "Expected annual return rate for calculations"
       },
       {
         "component": "text",
-        "name": "col4_cta_button_text",
+        "name": "col4_cta-button-text",
         "label": "CTA Button Text",
         "value": "Start SIP"
       },
       {
         "component": "text",
-        "name": "col4_other_calculators_text",
+        "name": "col4_other-calculators-text",
         "label": "Other Calculators Link Text",
         "value": "View other calculators"
       },
       {
         "component": "text",
-        "name": "col4_other_calculators_url",
+        "name": "col4_other-calculators-url",
         "label": "Other Calculators URL",
         "value": "#"
       }
@@ -1202,7 +1334,7 @@
     "fields": [
       {
         "component": "text",
-        "name": "Col Name",
+        "name": "col_name",
         "label": "Brand name"
       },
       {
@@ -1219,7 +1351,7 @@
     "fields": [
       {
         "component": "text",
-        "name": "Col1 Name",
+        "name": "col1_name",
         "label": "Brands name"
       },
       {
@@ -1273,27 +1405,27 @@
     "fields": [
       {
         "component": "text",
-        "name": "col1_title_description",
+        "name": "col1_title-description",
         "label": "Inter card description"
       },
       {
         "component": "text",
-        "name": "col1_title_return",
+        "name": "col1_title-return",
         "label": "Inter return text for card"
       },
       {
         "component": "text",
-        "name": "col1_title_Tracking",
+        "name": "col1_title-Tracking",
         "label": "Inter Tracking text for card"
       },
       {
         "component": "text",
-        "name": "col2_title_NAV",
+        "name": "col2_title-NAV",
         "label": "Inter NAV text for card"
       },
       {
         "component": "text",
-        "name": "col2_title_AUM",
+        "name": "col2_title-AUM",
         "label": "Inter AUM text for card"
       },
       {
@@ -1332,62 +1464,62 @@
     "fields": [
       {
         "component": "text",
-        "name": "col1_title_Investment",
+        "name": "col1_title-Investment",
         "label": "Inter Investment Objective"
       },
       {
         "component": "text",
-        "name": "col1_title_Minimum_Application_Amount",
+        "name": "col1_title-Minimum-Application-Amount",
         "label": "Inter Minimum Application Amount"
       },
       {
         "component": "text",
-        "name": "col1_title_Minimum_Redemption_Amount",
+        "name": "col1_title-Minimum-Redemption-Amount",
         "label": "Inter Minimum Redemption Amount"
       },
       {
         "component": "text",
-        "name": "col1_title_Latest_AUM",
+        "name": "col1_title-Latest-AUM",
         "label": "Inter Latest AUM"
       },
       {
         "component": "text",
-        "name": "col2_title_Portfolio_Turnover_Ratio",
+        "name": "col2_title-Portfolio-Turnover-Ratio",
         "label": "Inter Portfolio Turnover Ratio"
       },
       {
         "component": "text",
-        "name": "col2_title_Plans",
+        "name": "col2_title-Plans",
         "label": "Inter Plans"
       },
       {
         "component": "text",
-        "name": "col2_title_Options",
+        "name": "col2_title-Options",
         "label": "Inter Options (Under each plan)"
       },
       {
         "component": "text",
-        "name": "col2_title_Benchmark",
+        "name": "col2_title-Benchmark",
         "label": "Inter Benchmark"
       },
       {
         "component": "text",
-        "name": "col3_title_Total_Expense_Ratio",
+        "name": "col3_title-Total-Expense-Ratio",
         "label": "Inter Total Expense Ratio"
       },
       {
         "component": "text",
-        "name": "col3_title_Inception date",
+        "name": "col3_title-Inception-date",
         "label": "Inter Inception date"
       },
       {
         "component": "text",
-        "name": "col3_title_Entry Load",
+        "name": "col3_title-Entry-Load",
         "label": "Inter Entry Load"
       },
       {
         "component": "text",
-        "name": "col3_title_Exit_Load_Policy",
+        "name": "col3_title-Exit-Load-Policy",
         "label": "Inter Exit Load Policy"
       }
     ]
@@ -1714,55 +1846,55 @@
     "fields": [
       {
         "component": "text",
-        "name": "col1_fund_name",
+        "name": "col1_fund-name",
         "label": "Fund Name",
         "value": "Nifty 500 Momentum 50 Index Fund"
       },
       {
         "component": "text",
-        "name": "col1_lumpsum_label",
+        "name": "col1_lumpsum-label",
         "label": "Lumpsum Button Label",
         "value": "Lumpsum"
       },
       {
         "component": "text",
-        "name": "col1_sip_label",
+        "name": "col1_sip-label",
         "label": "SIP Button Label",
         "value": "SIP"
       },
       {
         "component": "text",
-        "name": "col1_investment_input_label",
+        "name": "col1_investment-input-label",
         "label": "Investment Input Label",
         "value": "Enter your investment amount"
       },
       {
         "component": "number",
-        "name": "col2_default_amount",
+        "name": "col2_default-amount",
         "label": "Default Investment Amount",
         "value": 10000
       },
       {
         "component": "number",
-        "name": "col2_suggestion_1",
+        "name": "col2_suggestion-1",
         "label": "Suggestion Amount 1",
         "value": 5000
       },
       {
         "component": "number",
-        "name": "col2_suggestion_2",
+        "name": "col2_suggestion-2",
         "label": "Suggestion Amount 2",
         "value": 10000
       },
       {
         "component": "number",
-        "name": "col2_suggestion_3",
+        "name": "col2_suggestion-3",
         "label": "Suggestion Amount 3",
         "value": 15000
       },
       {
         "component": "select",
-        "name": "col3_frequency_default",
+        "name": "col3_frequency-default",
         "label": "Default Frequency",
         "value": "Monthly",
         "options": [
@@ -1794,7 +1926,7 @@
       },
       {
         "component": "select",
-        "name": "col3_end_date_default",
+        "name": "col3_end-date-default",
         "label": "Default End Date",
         "value": "Until I cancel",
         "options": [
@@ -1810,7 +1942,7 @@
       },
       {
         "component": "text",
-        "name": "col3_cta_button_label",
+        "name": "col3_cta-button-label",
         "label": "CTA Button Label",
         "value": "Invest Now"
       }
@@ -2147,7 +2279,7 @@
       },
       {
         "component": "select",
-        "name": "titleType",
+        "name": "title_type",
         "label": "Title Type",
         "multi": false,
         "options": [
@@ -2247,7 +2379,7 @@
     "fields": [
       {
         "component": "richtext",
-        "name": "one text",
+        "name": "one_text",
         "value": "",
         "label": "Text",
         "valueType": "string"
@@ -2420,13 +2552,13 @@
       },
       {
         "component": "richtext",
-        "name": "Play Icons",
+        "name": "play_icons",
         "label": "MoEdge Article video play icon",
         "value": ""
       },
       {
         "component": "richtext",
-        "name": "Download Analysis",
+        "name": "download_analysis",
         "value": "",
         "label": "Read the complete report Only Mobile View",
         "valueType": "string"
@@ -2445,7 +2577,7 @@
       },
       {
         "component": "richtext",
-        "name": "Author Name",
+        "name": "author_name",
         "value": "",
         "label": "Author Name And Designation",
         "valueType": "string"
@@ -2552,26 +2684,6 @@
         "value": "",
         "label": "Text",
         "valueType": "string"
-      },
-      {
-        "component": "aem-content",
-        "name": "video_url",
-        "label": "Video URL"
-      },
-      {
-        "component": "reference",
-        "name": "video_image",
-        "label": "Video Image"
-      },
-      {
-        "component": "text",
-        "name": "video_imageAlt",
-        "label": "Video Image Alt"
-      },
-      {
-        "component": "text",
-        "name": "video_imageTitle",
-        "label": "Video Image Title"
       }
     ]
   },
@@ -2592,14 +2704,33 @@
     "fields": [
       {
         "component": "richtext",
-        "name": "one text",
+        "name": "one_text",
         "value": "",
         "label": "Text",
         "valueType": "string"
       },
       {
         "component": "richtext",
-        "name": "two text",
+        "name": "two_text",
+        "value": "",
+        "label": "Text",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "global-gateway",
+    "fields": [
+      {
+        "component": "richtext",
+        "name": "one_text",
+        "value": "",
+        "label": "Text",
+        "valueType": "string"
+      },
+      {
+        "component": "richtext",
+        "name": "two_text",
         "value": "",
         "label": "Text",
         "valueType": "string"

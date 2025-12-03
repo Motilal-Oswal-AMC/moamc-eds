@@ -22,7 +22,7 @@ export default function decorate(block) {
   if (planCode !== null) {
     const schdata = planCode.split(':')[1];
     schcode = schdata;
-  } else if (window.location.href.includes('/our-funds/funds-details-page') 
+  } else if (window.location.href.includes('/our-funds/funds-details-page')
     || window.location.href.includes('/home-page')) {
     schcode = 'LM';
   } else {

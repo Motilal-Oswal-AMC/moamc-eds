@@ -19,7 +19,7 @@
         }
 
         >p:first-child {
-            @include font-style(28px, 32px, $primary-blue-1-900, map.get($font-weights, medium), $butlerpro);
+            @include font-style(28px, 32px, $primary-blue-1-900, map.get($font-weights, medium), $inter);
 
             grid-column: 1 / 2;
 
@@ -30,7 +30,7 @@
         }
 
         >p:nth-child(2) {
-            @include font-style(28px, 32px, $primary-blue-1-900, map.get($font-weights, medium), $butlerpro);
+            @include font-style(28px, 32px, $primary-blue-1-900, map.get($font-weights, medium), $inter);
 
             grid-column: 1 / 2;
             margin: 0;

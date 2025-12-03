@@ -49,8 +49,34 @@ export default async function decorate(block) {
     }
   });
 
-  let play_btn = document.querySelectorAll('.previous-studies-ctn .tabs-panel .previous-studies-blog-wrapper .icon img')
-  play_btn.forEach((e) =>{
-  dataMapMoObj.altFunction(e, 'play-btn-icon')
-})
+  const playBtn = document.querySelectorAll('.previous-studies-ctn .tabs-panel .previous-studies-blog-wrapper .icon img');
+  playBtn.forEach((e) => {
+    dataMapMoObj.altFunction(e, 'play-btn-icon');
+  });
+
+  const psCont1 = document.querySelectorAll('.previous-studies-blog-wrapper .previous-studies-blog .ps-in1 .ps-cont1');
+  if (psCont1) {
+    psCont1.forEach((e) => {
+      e.classList.add('ps-cont-plybtn');
+    });
+  }
+
+  const eachStudiesBlog = document.querySelectorAll('.previous-studies-blog-wrapper .previous-studies-blog > .comlist');
+  Array.from(eachStudiesBlog).forEach((ex) => {
+    const parent = ex.querySelector('.ps-in1');
+    const toMove = ex.querySelector('.ps-in3');
+
+    if (parent && toMove) {
+      parent.appendChild(toMove); // move ps-in3 inside ps-in1
+    }
+  });
+
+  try {
+    const legendWord = document.querySelector('.section.previous-studies-ctn');
+    if (legendWord) {
+      legendWord.classList.add('legendWordCtn');
+    }
+  } catch (error) {
+    // console.log(error);
+  }
 }

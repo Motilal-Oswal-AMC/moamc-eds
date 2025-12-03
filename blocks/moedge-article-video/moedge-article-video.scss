@@ -2,12 +2,30 @@
 @use "../../styles/common-theme/css/variables_mixins"as *;
 @use "../../styles/common-theme/css/fluid-typography"as *;
 
+.moedge-article-video-container {
+    margin-top: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
 .moedge-article-video-wrapper {
     .moedge-article-video {
         .articles-wrapper {
             position: relative;
+            height: 320px;
+
+            @include media (mobile) {
+                height: 160px;
+            }
 
             .subleftart1 {
+                height: 320px;
+
+                @include media (mobile) {
+                    height: 160px;
+                }
+
                 .itemarticle1.mainleftart1 {
                     font-size: 0;
 
@@ -258,7 +276,7 @@
             // width: max-content;
             padding: 0;
             margin: 0;
-            margin: 40px 0 16px;
+            margin: 40px 0 0;
 
             // display: none;
 
@@ -415,6 +433,7 @@
             }
 
             p.comlist {
+                margin: 0;
                 color: var(--blue-1800-primary, #2E2A94);
                 font-feature-settings: var(--font-features-default);
                 font-family: var(--body, Inter);
@@ -486,7 +505,7 @@
 
                 p.itemleftart3:nth-child(3) {
                     padding-top: 24px;
-                    padding-bottom: 8px;
+                    padding-bottom: 0;
                     color: #3D3D3D;
                     font-feature-settings: var(--font-features-default);
                     font-family: var(--body, Inter);

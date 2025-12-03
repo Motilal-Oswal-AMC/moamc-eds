@@ -1,6 +1,5 @@
-import {
-  loadEmbed,
-} from '../blocks/embed/embed.js';
+// eslint-disable-next-line
+import { loadEmbed } from "../blocks/embed/embed.js";
 import {
   loadHeader,
   loadFooter,
@@ -16,14 +15,12 @@ import {
 } from './aem.js';
 
 import dataMapMoObj from './constant.js';
-import formBlock, {
-  createForm,
-} from '../blocks/form/form.js';
+import formBlock, { createForm } from '../blocks/form/form.js';
 
 // eslint-disable-next-line import/no-cycle
-import {
-  initializeModalHandlers,
-} from '../blocks/modal/modal.js';
+import { initializeModalHandlers } from '../blocks/modal/modal.js';
+
+// console.log('f1 code');
 
 /**
  * Moves all the attributes from a given elmenet to another given element.
@@ -44,9 +41,7 @@ function wrapImgsInLinks(container) {
 export function moveAttributes(from, to, attributes) {
   let attrs = attributes;
   if (!attrs) {
-    attrs = [...from.attributes].map(({
-      nodeName,
-    }) => nodeName);
+    attrs = [...from.attributes].map(({ nodeName }) => nodeName);
   }
   attrs.forEach((attr) => {
     const value = from.getAttribute(attr);
@@ -62,9 +57,7 @@ export function moveInstrumentation(from, to) {
     from,
     to,
     [...from.attributes]
-      .map(({
-        nodeName,
-      }) => nodeName)
+      .map(({ nodeName }) => nodeName)
       .filter(
         (attr) => attr.startsWith('data-aue-') || attr.startsWith('data-richtext-'),
       ),
@@ -147,7 +140,10 @@ export async function loadFragment(path) {
 
       const resetAttributeBase = (tag, attr) => {
         main.querySelectorAll(`${tag}[${attr}^="./media_"]`).forEach((elem) => {
-          elem[attr] = new URL(elem.getAttribute(attr), new URL(cleanPath, window.location)).href;
+          elem[attr] = new URL(
+            elem.getAttribute(attr),
+            new URL(cleanPath, window.location),
+          ).href;
         });
       };
       resetAttributeBase('img', 'src');
@@ -186,7 +182,11 @@ function decorateAutoBlock(element) {
       div.append(origin);
       parent.append(div);
       decorateFragment(div);
-    } else if (origin && origin.href && origin.href.includes('/www.youtube.com/')) {
+    } else if (
+      origin
+      && origin.href
+      && origin.href.includes('/www.youtube.com/')
+    ) {
       loadEmbed(origin, origin.href);
     }
   });
@@ -200,6 +200,7 @@ async function loadEager(doc) {
     decorateMain(main);
     buildAutoBlocks(main);
     decorateAutoBlock(doc);
+    await loadHeader(doc.querySelector('header'));
     document.body.classList.add('appear');
     await loadSection(main.querySelector('.section'), waitForFirstImage);
   }
@@ -215,7 +216,22 @@ async function loadEager(doc) {
 async function loadLazy(doc) {
   autolinkVideo(doc);
   const main = doc.querySelector('main');
-  if (window.location.href.includes('/investor-education/all-articles/') || window.location.href.includes('/motilal-oswal-edge/article-details') || window.location.href.includes('/motilal-oswal-edge/mo-edge-article-details-d') || window.location.href.includes('/motilal-oswal-edge/mo-edge-article-details-image') || window.location.href.includes('/motilal-oswal-edge/mo-edge-article-details-video')) {
+  if (
+    window.location.href.includes('/investor-education/all-articles/')
+    || window.location.href.includes('/motilal-oswal-edge/article-details')
+    || window.location.href.includes(
+      '/motilal-oswal-edge/mo-edge-article-image',
+    )
+    || window.location.href.includes(
+      '/motilal-oswal-edge/mo-edge-article-details-d',
+    )
+    || window.location.href.includes(
+      '/motilal-oswal-edge/mo-edge-article-details-image',
+    )
+    || window.location.href.includes(
+      '/motilal-oswal-edge/mo-edge-article-details-video',
+    )
+  ) {
     const maindiv = main.querySelector('.main-wrapper');
     // maindiv.classList.add('main-wrapper');
     maindiv.append(main.querySelector('.article-left-wrapper'));
@@ -225,15 +241,12 @@ async function loadLazy(doc) {
   wrapImgsInLinks(doc);
   await loadSections(main);
   dataMapMoObj.article();
-  dataMapMoObj.qglpwcs();
+  // dataMapMoObj.qglpwcs();
 
-  const {
-    hash,
-  } = window.location;
+  const { hash } = window.location;
   const element = hash ? doc.getElementById(hash.substring(1)) : false;
   if (hash && element) element.scrollIntoView();
 
-  loadHeader(doc.querySelector('header'));
   loadFooter(doc.querySelector('footer'));
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
@@ -286,7 +299,8 @@ export function wishlist() {
   const count = stars.length;
   const watchlistSpan = document.querySelector('.watchlisttext span');
   if (watchlistSpan) {
-    watchlistSpan.textContent = `My Watchlist (${count < 10 ? '0' : ''}${count})`;
+    watchlistSpan.textContent = `My Watchlist (${count < 10 ? '0' : ''
+      }${count})`;
   }
 }
 
@@ -337,9 +351,9 @@ export async function myAPI(method, url, body = null, customHeaders = {}) {
 }
 
 export function generateAppId() {
-  const chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVXYZ";
-  let appId = "";
-  for (let i = 0; i < 36; i++) {
+  const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVXYZ';
+  let appId = '';
+  for (let i = 0; i < 36; i += 1) {
     appId += chars[Math.floor(Math.random() * chars.length)];
   }
   return appId;
@@ -379,9 +393,11 @@ const initComponent = (selector, prefixes) => {
     dataMapMoObj.addIndexed(el);
   }
   if (document.querySelector('.quicksubactmain2') !== null) {
-    Array.from(document.querySelector('.quicksubactmain2').children).forEach((elmain) => {
-      elmain.classList.add('quicksubactlist');
-    });
+    Array.from(document.querySelector('.quicksubactmain2').children).forEach(
+      (elmain) => {
+        elmain.classList.add('quicksubactlist');
+      },
+    );
   }
 };
 
@@ -399,13 +415,21 @@ async function loadPage() {
 loadPage();
 
 initComponent('.quick-actions', [
-  'quckactmain', 'quckactmain-sub', 'quckactmain-sub-wrp',
-  'quicksubactmain', 'quicksubinnactmain', 'quckaqweactmain',
+  'quckactmain',
+  'quckactmain-sub',
+  'quckactmain-sub-wrp',
+  'quicksubactmain',
+  'quicksubinnactmain',
+  'quckaqweactmain',
 ]);
 
 initComponent('.welcome-component', [
-  'welcomemain', 'welcomemain-sub', 'welcomemain-sub-wrp',
-  'welcomeactmain', 'welcomeinnactmain', 'welcomeaqweactmain',
+  'welcomemain',
+  'welcomemain-sub',
+  'welcomemain-sub-wrp',
+  'welcomeactmain',
+  'welcomeinnactmain',
+  'welcomeaqweactmain',
 ]);
 
 export async function decorateForm(block) {
@@ -461,24 +485,29 @@ if (glpDecoding != null) {
 
 const tabLinks = document.querySelectorAll('.table-wrapper');
 
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) {
-      Array.from(document.querySelectorAll('.fdp-tab .comlist')).forEach((el) => {
-        const b = el.querySelector('a').getAttribute('href');
-        if (entry.target.getAttribute('data-id') === b) {
-          el.children[0].classList.add('active');
-        } else {
-          el.children[0].classList.remove('active');
-        }
-      });
-    }
-  });
-}, {
-  root: null, // viewport
-  threshold: 0, // trigger when 0.3 30% of the section is visible
-  rootMargin: '0px 0px -40% 0px', // triggers a bit earlier
-});
+const observer = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        Array.from(document.querySelectorAll('.fdp-tab .comlist')).forEach(
+          (el) => {
+            const b = el.querySelector('a').getAttribute('href');
+            if (entry.target.getAttribute('data-id') === b) {
+              el.children[0].classList.add('active');
+            } else {
+              el.children[0].classList.remove('active');
+            }
+          },
+        );
+      }
+    });
+  },
+  {
+    root: null, // viewport
+    threshold: 0, // trigger when 0.3 30% of the section is visible
+    rootMargin: '0px 0px -40% 0px', // triggers a bit earlier
+  },
+);
 
 tabLinks.forEach((section) => observer.observe(section));
 
@@ -501,7 +530,23 @@ if (calculatorsCard != null) {
 // // article
 function articleStructure() {
   // Investor Education article left and right wrapper
-  if (window.location.href.includes('/investor-education/all-articles/') || window.location.href.includes('/motilal-oswal-edge/article-details') || window.location.href.includes('/motilal-oswal-edge/mo-edge-article-details-d') || window.location.href.includes('/motilal-oswal-edge/mo-edge-article-details-image') || window.location.href.includes('/motilal-oswal-edge/mo-edge-article-details-video')) {
+  if (
+    window.location.href.includes('/investor-education/all-articles/')
+    || window.location.href.includes('/motilal-oswal-edge/insights/blogs')
+    || window.location.href.includes('/motilal-oswal-edge/article-details')
+    || window.location.href.includes(
+      '/motilal-oswal-edge/mo-edge-article-image',
+    )
+    || window.location.href.includes(
+      '/motilal-oswal-edge/mo-edge-article-details-d',
+    )
+    || window.location.href.includes(
+      '/motilal-oswal-edge/mo-edge-article-details-image',
+    )
+    || window.location.href.includes(
+      '/motilal-oswal-edge/mo-edge-article-details-video',
+    )
+  ) {
     const maincloser = document.querySelector('main');
     const rightSub = maincloser.querySelectorAll('.article-sub-right');
     const rightarticle = maincloser.querySelector('.article-right-wrapper');
@@ -513,179 +558,332 @@ function articleStructure() {
     Array.from(leftSub).forEach((leftel) => {
       leftarticle.append(leftel);
     });
+
+    Array.from(leftSub).forEach((subleft) => {
+      dataMapMoObj.CLASS_PREFIXES = [
+        'investarticle-leftmain',
+        'investarticle-leftsub',
+        'investarticle-leftinner',
+        'investsub-leftarticle',
+        'investleft-subinner',
+        'investleft-articleitem',
+        'investleft-itemchild',
+        'investleft-subchild',
+      ];
+      dataMapMoObj.addIndexed(subleft);
+    });
+
+    Array.from(rightSub).forEach((subright) => {
+      dataMapMoObj.CLASS_PREFIXES = [
+        'investarticle-rightmain',
+        'investarticle-rightsub',
+        'investarticle-rightinner',
+        'investsub-rightarticle',
+        'investright-subinner',
+        'investright-articleitem',
+        'investright-itemchild',
+        'investright-subchild',
+      ];
+      dataMapMoObj.addIndexed(subright);
+    });
+    const maindiv = maincloser.querySelector('.main-wrapper');
+    // maindiv.classList.add('main-wrapper');
+    maindiv.append(maincloser.querySelector('.article-left-wrapper'));
+    maindiv.append(maincloser.querySelector('.article-right-wrapper'));
+    maincloser.prepend(maindiv);
     if (maincloser.querySelector('.moedge-article-details')) {
-      dataMapMoObj.CLASS_PREFIXES = ['articlemain', 'articlesub', 'articleitem',
-        'subarticle', 'mainarticle', 'itemarticle', 'itemsubart',
-        'mainitemart', 'itemmainart', 'submainart'];
+      dataMapMoObj.CLASS_PREFIXES = [
+        'articlemain',
+        'articlesub',
+        'articleitem',
+        'subarticle',
+        'mainarticle',
+        'itemarticle',
+        'itemsubart',
+        'mainitemart',
+        'itemmainart',
+        'submainart',
+      ];
       dataMapMoObj.addIndexed(
         maincloser.querySelector('.moedge-article-details'),
       );
-
       const mainleft = maincloser.querySelector('.article-left-wrapper');
-      dataMapMoObj.CLASS_PREFIXES = ['leftartmain', 'leftartsub', 'leftartitem',
-        'subleftart', 'mainleftart', 'itemleftart', 'itemleftart',
-        'mainitemleftart', 'itemmainleftart', 'submainleftart'];
-      dataMapMoObj.addIndexed(
-        mainleft,
-      );
+      dataMapMoObj.CLASS_PREFIXES = [
+        'leftartmain',
+        'leftartsub',
+        'leftartitem',
+        'subleftart',
+        'mainleftart',
+        'itemleftart',
+        'itemleftart',
+        'mainitemleftart',
+        'itemmainleftart',
+        'submainleftart',
+      ];
+      dataMapMoObj.addIndexed(mainleft);
     }
-    const formpath = maincloser.querySelector('.article-right-wrapper .subscribe-email');
-    const formdiv = formpath
-      .querySelector('.subscribe-email .button-container');
+    const formpath = maincloser.querySelector(
+      '.article-right-wrapper .subscribe-email',
+    );
+    const formdiv = formpath.querySelector(
+      '.subscribe-email .button-container',
+    );
     formBlock(formdiv);
 
-    const mainArticle1 = maincloser.querySelector('.moedge-article-video .mainarticle1');
-    const mainArticle2 = maincloser.querySelector('.moedge-article-video .mainarticle2');
+    const mainArticle1 = maincloser.querySelector(
+      '.moedge-article-video .mainarticle1',
+    );
+    const mainArticle2 = maincloser.querySelector(
+      '.moedge-article-video .mainarticle2',
+    );
 
-    if (mainArticle1 && mainArticle2 && mainArticle1.parentNode === mainArticle2.parentNode) {
+    if (
+      mainArticle1
+      && mainArticle2
+      && mainArticle1.parentNode === mainArticle2.parentNode
+    ) {
       const parent = mainArticle1.parentNode;
       const wrapperDiv = document.createElement('div');
       wrapperDiv.classList.add('articles-wrapper');
       parent.insertBefore(wrapperDiv, mainArticle1);
       wrapperDiv.appendChild(mainArticle1);
       wrapperDiv.appendChild(mainArticle2);
-      document.querySelectorAll('.comlist.submainart3.itemmainleftart3').forEach((listItem) => {
-
-        const ul = listItem.querySelector('.comlist.submainleftart2');
-        if (!ul) return;
-
-        [...ul.children].forEach((li, index) => {
-          li.classList.add(`listindex${index + 1}`);
-        });
-        // GET SHARE TEXT + URL
-        const popup = listItem.querySelector('.comlist.submainleftart2');
-        const getShareData = () => {
-          const shareUrl = window.location.href;
-          const shareText = listItem.querySelector("h3")?.innerText || "Check this out";
-          return { shareUrl, shareText };
-        };
-
-        // FACEBOOK
-        const fb = popup.querySelector(".listindex1");
-        if (fb) {
-          fb.querySelector('a').removeAttribute('href');
-          fb.addEventListener("click", (e) => {
-            e.stopPropagation();
-            const { shareUrl } = getShareData();
-            const link = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`;
-            window.open(link, "_blank");
-          });
-        }
-
-        // WHATSAPP
-        const wa = popup.querySelector(".listindex2");
-        if (wa) {
-          wa.querySelector('a').removeAttribute('href');
-          wa.addEventListener("click", (e) => {
-            e.stopPropagation();
-            const { shareUrl, shareText } = getShareData();
-            const link = `https://wa.me/?text=${encodeURIComponent(`${shareText} ${shareUrl}`)}`;
-            window.open(link, "_blank");
-          });
-        }
-
-        // X (TWITTER)
-        const tw = popup.querySelector(".listindex3");
-        if (tw) {
-          tw.querySelector('a').removeAttribute('href');
-          tw.addEventListener("click", (e) => {
-            e.stopPropagation();
-            const { shareUrl, shareText } = getShareData();
-            const link = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`;
-            window.open(link, "_blank");
-          });
-        }
-
-        // COPY URL
-        // COPY BUTTON (listindex4)
-        const cp = popup.querySelector(".listindex4");
-        const copyPopup = popup.querySelector(".listindex5");
-
-        if (cp && copyPopup) {
-
-          // hide listindex5 initially
-          copyPopup.style.display = "none";
-          copyPopup.style.position = "absolute";
-          copyPopup.style.left = "50%";
-          copyPopup.style.top = "108%";
-          copyPopup.style.transform = "translate(-50%, -50%)";
-          copyPopup.style.zIndex = "999";
-
-          cp.querySelector("a")?.removeAttribute("href");
-
-          cp.addEventListener("click", async (e) => {
-
-            e.stopPropagation();
-
-            try {
-              await navigator.clipboard.writeText(window.location.href);
-
-              // show centered popup (listindex5)
-              copyPopup.style.display = "block";
-
-              // auto-hide after 2 sec
-              setTimeout(() => {
-                copyPopup.style.display = "none";
-              }, 2000);
-
-            } catch (err) {
-              console.log("Copy failed", err);
-            }
-
-          });
-        }
-
-      });
+    } else if (maincloser.querySelector('.moedge-article-details')) {
+      const mainArticle3 = maincloser.querySelector(
+        '.moedge-article-details .mainarticle1',
+      );
+      const mainArticle4 = maincloser.querySelector(
+        '.moedge-article-details .mainarticle2',
+      );
+      const parent = mainArticle3.parentNode;
+      const wrapperDiv = document.createElement('div');
+      wrapperDiv.classList.add('articles-wrapper');
+      parent.insertBefore(wrapperDiv, mainArticle3);
+      wrapperDiv.appendChild(mainArticle3);
+      wrapperDiv.appendChild(mainArticle4);
+      const maindiv = maincloser.querySelector('.main-wrapper');
+      // maindiv.classList.add('main-wrapper');
+      maindiv.append(maincloser.querySelector('.article-left-wrapper'));
+      maindiv.append(maincloser.querySelector('.article-right-wrapper'));
+      maincloser.prepend(maindiv);
+      // const main1 = maincloser.querySelector('.article-left-wrapper');
+      // const main2 = maincloser.querySelector('.article-right-wrapper');
+      // const mainwrapperDiv = maincloser.querySelector('.main-wrapper');
+      // mainwrapperDiv.appendChild(main1);
+      // mainwrapperDiv.appendChild(main2);
     }
   }
 }
 dataMapMoObj.article = articleStructure;
 
-function qglpwcs() {
-  const mainbl = document.querySelector('main');
-  const data = mainbl.querySelectorAll('.tab-glp');
-  if (data.length !== 0) {
-    data.forEach((ele) => {
-      if (ele != null) {
-        dataMapMoObj.CLASS_PREFIXES = [
-          'glp-tab-block',
-          'glp-tab-inner',
-          'glp-tab-sub-inner',
-          'glp-tab-sub-inner-sub',
-          'glp-tab-ul',
-          'glp-tab-inner-ul',
-          'glp-tab-li',
-          'glp-tab-sub-inner-ul',
-          'glp-tab-inner-li',
-          'glp-tab-sub-inner-li',
-          'glp-tab-sub-inner-li-sub',
-          'glp-li',
-          'glp-li-inner',
-        ];
-        dataMapMoObj.addIndexed(ele);
-
-        const addClassName = ele.querySelectorAll('.glp-tab-li1');
-        if (addClassName) {
-          addClassName.forEach((elem) => {
-            elem.classList.add('li-containers');
-          });
-        }
-
-        const addClassNameli = ele.querySelectorAll('.glp-tab-sub-inner-ul2');
-        if (addClassNameli) {
-          addClassNameli.forEach((elem) => {
-            elem.classList.add('same-li');
-          });
-        }
-
-        const addClassNamel = ele.querySelectorAll('.glp-tab-sub-inner-ul1');
-        if (addClassNamel) {
-          addClassNamel.forEach((elem) => {
-            elem.classList.add('same-li');
-          });
-        }
-      }
-    });
-  }
+const chooseUs = document.querySelector('.why-choose-us');
+if (chooseUs != null) {
+  dataMapMoObj.CLASS_PREFIXES = [
+    'choose-title',
+    'choose-us-para',
+    'choose-us-img',
+  ];
+  dataMapMoObj.addIndexed(chooseUs);
+  Array.from(chooseUs.querySelectorAll('img')).forEach((ele, index) => {
+    if (index === 0) {
+      ele.setAttribute('fetchpriority', 'high');
+    }
+  });
 }
-dataMapMoObj.qglpwcs = qglpwcs;
+
+const chooseusCard = document.querySelector('.why-choose-card');
+if (chooseusCard != null) {
+  dataMapMoObj.CLASS_PREFIXES = ['card-image', 'card-title', 'card-subtitle'];
+  dataMapMoObj.addIndexed(chooseusCard);
+}
+
+// qglp static class appending
+const qglpStaticComponent = document.querySelector('.qglp-static-component');
+if (qglpStaticComponent != null) {
+  dataMapMoObj.CLASS_PREFIXES = [
+    'qglp-static-ctn',
+    'qglp-static-ext',
+    'qglp-static-int',
+    'qglp-static-wrp',
+    'qglp-static-box',
+    'qglp-static-ls-ul',
+    'qglp-static-ls-li',
+  ];
+  dataMapMoObj.addIndexed(qglpStaticComponent);
+}
+
+// why qglp componet  start
+const whyQGLPComponent = document.querySelector(
+  '.why-qglp .default-content-wrapper',
+);
+if (whyQGLPComponent != null) {
+  dataMapMoObj.CLASS_PREFIXES = [
+    'why-qglp-ctn',
+    'why-qglp-ext',
+    'why-qglp-int',
+    'why-qglp-wrp',
+    'why-qglp-box',
+    'why-qglp-ls-ul',
+    'why-qglp-ls-li',
+  ];
+  dataMapMoObj.addIndexed(whyQGLPComponent);
+}
+// why qglp componet end
+
+// why qglp componet  start
+const promiseQGLP = document.querySelector(
+  '.promise-qglp .default-content-wrapper',
+);
+if (promiseQGLP != null) {
+  dataMapMoObj.CLASS_PREFIXES = [
+    'promise-qglp-ctn',
+    'promise-qglp-ext',
+    'promise-qglp-int',
+    'promise-qglp-wrp',
+    'promise-qglp-box',
+  ];
+  dataMapMoObj.addIndexed(promiseQGLP);
+}
+// why qglp componet end
+
+// why qglp css lent start
+const whyQGLPWrp = document.querySelector('.why-qglp .default-content-wrapper');
+
+if (whyQGLPWrp) {
+  whyQGLPWrp.classList.add('why-qglp-wrapper');
+  // why qglp css lent end
+}
+// why qglp css lent end
+
+// promise qglp css lent start
+const promiseQGLPWrp = document.querySelector(
+  '.promise-qglp .default-content-wrapper',
+);
+
+if (promiseQGLPWrp) {
+  promiseQGLPWrp.classList.add('promise-qglp-wrapper');
+  // why qglp css lent end
+}
+// promise qglp css lent end
+
+// Skin the game static start
+const highskinText = document.querySelector('.high-skin-text');
+if (highskinText != null) {
+  dataMapMoObj.CLASS_PREFIXES = [
+    'high-skin-wrap-one',
+    'high-skin-wrap-two',
+    'high-skin-wrap-three',
+    'high-skin-heading',
+    'high-skin-subheading',
+    'high-skin-paragraph',
+    'high-skin-paragraph-one',
+    'high-skin-paragraph-two',
+  ];
+  dataMapMoObj.addIndexed(highskinText);
+}
+const highimageComponent = document.querySelector('.high-image-component');
+if (highimageComponent != null) {
+  dataMapMoObj.CLASS_PREFIXES = [
+    'high-skin-component-wrap',
+    'high-skin-component-heading',
+    'high-skin-component-paragraph',
+    'high-skin-component-ctn',
+    'high-skin-component-external',
+    'high-skin-component-internal',
+  ];
+  dataMapMoObj.addIndexed(highimageComponent);
+}
+
+const skinmoamcComponent = document.querySelector('.skin-moamc-component');
+if (skinmoamcComponent != null) {
+  dataMapMoObj.CLASS_PREFIXES = [
+    'moamc-component-wrap',
+    'moamc-component-main-head',
+    'moamc-component-title',
+    'moamc-component-para',
+    'moamc-component-para-one',
+    'moamc-component-para-two',
+    'moamc-component-para-three',
+  ];
+  dataMapMoObj.addIndexed(skinmoamcComponent);
+}
+
+// Adding custom scrollbar to WCS pages
+try {
+  if (document.querySelector('header [data-id="wcs-header"]')) {
+    document.body.classList.add('custom-scroll');
+  }
+} catch (error) {
+  // console.log(error);
+}
+
+try {
+  const whymattersComponent = document.querySelector('.why-matters-component');
+  if (whymattersComponent != null) {
+    dataMapMoObj.CLASS_PREFIXES = [
+      'why-matters-wrap',
+      'why-matters-heading',
+      'why-matters-para',
+      'why-matters-icon',
+      'why-matters-title',
+      'why-matters-sub-title',
+      'why-matters-text',
+      'why-matters-card-wrap',
+      'why-matters-card-icon',
+      'why-matters-card-text1',
+      'why-matters-card-text2',
+      'why-matters-card-text3',
+    ];
+    dataMapMoObj.addIndexed(whymattersComponent);
+  }
+
+  const container = document.querySelector(
+    '.section.why-matters-component.cards-container',
+  );
+
+  const wrapper = document.createElement('div');
+  wrapper.classList.add('why-matters-wrapper-in');
+
+  const wrap1 = container.querySelector('.why-matters-wrap1');
+  const wrap2 = container.querySelector('.why-matters-wrap2');
+
+  container.insertBefore(wrapper, container.firstChild);
+
+  wrapper.appendChild(wrap1);
+  wrapper.appendChild(wrap2);
+
+  const section = document.querySelector('.promise-qglp');
+  const skinwrapper = document.createElement('div');
+  skinwrapper.classList.add('skin-in-the-game-wrapper');
+  section.parentNode.insertBefore(skinwrapper, section);
+  skinwrapper.appendChild(section);
+} catch (error) {
+  // console.log(error);
+}
+
+// Skin the game static end
+
+// conclusion container start
+const conclusion = document.querySelector('.section.conclusion');
+if (conclusion != null) {
+  dataMapMoObj.CLASS_PREFIXES = [
+    'conclusion-main',
+    'conclusion-title',
+    'conclusion-para',
+    'conclusion-para-one',
+    'conclusion-para-two',
+  ];
+  dataMapMoObj.addIndexed(conclusion);
+}
+// conclusion container end
+
+// why-invest-minor section start
+const whyInvestminor = document.querySelector('.section.why-invest-minor');
+if (whyInvestminor != null) {
+  dataMapMoObj.CLASS_PREFIXES = [
+    'why-invest-minor-main',
+    'why-invest-minor-sub',
+    'why-invest-minor-inner',
+  ];
+  dataMapMoObj.addIndexed(whyInvestminor);
+}

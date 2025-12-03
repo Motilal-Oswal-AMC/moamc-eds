@@ -3,8 +3,20 @@ import {
   div, ul, li, p, input, label, button, img,
 } from '../../scripts/dom-helpers.js';
 import { myAPI, generateAppId } from '../../scripts/scripts.js';
+import { createModal } from '../modal/modal.js';
 
+async function popup(param) {
+  // Create NEW container for the modal
+  const videoContainer = document.createElement('div');
+  videoContainer.append(param);
+  // Open Modal
+  const { showModal } = await createModal([videoContainer]);
+  showModal();
+}
 export default function decorate(block) {
+  const delay = (ms) => new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  });
   const wealthModalData = Array.from(block.children);
   const wealthModal = wealthModalData[0];
 
@@ -101,6 +113,7 @@ export default function decorate(block) {
   const assocInput = assocDiv.querySelector('.associated-inp');
   const assocDrop = assocDiv.querySelector('.assoc-drop');
   const arrow = assocDiv.querySelector('.dropdown-arrow');
+  const formDropdownList = assocDiv.querySelectorAll('.assoc-drop li');
 
   function toggleDropdown(e) {
     e.stopPropagation();
@@ -114,6 +127,17 @@ export default function decorate(block) {
   assocDrop.querySelectorAll('li').forEach((liarg) => {
     liarg.addEventListener('click', () => {
       const touchedFields = new Set();
+      formDropdownList.forEach((liinner) => {
+        liinner.setAttribute('aria-selected', 'false');
+        liinner.classList.remove('active');
+      });
+
+      liarg.setAttribute('aria-selected', 'true');
+      liarg.classList.add('active');
+      if (liarg.getAttribute('aria-selected') === 'true') {
+        assocInput.innerHTML = '';
+        assocInput.innerHTML += liarg.innerHTML;
+      }
       assocInput.value = liarg.textContent;
       assocDrop.classList.remove('open');
       assocDiv.classList.remove('active');
@@ -189,6 +213,10 @@ export default function decorate(block) {
     };
   }
 
+  // delay(800).then(() => {
+  //   const thankYouScreen = document.querySelector('.modal-content .thank-you-screen');
+  //   if (thankYouScreen) {}
+  // });
   async function validateField(inputarg) {
     const nameError = wealthModal.querySelector('.name-error');
     const emailError = wealthModal.querySelector('.email-error');
@@ -205,7 +233,9 @@ export default function decorate(block) {
     }
 
     if (inputarg.classList.contains('email-inp')) {
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      // const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      // const emailRegex = /^(?=.{1,30}@)[a-z0-9]+(\.[a-z0-9]+)*@[a-z0-9.-]+\.[a-z]{2,}$/i;
+      const emailRegex = /^(?!.*\.\.)(?!.*\.$)(?!^\.)[a-zA-Z0-9]+(?:[._-][a-zA-Z0-9]+)*@[a-zA-Z0-9]+(?:[-.][a-zA-Z0-9]+)*\.[a-zA-Z]{2,}$/;
       if (inputarg.value.trim() && !emailRegex.test(inputarg.value.trim())) {
         valid = false;
         emailError.textContent = 'Please enter a valid email.';
@@ -226,7 +256,6 @@ export default function decorate(block) {
         assocError.textContent = 'Please select an association.';
       } else assocError.textContent = '';
     }
-
     inputarg.classList.toggle('error', !valid && inputarg.value.trim() !== '');
     toggleErrorIcon(inputarg, valid);
     return valid;
@@ -250,7 +279,29 @@ export default function decorate(block) {
     if (field.value.trim() !== '') label.classList.add('filled');
   });
 
-  submitButton.addEventListener('click', async (e) => {
+  const mop = block.closest('main').querySelectorAll('.thank-you-screen p');
+  // eslint-disable-next-line prefer-destructuring
+  dataMapMoObj.msgError = mop[1];
+  dataMapMoObj.CLASS_PREFIXES = [
+    'thank-you-scr-cont',
+    'thank-you-scr-sec',
+    'thank-you-scr-sub',
+    'thank-you-scr-inner-text',
+    'thank-you-scr-list',
+    'thank-you-scr-list-content',
+  ];
+
+  dataMapMoObj.addIndexed(block.closest('main').querySelector('.thank-you-screen'));
+  block.closest('main').querySelectorAll('.thank-you-screen p')[2].style.display = 'none';
+  const moclosse = block.closest('main').querySelector('.thank-you-screen');
+  moclosse.querySelector('.thank-you-scr-sec5 img').addEventListener('click', () => {
+    moclosse.style.display = 'none';
+  });
+  moclosse.querySelector('.thank-you-scr-sec4 a').removeAttribute('href');
+  moclosse.querySelector('.thank-you-scr-sec4').addEventListener('click', () => {
+    moclosse.style.display = 'none';
+  });
+  submitButton.addEventListener('click', async (e) => { 
     e.preventDefault();
     fields.forEach((f) => touchedFields.add(f));
     if (validateForm()) {
@@ -271,8 +322,8 @@ export default function decorate(block) {
         };
         const headers = {
           'Content-Type': 'application/json',
-          'X-Encrypted-Key': 'N',
-          'appid': generateAppId(),
+          'X-Encrypted': 'N',
+          appid: generateAppId(),
         };
 
         const response = await myAPI(
@@ -282,28 +333,47 @@ export default function decorate(block) {
           headers,
         );
 
-        const result = await response.json();
+        const result = await response; // .json();
         // console.log('API Response:', result);
 
-        if (response.ok) {
-          alert('Your details have been submitted successfully!');
+        if (result) {
+          block.closest('main').querySelector('.thank-you-screen').style.display = 'flex';
+          // alert
+          dataMapMoObj.msgError.innerText = '';
+          dataMapMoObj.msgError.innerText = 'Your details have been submitted successfully!';
           // Reset form
           fields.forEach((f) => {
             f.value = '';
             const labelvar = f.parentElement.querySelector('.label');
             if (labelvar) labelvar.classList.remove('filled');
           });
+          // block.querySelector('.btn-mand .btn').classList.remove('active');
           toggleSubmitButton();
+          block.querySelector('.associated-drop .error-msg').textContent = '';
         } else {
-          alert(`Something went wrong: ${result.message || 'Unknown error'}`);
+          block.closest('main').querySelector('.thank-you-screen').style.display = 'flex';
+          dataMapMoObj.msgError.innerText = '';
+          dataMapMoObj.msgError.innerText = `Something went wrong: ${result.message || 'Unknown error'}`;
+          // alert
+          // popup(div(`Something went wrong: ${result.message || 'Unknown error'}`));
         }
       } catch (error) {
-        console.error('API Error:', error);
-        alert('Failed to submit form. Please try again later.');
+        // console.error('API Error:', error);
+        block.closest('main').querySelector('.thank-you-screen').style.display = 'flex';
+        dataMapMoObj.msgError.innerText = '';
+        dataMapMoObj.msgError.innerText = 'Failed to submit form. Please try again later.';
       }
     } else {
       toggleSubmitButton();
     }
+    // const closeElements = modal.querySelectorAll('.thank-you-scr-sec4');
+    // closeElements.forEach((el) => {
+    //   el.addEventListener('click', () => {
+    //     modal.remove();
+    //   });
+    // });
+
+    // document.body.append(modal);
   });
 
   block.closest('.wealth-register')
