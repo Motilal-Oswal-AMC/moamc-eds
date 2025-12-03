@@ -84,7 +84,7 @@ export default function decorate(block) {
   const inputEl = document.createElement('input');
   inputEl.type = 'text';
   inputEl.id = 'our-experts-search';
-  inputEl.placeholder = 'Search here';
+  inputEl.placeholder = '';
   inputEl.autocomplete = 'off';
 
   const labelEl = document.createElement('label');
@@ -120,7 +120,7 @@ export default function decorate(block) {
   if (section1) {
     // Add class on input click (focus)
     inputEl.addEventListener('focus', () => {
-      if (inputEl.value !== '') {
+      if (inputEl.value === '') {
         section1.classList.add('input-focused');
       } else {
         section1.classList.remove('input-focused');
