@@ -166,8 +166,7 @@
                             }
                         }
 
-                        .floating-label-wrapper input:focus+label,
-                        .floating-label-wrapper input:not(:placeholder-shown)+label {
+                        .floating-label-wrapper input:focus+label{
                             top: -10px;
                             left: 25px;
                             padding: 0 4px;
