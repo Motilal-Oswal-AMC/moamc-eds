@@ -299,8 +299,7 @@ export function wishlist() {
   const count = stars.length;
   const watchlistSpan = document.querySelector('.watchlisttext span');
   if (watchlistSpan) {
-    watchlistSpan.textContent = `My Watchlist (${count < 10 ? '0' : ''
-      }${count})`;
+    watchlistSpan.textContent = `My Watchlist (${count < 10 ? '0' : ''}${count})`;
   }
 }
 
@@ -661,11 +660,11 @@ function articleStructure() {
       parent.insertBefore(wrapperDiv, mainArticle3);
       wrapperDiv.appendChild(mainArticle3);
       wrapperDiv.appendChild(mainArticle4);
-      const maindiv = maincloser.querySelector('.main-wrapper');
+      const maindiver = maincloser.querySelector('.main-wrapper');
       // maindiv.classList.add('main-wrapper');
-      maindiv.append(maincloser.querySelector('.article-left-wrapper'));
-      maindiv.append(maincloser.querySelector('.article-right-wrapper'));
-      maincloser.prepend(maindiv);
+      maindiver.append(maincloser.querySelector('.article-left-wrapper'));
+      maindiver.append(maincloser.querySelector('.article-right-wrapper'));
+      maincloser.prepend(maindiver);
       // const main1 = maincloser.querySelector('.article-left-wrapper');
       // const main2 = maincloser.querySelector('.article-right-wrapper');
       // const mainwrapperDiv = maincloser.querySelector('.main-wrapper');
