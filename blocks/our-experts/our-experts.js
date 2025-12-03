@@ -195,6 +195,14 @@ export default function decorate(block) {
 
     searchFld.addEventListener('focus', () => {
       searchNewEle.classList.remove('dsp-none');
+
+      // If there's a search term, re-apply the filter to preserve no-results-message
+      if (searchFld.value.trim()) {
+        filterListItems(searchFld.value);
+        return;
+      }
+
+      // Otherwise, show the full list
       const titles = document.querySelectorAll('.moedge-building-container .moedge-build-sec3 .button');
       const profileName = document.querySelectorAll('.behind-the-content .cards-wrapper .cards-card-body .button');
       const titleAry = [];
@@ -248,8 +256,10 @@ export default function decorate(block) {
     });
 
     listContainer.addEventListener('click', (event) => {
+      event.preventDefault();
       closeBtn.style.display = 'block';
       searchFld.value = event.target.textContent;
+      dataMapMoObj.searchFld = searchFld.value;
       // let dataref = '';
       // if ([...event.target.classList].includes('result-item')) {
       //   dataref = event.target.querySelector('a').getAttribute('href');
@@ -257,7 +267,7 @@ export default function decorate(block) {
       //   dataref = event.target.getAttribute('href');
       // }
       // window.location.href = dataref;
-      listContainer.classList.add('dsp-none');
+      // listContainer.classList.add('dsp-none');
     });
 
     const filterListItems = (searchTerm) => {
@@ -377,7 +387,7 @@ export default function decorate(block) {
     const searchbox = block.querySelector('.our-experts-cont2 .search-results');
     if (!inputbox.contains(event.target) && !searchbox.contains(event.target)) {
       searchbox.classList.add('dsp-none');
-      if (searchFld.value === '') {
+      if (searchFld.value === '' && (dataMapMoObj.searchFld === undefined || dataMapMoObj.searchFld === '')) {
         closeBtn.style.display = 'none';
       }
     }

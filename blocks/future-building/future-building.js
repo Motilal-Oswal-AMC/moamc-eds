@@ -228,7 +228,7 @@ export default function decorate(block) {
   crossIcon.style.cursor = 'pointer';
   crossIconWrap.appendChild(crossIcon);
 
-  const searchFld = document.querySelector('#keyinvest');
+  const searchFldkey = document.querySelector('#keyinvest');
   const closeBtn = document.querySelector('.cross-icon-wrap');
   let currentFocusIndex = -1;
   let inputField = document.querySelector(".keyinvest-search input");
@@ -236,7 +236,7 @@ export default function decorate(block) {
     inputField.focus();
     inputField.classList.add('focus-visible');
   });
-  if (searchFld) {
+  if (searchFldkey) {
     const listContainer = keySearchNewEle;
 
     const updateActiveItem = (items) => {
@@ -250,9 +250,17 @@ export default function decorate(block) {
       });
     };
 
-    // 👉 On Focus – Load Titles
-    searchFld.addEventListener('focus', () => {
+    // 👉 On Focus – Load Titles or Re-apply Filter
+    searchFldkey.addEventListener('focus', () => {
       keySearchNewEle.classList.remove('dsp-none');
+
+      // If there's a search term, re-apply the filter to preserve no-results-message
+      if (searchFldkey.value.trim()) {
+        filterListItems(searchFldkey.value);
+        return;
+      }
+
+      // Otherwise, show the full list
       keySearchNewEle.innerHTML = '';
       const titles = document.querySelectorAll('.cards-listcards1');
       const titleAry = [];
@@ -300,12 +308,12 @@ export default function decorate(block) {
       closeBtn.style.display = 'block';
 
       // set the input value from clicked item
-      searchFld.value = event.target.textContent;
+      searchFldkey.value = event.target.textContent;
 
       // Keep input focused and the visual focus state so the label doesn't move
       try {
-        searchFld.focus();
-        searchFld.classList.add('focus-visible');
+        searchFldkey.focus();
+        searchFldkey.classList.add('focus-visible');
       } catch (err) {
         // ignore if focus fails in some environments
       }
@@ -354,10 +362,10 @@ export default function decorate(block) {
 
     // 👉 On Input
 
-    searchFld.addEventListener('input', (event) => {
+    searchFldkey.addEventListener('input', (event) => {
       filterListItems(event.target.value);
       Array.from(listContainer.querySelectorAll('.list')).forEach((list) => {
-        if (list.textContent.toLocaleLowerCase().includes(searchFld.value.toLocaleLowerCase())) {
+        if (list.textContent.toLocaleLowerCase().includes(searchFldkey.value.toLocaleLowerCase())) {
           list.parentElement.style.display = 'block';
         } else {
           list.parentElement.style.display = 'none';
@@ -367,18 +375,18 @@ export default function decorate(block) {
       // persist state so label stays floated even when input loses focus
     });
     closeBtn.addEventListener('click', () => {
-      searchFld.value = '';
+      searchFldkey.value = '';
       filterListItems('');
       closeBtn.style.display = 'none';
       // remove visual float when cleared
       try {
-        searchFld.classList.remove('focus-visible');
+        searchFldkey.classList.remove('focus-visible');
         // placeholder-driven CSS will handle the float state; no JS class needed
       } catch (e) {
         // ignore
       }
     });
-    searchFld.addEventListener('keydown', (event) => {
+    searchFldkey.addEventListener('keydown', (event) => {
       closeBtn.style.display = 'block';
       const visibleItems = (param) => {
         if (param === undefined) {
@@ -421,7 +429,7 @@ export default function decorate(block) {
           if (vEnt.length === 0) return false;
           const sel = vEnt[(currentFocusIndex < 0 || currentFocusIndex >= vEnt.length) ? 0 : currentFocusIndex];
           if (sel) {
-            searchFld.value = sel.textContent.trim();
+            searchFldkey.value = sel.textContent.trim();
             closeBtn.style.display = 'block';
             listContainer.classList.add('dsp-none');
           }
@@ -435,19 +443,19 @@ export default function decorate(block) {
 
     // 👉 Clear Button
     closeBtn.addEventListener('click', () => {
-      searchFld.value = '';
+      searchFldkey.value = '';
       filterListItems('');
       closeBtn.style.display = 'none';
       try {
-        searchFld.classList.remove('focus-visible');
-        searchFld.classList.remove('has-value');
+        searchFldkey.classList.remove('focus-visible');
+        searchFldkey.classList.remove('has-value');
       } catch (e) {
         // ignore
       }
     });
 
     // 👉 Keyboard Navigation
-    searchFld.addEventListener('keydown', (event) => {
+    searchFldkey.addEventListener('keydown', (event) => {
       const visibleItems = () =>
         Array.from(listContainer.querySelectorAll('.list'))
           .filter((item) => item.parentElement.style.display !== 'none');
@@ -466,7 +474,7 @@ export default function decorate(block) {
         case 'Enter': {
           if (visibleItems().length === 0) return false;
           const selected = visibleItems()[currentFocusIndex] || visibleItems()[0];
-          searchFld.value = selected.textContent.trim();
+          searchFldkey.value = selected.textContent.trim();
           keySearchNewEle.classList.add('dsp-none');
           break;
         }
@@ -483,7 +491,7 @@ export default function decorate(block) {
 
     if (!input.contains(event.target) && !listBox.contains(event.target)) {
       listBox.classList.add('dsp-none');
-      if (searchFld.value === '') {
+      if (searchFldkey.value === '' && (dataMapMoObj.searchFld === undefined || dataMapMoObj.searchFld === '')) {
         closeBtn.style.display = 'none';
         try {
           input.classList.remove('focus-visible');
