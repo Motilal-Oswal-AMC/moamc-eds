@@ -1,0 +1,25 @@
+@use "sass:map";
+@use "../../../styles/common-theme/css/variables_mixins" as *;
+@use "../../../styles/common-theme/css/fluid-typography" as *;
+
+
+.calculator-container {
+    .calculator-block {
+        .calc-author-main1 {
+            display: flex;
+            flex-wrap: wrap;
+
+            .pi-inp-container {
+                max-width: 100%;
+            }
+
+            .tp-inp-container {
+                max-width: calc(50% - 8px);
+            }
+
+            .roi-inp-container {
+                max-width: calc(50% - 8px);
+            }
+        }
+    }
+}

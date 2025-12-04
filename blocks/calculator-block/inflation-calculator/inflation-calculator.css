@@ -1,0 +1,30 @@
+@import "../../../styles/fonts.css";
+body:has(.calc-overview-summary) .calculator-qa-container .answer-container:nth-child(12) .answer, body:has(.calc-overview-summary) .calculator-qa-container .answer-container:nth-child(14) .answer, body:has(.calc-overview-summary) .calculator-qa-container .answer-container:nth-child(16) .answer {
+  display: block;
+  margin-bottom: 12px;
+}
+body:has(.calc-overview-summary) .calculator-qa-container .answer-container:nth-child(18) p.answer:not(:first-child) {
+  display: block;
+  margin-bottom: 12px;
+}
+body:has(.calc-overview-summary) .calculator-qa-container .answer-container:nth-child(21) .answer {
+  flex-direction: row;
+  align-items: center;
+}
+body:has(.calc-overview-summary) .calculator-qa-container .answer-container:nth-child(21) .answer:not(:last-child) {
+  margin-bottom: 16px;
+}
+
+.calculator-container .calculator-block .calc-author-main1 {
+  display: flex;
+  flex-wrap: wrap;
+}
+.calculator-container .calculator-block .calc-author-main1 .cc-inp-container {
+  max-width: 100%;
+}
+.calculator-container .calculator-block .calc-author-main1 .roi-inp-container {
+  max-width: calc(50% - 8px);
+}
+.calculator-container .calculator-block .calc-author-main1 .tp-inp-container {
+  max-width: calc(50% - 8px);
+}/*# sourceMappingURL=inflation-calculator.css.map */
