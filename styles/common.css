@@ -2481,8 +2481,8 @@ main.nfo-nav .section.decoding-qglp-container.decoding-qglp-static .decoding-qgl
   .section.our-commitment-component .promise-qglp-wrapper .promise-qglp-ctn2 {
     padding: 0px;
     width: 100%;
-    top: unset;
-    left: unset;
+    top: 55px;
+    left: 16px;
   }
 }
 @media (min-width: 768px) and (max-width: 1000px) {
