@@ -753,6 +753,10 @@
           {
             "name": "About Structure Governance Tab",
             "value": "structure-governance-tab"
+          },
+          {
+            "name": "Unclaimed Redemption",
+            "value": "unclaimed-redemption"
           }
         ]
       },
