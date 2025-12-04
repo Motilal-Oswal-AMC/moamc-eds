@@ -550,9 +550,14 @@ export default function decorate(block) {
     });
   }
 
+  const url = window.location.href;
+  console.log('URL::::', url);
+
+
   // 👉 Hide on document click
   document.addEventListener('click', (event) => {
     const input = document.querySelector('#keyinvest');
+    const inputInvestEducate = document.querySelector('#our-experts-search');
     const listBox = document.querySelector('.key-search-results');
 
     if (!input.contains(event.target) && !listBox.contains(event.target)) {
@@ -566,13 +571,36 @@ export default function decorate(block) {
           // ignore
         }
       } else if (dataMapMoObj.searchFld === undefined || dataMapMoObj.searchFld === '') {
-        closeBtn.style.display = 'none';
-        try {
-          input.classList.remove('focus-visible');
-          input.classList.remove('active');
-        } catch (e) {
-          // ignore
+
+        // check current page URL
+        const currentPath = window.location.pathname;
+
+        if (currentPath === "/mutual-fund/in/en/investor-education") {
+          if (inputInvestEducate.value != '') {
+            closeBtn.style.display = 'block';
+          } else {
+            closeBtn.style.display = 'none';
+          }
+
+          try {
+            input.classList.remove('focus-visible');
+            input.classList.remove('active');
+          } catch (e) {
+            // ignore
+          }
         }
+
+
+
+        // else if (dataMapMoObj.searchFld === undefined || dataMapMoObj.searchFld === '') {
+        //   closeBtn.style.display = 'none';
+        //   try {
+        //     input.classList.remove('focus-visible');
+        //     input.classList.remove('active');
+        //   } catch (e) {
+        //     // ignore
+        //   }
+        // }
       }
     }
   });
