@@ -86,6 +86,7 @@ main.nfo-nav .main-wrapper .section:first-of-type {
 .section.article-sub-left .investarticle-leftmain1 ul.investarticle-leftsub1 li.investarticle-leftinner1 ul.investsub-leftarticle1 li.comlist:last-of-type .icon {
     width: 12px;
     height: 12px;
+    margin-bottom: 1.5px;
 }
 
 .section.article-sub-left .investarticle-leftmain1 ul.investarticle-leftsub1 li.comlist:last-of-type p.investsub-leftarticle1.comlist,
@@ -129,6 +130,7 @@ main.nfo-nav .main-wrapper .section:first-of-type {
 .article-sub-right.recommended-posts .cards ul li .cards-card-body p:last-of-type span.icon {
     width: 12px;
     height: 12px;
+    margin-bottom: 1.5px;
 }
 
 .section.article-sub-left .investarticle-leftmain1 ul.investarticle-leftsub4 li.investarticle-leftinner1 p.investsub-leftarticle1,
@@ -318,6 +320,7 @@ main.nfo-nav .main-wrapper .section:first-of-type {
     border: var(--border-width-01) solid var(--neutrals-white);
     padding: var(--spacing-8) var(--spacing-12);
     position: relative;
+    height: 40px;
 }
 
 .article-sub-right.subscribe-email .investarticle-rightmain1 .email-wrapper label,
@@ -346,7 +349,7 @@ main.nfo-nav .main-wrapper .section:first-of-type {
 }
 
 .article-sub-right.subscribe-email .investarticle-rightmain1 .email-wrapper input {
-    padding: 2px 0;
+    /* padding: 2px 0; */
     border: none;
     background-color: transparent;
     width: 100%;
@@ -368,6 +371,11 @@ main.nfo-nav .main-wrapper .section:first-of-type {
     font-size: var(--button-medium-size);
     line-height: var(--button-medium-line-height);
     font-weight: 500;
+    height: 40px;
+}
+
+.article-sub-right.recommended-posts .investarticle-rightmain1 {
+    margin-bottom: 8px;
 }
 
 .article-sub-right.recommended-posts .investarticle-rightmain1 .investarticle-rightsub1 {
@@ -544,6 +552,7 @@ main.nfo-nav .main-wrapper .section:first-of-type {
 .article-sub-right.our-podcast .investarticle-rightmain1 ul.investarticle-rightsub3>li.comlist ul.investsub-rightarticle2 li:last-of-type span.icon {
     width: 12px;
     height: 12px;
+    margin-bottom: 1.5px;
 }
 
 .section.future-building-container.article-detail-library {
@@ -702,6 +711,7 @@ main.nfo-nav .main-wrapper .section:first-of-type {
         padding: var(--spacing-12);
         font-size: var(--button-medium-size);
         line-height: var(--button-medium-line-height);
+        height: 44px;
     }
 
     .article-sub-right.recommended-posts .investarticle-rightmain1 .investarticle-rightsub1 {

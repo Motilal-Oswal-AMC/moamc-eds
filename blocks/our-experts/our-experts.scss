@@ -115,10 +115,10 @@
                             margin-right: 16px;
                         }
 
-                        &.input-focused {
-                            border-radius: var(--border-radius-6, 6px);
-                            border: 2px solid var(--strokes-typing, #1887D2);
-                        }
+                        // &.input-focused {
+                        //     border-radius: var(--border-radius-6, 6px);
+                        //     border: 2px solid var(--strokes-typing, #1887D2);
+                        // }
 
                         input {
                             border: none;
