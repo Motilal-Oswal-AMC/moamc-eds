@@ -216,28 +216,29 @@ async function loadEager(doc) {
 async function loadLazy(doc) {
   autolinkVideo(doc);
   const main = doc.querySelector('main');
-  if (
-    window.location.href.includes('/investor-education/all-articles/')
-    || window.location.href.includes('/motilal-oswal-edge/article-details')
-    || window.location.href.includes(
-      '/motilal-oswal-edge/mo-edge-article-image',
-    )
-    || window.location.href.includes(
-      '/motilal-oswal-edge/mo-edge-article-details-d',
-    )
-    || window.location.href.includes(
-      '/motilal-oswal-edge/mo-edge-article-details-image',
-    )
-    || window.location.href.includes(
-      '/motilal-oswal-edge/mo-edge-article-details-video',
-    )
-  ) {
-    const maindiv = main.querySelector('.main-wrapper');
-    // maindiv.classList.add('main-wrapper');
-    maindiv.append(main.querySelector('.article-left-wrapper'));
-    maindiv.append(main.querySelector('.article-right-wrapper'));
-    main.prepend(maindiv);
-  }
+  // if (
+  //   window.location.href.includes('/investor-education/all-articles/')
+  //   || window.location.href.includes('/motilal-oswal-edge/article-details')
+  //   || window.location.href.includes(
+  //     '/motilal-oswal-edge/mo-edge-article-image',
+  //   )
+  //   || window.location.href.includes(
+  //     '/motilal-oswal-edge/mo-edge-article-details-d',
+  //   )
+  //   || window.location.href.includes(
+  //     '/motilal-oswal-edge/mo-edge-article-details-image',
+  //   )
+  //   || window.location.href.includes(
+  //     '/motilal-oswal-edge/mo-edge-article-details-video',
+  //   )
+  // ) {
+  //   const maindiv = main.querySelector('.main-wrapper');
+  //   // maindiv.classList.add('main-wrapper');
+  //   maindiv.append(main.querySelector('.article-left-wrapper'));
+  //   maindiv.append(main.querySelector('.article-right-wrapper'));
+  //   main.prepend(maindiv);
+  //   main.prepend(main.querySelector('[data-id="breadcrumb"]'));
+  // }
   wrapImgsInLinks(doc);
   await loadSections(main);
   dataMapMoObj.article();
@@ -590,6 +591,7 @@ function articleStructure() {
     maindiv.append(maincloser.querySelector('.article-left-wrapper'));
     maindiv.append(maincloser.querySelector('.article-right-wrapper'));
     maincloser.prepend(maindiv);
+    maincloser.prepend(maincloser.querySelector('[data-id="breadcrumb"]'));
     if (maincloser.querySelector('.moedge-article-details')) {
       dataMapMoObj.CLASS_PREFIXES = [
         'articlemain',
@@ -665,6 +667,7 @@ function articleStructure() {
       maindiver.append(maincloser.querySelector('.article-left-wrapper'));
       maindiver.append(maincloser.querySelector('.article-right-wrapper'));
       maincloser.prepend(maindiver);
+      maincloser.prepend(maincloser.querySelector('[data-id="breadcrumb"]'));
       // const main1 = maincloser.querySelector('.article-left-wrapper');
       // const main2 = maincloser.querySelector('.article-right-wrapper');
       // const mainwrapperDiv = maincloser.querySelector('.main-wrapper');
@@ -918,3 +921,35 @@ async function getinsights() {
   return resp;
 }
 dataMapMoObj.getinsights = getinsights;
+
+// Breadcrumbs mask toggle
+
+document.addEventListener('DOMContentLoaded', () => {
+  const wrapper = document.querySelector('.section.breadcrumbs');
+  const list = wrapper.querySelector('.breadul');
+
+  if (!wrapper || !list) return;
+  const updateMask = () => {
+    // 1. Calculate how much is remaining to scroll
+    // scrollWidth = total content width
+    // scrollLeft = how much currently scrolled
+    // clientWidth = visible window width
+    const scrollRight = list.scrollWidth - list.scrollLeft - list.clientWidth;
+
+    // 2. Logic: If there is more than 5px hidden to the right, SHOW mask.
+    if (scrollRight > 5) {
+      wrapper.classList.add('is-masked');
+    } else {
+      wrapper.classList.remove('is-masked');
+    }
+  };
+
+  // Run on load
+  updateMask();
+
+  // Run whenever user scrolls the list
+  list.addEventListener('scroll', updateMask);
+
+  // Run on window resize (in case orientation changes)
+  window.addEventListener('resize', updateMask);
+});

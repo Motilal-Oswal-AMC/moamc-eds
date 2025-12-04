@@ -1,6 +1,6 @@
 @use "sass:map";
-@use "../../styles/common-theme/css/variables_mixins" as *;
-@use "../../styles/common-theme/css/fluid-typography" as *;
+@use "../../styles/common-theme/css/variables_mixins"as *;
+@use "../../styles/common-theme/css/fluid-typography"as *;
 @import "../swiper/swiper-bundle.min.css";
 
 // @import '../blocks/swiper/swiper-bundle.min.css';
@@ -52,7 +52,7 @@
                 map.get($typography-desktop, heading-h4-line-height),
                 $blue-1-800-primary,
                 600,
-                $title );
+                $title);
 
             @include media(mobile) {
                 display: none;
@@ -61,7 +61,7 @@
                     map.get($typography-desktop, sub-header-medium-line-height),
                     $blue-1-800-primary,
                     600,
-                    $title );
+                    $title);
             }
         }
 
@@ -90,7 +90,7 @@
                     map.get($typography-mobile, paragraph-small-line-height),
                     $blue-1-800-primary,
                     400,
-                    $body );
+                    $body);
             }
         }
     }
@@ -241,7 +241,7 @@
                                         map.get($typography-mobile, label-small-line-height),
                                         $blue-1-800-primary,
                                         400,
-                                        $body );
+                                        $body);
 
                                     gap: 4px;
                                     padding: 0 8px;
@@ -280,7 +280,7 @@
                                             map.get($typography-mobile, paragraph-xsmall-line-height),
                                             $neutrals-700,
                                             400,
-                                            $body );
+                                            $body);
                                     }
 
                                     .icon {
@@ -350,14 +350,14 @@
                                         map.get($typography-desktop, body-large-medium-line-height),
                                         $blue-1-800-primary,
                                         500,
-                                        $body );
+                                        $body);
 
                                     @include media(mobile) {
                                         @include font-style(map.get($typography-mobile, body-large-medium-size),
                                             map.get($typography-mobile, body-large-medium-line-height),
                                             $blue-1-800-primary,
                                             500,
-                                            $body );
+                                            $body);
                                     }
                                 }
                             }
@@ -372,14 +372,14 @@
                                     24px,
                                     $text-body-2,
                                     map.get($font-weights, regular),
-                                    $body );
+                                    $body);
 
                                 @include media(mobile) {
                                     @include font-style(map.get($typography-mobile, paragraph-small-size),
                                         map.get($typography-mobile, paragraph-small-line-height),
                                         $text-body-2,
                                         400,
-                                        $body );
+                                        $body);
                                 }
                             }
                         }
@@ -411,14 +411,14 @@
                                         map.get($typography-desktop, body-small-regular-line-height),
                                         $text-text-link,
                                         400,
-                                        $body );
+                                        $body);
 
                                     @include media(mobile) {
                                         @include font-style(map.get($typography-mobile, body-small-regular-size),
                                             map.get($typography-mobile, body-small-regular-line-height),
                                             $text-text-link,
                                             400,
-                                            $body );
+                                            $body);
 
                                         line-height: var(--text-link-small-line-height);
                                         min-height: unset;
@@ -592,8 +592,12 @@
         }
     }
 
-    .section.future-building-container.future-building-article-details>.library-btn3 {
-        top: 14px;
+    .section.future-building-container.future-building-article-details {
+        margin-top: 40px;
+
+        >.library-btn3 {
+            top: 14px;
+        }
     }
 
     .section.future-building-container.future-building-article-details .future-building .swiper-wrapper .swiper-slide .swiper-slide-cards-2>ul.cards-listcards1>li.cards-list-1-cards4 .button-container a {

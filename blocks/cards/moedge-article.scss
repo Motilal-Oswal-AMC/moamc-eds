@@ -49,15 +49,15 @@
 .section.main-wrapper.moedge-article-details {
     max-width: 1232px;
     width: 100%;
-    margin: 78px auto 40px;
-    padding: 24px 0 16px;
+    margin: 0 auto;
+    padding: 0 0 40px;
     display: flex;
     gap: 30px;
     justify-content: space-between;
 
     @include media (mobile) {
         padding: 0 16px;
-        margin: 59px auto 0;
+        margin: 0 auto;
         gap: 0;
     }
 
