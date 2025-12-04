@@ -547,12 +547,9 @@ export function createOptionSelectorBlock({
  */
 export function createBarSummaryBlock({
   container = null,
-  ctaLabel = "Start SIP",
-  ctaHref = "#",
   showCompoundRate = false,
 }) {
   if (!container) return null;
-
   const parent = div({ class: "calc-overview-summary calc-author-main2" });
   const uls = container.querySelectorAll("ul");
 
@@ -650,14 +647,15 @@ export function createBarSummaryBlock({
   parent.appendChild(investedEstWrapper);
 
   // CTA button
+  const authorCTAData = container.querySelector(".calc-author-sub4 a");
   const ctaBtn = button(
     {
       class: "calc-overview-cta",
       onclick: () => {
-        window.location.href = ctaHref;
+        window.location.href = authorCTAData?.href || "#";
       },
     },
-    ctaLabel
+    authorCTAData?.textContent.trim() || "Start SIP"
   );
   parent.appendChild(ctaBtn);
 
