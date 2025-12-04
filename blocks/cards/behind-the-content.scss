@@ -64,7 +64,7 @@ $breakpoint-dks: 1279px;
     padding: 0 24px;
     margin-bottom: 40px;
 
-    h1 {
+    h1, h2, h3, h4, h5, h6 {
       color: var(--blue-1800-primary, #2E2A94);
       text-align: center;
       font-feature-settings: var(--font-features-default);
@@ -267,7 +267,7 @@ $breakpoint-dks: 1279px;
       margin-bottom: 40px;
       padding: 0;
 
-      h1 {
+      h1, h2, h3, h4, h5, h6 {
         font-size: var(--heading-h4-size);
         line-height: var(--heading-h4-line-height);
       }
