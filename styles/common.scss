@@ -9,7 +9,7 @@
 // @import "../blocks/moedge-article-details/moedge-article-details.css";
 // @import '../blocks/Investor-details/investor-details.css';
 // @import "../blocks/error-screen/error-screen.css";
-@import "../blocks/privacy-policy/privacy-policy.scss";
+// @import "../blocks/privacy-policy/privacy-policy.css";
 
 .section.download {
   width: 100%;
@@ -632,6 +632,7 @@ main>.section.previous-studies-tab.tabs-container {
 }
 
 .default-content-wrapper.annual-wealth-wrap1 {
+
   h1,
   h2,
   h3,
@@ -1331,10 +1332,10 @@ main>.section.previous-studies-tab.tabs-container {
           line-height: var(--label-small-line-height);
 
           @include media (mobile-ed) {
-            display: block;
-            width: 72px;
-            text-overflow: ellipsis;
-            overflow: hidden;
+            // display: block;
+            // width: 72px;
+            // text-overflow: ellipsis;
+            // overflow: hidden;
 
             // &::after {
             //   // content: "...";
@@ -1348,6 +1349,18 @@ main>.section.previous-studies-tab.tabs-container {
             //   // background: linear-gradient(to right, transparent, white);
             // }
           }
+        }
+      }
+
+    }
+
+    >li:nth-child(4) {
+      .breadlist {
+        @include media (mobile-ed) {
+          display: block;
+          width: 72px;
+          text-overflow: ellipsis;
+          overflow: hidden;
         }
       }
     }
