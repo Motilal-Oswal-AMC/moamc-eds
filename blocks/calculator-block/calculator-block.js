@@ -179,6 +179,11 @@ export default function decorate(block) {
     .querySelectorAll("u")
     .forEach((el) => el.classList.add("small-bold"));
 
+  // Add class 'small-bold' to all <i> elements
+  qaContainer
+    .querySelectorAll("em")
+    .forEach((el) => el.classList.add("small-bold"));
+
   // Add class 'link' to all <a> elements
   qaContainer.querySelectorAll("a").forEach((el) => el.classList.add("link"));
 
