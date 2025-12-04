@@ -940,35 +940,3 @@ async function getinsights() {
   return resp;
 }
 dataMapMoObj.getinsights = getinsights;
-
-// Breadcrumbs mask toggle
-
-document.addEventListener('DOMContentLoaded', () => {
-  const wrapper = document.querySelector('.section.breadcrumbs');
-  const list = wrapper.querySelector('.breadul');
-
-  if (!wrapper || !list) return;
-  const updateMask = () => {
-    // 1. Calculate how much is remaining to scroll
-    // scrollWidth = total content width
-    // scrollLeft = how much currently scrolled
-    // clientWidth = visible window width
-    const scrollRight = list.scrollWidth - list.scrollLeft - list.clientWidth;
-
-    // 2. Logic: If there is more than 5px hidden to the right, SHOW mask.
-    if (scrollRight > 5) {
-      wrapper.classList.add('is-masked');
-    } else {
-      wrapper.classList.remove('is-masked');
-    }
-  };
-
-  // Run on load
-  updateMask();
-
-  // Run whenever user scrolls the list
-  list.addEventListener('scroll', updateMask);
-
-  // Run on window resize (in case orientation changes)
-  window.addEventListener('resize', updateMask);
-});

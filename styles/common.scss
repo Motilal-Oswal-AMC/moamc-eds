@@ -9,7 +9,7 @@
 // @import "../blocks/moedge-article-details/moedge-article-details.css";
 // @import '../blocks/Investor-details/investor-details.css';
 // @import "../blocks/error-screen/error-screen.css";
-@import "../blocks/privacy-policy/privacy-policy.scss";
+// @import "../blocks/privacy-policy/privacy-policy.css";
 
 .section.download {
   width: 100%;
@@ -632,6 +632,7 @@ main>.section.previous-studies-tab.tabs-container {
 }
 
 .default-content-wrapper.annual-wealth-wrap1 {
+
   h1,
   h2,
   h3,
@@ -1267,7 +1268,8 @@ main>.section.previous-studies-tab.tabs-container {
       margin-right: 25px;
       -ms-overflow-style: none;
       scrollbar-width: none;
-      overflow-x: auto;
+
+      // overflow-x: auto;
     }
 
     &::-webkit-scrollbar {
@@ -1329,18 +1331,36 @@ main>.section.previous-studies-tab.tabs-container {
           font-weight: 400;
           line-height: var(--label-small-line-height);
 
-          // @include media (mobile-ed) {
-          //   &::after {
-          //     content: '';
-          //     position: absolute;
-          //     top: 0;
-          //     right: 0;
-          //     width: 40px;
-          //     height: 100%;
-          //     background: linear-gradient(to right, transparent, white);
-          //     pointer-events: none;
-          //   }
-          // }
+          @include media (mobile-ed) {
+            // display: block;
+            // width: 72px;
+            // text-overflow: ellipsis;
+            // overflow: hidden;
+
+            // &::after {
+            //   // content: "...";
+            //   // position: absolute;
+            //   // top: 0;
+            //   // right: -2px;
+            //   // width: 40px;
+            //   // height: 100%;
+            //   // background: #fff;
+            //   // pointer-events: none;
+            //   // background: linear-gradient(to right, transparent, white);
+            // }
+          }
+        }
+      }
+
+    }
+
+    >li:nth-child(4) {
+      .breadlist {
+        @include media (mobile-ed) {
+          display: block;
+          width: 72px;
+          text-overflow: ellipsis;
+          overflow: hidden;
         }
       }
     }
@@ -1351,6 +1371,7 @@ main>.section.previous-studies-tab.tabs-container {
       display: none;
     }
   }
+
 }
 
 // common breadcrumbs scss End
@@ -2587,7 +2608,6 @@ main.nfo-nav {
             font-size: var(--body-small-regular-size);
             font-style: normal;
             font-weight: 400;
-            line-height: var(--body-small-regular-line-height);
             width: 100%;
             max-width: 276px;
             line-height: 24px;
@@ -2637,7 +2657,7 @@ main.nfo-nav {
         left: unset;
       }
 
-      @include media (tab){
+      @include media (tab) {
         max-width: 210px;
       }
     }
