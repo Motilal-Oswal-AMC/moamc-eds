@@ -57,6 +57,7 @@ main > .section.investing-terms-container {
         @include media(mobile) {
           font-size: var(--sub-header-large-size);
           line-height: 28px;
+          padding-right: 4px;
         }
       }
 

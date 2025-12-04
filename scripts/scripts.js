@@ -20,7 +20,7 @@ import formBlock, { createForm } from '../blocks/form/form.js';
 // eslint-disable-next-line import/no-cycle
 import { initializeModalHandlers } from '../blocks/modal/modal.js';
 
-console.log('f1 code');
+// console.log('f1 code');
 
 /**
  * Moves all the attributes from a given elmenet to another given element.
@@ -216,28 +216,29 @@ async function loadEager(doc) {
 async function loadLazy(doc) {
   autolinkVideo(doc);
   const main = doc.querySelector('main');
-  if (
-    window.location.href.includes('/investor-education/all-articles/')
-    || window.location.href.includes('/motilal-oswal-edge/article-details')
-    || window.location.href.includes(
-      '/motilal-oswal-edge/mo-edge-article-image',
-    )
-    || window.location.href.includes(
-      '/motilal-oswal-edge/mo-edge-article-details-d',
-    )
-    || window.location.href.includes(
-      '/motilal-oswal-edge/mo-edge-article-details-image',
-    )
-    || window.location.href.includes(
-      '/motilal-oswal-edge/mo-edge-article-details-video',
-    )
-  ) {
-    const maindiv = main.querySelector('.main-wrapper');
-    // maindiv.classList.add('main-wrapper');
-    maindiv.append(main.querySelector('.article-left-wrapper'));
-    maindiv.append(main.querySelector('.article-right-wrapper'));
-    main.prepend(maindiv);
-  }
+  // if (
+  //   window.location.href.includes('/investor-education/all-articles/')
+  //   || window.location.href.includes('/motilal-oswal-edge/article-details')
+  //   || window.location.href.includes(
+  //     '/motilal-oswal-edge/mo-edge-article-image',
+  //   )
+  //   || window.location.href.includes(
+  //     '/motilal-oswal-edge/mo-edge-article-details-d',
+  //   )
+  //   || window.location.href.includes(
+  //     '/motilal-oswal-edge/mo-edge-article-details-image',
+  //   )
+  //   || window.location.href.includes(
+  //     '/motilal-oswal-edge/mo-edge-article-details-video',
+  //   )
+  // ) {
+  //   const maindiv = main.querySelector('.main-wrapper');
+  //   // maindiv.classList.add('main-wrapper');
+  //   maindiv.append(main.querySelector('.article-left-wrapper'));
+  //   maindiv.append(main.querySelector('.article-right-wrapper'));
+  //   main.prepend(maindiv);
+  //   main.prepend(main.querySelector('[data-id="breadcrumb"]'));
+  // }
   wrapImgsInLinks(doc);
   await loadSections(main);
   dataMapMoObj.article();
@@ -299,9 +300,7 @@ export function wishlist() {
   const count = stars.length;
   const watchlistSpan = document.querySelector('.watchlisttext span');
   if (watchlistSpan) {
-    watchlistSpan.textContent = `My Watchlist (${
-      count < 10 ? '0' : ''
-    }${count})`;
+    watchlistSpan.textContent = `My Watchlist (${count < 10 ? '0' : ''}${count})`;
   }
 }
 
@@ -533,6 +532,7 @@ function articleStructure() {
   // Investor Education article left and right wrapper
   if (
     window.location.href.includes('/investor-education/all-articles/')
+    || window.location.href.includes('/motilal-oswal-edge/insights/blogs')
     || window.location.href.includes('/motilal-oswal-edge/article-details')
     || window.location.href.includes(
       '/motilal-oswal-edge/mo-edge-article-image',
@@ -586,7 +586,12 @@ function articleStructure() {
       ];
       dataMapMoObj.addIndexed(subright);
     });
-
+    const maindiv = maincloser.querySelector('.main-wrapper');
+    // maindiv.classList.add('main-wrapper');
+    maindiv.append(maincloser.querySelector('.article-left-wrapper'));
+    maindiv.append(maincloser.querySelector('.article-right-wrapper'));
+    maincloser.prepend(maindiv);
+    maincloser.prepend(maincloser.querySelector('[data-id="breadcrumb"]'));
     if (maincloser.querySelector('.moedge-article-details')) {
       dataMapMoObj.CLASS_PREFIXES = [
         'articlemain',
@@ -603,7 +608,6 @@ function articleStructure() {
       dataMapMoObj.addIndexed(
         maincloser.querySelector('.moedge-article-details'),
       );
-
       const mainleft = maincloser.querySelector('.article-left-wrapper');
       dataMapMoObj.CLASS_PREFIXES = [
         'leftartmain',
@@ -645,6 +649,30 @@ function articleStructure() {
       parent.insertBefore(wrapperDiv, mainArticle1);
       wrapperDiv.appendChild(mainArticle1);
       wrapperDiv.appendChild(mainArticle2);
+    } else if (maincloser.querySelector('.moedge-article-details')) {
+      const mainArticle3 = maincloser.querySelector(
+        '.moedge-article-details .mainarticle1',
+      );
+      const mainArticle4 = maincloser.querySelector(
+        '.moedge-article-details .mainarticle2',
+      );
+      const parent = mainArticle3.parentNode;
+      const wrapperDiv = document.createElement('div');
+      wrapperDiv.classList.add('articles-wrapper');
+      parent.insertBefore(wrapperDiv, mainArticle3);
+      wrapperDiv.appendChild(mainArticle3);
+      wrapperDiv.appendChild(mainArticle4);
+      const maindiver = maincloser.querySelector('.main-wrapper');
+      // maindiv.classList.add('main-wrapper');
+      maindiver.append(maincloser.querySelector('.article-left-wrapper'));
+      maindiver.append(maincloser.querySelector('.article-right-wrapper'));
+      maincloser.prepend(maindiver);
+      maincloser.prepend(maincloser.querySelector('[data-id="breadcrumb"]'));
+      // const main1 = maincloser.querySelector('.article-left-wrapper');
+      // const main2 = maincloser.querySelector('.article-right-wrapper');
+      // const mainwrapperDiv = maincloser.querySelector('.main-wrapper');
+      // mainwrapperDiv.appendChild(main1);
+      // mainwrapperDiv.appendChild(main2);
     }
   }
 }
@@ -658,6 +686,11 @@ if (chooseUs != null) {
     'choose-us-img',
   ];
   dataMapMoObj.addIndexed(chooseUs);
+  Array.from(chooseUs.querySelectorAll('img')).forEach((ele, index) => {
+    if (index === 0) {
+      ele.setAttribute('fetchpriority', 'high');
+    }
+  });
 }
 
 const chooseusCard = document.querySelector('.why-choose-card');
@@ -759,6 +792,7 @@ if (highimageComponent != null) {
     'high-skin-component-ctn',
     'high-skin-component-external',
     'high-skin-component-internal',
+
   ];
   dataMapMoObj.addIndexed(highimageComponent);
 }
@@ -773,17 +807,43 @@ if (skinmoamcComponent != null) {
     'moamc-component-para-one',
     'moamc-component-para-two',
     'moamc-component-para-three',
+
   ];
   dataMapMoObj.addIndexed(skinmoamcComponent);
 }
 
-// Adding custom scrollbar to WCS pages
-try {
-  if (document.querySelector('header [data-id="wcs-header"]')) {
-    document.body.classList.add('custom-scroll');
-  }
-} catch (error) {
-  // console.log(error);
+const privacyPolicy = document.querySelectorAll('.privacy-policy-banner');
+
+const privacyPolicyArr = Array.from(privacyPolicy);
+privacyPolicyArr.forEach((child)=>{
+
+if (child != null) {
+  dataMapMoObj.CLASS_PREFIXES = [
+    'pp-banner-wrap',
+    'pp-banner-block',
+    'pp-banner-img',
+    'pp-banner-imginner',
+    'pp-banner-picture',
+    'pp-banner-pictureinner',
+  ];
+  dataMapMoObj.addIndexed(child);
+}
+})
+
+const skinstakeComponent = document.querySelector('.what-stake-component');
+if (skinstakeComponent != null) {
+  dataMapMoObj.CLASS_PREFIXES = [
+    'stake-component-wrap',
+    'stake-component-main-head',
+    'stake-component-title',
+    'stake-component-para',
+    'stake-component-para-one',
+    'stake-component-para-two',
+    'stake-component-img',
+    'stake-img-card-wrap',
+    'stake-img-card-wrap-img',
+  ];
+  dataMapMoObj.addIndexed(skinstakeComponent);
 }
 
 try {
@@ -806,9 +866,7 @@ try {
     dataMapMoObj.addIndexed(whymattersComponent);
   }
 
-  const container = document.querySelector(
-    '.section.why-matters-component.cards-container',
-  );
+  const container = document.querySelector('.section.why-matters-component.cards-container');
 
   const wrapper = document.createElement('div');
   wrapper.classList.add('why-matters-wrapper-in');
@@ -820,14 +878,65 @@ try {
 
   wrapper.appendChild(wrap1);
   wrapper.appendChild(wrap2);
+} catch (error) {
+  // console.log(error);
+}
+// Skin the game static end
 
-  const section = document.querySelector('.promise-qglp');
-  const skinwrapper = document.createElement('div');
-  skinwrapper.classList.add('skin-in-the-game-wrapper');
-  section.parentNode.insertBefore(skinwrapper, section);
-  skinwrapper.appendChild(section);
+// conclusion container start
+const conclusion = document.querySelector('.section.conclusion');
+if (conclusion != null) {
+  dataMapMoObj.CLASS_PREFIXES = [
+    'conclusion-main',
+    'conclusion-title',
+    'conclusion-para',
+    'conclusion-para-one',
+    'conclusion-para-two',
+  ];
+  dataMapMoObj.addIndexed(conclusion);
+}
+// conclusion container end
+
+// why-invest-minor section start
+const whyInvestminor = document.querySelector('.section.why-invest-minor');
+if (whyInvestminor != null) {
+  dataMapMoObj.CLASS_PREFIXES = [
+    'why-invest-minor-main',
+    'why-invest-minor-sub',
+    'why-invest-minor-inner',
+  ];
+  dataMapMoObj.addIndexed(whyInvestminor);
+}
+
+// Adding custom scrollbar to WCS pages
+try {
+  if (document.querySelector('header [data-id="wcs-header"]')) {
+    document.body.classList.add('custom-scroll');
+  }
 } catch (error) {
   // console.log(error);
 }
 
-// Skin the game static end
+async function getlisting() {
+  const resp = await myAPI('GET', 'https://m71vqgw4cj.execute-api.ap-south-1.amazonaws.com/dev/api/public/v1/funds/listing');
+  return resp;
+}
+dataMapMoObj.getlisting = getlisting;
+
+async function getscheme(param) {
+  const resp = await myAPI('GET', `https://m71vqgw4cj.execute-api.ap-south-1.amazonaws.com/dev/api/public/v1/funds?schcode=${param}`);
+  return resp;
+}
+dataMapMoObj.getscheme = getscheme;
+
+async function getfundmanager(param) {
+  const resp = await myAPI('GET', `https://m71vqgw4cj.execute-api.ap-south-1.amazonaws.com/dev/api/public/v1/funds/manager?schcode=${param}`);
+  return resp;
+}
+dataMapMoObj.getfundmanager = getfundmanager;
+
+async function getinsights() {
+  const resp = await myAPI('GET', 'https://main--moamc-eds--motilal-oswal-amc.aem.live/query-index-insights.json');
+  return resp;
+}
+dataMapMoObj.getinsights = getinsights;

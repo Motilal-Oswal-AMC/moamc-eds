@@ -1,0 +1,40 @@
+@use "sass:map";
+@use "../../../styles/common-theme/css/variables_mixins" as *;
+@use "../../../styles/common-theme/css/fluid-typography" as *;
+
+// body:has(.calc-overview-summary) {
+//     .calculator-qa-container {
+//         .answer:nth-child(15) {
+//             margin-bottom: 12px;
+//         }
+
+//         .answer-container:nth-child(16) {
+//             .answer:not(:last-child) {
+//                 display: block;
+//                 margin-bottom: 12px;
+//             }
+//         }
+//     }
+// }
+
+
+.calculator-container {
+    .calculator-block {
+        .calc-author-main1 {
+            display: flex;
+            flex-wrap: wrap;
+
+            .ti-inp-container {
+                max-width: 100%;
+            }
+
+            .ror-inp-container {
+                max-width: calc(50% - 8px);
+            }
+
+            .tp-inp-container {
+                max-width: calc(50% - 8px);
+            }
+        }
+    }
+}

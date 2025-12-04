@@ -1,0 +1,1121 @@
+@use "sass:map";
+@use "sass:color";
+@use "../../styles/common-theme/css/variables_mixins" as *;
+@use "../../styles/common-theme/css/fluid-typography" as *;
+@import "./../fund-card/fund-card";
+@import "./common-ui-field/common-ui-field";
+
+body:has(.calculator-container) {
+    background-color: $neutrals-100;
+
+    .section.breadcrumbs-fdp {
+        // max-width: calc(1232px + 48px);
+        flex-direction: row;
+        padding: 24px 0;
+        min-height: 72px;
+
+        @media (width <=1279px) {
+            max-width: 1280px;
+            padding: 24px;
+        }
+
+        @media (width <=900px) {
+            padding: 24px 16px;
+        }
+
+        @include media(mobile) {
+            max-width: calc(100% + 32px);
+            min-height: 68px;
+            padding: 20px 16px 24px;
+
+            .breadul {
+                display: flex;
+            }
+        }
+
+        @include media(mobile-sm) {
+            margin-top: 74px;
+            top: 130px;
+        }
+
+        &::before {
+            content: "";
+            position: absolute;
+            left: 50%;
+            top: 0;
+            width: 100vw;
+            height: 100%;
+            background-color: inherit;
+            transform: translateX(-50%);
+            z-index: -1;
+        }
+    }
+
+    .future-building-container {
+        padding: 40px 0;
+        z-index: 1;
+        background-color: $primary-white;
+
+        &::before {
+            content: "";
+            position: absolute;
+            left: 50%;
+            top: 0;
+            width: 100vw;
+            height: 100%;
+            background-color: $primary-white;
+            transform: translateX(-50%);
+            z-index: -1;
+        }
+
+        div.library-btn1 {
+            padding-bottom: 40px;
+        }
+
+        .future-building {
+            .swiper-wrapper {
+                .swiper-slide {
+                    .swiper-slide-cards-2 {
+                        padding-bottom: 24px;
+
+                        // .cards-list-1-cards1 {
+                        //     .list-child-11 {
+                        //         max-height: 24px;
+                        //     }
+                        // }
+
+                        .cards-list-1-cards2 {
+                            .list-child-11 {
+                                line-height: unset;
+                                min-height: 24px;
+
+                                .list-grandch-button1 {
+                                    @include media(mobile) {
+                                        letter-spacing: 0.6px;
+                                        word-spacing: 0.5px;
+                                    }
+                                }
+                            }
+                        }
+
+                        .cards-list-1-cards4 {
+                            .list-child-11 {
+                                line-height: unset;
+                                font-family: $inter;
+                                max-height: fit-content;
+                                font-size: 14px;
+
+                                .list-grandch-button1 {
+                                    min-height: fit-content;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // .section:not(div[data-id="recommended-funds-id"]) {
+    //     display: none;
+    // }
+
+    div[data-id="recommended-funds-id"] {
+        position: relative;
+        height: 600px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1;
+        margin: 0 auto;
+        padding: 40px 0;
+        background-color: $primary-blue;
+
+        @include media(mobile) {
+            height: fit-content;
+            padding: 0;
+        }
+
+        &::before {
+            content: "";
+            position: absolute;
+            left: 50%;
+            top: 0;
+            width: 100vw;
+            height: 100%;
+            background-color: $primary-blue;
+            transform: translateX(-50%);
+            z-index: -1;
+        }
+
+        .default-content-wrapper {
+            width: 100%;
+
+            @include media(mobile) {
+                margin: 40px 0;
+            }
+
+            a.recommended-funds-cta {
+                @include font-style(14px, 16px, $primary-white, 400, $inter);
+
+                display: none;
+                min-width: 124px;
+                padding: 7.2px 12px;
+                justify-content: center;
+                align-items: center;
+                gap: 8px;
+                flex-shrink: 0;
+                margin: 0;
+                background-color: inherit;
+                border-radius: 4px;
+                border: 1px solid $primary-white;
+
+                @include media(mobile) {
+                    display: flex;
+                    margin: 40px auto 0;
+                    min-width: 160px;
+                    max-width: fit-content;
+                }
+            }
+
+            div.recommended-funds-header {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin: 0 0 24px;
+
+                h1 {
+                    @include font-style(32px, 40px, $primary-white, 600, $inter);
+
+                    margin: 0;
+
+                    @include media(mobile) {
+                        font-size: 24px;
+                        line-height: 28px;
+                    }
+                }
+
+                a.recommended-funds-cta {
+                    display: flex;
+
+                    @include media(mobile) {
+                        display: none;
+                    }
+                }
+            }
+
+            .fund-cards-container {
+                display: flex;
+                gap: 16px;
+                align-items: center;
+
+                @include media(mobile) {
+                    flex-direction: column;
+                    justify-content: center;
+                }
+
+                .card-container {
+                    padding: 19.6px 16px 16px;
+
+                    @include media(mobile) {
+                        max-width: 340px;
+                        padding-top: 20px;
+                    }
+
+
+                    .card-wrapper {
+                        .card-category {
+                            @include media(mobile) {
+                                margin-bottom: 35px;
+                            }
+                        }
+
+                        .cagr-container {
+                            @include media(mobile) {
+                                min-height: 74px;
+                            }
+                        }
+
+                        .cagr-container .cagr-value .cagr-val-label span {
+                            @include media(mobile) {
+                                line-height: 28px;
+                            }
+                        }
+
+                        .discription {
+                            .dis-choosen {
+                                min-height: 20px;
+                                align-items: center;
+
+                                .dis-investor {
+                                    .dis-investor {
+                                        .person {
+                                            width: 16px;
+                                            height: 16px;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+main {
+    background-color: inherit;
+
+    .calculator-container {
+        // padding: 24px 67px 80px;
+        max-width: 1232px;
+        margin: 0 auto auto;
+
+
+        @media (width <=1024px) {
+            margin-top: 18px;
+        }
+
+        @include media(mobile) {
+            margin-top: 0;
+        }
+
+        .calculator-block-wrapper {
+            @include media(mobile) {
+                padding: 0 24px;
+            }
+
+            @include media(mobile) {
+                padding: 0 16px;
+            }
+
+            .calculator-block {
+                display: flex;
+                gap: 24px;
+                justify-content: space-between;
+                align-items: center;
+                max-width: 1232px;
+                width: 100%;
+                margin: 0 auto;
+                padding: 12px 0;
+
+                @include media(mobile) {
+                    flex-direction: column;
+                    gap: 40px;
+                }
+
+                .calc-author-main1 {
+                    max-width: 608px;
+                    width: 100%;
+                    gap: 36px 16px;
+
+                    @include media(mobile) {
+                        max-width: 100%;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        width: 100%;
+
+                        .calc-input-block {
+                            width: 100%;
+                            max-width: none;
+                        }
+                    }
+
+                }
+            }
+        }
+
+        &_title.default-content-wrapper {
+            margin-bottom: 28px;
+
+            li {
+                list-style: none;
+            }
+
+            h5 {
+                @include font-style(28px, 32px, $blue-1-800-primary, 600, $inter);
+
+                margin: 0;
+
+                @include media(mobile) {
+                    font-size: 24px;
+                    line-height: 28px;
+                }
+            }
+
+            .calculator-container-title-item1 {
+                display: flex;
+                gap: 16px;
+                align-items: center;
+                list-style: none;
+                margin: 0;
+                width: 100%;
+
+                li[class*='calculator-container-title-subitem'] {
+                    &:has(.button-container) {
+                        margin-left: auto;
+
+                        @include media(mobile) {
+                            display: none;
+                        }
+                    }
+
+                    p:has(.icon) {
+                        width: 48px;
+                        height: 48px;
+                        margin: 0;
+
+                        @include media(mobile) {
+                            width: 32px;
+                            height: 32px;
+                        }
+
+                        span.icon {
+                            width: 100%;
+                            height: 100%;
+                            margin: 0;
+                        }
+                    }
+
+
+                    .calculator-container-title-textcontent {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: start;
+                        gap: 4px;
+
+                        li::marker {
+                            content: "";
+                        }
+
+                        &:last-child {
+                            @include font-style(16px, 24px, $blue-1-800-primary, 400, $inter);
+
+                            margin: 0;
+
+                            @include media(mobile) {
+                                @include font-style(12px, 16px, $blue-1-800-primary, 400, $inter);
+                            }
+                        }
+                    }
+
+                    p.button-container {
+                        margin: 0;
+
+                        .calculator-container-title-btn {
+                            @include font-style(14px, 16px, $blue-1-800-primary, 500, $inter);
+
+                            min-width: 164px;
+                            display: flex;
+                            padding: 8px 18px;
+                            justify-content: center;
+                            align-items: center;
+                            gap: 8px;
+                            flex-shrink: 0;
+                            margin: 0;
+                            border-radius: 8px;
+                            border: 1px solid $blue-1-800-primary;
+                            background-color: transparent;
+                            color: var(--text-button-default, #2E2A94);
+                            text-align: center;
+                        }
+                    }
+                }
+            }
+        }
+
+        &_insight {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            justify-content: start;
+            margin: 32px 0;
+
+            @include media(mobile) {
+                margin: 40px 0;
+            }
+
+            .insight-textcontent {
+                list-style: none;
+
+                @include font-style(14px, 16px, $blue-1-800-primary, 500, $inter);
+
+                @include media(mobile) {
+                    font-size: 12px;
+                    line-height: 16px;
+                }
+
+                .icon-key-facts-no-bg {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 40px;
+                    height: 40px;
+                    background-color: $primary-white;
+                    border-radius: 6px;
+
+                    >img {
+                        width: 17px;
+                        height: 27px;
+                    }
+                }
+            }
+
+            +.calculator-disclaimer-title {
+                @include font-style(12px, 16px, $blue-1-800-primary, 400, $inter);
+
+                margin: 0;
+
+                +.calculator-disclaimer-container {
+                    display: flex;
+                    flex-direction: column;
+                    margin: 16px 0 24px 19px;
+
+                    @include media(mobile) {
+                        margin-bottom: 40px
+                    }
+
+                    li {
+                        @include font-style(12px, 16px, $text-body-2, 400, $inter);
+
+                        @include media(mobile) {
+                            letter-spacing: 0.3px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .calculator-graph-container {
+        .calc-graph-main1 {
+            #calc-graph-container {
+                height: 361px;
+            }
+
+            .calc-graph-item1 {
+                display: grid;
+                grid-template-areas:
+                    "subItem1 subItem3"
+                    "subItem2 subItem3";
+                list-style: none;
+                gap: 0 20px;
+                align-items: end;
+                margin: 0;
+                padding-bottom: 20px;
+
+                @include media(mobile) {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: start;
+                    padding-bottom: 0;
+                    margin-bottom: 24px;
+                }
+
+                >* {
+                    list-style: none;
+                }
+
+                .calc-graph-subitem1 {
+                    grid-area: subItem1;
+                    padding: 2px 0;
+                    margin-bottom: 8px;
+
+                    @include font-style(24px, 28px, $primary-blue, 600, $inter);
+
+                    @include media(mobile) {
+                        margin-bottom: 4px;
+                    }
+                }
+
+                .calc-graph-subitem2 {
+                    grid-area: subItem2;
+
+                    @include font-style(14px, 16px, $primary-blue, 400, $inter);
+
+                    @include media(mobile) {
+                        margin-bottom: 16px;
+                    }
+                }
+
+                .calc-graph-subitem3 {
+                    grid-area: subItem3;
+
+                    @include font-style(14px, 16px, $neutrals-700, 400, $inter);
+
+                    max-width: 544px;
+                    margin-left: auto;
+
+                    @include media(mobile) {
+                        max-width: 100%;
+                        margin-left: 0;
+                    }
+
+                    strong {
+                        font-weight: 600;
+                    }
+                }
+            }
+
+            .calc-graph-item2 {
+                margin: 0;
+
+                .comlist {
+                    line-height: unset;
+                    list-style: none;
+                }
+
+                .calc-graph-banner1 {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    padding: 15.2px 24px;
+                    margin: 40px 0 80px;
+                    background-color: $primary-white;
+                    border-radius: 8px;
+                    border: 1px solid $card-stroke;
+                    box-shadow: 0 0 13.514px 0 rgb(0 0 0 / 6%);
+
+                    @include media(mobile) {
+                        flex-direction: column;
+                        align-items: start;
+                        gap: 24px;
+                    }
+
+                    .calc-graph-banner-item1 {
+                        .graph-banner-textcontainer1 {
+                            display: flex;
+                            flex-direction: column;
+                            margin: 0;
+
+                            >.comlist p {
+                                margin: 0;
+                            }
+
+                            .graph-banner-textcontent1 p {
+                                @include font-style(12px, 14px, $blue-1-500, 500, $inter);
+                            }
+
+                            .graph-banner-textcontent2 p.button-container {
+                                margin: 0;
+                                font-size: 0;
+
+                                a {
+                                    @include font-style(20px, 24px, $primary-blue, 600, $inter);
+
+                                    background-color: inherit;
+                                    padding: 0;
+                                    margin: 0;
+                                    white-space: normal;
+
+                                    // overflow-wrap: anywhere;
+                                    overflow-wrap: break-word;
+                                    word-break: unset;
+                                    border: none;
+                                    border-radius: unset;
+                                    text-align: start;
+
+                                    @include media(mobile) {
+                                        font-size: 16px;
+                                        line-height: 20px;
+                                    }
+                                }
+
+                            }
+
+                            .graph-banner-textcontent3 {
+                                margin-top: 8px;
+
+                                @include media(mobile) {
+                                    margin-top: 16px;
+                                }
+
+                                >.graph-banner-tags1 {
+                                    display: flex;
+                                    flex-wrap: wrap;
+                                    align-items: center;
+                                    gap: 4px;
+                                    margin: 0;
+
+                                    @include media(mobile) {
+                                        gap: 16px 4px
+                                    }
+
+                                    li[class*='graph-banner-tag-item'] {
+                                        @include font-style(14px, 16px, $primary-blue, 400, $inter);
+
+                                        &:not(:last-child) {
+                                            padding: 4px 10px;
+                                            border-radius: 12px;
+                                            background-color: $neutrals-200;
+                                        }
+
+                                        &:last-child {
+                                            font-weight: 500;
+                                            margin-left: 4px;
+                                            color: $color-text-body;
+
+                                            strong {
+                                                color: $primary-blue;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    .calc-graph-banner-item2 {
+                        @include media(mobile) {
+                            width: 100%;
+                        }
+
+                        .graph-banner-textcontainer1 {
+                            display: flex;
+                            gap: 16px;
+                            align-items: center;
+                            margin: 0;
+
+                            @include media(mobile) {
+                                width: 100%;
+                                align-items: start;
+                                flex-direction: column;
+                            }
+
+                            .graph-banner-textcontent1 {
+                                min-width: 263px;
+                                max-width: 285px;
+
+                                @include font-style(14px, 16px, $color-text-body, 400, $inter);
+
+                                text-align: end;
+
+                                @include media(mobile) {
+                                    min-width: unset;
+                                    max-width: unset;
+                                    width: 100%;
+                                    text-align: start;
+                                    font-size: 12px;
+                                    line-height: 14px;
+                                }
+
+                                &.strong {
+                                    font-weight: 600;
+                                }
+                            }
+
+                            .graph-banner-textcontent2 {
+                                @include media(mobile) {
+                                    max-width: 100%;
+                                    width: 100%;
+                                }
+
+                                a.link {
+                                    display: inline-flex;
+                                    align-items: center;
+                                    justify-content: center;
+                                    min-width: 164px;
+
+                                    @include font-style(14px, 16px, $primary-white, 500, $inter);
+
+                                    background-color: $primary-blue;
+                                    border: none;
+                                    border-radius: 8px;
+                                    padding: 8px 12px;
+                                    cursor: pointer;
+                                    margin: 0;
+                                    transition: background-color 0.3s ease;
+
+                                    &:hover {
+                                        background-color: color.adjust($primary-blue, $lightness: -5%);
+                                    }
+
+                                    @include media(mobile) {
+                                        font-size: 16px;
+                                        line-height: 20px;
+                                        width: 100%;
+                                        padding: 10px 12px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .calculators-recommendation-container {
+        padding: 40px 0;
+        margin-top: 0;
+        margin-bottom: 0;
+        background-color: $primary-white;
+
+        @include media(mobile) {
+            padding: 40px 0;
+        }
+
+        .calc-recommendation-title {
+            @include font-style(36px, 44px, $primary-blue, 600, $inter);
+
+            margin: 0 0 24px;
+
+            @include media(mobile) {
+                font-size: 24px;
+                line-height: 28px;
+            }
+        }
+
+        .calc-recommendation-list {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            padding-bottom: 40px;
+
+            @include media(mobile) {
+                flex-direction: column;
+                gap: 0;
+                align-items: start;
+                padding-bottom: 0;
+            }
+
+            .calc-recommendation-item {
+                display: flex;
+                gap: 16px;
+                align-items: center;
+                justify-content: start;
+                padding: 12px 0;
+                max-width: 296px;
+                width: 100%;
+
+                @include media(mobile) {
+                    // width: 100%;
+                    gap: 8px;
+                    max-width: 100%;
+                }
+
+                .calc-recommendation-icon {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 64px;
+                    height: 64px;
+
+                    @include media(mobile) {
+                        width: 48px;
+                        height: 48px;
+                    }
+
+                    img {
+                        width: 40px;
+                        height: 48px;
+
+                        @include media(mobile) {
+                            width: 31.1px;
+                            height: 36px;
+                        }
+                    }
+                }
+
+                .calc-recommendation-title {
+                    max-width: calc(100% - 80px);
+                    width: 100%;
+
+                    @include font-style(18px, 24px, $primary-blue, 600, $inter);
+
+                    // overflow-wrap: anywhere;
+                    overflow-wrap: break-word;
+                    word-break: unset;
+                    margin: 0;
+
+                    @include media(mobile) {
+                        font-size: 14px;
+                        line-height: 16px;
+                    }
+                }
+            }
+        }
+
+        .calc-recommended-goal-banner {
+            display: flex;
+            align-items: center;
+            margin: 40px 0 0;
+            padding: 8px 12px;
+            background-color: $blue-1-25;
+            border-radius: 8px;
+
+            @include media(mobile) {
+                display: grid;
+                grid-template-areas:
+                    "icon text-content"
+                    "cta cta";
+                gap: 16px 0;
+                padding: 24px 12px;
+            }
+
+            ul[class*='calc-recommended-goal'],
+            li[class*='calc-recommended-goal'],
+            p[class*='calc-recommended-goal'] {
+                list-style: none;
+                margin: 0;
+            }
+
+            .calc-recommended-goal-icon {
+                width: 88px;
+                height: 88px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                grid-area: icon;
+
+                @include media(mobile) {
+                    width: 64px;
+                    height: 64px;
+                }
+
+                .calc-recommended-goal-icon-container {
+                    margin: 0;
+
+                    .icon {
+                        width: 56.5px;
+                        height: 56.5px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        background-color: $blue-1-500;
+                        border-radius: 50%;
+
+                        @include media(mobile) {
+                            width: 48px;
+                            height: 48px;
+                        }
+
+                        img {
+                            width: 27.8px;
+                            height: 21.8px;
+
+                            @include media(mobile) {
+                                width: 23.7px;
+                                height: 18.6px;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .calc-recommended-goal-text-content {
+                margin: 0 auto 0 16px;
+                grid-area: text-content;
+
+
+                @include media(mobile) {
+                    margin: 0;
+                }
+
+                >ul {
+                    list-style: none;
+                    margin: 0;
+
+                    li:nth-child(1) {
+                        @include font-style(24px, 28px, $primary-blue, 600, $inter);
+
+                        margin-bottom: 4px;
+
+                        @include media(mobile) {
+                            font-size: 20px;
+                            line-height: 24px;
+                        }
+                    }
+
+                    li:nth-child(2) {
+                        @include font-style(16px, 24px, $primary-blue, 400, $inter);
+
+                        @include media(mobile) {
+                            font-size: 12px;
+                            line-height: 16px;
+                        }
+                    }
+                }
+            }
+
+            li.calc-recommended-goal-cta {
+                grid-area: cta;
+                margin-left: auto;
+
+                @include media(mobile) {
+                    margin-left: 0;
+                }
+
+                .button-container {
+                    margin: 0;
+
+                    .button {
+                        display: inline-flex;
+                        align-items: center;
+                        justify-content: center;
+                        min-width: 164px;
+
+                        @include font-style(16px, 20px, $primary-white, 500, $inter);
+
+                        background-color: $primary-blue;
+                        border: none;
+                        border-radius: 8px;
+                        padding: 12px;
+                        cursor: pointer;
+                        margin: 0;
+                        transition: background-color 0.3s ease;
+
+                        &:hover {
+                            background-color: color.adjust($primary-blue, $lightness: -5%);
+                        }
+
+                        @include media(mobile) {
+                            font-size: 16px;
+                            line-height: 20px;
+                            width: 100%;
+                            padding: 10px 12px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .calculator-qa-container {
+        display: block;
+
+        .question,
+        .answer-container,
+        .pointer,
+        .answer {
+            margin: 0;
+            padding: 0;
+        }
+
+        .default-content-wrapper {
+            >.question {
+                margin-bottom: 8px
+            }
+
+            .question {
+                @include font-style(22px, 32px, $primary-blue, 600, $inter);
+
+                .link {
+                    color: $primary-blue;
+                    text-decoration: underline;
+                }
+            }
+
+            .answer-container {
+                display: flex;
+                flex-direction: column;
+                gap: 0;
+                list-style: none;
+            }
+
+            .pointer {
+                font-weight: 500;
+                line-height: 24px;
+                color: $primary-blue;
+            }
+
+            ol.answer-container {
+                // gap: 35px;
+
+                li.answer:not(:has(.small-bold)) {
+                    position: relative;
+
+                    // counter-increment: num;
+                    display: list-item;
+                    list-style-type: decimal;
+                    margin-left: 24px;
+
+                    &::marker {
+                        @include font-style(18px, 24px, $primary-blue, 500, $inter);
+                    }
+
+                    .pointer {
+                        position: relative;
+                        width: 100%;
+                        display: block;
+
+                        // padding-left: 16px;
+
+                        // &::before {
+                        //     content: counter(num) ".";
+                        //     position: absolute;
+                        //     left: 0;
+                        //     top: 50%;
+                        //     transform: translateY(-50%);
+                        //     color: black;
+                        //     font-weight: bold;
+                        // }
+                    }
+                }
+
+            }
+
+            p.answer {
+                margin-bottom: 25px;
+
+                .link {
+                    font-weight: 500;
+                    color: $primary-blue;
+                    text-decoration: underline;
+                }
+            }
+
+            .answer,
+            .answer-container {
+                @include font-style(18px, 28px, $neutrals-700, 400, $inter);
+
+                @include media(mobile) {
+                    font-size: 16px;
+                    line-height: 24px;
+                }
+
+                .answer {
+                    list-style: none;
+
+                    &:has(strong) {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 6px;
+                    }
+
+                    &:not(:last-child) {
+                        margin-bottom: 28px;
+                    }
+
+                    .link {
+                        font-weight: 500;
+                        color: $primary-blue;
+                        text-decoration: underline;
+                    }
+
+                    .small-bold {
+                        @include font-style(18px, 24px, $neutrals-800, 500, $inter);
+
+                        text-decoration: none;
+                        font-style: normal;
+
+
+                        @include media(mobile) {
+                            font-size: 16px;
+                            line-height: 20px;
+                        }
+                    }
+                }
+            }
+
+            .answer-container:not(:last-child) {
+                margin-bottom: 38px;
+            }
+        }
+    }
+}

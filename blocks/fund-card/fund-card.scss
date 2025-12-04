@@ -845,7 +845,7 @@
       // padding: 0;
       // max-width: 100%;
 
-      h1 {
+      h1, h2, h3, h4, h5, h6 {
         @include font-style(var(--heading-h4-size),
           var(--heading-h4-line-height),
           var(--blue-1-800-primary),
@@ -887,7 +887,7 @@
           .tabs-tab {
             border: none;
             background-color: transparent;
-            padding: var(--spacing-11) var(--spacing-none);
+            padding: var(--spacing-10) var(--spacing-none);
             cursor: pointer;
 
             @include font-style(var(--body-small-regular-size),
@@ -1037,7 +1037,7 @@
       }
 
       .default-content-wrapper {
-        h1 {
+        h1,h2,h3,h4,h5 {
           color: var(--neutrals-white);
           margin: 0 0 8px;
 

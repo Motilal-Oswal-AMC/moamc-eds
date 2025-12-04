@@ -1,0 +1,117 @@
+@use "sass:map";
+@use "../../../styles/common-theme/css/variables_mixins" as *;
+@use "../../../styles/common-theme/css/fluid-typography" as *;
+
+
+main.nfo-nav {
+    div.calculator-container {
+        div.calculator-block {
+            position: relative;
+            padding: 56px 0 12px;
+            align-items: flex-start;
+
+
+            @include media(mobile) {
+                padding: 0;
+                align-items: flex-start;
+            }
+
+
+            .calc-selector {
+                position: absolute;
+                top: 0;
+                left: 0;
+
+                @include media(mobile) {
+                    position: relative;
+                }
+            }
+
+            .goal-calculator-form {
+                @include media(mobile) {
+                    width: 100%;
+                }
+
+                .calc-author-main1 {
+                    position: relative;
+                    display: flex;
+                    flex-wrap: wrap;
+                    align-items: center;
+
+                    // @include media(mobile) {}
+
+                    .goal-inputs-container {
+                        max-height: fit-content;
+                        display: flex;
+                        flex-wrap: wrap;
+                        max-width: 608px;
+                        width: 100%;
+                        gap: 36px 16px;
+
+                        @include media(mobile) {
+                            max-width: 100%;
+                            display: flex;
+                            flex-direction: column;
+                            width: 100%;
+
+                            .calc-input-block {
+                                width: 100%;
+                                max-width: none;
+                            }
+                        }
+
+                        .calc-input-block {
+                            width: 100%;
+                            max-width: calc(50% - 8px);
+                            max-height: fit-content;
+
+                            @include media(mobile) {
+                                max-width: 100%;
+                            }
+                        }
+
+                        .calc-radio-selector {
+                            width: 100%;
+                        }
+                    }
+
+                    .rp-inputs-container {
+                        // width: 100%;
+                        // .calc-input-block {}
+                    }
+
+                    .bah-inputs-container {
+                        .bfadu-inp-container {
+                            max-width: 100%;
+                        }
+                    }
+
+                    .pat-inputs-container {
+                        .amount-i-have-inp-container {
+                            max-width: 100%;
+                        }
+                    }
+
+                    .bav-inputs-container {
+                        .aftd-inp-container {
+                            max-width: 100%;
+                        }
+                    }
+
+                    .gc-inputs-container {
+                        .goal-name-inp-container {
+                            max-width: 100%;
+                        }
+                    }
+
+                   // .cyo-inputs-container {}
+                }
+            }
+
+            .calc-author-main2 {
+                justify-content: space-between;
+                max-height: fit-content;
+            }
+        }
+    }
+}
