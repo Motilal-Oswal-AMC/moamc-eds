@@ -2543,13 +2543,13 @@ main.nfo-nav {
 
           .why-matters-sub-title1 {
             list-style: none;
-            color: var(--blue-1-800-primary);
+            color: var(--neutrals-900);
             font-feature-settings: var(--font-features-default);
             font-family: var(--body);
             font-size: var(--body-large-medium-size);
             font-style: normal;
             font-weight: 500;
-            line-height: var(--body-large-medium-line-height);
+            line-height: 28px;
             margin-bottom: 4px;
             width: 100%;
             max-width: 276px;
@@ -2566,6 +2566,7 @@ main.nfo-nav {
             line-height: var(--body-small-regular-line-height);
             width: 100%;
             max-width: 276px;
+            line-height: 24px;
           }
         }
       }
