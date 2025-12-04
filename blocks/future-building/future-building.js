@@ -454,19 +454,53 @@ export default function decorate(block) {
           updateActiveItem(vUp);
           break;
         }
+        // case 'Enter': {
+        //   // Prevent form submission/navigation — populate input and close dropdown
+        //   event.preventDefault();
+        //   const vEnt = visibleItems();
+        //   if (vEnt.length === 0) return false;
+        //   const sel = vEnt[(currentFocusIndex < 0 || currentFocusIndex >= vEnt.length) ? 0 : currentFocusIndex];
+        //   if (sel) {
+        //     searchFldkey.value = sel.textContent.trim();
+
+        //     closeBtn.style.display = 'flex';
+        //     listContainer.classList.add('dsp-none');
+        //   }
+        //   break;
+        // }
+
         case 'Enter': {
-          // Prevent form submission/navigation — populate input and close dropdown
           event.preventDefault();
+
           const vEnt = visibleItems();
           if (vEnt.length === 0) return false;
-          const sel = vEnt[(currentFocusIndex < 0 || currentFocusIndex >= vEnt.length) ? 0 : currentFocusIndex];
+
+          const selIndex = (currentFocusIndex < 0 || currentFocusIndex >= vEnt.length)
+            ? 0
+            : currentFocusIndex;
+
+          const sel = vEnt[selIndex];
           if (sel) {
+            // Set text in input
             searchFldkey.value = sel.textContent.trim();
+
+            // Show close button
             closeBtn.style.display = 'flex';
+
+            // Hide dropdown
             listContainer.classList.add('dsp-none');
+
+            // 👉 Get the href from the selected item
+            const redUrl = sel.getAttribute('href');
+
+            // 👉 Redirect if href exists
+            if (redUrl && redUrl !== '#') {
+              window.location.href = redUrl;
+            }
           }
           break;
         }
+
         default:
           break;
       }
@@ -516,9 +550,14 @@ export default function decorate(block) {
     });
   }
 
+  const url = window.location.href;
+  console.log('URL::::', url);
+
+
   // 👉 Hide on document click
   document.addEventListener('click', (event) => {
     const input = document.querySelector('#keyinvest');
+    const inputInvestEducate = document.querySelector('#our-experts-search');
     const listBox = document.querySelector('.key-search-results');
 
     if (!input.contains(event.target) && !listBox.contains(event.target)) {
@@ -532,13 +571,36 @@ export default function decorate(block) {
           // ignore
         }
       } else if (dataMapMoObj.searchFld === undefined || dataMapMoObj.searchFld === '') {
-        closeBtn.style.display = 'none';
-        try {
-          input.classList.remove('focus-visible');
-          input.classList.remove('active');
-        } catch (e) {
-          // ignore
+
+        // check current page URL
+        const currentPath = window.location.pathname;
+
+        if (currentPath === "/mutual-fund/in/en/investor-education") {
+          if (inputInvestEducate.value != '') {
+            closeBtn.style.display = 'block';
+          } else {
+            closeBtn.style.display = 'none';
+          }
+
+          try {
+            input.classList.remove('focus-visible');
+            input.classList.remove('active');
+          } catch (e) {
+            // ignore
+          }
         }
+
+
+
+        // else if (dataMapMoObj.searchFld === undefined || dataMapMoObj.searchFld === '') {
+        //   closeBtn.style.display = 'none';
+        //   try {
+        //     input.classList.remove('focus-visible');
+        //     input.classList.remove('active');
+        //   } catch (e) {
+        //     // ignore
+        //   }
+        // }
       }
     }
   });
