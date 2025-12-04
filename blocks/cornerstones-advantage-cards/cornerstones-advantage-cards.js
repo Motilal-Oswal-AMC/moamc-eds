@@ -37,5 +37,11 @@ export default function decorate(block) {
     const fundPhilosophy = block.closest('main').querySelector('.section.fund-philosophy');
     dataMapMoObj.CLASS_PREFIXES = ['fund-philosophy-contain', 'fund-philosophy-txt', 'fund-philosophy-subtxt'];
     dataMapMoObj.addIndexed(fundPhilosophy);
+    const develem = document.createElement('div');
+    develem.classList.add('eels-vedio-wrap');
+    Array.from(fundPhilosophy.children).forEach((element) => {
+      develem.appendChild(element);
+    });
+    fundPhilosophy.appendChild(develem);
   }
 }
