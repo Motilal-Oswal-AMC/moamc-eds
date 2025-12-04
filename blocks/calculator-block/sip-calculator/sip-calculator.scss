@@ -1,0 +1,71 @@
+@use "sass:map";
+@use "../../../styles/common-theme/css/variables_mixins" as *;
+@use "../../../styles/common-theme/css/fluid-typography" as *;
+
+.calculator-container {
+    .calculator-block {
+        .calc-author-main1 {
+            display: flex;
+            flex-wrap: wrap;
+
+            // @include media(mobile) {}
+
+            .msi-inp-container {
+                max-width: 100%;
+            }
+
+            .ror-inp-container {
+                max-width: calc(50% - 8px);
+            }
+
+            .ip-inp-container {
+                max-width: calc(50% - 8px);
+            }
+        }
+
+        //     .calc-author-main2 {
+        //         flex: 0 0 calc(40.91%);
+        // }
+    }
+}
+
+body:has(.calculator-container) {
+    .calculator-qa-container {
+        .answer-container {
+            &:nth-child(4) {
+                .answer:not(:last-child) {
+                    margin-bottom: 14px;
+                }
+            }
+            
+            
+            &:nth-child(6) {
+                .answer {
+                    &:not(:last-child) {
+                        margin-bottom: 27.5px;
+                    }
+
+                    &:has(.pointer) br:first-of-type {
+                        display: none;
+                    }
+                }
+            }
+
+            &:nth-child(10) {
+                li.answer {
+                    gap: 0;
+
+                    &:not(:last-child) {
+                        margin-bottom: 27.2px;
+                    }
+                }
+            }
+
+        }
+
+        p.answer:nth-child(12) {
+            margin-bottom: 0;
+        }
+
+    }
+}
