@@ -230,10 +230,10 @@ export default function decorate(block) {
           const newItem = document.createElement('p');
           const anchotTag = document.createElement('a');
           anchotTag.classList.add('list');
-          // anchotTag.setAttribute(
-          //   'href',
-          //   'https://mosl-dev-upd--mosl-eds--motilal-oswal-amc.aem.live/mutual-fund/in/en/motilal-oswal-edge/article-details-list',
-          // );
+          anchotTag.setAttribute(
+            'href',
+            'https://mosl-dev-upd--mosl-eds--motilal-oswal-amc.aem.live/mutual-fund/in/en/motilal-oswal-edge/article-details-list',
+          );
           newItem.classList.add('result-item');
           newItem.setAttribute('data-original-text', value);
           searchNewEle.appendChild(newItem);
@@ -257,17 +257,19 @@ export default function decorate(block) {
 
     listContainer.addEventListener('click', (event) => {
       event.preventDefault();
-      closeBtn.style.display = 'block';
+      closeBtn.style.display = 'flex';
       searchFld.value = event.target.textContent;
       dataMapMoObj.searchFld = searchFld.value;
-      // let dataref = '';
-      // if ([...event.target.classList].includes('result-item')) {
-      //   dataref = event.target.querySelector('a').getAttribute('href');
-      // } else {
-      //   dataref = event.target.getAttribute('href');
-      // }
-      // window.location.href = dataref;
-      // listContainer.classList.add('dsp-none');
+      let dataref = '';
+      if ([...event.target.classList].includes('result-item')) {
+        dataref = event.target.querySelector('a').getAttribute('href');
+      } else {
+        dataref = event.target.getAttribute('href');
+      }
+      if (dataref) {
+        window.location.href = dataref;
+        listContainer.classList.add('dsp-none');
+      }
     });
 
     const filterListItems = (searchTerm) => {
@@ -328,8 +330,7 @@ export default function decorate(block) {
       filterListItems('');
       closeBtn.style.display = 'none';
     });
-    searchFld.addEventListener('keydown', (event) => {
-      closeBtn.style.display = 'block';
+    searchFldkey.addEventListener('keydown', (event) => {
       const visibleItems = (param) => {
         if (param === undefined) {
           return Array.from(listContainer.querySelectorAll('.list'))

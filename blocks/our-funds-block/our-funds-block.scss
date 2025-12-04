@@ -1,7 +1,7 @@
 /* Reset */
 @use "sass:map";
-@use "../../styles/common-theme/css/variables_mixins"as *;
-@use "../../styles/common-theme/css/fluid-typography"as *;
+@use "../../styles/common-theme/css/variables_mixins" as *;
+@use "../../styles/common-theme/css/fluid-typography" as *;
 @import "../fund-card/fund-card.css";
 
 body {
@@ -240,7 +240,7 @@ body {
           }
 
           &.search-active {
-            outline: 2px solid var(--strokes-typing);
+            // outline: 2px solid var(--strokes-typing);
 
             .search {
               caret-color: var(--strokes-typing);
@@ -264,7 +264,7 @@ body {
           pointer-events: none;
           transition: all 0.2s ease-out;
           color: var(--text-body-2);
-          font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
+          font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
           font-family: var(--body);
           font-size: var(--body-medium-regular-size);
           font-style: normal;

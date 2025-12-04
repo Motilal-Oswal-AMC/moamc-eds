@@ -301,10 +301,10 @@ export default function decorate(block) {
 
         const anchorTag = document.createElement('a');
         anchorTag.classList.add('list');
-        // anchorTag.setAttribute(
-        //   'href',
-        //   'https://mosl-dev-upd--mosl-eds--motilal-oswal-amc.aem.live/mutual-fund/in/en/motilal-oswal-edge/article-details-list'
-        // );
+        anchorTag.setAttribute(
+          'href',
+          'https://mosl-dev-upd--mosl-eds--motilal-oswal-amc.aem.live/mutual-fund/in/en/motilal-oswal-edge/article-details-list'
+        );
 
         anchorTag.textContent = value;
 
@@ -324,7 +324,7 @@ export default function decorate(block) {
     // 👉 Click Selection
     listContainer.addEventListener('click', (event) => {
       event.preventDefault(); // keep default navigation off
-      closeBtn.style.display = 'block';
+      closeBtn.style.display = 'flex';
 
       // set the input value from clicked item
       searchFldkey.value = event.target.textContent;
@@ -337,7 +337,13 @@ export default function decorate(block) {
       } catch (err) {
         // ignore if focus fails in some environments
       }
-
+      let dataref = '';
+      if ([...event.target.classList].includes('result-item')) {
+        dataref = event.target.querySelector('a').getAttribute('href');
+      } else {
+        dataref = event.target.getAttribute('href');
+      }
+      window.location.href = dataref;
       listContainer.classList.add('dsp-none');
     });
 
@@ -414,7 +420,6 @@ export default function decorate(block) {
       }
     });
     searchFldkey.addEventListener('keydown', (event) => {
-      closeBtn.style.display = 'block';
       const visibleItems = (param) => {
         if (param === undefined) {
           return Array.from(listContainer.querySelectorAll('.list'))
@@ -457,7 +462,7 @@ export default function decorate(block) {
           const sel = vEnt[(currentFocusIndex < 0 || currentFocusIndex >= vEnt.length) ? 0 : currentFocusIndex];
           if (sel) {
             searchFldkey.value = sel.textContent.trim();
-            closeBtn.style.display = 'block';
+            closeBtn.style.display = 'flex';
             listContainer.classList.add('dsp-none');
           }
           break;

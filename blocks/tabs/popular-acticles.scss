@@ -402,7 +402,7 @@
 
             .tabs-tab{
                 &:hover{
-                    background-color: transparent;
+                    background-color: var(--surface-disabled, #fafafa);
                 }
             }
         }
