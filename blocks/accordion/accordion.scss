@@ -32,13 +32,6 @@
       list-style: none;
       overflow: auto;
 
-      // transition: background-color 0.2s;
-
-      // &:focus,
-      // &:hover {
-      //   background-color: var(--light-color);
-      // }
-
       &::-webkit-details-marker {
         display: none;
       }
@@ -92,8 +85,6 @@
 
   .accordion-wrapper {
     .accordion {
-      // gap: 40px;
-
       @media (width <=768px) {
         gap: 0;
       }
@@ -102,9 +93,9 @@
         padding: 0;
         margin: 0;
 
-        @media (width <=768px) {
-          // padding: 16px 12px;
-        }
+        // @media (width <=768px) {
+        //   // padding: 16px 12px;
+        // }
       }
     }
   }
@@ -173,35 +164,22 @@
     padding-bottom: 40px;
   }
 
-  // background-color: #f5f5f5;
-  // margin: 0;
-  // padding: 40px 0;
-
   .faq-our-fund {
     display: grid;
     justify-content: space-between;
     max-width: 1232px;
     width: 100%;
     margin: 0 auto;
-
-    // padding: 40px 0 68px;
-    // padding: 40px 0 24px;
-
-    // padding: 40px 0 72px;
     grid-template-columns: 24.05% 66.3%;
 
-    @media (width <=1279px) {
-      // padding: 40px 24px 132px;
-    }
+    // @media (width <=1279px) {
+    //   // padding: 40px 24px 132px;
+    // }
 
     @include media(mobile) {
       display: flex;
       flex-direction: column;
       gap: 20px;
-
-      // padding: 24px 16px 16px;
-
-      // padding-top: 24px;
     }
 
     >.default-content-wrapper,
@@ -249,13 +227,7 @@
         display: flex;
         flex-direction: column;
         align-items: flex-start;
-
-        // gap: 52px;
         flex: 1 0 0;
-
-        // @include media(mobile) {
-        //   gap: 36px;
-        // }
 
         details {
           width: 100%;
@@ -282,18 +254,10 @@
           }
 
           summary {
-            // position: relative;
             padding: $spacing-16 $spacing-none;
             cursor: pointer;
             list-style: none;
             overflow: hidden;
-
-            // transition: all 0.3s ease-in-out;
-
-            // &:focus,
-            // &:hover {
-            //   background-color: var(--light-color);
-            // }
 
             &::-webkit-details-marker {
               display: none;
@@ -310,9 +274,7 @@
               &::after {
                 content: "";
                 position: absolute;
-                top: 10px;
-
-                // top: 2px;
+                top: 11px;
                 right: 0;
                 width: 24px;
                 height: 24px;
@@ -320,13 +282,6 @@
                 border-width: unset;
                 transform: translateY(-50%);
                 background: url("/icons/plus-blue.svg");
-
-                // transition: all 0.3s ease-in-out;
-
-                @include media(mobile) {
-                  // top: 12px;
-                  // right: 0;
-                }
               }
             }
           }
@@ -343,18 +298,9 @@
 
             summary {
               color: #2e2a94;
-
-              // background: #242177;
               border-radius: 8px 8px 0 0;
               padding: $spacing-16 $spacing-none $spacing-8 $spacing-none;
-
-              // padding-bottom: 8px;
               background-color: transparent;
-
-              @include media(mobile) {
-                // padding: 16px 12px;
-                // padding-bottom: 8px;
-              }
 
               p {
                 position: relative;
@@ -372,30 +318,12 @@
                 }
 
                 &::after {
-                  // top: 15px;
+                  top: 12px;
                   right: 0;
                   background: url("/icons/mins-blue.svg");
                   transform: translateY(-50%);
-
-                  //    @include media(mobile) {
-                  //    right: 0;
-                  // }
                 }
               }
-
-              // p {
-              //   @include font-style(var(--body-large-semibold-size),
-              //     var(--body-large-semibold-line-height),
-              //     var(--blue-1-800-primary),
-              //     600,
-              //     var(--body));
-
-              //   @include media(mobile) {
-              //     padding-right: 45px;
-              //     font-size: var(--body-medium-semibold-size);
-              //     line-height: var(--body-medium-semibold-line-height);
-              //   }
-              // }
             }
 
             .accordion-item-body {
@@ -406,15 +334,10 @@
               padding: $spacing-16 $spacing-none;
               padding-top: 0;
               border-radius: 0 0 8px 8px;
-
-              // background: #242177;
               box-shadow: 0 4px 12px 0 rgb(0 0 0 / 5%);
               background-color: transparent;
 
-              // transition: all 0.3s ease-in-out;
-
               @include media(mobile) {
-                // padding: 16px 12px;
                 padding-top: 0;
               }
 
@@ -441,10 +364,6 @@
         .accordion-item {
           overflow: hidden;
 
-          // transition: all 0.4s ease-in-out;
-
-          // margin-bottom: 1em;
-
           &.hidden {
             display: none;
           }
@@ -463,9 +382,6 @@
       grid-column: 2 / 2;
       grid-row: 2;
       margin-top: 32px;
-
-      // padding-left: 15px;
-      // pad/ding: 0 16px;
 
       @include media(mobile) {
         margin-top: 13px;
@@ -546,3 +462,132 @@
   }
 
 }
+
+// Privacy Policy QnA Styling Start
+.privacypolicy-container {
+  .privacy-policy-banner {
+    .wrapper-policy {
+      .accordion-wrapper {
+        .accordion-item {
+          border: none;
+
+          .accordion-item-label {
+            padding: 16px 0;
+
+            &::after {
+              border: unset;
+            }
+
+            p.comlist {
+              margin: unset;
+              color: var(--blue-1-800-primary);
+              font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
+              font-family: var(--body);
+              font-size: var(--body-large-medium-size);
+              font-style: normal;
+              font-weight: 500;
+              line-height: var(--body-large-medium-line-height);
+              padding-right: 35px;
+
+              @include media(mobile) {
+                font-size: var(--body-medium-medium-size);
+                line-height: var(--body-medium-medium-line-height);
+              }
+
+              &:after {
+                content: "";
+                position: absolute;
+                top: 28px;
+                right: 0;
+                width: 24px;
+                height: 24px;
+                border: none;
+                border-width: unset;
+                transform: translateY(-50%);
+                background: url(/icons/plus-blue.svg);
+              }
+            }
+          }
+
+          .accordion-item-body {
+            padding-left: unset;
+
+            .pp-banner-picture1 {
+              margin: unset;
+            }
+          }
+
+          &.accordion-item[open] {
+            background: none;
+            -webkit-tap-highlight-color: transparent;
+            border-radius: 8px;
+            transition: transform 0.2s;
+
+            summary {
+              color: #2e2a94;
+              border-radius: 8px 8px 0 0;
+              padding: $spacing-16 $spacing-none $spacing-8 $spacing-none;
+              background-color: transparent;
+
+              p.comlist {
+                position: relative;
+
+                @include font-style(var(--body-large-semibold-size),
+                  var(--body-large-semibold-line-height),
+                  var(--blue-1-800-primary),
+                  600,
+                  var(--body));
+
+                @include media(mobile) {
+                  padding-right: 45px;
+                  font-size: var(--body-medium-semibold-size);
+                  line-height: var(--body-medium-semibold-line-height);
+                }
+
+                &::after {
+                  top: 12px;
+                  right: 0;
+                  background: url("/icons/mins-blue.svg");
+                  transform: translateY(-50%);
+                }
+              }
+            }
+
+            .accordion-item-body {
+              color: #fff;
+              border: none;
+              outline: none;
+              margin-top: -1px;
+              padding: $spacing-16 $spacing-none;
+              padding-top: 0;
+              border-radius: 0 0 8px 8px;
+              // box-shadow: 0 4px 12px 0 rgb(0 0 0 / 5%);
+              background-color: transparent;
+
+              @include media(mobile) {
+                padding-top: 0;
+              }
+
+              p.comlist {
+                padding-right: 40px;
+
+                @include font-style(var(--body-small-regular-size),
+                  var(--label-large-line-height),
+                  var(--text-body),
+                  400,
+                  var(--body));
+
+                @include media(mobile) {
+                  padding: 0;
+                  font-size: var(--paragraph-xsmall-size);
+                  line-height: var(--paragraph-xsmall-line-height);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+// Privacy Policy QnA Styling End

@@ -84,7 +84,7 @@ export default function decorate(block) {
   const inputEl = document.createElement('input');
   inputEl.type = 'text';
   inputEl.id = 'our-experts-search';
-  inputEl.placeholder = 'Search here';
+  // inputEl.placeholder = 'Search here';
   inputEl.autocomplete = 'off';
 
   const labelEl = document.createElement('label');
@@ -118,18 +118,24 @@ export default function decorate(block) {
 
   // --- NEW: Add event listeners for focus/blur ---
   if (section1) {
-    // Add class on input click (focus)
+    // Add class on input click (focus) and set active class
     inputEl.addEventListener('focus', () => {
-      if (inputEl.value !== '') {
+      inputEl.classList.add('active');
+      if (inputEl.value === '') {
         section1.classList.add('input-focused');
       } else {
         section1.classList.remove('input-focused');
       }
     });
 
-    // Remove class when clicking away (blur)
+    // Manage classes on blur - keep 'active' class if input has value
     inputEl.addEventListener('blur', () => {
       section1.classList.remove('input-focused');
+      if (inputEl.value.trim() !== '') {
+        inputEl.classList.add('active');
+      } else {
+        inputEl.classList.remove('active');
+      }
     });
     inputEl.focus();
   }
@@ -175,10 +181,10 @@ export default function decorate(block) {
   const searchFld = document.querySelector('#our-experts-search');
   let currentFocusIndex = -1;
   // const escapeRegExp = (str) => str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-  const closeBtn = document.querySelector('.cross-icon-wrap');
+  const closeBtn = block.querySelector('.cross-icon-wrap');
 
   if (searchFld) {
-    const listContainer = document.querySelector('.search-results');
+    const listContainer = block.querySelector('.search-results');
 
     const updateActiveItem = (items) => {
       items.forEach((item, idx) => {
@@ -193,8 +199,18 @@ export default function decorate(block) {
       });
     };
 
-    searchFld.addEventListener('focus', () => {
+    searchFld.addEventListener('focus', (e) => {
+      e.preventDefault();
+      listContainer.classList.remove('dsp-none');
       searchNewEle.classList.remove('dsp-none');
+
+      // If there's a search term, re-apply the filter to preserve no-results-message
+      if (searchFld.value.trim()) {
+        filterListItems(searchFld.value);
+        return;
+      }
+
+      // Otherwise, show the full list
       const titles = document.querySelectorAll('.moedge-building-container .moedge-build-sec3 .button');
       const profileName = document.querySelectorAll('.behind-the-content .cards-wrapper .cards-card-body .button');
       const titleAry = [];
@@ -234,7 +250,7 @@ export default function decorate(block) {
         });
       } else {
         listContainer.querySelectorAll('.list').forEach((item) => {
-        // Check if the item's text includes the search parameter
+          // Check if the item's text includes the search parameter
           const isVisible = item.textContent.toLocaleLowerCase()
             .includes(searchFld.value.toLocaleLowerCase());
           // 2. Perform the "side effect": Show or hide the parent
@@ -243,17 +259,25 @@ export default function decorate(block) {
       }
     });
 
+    listContainer.addEventListener('pointerdown', (e) => {
+      e.preventDefault();
+    });
+
     listContainer.addEventListener('click', (event) => {
-      closeBtn.style.display = 'block';
+      event.preventDefault();
+      closeBtn.style.display = 'flex';
       searchFld.value = event.target.textContent;
+      dataMapMoObj.searchFld = searchFld.value;
       let dataref = '';
       if ([...event.target.classList].includes('result-item')) {
         dataref = event.target.querySelector('a').getAttribute('href');
       } else {
         dataref = event.target.getAttribute('href');
       }
-      window.location.href = dataref;
-      listContainer.classList.add('dsp-none');
+      if (dataref) {
+        window.location.href = dataref;
+        listContainer.classList.add('dsp-none');
+      }
     });
 
     const filterListItems = (searchTerm) => {
@@ -271,18 +295,19 @@ export default function decorate(block) {
         return;
       }
 
-      // const searchRegex = new RegExp(escapeRegExp(term), 'gi');
+      // Safely escape the search term for use in a RegExp
       let matchesFound = false;
+      const escaped = term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      const searchRegex = new RegExp(`(${escaped})`, 'gi');
 
       listItems.forEach((item) => {
-        const {
-          originalText,
-        } = item.dataset;
+        const { originalText } = item.dataset;
         const match = originalText.toLowerCase().includes(term.toLowerCase());
         if (match) {
           matchesFound = true;
-          const highlightedText = originalText;
+          const highlightedText = originalText.replace(searchRegex, '<strong>$1</strong>');
           item.querySelector('.list').innerHTML = highlightedText;
+          item.style.display = 'list-item';
         } else {
           item.style.display = 'none';
         }
@@ -314,7 +339,6 @@ export default function decorate(block) {
       closeBtn.style.display = 'none';
     });
     searchFld.addEventListener('keydown', (event) => {
-      closeBtn.style.display = 'block';
       const visibleItems = (param) => {
         if (param === undefined) {
           return Array.from(listContainer.querySelectorAll('.list'))
@@ -333,45 +357,95 @@ export default function decorate(block) {
       };
 
       switch (event.key) {
-        case 'ArrowDown':
+        case 'ArrowDown': {
           event.preventDefault();
-          currentFocusIndex = (currentFocusIndex + 1) % visibleItems().length;
-          updateActiveItem(visibleItems());
+          const vItems = visibleItems();
+          if (vItems.length === 0) break;
+          currentFocusIndex = (currentFocusIndex + 1) % vItems.length;
+          updateActiveItem(vItems);
           break;
-        case 'ArrowUp':
+        }
+        case 'ArrowUp': {
           event.preventDefault();
-          currentFocusIndex = ((currentFocusIndex - 1 + visibleItems().length)
-           % visibleItems().length);
-          updateActiveItem(visibleItems());
+          const vItemsUp = visibleItems();
+          if (vItemsUp.length === 0) break;
+          currentFocusIndex = ((currentFocusIndex - 1 + vItemsUp.length) % vItemsUp.length);
+          updateActiveItem(vItemsUp);
           break;
-        case 'Enter':
-          if (visibleItems().length === 0) return false;
+        }
+        case 'Enter': {
+          event.preventDefault();
 
-          if (currentFocusIndex < 0 || currentFocusIndex >= visibleItems().length) {
-            searchFld.value = visibleItems()[0].textContent.trim();
-            window.location.href = visibleItems()[0].getAttribute('href');
-          } else {
-            searchFld.value = visibleItems()[currentFocusIndex].textContent.trim();
-            window.location.href = visibleItems()[currentFocusIndex].getAttribute('href');
+          const vEnt = visibleItems();
+          if (vEnt.length === 0) return false;
+
+          const selIndex = (currentFocusIndex < 0 || currentFocusIndex >= vEnt.length)
+            ? 0
+            : currentFocusIndex;
+
+          const sel = vEnt[selIndex];
+          if (sel) {
+            // Set text in input
+            searchFld.value = sel.textContent.trim();
+
+            // Show close button
+            closeBtn.style.display = 'flex';
+
+            // Hide dropdown
+            listContainer.classList.add('dsp-none');
+
+            // 👉 Get the href from the selected item
+            const redUrl = sel.getAttribute('href');
+
+            // 👉 Redirect if href exists
+            if (redUrl && redUrl !== '#') {
+              window.location.href = redUrl;
+            }
           }
-
-          listContainer.classList.add('dsp-none');
           break;
+        }
         default:
           break;
       }
       return event;
     });
   }
+  // document.addEventListener('click', (event) => {
+  //   const inputbox = block.querySelector('.our-experts-cont2 .our-expert-sub1 input');
+  //   const searchbox = block.querySelector('.our-experts-cont2 .search-results');
+  //   if (!inputbox.contains(event.target) && !searchbox.contains(event.target)) {
+  //     searchbox.classList.add('dsp-none');
+  //     if (searchFld.value === '' && (dataMapMoObj.searchFld === undefined || dataMapMoObj.searchFld === '')) {
+  //       closeBtn.style.display = 'none';
+  //     }
+  //   }
+  // });
+
   document.addEventListener('click', (event) => {
-    const inputbox = block.querySelector('.our-experts-cont2 .our-expert-sub1 input');
-    const searchbox = block.querySelector('.our-experts-cont2 .search-results');
-    if (!inputbox.contains(event.target) && !searchbox.contains(event.target)) {
-      searchbox.classList.add('dsp-none');
-      if (searchFld.value === '') {
+    const input = document.querySelector('#our-experts-search');
+    const listBox = document.querySelector('.search-results');
+
+    if (!input.contains(event.target) && !listBox.contains(event.target)) {
+      listBox.classList.add('dsp-none');
+      // If the input has a value, keep the label floated. Otherwise remove the float class.
+      if (searchFld.value && searchFld.value.trim() !== '') {
+        try {
+          input.classList.add('focus-visible');
+          input.classList.add('active');
+        } catch (e) {
+          // ignore
+        }
+      } else if (dataMapMoObj.searchFld === undefined || dataMapMoObj.searchFld === '') {
         closeBtn.style.display = 'none';
+        try {
+          input.classList.remove('focus-visible');
+          input.classList.remove('active');
+        } catch (e) {
+          // ignore
+        }
       }
     }
   });
+
   // --- END SEARCH FUNCTIONALITY ---
 }

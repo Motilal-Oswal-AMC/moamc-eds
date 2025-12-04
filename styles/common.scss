@@ -9,6 +9,7 @@
 // @import "../blocks/moedge-article-details/moedge-article-details.css";
 // @import '../blocks/Investor-details/investor-details.css';
 // @import "../blocks/error-screen/error-screen.css";
+// @import "../blocks/privacy-policy/privacy-policy.css";
 
 .section.download {
   width: 100%;
@@ -1264,10 +1265,11 @@ main>.section.previous-studies-tab.tabs-container {
 
     @include media(mobile) {
       padding: 0 16px;
-      overflow-x: auto;
       margin-right: 25px;
       -ms-overflow-style: none;
       scrollbar-width: none;
+
+      // overflow-x: auto;
     }
 
     &::-webkit-scrollbar {
@@ -1320,7 +1322,7 @@ main>.section.previous-studies-tab.tabs-container {
 
       &:last-child {
         a.breadlist {
-          // color: var(--blue-1800-primary, #2e2a94);
+          position: relative;
           color: var(--neutrals-800, #424242);
           font-feature-settings: var(--font-features-default);
           font-family: var(--body, Inter);
@@ -1328,6 +1330,37 @@ main>.section.previous-studies-tab.tabs-container {
           font-style: normal;
           font-weight: 400;
           line-height: var(--label-small-line-height);
+
+          @include media (mobile-ed) {
+            // display: block;
+            // width: 72px;
+            // text-overflow: ellipsis;
+            // overflow: hidden;
+
+            // &::after {
+            //   // content: "...";
+            //   // position: absolute;
+            //   // top: 0;
+            //   // right: -2px;
+            //   // width: 40px;
+            //   // height: 100%;
+            //   // background: #fff;
+            //   // pointer-events: none;
+            //   // background: linear-gradient(to right, transparent, white);
+            // }
+          }
+        }
+      }
+
+    }
+
+    >li:nth-child(4) {
+      .breadlist {
+        @include media (mobile-ed) {
+          display: block;
+          width: 72px;
+          text-overflow: ellipsis;
+          overflow: hidden;
         }
       }
     }
@@ -1338,6 +1371,7 @@ main>.section.previous-studies-tab.tabs-container {
       display: none;
     }
   }
+
 }
 
 // common breadcrumbs scss End
@@ -1425,61 +1459,65 @@ main>.section.previous-studies-tab.tabs-container {
 
 // Why Choose Us Static Start
 
-.why-choose-us {
-  .choose-title1 {
-    padding-top: 64px;
+.section.why-choose-us {
+  margin: 0;
+  line-height: 0px;
 
-    @include media(mobile) {
-      padding-top: 44px;
-    }
+  .choose-title1 {
+    padding-top: 40px;
 
     .choose-us-para1 {
       color: var(--blue-1-800-primary);
-      font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on, 'liga' off;
+      font-feature-settings: var(--font-features-default);
       font-family: var(--title);
-      font-size: var(--heading-h2-size);
+      font-size: 34px;
+      line-height: 40px;
       font-style: normal;
       font-weight: 600;
-      line-height: var(--heading-h2-line-height);
       margin-bottom: 8px;
+      margin-top: 0;
       max-width: 712px;
       width: 100%;
 
-      @include media(mobile) {
-        font-size: 34px;
-        line-height: 40px;
-        margin-bottom: 8px;
-        margin-top: 0;
+      @media screen and (width > 768px) {
+        font-size: var(--heading-h2-size);
+        line-height: var(--heading-h2-line-height);
       }
     }
 
     .choose-us-para2 {
       color: var(--text-sub-header);
-      font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
+      font-feature-settings: var(--font-features-default);
       font-family: var(--body);
-      font-size: var(--body-medium-regular-size);
+      font-size: var(--paragraph-small-regular-size);
+      line-height: var(--paragraph-small-regular-line-height);
       font-style: normal;
       font-weight: 400;
-      line-height: 24px;
       margin-top: 0;
-      margin-bottom: 28px;
-      max-width: 712px;
+      margin-bottom: 20px;
       width: 100%;
+      max-width: 712px;
 
-      @include media(mobile) {
-        font-size: var(--paragraph-small-regular-size);
-        line-height: var(--paragraph-small-regular-line-height);
-        margin-bottom: 20px;
+      @media screen and (width > 768px) {
+        font-size: var(--body-medium-regular-size);
+        line-height: 24px;
+        margin-bottom: 28px;
       }
     }
 
     .choose-us-para3 {
       margin: 0;
 
+      @media screen and (width > 768px) {
+        display: flex;
+        justify-content: flex-end;
+        position: relative;
+      }
+
       a {
-        color: var(--text-white, #FFF);
+        color: var(--text-white);
         text-align: center;
-        font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
+        font-feature-settings: var(--font-features-default);
         font-family: var(--body);
         font-size: 14px;
         font-style: normal;
@@ -1490,52 +1528,60 @@ main>.section.previous-studies-tab.tabs-container {
         max-width: 169px;
         border-radius: var(--border-radius-8);
         padding: 8px 12px;
-        display: none;
+        display: block;
         border: none;
+        margin-top: 0;
+        margin-bottom: 30px;
 
-        @include media(mobile) {
-          margin-top: 0;
-          margin-bottom: 30px;
+        @media screen and (width > 768px) {
+          position: absolute;
+          top: -80px;
+          margin: 0;
+          font-size: var(--button-medium-size);
+          line-height: var(--button-medium-line-height);
+          padding: 12px;
           display: block;
+          width: 100%;
+          max-width: 192px;
         }
       }
     }
 
     .choose-us-para5 {
-      display: none;
+      display: block;
       margin: 0;
 
-      @include media(mobile) {
-        display: block;
+      @media screen and (width > 768px) {
+        display: none;
       }
 
       .choose-us-img1 {
         margin: 0;
         height: 100%;
         display: block;
+        line-height: 0px;
 
-        @include media(mobile) {
-          display: block;
-          line-height: 0px;
+        img {
+          width: 100%;
         }
       }
     }
 
     .choose-us-para4 {
+      display: none;
       margin: 0;
 
-      @include media(mobile) {
-        display: none;
-        margin: 0;
+      @media screen and (width > 768px) {
+        display: block;
       }
 
       .choose-us-img1 {
         height: 100%;
         display: block;
+        line-height: 0px;
 
-        @include media(mobile) {
-          display: none;
-          margin: 0;
+        @media screen and (width > 768px) {
+          display: block;
         }
       }
     }
@@ -1543,12 +1589,11 @@ main>.section.previous-studies-tab.tabs-container {
 }
 
 .section.why-choose-card {
-  padding: 20px 0;
-  margin: 80px 0;
+  padding: 0;
+  margin: 40px 0 80px;
 
-  @include media(mobile) {
-    padding: 0;
-    margin-bottom: 80px;
+  @media screen and (width > 768px) {
+    margin: 80px 0;
   }
 
   .cards-wrapper {
@@ -1559,30 +1604,38 @@ main>.section.previous-studies-tab.tabs-container {
         list-style: none;
         margin: 0;
         padding: 0;
+        gap: 32px 0;
         display: flex;
         flex-wrap: wrap;
-        gap: 60px 64px;
+
+        @media screen and (width > 768px) {
+          gap: 64px 60px;
+        }
       }
 
       li {
-        flex: 0 0 calc(50% - 32px);
+        flex: 0 0 100%;
         display: flex;
         align-items: flex-start;
         gap: 8px;
         border: none;
+
+        @media screen and (width > 768px) {
+          flex: 0 0 calc(50% - 30px);
+        }
 
         .cards-card-image {
           width: 68px;
           flex-shrink: 0;
 
           img {
-            width: 68px;
-            height: 68px;
+            width: 48px;
+            height: 48px;
             display: block;
 
-            @include media(mobile) {
-              width: 48px;
-              height: 48px;
+            @media screen and (width > 768px) {
+              width: 68px;
+              height: 68px;
             }
           }
         }
@@ -1593,51 +1646,39 @@ main>.section.previous-studies-tab.tabs-container {
 
           h2 {
             color: var(--blue-1-800-primary);
-            font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
+            font-feature-settings: var(--font-features-default);
             font-family: var(--body);
             font-size: var(--body-large-semibold-size);
             font-style: normal;
             font-weight: 600;
             line-height: var(--body-large-semibold-line-height);
             margin: 0 0 8px;
-            max-width: 510px;
             width: 100%;
+            max-width: unset;
 
-            @include media(mobile) {
-              max-width: unset;
+            @media screen and (width > 768px) {
+              max-width: 510px;
             }
           }
 
           p {
             color: var(--text-sub-header);
-            font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
+            font-feature-settings: var(--font-features-default);
             font-family: var(--body);
             font-size: var(--body-small-regular-size);
             font-style: normal;
             font-weight: 400;
             line-height: var(--label-large-line-height);
             margin: 0;
-            max-width: 510px;
             width: 100%;
+            max-width: unset;
 
-            @include media(mobile) {
-              max-width: unset;
+            @media screen and (width > 768px) {
+              max-width: 510px;
             }
           }
         }
       }
-    }
-  }
-}
-
-@media (width <=768px) {
-  .section.why-choose-card {
-    .cards-wrapper .cards ul {
-      gap: 32px 0;
-    }
-
-    .cards-wrapper .cards li {
-      flex: 0 0 100%;
     }
   }
 }
@@ -1873,6 +1914,121 @@ main.nfo-nav {
 
 // QGLP static end
 
+// why invest minor account css start
+.section.why-invest-minor {
+  margin: 80px 0;
+
+  @include media (mobile-ed) {
+    margin: 0;
+    padding-bottom: 40px;
+  }
+
+  .why-invest-minor-main1 {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+
+    @include media (mobile-ed) {
+      flex-direction: column;
+    }
+
+    .why-invest-minor-sub {
+      &1 {
+        margin: 0;
+        width: 32.5%;
+        color: var(--blue-1800-primary, #2E2A94);
+        font-feature-settings: var(--font-features-default);
+        font-family: var(--title, Inter);
+        font-size: var(--heading-h4-size, 28px);
+        font-style: normal;
+        font-weight: 600;
+        line-height: 32px;
+
+        @include media (mobile-ed) {
+          width: 100%;
+          font-size: 24px;
+          line-height: 28px;
+        }
+      }
+
+      &2 {
+        width: 66.2%;
+        display: inline-block;
+        margin: 0;
+        color: var(--text-body, #424242);
+        font-feature-settings: var(--font-features-default);
+        font-family: var(--body, Inter);
+        font-size: var(--body-medium-regular-size, 16px);
+        font-style: normal;
+        font-weight: 400;
+        line-height: 24px;
+
+        @include media (mobile-ed) {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+// why invest minor account css End
+
+// conclusion css start 
+
+.section.conclusion {
+  background: var(--neutrals-100, #F5F5F5);
+  padding: 80px 0;
+  margin: 0;
+
+  @include media (mobile-ed) {
+    padding: 40px 0 80px;
+  }
+
+  .default-content-wrapper.comlist {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+
+    .conclusion-title {
+      &1 {
+        margin: 0;
+        padding: 0;
+        color: var(--blue-1800-primary, #2E2A94);
+        font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
+        font-family: var(--title, Inter);
+        font-size: var(--heading-h4-size, 28px);
+        font-style: normal;
+        font-weight: 600;
+        line-height: 32px;
+      }
+
+      &2 {
+        margin: 0;
+        color: var(--text-body, #424242);
+        font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
+        font-family: var(--body, Inter);
+        font-size: var(--body-xlarge-regular-size, 20px);
+        font-style: normal;
+        font-weight: 400;
+        line-height: var(--body-xlarge-regular-line-height, 32px);
+      }
+
+      &3 {
+        margin: 0;
+        color: var(--blue-1800-primary, #2E2A94);
+        font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on, 'liga'off;
+        font-family: var(--body, Inter);
+        font-size: var(--body-xlarge-bold-size, 20px);
+        font-style: normal;
+        font-weight: 600;
+        line-height: var(--body-xlarge-bold-line-height, 24px);
+      }
+    }
+  }
+}
+
+// conclusion css start 
+
 // Skin in the game static start 
 .section.high-skin-text {
   margin: 0;
@@ -1881,38 +2037,43 @@ main.nfo-nav {
     .high-skin-wrap-two1 {
       list-style: none;
 
+      @media screen and (width > 768px) {
+        margin-bottom: 0;
+      }
+
       .high-skin-wrap-three1 {
         .high-skin-heading1 {
           display: flex;
-          justify-content: space-between;
+          flex-direction: column;
+          justify-content: flex-start;
 
-          @include media(mobile) {
-            flex-direction: column;
+          @media screen and (width > 768px) {
+            justify-content: space-between;
+            flex-direction: row;
+            margin-bottom: 0;
           }
 
           .high-skin-subheading1 {
             list-style: none;
 
             .high-skin-paragraph1 {
+              font-size: var(--heading-h5-size);
+              line-height: var(--sub-header-large-line-height);
+              margin-bottom: 24px;
+              margin-top: 40px;
               color: var(--blue-1-800-primary);
               font-variant-numeric: lining-nums proportional-nums;
-              font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on, 'liga' off;
+              font-feature-settings: var(--font-features-default);
               font-family: var(--title);
-              font-size: var(--heading-h1-size);
               font-style: normal;
               font-weight: 600;
-              line-height: var(--heading-h1-line-height);
-              max-width: 296px;
               width: 100%;
-              margin-top: 58px;
-              margin-bottom: 44px;
 
-              @include media(mobile) {
-                max-width: unset;
-                font-size: var(--heading-h5-size);
-                line-height: var(--sub-header-large-line-height);
-                margin-bottom: 24px;
-                margin-top: 40px;
+              @media screen and (width > 768px) {
+                max-width: 296px;
+                font-size: var(--heading-h4-size);
+                line-height: var(--heading-h4-line-height);
+                margin: 40px 0;
               }
             }
           }
@@ -1925,37 +2086,46 @@ main.nfo-nav {
               margin-bottom: 0;
 
               .high-skin-paragraph-one1 {
-                list-style: none;
+                margin-top: 0;
                 color: var(--blue-1-800-primary);
-                font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
+                font-feature-settings: var(--font-features-default);
                 font-family: var(--body);
                 font-size: var(--sub-header-medium-size);
                 font-style: normal;
                 font-weight: 500;
                 line-height: var(--sub-header-medium-line-height);
-                max-width: 712px;
                 width: 100%;
-                margin-top: 58px;
+                list-style: none;
                 margin-bottom: 12px;
 
-                @include media(mobile) {
-                  margin-top: 0;
+                @media screen and (width > 768px) {
+                  max-width: 712px;
+                  margin-top: 40px;
+                  margin-bottom: 12px;
                 }
               }
 
               .high-skin-paragraph-one2 {
                 list-style: none;
                 color: var(--neutrals-800);
-                font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
+                font-feature-settings: var(--font-features-default);
                 font-family: var(--body);
                 font-size: var(--body-medium-regular-size);
                 font-style: normal;
                 font-weight: 400;
                 line-height: 24px;
                 width: 100%;
-                max-width: 712px;
                 margin-top: 0;
                 margin-bottom: 44px;
+
+                @media screen and (width > 768px) {
+                  max-width: 712px;
+                  margin-bottom: 40px;
+                }
+
+                @include media (tab) {
+                  max-width: 585px;
+                }
               }
             }
           }
@@ -2028,16 +2198,16 @@ main.nfo-nav {
 
   .default-content-wrapper.comlist.high-skin-component-wrap1 {
     width: 100%;
-    max-width: 1240px;
     display: flex;
     flex-direction: column;
     align-items: center;
     background-color: #2B24A4;
     border-radius: 16px;
+    padding: 0;
+    margin: 0 16px;
 
-    @include media(mobile) {
-      padding: 0;
-      margin: 0 16px;
+    @media screen and (width > 768px) {
+      max-width: 1240px;
     }
 
     .comlist.high-skin-component-heading1 {
@@ -2048,80 +2218,100 @@ main.nfo-nav {
       border-radius: 16px;
       position: relative;
       justify-content: center;
-      background: linear-gradient(256deg, rgb(154 148 255 / 50%) -40.11%, rgb(214 211 255 / 50%) 100%);
+      background: linear-gradient(256deg,
+          rgb(154 148 255 / 50%) -40.11%,
+          rgb(214 211 255 / 50%) 100%);
+      padding: 42.5px 55.259px 31.502px 55.242px;
 
-      .icon.icon-rupees.comlist.high-skin-component-paragraph1 {
+      @media screen and (width > 768px) {
+        height: 328px;
+        align-items: end;
+        padding: 0;
+      }
+
+      .icon.icon-Rupees.comlist.high-skin-component-paragraph1 {
         display: inline-flex;
         justify-content: center;
         align-items: center;
-        width: 202px;
-        height: 224px;
-        margin: 37px 0;
+        width: 229.499px;
+        height: 254.998px;
 
+        @media screen and (width > 768px) {
+          width: 300px;
+          height: 300px;
+          margin: 28px 0 0;
+        }
 
-        img.comlist.high-skin-component-image1 {
-          object-fit: contain;
-          filter: drop-shadow(0 4px 12px rgb(0 0 0 / 15%));
+        .high-skin-component-ctn1 {
+          @media screen and (width > 768px) {
+            object-fit: none;
+          }
         }
       }
     }
 
     .high-skin-component-heading2 {
       width: 100%;
-      margin-top: 0;
+      margin: 0;
 
       .high-skin-component-paragraph1 {
         list-style: none;
 
         .high-skin-component-ctn1 {
           display: flex;
-          justify-content: space-between;
+          flex-direction: column;
+          justify-content: flex-start;
           background-color: #2B24A4;
-          padding: 28px 40px;
+          padding: 28px 16px;
           border-radius: 16px;
           margin: 0;
 
-          @include media(mobile) {
-            flex-direction: column;
-            padding: 28px 16px;
+          @media screen and (width > 768px) {
+            flex-direction: row;
+            justify-content: space-between;
+            padding: 28px 40px;
           }
 
           .high-skin-component-external1 {
             color: var(--neutrals-white);
-            font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
+            font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
             font-family: var(--title);
-            font-size: var(--heading-h6-size);
+            font-size: 20px;
+            line-height: 24px;
             font-style: normal;
             font-weight: 600;
-            line-height: var(--heading-h6-line-height);
-            max-width: 217px;
             width: 100%;
             list-style: none;
+            margin-bottom: 23px;
+            max-width: 181px;
 
-            @include media(mobile) {
-              flex-direction: column;
-              font-size: 20px;
-              line-height: 24px;
-              margin-bottom: 23px;
+            @media screen and (width > 768px) {
+              max-width: 217px;
+              font-size: var(--heading-h6-size);
+              line-height: var(--heading-h6-line-height);
+              margin-bottom: 0;
+              flex-direction: row;
             }
           }
 
           .high-skin-component-external2 {
             color: var(--neutrals-white);
-            font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
+            font-feature-settings: var(--font-features-default);
             font-family: var(--body);
             font-size: var(--body-small-regular-size);
             font-style: normal;
             font-weight: 400;
             line-height: var(--label-large-line-height);
-            max-width: 634px;
             width: 100%;
             list-style: none;
+
+            @media screen and (width > 768px) {
+              max-width: 634px;
+            }
           }
         }
       }
     }
-
   }
 }
 
@@ -2131,20 +2321,19 @@ main.nfo-nav {
 
   .moamc-component-main-head1 {
     color: var(--blue-1-800-primary);
-    font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
+    font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
     font-family: var(--title);
-    font-size: var(--heading-h3-size);
+    font-size: var(--sub-header-large-size);
+    line-height: var(--sub-header-medium-line-height);
     font-style: normal;
     font-weight: 600;
-    line-height: var(--heading-h3-line-height);
-    max-width: 482px;
     width: 100%;
-    margin: 80px 0 56px;
+    margin: 80px 0 40px;
 
-    @include media(mobile) {
-      max-width: unset;
-      font-size: var(--sub-header-large-size);
-      line-height: var(--sub-header-medium-line-height);
+    @media screen and (width > 768px) {
+      font-size: var(--heading-h5-size);
+      line-height: var(--heading-h5-line-height);
+      max-width: none;
     }
   }
 
@@ -2156,15 +2345,17 @@ main.nfo-nav {
 
     .moamc-component-title1 {
       .moamc-component-para1 {
-        margin-bottom: 80px;
+        margin-top: 0;
+        margin-bottom: 56px;
         display: flex;
-        gap: 16px;
+        flex-direction: column;
+        gap: 40px;
 
-        @include media(mobile) {
-          flex-direction: column;
-          gap: 40px;
-          margin-bottom: 56px;
+        @media screen and (width > 768px) {
+          flex-direction: row;
+          gap: 16px;
           margin-top: 0;
+          margin-bottom: 80px;
         }
 
         .moamc-component-para-one1,
@@ -2180,40 +2371,166 @@ main.nfo-nav {
 
     .moamc-component-para-three1 {
       color: var(--blue-1800-primary, #2E2A94);
-      font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on, 'liga' off;
+      font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on, 'liga'off;
       font-family: var(--body);
-      font-size: var(--body-xlarge-bold-size);
+      font-size: var(--body-large-semibold-size);
       font-style: normal;
-      font-weight: 600;
-      line-height: var(--body-xlarge-bold-line-height);
+      font-weight: 500;
+      line-height: var(--sub-header-medium-line-height);
       margin-bottom: 6px;
       width: 100%;
-      max-width: 296px;
+      max-width: none;
 
-      @include media(mobile) {
-        max-width: unset;
-        font-size: var(--body-large-semibold-size);
+      @media screen and (width > 768px) {
+        max-width: 296px;
+        font-size: var(--sub-header-medium-size);
       }
     }
 
     .moamc-component-para-three2 {
       color: var(--neutrals-800);
-      font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
+      font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
       font-family: var(--body);
       font-size: var(--body-medium-regular-size);
       font-style: normal;
       font-weight: 400;
       line-height: 24px;
       width: 100%;
-      max-width: 296px;
+      max-width: none;
 
-      @include media(mobile) {
-        max-width: unset;
+      @media screen and (width > 768px) {
+        max-width: 296px;
       }
     }
   }
 }
 
+
+.section.what-stake-component {
+  @media screen and (width > 768px) {
+    margin: 80px 0;
+  }
+
+  .stake-component-wrap1 {
+    .stake-component-main-head1 {
+      padding: 40px 12px 0;
+      border-radius: 12px;
+      background: var(--neutrals-100);
+
+      @media screen and (width >786px) {
+        padding: 40px;
+      }
+
+      ul {
+        display: flex;
+        flex-direction: column;
+
+        @media screen and (width > 768px) {
+          flex-direction: row;
+        }
+
+        li {
+          display: flex;
+          flex-direction: column-reverse;
+          justify-content: flex-start;
+          background: var(--neutrals-100, #F5F5F5);
+          width: 100%;
+          border: none;
+
+          @media screen and (width > 768px) {
+            flex-direction: row-reverse;
+            justify-content: space-between;
+          }
+
+          .cards-card-image {
+            padding: 36px 43.22px 69px 42.22px;
+
+            @media screen and (width > 768px) {
+              padding: 0;
+            }
+
+            picture {
+              img {
+                width: 250px;
+                height: 234px;
+                object-fit: unset;
+
+                @media screen and (width > 768px) {
+                  width: unset;
+                  height: 286.615px;
+                  display: block;
+                  aspect-ratio: unset;
+                }
+              }
+            }
+          }
+
+          .cards-card-body {
+            width: 100%;
+            margin: 0;
+            max-width: unset;
+
+            @media screen and (width > 768px) {
+              max-width: 58.16%;
+            }
+
+            @media screen and (width > 1299px) {
+              max-width: 54.514%;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .stake-component-para-one1 {
+    color: var(--blue-1-800-primary);
+    font-feature-settings: var(--font-features-default);
+    font-family: var(--title);
+    font-size: var(--heading-h5-size);
+    font-style: normal;
+    font-weight: 600;
+    line-height: var(--heading-h5-line-height);
+    margin: 0 0 31px;
+    max-width: 309px;
+    width: 100%;
+
+    @media screen and (width > 768px) {
+      margin-bottom: 23px;
+      max-width: 568px;
+    }
+  }
+
+  .stake-component-para-one2 {
+    color: var(--neutrals-black);
+    font-feature-settings: var(--font-features-default);
+    font-family: var(--body);
+    font-size: var(--body-large-semibold-size);
+    font-style: normal;
+    font-weight: 600;
+    line-height: var(--body-large-semibold-line-height);
+    max-width: 309px;
+    width: 100%;
+    margin: 0 0 4px;
+
+    @media screen and (width > 768px) {
+      max-width: 628px;
+    }
+  }
+
+  .stake-component-para-one3 {
+    color: var(--neutrals-800);
+    font-feature-settings: var(--font-features-default);
+    font-family: var(--body);
+    font-size: var(--body-medium-regular-size);
+    font-style: normal;
+    font-weight: 400;
+    line-height: var(--body-medium-regular-line-height);
+    max-width: 628px;
+    width: 100%;
+    margin: 0;
+  }
+}
 
 .section.why-matters-component {
   margin: 0;
@@ -2221,73 +2538,81 @@ main.nfo-nav {
   display: flex;
   justify-content: center;
 
-  @include media(mobile) {
-    padding: 0 16px;
-  }
+  // @media screen and (width > 768px) {
+  //   padding: 0;
+  // }
 
   .why-matters-wrapper-in {
     position: relative;
-    padding: 32px 0;
+    padding: 40px 0;
     margin: 0;
     display: flex;
-    gap: 120px;
+    flex-direction: column;
+    gap: 40px;
     max-width: 1232px;
     width: 100%;
 
-    @include media(mobile) {
-      flex-direction: column;
-      gap: 40px;
+
+    @media screen and (width > 768px) {
+      flex-direction: row;
+      gap: 120px;
+    }
+
+    @include media(desktop-sm) {
+      padding: 40px 16px;
     }
 
     .why-matters-wrap1 {
       width: 100%;
-      max-width: 504px;
+      max-width: none;
       margin: 0;
 
       .why-matters-heading1 {
         color: var(--blue-1-800-primary);
-        font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
+        font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
         font-family: var(--title);
-        font-size: 36px;
+        font-size: var(--sub-header-large-size);
         font-weight: 600;
-        line-height: 44px;
-        max-width: 504px;
+        line-height: var(--sub-header-medium-line-height);
         margin-bottom: 16px;
 
-        @include media(mobile) {
-          max-width: unset;
-          font-size: var(--sub-header-large-size);
-          line-height: var(--sub-header-medium-line-height);
-
-          // margin: ;
+        @media screen and (width > 768px) {
+          max-width: 504px;
+          font-size: var(--heading-h5-size);
+          line-height: var(--heading-h5-line-height);
         }
       }
 
       .why-matters-heading2 {
         color: var(--neutrals-800);
         font-family: var(--body);
-        font-size: var(--body-small-regular-size);
+        font-size: 16px;
         font-weight: 400;
-        line-height: var(--label-large-line-height);
-        max-width: 504px;
+        line-height: 24px;
+        max-width: none;
         width: 100%;
+        margin: 0;
 
-        @include media(mobile) {
-          max-width: unset;
-          font-size: 16px;
+        @media screen and (width > 768px) {
+          max-width: 504px;
         }
       }
     }
 
     .why-matters-wrap2 {
       width: 100%;
-      max-width: 608px;
+      max-width: none;
+
+      @media screen and (width > 768px) {
+        max-width: 608px;
+      }
 
       .why-matters-heading1 {
         ul {
           display: flex;
           flex-direction: column;
           justify-content: center;
+          gap: 12px;
 
           li {
             border: none;
@@ -2316,12 +2641,12 @@ main.nfo-nav {
           .why-matters-sub-title1 {
             list-style: none;
             color: var(--blue-1-800-primary);
-            font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
+            font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
             font-family: var(--body);
             font-size: var(--body-large-medium-size);
             font-style: normal;
             font-weight: 500;
-            line-height: var(--body-large-medium-line-height);
+            line-height: 28px;
             margin-bottom: 4px;
             width: 100%;
             max-width: 276px;
@@ -2330,14 +2655,14 @@ main.nfo-nav {
           .why-matters-sub-title2 {
             list-style: none;
             color: var(--neutrals-800);
-            font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
+            font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
             font-family: var(--body);
             font-size: var(--body-small-regular-size);
             font-style: normal;
             font-weight: 400;
-            line-height: var(--body-small-regular-line-height);
             width: 100%;
             max-width: 276px;
+            line-height: 24px;
           }
         }
       }
@@ -2345,28 +2670,71 @@ main.nfo-nav {
   }
 }
 
-.skin-in-the-game-wrapper {
-  margin: 80px 67px;
+.section.our-commitment-component {
   padding: 0;
+  width: 100%;
+  margin: 56px 0 0;
 
-  @include media(mobile) {
-    margin: 72px 16px;
+  @media screen and (width > 768px) {
+    margin: 80px 0;
   }
 
-  .promise-qglp {
+  .promise-qglp-wrapper {
     padding: 0;
-    margin: 0;
 
-    .promise-qglp-wrapper {
-      .promise-qglp-ctn3 {
-        line-height: 24px;
+    .promise-qglp-ctn1 {
+      position: unset;
+      margin-left: 16px;
+    }
+
+    .promise-qglp-ctn2 {
+      position: absolute;
+      color: var(--blue-1-800-primary);
+      font-feature-settings: var(--font-features-default);
+      font-family: var(--title, Inter);
+      font-size: var(--heading-h4-size);
+      font-style: normal;
+      font-weight: 600;
+      line-height: var(--heading-h4-line-height);
+      max-width: 242px;
+      padding: 0;
+      width: 192.425px;
+      top: 16px;
+      left: 16px;
+
+      @media screen and (width > 768px) {
+        padding: 0;
         width: 100%;
-        max-width: 532px;
+        top: unset;
+        left: unset;
+      }
 
-        @include media(mobile) {
-          max-width: 360px;
-          width: 100%;
-        }
+      @include media (tab) {
+        max-width: 210px;
+      }
+    }
+
+    .promise-qglp-ctn3 {
+      color: var(--n eutrals-800);
+      font-feature-settings: var(--font-features-default);
+      font-family: var(--body);
+      font-style: normal;
+      font-weight: 500;
+      line-height: var(--sub-header-large-line-height);
+      width: 100%;
+      font-size: 22px;
+      padding: 0 16px;
+      margin-bottom: 53px;
+
+      @media screen and (width > 768px) {
+        padding: 0;
+        font-size: var(--sub-header-large-size);
+        max-width: 708px;
+        margin-bottom: 0;
+      }
+
+      @include media (tab) {
+        max-width: 504px;
       }
     }
   }

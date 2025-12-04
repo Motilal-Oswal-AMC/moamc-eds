@@ -47,6 +47,11 @@
                                 width: 20px;
                                 height: 20px;
 
+                                @include media (mobile) {
+                                    width: 16px;
+                                    height: 16px;
+                                }
+
                             }
 
                         }
@@ -73,6 +78,13 @@
                                     height: 12px;
                                     aspect-ratio: 1/1;
                                     margin-bottom: 2px;
+                                }
+
+                                .submainleftart1 {
+                                    margin: 0;
+                                    display: flex;
+                                    align-items: center;
+                                    gap: 4px;
                                 }
                             }
 
@@ -212,9 +224,9 @@
 
                                 }
 
-                                // li::last-child {
-                                //     display: none;
-                                // }
+                                li:last-child {
+                                    display: none;
+                                }
                             }
                         }
 

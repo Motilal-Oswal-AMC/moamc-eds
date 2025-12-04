@@ -221,6 +221,8 @@
 
 
                     @include media(mobile) {
+                        max-inline-size: 21ch;
+                        
                         @include font-style(var(--sub-header-large-size), 28px, var(--neutrals-white), 600, var(--title));
                     }
                 }

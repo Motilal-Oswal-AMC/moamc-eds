@@ -1,6 +1,6 @@
 @use "sass:map";
-@use "../../styles/common-theme/css/variables_mixins" as *;
-@use "../../styles/common-theme/css/fluid-typography" as *;
+@use "../../styles/common-theme/css/variables_mixins"as *;
+@use "../../styles/common-theme/css/fluid-typography"as *;
 @import "../swiper/swiper-bundle.min.css";
 
 // @import '../blocks/swiper/swiper-bundle.min.css';
@@ -31,7 +31,7 @@
         }
     }
 
-    > div.library-btn1 {
+    >div.library-btn1 {
         width: 100%;
         height: 100%;
         padding-bottom: 40px;
@@ -42,30 +42,27 @@
 
         h4,
         h3:nth-child(1) {
+            width: 56.01%;
             margin: 0;
             padding: 0;
             padding-bottom: 8px;
             text-align: left;
             font-style: normal;
 
-            @include font-style(
-                map.get($typography-desktop, heading-h4-size),
+            @include font-style(map.get($typography-desktop, heading-h4-size),
                 map.get($typography-desktop, heading-h4-line-height),
                 $blue-1-800-primary,
                 600,
-                $title
-            );
+                $title);
 
             @include media(mobile) {
                 display: none;
 
-                @include font-style(
-                    map.get($typography-desktop, sub-header-large-size),
+                @include font-style(map.get($typography-desktop, sub-header-large-size),
                     map.get($typography-desktop, sub-header-medium-line-height),
                     $blue-1-800-primary,
                     600,
-                    $title
-                );
+                    $title);
             }
         }
 
@@ -90,13 +87,11 @@
             @include font-style(var(--body-medium-regular-size), 24px, var(--blue-1-800-primary), 400, var(--body));
 
             @include media(mobile) {
-                @include font-style(
-                    map.get($typography-mobile, paragraph-small-size),
+                @include font-style(map.get($typography-mobile, paragraph-small-size),
                     map.get($typography-mobile, paragraph-small-line-height),
                     $blue-1-800-primary,
                     400,
-                    $body
-                );
+                    $body);
             }
         }
     }
@@ -139,7 +134,7 @@
                         white-space: unset;
                         border-radius: 8px;
                         background:
-                            linear-gradient(0deg, rgb(0 0 0 / 30%) 0%, rgb(0 0 0 / 30%) 100%),
+                            linear-gradient(0deg, #000 0%, #000000e8 100%),
                             lightgray 50% / cover no-repeat;
                         z-index: 2;
 
@@ -151,6 +146,7 @@
                             width: 100%;
                             height: 100%;
                             position: relative;
+                            object-fit: cover;
                             z-index: 1;
                             opacity: 0.7;
                         }
@@ -160,11 +156,11 @@
                         content: "";
                         display: inline-block;
                         position: absolute;
-                        width: 40px;
-                        height: 40px;
+                        width: 24px;
+                        height: 24px;
                         flex-shrink: 0;
                         aspect-ratio: 1/1;
-                        background-image: url("/icons/Subtract.svg");
+                        background-image: url("/icons/play-button.svg");
                         background-size: contain;
                         background-repeat: no-repeat;
                         user-select: none;
@@ -180,12 +176,12 @@
                         padding: 24px 0;
                     }
 
-                    > ul.cards-listcards1 {
+                    >ul.cards-listcards1 {
                         list-style: none;
                         padding: 0;
                         margin: 0;
 
-                        > li {
+                        >li {
                             padding: 0;
                             margin: 0;
                             line-height: normal;
@@ -209,7 +205,7 @@
                             }
                         }
 
-                        & > li.cards-list-1-cards1 {
+                        &>li.cards-list-1-cards1 {
                             display: flex;
                             align-items: center;
 
@@ -243,13 +239,11 @@
                                 min-height: 24px;
 
                                 @include media(mobile) {
-                                    @include font-style(
-                                        map.get($typography-mobile, label-small-size),
+                                    @include font-style(map.get($typography-mobile, label-small-size),
                                         map.get($typography-mobile, label-small-line-height),
                                         $blue-1-800-primary,
                                         400,
-                                        $body
-                                    );
+                                        $body);
 
                                     gap: 4px;
                                     padding: 0 8px;
@@ -284,13 +278,11 @@
                                     align-items: center;
 
                                     @include media(mobile) {
-                                        @include font-style(
-                                            map.get($typography-mobile, paragraph-xsmall-size),
+                                        @include font-style(map.get($typography-mobile, paragraph-xsmall-size),
                                             map.get($typography-mobile, paragraph-xsmall-line-height),
                                             $neutrals-700,
                                             400,
-                                            $body
-                                        );
+                                            $body);
                                     }
 
                                     .icon {
@@ -298,6 +290,7 @@
                                         height: 12px;
                                         aspect-ratio: 1/1;
                                         margin-right: 4px;
+                                        margin-bottom: 2px;
                                     }
 
                                     &::marker {
@@ -314,13 +307,8 @@
                                     &::after {
                                         content: "•";
                                         color: #5659fa;
-
-                                        // position: absolute;
                                         width: 4px;
                                         height: 100%;
-
-                                        // right: -2px;
-                                        // top: 0;
                                         display: inline-flex;
                                         justify-content: center;
                                         align-items: center;
@@ -330,7 +318,7 @@
                             }
                         }
 
-                        & > li.cards-list-1-cards2 {
+                        &>li.cards-list-1-cards2 {
                             margin-bottom: 4px;
 
                             // min-height: 48px;
@@ -347,8 +335,6 @@
                                     border: none;
                                     margin: 0;
                                     padding: 0;
-
-                                    // margin-bottom: 8px;
                                     overflow: hidden;
                                     border-radius: unset;
                                     min-height: unset;
@@ -356,53 +342,49 @@
                                     white-space: unset;
                                     text-align: left;
 
-                                    @include font-style(
-                                        map.get($typography-desktop, body-large-medium-size),
+                                    @include font-style(map.get($typography-desktop, body-large-medium-size),
                                         map.get($typography-desktop, body-large-medium-line-height),
                                         $blue-1-800-primary,
                                         500,
-                                        $body
-                                    );
+                                        $body);
 
                                     @include media(mobile) {
-                                        @include font-style(
-                                            map.get($typography-mobile, body-large-medium-size),
+                                        // letter-spacing: 0.3px;
+
+                                        @include font-style(map.get($typography-mobile, body-large-medium-size),
                                             map.get($typography-mobile, body-large-medium-line-height),
                                             $blue-1-800-primary,
                                             500,
-                                            $body
-                                        );
+                                            $body);
                                     }
                                 }
                             }
                         }
 
-                        & > li.cards-list-1-cards3 {
+                        &>li.cards-list-1-cards3 {
                             p {
                                 margin: 0;
                                 padding: 0;
 
-                                @include font-style(
-                                    map.get($typography-desktop, body-medium-regular-size),
+                                @include font-style(map.get($typography-desktop, body-medium-regular-size),
                                     24px,
                                     $text-body-2,
                                     map.get($font-weights, regular),
-                                    $body
-                                );
+                                    $body);
 
                                 @include media(mobile) {
-                                    @include font-style(
-                                        map.get($typography-mobile, paragraph-small-size),
+                                    // letter-spacing: 0.5px;
+
+                                    @include font-style(map.get($typography-mobile, paragraph-small-size),
                                         map.get($typography-mobile, paragraph-small-line-height),
                                         $text-body-2,
                                         400,
-                                        $body
-                                    );
+                                        $body);
                                 }
                             }
                         }
 
-                        & > li.cards-list-1-cards4 {
+                        &>li.cards-list-1-cards4 {
                             margin-top: 16px;
 
                             .button-container {
@@ -415,32 +397,28 @@
                                     text-decoration-style: solid;
                                     text-decoration-skip-ink: auto;
                                     text-decoration-thickness: auto;
-                                    text-underline-offset: auto;
                                     text-underline-position: from-font;
+                                    text-underline-offset: 0;
+                                    border-radius: unset;
                                     border: none;
                                     padding: 0;
                                     background: transparent;
                                     margin: 0;
-                                    padding-left: 2px;
                                     height: 100%;
                                     min-height: unset;
 
-                                    @include font-style(
-                                        map.get($typography-desktop, body-small-regular-size),
+                                    @include font-style(map.get($typography-desktop, body-small-regular-size),
                                         map.get($typography-desktop, body-small-regular-line-height),
                                         $text-text-link,
                                         400,
-                                        $body
-                                    );
+                                        $body);
 
                                     @include media(mobile) {
-                                        @include font-style(
-                                            map.get($typography-mobile, body-small-regular-size),
+                                        @include font-style(map.get($typography-mobile, body-small-regular-size),
                                             map.get($typography-mobile, body-small-regular-line-height),
                                             $text-text-link,
                                             400,
-                                            $body
-                                        );
+                                            $body);
 
                                         line-height: var(--text-link-small-line-height);
                                         min-height: unset;
@@ -453,7 +431,7 @@
                             // }
                         }
 
-                        & > li.cards-list-1-cards5 {
+                        &>li.cards-list-1-cards5 {
                             position: absolute;
                             display: none;
                         }
@@ -545,7 +523,7 @@
         }
     }
 
-    & > .library-btn3 {
+    &>.library-btn3 {
         display: inline-block;
         position: absolute;
         padding: 0;
@@ -605,7 +583,7 @@
 }
 
 .moedge-article-main {
-    .section.future-building-container > .library-btn3 {
+    .section.future-building-container>.library-btn3 {
         top: 30px;
 
         @include media(mobile) {
@@ -614,25 +592,47 @@
         }
     }
 
-    .section.future-building-container.future-building-article-details > .library-btn3 {
-        top: 14px;
+    .section.future-building-container.future-building-article-details {
+        margin-top: 40px;
+
+        @include media (mobile) {
+            padding-bottom: 40px;
+        }
+
+        >.library-btn3 {
+            top: 14px;
+        }
     }
 
-    .section.future-building-container.future-building-article-details
-        .future-building
-        .swiper-wrapper
-        .swiper-slide
-        .swiper-slide-cards-2
-        > ul.cards-listcards1
-        > li.cards-list-1-cards4
-        .button-container
-        a {
-        line-height: 20px;
+    .section.future-building-container.future-building-article-details .future-building .swiper-wrapper {
+        .swiper-slide {
+            .swiper-slide-cards-2>ul.cards-listcards1>li.cards-list-1-cards4 .button-container a {
+                line-height: 20px;
 
-        // text-underline-offset: 20%;
+                // text-underline-offset: 20%;
 
-        @include media(mobile) {
-            line-height: 16px;
+                @include media(mobile) {
+                    line-height: 16px;
+                }
+            }
+
+            &:nth-child(3) {
+                .swiper-slide-cards-1 {
+                    &::after {
+                        content: unset;
+                    }
+
+                    .button {
+                        background: transparent;
+
+                        img {
+                            opacity: unset;
+                            object-fit: cover;
+                        }
+                    }
+
+                }
+            }
         }
     }
 }
@@ -654,7 +654,7 @@
             gap: 20px;
 
             @include media(desktop-sm) {
-                padding: 16px 16px 40px;
+                padding: 16px 24px 40px;
             }
 
             @include media(mobile) {
@@ -670,13 +670,11 @@
             h4,
             h5,
             h6 {
-                @include font-style(
-                    var(--heading-h4-size),
+                @include font-style(var(--heading-h4-size),
                     var(--heading-h4-line-height),
                     var(--blue-1-800-primary),
                     600,
-                    var(--title)
-                );
+                    var(--title));
 
                 margin: 0;
                 padding: 0;
@@ -689,165 +687,171 @@
                 }
             }
 
-            .keyinvest-search {
+            .keyinvest-wrap {
                 position: relative;
-
-                // max-width: 504px;
                 max-width: 40.91%;
                 width: 100%;
                 height: 44px;
-                display: flex;
-                align-items: center;
-                gap: 8px;
-                padding: var(--spacing-10) var(--spacing-8);
-                border-radius: var(--border-radius-6);
-                border: var(--border-width-01) solid var(--strokes-default);
-
-                @include media(tab) {
-                    max-width: 55%;
-                }
 
                 @include media(mobile) {
-                    max-width: unset;
+                    max-width: 100%;
+                }
+
+                .keyinvest-search {
+                    // max-width: 504px;
                     width: 100%;
-                }
+                    height: 100%;
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+                    padding: var(--spacing-10) var(--spacing-8);
+                    border-radius: var(--border-radius-6);
+                    border: var(--border-width-01) solid var(--strokes-default);
 
-                &::before {
-                    content: "";
-                    background: url("../../icons/search-icon-black.svg") center center no-repeat;
-                    min-width: 24px;
-                    height: 24px;
-                    display: block;
-                }
+                    // @include media(tab) {
+                    //     max-width: 55%;
+                    // }
 
-                .keyinvest-label,
-                .keyinvest-inp {
-                    @include font-style(
-                        var(--body-medium-regular-size),
-                        var(--body-medium-regular-line-height),
-                        var(--text-body-2),
-                        400,
-                        var(--body)
-                    );
+                    // @include media(mobile) {
+                    //     max-width: unset;
+                    //     width: 100%;
+                    // }
 
-                    cursor: auto;
-
-                    @include media(mobile) {
-                        font-size: var(--body-medium-regular-size);
-                        line-height: var(--body-medium-regular-line-height);
+                    &::before {
+                        content: "";
+                        background: url("../../icons/search-icon-black.svg") center center no-repeat;
+                        min-width: 24px;
+                        height: 24px;
+                        display: block;
                     }
-                }
 
-                .keyinvest-inp {
-                    width: 100%;
-                    border: none;
-                    outline: none;
-
-                    &.active + label,
-                    &:focus + label {
-                        top: 0;
-                        left: 25px;
-                        padding: 0 4px;
-                        background-color: var(--neutrals-white);
-
-                        @include font-style(
-                            var(--text-link-xsmall-size),
-                            var(--text-link-xsmall-line-height),
-                            var(--blue-1-800-primary),
+                    .keyinvest-label,
+                    .keyinvest-inp {
+                        @include font-style(var(--body-medium-regular-size),
+                            var(--body-medium-regular-line-height),
+                            var(--text-body-2),
                             400,
-                            var(--body)
-                        );
+                            var(--body));
+
+                        cursor: auto;
 
                         @include media(mobile) {
-                            font-size: var(--text-link-xsmall-size);
-                            line-height: var(--text-link-xsmall-line-height);
+                            font-size: var(--body-medium-regular-size);
+                            line-height: var(--body-medium-regular-line-height);
                         }
                     }
-                }
 
-                .keyinvest-label {
-                    position: absolute;
-                    left: 40px;
-                    top: 50%;
-                    transform: translateY(-50%);
-                    transition: all 0.2s ease;
-                }
-
-                .key-search-results {
-                    position: absolute;
-                    left: 0;
-                    top: 100%;
-                    display: block;
-                    background-color: var(--neutrals-white);
-                    box-shadow: 0 4px 16px 0 rgb(47 64 84 / 12%);
-                    border-radius: 8px;
-                    width: 100%;
-                    margin: 6px 0 0;
-                    max-height: 220px;
-                    height: auto;
-                    overflow: auto;
-                    z-index: 10;
-
-                    @include media(mobile) {
+                    .keyinvest-inp {
                         width: 100%;
+                        border: none;
+                        outline: none;
+                        color: var(--text-black);
+
+                        &.active+label,
+                        &:focus+label {
+                            top: 0;
+                            left: 25px;
+                            padding: 0 4px;
+                            background-color: var(--neutrals-white);
+
+                            @include font-style(var(--text-link-xsmall-size),
+                                var(--text-link-xsmall-line-height),
+                                var(--blue-1-800-primary),
+                                400,
+                                var(--body));
+
+                            @include media(mobile) {
+                                font-size: var(--text-link-xsmall-size);
+                                line-height: var(--text-link-xsmall-line-height);
+                            }
+                        }
                     }
 
-                    &::-webkit-scrollbar {
-                        width: 3px;
-                        background-color: #464343;
+                    .keyinvest-label {
+                        position: absolute;
+                        left: 40px;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        transition: all 0.2s ease;
                     }
 
-                    &::-webkit-scrollbar-thumb {
-                        width: 3px;
-                        background-color: #424242;
-                        border-radius: 0 1px 1px 0;
-                    }
-
-                    &::-webkit-scrollbar-track {
-                        width: 3px;
+                    .key-search-results {
+                        position: absolute;
+                        left: 0;
+                        top: 100%;
+                        display: block;
                         background-color: var(--neutrals-white);
-                        border-radius: 0 6px 6px 0;
-                    }
+                        box-shadow: 0 4px 16px 0 rgb(47 64 84 / 12%);
+                        border-radius: 8px;
+                        width: 100%;
+                        margin: 4px 0 0;
+                        max-height: 220px;
+                        height: auto;
+                        overflow: auto;
+                        z-index: 10;
 
-                    .result-item {
-                        margin: unset;
-                        cursor: pointer;
-                        padding: 16px;
-                        background: var(--surface-background-neutral-subtle);
-
-                        &:hover {
-                            background-color: var(--blue-1-25);
+                        @include media(mobile) {
+                            width: 100%;
                         }
 
-                        &:focus {
-                            background-color: var(--blue-1-50);
+                        &::-webkit-scrollbar {
+                            width: 3px;
+                            background-color: #464343;
                         }
 
-                        .list {
+                        &::-webkit-scrollbar-thumb {
+                            width: 3px;
+                            background-color: #424242;
+                            border-radius: 0 1px 1px 0;
+                        }
+
+                        &::-webkit-scrollbar-track {
+                            width: 3px;
+                            background-color: var(--neutrals-white);
+                            border-radius: 0 6px 6px 0;
+                        }
+
+                        .result-item {
+                            margin: unset;
+                            cursor: pointer;
+                            padding: 16px;
+                            background: var(--surface-background-neutral-subtle);
+
+                            &:hover {
+                                background-color: var(--blue-1-25);
+                            }
+
+                            &:focus {
+                                background-color: var(--blue-1-50);
+                            }
+
+                            .list {
+                                color: var(--neutrals-900);
+                                font-feature-settings: var(--font-features-default);
+                                font-family: var(--body);
+                                font-size: var(--body-medium-regular-size);
+                                font-weight: 400;
+                                line-height: var(--body-medium-regular-line-height);
+                            }
+                        }
+
+                        .no-results-message {
                             color: var(--neutrals-900);
                             font-feature-settings: var(--font-features-default);
                             font-family: var(--body);
                             font-size: var(--body-medium-regular-size);
                             font-weight: 400;
                             line-height: var(--body-medium-regular-line-height);
+                            position: relative;
+                            top: 0;
+                            padding: 16px;
+                            border: none;
+                            z-index: 10;
                         }
-                    }
-
-                    .no-results-message {
-                        font-size: var(--body-small-regular-size);
-                        line-height: var(--label-large-line-height);
-                        color: var(--neutrals-black);
-                        font-family: var(--body);
-                        font-feature-settings: var(--font-features-default);
-                        font-weight: 400;
-                        position: relative;
-                        top: 0;
-                        padding-left: 13px;
-                        border: none;
-                        z-index: 10;
                     }
                 }
             }
+
         }
 
         &2 {
@@ -882,7 +886,7 @@
                             width: 32.223% !important;
                         }
 
-                        @media screen and (width <= 1025px) {
+                        @media screen and (width <=1025px) {
                             width: 31.88% !important;
                         }
 
@@ -921,13 +925,11 @@
                                 &1 {
                                     margin: 0 0 4px;
 
-                                    @include font-style(
-                                        var(--body-large-medium-size),
+                                    @include font-style(var(--body-large-medium-size),
                                         var(--body-large-medium-line-height),
                                         var(--blue-1-800-primary),
                                         500,
-                                        var(--body)
-                                    );
+                                        var(--body));
 
                                     @include media(mobile) {
                                         font-size: var(--body-large-medium-size);
@@ -938,13 +940,11 @@
                                 &2 {
                                     margin: 0 0 16px;
 
-                                    @include font-style(
-                                        var(--body-medium-regular-size),
+                                    @include font-style(var(--body-medium-regular-size),
                                         24px,
                                         var(--text-body-2),
                                         400,
-                                        var(--body)
-                                    );
+                                        var(--body));
 
                                     @include media(mobile) {
                                         font-size: var(--paragraph-small-regular-size);
@@ -961,13 +961,11 @@
                                     }
 
                                     .cards-list-1-button1 {
-                                        @include font-style(
-                                            14px,
+                                        @include font-style(14px,
                                             var(--text-link-small-line-height),
                                             var(--text-text-link),
                                             400,
-                                            var(--body)
-                                        );
+                                            var(--body));
 
                                         text-decoration: underline;
                                         text-underline-offset: 2.8px;
@@ -1201,7 +1199,7 @@
                 }
             }
 
-            .keyinvest-search {
+            .keyinvest-wrap {
                 display: none;
             }
         }
@@ -1243,13 +1241,11 @@
                     background: var(--button-primary-default);
                     cursor: pointer;
 
-                    @include font-style(
-                        var(--button-medium-size),
+                    @include font-style(var(--button-medium-size),
                         var(--button-medium-line-height),
                         var(--text-white),
                         500,
-                        var(--body)
-                    );
+                        var(--body));
                 }
             }
         }
