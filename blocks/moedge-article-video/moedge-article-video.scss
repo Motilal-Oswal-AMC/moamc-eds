@@ -37,6 +37,8 @@
 
             .mainarticle1 {
                 .itemarticle1 {
+                    // height: 467px;
+
                     img {
                         width: 816px;
                         height: 320px;
@@ -499,9 +501,9 @@
 
         .subleftart3 {
             .mainleftart1 {
-                >.itemleftart1 {
-                    padding-bottom: 24px;
-                }
+                // >.itemleftart1:first-child {
+                //     padding-bottom: 24px;
+                // }
 
                 p.itemleftart3:nth-child(3) {
                     padding-top: 24px;

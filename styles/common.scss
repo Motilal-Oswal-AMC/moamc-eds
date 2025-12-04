@@ -1266,8 +1266,7 @@ main>.section.previous-studies-tab.tabs-container {
       margin-right: 25px;
       -ms-overflow-style: none;
       scrollbar-width: none;
-
-      // overflow-x: auto;
+      overflow-x: auto;
     }
 
     &::-webkit-scrollbar {
@@ -1320,7 +1319,7 @@ main>.section.previous-studies-tab.tabs-container {
 
       &:last-child {
         a.breadlist {
-          // color: var(--blue-1800-primary, #2e2a94);
+          position: relative;
           color: var(--neutrals-800, #424242);
           font-feature-settings: var(--font-features-default);
           font-family: var(--body, Inter);
@@ -1328,6 +1327,19 @@ main>.section.previous-studies-tab.tabs-container {
           font-style: normal;
           font-weight: 400;
           line-height: var(--label-small-line-height);
+
+          // @include media (mobile-ed) {
+          //   &::after {
+          //     content: '';
+          //     position: absolute;
+          //     top: 0;
+          //     right: 0;
+          //     width: 40px;
+          //     height: 100%;
+          //     background: linear-gradient(to right, transparent, white);
+          //     pointer-events: none;
+          //   }
+          // }
         }
       }
     }
@@ -1474,11 +1486,11 @@ main>.section.previous-studies-tab.tabs-container {
     .choose-us-para3 {
       margin: 0;
 
-    @media  screen and (width > 768px) {
-      display: flex;
-      justify-content: flex-end;
-      position: relative;
-    }
+      @media screen and (width > 768px) {
+        display: flex;
+        justify-content: flex-end;
+        position: relative;
+      }
 
       a {
         color: var(--text-white);
@@ -1496,8 +1508,8 @@ main>.section.previous-studies-tab.tabs-container {
         padding: 8px 12px;
         display: block;
         border: none;
-          margin-top: 0;
-          margin-bottom: 30px;
+        margin-top: 0;
+        margin-bottom: 30px;
 
         @media screen and (width > 768px) {
           position: absolute;
@@ -1524,10 +1536,10 @@ main>.section.previous-studies-tab.tabs-container {
       .choose-us-img1 {
         margin: 0;
         height: 100%;
-          display: block;
-          line-height: 0px;
-          
-        img{
+        display: block;
+        line-height: 0px;
+
+        img {
           width: 100%;
         }
       }
@@ -1559,7 +1571,7 @@ main>.section.previous-studies-tab.tabs-container {
   margin: 40px 0 80px;
 
   @media screen and (width > 768px) {
-  margin: 80px 0;
+    margin: 80px 0;
   }
 
   .cards-wrapper {
@@ -1600,8 +1612,8 @@ main>.section.previous-studies-tab.tabs-container {
             display: block;
 
             @media screen and (width > 768px) {
-            width: 68px;
-            height: 68px;
+              width: 68px;
+              height: 68px;
             }
           }
         }
@@ -2002,23 +2014,26 @@ main.nfo-nav {
   .high-skin-wrap-one1 {
     .high-skin-wrap-two1 {
       list-style: none;
-      @media screen and (width > 768px){
-        margin-bottom: 0px;
+
+      @media screen and (width > 768px) {
+        margin-bottom: 0;
       }
+
       .high-skin-wrap-three1 {
         .high-skin-heading1 {
           display: flex;
           flex-direction: column;
           justify-content: flex-start;
+
           @media screen and (width > 768px) {
             justify-content: space-between;
             flex-direction: row;
-            margin-bottom: 0px;
+            margin-bottom: 0;
           }
 
           .high-skin-subheading1 {
             list-style: none;
-            
+
             .high-skin-paragraph1 {
               font-size: var(--heading-h5-size);
               line-height: var(--sub-header-large-line-height);
@@ -2031,6 +2046,7 @@ main.nfo-nav {
               font-style: normal;
               font-weight: 600;
               width: 100%;
+
               @media screen and (width > 768px) {
                 max-width: 296px;
                 font-size: var(--heading-h4-size);
@@ -2084,8 +2100,9 @@ main.nfo-nav {
                   max-width: 712px;
                   margin-bottom: 40px;
                 }
-                @media (min-width: 768px) and (max-width: 1000px) {
-                   max-width: 585px;
+
+                @include media (tab) {
+                  max-width: 585px;
                 }
               }
             }
@@ -2128,38 +2145,40 @@ main.nfo-nav {
       position: relative;
       justify-content: center;
       background: linear-gradient(256deg,
-        rgb(154 148 255 / 50%) -40.11%,
-        rgb(214 211 255 / 50%) 100%
-      );
+          rgb(154 148 255 / 50%) -40.11%,
+          rgb(214 211 255 / 50%) 100%);
       padding: 42.5px 55.259px 31.502px 55.242px;
-       @media screen and (width > 768px) {
+
+      @media screen and (width > 768px) {
         height: 328px;
         align-items: end;
-        padding: 0px;
-       }
+        padding: 0;
+      }
 
-      .icon.icon-rupees.comlist.high-skin-component-paragraph1 {
+      .icon.icon-Rupees.comlist.high-skin-component-paragraph1 {
         display: inline-flex;
         justify-content: center;
         align-items: center;
         width: 229.499px;
         height: 254.998px;
-       @media screen and (width > 768px) {
-        width: 300px;
-        height: 300px;
-        margin: 28px 0px 0px 0px;
-       }
-      .high-skin-component-ctn1{
-        @media screen and (width > 768px){
-          object-fit: none;
+
+        @media screen and (width > 768px) {
+          width: 300px;
+          height: 300px;
+          margin: 28px 0 0;
         }
-      }
+
+        .high-skin-component-ctn1 {
+          @media screen and (width > 768px) {
+            object-fit: none;
+          }
+        }
       }
     }
 
     .high-skin-component-heading2 {
       width: 100%;
-      margin: 0px;
+      margin: 0;
 
       .high-skin-component-paragraph1 {
         list-style: none;
@@ -2236,6 +2255,7 @@ main.nfo-nav {
     font-weight: 600;
     width: 100%;
     margin: 80px 0 40px;
+
     @media screen and (width > 768px) {
       font-size: var(--heading-h5-size);
       line-height: var(--heading-h5-line-height);
@@ -2314,13 +2334,15 @@ main.nfo-nav {
 
 .section.what-stake-component {
   @media screen and (width > 768px) {
-    margin: 80px 0px 80px 0px;
+    margin: 80px 0;
   }
+
   .stake-component-wrap1 {
     .stake-component-main-head1 {
-      padding: 40px 12px 0px 12px;
+      padding: 40px 12px 0;
       border-radius: 12px;
       background: var(--neutrals-100);
+
       @media screen and (width >786px) {
         padding: 40px;
       }
@@ -2348,36 +2370,38 @@ main.nfo-nav {
 
           .cards-card-image {
             padding: 36px 43.22px 69px 42.22px;
-            @media screen  and (width > 768px){
-              padding: 0px;
+
+            @media screen and (width > 768px) {
+              padding: 0;
             }
+
             picture {
               img {
-               width: 250px;
-               height: 234px;
-               object-fit: unset;
-                 @media screen and (width > 768px) {
-                    width: unset;
-                    height: 286.615px;
-                    display: block;
-                    aspect-ratio: unset;
-                 }
+                width: 250px;
+                height: 234px;
+                object-fit: unset;
+
+                @media screen and (width > 768px) {
+                  width: unset;
+                  height: 286.615px;
+                  display: block;
+                  aspect-ratio: unset;
+                }
               }
             }
           }
 
           .cards-card-body {
-            max-width: 100%;
             width: 100%;
-            margin: 0px;
+            margin: 0;
             max-width: unset;
 
             @media screen and (width > 768px) {
-             max-width: 58.16%;
+              max-width: 58.16%;
             }
 
             @media screen and (width > 1299px) {
-             max-width: 54.514%;
+              max-width: 54.514%;
             }
           }
         }
@@ -2393,7 +2417,6 @@ main.nfo-nav {
     font-style: normal;
     font-weight: 600;
     line-height: var(--heading-h5-line-height);
-    width: 100%;
     margin: 0 0 31px;
     max-width: 309px;
     width: 100%;
@@ -2415,6 +2438,7 @@ main.nfo-nav {
     max-width: 309px;
     width: 100%;
     margin: 0 0 4px;
+
     @media screen and (width > 768px) {
       max-width: 628px;
     }
@@ -2439,7 +2463,6 @@ main.nfo-nav {
   background-color: $neutrals-100;
   display: flex;
   justify-content: center;
-  // padding: 0 16px;
 
   // @media screen and (width > 768px) {
   //   padding: 0;
@@ -2454,14 +2477,14 @@ main.nfo-nav {
     gap: 40px;
     max-width: 1232px;
     width: 100%;
-    
-    
+
+
     @media screen and (width > 768px) {
       flex-direction: row;
       gap: 120px;
     }
 
-    @include media(desktop-sm){
+    @include media(desktop-sm) {
       padding: 40px 16px;
     }
 
@@ -2543,13 +2566,13 @@ main.nfo-nav {
 
           .why-matters-sub-title1 {
             list-style: none;
-            color: var(--blue-1-800-primary);
+            color: var(--neutrals-900);
             font-feature-settings: var(--font-features-default);
             font-family: var(--body);
             font-size: var(--body-large-medium-size);
             font-style: normal;
             font-weight: 500;
-            line-height: var(--body-large-medium-line-height);
+            line-height: 28px;
             margin-bottom: 4px;
             width: 100%;
             max-width: 276px;
@@ -2566,72 +2589,82 @@ main.nfo-nav {
             line-height: var(--body-small-regular-line-height);
             width: 100%;
             max-width: 276px;
+            line-height: 24px;
           }
         }
       }
     }
   }
 }
-.section.our-commitment-component{
-  padding:0px;
-  width: 100%;
-   margin: 56px 0px 0px 0px;
-   @media screen and (width > 768px){
-      margin: 80px 0px 80px 0px;
-     }
 
-  .promise-qglp-wrapper{
-    padding: 0px;
-    .promise-qglp-ctn1{
+.section.our-commitment-component {
+  padding: 0;
+  width: 100%;
+  margin: 56px 0 0;
+
+  @media screen and (width > 768px) {
+    margin: 80px 0;
+  }
+
+  .promise-qglp-wrapper {
+    padding: 0;
+
+    .promise-qglp-ctn1 {
       position: unset;
       margin-left: 16px;
     }
-   .promise-qglp-ctn2{
-    position: absolute;
-    top: 45px;
-    color: var(--blue-1-800-primary);
-    font-feature-settings: var(--font-features-default);
-    font-family: var(--title, Inter);
-    font-size: var(--heading-h4-size);
-    font-style: normal;
-    font-weight: 600;
-    line-height: var(--heading-h4-line-height);
-    max-width: 242px;
-    padding: 0px;
-    width: 192.425px;
-    top: 16px;
-    left: 16px;
-    @media screen and (width > 768px){
-      padding: 0px;
+
+    .promise-qglp-ctn2 {
+      position: absolute;
+      color: var(--blue-1-800-primary);
+      font-feature-settings: var(--font-features-default);
+      font-family: var(--title, Inter);
+      font-size: var(--heading-h4-size);
+      font-style: normal;
+      font-weight: 600;
+      line-height: var(--heading-h4-line-height);
+      max-width: 242px;
+      padding: 0;
+      width: 192.425px;
+      top: 16px;
+      left: 16px;
+
+      @media screen and (width > 768px) {
+        padding: 0;
+        width: 100%;
+        top: unset;
+        left: unset;
+      }
+
+      @include media (tab){
+        max-width: 210px;
+      }
+    }
+
+    .promise-qglp-ctn3 {
+      color: var(--n eutrals-800);
+      font-feature-settings: var(--font-features-default);
+      font-family: var(--body);
+      font-style: normal;
+      font-weight: 500;
+      line-height: var(--sub-header-large-line-height);
       width: 100%;
-      top: unset;
-      left: unset;
-     }
-     @media (min-width: 768px) and (max-width: 1000px) {
-       max-width: 210px;
+      font-size: 22px;
+      padding: 0 16px;
+      margin-bottom: 53px;
+
+      @media screen and (width > 768px) {
+        padding: 0;
+        font-size: var(--sub-header-large-size);
+        max-width: 708px;
+        margin-bottom: 0;
+      }
+
+      @include media (tab) {
+        max-width: 504px;
+      }
     }
-   }
-   .promise-qglp-ctn3{
-    color: var(--n  eutrals-800);
-    font-feature-settings: var(--font-features-default);
-    font-family: var(--body);
-    font-style: normal;
-    font-weight: 500;
-    line-height: var(--sub-header-large-line-height);
-    width: 100%;
-    font-size: 22px;
-    padding: 0px 16px;
-    margin-bottom: 53px; 
-     @media screen and (width > 768px){
-      padding: 0px;
-      font-size: var(--sub-header-large-size);
-      max-width: 708px;
-      margin-bottom: 0px;
-     }
-    @media (min-width: 769px) and (max-width: 1000px) {
-      max-width: 504px;
-    }
-   }
   }
 }
+
 // Skin in the game static end
