@@ -1,5 +1,5 @@
-import dataMapMoObj from "../../../scripts/constant.js";
-import dataCfObj from "../../../scripts/dataCfObj.js";
+import dataMapMoObj from '../../../scripts/constant.js';
+import dataCfObj from '../../../scripts/dataCfObj.js';
 import {
   div,
   img,
@@ -8,25 +8,25 @@ import {
   li,
   span,
   ul,
-} from "../../../scripts/dom-helpers.js";
+} from '../../../scripts/dom-helpers.js';
 import {
   createBarSummaryBlock,
   createInputBlock,
   createOptionSelectorBlock,
   extractOptionsSelect,
   getAuthorData,
-} from "../common-ui-field/common-ui-field.js";
+} from '../common-ui-field/common-ui-field.js';
 
-dataMapMoObj.mode = "sip";
-let planType = "Direct";
-let planOption = "Growth";
+dataMapMoObj.mode = 'sip';
+const planType = 'Direct';
+let planOption = 'Growth';
 
 function updatePlanOptions(fund, block) {
-  const wrapper = block.querySelector(".custom-select-plan");
-  const optionsContainer = wrapper.querySelector(".select-options-plan");
-  const selectedDisplay = wrapper.querySelector(".select-selected-plan");
-  const hiddenInput = wrapper.querySelector("#planOption");
-  optionsContainer.innerHTML = "";
+  const wrapper = block.querySelector('.custom-select-plan');
+  const optionsContainer = wrapper.querySelector('.select-options-plan');
+  const selectedDisplay = wrapper.querySelector('.select-selected-plan');
+  const hiddenInput = wrapper.querySelector('#planOption');
+  optionsContainer.innerHTML = '';
 
   if (!fund?.planList) return;
 
@@ -35,23 +35,23 @@ function updatePlanOptions(fund, block) {
 
   uniqueOptions.forEach((name) => {
     const optionEl = div(
-      { class: "select-option-plan", "data-value": name },
-      name
+      { class: 'select-option-plan', 'data-value': name },
+      name,
     );
-    optionEl.addEventListener("click", () => {
-      debugger
+    optionEl.addEventListener('click', () => {
+      debugger;
       selectedDisplay.textContent = name;
       hiddenInput.value = name;
       planOption = name;
-      optionsContainer.classList.remove("open");
+      optionsContainer.classList.remove('open');
       // updateReturnRate();
     });
     optionsContainer.append(optionEl);
   });
 
   if (uniqueOptions.length) {
-    const defaultPlan = uniqueOptions.includes("Growth")
-      ? "Growth"
+    const defaultPlan = uniqueOptions.includes('Growth')
+      ? 'Growth'
       : uniqueOptions[0];
     selectedDisplay.textContent = defaultPlan;
     hiddenInput.value = defaultPlan;
@@ -62,39 +62,37 @@ function updatePlanOptions(fund, block) {
 function openPlanSelect(e, block) {
   e.stopPropagation();
   // block.querySelector(".select-options-plan")?.classList?.remove("open");
-  block.querySelector(".select-options-plan")?.classList?.toggle("open");
+  block.querySelector('.select-options-plan')?.classList?.toggle('open');
 }
 
 export default function decorate(block) {
-  const CALC_AUTHOR_MAIN = block.querySelector(".calc-author-main1");
+  const CALC_AUTHOR_MAIN = block.querySelector('.calc-author-main1');
   if (!CALC_AUTHOR_MAIN) {
-    console.warn("No .calc-author-main1 element found.");
+    console.warn('No .calc-author-main1 element found.');
     return;
   }
   const schemeNames = dataCfObj.cfDataObjs.map(
-    (fund) => fund.schDetail.schemeName
+    (fund) => fund.schDetail.schemeName,
   );
 
   const authors = [
-    { key: "SA", selector: ":scope > .calc-author-sub1" },
-    { key: "ITP", selector: ":scope > .calc-author-sub2" },
+    { key: 'SA', selector: ':scope > .calc-author-sub1' },
+    { key: 'ITP', selector: ':scope > .calc-author-sub2' },
   ];
 
   const CALC_AUTHORED_DATA = authors.map(({ key, selector }) => {
     const author = CALC_AUTHOR_MAIN.querySelector(selector);
     const data = author
-      ? [...author.querySelectorAll(".comlist")].map((el) =>
-          el.textContent.trim()
-        )
+      ? [...author.querySelectorAll('.comlist')].map((el) => el.textContent.trim())
       : [];
     return { key, data };
   });
 
-  const sa = getAuthorData(CALC_AUTHORED_DATA, "SA");
-  const itp = getAuthorData(CALC_AUTHORED_DATA, "ITP");
+  const sa = getAuthorData(CALC_AUTHORED_DATA, 'SA');
+  const itp = getAuthorData(CALC_AUTHORED_DATA, 'ITP');
 
   const durationAuthorData = CALC_AUTHOR_MAIN.querySelector(
-    ":scope > .calc-author-sub3"
+    ':scope > .calc-author-sub3',
   )?.children;
   const durationTitle = durationAuthorData[0]?.textContent;
 
@@ -103,122 +101,121 @@ export default function decorate(block) {
   });
 
   const OVERVIEW_DATA = CALC_AUTHOR_MAIN.querySelector(
-    ":scope > .calc-author-sub4"
+    ':scope > .calc-author-sub4',
   );
 
   const sipBlock = createBarSummaryBlock({
     container: OVERVIEW_DATA,
   });
-  CALC_AUTHOR_MAIN.innerHTML = "";
+  CALC_AUTHOR_MAIN.innerHTML = '';
   // let selectedFund = dataCfObj.find((fund) => fund.schcode === 'FM'); // CP
-  const planCode = localStorage.getItem("planCode");
+  const planCode = localStorage.getItem('planCode');
   let schcode;
   if (planCode !== null) {
-    const schdata = planCode.split(":")[1];
+    const schdata = planCode.split(':')[1];
     schcode = schdata;
-  } else if (window.location.href.includes("/our-funds/funds-details-page")) {
-    schcode = "LM";
+  } else if (window.location.href.includes('/our-funds/funds-details-page')) {
+    schcode = 'LM';
   } else {
-    const path = window.location.pathname.split("/").at(-1);
+    const path = window.location.pathname.split('/').at(-1);
     const planobj = dataCfObj.cfDataObjs.filter(
-      (el) =>
-        path ===
-        el.schDetail.schemeName.toLocaleLowerCase().split(" ").join("-")
+      (el) => path
+        === el.schDetail.schemeName.toLocaleLowerCase().split(' ').join('-'),
     );
-    schcode = planobj[0] !== undefined ? planobj[0].schcode : "LM";
+    schcode = planobj[0] !== undefined ? planobj[0].schcode : 'LM';
   }
   let selectedFund = dataCfObj.cfDataObjs.find(
-    (fund) => fund.schcode === schcode
+    (fund) => fund.schcode === schcode,
   );
 
-  let returnCAGR = 0;
+  const returnCAGR = 0;
   const selectedFundName = selectedFund.schDetail.schemeName;
 
   const schemeSelect = div(
-    { class: "search-bar-wrapper" },
-    label({ class: "search-bar-label" }, "Scheme"), // dynamic
+    { class: 'search-bar-wrapper' },
+    label({ class: 'search-bar-label' }, 'Scheme'), // dynamic
     input({
       value: selectedFund.schDetail.schemeName,
-      type: "text",
-      placeholder: "Search a fund",
-      id: "searchFundInput",
-      role: "combobox",
-      "aria-label": "Search for products",
-      "aria-autocomplete": "list",
-      "aria-expanded": "false",
-      autocomplete: "off",
-      class: "search-bar-inp",
+      type: 'text',
+      placeholder: 'Search a fund',
+      id: 'searchFundInput',
+      role: 'combobox',
+      'aria-label': 'Search for products',
+      'aria-autocomplete': 'list',
+      'aria-expanded': 'false',
+      autocomplete: 'off',
+      class: 'search-bar-inp',
     }),
     div(
-      { class: "cancel-search-wrap searchbar-active" },
+      { class: 'cancel-search-wrap searchbar-active' },
       img({
-        class: "cancel-btn",
-        src: "../../icons/input-cancel.svg",
-        alt: "cancel button",
+        class: 'cancel-btn',
+        src: '../../icons/input-cancel.svg',
+        alt: 'cancel button',
       }),
       img({
-        class: "search-btn",
-        src: "../../icons/search-blue.svg",
-        alt: "cancel button",
-      })
+        class: 'search-btn',
+        src: '../../icons/search-blue.svg',
+        alt: 'cancel button',
+      }),
     ),
     div(
-      { class: "search-results-wrapper" },
+      { class: 'search-results-wrapper' },
       ul(
-        { id: "searchResults", role: "listbox", class: "search-result-ul" },
-        li({ class: "search-result-li" }, "motilal oswal")
-      )
+        { id: 'searchResults', role: 'listbox', class: 'search-result-ul' },
+        li({ class: 'search-result-li' }, 'motilal oswal'),
+      ),
     ),
-    span({ class: "search-error error-hide" }, "Fund not found")
+    span({ class: 'search-error error-hide' }, 'Fund not found'),
   );
 
   const togglerNidcw = div(
-    { class: "spi-wrapper" },
+    { class: 'spi-wrapper' },
     // 🔄 SIP & Lumpsum toggle
 
     // 🔀 Direct/Regular toggle & plan options
     div(
-      { class: "plan-options-wrapper" },
+      { class: 'plan-options-wrapper' },
       div(
-        { class: "plan-type-toggle" },
-        span({ class: "toggle-label active" }, "Direct"),
+        { class: 'plan-type-toggle' },
+        span({ class: 'toggle-label active' }, 'Direct'),
         label(
           {
-            class: "toggle-switch",
-            htmlFor: "planToggle",
-            "aria-label": "Switch between Direct and Regular Plan",
+            class: 'toggle-switch',
+            htmlFor: 'planToggle',
+            'aria-label': 'Switch between Direct and Regular Plan',
           },
           input({
-            type: "checkbox",
-            id: "planToggle",
-            class: "toggle-inp",
-            "aria-label": "Switch between Direct and Regular Plan",
+            type: 'checkbox',
+            id: 'planToggle',
+            class: 'toggle-inp',
+            'aria-label': 'Switch between Direct and Regular Plan',
           }),
-          span({ class: "slider" })
+          span({ class: 'slider' }),
         ),
-        span({ class: "toggle-label" }, "Regular")
+        span({ class: 'toggle-label' }, 'Regular'),
       ),
       div(
         {
-          class: "plan-option-select custom-select-plan",
+          class: 'plan-option-select custom-select-plan',
           onclick: (e) => openPlanSelect(e, block),
         },
-        div({ class: "select-selected-plan" }, "Growth"),
-        div({ class: "select-options-plan" }),
-        input({ type: "hidden", id: "planOption", value: "Growth" })
-      )
-    )
+        div({ class: 'select-selected-plan' }, 'Growth'),
+        div({ class: 'select-options-plan' }),
+        input({ type: 'hidden', id: 'planOption', value: 'Growth' }),
+      ),
+    ),
   );
   const saBlock = createInputBlock({
-    id: "sip-amount",
+    id: 'sip-amount',
     ...sa,
-    prefix: "₹",
-    fieldType: "currency",
-    prefixAttr: { class: "currency-prefix" },
+    prefix: '₹',
+    fieldType: 'currency',
+    prefixAttr: { class: 'currency-prefix' },
     inputBlockAttr: {
-      class: "sa-inp-container",
+      class: 'sa-inp-container',
     },
-    variant: "number",
+    variant: 'number',
     onInput: (e) => {
       // recalculateSip({ sa: e.target.value, container: block });
     },
@@ -228,14 +225,14 @@ export default function decorate(block) {
   });
 
   const itpBlock = createInputBlock({
-    id: "invested-time-period",
+    id: 'invested-time-period',
     ...itp,
     inputBlockAttr: {
-      class: "itp-inp-container",
+      class: 'itp-inp-container',
     },
-    fieldType: "year",
-    suffix: itp?.default > 1 ? "years" : "year",
-    variant: "stepper",
+    fieldType: 'year',
+    suffix: itp?.default > 1 ? 'years' : 'year',
+    variant: 'stepper',
     updateWidthonChange: true,
     onInput: (e) => {
       // recalculateSip({ itp: e.target.value, container: block });
@@ -246,7 +243,7 @@ export default function decorate(block) {
   });
 
   const durationSelector = createOptionSelectorBlock({
-    id: "compoundFrequency",
+    id: 'compoundFrequency',
     label: durationTitle,
     options: durationOptions,
     onChange: (val) => {
@@ -259,16 +256,16 @@ export default function decorate(block) {
     togglerNidcw,
     saBlock,
     itpBlock,
-    durationSelector
+    durationSelector,
   );
-  const searchInput = block.querySelector("#searchFundInput");
-  const searchResults = block.querySelector("#searchResults");
-  const searchWrapper = block.querySelector(".search-results-wrapper");
+  const searchInput = block.querySelector('#searchFundInput');
+  const searchResults = block.querySelector('#searchResults');
+  const searchWrapper = block.querySelector('.search-results-wrapper');
 
   let currentFocus = -1;
-  searchInput.addEventListener("input", (e) => {
+  searchInput.addEventListener('input', (e) => {
     const query = e.target.value.toLowerCase().trim();
-    searchResults.innerHTML = "";
+    searchResults.innerHTML = '';
     currentFocus = -1;
     const filtered = query
       ? schemeNames.filter((name) => name.toLowerCase().includes(query))
@@ -282,39 +279,39 @@ export default function decorate(block) {
       // searchResults.appendChild(errorLi);
       // calContainer.querySelector('.cancel-btn').style.display = 'block';
       calContainer
-        .querySelector(".cancel-search-wrap")
-        .classList.remove("searchbar-active");
-      const searchError = document.querySelector(".search-error");
-      searchError.classList.remove("error-hide");
+        .querySelector('.cancel-search-wrap')
+        .classList.remove('searchbar-active');
+      const searchError = document.querySelector('.search-error');
+      searchError.classList.remove('error-hide');
       return; // Stop further execution
     }
     // --- END BLOCK ---
 
     filtered.forEach((name) => {
-      const lione = document.createElement("li");
-      lione.classList.add("searchli");
+      const lione = document.createElement('li');
+      lione.classList.add('searchli');
       lione.innerHTML = name.replace(
-        new RegExp(`(${query})`, "gi"),
-        "<strong>$1</strong>"
+        new RegExp(`(${query})`, 'gi'),
+        '<strong>$1</strong>',
       );
-      lione.addEventListener("click", () => {
+      lione.addEventListener('click', () => {
         searchInput.value = name;
         // searchInput.style.backgroundPosition = 'left center';
         // searchInput.style.paddingLeft = '24px';
         selectedFund = dataCfObj.cfDataObjs.find(
-          (f) => f.schDetail.schemeName === name
+          (f) => f.schDetail.schemeName === name,
         );
-        searchResults.innerHTML = "";
+        searchResults.innerHTML = '';
         updatePlanOptions(selectedFund, block);
         // updateReturnRate();
         // calContainer.querySelector('.cancel-btn').style.display = 'block';
         block
-          .querySelector(".cancel-search-wrap")
-          .classList.remove("searchbar-active");
+          .querySelector('.cancel-search-wrap')
+          .classList.remove('searchbar-active');
       });
       searchResults.appendChild(lione);
     });
-    searchWrapper.style.display = "block";
+    searchWrapper.style.display = 'block';
   });
   updatePlanOptions(selectedFund, block);
 

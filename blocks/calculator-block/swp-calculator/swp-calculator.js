@@ -1,9 +1,9 @@
-import { div, span, button } from "../../../scripts/dom-helpers.js";
+import { div, span, button } from '../../../scripts/dom-helpers.js';
 
 import {
   createInputBlock,
   formatNumber,
-} from "../common-ui-field/common-ui-field.js";
+} from '../common-ui-field/common-ui-field.js';
 
 /**
  * Update SWP Summary Block values dynamically
@@ -27,20 +27,20 @@ export function updateSWPSummary({
   const updateText = (selector, value, formatter = null) => {
     const el = container.querySelector(selector);
     if (!el || value == null) return;
-    el.textContent = typeof formatter === "function" ? formatter(value) : value;
+    el.textContent = typeof formatter === 'function' ? formatter(value) : value;
   };
 
   // Format numbers into INR style currency (₹)
   const formatCurrency = (val) => formatNumber({ value: val, currency: true });
 
   // --- Update the main values ---
-  updateText("#swp-pre-value", preSwpValue, formatCurrency);
-  updateText("#swp-total-withdrawn", totalWithdrawn, formatCurrency);
-  updateText("#swp-duration", withdrawDuration);
+  updateText('#swp-pre-value', preSwpValue, formatCurrency);
+  updateText('#swp-total-withdrawn', totalWithdrawn, formatCurrency);
+  updateText('#swp-duration', withdrawDuration);
 
   // --- Update CTA label if provided ---
   if (ctaLabel) {
-    const ctaBtn = container.querySelector(".calc-overview-cta");
+    const ctaBtn = container.querySelector('.calc-overview-cta');
     if (ctaBtn) ctaBtn.textContent = ctaLabel;
   }
 }
@@ -81,10 +81,10 @@ export function calculateSWPSummary(params) {
 
   // ----- Validation -----
   if (
-    initialInvestment <= 0 ||
-    preSwpAnnualReturnRate < 0 ||
-    swpAnnualReturnRate < 0 ||
-    swpAmountPerMonth <= 0
+    initialInvestment <= 0
+    || preSwpAnnualReturnRate < 0
+    || swpAnnualReturnRate < 0
+    || swpAmountPerMonth <= 0
   ) {
     const empty = {
       initialInvestment: 0,
@@ -92,7 +92,7 @@ export function calculateSWPSummary(params) {
       totalWithdrawn: 0,
       remainingValue: 0,
       estimatedReturns: 0,
-      compoundingAt: "1.0x",
+      compoundingAt: '1.0x',
       withdrawnPercentage: 0,
       remainingPercentage: 0,
       actualYears: 0,
@@ -108,8 +108,7 @@ export function calculateSWPSummary(params) {
   const preSwpMonths = swpStartAfterYears * 12;
   const preSwpMonthlyRate = preSwpAnnualReturnRate / 12 / 100;
 
-  const preSwpValue =
-    initialInvestment * Math.pow(1 + preSwpMonthlyRate, preSwpMonths);
+  const preSwpValue = initialInvestment * (1 + preSwpMonthlyRate) ** preSwpMonths;
 
   // ---------------------------------------------------------
   // PHASE 2: SWP Simulation
@@ -179,7 +178,7 @@ export function calculateSWPSummary(params) {
     ...result,
     container,
     withdrawDuration: `${years} years & ${months} month${
-      months !== 1 ? "s" : ""
+      months !== 1 ? 's' : ''
     }`,
   });
 
@@ -214,19 +213,19 @@ export function recalculateSWP({
   const getValue = (selector) => {
     const el = container.querySelector(selector);
     if (!el) return null;
-    const val = el.value || el.getAttribute("value") || null;
+    const val = el.value || el.getAttribute('value') || null;
     if (val == null) return null;
-    const num = Number(String(val).replace(/[^0-9.-]/g, ""));
+    const num = Number(String(val).replace(/[^0-9.-]/g, ''));
     return Number.isNaN(num) ? 0 : num;
   };
 
   // Read from DOM if not provided
-  const initialInvestment = iia ?? getValue("#iia-amount");
-  const swpStartAfterYears = sst ?? getValue("#sst-start");
-  const preSwpAnnualReturnRate = ror ?? getValue("#ror-rate");
-  const swpAmountPerMonth = sapm ?? getValue("#sapm-amount");
-  const swpIncreaseRatePerYear = aiisa ?? getValue("#aiisa-increase");
-  const swpAnnualReturnRate = rords ?? getValue("#rords-rate");
+  const initialInvestment = iia ?? getValue('#iia-amount');
+  const swpStartAfterYears = sst ?? getValue('#sst-start');
+  const preSwpAnnualReturnRate = ror ?? getValue('#ror-rate');
+  const swpAmountPerMonth = sapm ?? getValue('#sapm-amount');
+  const swpIncreaseRatePerYear = aiisa ?? getValue('#aiisa-increase');
+  const swpAnnualReturnRate = rords ?? getValue('#rords-rate');
 
   // Call calculator logic
   calculateSWPSummary({
@@ -252,95 +251,95 @@ export function recalculateSWP({
  */
 export function createSWPSummaryBlock({
   container = null,
-  ctaLabel = "Start Your SWP Today",
-  ctaHref = "#",
+  ctaLabel = 'Start Your SWP Today',
+  ctaHref = '#',
 }) {
   if (!container) return null;
 
   const parent = div({
-    class: "calc-overview-summary calc-author-main2 swp-summary",
+    class: 'calc-overview-summary calc-author-main2 swp-summary',
   });
-  const uls = container.querySelectorAll("ul");
+  const uls = container.querySelectorAll('ul');
   if (!uls.length) return parent;
 
   // ---------- Investment value before SWP ----------
   const preSwpUl = uls[0];
   if (preSwpUl) {
-    const lis = preSwpUl.querySelectorAll("li");
+    const lis = preSwpUl.querySelectorAll('li');
     parent.appendChild(
       div(
-        { class: "swp-top-summary" },
-        span({ class: "small-title" }, lis[0]?.textContent.trim() || ""),
+        { class: 'swp-top-summary' },
+        span({ class: 'small-title' }, lis[0]?.textContent.trim() || ''),
         span(
-          { id: "swp-pre-value", class: "swp-amount" },
+          { id: 'swp-pre-value', class: 'swp-amount' },
           formatNumber({
-            value: lis[1]?.textContent.trim()?.replaceAll(",", "") || "",
+            value: lis[1]?.textContent.trim()?.replaceAll(',', '') || '',
             currency: true,
-          })
-        )
-      )
+          }),
+        ),
+      ),
     );
   }
 
   // ---------- Withdrawal Summary header ----------
   const summaryUl = uls[1];
   if (summaryUl) {
-    const lis = summaryUl.querySelectorAll("li");
-    const iconEl = lis[0]?.querySelector("img");
+    const lis = summaryUl.querySelectorAll('li');
+    const iconEl = lis[0]?.querySelector('img');
 
-    const headerDiv = div({ class: "swp-withdrawal-header" });
+    const headerDiv = div({ class: 'swp-withdrawal-header' });
 
     if (iconEl) {
-      const iconWrap = span({ class: "icon icon-analytics" });
+      const iconWrap = span({ class: 'icon icon-analytics' });
       iconWrap.appendChild(iconEl.cloneNode(true));
       headerDiv.appendChild(iconWrap);
     }
 
     headerDiv.appendChild(
       div(
-        { class: "withdrawal-header-text" },
-        span({ class: "small-title" }, lis[1]?.textContent.trim() || ""),
-        span({ class: "desc" }, lis[2]?.textContent.trim() || "")
-      )
+        { class: 'withdrawal-header-text' },
+        span({ class: 'small-title' }, lis[1]?.textContent.trim() || ''),
+        span({ class: 'desc' }, lis[2]?.textContent.trim() || ''),
+      ),
     );
 
     parent.appendChild(headerDiv);
   }
 
   // ---------- Withdrawal details (Amount + Duration) ----------
-  const detailsWrapper = div({ class: "swp-withdrawal-details" });
+  const detailsWrapper = div({ class: 'swp-withdrawal-details' });
 
   const totalWithdrawnUl = uls[2];
   const withdrawnForUl = uls[3];
 
   if (totalWithdrawnUl) {
-    const lis = totalWithdrawnUl.querySelectorAll("li");
+    const lis = totalWithdrawnUl.querySelectorAll('li');
     detailsWrapper.appendChild(
       div(
-        { class: "withdrawal-item" },
-        span({ class: "small-title" }, lis[0]?.textContent.trim() || ""),
+        { class: 'withdrawal-item' },
+        span({ class: 'small-title' }, lis[0]?.textContent.trim() || ''),
         span(
-          { id: "swp-total-withdrawn", class: "swp-amount" },
+          { id: 'swp-total-withdrawn', class: 'swp-amount' },
           formatNumber({
-            value: lis[1]?.textContent.trim()?.replaceAll(",", "") || "",
+            value: lis[1]?.textContent.trim()?.replaceAll(',', '') || '',
             currency: true,
-          })
-        )
-      )
+          }),
+        ),
+      ),
     );
   }
 
   if (withdrawnForUl) {
-    const lis = withdrawnForUl.querySelectorAll("li");
+    const lis = withdrawnForUl.querySelectorAll('li');
     detailsWrapper.appendChild(
       div(
-        { class: "withdrawal-item" },
-        span({ class: "small-title" }, lis[0]?.textContent.trim() || ""),
+        { class: 'withdrawal-item' },
+        span({ class: 'small-title' }, lis[0]?.textContent.trim() || ''),
         span(
-          { id: "swp-duration", class: "swp-duration-text" },
-          lis[1]?.textContent.trim() || ""
-        )
-      )
+          { id: 'swp-duration', class: 'swp-duration-text' },
+          lis[1]?.textContent.trim() || '',
+        ),
+      ),
     );
   }
 
@@ -350,7 +349,7 @@ export function createSWPSummaryBlock({
   const ctaUl = uls[4];
   let ctaText = ctaLabel;
   if (ctaUl) {
-    const link = ctaUl.querySelector("a");
+    const link = ctaUl.querySelector('a');
     if (link) {
       ctaText = link.textContent.trim() || ctaLabel;
     }
@@ -358,12 +357,12 @@ export function createSWPSummaryBlock({
 
   const ctaBtn = button(
     {
-      class: "calc-overview-cta",
+      class: 'calc-overview-cta',
       onclick: () => {
         window.location.href = ctaHref;
       },
     },
-    ctaText
+    ctaText,
   );
 
   parent.appendChild(ctaBtn);
@@ -372,19 +371,19 @@ export function createSWPSummaryBlock({
 }
 
 export default function decorate(block) {
-  const CALC_AUTHOR_MAIN = block.querySelector(".calc-author-main1");
+  const CALC_AUTHOR_MAIN = block.querySelector('.calc-author-main1');
   if (!CALC_AUTHOR_MAIN) {
-    console.warn("No .calc-author-main1 element found.");
+    console.warn('No .calc-author-main1 element found.');
     return;
   }
 
   // Define group names in the order they appear (every 4 values = 1 group)
-  const PARAM_GROUPS = ["IIA", "SST", "ROR", "SAPM", "AIISA", "RORDS"];
+  const PARAM_GROUPS = ['IIA', 'SST', 'ROR', 'SAPM', 'AIISA', 'RORDS'];
 
   // Collect all <p> .comlist elements inside both .sub1 and .sub2
   const elements = [
     ...CALC_AUTHOR_MAIN.querySelectorAll(
-      ".calc-author-sub1 .comlist, .calc-author-sub2 .comlist"
+      '.calc-author-sub1 .comlist, .calc-author-sub2 .comlist',
     ),
   ].map((el) => el.textContent.trim());
 
@@ -402,30 +401,29 @@ export default function decorate(block) {
     });
   }
 
-  const CALC_OVERVIEW_DATA =
-    CALC_AUTHOR_MAIN.querySelector(".calc-author-sub3");
+  const CALC_OVERVIEW_DATA = CALC_AUTHOR_MAIN.querySelector('.calc-author-sub3');
   block.appendChild(createSWPSummaryBlock({ container: CALC_OVERVIEW_DATA }));
-  CALC_AUTHOR_MAIN.innerHTML = "";
+  CALC_AUTHOR_MAIN.innerHTML = '';
 
   // Assuming you already have these from your flat data extraction:
-  const iia = CALC_FLAT_DATA.find((d) => d.name === "IIA");
-  const sst = CALC_FLAT_DATA.find((d) => d.name === "SST");
-  const ror = CALC_FLAT_DATA.find((d) => d.name === "ROR");
-  const sapm = CALC_FLAT_DATA.find((d) => d.name === "SAPM");
-  const aiisa = CALC_FLAT_DATA.find((d) => d.name === "AIISA");
-  const rords = CALC_FLAT_DATA.find((d) => d.name === "RORDS");
+  const iia = CALC_FLAT_DATA.find((d) => d.name === 'IIA');
+  const sst = CALC_FLAT_DATA.find((d) => d.name === 'SST');
+  const ror = CALC_FLAT_DATA.find((d) => d.name === 'ROR');
+  const sapm = CALC_FLAT_DATA.find((d) => d.name === 'SAPM');
+  const aiisa = CALC_FLAT_DATA.find((d) => d.name === 'AIISA');
+  const rords = CALC_FLAT_DATA.find((d) => d.name === 'RORDS');
 
   // 🟢 Initial Investment Amount
   const iiaBlock = createInputBlock({
-    id: "iia-amount",
+    id: 'iia-amount',
     ...iia,
-    prefix: "₹",
-    fieldType: "currency",
-    prefixAttr: { class: "currency-prefix" },
+    prefix: '₹',
+    fieldType: 'currency',
+    prefixAttr: { class: 'currency-prefix' },
     inputBlockAttr: {
-      class: "iia-inp-container",
+      class: 'iia-inp-container',
     },
-    variant: "number",
+    variant: 'number',
     onInput: (e) => {
       recalculateSWP({ iia: e.target.value, container: block });
     },
@@ -436,14 +434,14 @@ export default function decorate(block) {
 
   // 🟢 SWP Start Time
   const sstBlock = createInputBlock({
-    id: "sst-start",
+    id: 'sst-start',
     ...sst,
     inputBlockAttr: {
-      class: "sst-inp-container",
+      class: 'sst-inp-container',
     },
-    fieldType: "year",
-    suffix: sst?.default > 1 ? "years" : "year",
-    variant: "stepper",
+    fieldType: 'year',
+    suffix: sst?.default > 1 ? 'years' : 'year',
+    variant: 'stepper',
     updateWidthonChange: true,
     onInput: (e) => {
       recalculateSWP({ sst: e.target.value, container: block });
@@ -455,16 +453,16 @@ export default function decorate(block) {
 
   // 🟢 Rate of Return
   const rorBlock = createInputBlock({
-    id: "ror-rate",
+    id: 'ror-rate',
     ...ror,
-    suffix: "%",
-    suffixAttr: { class: "input-suffix" },
-    fieldType: "percent",
-    variant: "stepper",
+    suffix: '%',
+    suffixAttr: { class: 'input-suffix' },
+    fieldType: 'percent',
+    variant: 'stepper',
     updateWidthonChange: true,
-    prefixAttr: { class: "percent-prefix" },
+    prefixAttr: { class: 'percent-prefix' },
     inputBlockAttr: {
-      class: "ror-inp-container",
+      class: 'ror-inp-container',
     },
     onInput: (e) => {
       recalculateSWP({ ror: e.target.value, container: block });
@@ -476,15 +474,15 @@ export default function decorate(block) {
 
   // 🟢 SWP Amount Per Month
   const sapmBlock = createInputBlock({
-    id: "sapm-amount",
+    id: 'sapm-amount',
     ...sapm,
-    prefix: "₹",
-    fieldType: "currency",
-    prefixAttr: { class: "currency-prefix" },
+    prefix: '₹',
+    fieldType: 'currency',
+    prefixAttr: { class: 'currency-prefix' },
     inputBlockAttr: {
-      class: "sapm-inp-container",
+      class: 'sapm-inp-container',
     },
-    variant: "number",
+    variant: 'number',
     onInput: (e) => {
       recalculateSWP({ sapm: e.target.value, container: block });
     },
@@ -495,15 +493,15 @@ export default function decorate(block) {
 
   // 🟢 Annual Increase in SWP Amount
   const aiisaBlock = createInputBlock({
-    id: "aiisa-increase",
+    id: 'aiisa-increase',
     ...aiisa,
-    suffix: "%",
-    suffixAttr: { class: "input-suffix" },
-    fieldType: "percent",
-    variant: "stepper",
+    suffix: '%',
+    suffixAttr: { class: 'input-suffix' },
+    fieldType: 'percent',
+    variant: 'stepper',
     updateWidthonChange: true,
     inputBlockAttr: {
-      class: "aiisa-inp-container",
+      class: 'aiisa-inp-container',
     },
     onInput: (e) => {
       recalculateSWP({ aiisa: e.target.value, container: block });
@@ -515,15 +513,15 @@ export default function decorate(block) {
 
   // 🟢 Expected Rate of Return During SWP
   const rordsBlock = createInputBlock({
-    id: "rords-rate",
+    id: 'rords-rate',
     ...rords,
-    suffix: "%",
-    suffixAttr: { class: "input-suffix" },
-    fieldType: "percent",
-    variant: "stepper",
+    suffix: '%',
+    suffixAttr: { class: 'input-suffix' },
+    fieldType: 'percent',
+    variant: 'stepper',
     updateWidthonChange: true,
     inputBlockAttr: {
-      class: "rords-inp-container",
+      class: 'rords-inp-container',
     },
     onInput: (e) => {
       recalculateSWP({ rords: e.target.value, container: block });
@@ -538,7 +536,7 @@ export default function decorate(block) {
     rorBlock,
     sapmBlock,
     aiisaBlock,
-    rordsBlock
+    rordsBlock,
   );
   calculateSWPSummary({
     initialInvestment: iia?.default,
@@ -549,10 +547,10 @@ export default function decorate(block) {
     swpStartAfterYears: sst?.default,
     callbackFunc: (data) => {
       updateSWPSummary({
-        container: block.querySelector(".calc-overview-summary.swp-summary"),
+        container: block.querySelector('.calc-overview-summary.swp-summary'),
         preSwpValue: data.preSwpValue,
         totalWithdrawn: data.totalWithdrawn,
-        withdrawDuration: "12 years & 1 month", // or dynamically computed if needed
+        withdrawDuration: '12 years & 1 month', // or dynamically computed if needed
       });
     },
   });
