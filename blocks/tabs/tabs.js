@@ -758,6 +758,21 @@ export default async function decorate(block) {
         dropdown.classList.remove('dropdown-active');
       }
     });
+
+    // When clicking outside the search container, if the input is empty
+    // remove the visual 'search-active' so the cancel button hides.
+    document.addEventListener('click', (event) => {
+      if (!droplist.contains(event.target)) {
+        dropdown.classList.remove('dropdown-active');
+        try {
+          if (searchFireld && searchFireld.value.trim() === '') {
+            searchFireld.closest('.search-wrapper').classList.remove('search-active');
+          }
+        } catch (e) {
+          // ignore
+        }
+      }
+    });
     cancelbtn.addEventListener('click', () => {
       searchFireld.value = '';
       searchFireld.closest('.search-wrapper').classList.remove('search-active');
@@ -791,9 +806,9 @@ export default async function decorate(block) {
   // Get all the tab buttons
   const tabsPreviousStudies1 = document.querySelectorAll('.glossary-tabs .tabs-list .tabs-tab');
   if (tabsPreviousStudies1) {
-  // Function to handle switching tabs
+    // Function to handle switching tabs
     const switchTab = (clickedTab) => {
-    // 1. Remove 'active' and 'aria-selected' from all tabs
+      // 1. Remove 'active' and 'aria-selected' from all tabs
       Array.from(tabsPreviousStudies1).forEach((tab) => {
         tab.classList.remove('active');
         tab.setAttribute('aria-selected', 'false');
@@ -812,7 +827,7 @@ export default async function decorate(block) {
     // Add a click event listener to each tab
     Array.from(tabsPreviousStudies1).forEach((tab) => {
       tab.addEventListener('click', () => {
-      // When a tab is clicked, run the switchTab function
+        // When a tab is clicked, run the switchTab function
         switchTab(tab);
       });
     });
@@ -871,9 +886,9 @@ export default async function decorate(block) {
     const tabsPreviousStudies = document.querySelectorAll('.previous-studies-ctn .tabs-list .tabs-tab');
 
     if (tabsPreviousStudies) {
-    // Function to handle switching tabs
+      // Function to handle switching tabs
       const switchTab = (clickedTab) => {
-      // 1. Remove 'active' and 'aria-selected' from all tabs
+        // 1. Remove 'active' and 'aria-selected' from all tabs
         tabsPreviousStudies.forEach((tab) => {
           tab.classList.remove('active');
           tab.setAttribute('aria-selected', 'false');
@@ -895,7 +910,7 @@ export default async function decorate(block) {
       // Add a click event listener to each tab
       tabsPreviousStudies.forEach((tab) => {
         tab.addEventListener('click', () => {
-        // When a tab is clicked, run the switchTab function
+          // When a tab is clicked, run the switchTab function
           switchTab(tab);
         });
       });
@@ -918,6 +933,7 @@ export default async function decorate(block) {
     });
   }
   // previous studies tab end
+
   if (block.closest('.previous-studies-tab')) {
     const mainblk = block.closest('main');
     Array.from(block.querySelector('.tabs-list').children)
@@ -1021,9 +1037,19 @@ export default async function decorate(block) {
         dataMapMoObj.addIndexed(dsp);
       }
 
+      // MAIN WRAPPER (span.icon-share parent → <p>)
       const eventvar = elemevent.parentElement;
 
-      // 🔹 Popup Toggle
+      // EXTRA TRIGGER → p.comlist.embedsubinner1
+      const textTrigger = eventvar.querySelector('.embedsubinner1');
+      if (textTrigger) {
+        textTrigger.addEventListener('click', (e) => {
+          e.stopPropagation();
+          eventvar.click(); // open same popup
+        });
+      }
+
+      // POPUP TOGGLE (main)
       eventvar.addEventListener('click', (e) => {
         e.stopPropagation();
 
@@ -1032,8 +1058,10 @@ export default async function decorate(block) {
 
         const isVisible = dspblk.style.display === 'block';
 
-        // Close all others
-        prevpage.querySelectorAll('.share-popup').forEach((pelem) => { pelem.style.display = 'none'; });
+        // Close all
+        prevpage.querySelectorAll('.share-popup').forEach((pelem) => {
+          pelem.style.display = 'none';
+        });
 
         dspblk.style.display = isVisible ? 'none' : 'block';
       });
@@ -1041,7 +1069,7 @@ export default async function decorate(block) {
       const dspblk = elemevent.parentElement.nextElementSibling;
       if (!dspblk) return;
 
-      // Common share data
+      // SHARE DATA
       const getShareData = () => {
         const shareUrl = window.location.href;
         const card = elemevent.closest('li');
@@ -1049,11 +1077,11 @@ export default async function decorate(block) {
         return { shareUrl, shareText };
       };
 
-      // 🔹 Facebook Share
+      // FACEBOOK SHARE
       const facebookBtn = dspblk.querySelector('.listindex1');
       if (facebookBtn) {
+        facebookBtn.querySelector('a').removeAttribute('href');
         facebookBtn.addEventListener('click', (e) => {
-          facebookBtn.querySelector('a').removeAttribute('href');
           e.stopPropagation();
           const { shareUrl } = getShareData();
           const fbLink = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`;
@@ -1061,7 +1089,7 @@ export default async function decorate(block) {
         });
       }
 
-      // 🔹 WhatsApp Share
+      // WHATSAPP SHARE
       const whatsappBtn = dspblk.querySelector('.listindex2');
       if (whatsappBtn) {
         whatsappBtn.querySelector('a').removeAttribute('href');
@@ -1073,7 +1101,7 @@ export default async function decorate(block) {
         });
       }
 
-      // 🔹 X (Twitter) Share
+      // X (TWITTER) SHARE
       const twitterBtn = dspblk.querySelector('.listindex3');
       if (twitterBtn) {
         twitterBtn.querySelector('a').removeAttribute('href');
@@ -1085,6 +1113,7 @@ export default async function decorate(block) {
         });
       }
 
+      // COPY SHARE
       const copyfunc = dspblk.querySelector('.listindex4');
       if (copyfunc) {
         copyfunc.querySelector('a').removeAttribute('href');
@@ -1096,30 +1125,22 @@ export default async function decorate(block) {
             navigator.clipboard.writeText(currentUrl);
 
             urlCopied.style.display = 'block';
-            setTimeout(() => {
-              urlCopied.style.display = 'none';
-              // breadcrumb.style.display = 'none';
-            }, 1000);
+            setTimeout(() => { urlCopied.style.display = 'none'; }, 1000);
           } catch (err) {
             urlCopied.textContent = 'Could not copy URL. Please make sure the window is focused.';
             urlCopied.style.display = 'block';
-            setTimeout(() => {
-              urlCopied.style.display = 'none';
-            }, 1000);
+            setTimeout(() => { urlCopied.style.display = 'none'; }, 1000);
           }
         });
       }
     });
 
-    // Click outside → close popup
+    // CLOSE POPUPS WHEN CLICKING OUTSIDE
     document.addEventListener('click', (event) => {
-      if (!dropList.contains(event.target) && !selectedTab.contains(event.target)) {
-        dropList.classList.remove('active');
-      }
-
       const clickedShareIcon = event.target.closest('.icon-share');
       const clickedSharePopup = event.target.closest('.share-popup');
 
+      // Do not close when clicking inside icon, popup, OR inside <p>
       if (clickedShareIcon || clickedSharePopup || event.target.closest('p')) return;
 
       prevpage.querySelectorAll('.prev-studies-wrapper .icon-share').forEach((icon) => {
@@ -1128,4 +1149,119 @@ export default async function decorate(block) {
       });
     });
   }
+
+  //  START SEARCH FUNCTIONALITY
+
+  const glossaryPanel = document.querySelectorAll('.tabs-panel');
+  const searchNewElement = document.querySelector('.search-results');
+  const searchFldkey = document.querySelector('#our-experts-search');
+  const keySearchNewEle = document.querySelector('.search-results');
+
+  // searchNewElement.classList.add('glossary-search-results', 'dsp-none');
+  let titleArr = [];
+
+  glossaryPanel.forEach(panel => {
+    const glossaryTitles = panel.querySelectorAll('.tab-iteminner1');
+
+    glossaryTitles.forEach(title => {
+      titleArr.push(title.textContent.trim());
+    });
+  });
+  // remove duplicates
+  titleArr = [...new Set(titleArr)];
+
+  titleArr.forEach((value) => {
+    const newItem = document.createElement('p');
+    newItem.classList.add('result-item');
+    newItem.setAttribute('data-original-text', value);
+
+    const anchorTag = document.createElement('a');
+    anchorTag.classList.add('list');
+    anchorTag.classList.add('no-redirect');
+
+    anchorTag.textContent = value;
+    newItem.appendChild(anchorTag);
+    searchNewElement.appendChild(newItem);
+    // searchNewElement.classList.remove('dsp-none');
+  });
+
+  searchFldkey.addEventListener('focus', () => {
+    keySearchNewEle.classList.remove('dsp-none');
+
+    // If there's a search term, re-apply the filter to preserve no-results-message
+    if (searchFldkey.value.trim()) {
+      filterListItems(searchFldkey.value);
+      return;
+    }
+  });
+
+  // Handle search result item clicks: jump to matching alphabet tab and scroll to result
+  searchNewElement.addEventListener('click', (event) => {
+    const resultItem = event.target.closest('.result-item');
+    if (!resultItem) return;
+
+    const selectedText = resultItem.getAttribute('data-original-text') || resultItem.textContent.trim();
+    if (!selectedText) return;
+
+    // Extract first letter and determine tab identifier
+    const firstLetter = selectedText.charAt(0).toUpperCase();
+    const tabIdentifier = firstLetter === '#' ? '#' : firstLetter;
+
+    // Find the matching alphabet tab in .tabs-list.comlist.tabmain1
+    const glossaryTabList = document.querySelector('.tabs-list.comlist.tabmain1');
+    if (!glossaryTabList) return;
+
+    const matchingTab = Array.from(glossaryTabList.querySelectorAll('.tabs-tab')).find((tab) => {
+      const tabText = tab.textContent.trim();
+      return tabText === tabIdentifier;
+    });
+
+    if (!matchingTab) return;
+
+    // Click the matching tab to switch panels
+    matchingTab.click();
+
+    // Find and scroll to the result item in the newly active panel
+    setTimeout(() => {
+      const activePanel = document.querySelector('[role="tabpanel"][aria-hidden="false"]');
+      if (!activePanel) return;
+
+      const resultInPanel = Array.from(activePanel.querySelectorAll('.tab-iteminner1')).find((item) => item.textContent.trim() === selectedText);
+
+      if (resultInPanel) {
+        resultInPanel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        // Optional: highlight the result temporarily
+        resultInPanel.style.backgroundColor = 'rgba(46, 42, 148, 0.1)';
+        setTimeout(() => {
+          resultInPanel.style.backgroundColor = '';
+        }, 1500);
+      }
+    }, 100);
+
+    // Close the search dropdown
+    keySearchNewEle.classList.add('dsp-none');
+    // Set the input value to the selected text
+    searchFldkey.value = selectedText;
+    searchFldkey.closest('.search-wrapper').classList.add('search-active');
+  });
+
+  // When input is cleared (backspace), auto-jump back to '#' tab
+  searchFldkey.addEventListener('input', (event) => {
+    if (event.target.value.trim() === '') {
+      // Input is empty; jump to '#' tab
+      const glossaryTabList = document.querySelector('.tabs-list.comlist.tabmain1');
+      if (!glossaryTabList) return;
+
+      const hashTab = Array.from(glossaryTabList.querySelectorAll('.tabs-tab')).find((tab) => {
+        return tab.textContent.trim() === '#';
+      });
+
+      if (hashTab) {
+        hashTab.click();
+      }
+
+      // Remove search-active class to hide cancel button
+      searchFldkey.closest('.search-wrapper').classList.remove('search-active');
+    }
+  });
 }

@@ -1,6 +1,6 @@
 @use "sass:map";
-@use "../../styles/common-theme/css/variables_mixins"as *;
-@use "../../styles/common-theme/css/fluid-typography"as *;
+@use "../../styles/common-theme/css/variables_mixins" as *;
+@use "../../styles/common-theme/css/fluid-typography" as *;
 
 .section.our-experts-container {
     // margin-top: 24px;
@@ -40,6 +40,7 @@
 
             &-cont1 {
                 .our-expert-section1 {
+
                     h1,
                     h2,
                     h3,
@@ -102,10 +103,10 @@
                             margin-right: 16px;
                         }
 
-                        &.input-focused {
-                            border-radius: var(--border-radius-6, 6px);
-                            border: 2px solid var(--strokes-typing, #1887D2);
-                        }
+                        // &.input-focused {
+                        //     border-radius: var(--border-radius-6, 6px);
+                        //     border: 2px solid var(--strokes-typing, #1887D2);
+                        // }
 
                         input {
                             border: none;
@@ -342,16 +343,16 @@
                             color: var(--neutrals-black);
                             font-family: var(--body);
                             font-feature-settings:
-                                "ss01"on,
-                                "ss04"on,
-                                "cv01"on,
-                                "cv02"on,
-                                "cv03"on,
-                                "cv04"on,
-                                "cv06"on,
-                                "cv09"on,
-                                "cv10"on,
-                                "cv11"on;
+                                "ss01" on,
+                                "ss04" on,
+                                "cv01" on,
+                                "cv02" on,
+                                "cv03" on,
+                                "cv04" on,
+                                "cv06" on,
+                                "cv09" on,
+                                "cv10" on,
+                                "cv11" on;
                             font-weight: 400;
                             padding: 12px 20px 12px 40px;
                             cursor: pointer;
