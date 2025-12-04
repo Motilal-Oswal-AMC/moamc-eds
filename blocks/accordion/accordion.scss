@@ -3,8 +3,8 @@
 /*   media-feature-range-notation */
 
 @use "sass:map";
-@use "../../styles/common-theme/css/variables_mixins"as *;
-@use "../../styles/common-theme/css/fluid-typography"as *;
+@use "../../styles/common-theme/css/variables_mixins" as *;
+@use "../../styles/common-theme/css/fluid-typography" as *;
 @import "./faq-page.css";
 
 .accordion-container {
@@ -446,3 +446,132 @@
 }
 
 // Faq css End
+
+// Privacy Policy QnA Styling Start
+.privacypolicy-container {
+  .privacy-policy-banner {
+    .wrapper-policy {
+      .accordion-wrapper {
+        .accordion-item {
+          border: none;
+
+          .accordion-item-label {
+            padding: 16px 0;
+
+            &::after {
+              border: unset;
+            }
+
+            p.comlist {
+              margin: unset;
+              color: var(--blue-1-800-primary);
+              font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
+              font-family: var(--body);
+              font-size: var(--body-large-medium-size);
+              font-style: normal;
+              font-weight: 500;
+              line-height: var(--body-large-medium-line-height);
+              padding-right: 35px;
+
+              @include media(mobile) {
+                font-size: var(--body-medium-medium-size);
+                line-height: var(--body-medium-medium-line-height);
+              }
+
+              &:after {
+                content: "";
+                position: absolute;
+                top: 28px;
+                right: 0;
+                width: 24px;
+                height: 24px;
+                border: none;
+                border-width: unset;
+                transform: translateY(-50%);
+                background: url(/icons/plus-blue.svg);
+              }
+            }
+          }
+
+          .accordion-item-body {
+            padding-left: unset;
+
+            .pp-banner-picture1 {
+              margin: unset;
+            }
+          }
+
+          &.accordion-item[open] {
+            background: none;
+            -webkit-tap-highlight-color: transparent;
+            border-radius: 8px;
+            transition: transform 0.2s;
+
+            summary {
+              color: #2e2a94;
+              border-radius: 8px 8px 0 0;
+              padding: $spacing-16 $spacing-none $spacing-8 $spacing-none;
+              background-color: transparent;
+
+              p.comlist {
+                position: relative;
+
+                @include font-style(var(--body-large-semibold-size),
+                  var(--body-large-semibold-line-height),
+                  var(--blue-1-800-primary),
+                  600,
+                  var(--body));
+
+                @include media(mobile) {
+                  padding-right: 45px;
+                  font-size: var(--body-medium-semibold-size);
+                  line-height: var(--body-medium-semibold-line-height);
+                }
+
+                &::after {
+                  top: 12px;
+                  right: 0;
+                  background: url("/icons/mins-blue.svg");
+                  transform: translateY(-50%);
+                }
+              }
+            }
+
+            .accordion-item-body {
+              color: #fff;
+              border: none;
+              outline: none;
+              margin-top: -1px;
+              padding: $spacing-16 $spacing-none;
+              padding-top: 0;
+              border-radius: 0 0 8px 8px;
+              // box-shadow: 0 4px 12px 0 rgb(0 0 0 / 5%);
+              background-color: transparent;
+
+              @include media(mobile) {
+                padding-top: 0;
+              }
+
+              p.comlist {
+                padding-right: 40px;
+
+                @include font-style(var(--body-small-regular-size),
+                  var(--label-large-line-height),
+                  var(--text-body),
+                  400,
+                  var(--body));
+
+                @include media(mobile) {
+                  padding: 0;
+                  font-size: var(--paragraph-xsmall-size);
+                  line-height: var(--paragraph-xsmall-line-height);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+// Privacy Policy QnA Styling End

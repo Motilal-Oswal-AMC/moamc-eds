@@ -137,5 +137,15 @@ export default function decorate(block) {
       });
       mainwrapper.append(divwrapper);
     }
+  } else if (
+    block.closest('.section').getAttribute('data-id') === 'faq-section-show'
+  ) {
+    const mainwrapper = block.closest('.section.freq-ask-ques');
+    const divwrapper = document.createElement('div');
+    divwrapper.classList.add('faq-our-fund');
+    Array.from(mainwrapper.children).forEach((elchild) => {
+      divwrapper.append(elchild);
+    });
+    mainwrapper.append(divwrapper);
   }
 }

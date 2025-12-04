@@ -699,6 +699,10 @@
             "value": "thank-you-screen"
           },
           {
+            "name": "Privacy Policy Banner",
+            "value": "privacy-policy-banner"
+          },
+          {
             "name": "Invest Minor Account",
             "value": "invest-minor-account"
           },
@@ -2069,37 +2073,42 @@
       {
         "component": "reference",
         "valueType": "string",
-        "name": "image",
+        "name": "col1_image",
         "label": "Image for Desktop",
         "multi": false
       },
       {
         "component": "text",
         "valueType": "string",
-        "name": "imageAlt",
+        "name": "col1_imageAlt",
         "label": "Alt for Desktop",
         "value": ""
       },
       {
         "component": "reference",
         "valueType": "string",
-        "name": "image2",
+        "name": "col2_image2",
         "label": "Image for Mobile",
         "multi": false
       },
       {
         "component": "text",
         "valueType": "string",
-        "name": "image2Alt",
+        "name": "col2_image2Alt",
         "label": "Alt for mobile",
         "value": ""
       },
       {
         "component": "richtext",
-        "name": "text",
+        "name": "col3_text",
         "value": "",
         "label": "Text",
         "valueType": "string"
+      },
+       {
+        "component": "text",
+        "name": "col3_id",
+        "label": "Enter Block Id"
       }
     ]
   },
