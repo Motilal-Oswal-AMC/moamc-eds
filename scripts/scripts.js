@@ -826,7 +826,17 @@ if (skinstakeComponent != null) {
   ];
   dataMapMoObj.addIndexed(skinstakeComponent);
 }
-
+const ourstrategiesComponent = document.querySelector('.our-strategies-aif');
+if (ourstrategiesComponent != null) {
+  dataMapMoObj.CLASS_PREFIXES = [
+    'our-strategies-wrap',
+    'our-strategies-text',
+    'our-strategies-acc-wrap',
+    'our-strategies-question',
+    'our-strategies-answer',
+  ];
+  dataMapMoObj.addIndexed(ourstrategiesComponent);
+}
 try {
   const whymattersComponent = document.querySelector('.why-matters-component');
   if (whymattersComponent != null) {
