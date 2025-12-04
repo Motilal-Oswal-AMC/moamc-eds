@@ -194,6 +194,8 @@ export default function decorate(block) {
     };
 
     searchFld.addEventListener('focus', () => {
+      e.preventDefault();
+      listContainer.classList.remove('dsp-none');
       searchNewEle.classList.remove('dsp-none');
 
       // If there's a search term, re-apply the filter to preserve no-results-message
@@ -330,7 +332,7 @@ export default function decorate(block) {
       filterListItems('');
       closeBtn.style.display = 'none';
     });
-    searchFldkey.addEventListener('keydown', (event) => {
+    searchFld.addEventListener('keydown', (event) => {
       const visibleItems = (param) => {
         if (param === undefined) {
           return Array.from(listContainer.querySelectorAll('.list'))
@@ -367,14 +369,33 @@ export default function decorate(block) {
         }
         case 'Enter': {
           event.preventDefault();
-          const vItemsEnter = visibleItems();
-          if (vItemsEnter.length === 0) return false;
-          const idx = (currentFocusIndex < 0 || currentFocusIndex >= vItemsEnter.length) ? 0 : currentFocusIndex;
-          const selected = vItemsEnter[idx];
-          // Populate input with the selected item's text but do NOT redirect
-          searchFld.value = selected.textContent.trim();
-          closeBtn.style.display = 'block';
-          listContainer.classList.add('dsp-none');
+
+          const vEnt = visibleItems();
+          if (vEnt.length === 0) return false;
+
+          const selIndex = (currentFocusIndex < 0 || currentFocusIndex >= vEnt.length)
+            ? 0
+            : currentFocusIndex;
+
+          const sel = vEnt[selIndex];
+          if (sel) {
+            // Set text in input
+            searchFld.value = sel.textContent.trim();
+
+            // Show close button
+            closeBtn.style.display = 'flex';
+
+            // Hide dropdown
+            listContainer.classList.add('dsp-none');
+
+            // 👉 Get the href from the selected item
+            const redUrl = sel.getAttribute('href');
+
+            // 👉 Redirect if href exists
+            if (redUrl && redUrl !== '#') {
+              window.location.href = redUrl;
+            }
+          }
           break;
         }
         default:
@@ -383,15 +404,42 @@ export default function decorate(block) {
       return event;
     });
   }
+  // document.addEventListener('click', (event) => {
+  //   const inputbox = block.querySelector('.our-experts-cont2 .our-expert-sub1 input');
+  //   const searchbox = block.querySelector('.our-experts-cont2 .search-results');
+  //   if (!inputbox.contains(event.target) && !searchbox.contains(event.target)) {
+  //     searchbox.classList.add('dsp-none');
+  //     if (searchFld.value === '' && (dataMapMoObj.searchFld === undefined || dataMapMoObj.searchFld === '')) {
+  //       closeBtn.style.display = 'none';
+  //     }
+  //   }
+  // });
+
   document.addEventListener('click', (event) => {
-    const inputbox = block.querySelector('.our-experts-cont2 .our-expert-sub1 input');
-    const searchbox = block.querySelector('.our-experts-cont2 .search-results');
-    if (!inputbox.contains(event.target) && !searchbox.contains(event.target)) {
-      searchbox.classList.add('dsp-none');
-      if (searchFld.value === '' && (dataMapMoObj.searchFld === undefined || dataMapMoObj.searchFld === '')) {
+    const input = document.querySelector('#our-experts-search');
+    const listBox = document.querySelector('.search-results');
+
+    if (!input.contains(event.target) && !listBox.contains(event.target)) {
+      listBox.classList.add('dsp-none');
+      // If the input has a value, keep the label floated. Otherwise remove the float class.
+      if (searchFld.value && searchFld.value.trim() !== '') {
+        try {
+          input.classList.add('focus-visible');
+          input.classList.add('active');
+        } catch (e) {
+          // ignore
+        }
+      } else if (dataMapMoObj.searchFld === undefined || dataMapMoObj.searchFld === '') {
         closeBtn.style.display = 'none';
+        try {
+          input.classList.remove('focus-visible');
+          input.classList.remove('active');
+        } catch (e) {
+          // ignore
+        }
       }
     }
   });
+
   // --- END SEARCH FUNCTIONALITY ---
 }
