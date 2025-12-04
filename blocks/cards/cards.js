@@ -288,6 +288,11 @@ export default function decorate(block) {
       }
     });
   }
+  const textPart = block.closest('.global-dashboard-container');
+  if (textPart) {
+    dataMapMoObj.CLASS_PREFIXES = ['global-card', 'global-cardsub', 'global-cardinner', 'global-cardchild', 'global-carditem', 'global-cardsubitem'];
+    dataMapMoObj.addIndexed(block);
+  }
 }
 
 function decorateArticlePage() {

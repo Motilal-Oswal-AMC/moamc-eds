@@ -299,8 +299,7 @@ export function wishlist() {
   const count = stars.length;
   const watchlistSpan = document.querySelector('.watchlisttext span');
   if (watchlistSpan) {
-    watchlistSpan.textContent = `My Watchlist (${count < 10 ? '0' : ''
-    }${count})`;
+    watchlistSpan.textContent = `My Watchlist (${count < 10 ? '0' : ''}${count})`;
   }
 }
 
@@ -586,11 +585,11 @@ function articleStructure() {
       ];
       dataMapMoObj.addIndexed(subright);
     });
-      const maindiv = maincloser.querySelector('.main-wrapper');
-      // maindiv.classList.add('main-wrapper');
-      maindiv.append(maincloser.querySelector('.article-left-wrapper'));
-      maindiv.append(maincloser.querySelector('.article-right-wrapper'));
-      maincloser.prepend(maindiv);
+    const maindiv = maincloser.querySelector('.main-wrapper');
+    // maindiv.classList.add('main-wrapper');
+    maindiv.append(maincloser.querySelector('.article-left-wrapper'));
+    maindiv.append(maincloser.querySelector('.article-right-wrapper'));
+    maincloser.prepend(maindiv);
     if (maincloser.querySelector('.moedge-article-details')) {
       dataMapMoObj.CLASS_PREFIXES = [
         'articlemain',
@@ -661,11 +660,11 @@ function articleStructure() {
       parent.insertBefore(wrapperDiv, mainArticle3);
       wrapperDiv.appendChild(mainArticle3);
       wrapperDiv.appendChild(mainArticle4);
-      const maindiv = maincloser.querySelector('.main-wrapper');
+      const maindiver = maincloser.querySelector('.main-wrapper');
       // maindiv.classList.add('main-wrapper');
-      maindiv.append(maincloser.querySelector('.article-left-wrapper'));
-      maindiv.append(maincloser.querySelector('.article-right-wrapper'));
-      maincloser.prepend(maindiv);
+      maindiver.append(maincloser.querySelector('.article-left-wrapper'));
+      maindiver.append(maincloser.querySelector('.article-right-wrapper'));
+      maincloser.prepend(maindiver);
       // const main1 = maincloser.querySelector('.article-left-wrapper');
       // const main2 = maincloser.querySelector('.article-right-wrapper');
       // const mainwrapperDiv = maincloser.querySelector('.main-wrapper');
@@ -790,6 +789,7 @@ if (highimageComponent != null) {
     'high-skin-component-ctn',
     'high-skin-component-external',
     'high-skin-component-internal',
+
   ];
   dataMapMoObj.addIndexed(highimageComponent);
 }
@@ -804,17 +804,24 @@ if (skinmoamcComponent != null) {
     'moamc-component-para-one',
     'moamc-component-para-two',
     'moamc-component-para-three',
+
   ];
   dataMapMoObj.addIndexed(skinmoamcComponent);
 }
-
-// Adding custom scrollbar to WCS pages
-try {
-  if (document.querySelector('header [data-id="wcs-header"]')) {
-    document.body.classList.add('custom-scroll');
-  }
-} catch (error) {
-  // console.log(error);
+const skinstakeComponent = document.querySelector('.what-stake-component');
+if (skinstakeComponent != null) {
+  dataMapMoObj.CLASS_PREFIXES = [
+    'stake-component-wrap',
+    'stake-component-main-head',
+    'stake-component-title',
+    'stake-component-para',
+    'stake-component-para-one',
+    'stake-component-para-two',
+    'stake-component-img',
+    'stake-img-card-wrap',
+    'stake-img-card-wrap-img',
+  ];
+  dataMapMoObj.addIndexed(skinstakeComponent);
 }
 
 try {
@@ -837,9 +844,7 @@ try {
     dataMapMoObj.addIndexed(whymattersComponent);
   }
 
-  const container = document.querySelector(
-    '.section.why-matters-component.cards-container',
-  );
+  const container = document.querySelector('.section.why-matters-component.cards-container');
 
   const wrapper = document.createElement('div');
   wrapper.classList.add('why-matters-wrapper-in');
@@ -851,16 +856,9 @@ try {
 
   wrapper.appendChild(wrap1);
   wrapper.appendChild(wrap2);
-
-  const section = document.querySelector('.promise-qglp');
-  const skinwrapper = document.createElement('div');
-  skinwrapper.classList.add('skin-in-the-game-wrapper');
-  section.parentNode.insertBefore(skinwrapper, section);
-  skinwrapper.appendChild(section);
 } catch (error) {
   // console.log(error);
 }
-
 // Skin the game static end
 
 // conclusion container start
@@ -887,3 +885,36 @@ if (whyInvestminor != null) {
   ];
   dataMapMoObj.addIndexed(whyInvestminor);
 }
+
+// Adding custom scrollbar to WCS pages
+try {
+  if (document.querySelector('header [data-id="wcs-header"]')) {
+    document.body.classList.add('custom-scroll');
+  }
+} catch (error) {
+  // console.log(error);
+}
+
+async function getlisting() {
+  const resp = await myAPI('GET', 'https://m71vqgw4cj.execute-api.ap-south-1.amazonaws.com/dev/api/public/v1/funds/listing');
+  return resp;
+}
+dataMapMoObj.getlisting = getlisting;
+
+async function getscheme(param) {
+  const resp = await myAPI('GET', `https://m71vqgw4cj.execute-api.ap-south-1.amazonaws.com/dev/api/public/v1/funds?schcode=${param}`);
+  return resp;
+}
+dataMapMoObj.getscheme = getscheme;
+
+async function getfundmanager(param) {
+  const resp = await myAPI('GET', `https://m71vqgw4cj.execute-api.ap-south-1.amazonaws.com/dev/api/public/v1/funds/manager?schcode=${param}`);
+  return resp;
+}
+dataMapMoObj.getfundmanager = getfundmanager;
+
+async function getinsights() {
+  const resp = await myAPI('GET', 'https://main--moamc-eds--motilal-oswal-amc.aem.live/query-index-insights.json');
+  return resp;
+}
+dataMapMoObj.getinsights = getinsights;
