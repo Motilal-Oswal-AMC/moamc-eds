@@ -193,7 +193,7 @@ export default function decorate(block) {
       });
     };
 
-    searchFld.addEventListener('focus', () => {
+    searchFld.addEventListener('focus', (e) => {
       e.preventDefault();
       listContainer.classList.remove('dsp-none');
       searchNewEle.classList.remove('dsp-none');
