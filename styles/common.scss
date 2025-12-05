@@ -1540,9 +1540,13 @@ main>.section.previous-studies-tab.tabs-container {
           font-size: var(--button-medium-size);
           line-height: var(--button-medium-line-height);
           padding: 12px;
-          display: block;
+          // display: block;
           width: 100%;
           max-width: 192px;
+          height: 40px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
       }
     }
@@ -1627,6 +1631,10 @@ main>.section.previous-studies-tab.tabs-container {
         .cards-card-image {
           width: 68px;
           flex-shrink: 0;
+
+          @include media(mobile) {
+            width: unset;
+          }
 
           img {
             width: 48px;

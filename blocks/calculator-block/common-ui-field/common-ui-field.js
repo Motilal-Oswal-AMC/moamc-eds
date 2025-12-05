@@ -33,8 +33,8 @@ export function validateInputWithEvent({
   currency = false,
   currencyCode = "INR",
   locale = "en-IN",
-  ignoreMin = true,
-  allowEmpty = true,
+  ignoreMin = false,
+  allowEmpty = false,
 }) {
   const inputEl = event.target;
   const rawValue = (inputEl.value || "").toString().trim();
@@ -74,16 +74,19 @@ export function validateInputWithEvent({
     ? num !== 0
       ? formatNumber({ value: num, currencyCode, locale })
       : ""
-    : rawValue == "" && allowEmpty
+    : rawValue === "" && allowEmpty
     ? rawValue
     : num;
 
   // Update input
   if (currency) {
     // Find fake input if it exists
-    const fakeInputEl = document.getElementById(`${inputEl.id}-fake`);
-    if (fakeInputEl) {
-      fakeInputEl.value = finalValue; // update formatted currency
+    const hiddenInputEl = document.getElementById(
+      `${inputEl.id?.replace("-fake", "")}`
+    );
+    if (hiddenInputEl) {
+      hiddenInputEl.value = num; // update numeric value in hidden input
+      inputEl.value = finalValue; // update formatted currency
     } else {
       inputEl.value = finalValue; // fallback to original input
     }
@@ -159,12 +162,35 @@ export const updateInputSuffix = (ele) => {
   const fieldType =
     ele?.target?.getAttribute?.("data-fieldType") ||
     ele?.getAttribute?.("data-fieldType");
+  const inputValue = ele?.value || ele?.target?.value || 0;
   if (suffixEle && fieldType) {
     if (fieldType === "year") {
-      suffixEle.textContent = Number(ele?.value || 0) <= 1 ? "year" : "years";
+      suffixEle.textContent = Number(inputValue) <= 1 ? "year" : "years";
     }
   }
 };
+
+/**
+ * Updates the input value and disables/enables the increment/decrement buttons based on min/max
+ * @param {HTMLInputElement} inputEl - The input element
+ */
+function updateStepperButtons(inputEl) {
+  if (!inputEl) return;
+  debugger;
+  const wrapper = inputEl.closest(".calc-input-wrapper.stepper");
+  if (!wrapper) return;
+  const input = wrapper.querySelector(".calc-input");
+  const decBtn = wrapper.querySelector(".dec-btn");
+  const incBtn = wrapper.querySelector(".inc-btn");
+
+  const min = parseFloat(input.min) || 0;
+  const max = parseFloat(input.max) || Infinity;
+  const value = parseFloat(input.value) || 0;
+
+  // Update disabled state
+  if (decBtn) decBtn.disabled = value <= min;
+  if (incBtn) incBtn.disabled = value >= max;
+}
 
 /**
  * Create an input block UI for calculator fields (SIP, ROI, etc.)
@@ -247,13 +273,7 @@ export function createInputBlock({
         filteredValue = filteredValue ? filteredValue.replace(/,/g, "") : "";
         filteredValue = filteredValue?.replace(/[^\d]/g, ""); // allow only digits
       }
-      updateInputSuffix({
-        ...e,
-        target: {
-          ...e.target,
-          value: filteredValue,
-        },
-      });
+      updateInputSuffix(e);
     },
     oninput: (e) => {
       let filteredValue = e.target.value;
@@ -266,13 +286,7 @@ export function createInputBlock({
         filteredValue = filteredValue?.replace(/[^\d]/g, ""); // allow only digits
       }
 
-      updateInputSuffix({
-        ...e,
-        target: {
-          ...e.target,
-          value: filteredValue,
-        },
-      });
+      updateInputSuffix(e);
       if (updateWidthonChange) {
         e.target.style.setProperty(
           "--input-ch-width",
@@ -296,11 +310,13 @@ export function createInputBlock({
         });
         e.target.value = ignoreMin ? finalValue : numeric;
       }
+      if (variant === "stepper") {
+        updateStepperButtons(e.target);
+      }
       rest?.onInput?.(e);
     },
     onblur: (e) => {
       const hasError = e.target.classList.contains("calc-error");
-      debugger;
       if (hasError && ignoreMin) {
         const { numeric } = validateInputWithEvent({
           event: e,
@@ -310,10 +326,16 @@ export function createInputBlock({
           currencyCode: "INR",
           locale: "en-IN",
           ignoreMin: false,
+          allowEmpty: false,
         });
-
         e.target.classList.remove("calc-error");
+        if (variant === "stepper") {
+          updateStepperButtons(e.target);
+        }
         onChange(numeric);
+        if (suffix) {
+          updateInputSuffix(e);
+        }
       }
       rest?.onBlur?.(e);
     },
@@ -342,7 +364,6 @@ export function createInputBlock({
 
     // SYNC: fake → hidden
     fakeInput.addEventListener("blur", (e) => {
-      debugger;
       const result = validateInputWithEvent({
         event: e,
         min,
@@ -351,6 +372,7 @@ export function createInputBlock({
         currencyCode: "INR",
         locale: "en-IN",
         ignoreMin: false,
+        allowEmpty: false,
       });
       const { numeric: num } = result;
 
@@ -365,10 +387,7 @@ export function createInputBlock({
         onChange(num);
       }
 
-      updateInputSuffix({
-        ...e,
-        target: fakeInput,
-      });
+      updateInputSuffix(e);
     });
     fakeInput.addEventListener("input", (e) => {
       const result = validateInputWithEvent({
@@ -379,6 +398,7 @@ export function createInputBlock({
         currencyCode: "INR",
         locale: "en-IN",
         ignoreMin,
+        allowEmpty: false,
       });
       const { numeric: num, finalValue } = result;
       // update hidden input
@@ -393,10 +413,7 @@ export function createInputBlock({
         target: { ...hiddenInput, value: String(num) },
       });
 
-      updateInputSuffix({
-        ...e,
-        target: fakeInput,
-      });
+      updateInputSuffix(e);
     });
 
     fakeInput.addEventListener("change", (e) => {
@@ -451,19 +468,27 @@ export function createInputBlock({
 
   // Stepper buttons
   if (variant === "stepper") {
+    const disableBtn = {
+      min: Number(defVal) <= Number(min), // true if decrement should be disabled
+      max: Number(defVal) >= Number(max), // true if increment should be disabled
+    };
+
     const decBtn = button(
       {
         class: "calc-btn dec-btn",
         type: "button",
         "aria-label": "decrease-btn",
+        ...(disableBtn.min && { disabled: true }), // only add disabled if condition is true
       },
       ""
     );
+
     const incBtn = button(
       {
         class: "calc-btn inc-btn",
         type: "button",
         "aria-label": "increase-btn",
+        ...(disableBtn.max && { disabled: true }), // only add disabled if condition is true
       },
       ""
     );
@@ -473,6 +498,8 @@ export function createInputBlock({
       const newVal = noLimit
         ? current - 1
         : Math.max(Number(min) || 0, current - 1);
+
+      updateStepperButtons(inputEl);
       inputEl.value = newVal;
       updateInputSuffix(inputEl);
       onChange(newVal);
@@ -489,6 +516,8 @@ export function createInputBlock({
       const newVal = noLimit
         ? current + 1
         : Math.min(Number(max) || current + 1, current + 1);
+
+      updateStepperButtons(inputEl);
       inputEl.value = newVal;
       updateInputSuffix(inputEl);
       onChange(newVal);
