@@ -42,6 +42,40 @@
                     }
                 }
             }
+
+            .moedge-article-one {
+                .leftartsub2 {
+                    .leftartitem1 {
+                        >div {
+                            img {
+                                // height: 467px;
+                                align-self: stretch;
+                                aspect-ratio: 816/467;
+                            }
+                        }
+
+                        picture.itemleftart1 {
+                            line-height: 0;
+                        }
+                    }
+                }
+
+                .leftartsub3 {
+                    .leftartitem1 {
+                        >div {
+                            img {
+                                // height: 660px;
+                                align-self: stretch;
+                                aspect-ratio: 68/55;
+                            }
+                        }
+
+                        picture.itemleftart1 {
+                            line-height: 0;
+                        }
+                    }
+                }
+            }
         }
     }
 }
