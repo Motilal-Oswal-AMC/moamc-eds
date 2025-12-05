@@ -771,12 +771,12 @@
             "value": "key-details-card"
           },
           {
-            "name": "Left Key Card",
-            "value": "left-key-card"
+            "name": "Left Align Card",
+            "value": "left-align-card"
           },
           {
-            "name": "Right Key Card",
-            "value": "right-key-card"
+            "name": "Right Align Card",
+            "value": "right-align-card"
           }
         ]
       },
