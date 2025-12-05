@@ -1151,116 +1151,171 @@ export default async function decorate(block) {
   }
 
   //  START SEARCH FUNCTIONALITY
-
   const glossaryPanel = document.querySelectorAll('.tabs-panel');
   const searchNewElement = document.querySelector('.search-results');
   const searchFldkey = document.querySelector('#our-experts-search');
   const keySearchNewEle = document.querySelector('.search-results');
 
-  // searchNewElement.classList.add('glossary-search-results', 'dsp-none');
   let titleArr = [];
+  let currentFocusIndex = -1;
 
-  glossaryPanel.forEach(panel => {
+  // Collect all titles
+  glossaryPanel.forEach((panel) => {
     const glossaryTitles = panel.querySelectorAll('.tab-iteminner1');
-
-    glossaryTitles.forEach(title => {
+    glossaryTitles.forEach((title) => {
       titleArr.push(title.textContent.trim());
     });
   });
-  // remove duplicates
+
+  // Remove duplicates
   titleArr = [...new Set(titleArr)];
 
+  // Create result list
   titleArr.forEach((value) => {
     const newItem = document.createElement('p');
     newItem.classList.add('result-item');
     newItem.setAttribute('data-original-text', value);
 
     const anchorTag = document.createElement('a');
-    anchorTag.classList.add('list');
-    anchorTag.classList.add('no-redirect');
-
+    anchorTag.classList.add('list', 'no-redirect');
     anchorTag.textContent = value;
+
     newItem.appendChild(anchorTag);
     searchNewElement.appendChild(newItem);
-    // searchNewElement.classList.remove('dsp-none');
   });
 
+  // FILTER FUNCTION
+  const filterListItems = (searchTerm) => {
+    const listItems = document.querySelectorAll('.result-item');
+    const term = searchTerm.trim();
+
+    listItems.forEach((item) => {
+      item.querySelector('.list').innerHTML = item.dataset.originalText;
+
+      if (!term) {
+        item.style.display = 'list-item';
+        return;
+      }
+
+      const escaped = term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      const searchRegex = new RegExp(`(${escaped})`, 'gi');
+
+      const txt = item.dataset.originalText.toLowerCase();
+      if (txt.includes(term.toLowerCase())) {
+        item.style.display = 'list-item';
+        item.querySelector('.list').innerHTML = item.dataset.originalText.replace(searchRegex, '<strong>$1</strong>');
+      } else {
+        item.style.display = 'none';
+      }
+    });
+  };
+
+  // SHOW DROPDOWN ON FOCUS
   searchFldkey.addEventListener('focus', () => {
     keySearchNewEle.classList.remove('dsp-none');
-
-    // If there's a search term, re-apply the filter to preserve no-results-message
-    if (searchFldkey.value.trim()) {
-      filterListItems(searchFldkey.value);
-      return;
-    }
+    if (searchFldkey.value.trim()) filterListItems(searchFldkey.value);
   });
 
-  // Handle search result item clicks: jump to matching alphabet tab and scroll to result
+  // CLICK HANDLER (USED BY ENTER ALSO)
   searchNewElement.addEventListener('click', (event) => {
     const resultItem = event.target.closest('.result-item');
     if (!resultItem) return;
 
-    const selectedText = resultItem.getAttribute('data-original-text') || resultItem.textContent.trim();
-    if (!selectedText) return;
+    const selectedText = resultItem.getAttribute('data-original-text')
+      || resultItem.textContent.trim();
 
-    // Extract first letter and determine tab identifier
     const firstLetter = selectedText.charAt(0).toUpperCase();
     const tabIdentifier = firstLetter === '#' ? '#' : firstLetter;
 
-    // Find the matching alphabet tab in .tabs-list.comlist.tabmain1
     const glossaryTabList = document.querySelector('.tabs-list.comlist.tabmain1');
-    if (!glossaryTabList) return;
 
-    const matchingTab = Array.from(glossaryTabList.querySelectorAll('.tabs-tab')).find((tab) => {
-      const tabText = tab.textContent.trim();
-      return tabText === tabIdentifier;
-    });
+    const matchingTab = Array.from(glossaryTabList.querySelectorAll('.tabs-tab'))
+      .find((tab) => tab.textContent.trim() === tabIdentifier);
 
-    if (!matchingTab) return;
+    if (matchingTab) matchingTab.click();
 
-    // Click the matching tab to switch panels
-    matchingTab.click();
-
-    // Find and scroll to the result item in the newly active panel
     setTimeout(() => {
       const activePanel = document.querySelector('[role="tabpanel"][aria-hidden="false"]');
       if (!activePanel) return;
 
-      const resultInPanel = Array.from(activePanel.querySelectorAll('.tab-iteminner1')).find((item) => item.textContent.trim() === selectedText);
+      const resultInPanel = Array.from(activePanel.querySelectorAll('.tab-iteminner1'))
+        .find((item) => item.textContent.trim() === selectedText);
 
       if (resultInPanel) {
         resultInPanel.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        // Optional: highlight the result temporarily
         resultInPanel.style.backgroundColor = 'rgba(46, 42, 148, 0.1)';
-        setTimeout(() => {
-          resultInPanel.style.backgroundColor = '';
-        }, 1500);
+        setTimeout(() => { resultInPanel.style.backgroundColor = ''; }, 1500);
       }
     }, 100);
 
-    // Close the search dropdown
-    keySearchNewEle.classList.add('dsp-none');
-    // Set the input value to the selected text
     searchFldkey.value = selectedText;
     searchFldkey.closest('.search-wrapper').classList.add('search-active');
+    keySearchNewEle.classList.add('dsp-none');
   });
 
-  // When input is cleared (backspace), auto-jump back to '#' tab
+  // HIGHLIGHT FUNCTION
+  function highlightItem(items) {
+    items.forEach((el) => el.classList.remove('active-item'));
+    if (items[currentFocusIndex]) {
+      items[currentFocusIndex].classList.add('active-item');
+      items[currentFocusIndex].scrollIntoView({ block: 'nearest' });
+    }
+  }
+
+  // ENTER + ARROW KEY HANDLING
+  searchFldkey.addEventListener('keydown', (event) => {
+    const visibleItems = Array.from(document.querySelectorAll('.result-item')).filter((item) => item.style.display !== 'none');
+    if (event.key === 'ArrowDown') {
+      event.preventDefault();
+      if (visibleItems.length === 0) return;
+
+      currentFocusIndex = (currentFocusIndex + 1) % visibleItems.length;
+      highlightItem(visibleItems);
+    }
+    // const visibleItems2 = (param) => {
+    //   if (param === undefined) {
+    //     return Array.from(keySearchNewEle.querySelectorAll('.list'))
+    //       .filter((item) => item.parentElement.style.display !== 'none'
+    //         && !item.classList.contains('no-results-message'));
+    //   }
+    //   const items = Array.from(keySearchNewEle.querySelectorAll('.list'));
+    //   const searchTerm = param.toLocaleLowerCase();
+    //   items.forEach((item) => {
+    //     const itemText = item.textContent.toLocaleLowerCase();
+    //     const isVisible = itemText.includes(searchTerm);
+
+    //     // Apply the style based on the match
+    //     item.parentElement.style.display = isVisible ? 'block' : 'none';
+
+    //     if (visibleItems.length === 0) return;
+
+    //     currentFocusIndex = (currentFocusIndex + 1) % visibleItems.length;
+    //     highlightItem(visibleItems);
+    //   });
+    //   return param;
+    // };
+
+    if (event.key === 'ArrowUp') {
+      event.preventDefault();
+      if (visibleItems.length === 0) return;
+
+      currentFocusIndex = (currentFocusIndex - 1 + visibleItems.length) % visibleItems.length;
+      highlightItem(visibleItems);
+    }
+
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      if (visibleItems.length === 0) return;
+
+      const selected = visibleItems[currentFocusIndex] || visibleItems[0];
+      selected.querySelector('.list').click(); // SAME AS CLICK
+    }
+  });
+
+  // INPUT CLEAR HANDLER
   searchFldkey.addEventListener('input', (event) => {
     if (event.target.value.trim() === '') {
-      // Input is empty; jump to '#' tab
-      const glossaryTabList = document.querySelector('.tabs-list.comlist.tabmain1');
-      if (!glossaryTabList) return;
-
-      const hashTab = Array.from(glossaryTabList.querySelectorAll('.tabs-tab')).find((tab) => {
-        return tab.textContent.trim() === '#';
-      });
-
-      if (hashTab) {
-        hashTab.click();
-      }
-
-      // Remove search-active class to hide cancel button
+      keySearchNewEle.classList.remove('dsp-none');
       searchFldkey.closest('.search-wrapper').classList.remove('search-active');
     }
   });

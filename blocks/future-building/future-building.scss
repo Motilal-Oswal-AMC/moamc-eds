@@ -1,6 +1,6 @@
 @use "sass:map";
-@use "../../styles/common-theme/css/variables_mixins"as *;
-@use "../../styles/common-theme/css/fluid-typography"as *;
+@use "../../styles/common-theme/css/variables_mixins" as *;
+@use "../../styles/common-theme/css/fluid-typography" as *;
 @import "../swiper/swiper-bundle.min.css";
 
 // @import '../blocks/swiper/swiper-bundle.min.css';
@@ -42,6 +42,7 @@
 
         h4,
         h3:nth-child(1) {
+            width: 56.01%;
             margin: 0;
             padding: 0;
             padding-bottom: 8px;
@@ -133,7 +134,7 @@
                         white-space: unset;
                         border-radius: 8px;
                         background:
-                            linear-gradient(0deg, rgb(0 0 0 / 30%) 0%, rgb(0 0 0 / 30%) 100%),
+                            linear-gradient(0deg, #000 0%, #000000e8 100%),
                             lightgray 50% / cover no-repeat;
                         z-index: 2;
 
@@ -145,6 +146,7 @@
                             width: 100%;
                             height: 100%;
                             position: relative;
+                            object-fit: cover;
                             z-index: 1;
                             opacity: 0.7;
                         }
@@ -154,11 +156,11 @@
                         content: "";
                         display: inline-block;
                         position: absolute;
-                        width: 40px;
-                        height: 40px;
+                        width: 24px;
+                        height: 24px;
                         flex-shrink: 0;
                         aspect-ratio: 1/1;
-                        background-image: url("/icons/Subtract.svg");
+                        background-image: url("/icons/play-button.svg");
                         background-size: contain;
                         background-repeat: no-repeat;
                         user-select: none;
@@ -288,6 +290,7 @@
                                         height: 12px;
                                         aspect-ratio: 1/1;
                                         margin-right: 4px;
+                                        margin-bottom: 2px;
                                     }
 
                                     &::marker {
@@ -304,13 +307,8 @@
                                     &::after {
                                         content: "•";
                                         color: #5659fa;
-
-                                        // position: absolute;
                                         width: 4px;
                                         height: 100%;
-
-                                        // right: -2px;
-                                        // top: 0;
                                         display: inline-flex;
                                         justify-content: center;
                                         align-items: center;
@@ -337,8 +335,6 @@
                                     border: none;
                                     margin: 0;
                                     padding: 0;
-
-                                    // margin-bottom: 8px;
                                     overflow: hidden;
                                     border-radius: unset;
                                     min-height: unset;
@@ -353,6 +349,8 @@
                                         $body);
 
                                     @include media(mobile) {
+                                        // letter-spacing: 0.3px;
+
                                         @include font-style(map.get($typography-mobile, body-large-medium-size),
                                             map.get($typography-mobile, body-large-medium-line-height),
                                             $blue-1-800-primary,
@@ -375,6 +373,8 @@
                                     $body);
 
                                 @include media(mobile) {
+                                    // letter-spacing: 0.5px;
+
                                     @include font-style(map.get($typography-mobile, paragraph-small-size),
                                         map.get($typography-mobile, paragraph-small-line-height),
                                         $text-body-2,
@@ -397,13 +397,13 @@
                                     text-decoration-style: solid;
                                     text-decoration-skip-ink: auto;
                                     text-decoration-thickness: auto;
-                                    text-underline-offset: auto;
                                     text-underline-position: from-font;
+                                    text-underline-offset: 0;
+                                    border-radius: unset;
                                     border: none;
                                     padding: 0;
                                     background: transparent;
                                     margin: 0;
-                                    padding-left: 2px;
                                     height: 100%;
                                     min-height: unset;
 
@@ -595,18 +595,44 @@
     .section.future-building-container.future-building-article-details {
         margin-top: 40px;
 
+        @include media (mobile) {
+            padding-bottom: 40px;
+        }
+
         >.library-btn3 {
             top: 14px;
         }
     }
 
-    .section.future-building-container.future-building-article-details .future-building .swiper-wrapper .swiper-slide .swiper-slide-cards-2>ul.cards-listcards1>li.cards-list-1-cards4 .button-container a {
-        line-height: 20px;
+    .section.future-building-container.future-building-article-details .future-building .swiper-wrapper {
+        .swiper-slide {
+            .swiper-slide-cards-2>ul.cards-listcards1>li.cards-list-1-cards4 .button-container a {
+                line-height: 20px;
 
-        // text-underline-offset: 20%;
+                // text-underline-offset: 20%;
 
-        @include media(mobile) {
-            line-height: 16px;
+                @include media(mobile) {
+                    line-height: 16px;
+                }
+            }
+
+            &:nth-child(3) {
+                .swiper-slide-cards-1 {
+                    &::after {
+                        content: unset;
+                    }
+
+                    .button {
+                        background: transparent;
+
+                        img {
+                            opacity: unset;
+                            object-fit: cover;
+                        }
+                    }
+
+                }
+            }
         }
     }
 }
@@ -791,12 +817,14 @@
                             padding: 16px;
                             background: var(--surface-background-neutral-subtle);
 
-                            &:hover {
+                            &:hover,
+                            &:has(.active-search-item) {
                                 background-color: var(--blue-1-25);
                             }
 
-                            &:focus {
-                                background-color: var(--blue-1-50);
+                            &:focus,
+                            &:has(.active-search-item) {
+                                background-color: var(--blue-1-25);
                             }
 
                             .list {
@@ -1215,13 +1243,11 @@
                     background: var(--button-primary-default);
                     cursor: pointer;
 
-                    @include font-style(
-                        var(--button-medium-size),
+                    @include font-style(var(--button-medium-size),
                         var(--button-medium-line-height),
                         var(--text-white),
                         500,
-                        var(--body)
-                    );
+                        var(--body));
                 }
             }
         }

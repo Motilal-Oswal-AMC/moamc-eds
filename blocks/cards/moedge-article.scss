@@ -42,6 +42,40 @@
                     }
                 }
             }
+
+            .moedge-article-one {
+                .leftartsub2 {
+                    .leftartitem1 {
+                        >div {
+                            img {
+                                // height: 467px;
+                                align-self: stretch;
+                                aspect-ratio: 816/467;
+                            }
+                        }
+
+                        picture.itemleftart1 {
+                            line-height: 0;
+                        }
+                    }
+                }
+
+                .leftartsub3 {
+                    .leftartitem1 {
+                        >div {
+                            img {
+                                // height: 660px;
+                                align-self: stretch;
+                                aspect-ratio: 68/55;
+                            }
+                        }
+
+                        picture.itemleftart1 {
+                            line-height: 0;
+                        }
+                    }
+                }
+            }
         }
     }
 }
@@ -496,6 +530,7 @@
         @include media(mobile) {
             max-width: 100%;
             width: 100%;
+            margin-top: 80px;
         }
 
         .articlesub1 {
@@ -534,6 +569,7 @@
                     align-self: stretch;
                     border-radius: var(--border-radius-8);
                     background: var(--neutrals-black);
+                    cursor: pointer;
 
                     .button.mainarticle1 {
                         color: var(--text-white);

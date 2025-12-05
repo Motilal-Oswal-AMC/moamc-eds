@@ -546,6 +546,9 @@ function articleStructure() {
     || window.location.href.includes(
       '/motilal-oswal-edge/mo-edge-article-details-video',
     )
+    || window.location.href.includes(
+      '/investor-education/keys-of-investing/',
+    )
   ) {
     const maincloser = document.querySelector('main');
     const rightSub = maincloser.querySelectorAll('.article-sub-right');
