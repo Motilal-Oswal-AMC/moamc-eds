@@ -175,6 +175,34 @@
             "value": "highlight"
           },
           {
+            "name": "Fund Tax",
+            "value": "fund-tax"
+          },
+          {
+            "name": "Invest Blog",
+            "value": "invest-blog"
+          },
+          {
+            "name": "Tax Blog",
+            "value": "tax-blog"
+          },
+          {
+            "name": "Sip Blog",
+            "value": "sip-blog"
+          },
+          {
+            "name": "SEBI Blog",
+            "value": "sebi-blog"
+          },
+          {
+            "name": "Fund Philosophy",
+            "value": "fund-philosophy"
+          },
+          {
+            "name": "Elss Stock Table",
+            "value": "elss-stock-table"
+          },
+          {
             "name": "Calculators Card",
             "value": "calculators-card"
           },
@@ -627,12 +655,12 @@
             "value": "why-matters-component"
           },
           {
-            "name":"Our Commitment Component",
-            "value":"our-commitment-component"
+            "name": "Our Commitment Component",
+            "value": "our-commitment-component"
           },
           {
-            "name":"What Stake Component",
-            "value":"what-stake-component"
+            "name": "What Stake Component",
+            "value": "what-stake-component"
           },
           {
             "name": "Mo Inter Business",
@@ -689,6 +717,14 @@
           {
             "name": "Investor Listing Our Expert",
             "value": "listing-our-expert"
+          },
+          {
+            "name": "Investor Term Blog",
+            "value": "investor-term-blog"
+          },
+          {
+            "name": "Cornerstones Elss Fund",
+            "value": "cornerstones-elss-fund"
           },
           {
             "name": "Fund Investment Options",
@@ -2117,7 +2153,7 @@
         "label": "Text",
         "valueType": "string"
       },
-       {
+      {
         "component": "text",
         "name": "col3_id",
         "label": "Enter Block Id"
