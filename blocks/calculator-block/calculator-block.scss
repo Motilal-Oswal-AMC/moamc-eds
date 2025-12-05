@@ -1000,7 +1000,8 @@ main {
 
         .default-content-wrapper {
             >.question {
-                margin-bottom: 8px
+                margin-bottom: 8px;
+                max-width: 100%;
             }
 
             .question {
@@ -1083,7 +1084,8 @@ main {
                 .answer {
                     list-style: none;
 
-                    &:has(strong) {
+                    &:has(strong):not(:has(em.small-bold)) {
+
                         display: flex;
                         flex-direction: column;
                         gap: 6px;
