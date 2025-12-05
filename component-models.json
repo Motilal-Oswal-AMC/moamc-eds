@@ -765,6 +765,18 @@
           {
             "name": "Moedge Article Three",
             "value": "moedge-article-three"
+          },
+          {
+            "name": "Key Details Card",
+            "value": "key-details-card"
+          },
+          {
+            "name": "Left Key Card",
+            "value": "left-key-card"
+          },
+          {
+            "name": "Right Key Card",
+            "value": "right-key-card"
           }
         ]
       },
