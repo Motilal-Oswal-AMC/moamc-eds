@@ -1029,13 +1029,21 @@ main {
             ol.answer-container {
                 // gap: 35px;
 
-                li.answer:not(:has(.small-bold)) {
+                li.answer:not(:has(em.small-bold)) {
                     position: relative;
 
                     // counter-increment: num;
                     display: list-item;
                     list-style-type: decimal;
                     margin-left: 24px;
+
+                    &:not(:last-child) {
+                        margin-bottom: 28px;
+
+                        @include media(mobile) {
+                            margin-bottom: 12px;
+                        }
+                    }
 
                     &::marker {
                         @include font-style(18px, 24px, $primary-blue, 500, $inter);
@@ -1045,6 +1053,7 @@ main {
                         position: relative;
                         width: 100%;
                         display: block;
+                        margin-bottom: 4px;
 
                         // padding-left: 16px;
 
@@ -1063,7 +1072,11 @@ main {
             }
 
             p.answer {
-                margin-bottom: 25px;
+                margin-bottom: 14px;
+
+                @include media(mobile) {
+                    margin-bottom: 12px;
+                }
 
                 .link {
                     font-weight: 500;
@@ -1085,14 +1098,13 @@ main {
                     list-style: none;
 
                     &:has(strong):not(:has(em.small-bold)) {
-
                         display: flex;
                         flex-direction: column;
-                        gap: 6px;
+                        gap: 2px;
                     }
 
                     &:not(:last-child) {
-                        margin-bottom: 28px;
+                        margin-bottom: 14px;
                     }
 
                     .link {
