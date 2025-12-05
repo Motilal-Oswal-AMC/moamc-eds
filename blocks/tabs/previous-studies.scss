@@ -195,13 +195,13 @@ main.nfo-nav {
           border-radius: var(--border-radius-circle);
           border: var(--border-width-01) solid var(--strokes-disabled);
           background: var(--surface-disabled);
-          padding: 6px var(--spacing-12);
+          padding: var(--spacing-8) var(--spacing-12);
           flex: unset;
 
           .previous-studies-txt1 {
             @include font-style(
               var(--body-small-regular-size),
-              var(--label-large-line-height),
+              var(--body-small-regular-line-height),
               var(--text-body),
               400,
               var(--body)
@@ -334,12 +334,13 @@ main.nfo-nav {
 
     &3 {
       .button-container {
-        margin: 16px 0;
+        padding: 16px 0;
+        margin: 0;
         text-align: center;
         line-height: 0;
 
-        @include media(mobile) {
-          margin: 0;
+        @include media(mobile){
+          padding: 0;
         }
 
         .button {
