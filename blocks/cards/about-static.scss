@@ -314,6 +314,10 @@
                         aspect-ratio: unset;
                     }
 
+                    @media screen and (max-width: 372px) {
+                        max-width: 47.236%;
+                    }
+
                     .investment-subinner1 {
                         list-style: none;
                         margin: 0;
