@@ -1185,6 +1185,48 @@ export default async function decorate(block) {
     // searchNewElement.classList.remove('dsp-none');
   });
 
+  const filterListItems = (searchTerm) => {
+      const listItems = document.querySelectorAll('.result-item');
+      const term = searchTerm.trim();
+      const existingNoResultsMessage = listContainer.querySelector('.no-results-message');
+      if (existingNoResultsMessage) existingNoResultsMessage.remove();
+      listContainer.classList.remove('no-search-list');
+
+      if (!term) {
+        listItems.forEach((item) => {
+          item.querySelector('.list').innerHTML = item.dataset.originalText;
+          item.style.display = 'list-item';
+        });
+        return;
+      }
+
+      // Safely escape the search term for use in a RegExp
+      let matchesFound = false;
+      const escaped = term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      const searchRegex = new RegExp(`(${escaped})`, 'gi');
+
+      listItems.forEach((item) => {
+        const { originalText } = item.dataset;
+        const match = originalText.toLowerCase().includes(term.toLowerCase());
+        if (match) {
+          matchesFound = true;
+          const highlightedText = originalText.replace(searchRegex, '<strong>$1</strong>');
+          item.querySelector('.list').innerHTML = highlightedText;
+          item.style.display = 'list-item';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+
+      if (!matchesFound) {
+        listContainer.classList.add('no-search-list');
+        const messageItem = document.createElement('li');
+        messageItem.className = 'list-fund-name no-results-message';
+        messageItem.textContent = 'No matching results';
+        listContainer.appendChild(messageItem);
+      }
+    };
+
   searchFldkey.addEventListener('focus', () => {
     keySearchNewEle.classList.remove('dsp-none');
 

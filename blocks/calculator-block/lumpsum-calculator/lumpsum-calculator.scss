@@ -2,20 +2,21 @@
 @use "../../../styles/common-theme/css/variables_mixins" as *;
 @use "../../../styles/common-theme/css/fluid-typography" as *;
 
-body:has(.calc-overview-summary) {
-    .calculator-qa-container {
-        .answer:nth-child(15) {
-            margin-bottom: 12px;
-        }
+// body:has(.calc-overview-summary) {
+//     .calculator-qa-container {
+//         .answer:nth-child(15) {
+//             margin-bottom: 12px;
+//         }
 
-        .answer-container:nth-child(16) {
-            .answer:not(:last-child) {
-                display: block;
-                margin-bottom: 12px;
-            }
-        }
-    }
-}
+//         .answer-container:nth-child(16) {
+//             .answer:not(:last-child) {
+//                 display: block;
+//                 margin-bottom: 12px;
+//             }
+//         }
+//     }
+// }
+
 
 .calculator-container {
     .calculator-block {

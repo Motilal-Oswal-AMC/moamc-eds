@@ -118,8 +118,9 @@ export default function decorate(block) {
 
   // --- NEW: Add event listeners for focus/blur ---
   if (section1) {
-    // Add class on input click (focus)
+    // Add class on input click (focus) and set active class
     inputEl.addEventListener('focus', () => {
+      inputEl.classList.add('active');
       if (inputEl.value === '') {
         section1.classList.add('input-focused');
       } else {
@@ -127,9 +128,14 @@ export default function decorate(block) {
       }
     });
 
-    // Remove class when clicking away (blur)
+    // Manage classes on blur - keep 'active' class if input has value
     inputEl.addEventListener('blur', () => {
       section1.classList.remove('input-focused');
+      if (inputEl.value.trim() !== '') {
+        inputEl.classList.add('active');
+      } else {
+        inputEl.classList.remove('active');
+      }
     });
     inputEl.focus();
   }

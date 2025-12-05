@@ -38,7 +38,7 @@ main.nfo-nav {
                     flex-wrap: wrap;
                     align-items: center;
 
-                    @include media(mobile) {}
+                    // @include media(mobile) {}
 
                     .goal-inputs-container {
                         max-height: fit-content;
