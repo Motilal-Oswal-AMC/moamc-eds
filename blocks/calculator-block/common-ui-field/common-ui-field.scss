@@ -21,7 +21,7 @@
             border-radius: 8px;
             background: $primary-white;
             box-shadow: $primary-box-shadow;
-            
+
             @include media(mobile) {
                 flex: unset;
                 gap: 16px;
@@ -210,6 +210,9 @@
 
             .currency-dual-input-wrapper {
                 width: 100%;
+                max-height: 22px;
+                display: flex;
+                align-items: center;
             }
 
             .calc-inner-input-wrapper {
@@ -337,7 +340,6 @@
                 .calc-input {
                     text-align: center;
                     width: 100%;
-                    font-size: 1.1rem;
                 }
 
                 .calc-suffix {
