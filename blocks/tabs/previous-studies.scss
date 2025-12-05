@@ -266,6 +266,10 @@ main.nfo-nav {
                 max-width: 48.236%;
               }
 
+              @media screen and (max-width: 372px) {
+                max-width: 47.236%;
+              }
+
               .missioncard-inner {
                 &1 {
                   aspect-ratio: 1 / 1;
@@ -280,7 +284,7 @@ main.nfo-nav {
                       height: 100%;
                       border-radius: 8px;
 
-                      @include media(mobile){
+                      @include media(mobile) {
                         border-radius: 4.43px;
                       }
                     }
@@ -338,7 +342,7 @@ main.nfo-nav {
         text-align: center;
         line-height: 0;
 
-        @include media(mobile){
+        @include media(mobile) {
           padding: 0;
         }
 
