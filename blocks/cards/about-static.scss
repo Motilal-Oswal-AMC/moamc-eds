@@ -127,8 +127,8 @@
                 display: flex;
                 justify-content: space-between;
 
-                // gap: 78px;
-                gap: 150px;
+                // gap: 150px;
+                gap: 138px;
                 list-style: none;
                 margin: 0;
                 
@@ -150,10 +150,9 @@
 
                 li.comlist {
                     // max-width: 230px;
-                    max-width: 100%;
+                    // max-width: 100%;
                     width: 100%;
-
-                    // flex: 1;
+                    flex: 1;
                     // flex-basis: 0;
 
                     @include media(tab){
@@ -312,6 +311,11 @@
                         padding: 4px;
                         border: 0.224px solid #B9BBFF;
                         box-shadow: 0 0 1.788px 0 rgb(0 0 0 / 6%);
+                        aspect-ratio: unset;
+                    }
+
+                    @media screen and (max-width: 371px) {
+                        max-width: 47.236%;
                     }
 
                     .investment-subinner1 {

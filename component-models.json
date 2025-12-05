@@ -801,6 +801,18 @@
           {
             "name": "Moedge Article Three",
             "value": "moedge-article-three"
+          },
+          {
+            "name": "Key Details Card",
+            "value": "key-details-card"
+          },
+          {
+            "name": "Left Align Card",
+            "value": "left-align-card"
+          },
+          {
+            "name": "Right Align Card",
+            "value": "right-align-card"
           }
         ]
       },
