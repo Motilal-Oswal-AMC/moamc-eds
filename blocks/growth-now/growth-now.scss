@@ -373,7 +373,7 @@
                         //     background: #2E2A94;
                         // }
 
-                        .phnodata:has(input:focus) input {
+                         .phnodata input:focus{
                             border-color: #6a38ee;
                         }
 
@@ -400,11 +400,8 @@
                             line-height: var(--body-medium-regular-line-height);
                             font-feature-settings: var(--font-features-default);
                             pointer-events: none;
-                            padding-right: 11px;
-
                             appearance: none;
                             -webkit-appearance: none;
-
                             padding-right: 4px;
 
                             @include media(mobile) {
