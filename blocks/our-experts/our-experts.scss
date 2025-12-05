@@ -1,6 +1,6 @@
 @use "sass:map";
-@use "../../styles/common-theme/css/variables_mixins"as *;
-@use "../../styles/common-theme/css/fluid-typography"as *;
+@use "../../styles/common-theme/css/variables_mixins" as *;
+@use "../../styles/common-theme/css/fluid-typography" as *;
 
 .section.our-experts-container {
     // margin-top: 24px;
@@ -318,12 +318,15 @@
                             padding: 16px;
                             background: var(--surface-background-neutral-subtle);
 
-                            &:hover {
+
+                            &:hover,
+                            &:has(.active-search-item) {
                                 background-color: var(--blue-1-25);
                             }
 
-                            &:focus {
-                                background-color: var(--blue-1-50);
+                            &:focus,
+                            &:has(.active-search-item) {
+                                background-color: var(--blue-1-25);
                             }
 
                             .list {
@@ -355,16 +358,16 @@
                             color: var(--neutrals-black);
                             font-family: var(--body);
                             font-feature-settings:
-                                "ss01"on,
-                                "ss04"on,
-                                "cv01"on,
-                                "cv02"on,
-                                "cv03"on,
-                                "cv04"on,
-                                "cv06"on,
-                                "cv09"on,
-                                "cv10"on,
-                                "cv11"on;
+                                "ss01" on,
+                                "ss04" on,
+                                "cv01" on,
+                                "cv02" on,
+                                "cv03" on,
+                                "cv04" on,
+                                "cv06" on,
+                                "cv09" on,
+                                "cv10" on,
+                                "cv11" on;
                             font-weight: 400;
                             padding: 12px 20px 12px 40px;
                             cursor: pointer;

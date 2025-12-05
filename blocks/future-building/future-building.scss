@@ -1,6 +1,6 @@
 @use "sass:map";
-@use "../../styles/common-theme/css/variables_mixins"as *;
-@use "../../styles/common-theme/css/fluid-typography"as *;
+@use "../../styles/common-theme/css/variables_mixins" as *;
+@use "../../styles/common-theme/css/fluid-typography" as *;
 @import "../swiper/swiper-bundle.min.css";
 
 // @import '../blocks/swiper/swiper-bundle.min.css';
@@ -791,12 +791,14 @@
                             padding: 16px;
                             background: var(--surface-background-neutral-subtle);
 
-                            &:hover {
+                            &:hover,
+                            &:has(.active-search-item) {
                                 background-color: var(--blue-1-25);
                             }
 
-                            &:focus {
-                                background-color: var(--blue-1-50);
+                            &:focus,
+                            &:has(.active-search-item) {
+                                background-color: var(--blue-1-25);
                             }
 
                             .list {
@@ -1215,13 +1217,11 @@
                     background: var(--button-primary-default);
                     cursor: pointer;
 
-                    @include font-style(
-                        var(--button-medium-size),
+                    @include font-style(var(--button-medium-size),
                         var(--button-medium-line-height),
                         var(--text-white),
                         500,
-                        var(--body)
-                    );
+                        var(--body));
                 }
             }
         }

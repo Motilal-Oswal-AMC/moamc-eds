@@ -521,33 +521,6 @@ export default function decorate(block) {
     });
 
     // 👉 Keyboard Navigation
-    searchFldkey.addEventListener('keydown', (event) => {
-      const visibleItems = () =>
-        Array.from(listContainer.querySelectorAll('.list'))
-          .filter((item) => item.parentElement.style.display !== 'none');
-      switch (event.key) {
-        case 'ArrowDown':
-          event.preventDefault();
-          currentFocusIndex = (currentFocusIndex + 1) % visibleItems().length;
-          updateActiveItem(visibleItems());
-          break;
-        case 'ArrowUp':
-          event.preventDefault();
-          currentFocusIndex =
-            (currentFocusIndex - 1 + visibleItems().length) % visibleItems().length;
-          updateActiveItem(visibleItems());
-          break;
-        case 'Enter': {
-          if (visibleItems().length === 0) return false;
-          const selected = visibleItems()[currentFocusIndex] || visibleItems()[0];
-          searchFldkey.value = selected.textContent.trim();
-          keySearchNewEle.classList.add('dsp-none');
-          break;
-        }
-        default:
-          break;
-      }
-    });
   }
 
   // 👉 Hide on document click
