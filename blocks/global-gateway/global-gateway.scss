@@ -219,6 +219,11 @@
             .global-gateway {
                 align-items: flex-start;
 
+                @include media (mobile-ed) {
+                    width: 100%;
+                    gap: 20px;
+                }
+
                 .global-cont1 {
                     width: 49.4%;
 
@@ -239,6 +244,11 @@
                             padding-bottom: 20px;
                             align-items: flex-start;
                             gap: 24px;
+                            position: relative;
+
+                            @include media (mobile-ed) {
+                                margin: 0;
+                            }
 
                             .global-inner-text1 {
                                 display: flex;
@@ -246,6 +256,12 @@
                                 justify-content: center;
                                 align-items: center;
                                 flex-shrink: 0;
+
+                                @include media (mobile-ed) {
+                                    position: absolute;
+                                    left: 0;
+                                }
+
 
                                 p {
                                     margin: 0;
@@ -285,6 +301,10 @@
                                 gap: 8px;
                                 flex: 1 0 0;
 
+                                @include media (mobile-ed) {
+                                    gap: 24px;
+                                }
+
                                 p.global-list1 {
                                     margin: 0;
                                     color: var(--blue-1800-primary, #2E2A94);
@@ -294,6 +314,14 @@
                                     font-style: normal;
                                     font-weight: 600;
                                     line-height: var(--body-xlarge-bold-line-height, 24px);
+
+                                    @include media (mobile-ed) {
+                                        min-height: 40px;
+                                        display: flex;
+                                        align-items: center;
+                                        justify-content: flex-end;
+                                        margin-left: 48px;
+                                    }
                                 }
 
                                 .global-list2 {
@@ -313,6 +341,11 @@
                                             font-weight: 400;
                                             line-height: 24px;
                                             letter-spacing: 0.5px;
+
+                                            @include media (mobile) {
+                                                font-size: var(--paragraph-small-regular-size, 14px);
+                                                line-height: var(--paragraph-small-regular-line-height, 20px);
+                                            }
                                         }
 
                                         .global-list-row2 {
@@ -362,9 +395,22 @@
                             align-items: flex-start;
                             gap: 24px;
 
+                            @include media (mobile-ed) {
+                                align-items: flex-start;
+                                gap: 0;
+                                position: relative;
+                                margin-bottom: 20px;
+                            }
+
                             .global-inner-text1 {
                                 width: auto;
                                 height: auto;
+
+
+                                @include media (mobile-ed) {
+                                    position: absolute;
+                                    left: 0;
+                                }
 
                                 p {
                                     margin: 0;
@@ -379,10 +425,20 @@
                                     background: var(--neutrals-white, #FFF);
                                     box-shadow: 0 5.333px 16px 0 #0000000d;
 
+                                    @include media (mobile-ed) {
+                                        width: 40px;
+                                        height: 40px;
+                                    }
+
                                     span {
                                         width: 28.823px;
                                         height: 26.414px;
                                         flex-shrink: 0;
+
+                                        @include media (mobile-ed) {
+                                            width: 12.876px;
+                                            height: 15px;
+                                        }
                                     }
                                 }
                             }
@@ -394,6 +450,10 @@
                                 gap: 8px;
                                 width: 416px;
 
+                                @include media (mobile-ed) {
+                                    gap: 24px;
+                                }
+
                                 .global-list1 {
                                     margin: 0;
                                     color: var(--blue-1800-primary, #2E2A94);
@@ -403,6 +463,14 @@
                                     font-style: normal;
                                     font-weight: 600;
                                     line-height: var(--body-xlarge-bold-line-height, 24px);
+
+                                    @include media (mobile-ed) {
+                                        min-height: 40px;
+                                        display: flex;
+                                        align-items: center;
+                                        justify-content: flex-end;
+                                        margin-left: 48px;
+                                    }
                                 }
 
                                 .global-list2 {
@@ -422,6 +490,12 @@
                                         font-weight: 400;
                                         line-height: 24px;
                                         letter-spacing: 0.5px;
+
+                                        @include media (mobile-ed) {
+                                            margin: 0;
+                                            font-size: var(--paragraph-small-regular-size, 14px);
+                                            line-height: var(--paragraph-small-regular-line-height, 20px);
+                                        }
                                     }
                                 }
                             }
@@ -523,6 +597,7 @@
             align-items: flex-start;
 
             .prosinvest-inner {
+
                 &1,
                 &2 {
                     width: 49.4%;
