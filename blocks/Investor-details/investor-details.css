@@ -50,6 +50,10 @@ main.nfo-nav .main-wrapper .section:first-of-type {
     padding: 2px var(--spacing-12);
 }
 
+.article-sub-right.stay-updated ul.investarticle-rightsub2 li.comlist {
+    cursor: pointer;
+}
+
 .article-sub-right.our-podcast .investarticle-rightmain1 ul.investarticle-rightsub3 li.comlist {
     padding: var(--spacing-16) 0;
 }

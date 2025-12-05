@@ -753,6 +753,18 @@
           {
             "name": "About Structure Governance Tab",
             "value": "structure-governance-tab"
+          },
+          {
+            "name": "Moedge Article One",
+            "value": "moedge-article-one"
+          },
+          {
+            "name": "Moedge Article Second",
+            "value": "moedge-article-second"
+          },
+          {
+            "name": "Moedge Article Three",
+            "value": "moedge-article-three"
           }
         ]
       },
