@@ -917,6 +917,19 @@ try {
   // console.log(error);
 }
 
+// Unclaimed Redemption Block
+const section = document.querySelector('.unclaimed-redemption');
+const cardSection = document.querySelector('.unclaimed-redemption .cards-wrapper');
+const unclaimedForm = document.querySelector('.unclaimed-redemption .wealth-modal-wrapper');
+const elementNew = document.createElement('div');
+elementNew.classList.add('container');
+section.appendChild(elementNew);
+elementNew.appendChild(cardSection);
+elementNew.appendChild(unclaimedForm);
+
+
+// Unclaimed Redemption Block
+
 async function getlisting() {
   const resp = await myAPI('GET', 'https://m71vqgw4cj.execute-api.ap-south-1.amazonaws.com/dev/api/public/v1/funds/listing');
   return resp;

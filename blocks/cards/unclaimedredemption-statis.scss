@@ -1,0 +1,56 @@
+@use "sass:map";
+@use "../../styles/common-theme/css/variables_mixins" as *;
+@use "../../styles/common-theme/css/fluid-typography" as *;
+
+.unclaimed-redemption {
+
+    .container {
+        // display: flex;
+        gap: 120px;
+        padding: 60px 0;
+
+        .cards-wrapper {
+            max-width: 504px;
+            width: 100%;
+
+            .cards.block {
+                li.card-content1 {
+                    display: flex;
+                    flex-direction: column-reverse;
+                    gap: 30px;
+                    border-radius: 12px;
+                    // background: var(--neutrals-white);
+                    background: peru;
+                    padding: 40px 40px 0;
+
+                    .cards-card-body {
+                        margin: unset;
+                        display: flex;
+                        flex-direction: column;
+                        gap: 8px;
+
+                        .comlist {
+                            margin: unset;
+                        }
+
+                        .card-contentinner-picture1 {
+                            color: var(--blue-1-800-primary);
+                            font-family: var(--title);
+                            font-size: 32px;
+                            font-weight: 600;
+                            line-height: 40px; 
+                        }
+
+                        .card-contentinner-picture2 {
+                            color: var(--blue-1-800-primary);
+                            font-family: var(--body);
+                            font-size: var(--body-medium-regular-size);
+                            font-weight: 400;
+                            line-height: var(--body-medium-regular-line-height);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

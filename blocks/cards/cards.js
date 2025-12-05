@@ -293,6 +293,19 @@ export default function decorate(block) {
     dataMapMoObj.CLASS_PREFIXES = ['global-card', 'global-cardsub', 'global-cardinner', 'global-cardchild', 'global-carditem', 'global-cardsubitem'];
     dataMapMoObj.addIndexed(block);
   }
+
+  const unclaimedCard = document.querySelector('.unclaimed-redemption .cards-wrapper');
+  if (unclaimedCard != null) {
+    dataMapMoObj.CLASS_PREFIXES = [
+      'card-ul',
+      'card-li',
+      'card-content',
+      'card-content-inner',
+      'card-contentinner-picture',
+      'card-contentinner-img'
+    ];
+    dataMapMoObj.addIndexed(unclaimedCard);
+  }
 }
 
 function decorateArticlePage() {

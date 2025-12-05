@@ -238,5 +238,11 @@
       "sip-past-performance-calculator-item",
       "goal-calculator-item"
     ]
+  },
+  {
+    "id": "unclaimed-redemption-form",
+    "components": [
+      "unclaimed-redemption-form-item"
+    ]
   }
 ]

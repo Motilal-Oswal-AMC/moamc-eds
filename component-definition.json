@@ -1414,6 +1414,21 @@
               }
             }
           }
+        },
+        {
+          "title": "Unclaimed Redemption Form",
+          "id": "unclaimed-redemption-form",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Unclaimed Redemption Form",
+                  "model": "unclaimed-redemption-form"
+                }
+              }
+            }
+          }
         }
       ]
     }
