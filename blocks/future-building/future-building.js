@@ -580,7 +580,7 @@ export default function decorate(block) {
           } else {
             closeBtn.style.display = 'none';
           }
-
+        } else {
           try {
             inputInvestEducate.classList.remove('focus-visible');
             inputInvestEducate.classList.remove('active');
@@ -588,6 +588,7 @@ export default function decorate(block) {
             // ignore
           }
         }
+
 
         // else if (dataMapMoObj.searchFld === undefined || dataMapMoObj.searchFld === '') {
         //   closeBtn.style.display = 'none';

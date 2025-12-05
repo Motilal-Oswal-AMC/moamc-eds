@@ -337,7 +337,9 @@ export default function decorate(block) {
       searchFld.value = '';
       filterListItems('');
       closeBtn.style.display = 'none';
-      searchFld.classList.remove('active');
+      if (searchFld?.value?.trim() === '') {
+        searchFld.classList.remove('active');
+      }
     });
     searchFld.addEventListener('keydown', (event) => {
       const visibleItems = (param) => {
