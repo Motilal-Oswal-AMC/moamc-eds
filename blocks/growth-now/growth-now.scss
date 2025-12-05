@@ -391,9 +391,10 @@
                             pointer-events: none;
                             padding-right: 11px;
                             
-                            // appearance: none;
+                            appearance: none;
+                            -webkit-appearance: none;
 
-                            // padding-right: 4px;
+                            padding-right: 4px;
 
                             @include media(mobile) {
                                 @include font-style(var(--body-medium-regular-size), var(--body-medium-regular-line-height), var(--neutrals-white), 400, var(--body));

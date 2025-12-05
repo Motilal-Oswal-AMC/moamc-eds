@@ -3,7 +3,7 @@ import {
   formatNumber,
   createBarSummaryBlock,
   getAuthorData,
-} from "../common-ui-field/common-ui-field.js";
+} from '../common-ui-field/common-ui-field.js';
 
 /**
  * Calculate Top-up SIP Summary
@@ -32,16 +32,16 @@ export function calculateTopupSIPSummary({
   callbackFunc,
 }) {
   if (
-    !monthlyInvestment ||
-    !annualIncreaseRate ||
-    !annualReturnRate ||
-    !years
+    !monthlyInvestment
+    || !annualIncreaseRate
+    || !annualReturnRate
+    || !years
   ) {
     const empty = {
       totalInvestment: 0,
       totalValue: 0,
       estimatedReturns: 0,
-      compoundingAt: "1.0x",
+      compoundingAt: '1.0x',
       investedPercentage: 0,
       returnsPercentage: 0,
     };
@@ -91,7 +91,7 @@ export function calculateTopupSIPSummary({
     investedPercentage: roundValue(investedPercentage),
     returnsPercentage: roundValue(returnsPercentage),
   };
-  console.log("result : ", totalValue);
+  console.log('result : ', totalValue);
 
   if (callbackFunc) callbackFunc(result);
   return result;
@@ -103,12 +103,12 @@ export function calculateTopupSIPSummary({
 export function updateCalculateTopupSipSummary({ container, data }) {
   if (!container || !data) return;
 
-  const totalReturnsEl = container.querySelector("#sip-total-returns");
-  const investedAmountEl = container.querySelector("#total-invested-amount");
+  const totalReturnsEl = container.querySelector('#sip-total-returns');
+  const investedAmountEl = container.querySelector('#total-invested-amount');
   const estimatedReturnsEl = container.querySelector(
-    "#total-estimated-returns"
+    '#total-estimated-returns',
   );
-  const compoundRateEl = container.querySelector("#compound-rate");
+  const compoundRateEl = container.querySelector('#compound-rate');
 
   if (totalReturnsEl) {
     totalReturnsEl.textContent = formatNumber({
@@ -134,7 +134,7 @@ export function updateCalculateTopupSipSummary({ container, data }) {
   if (compoundRateEl) compoundRateEl.textContent = data.compoundingAt;
 
   const bar = container.querySelector(
-    ".calc-compounding .estimated-returns-bar"
+    '.calc-compounding .estimated-returns-bar',
   );
   if (bar) bar.style.width = `${data.returnsPercentage}%`;
 }
@@ -152,10 +152,10 @@ function recalculateTopupSip({
 }) {
   if (!container) return;
 
-  const miInput = container.querySelector("#mi-amount");
-  const asuInput = container.querySelector("#asu-return");
-  const erorInput = container.querySelector("#eror-return");
-  const tpInput = container.querySelector("#tp-period");
+  const miInput = container.querySelector('#mi-amount');
+  const asuInput = container.querySelector('#asu-return');
+  const erorInput = container.querySelector('#eror-return');
+  const tpInput = container.querySelector('#tp-period');
 
   const monthlyInvestment = mi ?? Number(miInput?.value || 0);
   const annualIncreaseRate = asu ?? Number(asuInput?.value || 0);
@@ -180,116 +180,108 @@ function recalculateTopupSip({
  * Main Decorator — Builds Input + Overview UI
  */
 export default function decorate(block) {
-  const CALC_AUTHOR_MAIN = block.querySelector(".calc-author-main1");
+  const CALC_AUTHOR_MAIN = block.querySelector('.calc-author-main1');
   if (!CALC_AUTHOR_MAIN) {
-    console.warn("No .calc-author-main1 element found.");
+    console.warn('No .calc-author-main1 element found.');
     return;
   }
 
   // Get authored data sections
   const authors = [
-    { key: "MI", selector: ":scope > .calc-author-sub1" },
-    { key: "ASU", selector: ":scope > .calc-author-sub2" },
-    { key: "EROR", selector: ":scope > .calc-author-sub3" },
-    { key: "TP", selector: ":scope > .calc-author-sub4" },
+    { key: 'MI', selector: ':scope > .calc-author-sub1' },
+    { key: 'ASU', selector: ':scope > .calc-author-sub2' },
+    { key: 'EROR', selector: ':scope > .calc-author-sub3' },
+    { key: 'TP', selector: ':scope > .calc-author-sub4' },
   ];
 
   const CALC_AUTHORED_DATA = authors.map(({ key, selector }) => {
     const author = CALC_AUTHOR_MAIN.querySelector(selector);
     const data = author
-      ? [...author.querySelectorAll(".comlist")].map((el) =>
-          el.textContent.trim()
-        )
+      ? [...author.querySelectorAll('.comlist')].map((el) => el.textContent.trim())
       : [];
     return { key, data };
   });
 
   // Get the .calc-author-sub4 section
   const overviewParent = CALC_AUTHOR_MAIN.querySelector(
-    ":scope > .calc-author-sub4"
+    ':scope > .calc-author-sub4',
   );
 
   // Filter out only the overview items (skip subitem1–4)
   let OVERVIEW_DATA = null;
   if (overviewParent) {
-    OVERVIEW_DATA = document.createElement("div");
-    OVERVIEW_DATA.classList.add("overview-container");
+    OVERVIEW_DATA = document.createElement('div');
+    OVERVIEW_DATA.classList.add('overview-container');
 
     // Select all children except .calc-author-subitem1 to .calc-author-subitem4
     const overviewItems = overviewParent.querySelectorAll(
-      ":scope > .comlist:not(.calc-author-subitem1):not(.calc-author-subitem2):not(.calc-author-subitem3):not(.calc-author-subitem4)"
+      ':scope > .comlist:not(.calc-author-subitem1):not(.calc-author-subitem2):not(.calc-author-subitem3):not(.calc-author-subitem4)',
     );
 
-    overviewItems.forEach((item) =>
-      OVERVIEW_DATA.appendChild(item.cloneNode(true))
-    );
+    overviewItems.forEach((item) => OVERVIEW_DATA.appendChild(item.cloneNode(true)));
   }
 
   const sipBlock = createBarSummaryBlock({ container: OVERVIEW_DATA });
-  CALC_AUTHOR_MAIN.innerHTML = "";
+  CALC_AUTHOR_MAIN.innerHTML = '';
 
-  const mi = getAuthorData(CALC_AUTHORED_DATA, "MI");
-  const asu = getAuthorData(CALC_AUTHORED_DATA, "ASU");
-  const eror = getAuthorData(CALC_AUTHORED_DATA, "EROR");
-  const tp = getAuthorData(CALC_AUTHORED_DATA, "TP");
+  const mi = getAuthorData(CALC_AUTHORED_DATA, 'MI');
+  const asu = getAuthorData(CALC_AUTHORED_DATA, 'ASU');
+  const eror = getAuthorData(CALC_AUTHORED_DATA, 'EROR');
+  const tp = getAuthorData(CALC_AUTHORED_DATA, 'TP');
 
   const miBlock = createInputBlock({
-    id: "mi-amount",
+    id: 'mi-amount',
     ...mi,
-    prefix: "₹",
-    fieldType: "currency",
-    prefixAttr: { class: "currency-prefix" },
-    inputBlockAttr: { class: "mi-inp-container" },
-    variant: "number",
-    onInput: (e) =>
-      recalculateTopupSip({ mi: e.target.value, container: block }),
+    prefix: '₹',
+    fieldType: 'currency',
+    prefixAttr: { class: 'currency-prefix' },
+    inputBlockAttr: { class: 'mi-inp-container' },
+    variant: 'number',
+    onInput: (e) => recalculateTopupSip({ mi: e.target.value, container: block }),
     onChange: (v) => recalculateTopupSip({ mi: v, container: block }),
   });
 
   const asuBlock = createInputBlock({
-    id: "asu-return",
+    id: 'asu-return',
     ...asu,
-    suffix: "%",
-    inputBlockAttr: { class: "asu-inp-container" },
-    suffixAttr: { class: "input-suffix" },
-    fieldType: "percent",
-    variant: "stepper",
+    suffix: '%',
+    inputBlockAttr: { class: 'asu-inp-container' },
+    suffixAttr: { class: 'input-suffix' },
+    fieldType: 'percent',
+    variant: 'stepper',
     updateWidthonChange: true,
-    onInput: (e) =>
-      recalculateTopupSip({ asu: e.target.value, container: block }),
+    onInput: (e) => recalculateTopupSip({ asu: e.target.value, container: block }),
     onChange: (v) => recalculateTopupSip({ asu: v, container: block }),
   });
 
   const erorBlock = createInputBlock({
-    id: "eror-return",
+    id: 'eror-return',
     ...eror,
-    suffix: "%",
-    inputBlockAttr: { class: "eror-inp-container" },
-    suffixAttr: { class: "input-suffix" },
-    fieldType: "percent",
-    variant: "stepper",
+    suffix: '%',
+    inputBlockAttr: { class: 'eror-inp-container' },
+    suffixAttr: { class: 'input-suffix' },
+    fieldType: 'percent',
+    variant: 'stepper',
     updateWidthonChange: true,
-    onInput: (e) =>
-      recalculateTopupSip({ eror: e.target.value, container: block }),
+    onInput: (e) => recalculateTopupSip({ eror: e.target.value, container: block }),
     onChange: (v) => recalculateTopupSip({ eror: v, container: block }),
   });
 
   const tpBlock = createInputBlock({
-    id: "tp-period",
+    id: 'tp-period',
     ...tp,
-    inputBlockAttr: { class: "tp-inp-container" },
-    fieldType: "year",
-    suffix: tp?.default > 1 ? "years" : "year",
-    variant: "stepper",
+    inputBlockAttr: { class: 'tp-inp-container' },
+    fieldType: 'year',
+    suffix: tp?.default > 1 ? 'years' : 'year',
+    variant: 'stepper',
     updateWidthonChange: true,
-    onInput: (e) =>
-      recalculateTopupSip({ tp: e.target.value, container: block }),
+    onInput: (e) => recalculateTopupSip({ tp: e.target.value, container: block }),
     onChange: (v) => recalculateTopupSip({ tp: v, container: block }),
   });
 
   CALC_AUTHOR_MAIN.append(miBlock, asuBlock, erorBlock, tpBlock);
   block.appendChild(sipBlock);
-  console.log("sipBlock : ", sipBlock);
+  console.log('sipBlock : ', sipBlock);
 
   // Initial summary render
   updateCalculateTopupSipSummary({
