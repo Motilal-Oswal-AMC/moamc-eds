@@ -280,6 +280,12 @@
                     background-color: transparent;
                     transition: background-color 0.2s ease-in-out;
 
+                    &:disabled {
+                        cursor: not-allowed;
+                        opacity: 0.5;
+                        background-color: $neutrals-400;
+                    }
+
                     &.dec-btn {
                         padding: 11.5px 5.25px;
 
@@ -315,7 +321,7 @@
                         }
 
                         &::before {
-                            transform: translate(-50%, -50%);
+                            transform: translate(-50%, -50%) rotate(180deg);
                         }
                     }
 
@@ -328,11 +334,11 @@
                     }
 
 
-                    &:hover {
+                    &:hover:not(:disabled) {
                         background-color: map.get($button-secondary, hover);
                     }
 
-                    &:active {
+                    &:active:not(:disabled) {
                         background-color: map.get($button-secondary, hover);
                     }
                 }
