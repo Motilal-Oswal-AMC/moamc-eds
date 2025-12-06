@@ -52,6 +52,12 @@ export default function decorate(block) {
     return date.toLocaleDateString('en-US', options);
   }
 
+  const edgemain = block.closest('main');
+  if (edgemain.querySelector('.edge-filter')) {
+    edgemain.querySelectorAll('.edge-filter a').forEach((elem)=>{
+      elem.removeAttribute('href');
+    });
+  }
   if (window.location.href.includes('/our-authors/prateek-agrawal')) {
     block.innerHTML = '';
     dataMapMoObj.getinsights().then((respText) => {
@@ -59,8 +65,6 @@ export default function decorate(block) {
       resp.data.forEach(async (elem, index) => {
         if (index !== 0) {
           const readtime = await dataMapMoObj.getReadingTime(elem.path);
-          console.log(readtime.readingTime);
-
           const imagePAth = `./${elem.image.split('/')[elem.image.split('/').length - 1]}`;
           const temphtml = `<div class="comlist moedge-build-cont${index}">
   <div class="secs-wrapper">
