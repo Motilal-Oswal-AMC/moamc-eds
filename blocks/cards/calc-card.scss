@@ -16,7 +16,7 @@
         gap: 16px;
         flex-wrap: wrap;
 
-        > .comlist {
+        >.comlist {
           position: relative;
           display: flex;
           max-width: 400px;
@@ -85,15 +85,15 @@
             }
 
             .sub-cal-item-inner3 {
-               position: absolute;
-                top: 10px;
-                right: 10px;
-                margin: 0;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                width: 32px;
-                height: 32px;
+              position: absolute;
+              top: 10px;
+              right: 10px;
+              margin: 0;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              width: 32px;
+              height: 32px;
 
 
               .button {
@@ -102,7 +102,7 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
-      
+
 
                 .icon-cal-vector {
                   display: flex;
@@ -134,3 +134,5 @@
     }
   }
 }
+
+// .section.partner-blog {}

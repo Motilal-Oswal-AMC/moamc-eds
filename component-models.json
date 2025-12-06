@@ -735,6 +735,10 @@
             "value": "thank-you-screen"
           },
           {
+            "name": "Partner Blog",
+            "value": "partner-blog"
+          },
+          {
             "name": "Privacy Policy Banner",
             "value": "privacy-policy-banner"
           },
