@@ -109,14 +109,30 @@ export default async function decorate(block) {
 
   if (block.closest('.growth-now-container')) {
     const phno = block.querySelector('#form-1');
-    phno.setAttribute('maxlength', '10');
 
-    const sanitizeInput = (event) => {
-      const inputValue = event.target.value;
-      const sanitizedValue = inputValue.replace(/[^\d]/g, '');
-      event.target.value = sanitizedValue;
-    };
-    phno.addEventListener('input', sanitizeInput);
+    if (phno) {
+      // 1. Existing Logic: Set Max Length & Sanitize Input
+      phno.setAttribute('maxlength', '10');
+
+      const sanitizeInput = (event) => {
+        const inputValue = event.target.value;
+        const sanitizedValue = inputValue.replace(/[^\d]/g, '');
+        event.target.value = sanitizedValue;
+      };
+      phno.addEventListener('input', sanitizeInput);
+
+      // 2. New Logic: Move Label Below Input
+      // Find the parent wrapper of this specific input
+      const wrapper = phno.closest('.field-wrapper');
+
+      if (wrapper) {
+        const label = wrapper.querySelector('label'); // Find the label inside this wrapper
+        if (label) {
+          wrapper.appendChild(label); // Moves the label to the end (bottom)
+        }
+      }
+    }
+
     dataMapMoObj.updateSelectIds('countrySelect', 'countryLabel');
   }
 
