@@ -1324,7 +1324,7 @@ $breakpoint-tablet: 900px;
         @include media(mobile) {
           padding: unset;
           font-size: var(--paragraph-small-regular-size);
-          line-height: var(--body-small-semibold-line-height);
+          line-height: 20px;
         }
 
         .comlist {
