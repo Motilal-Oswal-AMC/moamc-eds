@@ -1124,7 +1124,15 @@ $breakpoint-tablet: 900px;
     flex-direction: column;
     gap: 40px;
 
+    @include media(mobile) {
+      padding: unset;
+    }
+
     .fdp-campaign-wrapper {
+
+      @include media(mobile) {
+        padding-left: 16px;
+      }
 
       @include media(mobile) {
         // padding: 0 0 0 16px;
@@ -1136,6 +1144,7 @@ $breakpoint-tablet: 900px;
         gap: 97px;
         border-radius: 15px;
         background: linear-gradient(100deg, rgba(221, 219, 255, 0) 54.34%, #DDDBFF 102.92%);
+        height: 272px;
 
         @include media(mobile) {
           height: 150px;
@@ -1235,6 +1244,7 @@ $breakpoint-tablet: 900px;
       @include media(mobile) {
         flex-direction: column;
         gap: 16px;
+        padding: 0 16px;
       }
 
       .button-container {
@@ -1258,7 +1268,7 @@ $breakpoint-tablet: 900px;
           width: 100%;
           border-radius: var(--border-radius-circle, 1000px);
           border: 1px solid var(--strokes-disabled);
-          background: var(--surface-selected);
+          background: transparent;
           padding: 8px 12px;
           color: var(--text-body);
           font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
@@ -1278,11 +1288,17 @@ $breakpoint-tablet: 900px;
           &.active {
             color: var(--text-button-default);
             border: 1px solid var(--strokes-selected);
+            background-color: var(--surface-selected);
           }
 
           &:first-child {
-            max-width: 189px;
+            max-width: 192px;
             width: 100%;
+
+            @include media(mobile) {
+              max-width: 189px;
+            }
+
           }
         }
 
@@ -1301,12 +1317,14 @@ $breakpoint-tablet: 900px;
         font-family: var(--body);
         font-size: var(--body-medium-regular-size);
         font-weight: 400;
-        line-height: var(--body-medium-regular-line-height);
+        line-height: 24px;
         max-width: 936px;
         width: 100%;
 
         @include media(mobile) {
           padding: unset;
+          font-size: var(--paragraph-small-regular-size);
+          line-height: 20px;
         }
 
         .comlist {
@@ -1315,9 +1333,40 @@ $breakpoint-tablet: 900px;
 
         strong {
           font-weight: 600;
+          font-size: var(--body-medium-semibold-size);
+          line-height: var(--body-medium-semibold-line-height);
+
+          @include media(mobile) {
+            font-size: var(--body-small-semibold-size);
+            line-height: var(--body-small-semibold-line-height);
+          }
+        }
+
+        a {
+          color: var(--text-text-link);
+          font-family: var(--body);
+          font-weight: 400;
+          line-height: 0;
+          text-decoration-line: underline;
+          text-decoration-style: solid;
+          text-decoration-skip-ink: auto;
+          text-decoration-thickness: auto;
+          text-underline-offset: 20%;
+
+          @include media(mobile) {
+            font-size: var(--text-link-small-size);
+            line-height: var(--text-link-small-line-height);
+          }
+        }
+      }
+
+      .default-content-wrapper.comlist {
+        @include media(mobile) {
+          padding-bottom: 40px;
         }
       }
     }
   }
 }
+
 // Styling for Privacy Policy 

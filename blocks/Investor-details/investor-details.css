@@ -50,6 +50,10 @@ main.nfo-nav .main-wrapper .section:first-of-type {
     padding: 2px var(--spacing-12);
 }
 
+.article-sub-right.stay-updated ul.investarticle-rightsub2 li.comlist {
+    cursor: pointer;
+}
+
 .article-sub-right.our-podcast .investarticle-rightmain1 ul.investarticle-rightsub3 li.comlist {
     padding: var(--spacing-16) 0;
 }
@@ -241,6 +245,54 @@ main.nfo-nav .main-wrapper .section:first-of-type {
 }
 
 .section.article-sub-left .co-branding-wrapper .co-branding ul.investleft-subinner2 li.comlist ul.investleft-itemchild1 li.comlist {
+    color: #3D3D3D;
+    font-feature-settings: var(--font-features-default);
+    font-family: var(--body);
+    font-size: var(--body-medium-regular-size);
+    line-height: 24px;
+    font-weight: 400;
+}
+
+
+/* Key Investing Details Card css */
+
+.section.article-sub-left.key-details-card .investarticle-leftsub1{
+    color: var(--blue-1-800-primary);
+    font-feature-settings: var(--font-features-default);
+    font-family: var(--body);
+    font-size: var(--body-large-semibold-size);
+    line-height: var(--body-large-semibold-line-height);
+    font-weight: 600;
+    margin: 0 0 24px;
+}
+
+.section.article-sub-left.key-details-card .investarticle-leftsub2{
+    width: 250px;
+    height: 161px;
+}
+
+.section.article-sub-left.key-details-card.right-key-card .investarticle-leftsub2{
+    float: right;
+    margin: 8px 0 8px 16px;
+}
+
+.section.article-sub-left.key-details-card.left-key-card .investarticle-leftsub2{
+    float: left;
+    margin: 8px 16px 8px 0;
+}
+
+.section.article-sub-left.key-details-card .investarticle-leftsub2 .investarticle-leftinner1{
+    line-height: 0;
+    height: 100%;
+    display: block;
+}
+
+.section.article-sub-left.key-details-card .investarticle-leftsub2 .investarticle-leftinner1 img.investsub-leftarticle4{
+    width: 100%;
+    height: 100%;
+}
+
+.section.article-sub-left.key-details-card .investarticle-leftsub2{
     color: #3D3D3D;
     font-feature-settings: var(--font-features-default);
     font-family: var(--body);

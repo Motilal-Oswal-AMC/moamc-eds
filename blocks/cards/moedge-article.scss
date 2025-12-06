@@ -42,6 +42,40 @@
                     }
                 }
             }
+
+            .moedge-article-one {
+                .leftartsub2 {
+                    .leftartitem1 {
+                        >div {
+                            img {
+                                // height: 467px;
+                                align-self: stretch;
+                                aspect-ratio: 816/467;
+                            }
+                        }
+
+                        picture.itemleftart1 {
+                            line-height: 0;
+                        }
+                    }
+                }
+
+                .leftartsub3 {
+                    .leftartitem1 {
+                        >div {
+                            img {
+                                // height: 660px;
+                                align-self: stretch;
+                                aspect-ratio: 68/55;
+                            }
+                        }
+
+                        picture.itemleftart1 {
+                            line-height: 0;
+                        }
+                    }
+                }
+            }
         }
     }
 }
@@ -443,6 +477,33 @@
                     // }
 
                 }
+
+                p.comlist {
+                    color: #3D3D3D;
+                    font-feature-settings: var(--font-features-default);
+                    font-family: var(--body, Inter);
+                    font-size: var(--body-medium-regular-size, 16px);
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: var(--body-medium-regular-line-height, 24px);
+
+                    @include media(mobile) {
+                        font-size: var(--paragraph-small-regular-size, 14px);
+                        font-style: normal;
+                        font-weight: 400;
+                        line-height: var(--paragraph-small-regular-line-height, 20px);
+                    }
+
+                    strong {
+                        color: var(--blue-1800-primary, #2E2A94);
+                        font-feature-settings: var(--font-features-default);
+                        font-family: var(--body, Inter);
+                        font-size: var(--body-large-semibold-size, 18px);
+                        font-style: normal;
+                        font-weight: 600;
+                        line-height: var(--body-large-semibold-line-height, 24px);
+                    }
+                }
             }
         }
 
@@ -535,6 +596,7 @@
                     align-self: stretch;
                     border-radius: var(--border-radius-8);
                     background: var(--neutrals-black);
+                    cursor: pointer;
 
                     .button.mainarticle1 {
                         color: var(--text-white);

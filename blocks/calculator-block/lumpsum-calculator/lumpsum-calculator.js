@@ -29,7 +29,8 @@ export function calculateLumpsumSummary({
   callbackFunc,
 }) {
   let data;
-  if (!totalInvestment || !rateOfReturn || !timePeriod) {
+  const inputErrors = document.querySelectorAll(".calc-input.calc-error");
+  if (!totalInvestment || !rateOfReturn || !timePeriod || inputErrors?.length) {
     data = {
       totalInvestment: 0,
       totalValue: 0,
@@ -180,6 +181,7 @@ export default function decorate(block) {
     ...ti,
     prefix: "₹",
     fieldType: "currency",
+    ignoreMin: true,
     prefixAttr: { class: "currency-prefix" },
     inputBlockAttr: {
       class: "ti-inp-container",
@@ -203,6 +205,7 @@ export default function decorate(block) {
     suffixAttr: { class: "input-suffix" },
     fieldType: "percent",
     variant: "stepper",
+    ignoreMin: true,
     updateWidthonChange: true,
     onInput: (e) => {
       recalculateLumpsum({ ror: e.target.value, container: block });
@@ -221,6 +224,7 @@ export default function decorate(block) {
     fieldType: "year",
     suffix: tp?.default > 1 ? "years" : "year",
     variant: "stepper",
+    ignoreMin: true,
     updateWidthonChange: true,
     onInput: (e) => {
       recalculateLumpsum({ tp: e.target.value, container: block });

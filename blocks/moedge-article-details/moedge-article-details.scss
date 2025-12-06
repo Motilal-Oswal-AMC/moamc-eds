@@ -183,6 +183,7 @@
                         .submainart3.itemmainleftart3 {
                             position: relative;
                             list-style: none;
+                            cursor: pointer;
 
                             p {
                                 margin: 0;
@@ -239,6 +240,10 @@
 
         .mainarticle2 {
             margin-top: 24px;
+
+            @include media (mobile) {
+                margin-top: 24px;
+            }
 
             .itemarticle1 {
                 .itemsubart1 {

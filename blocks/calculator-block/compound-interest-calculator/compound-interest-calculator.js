@@ -198,6 +198,7 @@ export default function decorate(block) {
     ...pi,
     prefix: "₹",
     fieldType: "currency",
+    ignoreMin: true,
     prefixAttr: { class: "currency-prefix" },
     inputBlockAttr: {
       class: "pi-inp-container",
@@ -219,6 +220,7 @@ export default function decorate(block) {
     ...tp,
     suffix: tp?.default > 1 ? "years" : "year",
     fieldType: "year",
+    ignoreMin: true,
     suffixAttr: { class: "input-suffix" },
     inputBlockAttr: {
       class: "tp-inp-container",
@@ -238,6 +240,7 @@ export default function decorate(block) {
     suffix: "%",
     fieldType: "percent",
     updateWidthonChange: true,
+    ignoreMin: true,
     suffixAttr: { class: "input-suffix" },
     inputBlockAttr: {
       class: "roi-inp-container",

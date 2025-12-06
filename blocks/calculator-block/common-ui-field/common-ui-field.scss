@@ -21,7 +21,7 @@
             border-radius: 8px;
             background: $primary-white;
             box-shadow: $primary-box-shadow;
-            
+
             @include media(mobile) {
                 flex: unset;
                 gap: 16px;
@@ -210,6 +210,9 @@
 
             .currency-dual-input-wrapper {
                 width: 100%;
+                max-height: 22px;
+                display: flex;
+                align-items: center;
             }
 
             .calc-inner-input-wrapper {
@@ -275,7 +278,14 @@
                     align-items: center;
                     margin: 0;
                     background-color: transparent;
-                    transition: background-color 0.2s ease-in-out;
+                    opacity: 1;
+                    transition: background-color 0.2s ease-in-out, opacity 0.2s ease-in-out;
+
+                    &:disabled {
+                        cursor: not-allowed;
+                        opacity: 0.5;
+                        background-color: $neutrals-400;
+                    }
 
                     &.dec-btn {
                         padding: 11.5px 5.25px;
@@ -293,6 +303,7 @@
                             border-radius: 3px;
                         }
                     }
+
 
                     &.inc-btn {
                         padding: 11.5px 5.25px;
@@ -312,7 +323,7 @@
                         }
 
                         &::before {
-                            transform: translate(-50%, -50%);
+                            transform: translate(-50%, -50%) rotate(180deg);
                         }
                     }
 
@@ -325,11 +336,11 @@
                     }
 
 
-                    &:hover {
+                    &:hover:not(:disabled) {
                         background-color: map.get($button-secondary, hover);
                     }
 
-                    &:active {
+                    &:active:not(:disabled) {
                         background-color: map.get($button-secondary, hover);
                     }
                 }
@@ -337,7 +348,6 @@
                 .calc-input {
                     text-align: center;
                     width: 100%;
-                    font-size: 1.1rem;
                 }
 
                 .calc-suffix {
@@ -552,6 +562,7 @@ a.calc-overview-cta.button,
             padding: 11.2px 16px;
         }
     }
+
 
     .button.calculator-container-title-btn {
         @include font-style(16px, 20px, $blue-1-800-primary, 500, $inter);
