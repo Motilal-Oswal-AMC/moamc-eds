@@ -743,6 +743,10 @@
             "value": "partner-connect"
           },
           {
+            "name": "Partner banner",
+            "value": "partner-banner"
+          },
+          {
             "name": "Cornerstones become partner",
             "value": "cornerstones-become-partner"
           },
