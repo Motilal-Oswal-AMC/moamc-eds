@@ -29,43 +29,43 @@
     }
 }
 
-body:has(.calculator-container) {
-    .calculator-qa-container {
-        .answer-container {
-            &:nth-child(4) {
-                .answer:not(:last-child) {
-                    margin-bottom: 14px;
-                }
-            }
+// body:has(.calculator-container) {
+//     .calculator-qa-container {
+//         .answer-container {
+//             &:nth-child(4) {
+//                 .answer:not(:last-child) {
+//                     margin-bottom: 14px;
+//                 }
+//             }
             
             
-            &:nth-child(6) {
-                .answer {
-                    &:not(:last-child) {
-                        margin-bottom: 27.5px;
-                    }
+//             &:nth-child(6) {
+//                 .answer {
+//                     &:not(:last-child) {
+//                         margin-bottom: 27.5px;
+//                     }
 
-                    &:has(.pointer) br:first-of-type {
-                        display: none;
-                    }
-                }
-            }
+//                     &:has(.pointer) br:first-of-type {
+//                         display: none;
+//                     }
+//                 }
+//             }
 
-            &:nth-child(10) {
-                li.answer {
-                    gap: 0;
+//             &:nth-child(10) {
+//                 li.answer {
+//                     gap: 0;
 
-                    &:not(:last-child) {
-                        margin-bottom: 27.2px;
-                    }
-                }
-            }
+//                     &:not(:last-child) {
+//                         margin-bottom: 27.2px;
+//                     }
+//                 }
+//             }
 
-        }
+//         }
 
-        p.answer:nth-child(12) {
-            margin-bottom: 0;
-        }
+//         p.answer:nth-child(12) {
+//             margin-bottom: 0;
+//         }
 
-    }
-}
+//     }
+// }

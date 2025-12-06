@@ -7,6 +7,102 @@ import {
 } from "../../../scripts/dom-helpers.js";
 
 /**
+ * Validate, clamp and format an input with event-driven error styling.
+ *
+ * @param {Object} config
+ * @param {Event} config.event - Input or change event
+ * @param {number|string} config.min - Minimum allowed value
+ * @param {number|string} config.max - Maximum allowed value
+ * @param {boolean} [config.currency=false] - Format value as currency
+ * @param {string} [config.currencyCode="INR"]
+ * @param {string} [config.locale="en-IN"]
+ * @param {boolean} [config.ignoreMin=false] - Skip min clamping, return value as-is
+ *
+ * @returns {{
+ *   finalValue: string|number,
+ *   numeric: number,
+ *   isError: boolean,
+ *   errorType: null|"NOT_A_NUMBER"|"MIN_EMPTY"|"ABOVE_MAX"
+ * }}
+ */
+
+export function validateInputWithEvent({
+  event,
+  min,
+  max,
+  currency = false,
+  currencyCode = "INR",
+  locale = "en-IN",
+  ignoreMin = false,
+  allowEmpty = false,
+}) {
+  const inputEl = event.target;
+  const rawValue = (inputEl.value || "").toString().trim();
+
+  let errorType = null;
+
+  // Normalize numeric text
+  const normalized = rawValue.replace(/,/g, "").replace(/[^\d.-]/g, "");
+  let num = Number(normalized);
+
+  // INVALID number
+  if (normalized === "" || Number.isNaN(num)) {
+    num = 0;
+    errorType = "NOT_A_NUMBER";
+  }
+
+  // MIN logic
+  if (ignoreMin) {
+    if (min === "") errorType = "MIN_EMPTY";
+  } else if (min !== "" && num < Number(min)) {
+    num = Number(min);
+    errorType = "MIN_EMPTY";
+  }
+
+  // MAX logic
+  if (max !== "" && num > Number(max)) {
+    num = Number(max);
+    // errorType = "ABOVE_MAX";
+  }
+
+  // Toggle error class
+  if (errorType) inputEl.classList.add("calc-error");
+  else inputEl.classList.remove("calc-error");
+
+  // Decide finalValue
+  const finalValue = currency
+    ? num !== 0
+      ? formatNumber({ value: num, currencyCode, locale })
+      : ""
+    : rawValue === "" && allowEmpty
+    ? rawValue
+    : num;
+
+  // Update input
+  if (currency) {
+    // Find fake input if it exists
+    const hiddenInputEl = document.getElementById(
+      `${inputEl.id?.replace("-fake", "")}`
+    );
+    if (hiddenInputEl) {
+      hiddenInputEl.value = num; // update numeric value in hidden input
+      inputEl.value = finalValue; // update formatted currency
+    } else {
+      inputEl.value = finalValue; // fallback to original input
+    }
+  } else {
+    inputEl.value = finalValue;
+  }
+
+  return {
+    finalValue,
+    numeric: num,
+    isError: Boolean(errorType),
+    errorType,
+  };
+}
+
+/**
  * Format a number as currency or decimal with flexible options
  * @param {Object} options
  * @param {number|string} options.value - Number to format
@@ -64,14 +160,37 @@ export const updateInputSuffix = (ele) => {
     ele?.target?.parentElement?.querySelector(".calc-inline-suffix") ||
     ele?.parentElement?.querySelector(".calc-inline-suffix");
   const fieldType =
-    ele?.target?.getAttribute("data-fieldType") ||
-    ele?.getAttribute("data-fieldType");
+    ele?.target?.getAttribute?.("data-fieldType") ||
+    ele?.getAttribute?.("data-fieldType");
+  const inputValue = ele?.value || ele?.target?.value || 0;
   if (suffixEle && fieldType) {
     if (fieldType === "year") {
-      suffixEle.textContent = Number(ele?.value || 0) <= 1 ? "year" : "years";
+      suffixEle.textContent = Number(inputValue) <= 1 ? "year" : "years";
     }
   }
 };
+
+/**
+ * Updates the input value and disables/enables the increment/decrement buttons based on min/max
+ * @param {HTMLInputElement} inputEl - The input element
+ */
+function updateStepperButtons(inputEl, inputValue) {
+  if (!inputEl) return;
+  debugger;
+  const wrapper = inputEl.closest(".calc-input-wrapper.stepper");
+  if (!wrapper) return;
+  const input = wrapper.querySelector(".calc-input");
+  const decBtn = wrapper.querySelector(".dec-btn");
+  const incBtn = wrapper.querySelector(".inc-btn");
+
+  const min = parseFloat(input.min) || 0;
+  const max = parseFloat(input.max) || Infinity;
+  // const value = parseFloat(input.value) || 0;
+
+  // Update disabled state
+  if (decBtn) decBtn.disabled = inputValue <= min;
+  if (incBtn) incBtn.disabled = inputValue >= max;
+}
 
 /**
  * Create an input block UI for calculator fields (SIP, ROI, etc.)
@@ -103,6 +222,7 @@ export function createInputBlock({
   onChange = () => {},
   updateWidthonChange = false,
   noLimit = false,
+  ignoreMin = false,
   ...rest
 }) {
   const FIELD_TYPE_MAPPING = {
@@ -153,13 +273,7 @@ export function createInputBlock({
         filteredValue = filteredValue ? filteredValue.replace(/,/g, "") : "";
         filteredValue = filteredValue?.replace(/[^\d]/g, ""); // allow only digits
       }
-      updateInputSuffix({
-        ...e,
-        target: {
-          ...e.target,
-          value: filteredValue,
-        },
-      });
+      updateInputSuffix(e);
     },
     oninput: (e) => {
       let filteredValue = e.target.value;
@@ -172,30 +286,58 @@ export function createInputBlock({
         filteredValue = filteredValue?.replace(/[^\d]/g, ""); // allow only digits
       }
 
-      updateInputSuffix({
-        ...e,
-        target: {
-          ...e.target,
-          value: filteredValue,
-        },
-      });
+      updateInputSuffix(e);
       if (updateWidthonChange) {
         e.target.style.setProperty(
           "--input-ch-width",
           `${getInputWidth(filteredValue)}`
         );
       }
-      if (!noLimit && ["stepper", "number"].includes(variant)) {
-        const inpVal = parseFloat(filteredValue) || 0;
-        if (inpVal === 0 && Number(min) === 0) {
-          e.target.value = inpVal;
-        } else if (inpVal > max) {
-          e.target.value = max;
-        } else if (inpVal < min) {
-          e.target.value = min;
+      if (
+        !noLimit &&
+        ["stepper", "number"].includes(variant) &&
+        fieldType !== "currency"
+      ) {
+        const { numeric, finalValue } = validateInputWithEvent({
+          event: e,
+          min,
+          max,
+          currency: fieldType === "currency",
+          currencyCode: "INR",
+          locale: "en-IN",
+          ignoreMin,
+          allowEmpty: true,
+        });
+        e.target.value = ignoreMin ? finalValue : numeric;
+        if (variant === "stepper") {
+          updateStepperButtons(e.target, numeric);
         }
       }
       rest?.onInput?.(e);
+    },
+    onblur: (e) => {
+      const hasError = e.target.classList.contains("calc-error");
+      if (hasError && ignoreMin) {
+        const { numeric } = validateInputWithEvent({
+          event: e,
+          min,
+          max,
+          currency: fieldType === "currency",
+          currencyCode: "INR",
+          locale: "en-IN",
+          ignoreMin: false,
+          allowEmpty: false,
+        });
+        e.target.classList.remove("calc-error");
+        if (variant === "stepper") {
+          updateStepperButtons(e.target, numeric);
+        }
+        onChange(numeric);
+        if (suffix) {
+          updateInputSuffix(e);
+        }
+      }
+      rest?.onBlur?.(e);
     },
     ...rest,
   };
@@ -221,21 +363,49 @@ export function createInputBlock({
     });
 
     // SYNC: fake → hidden
+    fakeInput.addEventListener("blur", (e) => {
+      const result = validateInputWithEvent({
+        event: e,
+        min,
+        max,
+        currency: fieldType === "currency",
+        currencyCode: "INR",
+        locale: "en-IN",
+        ignoreMin: false,
+        allowEmpty: false,
+      });
+      const { numeric: num } = result;
+
+      // fire onInput with RAW numeric
+      rest?.onBlur?.({
+        ...e,
+        target: { ...hiddenInput, value: String(num) },
+      });
+
+      if (ignoreMin) {
+        e.target.classList.remove("calc-error");
+        onChange(num);
+      }
+
+      updateInputSuffix(e);
+    });
     fakeInput.addEventListener("input", (e) => {
-      let raw = e.target.value.replace(/,/g, "").replace(/[^\d]/g, "");
-      if (!raw) raw = "0";
-
-      let num = Number(raw);
-
-      // min/max validation
-      if (min !== undefined && num < Number(min)) num = Number(min);
-      if (max !== undefined && num > Number(max)) num = Number(max);
-
+      const result = validateInputWithEvent({
+        event: e,
+        min,
+        max,
+        currency: fieldType === "currency",
+        currencyCode: "INR",
+        locale: "en-IN",
+        ignoreMin,
+        allowEmpty: false,
+      });
+      const { numeric: num, finalValue } = result;
       // update hidden input
       hiddenInput.value = num;
 
       // update visible formatted UI
-      fakeInput.value = formatNumber({ value: num });
+      fakeInput.value = finalValue;
 
       // fire onInput with RAW numeric
       rest?.onInput?.({
@@ -243,10 +413,7 @@ export function createInputBlock({
         target: { ...hiddenInput, value: String(num) },
       });
 
-      updateInputSuffix({
-        ...e,
-        target: fakeInput,
-      });
+      updateInputSuffix(e);
     });
 
     fakeInput.addEventListener("change", (e) => {
@@ -301,19 +468,27 @@ export function createInputBlock({
 
   // Stepper buttons
   if (variant === "stepper") {
+    const disableBtn = {
+      min: Number(defVal) <= Number(min), // true if decrement should be disabled
+      max: Number(defVal) >= Number(max), // true if increment should be disabled
+    };
+
     const decBtn = button(
       {
         class: "calc-btn dec-btn",
         type: "button",
         "aria-label": "decrease-btn",
+        ...(disableBtn.min && { disabled: true }), // only add disabled if condition is true
       },
       ""
     );
+
     const incBtn = button(
       {
         class: "calc-btn inc-btn",
         type: "button",
         "aria-label": "increase-btn",
+        ...(disableBtn.max && { disabled: true }), // only add disabled if condition is true
       },
       ""
     );
@@ -323,6 +498,8 @@ export function createInputBlock({
       const newVal = noLimit
         ? current - 1
         : Math.max(Number(min) || 0, current - 1);
+
+      updateStepperButtons(inputEl, newVal);
       inputEl.value = newVal;
       updateInputSuffix(inputEl);
       onChange(newVal);
@@ -339,6 +516,8 @@ export function createInputBlock({
       const newVal = noLimit
         ? current + 1
         : Math.min(Number(max) || current + 1, current + 1);
+
+      updateStepperButtons(inputEl, newVal);
       inputEl.value = newVal;
       updateInputSuffix(inputEl);
       onChange(newVal);
@@ -710,8 +889,9 @@ export function getCardsPerRow({
   const calculatedCards = Math.floor(availableWidth / fullCardWidth);
 
   // Return minimum 4 cards if screen is smaller than smallBreakpoint
-  if (windowWidth < smallBreakpoint)
+  if (windowWidth < smallBreakpoint) {
     return Math.max(calculatedCards, minCardsSmall);
+  }
 
   return calculatedCards;
 }

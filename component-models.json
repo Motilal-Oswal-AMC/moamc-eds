@@ -191,6 +191,34 @@
             "value": "nri-accordion"
           },
           {
+            "name": "Fund Tax",
+            "value": "fund-tax"
+          },
+          {
+            "name": "Invest Blog",
+            "value": "invest-blog"
+          },
+          {
+            "name": "Tax Blog",
+            "value": "tax-blog"
+          },
+          {
+            "name": "Sip Blog",
+            "value": "sip-blog"
+          },
+          {
+            "name": "SEBI Blog",
+            "value": "sebi-blog"
+          },
+          {
+            "name": "Fund Philosophy",
+            "value": "fund-philosophy"
+          },
+          {
+            "name": "Elss Stock Table",
+            "value": "elss-stock-table"
+          },
+          {
             "name": "Calculators Card",
             "value": "calculators-card"
           },
@@ -643,12 +671,12 @@
             "value": "why-matters-component"
           },
           {
-            "name":"Our Commitment Component",
-            "value":"our-commitment-component"
+            "name": "Our Commitment Component",
+            "value": "our-commitment-component"
           },
           {
-            "name":"What Stake Component",
-            "value":"what-stake-component"
+            "name": "What Stake Component",
+            "value": "what-stake-component"
           },
           {
             "name": "Mo Inter Business",
@@ -705,6 +733,14 @@
           {
             "name": "Investor Listing Our Expert",
             "value": "listing-our-expert"
+          },
+          {
+            "name": "Investor Term Blog",
+            "value": "investor-term-blog"
+          },
+          {
+            "name": "Cornerstones Elss Fund",
+            "value": "cornerstones-elss-fund"
           },
           {
             "name": "Fund Investment Options",
@@ -769,6 +805,30 @@
           {
             "name": "About Structure Governance Tab",
             "value": "structure-governance-tab"
+          },
+          {
+            "name": "Moedge Article One",
+            "value": "moedge-article-one"
+          },
+          {
+            "name": "Moedge Article Second",
+            "value": "moedge-article-second"
+          },
+          {
+            "name": "Moedge Article Three",
+            "value": "moedge-article-three"
+          },
+          {
+            "name": "Key Details Card",
+            "value": "key-details-card"
+          },
+          {
+            "name": "Left Align Card",
+            "value": "left-align-card"
+          },
+          {
+            "name": "Right Align Card",
+            "value": "right-align-card"
           }
         ]
       },
@@ -2121,7 +2181,7 @@
         "label": "Text",
         "valueType": "string"
       },
-       {
+      {
         "component": "text",
         "name": "col3_id",
         "label": "Enter Block Id"

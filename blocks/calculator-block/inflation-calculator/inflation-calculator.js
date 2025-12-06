@@ -84,7 +84,7 @@ export function calculateInflationSummary({
   currentCost = num(currentCost);
   rateOfInflation = num(rateOfInflation);
   timePeriod = num(timePeriod);
-  
+
   const rate = rateOfInflation / 100;
 
   // Future Cost Formula: FV = PV * (1 + r)^t
@@ -194,6 +194,7 @@ export default function decorate(block) {
     ...cc,
     prefix: "₹",
     fieldType: "currency",
+    ignoreMin: true,
     prefixAttr: { class: "currency-prefix" },
     inputBlockAttr: {
       class: "cc-inp-container",
@@ -214,6 +215,7 @@ export default function decorate(block) {
     suffix: "%",
     fieldType: "percent",
     variant: "stepper",
+    ignoreMin: true,
     suffixAttr: { class: "input-suffix" },
     inputBlockAttr: {
       class: "roi-inp-container",
@@ -234,6 +236,7 @@ export default function decorate(block) {
     suffix: tp?.default > 1 ? "years" : "year",
     fieldType: "year",
     variant: "stepper",
+    ignoreMin: true,
     inputBlockAttr: {
       class: "tp-inp-container",
     },

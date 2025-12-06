@@ -50,6 +50,10 @@ main.nfo-nav .main-wrapper .section:first-of-type {
     padding: 2px var(--spacing-12);
 }
 
+.article-sub-right.stay-updated ul.investarticle-rightsub2 li.comlist {
+    cursor: pointer;
+}
+
 .article-sub-right.our-podcast .investarticle-rightmain1 ul.investarticle-rightsub3 li.comlist {
     padding: var(--spacing-16) 0;
 }
@@ -86,6 +90,7 @@ main.nfo-nav .main-wrapper .section:first-of-type {
 .section.article-sub-left .investarticle-leftmain1 ul.investarticle-leftsub1 li.investarticle-leftinner1 ul.investsub-leftarticle1 li.comlist:last-of-type .icon {
     width: 12px;
     height: 12px;
+    margin-bottom: 1.5px;
 }
 
 .section.article-sub-left .investarticle-leftmain1 ul.investarticle-leftsub1 li.comlist:last-of-type p.investsub-leftarticle1.comlist,
@@ -129,6 +134,7 @@ main.nfo-nav .main-wrapper .section:first-of-type {
 .article-sub-right.recommended-posts .cards ul li .cards-card-body p:last-of-type span.icon {
     width: 12px;
     height: 12px;
+    margin-bottom: 1.5px;
 }
 
 .section.article-sub-left .investarticle-leftmain1 ul.investarticle-leftsub4 li.investarticle-leftinner1 p.investsub-leftarticle1,
@@ -247,6 +253,54 @@ main.nfo-nav .main-wrapper .section:first-of-type {
     font-weight: 400;
 }
 
+
+/* Key Investing Details Card css */
+
+.section.article-sub-left.key-details-card .investarticle-leftsub1{
+    color: var(--blue-1-800-primary);
+    font-feature-settings: var(--font-features-default);
+    font-family: var(--body);
+    font-size: var(--body-large-semibold-size);
+    line-height: var(--body-large-semibold-line-height);
+    font-weight: 600;
+    margin: 0 0 24px;
+}
+
+.section.article-sub-left.key-details-card .investarticle-leftsub2{
+    width: 250px;
+    height: 161px;
+}
+
+.section.article-sub-left.key-details-card.right-key-card .investarticle-leftsub2{
+    float: right;
+    margin: 8px 0 8px 16px;
+}
+
+.section.article-sub-left.key-details-card.left-key-card .investarticle-leftsub2{
+    float: left;
+    margin: 8px 16px 8px 0;
+}
+
+.section.article-sub-left.key-details-card .investarticle-leftsub2 .investarticle-leftinner1{
+    line-height: 0;
+    height: 100%;
+    display: block;
+}
+
+.section.article-sub-left.key-details-card .investarticle-leftsub2 .investarticle-leftinner1 img.investsub-leftarticle4{
+    width: 100%;
+    height: 100%;
+}
+
+.section.article-sub-left.key-details-card .investarticle-leftsub2{
+    color: #3D3D3D;
+    font-feature-settings: var(--font-features-default);
+    font-family: var(--body);
+    font-size: var(--body-medium-regular-size);
+    line-height: 24px;
+    font-weight: 400;
+}
+
 .section.article-right-wrapper {
     max-width: 24.026%;
     width: 100%;
@@ -318,6 +372,7 @@ main.nfo-nav .main-wrapper .section:first-of-type {
     border: var(--border-width-01) solid var(--neutrals-white);
     padding: var(--spacing-8) var(--spacing-12);
     position: relative;
+    height: 40px;
 }
 
 .article-sub-right.subscribe-email .investarticle-rightmain1 .email-wrapper label,
@@ -346,7 +401,7 @@ main.nfo-nav .main-wrapper .section:first-of-type {
 }
 
 .article-sub-right.subscribe-email .investarticle-rightmain1 .email-wrapper input {
-    padding: 2px 0;
+    /* padding: 2px 0; */
     border: none;
     background-color: transparent;
     width: 100%;
@@ -368,6 +423,11 @@ main.nfo-nav .main-wrapper .section:first-of-type {
     font-size: var(--button-medium-size);
     line-height: var(--button-medium-line-height);
     font-weight: 500;
+    height: 40px;
+}
+
+.article-sub-right.recommended-posts .investarticle-rightmain1 {
+    margin-bottom: 8px;
 }
 
 .article-sub-right.recommended-posts .investarticle-rightmain1 .investarticle-rightsub1 {
@@ -544,6 +604,7 @@ main.nfo-nav .main-wrapper .section:first-of-type {
 .article-sub-right.our-podcast .investarticle-rightmain1 ul.investarticle-rightsub3>li.comlist ul.investsub-rightarticle2 li:last-of-type span.icon {
     width: 12px;
     height: 12px;
+    margin-bottom: 1.5px;
 }
 
 .section.future-building-container.article-detail-library {
@@ -702,6 +763,7 @@ main.nfo-nav .main-wrapper .section:first-of-type {
         padding: var(--spacing-12);
         font-size: var(--button-medium-size);
         line-height: var(--button-medium-line-height);
+        height: 44px;
     }
 
     .article-sub-right.recommended-posts .investarticle-rightmain1 .investarticle-rightsub1 {
