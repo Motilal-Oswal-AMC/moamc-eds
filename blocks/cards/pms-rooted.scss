@@ -622,11 +622,19 @@ $breakpoint-tablet: 900px;
     margin-bottom: 60px;
 
     @include media (mobile) {
-        padding: 40px 16px 0px;
+        padding: 0;
         margin-bottom: 80px;
+        background-color: #fff;
+        padding: 0px 16px;
     }
 
     .cards-wrapper {
+         @include media (mobile) {
+        padding: 40px 16px 0 16px; 
+        background-color: #F5F5F5;
+        border-radius: 12px;
+    }
+
         .cards {
             .comlist {
                 .pms-high-skin-card-subcont1 {
@@ -637,6 +645,19 @@ $breakpoint-tablet: 900px;
                         flex-direction: column;
                         gap: 24px;
 
+                      
+                            h2.high-skin-sub-inner1{
+                                font-size: 32px;
+                                line-height: 40px;
+                                font-weight: 600;
+                                
+                            @include media (mobile) {
+                                      font-size: 24px;
+                                      line-height: 28px;
+                                    }
+                                }
+                        
+
                         .high-skin-sub-inner2 {
                             margin: 0;
                             display: flex;
@@ -644,7 +665,7 @@ $breakpoint-tablet: 900px;
                             gap: 2px;
                             color: #616161;
                             text-align: center;
-                            font-family: var(--Body, Inter);
+                            font-family: var(--body, Inter);
                             font-size: 16px;
                             font-style: normal;
                             font-weight: 400;
