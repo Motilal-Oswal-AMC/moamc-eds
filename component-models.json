@@ -218,6 +218,10 @@
             "name": "GLP TAB Price",
             "value": "glp-tab-price"
           },
+           {
+            "name": "Gift Campaign",
+            "value": "gift-campaign"
+          },
           {
             "name": "Wealth-Register",
             "value": "wealth-register"

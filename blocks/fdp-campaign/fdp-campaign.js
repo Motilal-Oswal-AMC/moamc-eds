@@ -249,13 +249,13 @@ export default function decorate(block) {
   // gift fdp-campaign  start
    
 
-  const giftParent = document.querySelector(".fdp-campaign");
-const giftChildren = [...giftParent.children];
-const giftWrapper = div({ class: 'wrapper-policy' });
+//   const giftParent = document.querySelector(".fdp-campaign");
+// const giftChildren = [...giftParent.children];
+// const giftWrapper = div({ class: 'wrapper-policy' });
 
-giftParent.appendChild(giftWrapper);
+// giftParent.appendChild(giftWrapper);
 
-giftChildren.forEach(child => giftWrapper.appendChild(child));
+// giftChildren.forEach(child => giftWrapper.appendChild(child));
 
 
    // gift fdp-campaign  End
