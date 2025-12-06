@@ -160,36 +160,48 @@ const dataMapMoObj = {
     const mainContainer = blockdiv.closest('.section');
     if (!mainContainer) return;
 
+    // Optional: Remove existing pagination if needed
     // const defaultPagination = mainContainer.querySelector('.section > div');
     // if (defaultPagination) defaultPagination.remove();
 
     const paginationWrapper = document.createElement('div');
     paginationWrapper.className = 'pagination-wrapper';
 
-    // --- CORE LOGIC: Adjustable Dots ---
+    // --- CORE LOGIC: Smart Gaps (ESLint Friendly) ---
     function generatePaginationList(current, total) {
-    // A. IF 5 OR FEWER PAGES: Show everything, no dots
-      if (total <= 5) {
+      // A. If 6 or fewer pages, show all of them
+      if (total <= 6) {
+        // Using Array.from with a map function
         return Array.from({ length: total }, (_, i) => i + 1);
       }
 
-      // B. IF MORE THAN 5 PAGES: Adjustable Logic
+      // B. Determine essential pages (Always 1, Current-1, Current, Current+1, Last)
+      const center = [current - 1, current, current + 1]
+        .filter((p) => p > 1 && p < total);
 
-      // 1. Near the START (Pages 1, 2, 3, 4)
-      // Show: 1 2 3 4 5 ... [Last]
-      if (current < 4) {
-        return [1, 2, 3, 4, '...', total];
-      }
+      // Sort and remove duplicates
+      const filteredList = [...new Set([1, ...center, total])].sort((a, b) => a - b);
 
-      // 2. Near the END (Within the last 4 pages)
-      // Show: 1 ... 16 17 18 19 20
-      if (current > total - 3) {
-        return [1, '...', total - 3, total - 2, total - 1, total];
-      }
+      const finalParams = [];
+      let prev = null;
 
-      // 3. Somewhere in the MIDDLE
-      // Show: 1 ... [prev] [current] [next] ... [Last]
-      return [1, '...', current - 1, current, current + 1, '...', total];
+      // CHANGED: Using .forEach() instead of for...of
+      filteredList.forEach((page) => {
+        if (prev) {
+          const gap = page - prev;
+          if (gap === 2) {
+            // Gap is exactly 1 number (e.g., 1 -> 3). Fill with 2.
+            finalParams.push(prev + 1);
+          } else if (gap > 2) {
+            // Gap is 2 or more numbers. Add dots.
+            finalParams.push('...');
+          }
+        }
+        finalParams.push(page);
+        prev = page;
+      });
+
+      return finalParams;
     }
 
     // --- CONTROLLER ---
@@ -197,23 +209,36 @@ const dataMapMoObj = {
       currentPage = page;
       const start = (page - 1) * itemsPerPage;
       const end = start + itemsPerPage;
+
       // Toggle Visibility
       items.forEach((item, index) => {
-        if (item.closest('.section').querySelector('.listing-investor-banner')) {
+        // Logic for specific banner toggling if present
+        const section = item.closest('.section');
+        const banner = section ? section.querySelector('.listing-investor-banner') : null;
+
+        if (banner) {
           if (page === 1) {
-            item.closest('.section').querySelector('.listing-investor-banner').classList.remove('hidden-item');
+            banner.classList.remove('hidden-item');
           } else {
-            item.closest('.section').querySelector('.listing-investor-banner').classList.add('hidden-item');
+            banner.classList.add('hidden-item');
           }
         }
-        item.classList.toggle('hidden-item', index < start || index >= end);
+        // Logic for item visibility
+        if (index < start || index >= end) {
+          item.classList.add('hidden-item');
+        } else {
+          item.classList.remove('hidden-item');
+        }
       });
 
       funcObj.renderControls();
 
       // Scroll Up Logic
       if (mainContainer) {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth',
+        });
       }
     }
 
@@ -262,11 +287,134 @@ const dataMapMoObj = {
       });
       paginationWrapper.appendChild(nextBtn);
     };
+
     funcObj.renderControls = renderControls;
+
     // Initialize
     mainContainer.appendChild(paginationWrapper);
     goToPage(1);
   },
+  // setupPagination: (blockdiv, items, itemsPerPage) => {
+  //   const funcObj = {};
+  //   const totalPages = Math.ceil(items.length / itemsPerPage);
+
+  //   // 1. If 1 or 0 pages, do nothing
+  //   if (totalPages <= 1) return;
+
+  //   let currentPage = 1;
+
+  //   const mainContainer = blockdiv.closest('.section');
+  //   if (!mainContainer) return;
+
+  //   // const defaultPagination = mainContainer.querySelector('.section > div');
+  //   // if (defaultPagination) defaultPagination.remove();
+
+  //   const paginationWrapper = document.createElement('div');
+  //   paginationWrapper.className = 'pagination-wrapper';
+
+  //   // --- CORE LOGIC: Adjustable Dots ---
+  //   function generatePaginationList(current, total) {
+  //   // A. IF 5 OR FEWER PAGES: Show everything, no dots
+  //     if (total <= 5) {
+  //       return Array.from({ length: total }, (_, i) => i + 1);
+  //     }
+
+  //     // B. IF MORE THAN 5 PAGES: Adjustable Logic
+
+  //     // 1. Near the START (Pages 1, 2, 3, 4)
+  //     // Show: 1 2 3 4 5 ... [Last]
+  //     if (current < 4) {
+  //       return [1, 2, 3, 4, '...', total];
+  //     }
+
+  //     // 2. Near the END (Within the last 4 pages)
+  //     // Show: 1 ... 16 17 18 19 20
+  //     if (current > total - 3) {
+  //       return [1, '...', total - 3, total - 2, total - 1, total];
+  //     }
+
+  //     // 3. Somewhere in the MIDDLE
+  //     // Show: 1 ... [prev] [current] [next] ... [Last]
+  //     return [1, '...', current - 1, current, current + 1, '...', total];
+  //   }
+
+  //   // --- CONTROLLER ---
+  //   function goToPage(page) {
+  //     currentPage = page;
+  //     const start = (page - 1) * itemsPerPage;
+  //     const end = start + itemsPerPage;
+  //     // Toggle Visibility
+  //     items.forEach((item, index) => {
+  //       if (item.closest('.section').querySelector('.listing-investor-banner')) {
+  //         if (page === 1) {
+  //           item.closest('.section')
+  //  .querySelector('.listing-investor-banner').classList.remove('hidden-item');
+  //         } else {
+  //           item.closest('.section')
+  //  .querySelector('.listing-investor-banner').classList.add('hidden-item');
+  //         }
+  //       }
+  //       item.classList.toggle('hidden-item', index < start || index >= end);
+  //     });
+
+  //     funcObj.renderControls();
+
+  //     // Scroll Up Logic
+  //     if (mainContainer) {
+  //       window.scrollTo({ top: 0, behavior: 'smooth' });
+  //     }
+  //   }
+
+  //   // --- RENDERER ---
+  //   const renderControls = () => {
+  //     paginationWrapper.innerHTML = '';
+
+  //     // Previous Arrow
+  //     const prevBtn = document.createElement('button');
+  //     prevBtn.innerHTML = '&lsaquo;';
+  //     prevBtn.className = 'pagination-arrow prev-btn';
+  //     prevBtn.ariaLabel = 'Previous Page';
+  //     prevBtn.disabled = currentPage === 1;
+  //     prevBtn.addEventListener('click', () => {
+  //       if (currentPage > 1) goToPage(currentPage - 1);
+  //     });
+  //     paginationWrapper.appendChild(prevBtn);
+
+  //     // Number Buttons
+  //     const pageList = generatePaginationList(currentPage, totalPages);
+
+  //     pageList.forEach((item) => {
+  //       if (item === '...') {
+  //         const ellipsis = document.createElement('span');
+  //         ellipsis.textContent = '...';
+  //         ellipsis.className = 'pagination-ellipsis';
+  //         paginationWrapper.appendChild(ellipsis);
+  //       } else {
+  //         const btn = document.createElement('button');
+  //         btn.textContent = item;
+  //         btn.className = 'pagination-btn';
+  //         if (item === currentPage) btn.classList.add('active');
+  //         btn.addEventListener('click', () => goToPage(item));
+  //         paginationWrapper.appendChild(btn);
+  //       }
+  //     });
+
+  //     // Next Arrow
+  //     const nextBtn = document.createElement('button');
+  //     nextBtn.innerHTML = '&rsaquo;';
+  //     nextBtn.className = 'pagination-arrow next-btn';
+  //     nextBtn.ariaLabel = 'Next Page';
+  //     nextBtn.disabled = currentPage === totalPages;
+  //     nextBtn.addEventListener('click', () => {
+  //       if (currentPage < totalPages) goToPage(currentPage + 1);
+  //     });
+  //     paginationWrapper.appendChild(nextBtn);
+  //   };
+  //   funcObj.renderControls = renderControls;
+  //   // Initialize
+  //   mainContainer.appendChild(paginationWrapper);
+  //   goToPage(1);
+  // },
   getOrdinalSuperscript: (n) => {
   // Ensure the input is a number
     if (typeof n !== 'number' || Number.isNaN(n)) {
@@ -300,55 +448,6 @@ const dataMapMoObj = {
 
     // Return the number concatenated with the superscript suffix
     return `${n}<sup>${suffix}</sup>`;
-  },
-  getReadingTime: async (url) => {
-    try {
-      // 1. FETCH (Using CORS Proxy)
-      const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`;
-      const response = await fetch(proxyUrl);
-      const data = await response.json();
-
-      if (!data.contents) throw new Error('No content received');
-
-      // 2. PARSE (Virtual DOM)
-      const parser = new DOMParser();
-      const doc = parser.parseFromString(data.contents, 'text/html');
-
-      // 3. IDENTIFY CONTENT (Smart Scoring Algorithm)
-      // We reduce all <p> tags into a map of { ParentElement: Score }
-      const paragraphScores = Array.from(doc.querySelectorAll('p')).reduce((map, p) => {
-        if (p.innerText.length < 50) return map; // Filter noise
-        const parent = p.parentElement;
-        map.set(parent, (map.get(parent) || 0) + p.innerText.length);
-        return map;
-      }, new Map());
-
-      // Find the container with the highest score
-      const [bestContainer] = [...paragraphScores.entries()]
-        .reduce((max, curr) => (curr[1] > max[1] ? curr : max), [doc.body, 0]);
-
-      // 4. CLEAN & COUNT
-      const clone = bestContainer.cloneNode(true);
-      // Remove non-content elements
-      clone.querySelectorAll('script, style, button, nav, footer, iframe').forEach((el) => el.remove());
-
-      const text = clone.textContent || '';
-      const wordCount = (text.match(/\w+/g) || []).length;
-      const minutes = Math.ceil(wordCount / 225);
-
-      return {
-        url,
-        readingTime: minutes,
-        wordCount,
-        status: 'Success',
-      };
-    } catch (error) {
-      return {
-        url,
-        readingTime: 0,
-        status: 'Failed',
-      };
-    }
   },
 };
 export default dataMapMoObj;
