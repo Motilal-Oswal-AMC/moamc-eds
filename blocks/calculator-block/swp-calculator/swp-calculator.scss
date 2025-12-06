@@ -2,74 +2,74 @@
 @use "../../../styles/common-theme/css/variables_mixins" as *;
 @use "../../../styles/common-theme/css/fluid-typography" as *;
 
-body:has(.swp-summary) {
-    .calculator-qa-container {
-        p.answer:nth-child(4) {
-            margin-bottom: 17px;
-        }
+// body:has(.swp-summary) {
+//     .calculator-qa-container {
+//         p.answer:nth-child(4) {
+//             margin-bottom: 17px;
+//         }
 
-        .answer:nth-child(15) {
-            margin-bottom: 12px;
-        }
+//         .answer:nth-child(15) {
+//             margin-bottom: 12px;
+//         }
 
-        .answer-container {
-            &:nth-child(7) {
-                .answer:not(:last-child) {
-                    margin-bottom: 14px;
-                }
-            }
+//         .answer-container {
+//             &:nth-child(7) {
+//                 .answer:not(:last-child) {
+//                     margin-bottom: 14px;
+//                 }
+//             }
 
-            &:nth-child(20) {
-                .answer:not(:last-child) {
-                    display: block;
-                    margin-bottom: 12px;
-                }
+//             &:nth-child(20) {
+//                 .answer:not(:last-child) {
+//                     display: block;
+//                     margin-bottom: 12px;
+//                 }
 
-                .answer:last-child {
-                    margin-top: 17px;
+//                 .answer:last-child {
+//                     margin-top: 17px;
 
-                    .small-bold {
-                        font-weight: 600;
-                        font-size: 16px;
-                        line-height: 20px;
-                    }
-                }
-            }
-        }
+//                     .small-bold {
+//                         font-weight: 600;
+//                         font-size: 16px;
+//                         line-height: 20px;
+//                     }
+//                 }
+//             }
+//         }
 
-        p.answer:nth-child(9) {
-            margin-bottom: 14px;
-        }
+//         p.answer:nth-child(9) {
+//             margin-bottom: 14px;
+//         }
 
-        ol.answer-container {
-            li.answer:not(:has(.pointer)) {
-                &:not(:last-child) {
-                    margin-bottom: 0;
-                }
+//         ol.answer-container {
+//             li.answer:not(:has(.pointer)) {
+//                 &:not(:last-child) {
+//                     margin-bottom: 0;
+//                 }
 
 
-                &::marker {
-                    font-size: 18px;
-                    line-height: 28px;
-                    color: $neutrals-700;
-                }
-            }
+//                 &::marker {
+//                     font-size: 18px;
+//                     line-height: 28px;
+//                     color: $neutrals-700;
+//                 }
+//             }
 
-            &:nth-child(13) {
-                .answer:has(.small-bold) {
-                    font-size: 16px;
-                    line-height: 20px;
-                    list-style: none;
-                    margin-left: 0;
-                }
-            }
-        }
+//             &:nth-child(13) {
+//                 .answer:has(.small-bold) {
+//                     font-size: 16px;
+//                     line-height: 20px;
+//                     list-style: none;
+//                     margin-left: 0;
+//                 }
+//             }
+//         }
 
-        p.answer:nth-child(18) {
-            margin-bottom: 8px;
-        }
-    }
-}
+//         p.answer:nth-child(18) {
+//             margin-bottom: 8px;
+//         }
+//     }
+// }
 
 
 .calculator-container {

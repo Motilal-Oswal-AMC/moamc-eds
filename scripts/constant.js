@@ -177,14 +177,14 @@ const dataMapMoObj = {
 
       // 1. Near the START (Pages 1, 2, 3, 4)
       // Show: 1 2 3 4 5 ... [Last]
-      if (current < 5) {
-        return [1, 2, 3, 4, 5, '...', total];
+      if (current < 4) {
+        return [1, 2, 3, 4, '...', total];
       }
 
       // 2. Near the END (Within the last 4 pages)
       // Show: 1 ... 16 17 18 19 20
-      if (current >= total - 3) {
-        return [1, '...', total - 4, total - 3, total - 2, total - 1, total];
+      if (current > total - 3) {
+        return [1, '...', total - 3, total - 2, total - 1, total];
       }
 
       // 3. Somewhere in the MIDDLE

@@ -222,7 +222,7 @@
 
                     @include media(mobile) {
                         max-inline-size: 21ch;
-                        
+
                         @include font-style(var(--sub-header-large-size), 28px, var(--neutrals-white), 600, var(--title));
                     }
                 }
@@ -362,8 +362,23 @@
                             background-color: transparent;
                         }
 
-                        .phnodata:has(input:focus) label,
-                        .phnodata:has(input:not(:placeholder-shown)) label {
+                        // .phnodata:has(input:focus) label,
+                        // .phnodata:has(input:not(:placeholder-shown)) label {
+                        //     top: -8px;
+                        //     transform: translateY(0);
+                        //     padding: 0 5px;
+                        //     font-size: 12PX;
+                        //     line-height: 14px;
+                        //     color: #fff;
+                        //     background: #2E2A94;
+                        // }
+
+                         .phnodata input:focus{
+                            border-color: #6a38ee;
+                        }
+
+                        .phnodata input:focus+label,
+                        .phnodata input:not(:placeholder-shown)+label {
                             top: -8px;
                             transform: translateY(0);
                             padding: 0 5px;
@@ -372,10 +387,6 @@
                             color: #fff;
                             background: #2E2A94;
                         }
-
-                        // .phnodata:has(input:focus) input {
-                        //     border-color: #6a38ee;
-                        // }
 
                         select {
                             background: transparent;
@@ -389,11 +400,8 @@
                             line-height: var(--body-medium-regular-line-height);
                             font-feature-settings: var(--font-features-default);
                             pointer-events: none;
-                            padding-right: 11px;
-                            
                             appearance: none;
                             -webkit-appearance: none;
-
                             padding-right: 4px;
 
                             @include media(mobile) {
