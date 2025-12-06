@@ -3871,5 +3871,24 @@
         "label": "Calculation overview"
       }
     ]
+  },
+  {
+    "id": "investing-minors",
+    "fields": [
+      {
+        "component": "richtext",
+        "name": "one_text",
+        "value": "",
+        "label": "Text",
+        "valueType": "string"
+      },
+      {
+        "component": "richtext",
+        "name": "two_text",
+        "value": "",
+        "label": "Text",
+        "valueType": "string"
+      }
+    ]
   }
 ]
