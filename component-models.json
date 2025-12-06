@@ -747,6 +747,10 @@
             "value": "partner-banner"
           },
           {
+            "name": "Partner Amc",
+            "value": "partner-amc"
+          },
+          {
             "name": "Cornerstones become partner",
             "value": "cornerstones-become-partner"
           },
