@@ -597,7 +597,6 @@
             align-items: flex-start;
 
             .prosinvest-inner {
-
                 &1,
                 &2 {
                     width: 49.4%;
@@ -638,10 +637,19 @@
 
                                     p {
                                         margin: 0;
+                                        display: flex;
+                                        min-width: 64px;
+                                        height: 64px;
+                                        flex-direction: column;
+                                        justify-content: center;
+                                        align-items: center;
+                                        border-radius: 8px;
+                                        background: var(--neutrals-200, #EEE);
+                                        box-shadow: 0 5.333px 16px 0 #0000000d;
 
                                         span {
-                                            width: 64px;
-                                            height: 64px;
+                                            width: 31.781px;
+                                            height: 32px;
                                         }
                                     }
 

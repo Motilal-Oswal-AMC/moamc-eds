@@ -278,7 +278,8 @@
                     align-items: center;
                     margin: 0;
                     background-color: transparent;
-                    transition: background-color 0.2s ease-in-out;
+                    opacity: 1;
+                    transition: background-color 0.2s ease-in-out, opacity 0.2s ease-in-out;
 
                     &:disabled {
                         cursor: not-allowed;
@@ -562,7 +563,7 @@ a.calc-overview-cta.button,
         }
     }
 
-    
+
     .button.calculator-container-title-btn {
         @include font-style(16px, 20px, $blue-1-800-primary, 500, $inter);
 
