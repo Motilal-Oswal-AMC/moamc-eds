@@ -1317,14 +1317,14 @@ $breakpoint-tablet: 900px;
         font-family: var(--body);
         font-size: var(--body-medium-regular-size);
         font-weight: 400;
-        line-height: var(--body-medium-regular-line-height);
+        line-height: 24px;
         max-width: 936px;
         width: 100%;
 
         @include media(mobile) {
           padding: unset;
           font-size: var(--paragraph-small-regular-size);
-          line-height: var(--body-small-semibold-line-height);
+          line-height: 20px;
         }
 
         .comlist {

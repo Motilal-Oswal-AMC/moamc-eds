@@ -17,7 +17,9 @@ export default function decorate(block) {
 
   // Select only the list items that are actual dropdowns
   const dropdowns = block.querySelectorAll('.filter-lists2, .filter-lists3, .edge-filter-cont2 .filter-lists2');
-
+  block.querySelectorAll('a').forEach((element) => {
+    element.removeAttribute('href');
+  });
   dropdowns.forEach((dropdown) => {
     const trigger = dropdown.querySelector('.filter-lists-wrap1');
     if (!trigger) return;

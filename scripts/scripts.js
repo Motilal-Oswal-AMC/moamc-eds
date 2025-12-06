@@ -549,6 +549,12 @@ function articleStructure() {
     || window.location.href.includes(
       '/investor-education/keys-of-investing/',
     )
+    || window.location.href.includes(
+      '/motilal-oswal-edge/insights/',
+    )
+    || window.location.href.includes(
+      '/investor-education/blogs/',
+    )
   ) {
     const maincloser = document.querySelector('main');
     const rightSub = maincloser.querySelectorAll('.article-sub-right');
@@ -626,6 +632,41 @@ function articleStructure() {
       ];
       dataMapMoObj.addIndexed(mainleft);
     }
+    // if (maincloser.querySelector('.moedge-article-details')) {
+    //   const videoContainer = maincloser.querySelector('.moedge-article-video-container');
+
+    //   if (videoContainer) {
+    //     const allWrappers = videoContainer.querySelectorAll('.default-content-wrapper');
+
+    //     // Array of class names you wanted to map
+    //     const classPrefixes = [
+    //       'main-article-content',
+    //       'main-article-heading',
+    //       'main-article-para',
+    //       'main-article-subheading'
+    //     ];
+
+    //     allWrappers.forEach((wrapper, index) => {
+    //       // Check if we have a class name for this specific index
+    //       if (classPrefixes[index]) {
+    //         wrapper.classList.add(classPrefixes[index]);
+    //       } else {
+    //         // Fallback for items exceeding the array length
+    //         wrapper.classList.add('main-article-general');
+    //       }
+    //     });
+    //   }
+    // }
+    const container = document.querySelector('.moedge-article-video-container');
+
+    if (container) {
+      const wrappers = container.querySelectorAll('.default-content-wrapper');
+
+      wrappers.forEach((wrapper) => {
+        wrapper.classList.add('default-content');
+      });
+    }
+
     const formpath = maincloser.querySelector(
       '.article-right-wrapper .subscribe-email',
     );
@@ -750,15 +791,12 @@ if (promiseQGLP != null) {
   dataMapMoObj.addIndexed(promiseQGLP);
 }
 // why qglp componet end
-
-// why qglp css lent start
 const whyQGLPWrp = document.querySelector('.why-qglp .default-content-wrapper');
 
 if (whyQGLPWrp) {
   whyQGLPWrp.classList.add('why-qglp-wrapper');
   // why qglp css lent end
 }
-// why qglp css lent end
 
 // promise qglp css lent start
 const promiseQGLPWrp = document.querySelector(
@@ -819,6 +857,7 @@ const privacyPolicy = document.querySelectorAll('.privacy-policy-banner');
 
 const privacyPolicyArr = Array.from(privacyPolicy);
 privacyPolicyArr.forEach((child) => {
+
   if (child != null) {
     dataMapMoObj.CLASS_PREFIXES = [
       'pp-banner-wrap',
@@ -830,7 +869,7 @@ privacyPolicyArr.forEach((child) => {
     ];
     dataMapMoObj.addIndexed(child);
   }
-});
+})
 
 const skinstakeComponent = document.querySelector('.what-stake-component');
 if (skinstakeComponent != null) {

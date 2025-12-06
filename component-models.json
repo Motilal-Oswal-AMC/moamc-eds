@@ -791,16 +791,8 @@
             "value": "structure-governance-tab"
           },
           {
-            "name": "Moedge Article One",
-            "value": "moedge-article-one"
-          },
-          {
-            "name": "Moedge Article Second",
-            "value": "moedge-article-second"
-          },
-          {
-            "name": "Moedge Article Three",
-            "value": "moedge-article-three"
+            "name": "Why Invest Minor",
+            "value": "why-invest-minor"
           },
           {
             "name": "Key Details Card",
@@ -3877,6 +3869,25 @@
         "component": "richtext",
         "name": "col4_text",
         "label": "Calculation overview"
+      }
+    ]
+  },
+  {
+    "id": "investing-minors",
+    "fields": [
+      {
+        "component": "richtext",
+        "name": "one_text1",
+        "value": "",
+        "label": "Text",
+        "valueType": "string"
+      },
+      {
+        "component": "richtext",
+        "name": "two_text2",
+        "value": "",
+        "label": "Text",
+        "valueType": "string"
       }
     ]
   }
