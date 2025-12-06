@@ -3877,14 +3877,14 @@
     "fields": [
       {
         "component": "richtext",
-        "name": "one_text",
+        "name": "one_text1",
         "value": "",
         "label": "Text",
         "valueType": "string"
       },
       {
         "component": "richtext",
-        "name": "two_text",
+        "name": "two_text2",
         "value": "",
         "label": "Text",
         "valueType": "string"
