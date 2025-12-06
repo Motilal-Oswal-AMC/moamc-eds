@@ -73,30 +73,209 @@ function calculateSIP({ monthlyAmount, annualRate, years }) {
 }
 
 /**
+ * Hybrid Lumpsum Solver (Handles P0 + P_Required = FV)
+ */
+function calculateHybridLumpsumRequired({
+  targetCorpus,
+  currentSavings = 0,
+  annualRate,
+  years,
+  roundDecimal = 0,
+}) {
+  const totalCorpus = toNumber(targetCorpus);
+  const currentAmount = toNumber(currentSavings);
+
+  // 1. Calculate the FV of the current Lumpsum (P0)
+  const fvLumpsum = calculateFutureValue({
+    // Reuses existing helper
+    amount: currentAmount,
+    annualRate: annualRate,
+    years: years,
+  });
+
+  // 2. Determine the remaining corpus needed
+  const fvNeededFromNewLumpsum = Math.max(0, totalCorpus - fvLumpsum);
+
+  // 3. Calculate the new Lumpsum (P_Required) needed today
+  const r = toNumber(annualRate) / 100 / 12;
+  const n = toNumber(years) * 12;
+
+  const principalRequired = fvNeededFromNewLumpsum / Math.pow(1 + r, n);
+
+  // 4. Calculate Summary Totals
+  const totalInvested = currentAmount + principalRequired; // P0 + New Lumpsum Required
+  const totalReturns = totalCorpus;
+  const estimatedReturns = totalReturns - totalInvested;
+  const multiplier = totalInvested ? totalReturns / totalInvested : 1;
+
+  return {
+    // We use monthlySaving to hold the calculated NEW Lumpsum Required (P_Needed)
+    monthlySaving: round(principalRequired, roundDecimal),
+
+    totalInvested: round(totalInvested, roundDecimal),
+    totalReturns: round(totalReturns, roundDecimal),
+    estimatedReturns: round(estimatedReturns, roundDecimal),
+
+    compoundMultiplier: `${round(multiplier, 1)}x`,
+    totalInvestedPercentage: round(
+      (totalInvested / totalReturns) * 100,
+      roundDecimal
+    ),
+    estimatedReturnsPercentage: round(
+      (estimatedReturns / totalReturns) * 100,
+      roundDecimal
+    ),
+  };
+}
+
+/**
  * General Goal Summary for SIP-based goals
  */
-export function calculateGoalSummary({
+function calculateGoalSummary({
   monthlyAmount,
   rateOfReturn,
   timePeriod,
   roundDecimal = 0,
 }) {
+  // 1. Calculate Total Invested Capital (SIP only)
+  // This is the total principal paid over the period.
   const invested = toNumber(monthlyAmount) * toNumber(timePeriod) * 12;
+
+  // 2. Calculate Total Corpus (Future Value)
   const total = calculateSIP({
     monthlyAmount,
     annualRate: rateOfReturn,
     years: timePeriod,
   });
+
+  // 3. Calculate Estimated Returns (Profit/Wealth Creation)
   const returns = total - invested;
+
+  // 4. Calculate Compound Multiplier
   const multiplier = invested ? total / invested : 1;
 
   return {
+    // This now correctly holds the input SIP amount, making the key consistent
+    // across fixed goals (where it's calculated) and SIP goals (where it's the input).
+    monthlySaving: round(toNumber(monthlyAmount), roundDecimal), // ✅ Added
+
     totalInvested: round(invested, roundDecimal),
     totalReturns: round(total, roundDecimal),
     estimatedReturns: round(returns, roundDecimal),
+
     compoundMultiplier: `${round(multiplier, 1)}x`,
     totalInvestedPercentage: round((invested / total) * 100, roundDecimal),
     estimatedReturnsPercentage: round((returns / total) * 100, roundDecimal),
+  };
+}
+
+/**
+ * Calculates the Retirement Planning summary (Compounded Goal Solver)
+ */
+function calculateRetirementSummary({ container, roundDecimal = 0 }) {
+  const prefix = "rp";
+
+  // Inputs based on Retirement Planning fields:
+  const targetCorpus = toNumber(
+    container.querySelector(`#${prefix}-target-amount`)?.value
+  );
+  const years = toNumber(
+    container.querySelector(`#${prefix}-target-duration`)?.value
+  );
+  const currentSavings = toNumber(
+    container.querySelector(`#${prefix}-savings-amount`)?.value
+  );
+  const rateOfReturn = toNumber(
+    container.querySelector(`#${prefix}-rate-of-return`)?.value
+  );
+
+  return calculateGoalSIPRequired({
+    // Reuses the compounded solver
+    targetCorpus,
+    currentLumpsum: currentSavings,
+    rateOfReturn,
+    years,
+    roundDecimal,
+  });
+}
+
+/**
+ * Lumpsum Future Value (FV) with Monthly Compounding
+ */
+function calculateFutureValue({ amount, annualRate, years }) {
+  const P = toNumber(amount);
+  const r = toNumber(annualRate) / 100 / 12; // monthly rate
+  const n = toNumber(years) * 12; // total months
+
+  // FV = P * (1 + r)^n
+  return P * Math.pow(1 + r, n);
+}
+// Assuming calculateFutureValue is available (it is in your provided code)
+
+/**
+ * Goal Solver: Calculates the Monthly SIP required (P_SIP) to reach a target corpus (FV)
+ * Applies compounding to both the Lumpsum (P0) and the Monthly SIP.
+ */
+function calculateGoalSIPRequired({
+  targetCorpus,
+  currentLumpsum = 0,
+  rateOfReturn,
+  years,
+  roundDecimal = 0,
+}) {
+  const totalCorpus = toNumber(targetCorpus);
+  const currentAmount = toNumber(currentLumpsum);
+  const annualRate = toNumber(rateOfReturn);
+
+  // 1. Calculate the FV of the current Lumpsum (P0)
+  const fvLumpsum = calculateFutureValue({
+    amount: currentAmount,
+    annualRate: annualRate,
+    years: years,
+  });
+
+  // 2. Determine the remaining corpus needed from SIP
+  const fvSipNeeded = Math.max(0, totalCorpus - fvLumpsum);
+
+  // 3. Calculate the monthly SIP amount required (P_SIP)
+  const monthlyRate = annualRate / 100 / 12;
+  const totalMonths = years * 12;
+
+  let monthlySaving = 0;
+  let sipFactor = 1;
+
+  if (totalMonths > 0 && monthlyRate > 0) {
+    // Annuity Due SIP Factor: [(1+r)^n - 1] / r * (1 + r)
+    sipFactor =
+      ((Math.pow(1 + monthlyRate, totalMonths) - 1) / monthlyRate) *
+      (1 + monthlyRate);
+    monthlySaving = fvSipNeeded / sipFactor;
+  } else if (totalMonths > 0) {
+    // Zero rate of return: simple division
+    monthlySaving = fvSipNeeded / totalMonths;
+  }
+
+  // 4. Calculate Summary Totals
+  const investedAmountSIP = monthlySaving * totalMonths;
+  const totalInvested = currentAmount + investedAmountSIP; // P0 + Total SIP Capital
+  const totalReturns = totalCorpus; // Final target corpus
+  const estimatedReturns = totalReturns - totalInvested;
+  const multiplier = totalInvested ? totalReturns / totalInvested : 1;
+
+  return {
+    monthlySaving: round(monthlySaving, roundDecimal),
+    totalInvested: round(totalInvested, roundDecimal),
+    totalReturns: round(totalReturns, roundDecimal),
+    estimatedReturns: round(estimatedReturns, roundDecimal),
+    compoundMultiplier: `${round(multiplier, 1)}x`,
+    totalInvestedPercentage: round(
+      (totalInvested / totalReturns) * 100,
+      roundDecimal
+    ),
+    estimatedReturnsPercentage: round(
+      (estimatedReturns / totalReturns) * 100,
+      roundDecimal
+    ),
   };
 }
 
@@ -138,75 +317,138 @@ export function calculateFixedGoal({
 }
 
 /**
+ * Calculates the Buy a House summary (Compounded Goal Solver)
+ */
+function calculateBuyAHouseSummary({ container, roundDecimal = 0 }) {
+  const prefix = "bah";
+
+  // Inputs based on Buy a House fields:
+  const targetCorpus = toNumber(
+    container.querySelector(`#${prefix}-target-amount`)?.value
+  );
+  const currentLumpsum = toNumber(
+    container.querySelector(`#${prefix}-down-payment`)?.value || 0
+  ); // Budget for a downpayment upfront
+
+  // NOTE: Requires a new input field for Expected Rate of Return for compounding
+  const rateOfReturn = toNumber(
+    container.querySelector(`#${prefix}-rate-of-return`)?.value || 0
+  );
+
+  const targetYear = toNumber(
+    container.querySelector(`#${prefix}-target-year`)?.value
+  );
+  const currentYear = new Date().getFullYear();
+  const years = Math.max(1, targetYear - currentYear);
+
+  return calculateGoalSIPRequired({
+    // Reuses the compounded solver
+    targetCorpus,
+    currentLumpsum,
+    rateOfReturn,
+    years,
+    roundDecimal,
+  });
+}
+// NOTE: You must update the input generation function (generateBuyAHouse)
+// to include the required input field for #bah-rate-of-return.
+
+/**
+ * Calculates summary for Simple Fixed Goals (Plan a Trip, Buy a Vehicle).
+ * Uses simple division (no compounding).
+ */
+function calculateSimpleFixedGoalSummary({
+  prefix,
+  container,
+  roundDecimal = 0,
+}) {
+  // --- Shared Input Extraction ---
+  const targetAmount = toNumber(
+    container.querySelector(`#${prefix}-target-amount`)?.value
+  );
+  const targetYear = toNumber(
+    container.querySelector(`#${prefix}-target-year`)?.value
+  );
+  const currentYear = new Date().getFullYear();
+  const years = Math.max(1, targetYear - currentYear);
+
+  let currentAmount = 0;
+
+  // --- Conditional Current Amount Logic ---
+  if (prefix === "bav") {
+    const savingsOption = container.querySelector("#bav-savings-radio")?.value;
+    if (savingsOption === "yes") {
+      currentAmount = toNumber(
+        container.querySelector("#bav-down-payment")?.value
+      );
+    }
+  } else if (prefix === "pat") {
+    const savingsOption = container.querySelector("#pat-savings-radio")?.value;
+    if (savingsOption === "have-some-money-aside-for-this-goal") {
+      currentAmount = toNumber(
+        container.querySelector("#pat-amount-i-have")?.value
+      );
+    }
+  }
+  debugger;
+  return calculateFixedGoal({
+    // Uses simple division calculation
+    targetAmount,
+    currentAmount,
+    years,
+    roundDecimal,
+  });
+}
+
+/**
  * Recalculate goal summary based on goal type
  */
-export function recalculateGoal({ prefix, container, roundDecimal = 0 }) {
+function recalculateGoal({ prefix, container, roundDecimal = 0 }) {
   if (!container || !prefix) return;
 
   let summary;
 
-  if (["pat", "bah", "bav"].includes(prefix)) {
-    const targetAmount = toNumber(
-      container.querySelector(`#${prefix}-target-amount`)?.value
-    );
-    const targetYear = toNumber(
-      container.querySelector(`#${prefix}-target-year`)?.value
-    );
-    const currentYear = new Date().getFullYear(); // current year
-    const years = Math.max(1, targetYear - currentYear); // convert absolute year → duration
+  // 1. COMPOUNDING GOAL SOLVERS (Goal-Based SIP)
+  if (prefix === "rp") {
+    summary = calculateRetirementSummary({ container, roundDecimal });
+  } else if (prefix === "bah") {
+    summary = calculateBuyAHouseSummary({ container, roundDecimal });
 
-    let currentAmount = 0;
-
-    if (prefix === "bav") {
-      const savingsOption =
-        container.querySelector("#bav-savings-radio")?.value;
-      if (savingsOption === "yes") {
-        currentAmount = toNumber(
-          container.querySelector("#bav-down-payment")?.value
-        );
-      }
-    } else if (prefix === "pat") {
-      const savingsOption =
-        container.querySelector("#pat-savings-radio")?.value;
-      if (savingsOption === "have-some-money-aside-for-this-goal") {
-        currentAmount = toNumber(
-          container.querySelector("#pat-amount-i-have")?.value
-        );
-      }
-    } else {
-      currentAmount = toNumber(
-        container.querySelector(
-          `#${prefix}-amount-i-have, #${prefix}-down-payment`
-        )?.value
-      );
-    }
-
-    summary = calculateFixedGoal({
-      targetAmount,
-      currentAmount,
-      years,
+    // 2. SIMPLE FIXED GOALS (Simple Division)
+  } else if (["pat", "bav"].includes(prefix)) {
+    summary = calculateSimpleFixedGoalSummary({
+      prefix,
+      container,
       roundDecimal,
     });
+
+    // 3. STANDARD SIP GOALS (Forward FV Projection)
   } else {
-    const monthlyAmount = toNumber(
-      container.querySelector(`#${prefix}-savings-amount`)?.value
-    );
-    const rateOfReturn = toNumber(
-      container.querySelector(`#${prefix}-rate-of-return`)?.value
+    // Assumed to be 'Create your own' (gc)
+    const targetCorpus = toNumber(
+      container.querySelector(`#gc-target-amount`)?.value // Corpus I want to achieve
     );
     const timePeriod = toNumber(
-      container.querySelector(`#${prefix}-target-duration`)?.value
+      container.querySelector(`#gc-target-duration`)?.value // I want to achieve this in
     );
-
-    summary = calculateGoalSummary({
-      monthlyAmount,
-      rateOfReturn,
-      timePeriod,
+    // ✅ NEW INPUT: Savings I Have (P0)
+    const currentSavings = toNumber(
+      container.querySelector(`#gc-savings-amount`)?.value
+    );
+    const rateOfReturn = toNumber(
+      container.querySelector(`#gc-rate-of-return`)?.value
+    );
+    debugger;
+    summary = calculateHybridLumpsumRequired({
+      targetCorpus,
+      currentSavings,
+      annualRate: rateOfReturn,
+      years: timePeriod,
       roundDecimal,
     });
   }
 
-  // Safe bar percentage: clamp between 0 and 100
+  // Safe bar percentage and Summary Update remains the same...
   const bar = container.querySelector(
     ".calc-compounding .estimated-returns-bar"
   );
@@ -339,7 +581,6 @@ function generateBuyAHouse(block, CALC_AUTHOR_MAIN) {
     BILA: toObj(values.slice(4, 8)),
     BFADU: toObj(values.slice(8, 12)),
   };
-  console.log(result);
   const iptbahbBlock = createInputBlock({
     id: "bah-target-year",
     ...result.IPTBAHB,
@@ -451,7 +692,6 @@ function generatePlanATrip(block, CALC_AUTHOR_MAIN) {
     ITPGB: toObj(values.slice(0, 4)),
     BFTT: toObj(values.slice(4, 8)),
   };
-  console.log(values);
   const itpgbBlock = createInputBlock({
     id: "pat-target-year",
     ...result.ITPGB,
@@ -542,8 +782,6 @@ function generateBuyAVehicle(block, CALC_AUTHOR_MAIN) {
     min,
     max,
   });
-  console.log("inputdetails : ", toObj(values.slice(8, 12)));
-  console.log("values : ", values);
   // console.log(
   //   "inputdetails : ",
   //   container.querySelectorAll("p:nth-child(n+23):nth-child(-n+27)")
@@ -563,7 +801,6 @@ function generateBuyAVehicle(block, CALC_AUTHOR_MAIN) {
     BFTC: toObj(values.slice(4, 8)),
     AFTD: toObj(values.slice(8, 12)),
   };
-  console.log(values);
   const iwtbtcbBlock = createInputBlock({
     id: "bav-target-year",
     ...result.IWTBTCB,
@@ -687,11 +924,13 @@ function generateCreateYourOwn(block, CALC_AUTHOR_MAIN) {
     ...result.IWTATI,
     fieldType: "year",
     ignoreMin: true,
+    suffix: result.IWTATI.default > 1 ? "years" : "year",
     suffixAttr: { class: "input-suffix" },
     inputBlockAttr: {
       class: "iwtati-inp-container",
     },
-    variant: "number",
+    updateWidthonChange: true,
+    variant: "stepper",
     onInput: (e) => {
       recalculateGoal({ prefix: "gc", container: block });
     },
@@ -722,10 +961,12 @@ function generateCreateYourOwn(block, CALC_AUTHOR_MAIN) {
   const erorBlock = createInputBlock({
     id: "gc-rate-of-return",
     ...result.EROR,
-    fieldType: "year",
+    fieldType: "percent",
     ignoreMin: true,
+    suffix: "%",
     suffixAttr: { class: "input-suffix" },
-    variant: "number",
+    variant: "stepper",
+    updateWidthonChange: true,
     inputBlockAttr: {
       class: "iwtra-inp-container",
     },
@@ -745,7 +986,6 @@ function generateCreateYourOwn(block, CALC_AUTHOR_MAIN) {
     sihBlock,
     erorBlock
   );
-  console.log(result);
   return RP_INPUTS_CONTAINER;
 }
 
