@@ -89,7 +89,7 @@ export default function decorate(block) {
               data-icon-name="Article" src="/icons/Article.svg" alt="" loading="lazy" width="16"
               height="16"></span>Article</p>
         <ul class="comlist moedge-build-list2">
-          <li class="comlist moedge-build-list-content1">${readtime.readingTime} min read</li>
+          <li class="comlist moedge-build-list-content1">${readtime.minutes} min read</li>
           <li class="comlist moedge-build-list-content2"><span class="icon icon-calendar-01"><img
                 data-icon-name="calendar-01" src="/icons/calendar-01.svg" alt="" loading="lazy" width="16"
                 height="16"></span>${convertDate(elem.date.split('T')[0])}</li>

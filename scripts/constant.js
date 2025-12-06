@@ -301,88 +301,44 @@ const dataMapMoObj = {
     // Return the number concatenated with the superscript suffix
     return `${n}<sup>${suffix}</sup>`;
   },
-  getReadingTime: async (url) => {
-    // 1. NORMALIZE URL
-    // Handle relative URLs (e.g., "/about-us") by attaching current origin
-    let targetUrl;
+  getReadingTime: async (currentPath) => {
     try {
-      targetUrl = new URL(url, window.location.origin);
-    } catch (e) {
-      console.error('Invalid URL');
-      return null;
-    }
+    // 1. Fetch the HTML
+      const url = `${currentPath}`;
+      const resp = await fetch(url);
+      if (!resp.ok) throw new Error('Network response was not ok');
+      const html = await resp.text();
 
-    const isSameOrigin = targetUrl.origin === window.location.origin;
-    console.log(`%cTarget: ${targetUrl.href} | Mode: ${isSameOrigin ? 'DIRECT (Same Origin)' : 'PROXY (Cross Origin)'}`, 'color: yellow');
+      // 2. Parse HTML into a Document Object
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(html, 'text/html');
 
-    try {
-      let htmlText = '';
+      // 3. Select the content
+      // Replace '.article-content' with the actual class name of your text container
+      // for better accuracy (e.g., 'main', 'article', '#post-body').
+      const contentEl = doc.querySelector('article')
+                      || doc.querySelector('.article-body')
+                      || doc.querySelector('main')
+                      || doc.body;
 
-      // 2. FETCH STRATEGY
-      if (isSameOrigin) {
-        // BEST CASE: We are on the same domain (e.g., Localhost scanning Localhost)
-        // We fetch directly. No proxy needed. No 403 errors.
-        const response = await fetch(targetUrl.href);
-        if (!response.ok) throw new Error(`Direct Fetch Failed: ${response.status}`);
-        htmlText = await response.text();
-      } else {
-        // WORST CASE: Cross-origin (e.g., Localhost trying to scan Google)
-        // We MUST use a proxy. If this gives 403, the target site is blocking bots.
-        const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(targetUrl.href)}`;
-        const response = await fetch(proxyUrl);
-        const data = await response.json();
-        if (!data.contents) throw new Error('Proxy Blocked or Empty Content (403/404)');
-        htmlText = data.contents;
-      }
+      // 4. Extract text and count words
+      const text = contentEl.innerText || contentEl.textContent;
+      // Split by whitespace and filter out empty strings
+      const wordCount = text.trim().split(/\s+/).filter((word) => word.length > 0).length;
 
-      // 3. PARSE & SCORE (The Logic)
-      const doc = new DOMParser().parseFromString(htmlText, 'text/html');
-
-      // Find the text cluster (Paragraphs with >50 chars)
-      const paragraphScores = Array.from(doc.querySelectorAll('p')).reduce((map, p) => {
-        const len = p.textContent.trim().length;
-        if (len < 50) return map;
-
-        const parent = p.parentElement;
-        map.set(parent, (map.get(parent) || 0) + len);
-        return map;
-      }, new Map());
-
-      // Pick the best container
-      const [bestContainer] = [...paragraphScores.entries()]
-        .reduce((max, curr) => (curr[1] > max[1] ? curr : max), [doc.body, 0]);
-
-      // 4. CLEANUP
-      const clone = bestContainer.cloneNode(true);
-      // Remove noise
-      clone.querySelectorAll('script, style, nav, footer, button, iframe, svg, header').forEach((el) => el.remove());
-
-      // 5. COUNT
-      const text = clone.textContent || '';
-      const wordCount = (text.match(/\w+/g) || []).length;
-      const minutes = Math.ceil(wordCount / 200); // Using 200 WPM for conservative estimate
-
-      const result = {
-        url: targetUrl.href,
-        readingTime: minutes,
-        wordCount,
-        status: 'Success',
-      };
-
-      console.table(result);
-      return result;
-    } catch (error) {
-      console.error(`❌ FAILED: ${url}`);
-      console.error(`Reason: ${error.message}`);
-
-      // specific advice for 403
-      if (error.message.includes('403') || error.message.includes('Proxy')) {
-        console.warn("💡 TIP: The target site is blocking external access. You must run this script strictly on the Target Site's console.");
-      }
+      // 5. Calculate Reading Time
+      // Standard speed is 200 words per minute (WPM)
+      const wpm = 200;
+      const minutes = Math.ceil(wordCount / wpm);
 
       return {
-        url, readingTime: 0, status: 'Failed', error: error.message,
+        minutes,
+        wordCount,
+        text: `${minutes}`,
       };
+    } catch (error) {
+      console.error('Failed to calculate reading time:', error);
+      return { minutes: 0, wordCount: 0, text: '' };
     }
   },
 };
