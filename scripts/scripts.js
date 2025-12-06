@@ -549,6 +549,12 @@ function articleStructure() {
     || window.location.href.includes(
       '/investor-education/keys-of-investing/',
     )
+    || window.location.href.includes(
+      '/motilal-oswal-edge/insights/',
+    )
+    || window.location.href.includes(
+      '/investor-education/blogs/',
+    )
   ) {
     const maincloser = document.querySelector('main');
     const rightSub = maincloser.querySelectorAll('.article-sub-right');
