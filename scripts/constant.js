@@ -302,51 +302,86 @@ const dataMapMoObj = {
     return `${n}<sup>${suffix}</sup>`;
   },
   getReadingTime: async (url) => {
+    // 1. NORMALIZE URL
+    // Handle relative URLs (e.g., "/about-us") by attaching current origin
+    let targetUrl;
     try {
-      // 1. FETCH (Using CORS Proxy)
-      const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`;
-      const response = await fetch(proxyUrl);
-      const data = await response.json();
+      targetUrl = new URL(url, window.location.origin);
+    } catch (e) {
+      console.error('Invalid URL');
+      return null;
+    }
 
-      if (!data.contents) throw new Error('No content received');
+    const isSameOrigin = targetUrl.origin === window.location.origin;
+    console.log(`%cTarget: ${targetUrl.href} | Mode: ${isSameOrigin ? 'DIRECT (Same Origin)' : 'PROXY (Cross Origin)'}`, 'color: yellow');
 
-      // 2. PARSE (Virtual DOM)
-      const parser = new DOMParser();
-      const doc = parser.parseFromString(data.contents, 'text/html');
+    try {
+      let htmlText = '';
 
-      // 3. IDENTIFY CONTENT (Smart Scoring Algorithm)
-      // We reduce all <p> tags into a map of { ParentElement: Score }
+      // 2. FETCH STRATEGY
+      if (isSameOrigin) {
+        // BEST CASE: We are on the same domain (e.g., Localhost scanning Localhost)
+        // We fetch directly. No proxy needed. No 403 errors.
+        const response = await fetch(targetUrl.href);
+        if (!response.ok) throw new Error(`Direct Fetch Failed: ${response.status}`);
+        htmlText = await response.text();
+      } else {
+        // WORST CASE: Cross-origin (e.g., Localhost trying to scan Google)
+        // We MUST use a proxy. If this gives 403, the target site is blocking bots.
+        const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(targetUrl.href)}`;
+        const response = await fetch(proxyUrl);
+        const data = await response.json();
+        if (!data.contents) throw new Error('Proxy Blocked or Empty Content (403/404)');
+        htmlText = data.contents;
+      }
+
+      // 3. PARSE & SCORE (The Logic)
+      const doc = new DOMParser().parseFromString(htmlText, 'text/html');
+
+      // Find the text cluster (Paragraphs with >50 chars)
       const paragraphScores = Array.from(doc.querySelectorAll('p')).reduce((map, p) => {
-        if (p.innerText.length < 50) return map; // Filter noise
+        const len = p.textContent.trim().length;
+        if (len < 50) return map;
+
         const parent = p.parentElement;
-        map.set(parent, (map.get(parent) || 0) + p.innerText.length);
+        map.set(parent, (map.get(parent) || 0) + len);
         return map;
       }, new Map());
 
-      // Find the container with the highest score
+      // Pick the best container
       const [bestContainer] = [...paragraphScores.entries()]
         .reduce((max, curr) => (curr[1] > max[1] ? curr : max), [doc.body, 0]);
 
-      // 4. CLEAN & COUNT
+      // 4. CLEANUP
       const clone = bestContainer.cloneNode(true);
-      // Remove non-content elements
-      clone.querySelectorAll('script, style, button, nav, footer, iframe').forEach((el) => el.remove());
+      // Remove noise
+      clone.querySelectorAll('script, style, nav, footer, button, iframe, svg, header').forEach((el) => el.remove());
 
+      // 5. COUNT
       const text = clone.textContent || '';
       const wordCount = (text.match(/\w+/g) || []).length;
-      const minutes = Math.ceil(wordCount / 225);
+      const minutes = Math.ceil(wordCount / 200); // Using 200 WPM for conservative estimate
 
-      return {
-        url,
+      const result = {
+        url: targetUrl.href,
         readingTime: minutes,
         wordCount,
         status: 'Success',
       };
+
+      console.table(result);
+      return result;
     } catch (error) {
+      console.error(`❌ FAILED: ${url}`);
+      console.error(`Reason: ${error.message}`);
+
+      // specific advice for 403
+      if (error.message.includes('403') || error.message.includes('Proxy')) {
+        console.warn("💡 TIP: The target site is blocking external access. You must run this script strictly on the Target Site's console.");
+      }
+
       return {
-        url,
-        readingTime: 0,
-        status: 'Failed',
+        url, readingTime: 0, status: 'Failed', error: error.message,
       };
     }
   },

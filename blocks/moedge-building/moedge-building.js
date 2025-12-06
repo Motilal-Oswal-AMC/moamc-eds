@@ -39,6 +39,92 @@ export default function decorate(block) {
     }
   });
 
+  function convertDate(dateStr) {
+    const date = new Date(dateStr);
+
+    // Formatting options
+    const options = {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
+    };
+
+    return date.toLocaleDateString('en-US', options);
+  }
+
+  if (window.location.href.includes('/our-authors/prateek-agrawal')) {
+    block.innerHTML = '';
+    dataMapMoObj.getinsights().then((respText) => {
+      const resp = respText;
+      resp.data.forEach(async (elem, index) => {
+        if (index !== 0) {
+          const readtime = await dataMapMoObj.getReadingTime(elem.path);
+          console.log(readtime.readingTime);
+
+          const imagePAth = `./${elem.image.split('/')[elem.image.split('/').length - 1]}`;
+          const temphtml = `<div class="comlist moedge-build-cont${index}">
+  <div class="secs-wrapper">
+    <div class="comlist moedge-build-sec1">
+      <picture class="comlist moedge-build-sub1">
+        <source type="image/webp"
+          srcset="${imagePAth}"
+          media="(min-width: 600px)" class="comlist moedge-build-inner-text1">
+        <source type="image/webp"
+          srcset="${imagePAth}"
+          class="comlist moedge-build-inner-text2">
+        <source type="image/jpeg"
+          srcset="${imagePAth}"
+          media="(min-width: 600px)" class="comlist moedge-build-inner-text3">
+        <img loading="lazy" alt="img"
+          src="${imagePAth}">
+      </picture>
+    </div>
+    <div class="comlist moedge-build-sec2"></div>
+  </div>
+
+  <div class="comlist moedge-build-sec3">
+    <ul class="comlist moedge-build-sub1">
+      <li class="comlist moedge-build-inner-text1">
+        <p class="comlist moedge-build-list1"><span class="icon icon-Article comlist moedge-build-list-content1"><img
+              data-icon-name="Article" src="/icons/Article.svg" alt="" loading="lazy" width="16"
+              height="16"></span>Article</p>
+        <ul class="comlist moedge-build-list2">
+          <li class="comlist moedge-build-list-content1">${readtime.readingTime} min read</li>
+          <li class="comlist moedge-build-list-content2"><span class="icon icon-calendar-01"><img
+                data-icon-name="calendar-01" src="/icons/calendar-01.svg" alt="" loading="lazy" width="16"
+                height="16"></span>${convertDate(elem.date.split('T')[0])}</li>
+        </ul>
+      </li>
+      <li class="comlist moedge-build-inner-text2">
+        <p class="button-container comlist moedge-build-list1"><a
+            href="${elem.path}" title="${dataMapMoObj.toTitleCase(elem.title.replaceAll('-', ' '))}"
+            class="button comlist moedge-build-list-content1">${dataMapMoObj.toTitleCase(elem.title.replaceAll('-', ' '))}</a></p>
+      </li>
+      <li class="comlist moedge-build-inner-text3">
+        <p class="comlist moedge-build-list1">${elem.description}</p>
+      </li>
+      <li class="comlist moedge-build-inner-text4">
+        <p class="button-container comlist moedge-build-list1"><a
+            href="${elem.path}" title="Read Now"
+            class="button comlist moedge-build-list-content1">Read Now</a></p>
+      </li>
+      <li class="comlist moedge-build-inner-text5">
+        <p class="button-container comlist moedge-build-list1"><a
+            href="${elem.path}" title=""
+            class="button comlist moedge-build-list-content1"><span class="icon icon-Subtract"><img
+                data-icon-name="Subtract" src="/icons/Subtract.svg" alt="" loading="lazy" width="16"
+                height="16"></span></a></p>
+      </li>
+    </ul>
+  </div>
+  <div class="comlist moedge-build-sec4"></div>
+</div>`;
+          block.innerHTML += temphtml;
+        }
+      });
+    }).catch((error) => error);
+  }
+
   // // --- 3. NEW "View All / View Less" Toggle Logic ---
   // const cardsToShowInitially = 9;
   // // -> Convert NodeList to Array to use array methods like .slice()
