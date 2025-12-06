@@ -452,11 +452,24 @@
 
 .section.freq-ask-ques.nri-accordion {
   margin-top: 80px;
+
   @include media(mobile) {
-          margin-top: 40px;
-        }
+    margin-top: 40px;
+  }
+
   .faq-our-fund {
-     &>.default-content-wrapper:nth-child(1){
+    display: flex;
+    gap: 16px;
+
+    @include media(mobile) {
+      gap: 24px;
+    }
+
+
+    &>.default-content-wrapper:nth-child(1) {
+      max-width: 400px;
+      width: 100%;
+
       p {
         font-size: 28px;
         line-height: 32px;
@@ -469,15 +482,15 @@
       }
     }
 
-    .accordion-wrapper{
-      .accordion{
-        .hidden{
+    .accordion-wrapper {
+      .accordion {
+        .hidden {
           display: block;
         }
       }
     }
 
-    &>.default-content-wrapper:nth-child(3){
+    &>.default-content-wrapper:nth-child(3) {
       display: none;
     }
   }
@@ -612,4 +625,5 @@
     }
   }
 }
+
 // Privacy Policy QnA Styling End
