@@ -174,7 +174,7 @@ export const updateInputSuffix = (ele) => {
  * Updates the input value and disables/enables the increment/decrement buttons based on min/max
  * @param {HTMLInputElement} inputEl - The input element
  */
-function updateStepperButtons(inputEl) {
+function updateStepperButtons(inputEl, inputValue) {
   if (!inputEl) return;
   debugger;
   const wrapper = inputEl.closest(".calc-input-wrapper.stepper");
@@ -185,11 +185,11 @@ function updateStepperButtons(inputEl) {
 
   const min = parseFloat(input.min) || 0;
   const max = parseFloat(input.max) || Infinity;
-  const value = parseFloat(input.value) || 0;
+  // const value = parseFloat(input.value) || 0;
 
   // Update disabled state
-  if (decBtn) decBtn.disabled = value <= min;
-  if (incBtn) incBtn.disabled = value >= max;
+  if (decBtn) decBtn.disabled = inputValue <= min;
+  if (incBtn) incBtn.disabled = inputValue >= max;
 }
 
 /**
@@ -309,9 +309,9 @@ export function createInputBlock({
           allowEmpty: true,
         });
         e.target.value = ignoreMin ? finalValue : numeric;
-      }
-      if (variant === "stepper") {
-        updateStepperButtons(e.target);
+        if (variant === "stepper") {
+          updateStepperButtons(e.target, numeric);
+        }
       }
       rest?.onInput?.(e);
     },
@@ -330,7 +330,7 @@ export function createInputBlock({
         });
         e.target.classList.remove("calc-error");
         if (variant === "stepper") {
-          updateStepperButtons(e.target);
+          updateStepperButtons(e.target, numeric);
         }
         onChange(numeric);
         if (suffix) {
@@ -499,7 +499,7 @@ export function createInputBlock({
         ? current - 1
         : Math.max(Number(min) || 0, current - 1);
 
-      updateStepperButtons(inputEl);
+      updateStepperButtons(inputEl, newVal);
       inputEl.value = newVal;
       updateInputSuffix(inputEl);
       onChange(newVal);
@@ -517,7 +517,7 @@ export function createInputBlock({
         ? current + 1
         : Math.min(Number(max) || current + 1, current + 1);
 
-      updateStepperButtons(inputEl);
+      updateStepperButtons(inputEl, newVal);
       inputEl.value = newVal;
       updateInputSuffix(inputEl);
       onChange(newVal);
