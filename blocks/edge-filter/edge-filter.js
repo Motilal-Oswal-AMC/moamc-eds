@@ -17,7 +17,9 @@ export default function decorate(block) {
 
   // Select only the list items that are actual dropdowns
   const dropdowns = block.querySelectorAll('.filter-lists2, .filter-lists3, .edge-filter-cont2 .filter-lists2');
-
+  block.querySelectorAll('a').forEach((element) => {
+    element.removeAttribute('href');
+  });
   dropdowns.forEach((dropdown) => {
     const trigger = dropdown.querySelector('.filter-lists-wrap1');
     if (!trigger) return;
@@ -48,6 +50,19 @@ export default function decorate(block) {
     });
   });
 
+  block.querySelectorAll('.edge-filter-sub1 ul li').forEach((elemfilter) => {
+    elemfilter.addEventListener('click', (event) => {
+      const textSelect = elemfilter.textContent;
+      const spanul = event.target.closest('ul').parentElement
+        .querySelector('p span');
+      event.target.closest('ul').parentElement
+        .querySelector('p').textContent = '';
+      event.target.closest('ul').parentElement
+        .querySelector('p').textContent = textSelect;
+      event.target.closest('ul').parentElement
+        .querySelector('p').append(spanul);
+    });
+  });
   // 3. THE FIX: Add a listener to the whole document to close menus
   document.addEventListener('click', () => {
     block.querySelectorAll('.is-open').forEach((openDropdown) => {
