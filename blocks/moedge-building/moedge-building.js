@@ -54,7 +54,7 @@ export default function decorate(block) {
 
   const edgemain = block.closest('main');
   if (edgemain.querySelector('.edge-filter')) {
-    edgemain.querySelectorAll('.edge-filter a').forEach((elem)=>{
+    edgemain.querySelectorAll('.edge-filter a').forEach((elem) => {
       elem.removeAttribute('href');
     });
   }
@@ -101,7 +101,7 @@ export default function decorate(block) {
       </li>
       <li class="comlist moedge-build-inner-text2">
         <p class="button-container comlist moedge-build-list1"><a
-            href="${elem.path}" title="${dataMapMoObj.toTitleCase(elem.title.replaceAll('-', ' '))}"
+            href="${elem.path}" target="_blank" title="${dataMapMoObj.toTitleCase(elem.title.replaceAll('-', ' '))}"
             class="button comlist moedge-build-list-content1">${dataMapMoObj.toTitleCase(elem.title.replaceAll('-', ' '))}</a></p>
       </li>
       <li class="comlist moedge-build-inner-text3">
@@ -109,12 +109,12 @@ export default function decorate(block) {
       </li>
       <li class="comlist moedge-build-inner-text4">
         <p class="button-container comlist moedge-build-list1"><a
-            href="${elem.path}" title="Read Now"
+            href="${elem.path}" target="_blank" title="Read Now"
             class="button comlist moedge-build-list-content1">Read Now</a></p>
       </li>
       <li class="comlist moedge-build-inner-text5">
         <p class="button-container comlist moedge-build-list1"><a
-            href="${elem.path}" title=""
+            href="${elem.path}" target="_blank" title=""
             class="button comlist moedge-build-list-content1"><span class="icon icon-Subtract"><img
                 data-icon-name="Subtract" src="/icons/Subtract.svg" alt="" loading="lazy" width="16"
                 height="16"></span></a></p>
