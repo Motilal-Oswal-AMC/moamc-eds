@@ -245,4 +245,18 @@ export default function decorate(block) {
     });
   });
   // Privacy Policy Functionality End
+
+  // gift fdp-campaign  start
+   
+
+  const giftParent = document.querySelector(".fdp-campaign");
+const giftChildren = [...giftParent.children];
+const giftWrapper = div({ class: 'wrapper-policy' });
+
+giftParent.appendChild(giftWrapper);
+
+giftChildren.forEach(child => giftWrapper.appendChild(child));
+
+
+   // gift fdp-campaign  End
 }
