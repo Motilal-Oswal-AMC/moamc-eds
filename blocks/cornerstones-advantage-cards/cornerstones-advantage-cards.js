@@ -44,4 +44,9 @@ export default function decorate(block) {
     });
     fundPhilosophy.appendChild(develem);
   }
+  if (window.location.href.includes('/static-pages/become-a-partner')) {
+    const fundTax = block.closest('main').querySelector('.section.fund-tax');
+    dataMapMoObj.CLASS_PREFIXES = ['fund-tax-contain', 'fund-tax-txt'];
+    dataMapMoObj.addIndexed(fundTax);
+  }
 }
