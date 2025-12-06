@@ -1265,11 +1265,10 @@ main>.section.previous-studies-tab.tabs-container {
 
     @include media(mobile) {
       padding: 0 16px;
-      margin-right: 25px;
+      margin-right: 0;
       -ms-overflow-style: none;
       scrollbar-width: none;
-
-      // overflow-x: auto;
+      overflow-x: auto;
     }
 
     &::-webkit-scrollbar {
@@ -1332,10 +1331,10 @@ main>.section.previous-studies-tab.tabs-container {
           line-height: var(--label-small-line-height);
 
           @include media (mobile-ed) {
-            // display: block;
-            // width: 72px;
-            // text-overflow: ellipsis;
-            // overflow: hidden;
+            display: block;
+            width: 72px;
+            text-overflow: ellipsis;
+            overflow: hidden;
 
             // &::after {
             //   // content: "...";
@@ -1358,7 +1357,7 @@ main>.section.previous-studies-tab.tabs-container {
       .breadlist {
         @include media (mobile-ed) {
           display: block;
-          width: 72px;
+          width: auto;
           text-overflow: ellipsis;
           overflow: hidden;
         }
