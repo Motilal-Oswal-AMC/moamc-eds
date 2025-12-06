@@ -52,21 +52,23 @@ export default function decorate(block) {
     return date.toLocaleDateString('en-US', options);
   }
 
-  const edgemain = block.closest('main');
-  if (edgemain.querySelector('.edge-filter')) {
-    edgemain.querySelectorAll('.edge-filter a').forEach((elem) => {
-      elem.removeAttribute('href');
-    });
-  }
-  if (window.location.href.includes('/our-authors/prateek-agrawal')) {
-    block.innerHTML = '';
+  function renterBlock(param) {
     dataMapMoObj.getinsights().then((respText) => {
-      const resp = respText;
-      resp.data.forEach(async (elem, index) => {
-        if (index !== 0) {
-          const readtime = await dataMapMoObj.getReadingTime(elem.path);
-          const imagePAth = `./${elem.image.split('/')[elem.image.split('/').length - 1]}`;
-          const temphtml = `<div class="comlist moedge-build-cont${index}">
+      block.innerHTML = '';
+      if (param === undefined) {
+        param = 'Newest to Oldest';
+      }
+      let resp = respText;
+      if (param === 'Oldest to Newest') {
+        resp = respText.data.slice(1).sort((a, b) => new Date(a.date) - new Date(b.date));
+      }
+      if (param === 'Newest to Oldest') {
+        resp = respText.data.slice(1).sort((a, b) => new Date(b.date) - new Date(a.date));
+      }
+      resp.forEach(async (elem, index) => {
+        const readtime = await dataMapMoObj.getReadingTime(elem.path);
+        const imagePAth = `./${elem.image.split('/')[elem.image.split('/').length - 1]}`;
+        const temphtml = `<div class="comlist moedge-build-cont${index}">
   <div class="secs-wrapper">
     <div class="comlist moedge-build-sec1">
       <picture class="comlist moedge-build-sub1">
@@ -123,10 +125,37 @@ export default function decorate(block) {
   </div>
   <div class="comlist moedge-build-sec4"></div>
 </div>`;
-          block.innerHTML += temphtml;
-        }
+        block.innerHTML += temphtml;
       });
     }).catch((error) => error);
+  }
+
+  if (window.location.href.includes('/our-authors/prateek-agrawal')) {
+    const edgemain = block.closest('main');
+    if (edgemain.querySelectorAll('.edge-filter-container .edge-filter-sub1 ul li')) {
+      edgemain.querySelectorAll('.edge-filter-container .edge-filter-sub1 ul li').forEach((elemfilter) => {
+        elemfilter.addEventListener('click', (event) => {
+          event.preventDefault();
+          const textSelect = elemfilter.textContent;
+          const spanul = event.target.closest('ul').parentElement
+            .querySelector('p span');
+          event.target.closest('ul').parentElement
+            .querySelector('p').textContent = '';
+          event.target.closest('ul').parentElement
+            .querySelector('p').textContent = textSelect;
+          event.target.closest('ul').parentElement
+            .querySelector('p').append(spanul);
+          if (textSelect === 'Oldest to Newest') {
+            renterBlock('Oldest to Newest');
+          }
+
+          if (textSelect === 'Newest to Oldest') {
+            renterBlock('Newest to Oldest');
+          }
+        });
+      });
+    }
+    renterBlock();
   }
 
   // // --- 3. NEW "View All / View Less" Toggle Logic ---

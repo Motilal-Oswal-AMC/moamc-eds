@@ -48,19 +48,20 @@ export default function decorate(block) {
     });
   });
 
-  block.querySelectorAll('.edge-filter-sub1 ul li').forEach((elemfilter) => {
-    elemfilter.addEventListener('click', (event) => {
-      const textSelect = elemfilter.textContent;
-      const spanul = event.target.closest('ul').parentElement
-        .querySelector('p span');
-      event.target.closest('ul').parentElement
-        .querySelector('p').textContent = '';
-      event.target.closest('ul').parentElement
-        .querySelector('p').textContent = textSelect;
-      event.target.closest('ul').parentElement
-        .querySelector('p').append(spanul);
-    });
-  });
+  // block.querySelectorAll('.edge-filter-sub1 ul li').forEach((elemfilter) => {
+  //   elemfilter.addEventListener('click', (event) => {
+  //     event.preventDefault();
+  //     const textSelect = elemfilter.textContent;
+  //     const spanul = event.target.closest('ul').parentElement
+  //       .querySelector('p span');
+  //     event.target.closest('ul').parentElement
+  //       .querySelector('p').textContent = '';
+  //     event.target.closest('ul').parentElement
+  //       .querySelector('p').textContent = textSelect;
+  //     event.target.closest('ul').parentElement
+  //       .querySelector('p').append(spanul);
+  //   });
+  // });
 
   // 3. THE FIX: Add a listener to the whole document to close menus
   document.addEventListener('click', () => {
