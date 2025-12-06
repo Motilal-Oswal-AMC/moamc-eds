@@ -477,6 +477,33 @@
                     // }
 
                 }
+
+                p.comlist {
+                    color: #3D3D3D;
+                    font-feature-settings: var(--font-features-default);
+                    font-family: var(--body, Inter);
+                    font-size: var(--body-medium-regular-size, 16px);
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: var(--body-medium-regular-line-height, 24px);
+
+                    @include media(mobile) {
+                        font-size: var(--paragraph-small-regular-size, 14px);
+                        font-style: normal;
+                        font-weight: 400;
+                        line-height: var(--paragraph-small-regular-line-height, 20px);
+                    }
+
+                    strong {
+                        color: var(--blue-1800-primary, #2E2A94);
+                        font-feature-settings: var(--font-features-default);
+                        font-family: var(--body, Inter);
+                        font-size: var(--body-large-semibold-size, 18px);
+                        font-style: normal;
+                        font-weight: 600;
+                        line-height: var(--body-large-semibold-line-height, 24px);
+                    }
+                }
             }
         }
 
