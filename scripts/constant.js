@@ -301,5 +301,54 @@ const dataMapMoObj = {
     // Return the number concatenated with the superscript suffix
     return `${n}<sup>${suffix}</sup>`;
   },
+  getReadingTime: async (url) => {
+    try {
+      // 1. FETCH (Using CORS Proxy)
+      const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`;
+      const response = await fetch(proxyUrl);
+      const data = await response.json();
+
+      if (!data.contents) throw new Error('No content received');
+
+      // 2. PARSE (Virtual DOM)
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(data.contents, 'text/html');
+
+      // 3. IDENTIFY CONTENT (Smart Scoring Algorithm)
+      // We reduce all <p> tags into a map of { ParentElement: Score }
+      const paragraphScores = Array.from(doc.querySelectorAll('p')).reduce((map, p) => {
+        if (p.innerText.length < 50) return map; // Filter noise
+        const parent = p.parentElement;
+        map.set(parent, (map.get(parent) || 0) + p.innerText.length);
+        return map;
+      }, new Map());
+
+      // Find the container with the highest score
+      const [bestContainer] = [...paragraphScores.entries()]
+        .reduce((max, curr) => (curr[1] > max[1] ? curr : max), [doc.body, 0]);
+
+      // 4. CLEAN & COUNT
+      const clone = bestContainer.cloneNode(true);
+      // Remove non-content elements
+      clone.querySelectorAll('script, style, button, nav, footer, iframe').forEach((el) => el.remove());
+
+      const text = clone.textContent || '';
+      const wordCount = (text.match(/\w+/g) || []).length;
+      const minutes = Math.ceil(wordCount / 225);
+
+      return {
+        url,
+        readingTime: minutes,
+        wordCount,
+        status: 'Success',
+      };
+    } catch (error) {
+      return {
+        url,
+        readingTime: 0,
+        status: 'Failed',
+      };
+    }
+  },
 };
 export default dataMapMoObj;
