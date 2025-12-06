@@ -739,6 +739,14 @@
             "value": "partner-blog"
           },
           {
+            "name": "Partner Connect",
+            "value": "partner-connect"
+          },
+          {
+            "name": "Cornerstones become partner",
+            "value": "cornerstones-become-partner"
+          },
+          {
             "name": "Privacy Policy Banner",
             "value": "privacy-policy-banner"
           },
