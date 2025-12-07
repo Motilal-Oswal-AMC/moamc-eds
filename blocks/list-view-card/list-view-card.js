@@ -99,7 +99,7 @@ export default function decorate(block) {
                 { class: 'fund-name-container' },
                 p(
                   { class: 'fund-name-txt' },
-                  block.schDetail.schemeName,
+                  block.schemeName,
                 ),
               ),
               img({
@@ -184,7 +184,7 @@ export default function decorate(block) {
           ),
           div(
             { class: 'fund-name-container' },
-            p({ class: 'fund-name-txt' }, block.schDetail.schemeName),
+            p({ class: 'fund-name-txt' }, block.schemeName),
           ),
           img({
             class: 'logoscheme',

@@ -1,5 +1,5 @@
 import { toClassName } from '../../scripts/aem.js';
-import dataCfObj from '../../scripts/dataCfObj.js';
+// import dataMapMoObj.getlisting from '../../scripts/dataMapMoObj.getlisting.js';
 // eslint-disable-next-line
 import fundCardblock from '../fund-card/fund-card.js';
 import {
@@ -78,41 +78,8 @@ export default async function decorate(block) {
     el.classList.add(`tabpanel${index + 1}`);
   });
   if (block.closest('.our-popular-funds')) {
-    dataMapMoObj.getlisting().then((resp) => {
-      console.log(resp.cfDataObjs);
-      const mop = [];
-      const plan = [];
-      const retval = [];
-      const nav = [];
-      const svgAry = [];
-      resp.cfDataObjs.forEach(async (element) => {
-        if (!element.fundsTaggingSection) {
-          mop.push(element.schemeName);
-        }
-        if (!element.planList) {
-          plan.push(element.schemeName);
-        }
-        if (!element.returns) {
-          retval.push(element.schemeName);
-        }
-        if (!element.nav) {
-          nav.push(element.schemeName);
-        }
-        const urllink = `http://localhost:3000/icons/schemeicons/MO_${element.schcode}.svg`;
-        let mopsch = await fetch(urllink);
-        if (mopsch.status !== 200) {
-          console.log('schname', element.schemeName);
-          console.log('schcode', element.schcode);
-        }
-      });
-      console.log('Tagging', mop);
-      console.log('planList', plan);
-      console.log('returns', retval);
-      console.log('nav', nav);
-      console.log('icons', svgAry);
-    }).catch((error) => error);
     block.closest('.our-popular-funds').classList.add('fund-tab');
-    let dataCf = dataCfObj.cfDataObjs.slice(0, 4);
+    let dataCf = dataMapMoObj.getlisting.cfDataObjs.slice(0, 4);
 
     Array.from(tablist.children).forEach((element) => {
       element.addEventListener('click', (event) => {
@@ -121,20 +88,23 @@ export default async function decorate(block) {
         });
 
         if (event.currentTarget.getAttribute('aria-controls') === 'tabpanel-trending-funds') {
-          const shcodeArr = dataCfObj.trendingFunds.map((elmap) => elmap.split(':')[1]);
-          dataCf = dataCfObj.cfDataObjs.filter((data) => shcodeArr.includes(data.schcode));
+          const shcodeArr = dataMapMoObj.getlisting.trendingFunds.map((elmap) => elmap.split(':')[1]);
+          dataCf = dataMapMoObj.getlisting
+            .cfDataObjs.filter((data) => shcodeArr.includes(data.schcode));
           if (dataCf.length > 4) {
             dataCf = dataCf.slice(0, 4);
           }
         } else if (event.currentTarget.getAttribute('aria-controls') === 'tabpanel-most-searched-funds') {
-          const shcodeArr = dataCfObj.mostSearchedFunds.map((elmap) => elmap.split(':')[1]);
-          dataCf = dataCfObj.cfDataObjs.filter((data) => shcodeArr.includes(data.schcode));
+          const shcodeArr = dataMapMoObj.getlisting.mostSearchedFunds.map((elmap) => elmap.split(':')[1]);
+          dataCf = dataMapMoObj.getlisting
+            .cfDataObjs.filter((data) => shcodeArr.includes(data.schcode));
           if (dataCf.length > 4) {
             dataCf = dataCf.slice(0, 4);
           }
         } else if (event.currentTarget.getAttribute('aria-controls') === 'tabpanel-most-bought-funds') {
-          const shcodeArr = dataCfObj.mostBoughtFunds.map((elmap) => elmap.split(':')[1]);
-          dataCf = dataCfObj.cfDataObjs.filter((data) => shcodeArr.includes(data.schcode));
+          const shcodeArr = dataMapMoObj.getlisting.mostBoughtFunds.map((elmap) => elmap.split(':')[1]);
+          dataCf = dataMapMoObj.getlisting
+            .cfDataObjs.filter((data) => shcodeArr.includes(data.schcode));
           if (dataCf.length > 4) {
             dataCf = dataCf.slice(0, 4);
           }
@@ -169,7 +139,12 @@ export default async function decorate(block) {
   }
   if (block.closest('.known-our-funds')) {
     block.closest('.known-our-funds').classList.add('fund-tab');
-    let dataCf = dataCfObj.cfDataObjs.map((elem) => ([...elem.fundsTaggingSection].includes('motilal-oswal:indian-equity-') ? elem : ''));
+    let dataCf = dataMapMoObj.getlisting.cfDataObjs.filter((elem) => {
+      if (!elem.fundsTaggingSection || !elem.planList) return false;
+      const hasTag = [...elem.fundsTaggingSection].some((tag) => tag.startsWith('motilal-oswal:indian-equity-'));
+      const hasDirectPlan = elem.planList.some((plan) => plan.planName?.toLowerCase().includes('direct'));
+      return hasTag && hasDirectPlan;
+    });
     dataCf = dataCf.filter((el) => el);
     dataCf = dataCf.slice(0, 4);
     Array.from(tablist.children).forEach((element) => {
@@ -179,30 +154,50 @@ export default async function decorate(block) {
         });
 
         if (event.currentTarget.getAttribute('aria-controls') === 'tabpanel-indian-equity') {
-          dataCf = dataCfObj.cfDataObjs.map((elem) => ([...elem.fundsTaggingSection].includes('motilal-oswal:indian-equity-') ? elem : ''));
-          dataCf = dataCf.filter((el) => el);
+          dataCf = dataMapMoObj.getlisting.cfDataObjs.filter((elem) => {
+            if (!elem.fundsTaggingSection || !elem.planList) return false;
+            const hasTag = [...elem.fundsTaggingSection].some((tag) => tag.startsWith('motilal-oswal:indian-equity-'));
+            const hasDirectPlan = elem.planList.some((plan) => plan.planName?.toLowerCase().includes('direct'));
+            return hasTag && hasDirectPlan;
+          });
           dataCf = dataCf.slice(0, 4);
           dataMapMoObj.selectviewFunds = 'indian-equity';
         } else if (event.currentTarget.getAttribute('aria-controls') === 'tabpanel-international-equity') {
-          dataCf = dataCfObj.cfDataObjs.map((elem) => ([...elem.fundsTaggingSection].includes('motilal-oswal:international-equity') ? elem : ''));
-          dataCf = dataCf.filter((el) => el);
+          dataCf = dataMapMoObj.getlisting.cfDataObjs.filter((elem) => {
+            if (!elem.fundsTaggingSection || !elem.planList) return false;
+            const hasTag = [...elem.fundsTaggingSection].some((tag) => tag.startsWith('motilal-oswal:international-equity'));
+            const hasDirectPlan = elem.planList.some((plan) => plan.planName?.toLowerCase().includes('direct'));
+            return hasTag && hasDirectPlan;
+          });
           dataMapMoObj.selectviewFunds = 'international-equity';
         } else if (event.currentTarget.getAttribute('aria-controls') === 'tabpanel-hybrid-balanced') { // tabpanel-index
-          dataCf = dataCfObj.cfDataObjs.map((elem) => ([...elem.fundsTaggingSection].includes('motilal-oswal:hybrid-&-balanced') ? elem : ''));
-          dataCf = dataCf.filter((el) => el);
+          dataCf = dataMapMoObj.getlisting.cfDataObjs.filter((elem) => {
+            if (!elem.fundsTaggingSection || !elem.planList) return false;
+            const hasTag = [...elem.fundsTaggingSection].some((tag) => tag.startsWith('motilal-oswal:hybrid-&-balanced'));
+            const hasDirectPlan = elem.planList.some((plan) => plan.planName?.toLowerCase().includes('direct'));
+            return hasTag && hasDirectPlan;
+          });
           dataMapMoObj.selectviewFunds = 'hybrid-&-balanced';
         } else if (event.currentTarget.getAttribute('aria-controls') === 'tabpanel-index') {
-          dataCf = dataCfObj.cfDataObjs.map((elem) => ([...elem.fundsTaggingSection].includes('motilal-oswal:index-funds') ? elem : ''));
-          dataCf = dataCf.filter((el) => el);
+          dataCf = dataMapMoObj.getlisting.cfDataObjs.filter((elem) => {
+            if (!elem.fundsTaggingSection || !elem.planList) return false;
+            const hasTag = [...elem.fundsTaggingSection].some((tag) => tag.startsWith('motilal-oswal:index-funds'));
+            const hasDirectPlan = elem.planList.some((plan) => plan.planName?.toLowerCase().includes('direct'));
+            return hasTag && hasDirectPlan;
+          });
           dataCf = dataCf.slice(1, 5);
           dataMapMoObj.selectviewFunds = 'index-funds';
         } else if (event.currentTarget.getAttribute('aria-controls') === 'tabpanel-etfs') {
-          dataCf = dataCfObj.cfDataObjs.map((elem) => ([...elem.fundsTaggingSection].includes('motilal-oswal:etf') ? elem : ''));
-          dataCf = dataCf.filter((el) => el);
+          dataCf = dataMapMoObj.getlisting.cfDataObjs.filter((elem) => {
+            if (!elem.fundsTaggingSection || !elem.planList) return false;
+            const hasTag = [...elem.fundsTaggingSection].some((tag) => tag.startsWith('motilal-oswal:etf'));
+            const hasDirectPlan = elem.planList.some((plan) => plan.planName?.toLowerCase().includes('direct'));
+            return hasTag && hasDirectPlan;
+          });
           dataCf = dataCf.slice(1, 5);
           dataMapMoObj.selectviewFunds = 'etf';
         } else if (event.currentTarget.getAttribute('aria-controls') === 'tabpanel-others') {
-          dataCf = dataCfObj.map((elem) => (elem.sebiSubCategory === 'Other ETF' ? elem : ''));
+          dataCf = dataMapMoObj.getlisting.map((elem) => (elem.sebiSubCategory === 'Other ETF' ? elem : ''));
           dataCf = dataCf.filter((el) => el);
           dataCf = dataCf.slice(1, 5);
           dataMapMoObj.selectviewFunds = 'OtherFund';
@@ -301,13 +296,13 @@ export default async function decorate(block) {
         planslabel = 'LM';
       } else {
         const path = window.location.pathname.split('/').at(-1);
-        const planobj = dataCfObj.cfDataObjs.filter(
-          (el) => path === el.schDetail.schemeName.toLocaleLowerCase().split(' ').join('-'),
+        const planobj = dataMapMoObj.getlisting.cfDataObjs.filter(
+          (el) => path === el.schemeName.toLocaleLowerCase().split(' ').join('-'),
         );
         planslabel = planobj[0] !== undefined ? planobj[0].schcode : '';
       }
       // const planslabel = planCode.split(':')[1];
-      const planObj = dataCfObj.cfDataObjs.filter((el) => planslabel === el.schcode);
+      const planObj = dataMapMoObj.getlisting.cfDataObjs.filter((el) => planslabel === el.schcode);
       const cfObj = planObj;
       cfObj[0].returns.forEach((ret) => {
         if (ret.plancode + ret.optioncode === dataMapMoObj.gropcodevalue) {
@@ -318,7 +313,7 @@ export default async function decorate(block) {
         { class: 'fund-data-table' },
         tr(
           { class: 'fund-name-value return-funds' },
-          td({ class: 'fund-name' }, cfObj[0].schDetail.schemeName),
+          td({ class: 'fund-name' }, cfObj[0].schemeName),
           // ul(
           //   { class: 'fund-data-list' },
           td({ class: 'fund-data' }, formatReturn((returnValue[0][`oneYear${param}`]))),
@@ -380,13 +375,13 @@ export default async function decorate(block) {
       planslabel = 'LM';
     } else {
       const path = window.location.pathname.split('/').at(-1);
-      const planobj = dataCfObj.cfDataObjs.filter(
-        (el) => path === el.schDetail.schemeName.toLocaleLowerCase().split(' ').join('-'),
+      const planobj = dataMapMoObj.getlisting.cfDataObjs.filter(
+        (el) => path === el.schemeName.toLocaleLowerCase().split(' ').join('-'),
       );
       planslabel = planobj[0] !== undefined ? planobj[0].schcode : '';
     }
     // const planslabel = planCode.split(':')[1];
-    const planObj = dataCfObj.cfDataObjs.filter(
+    const planObj = dataMapMoObj.getlisting.cfDataObjs.filter(
       (el) => planslabel === el.schcode,
     );
     Array.from(container.querySelector('.headgrp2').children).forEach((el) => ary.push(el));
@@ -400,7 +395,7 @@ export default async function decorate(block) {
     container.querySelector('.default-content-wrapper')
       .children[1].textContent = '';
     container.querySelector('.default-content-wrapper')
-      .children[1].textContent = `Data as on ${dataMapMoObj.formatDate(planObj[0].schDetail.nfoStartDate)}`;
+      .children[1].textContent = `Data as on ${dataMapMoObj.formatDate(planObj[0].nfoStartDate)}`;
     // console.log(ary);
     container.querySelector('.headgrp2 .headlist2').removeAttribute('href');
     container.querySelector('.headgrp2 .headlist2')
@@ -488,13 +483,13 @@ export default async function decorate(block) {
     planslabel = 'LM';
   } else {
     const path = window.location.pathname.split('/').at(-1);
-    const planobj = dataCfObj.cfDataObjs.filter(
-      (el) => path === el.schDetail.schemeName.toLocaleLowerCase().split(' ').join('-'),
+    const planobj = dataMapMoObj.getlisting.cfDataObjs.filter(
+      (el) => path === el.schemeName.toLocaleLowerCase().split(' ').join('-'),
     );
     planslabel = planobj[0] !== undefined ? planobj[0].schcode : '';
   }
   // const planslabel = planCode.split(':')[1];
-  const planObj = dataCfObj.cfDataObjs.filter((el) => planslabel === el.schcode);
+  const planObj = dataMapMoObj.getlisting.cfDataObjs.filter((el) => planslabel === el.schcode);
   if (block.closest('.tabdiv')) {
     dataMapMoObj.scheme = planObj;
     generateBarChart(planObj[0].sector);

@@ -857,7 +857,6 @@ const privacyPolicy = document.querySelectorAll('.privacy-policy-banner');
 
 const privacyPolicyArr = Array.from(privacyPolicy);
 privacyPolicyArr.forEach((child) => {
-
   if (child != null) {
     dataMapMoObj.CLASS_PREFIXES = [
       'pp-banner-wrap',
@@ -869,7 +868,7 @@ privacyPolicyArr.forEach((child) => {
     ];
     dataMapMoObj.addIndexed(child);
   }
-})
+});
 
 const skinstakeComponent = document.querySelector('.what-stake-component');
 if (skinstakeComponent != null) {
@@ -951,7 +950,7 @@ async function getlisting() {
   const resp = await myAPI('GET', 'https://m71vqgw4cj.execute-api.ap-south-1.amazonaws.com/dev/api/public/v1/funds/listing');
   return resp;
 }
-dataMapMoObj.getlisting = getlisting;
+dataMapMoObj.getlisting = await getlisting();
 
 async function getscheme(param) {
   const resp = await myAPI('GET', `https://m71vqgw4cj.execute-api.ap-south-1.amazonaws.com/dev/api/public/v1/funds?schcode=${param}`);
