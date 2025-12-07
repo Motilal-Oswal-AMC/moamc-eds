@@ -1,7 +1,7 @@
 @use "../swiper/swiper-bundle.min.css"; // Modern Sass @use rule is preferred
 @use "sass:map";
-@use "../../styles/common-theme/css/variables_mixins"as *;
-@use "../../styles/common-theme/css/fluid-typography"as *;
+@use "../../styles/common-theme/css/variables_mixins" as *;
+@use "../../styles/common-theme/css/fluid-typography" as *;
 
 .section.home-banner-container {
   position: relative;
@@ -212,6 +212,7 @@
     }
 
     @include media(mobile) {
+
       .sub-banner-item-1,
       .sub-banner-item-2,
       .sub-banner-item-4 {
@@ -280,6 +281,19 @@
 
     &::after {
       transform: rotate(180deg);
+    }
+  }
+}
+
+.section.partner-banner {
+  max-width: 1232px;
+  margin: 0 auto;
+
+  .default-content-wrapper {
+    ul {
+      li {
+        display: none;
+      }
     }
   }
 }

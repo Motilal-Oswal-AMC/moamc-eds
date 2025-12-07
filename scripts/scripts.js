@@ -549,6 +549,12 @@ function articleStructure() {
     || window.location.href.includes(
       '/investor-education/keys-of-investing/',
     )
+    || window.location.href.includes(
+      '/motilal-oswal-edge/insights/',
+    )
+    || window.location.href.includes(
+      '/investor-education/blogs/',
+    )
   ) {
     const maincloser = document.querySelector('main');
     const rightSub = maincloser.querySelectorAll('.article-sub-right');
@@ -931,17 +937,6 @@ if (conclusion != null) {
   dataMapMoObj.addIndexed(conclusion);
 }
 // conclusion container end
-
-// why-invest-minor section start
-const whyInvestminor = document.querySelector('.section.why-invest-minor');
-if (whyInvestminor != null) {
-  dataMapMoObj.CLASS_PREFIXES = [
-    'why-invest-minor-main',
-    'why-invest-minor-sub',
-    'why-invest-minor-inner',
-  ];
-  dataMapMoObj.addIndexed(whyInvestminor);
-}
 
 // Adding custom scrollbar to WCS pages
 try {

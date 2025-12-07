@@ -1,0 +1,223 @@
+@use "sass:map";
+@use "../../styles/common-theme/css/variables_mixins"as *;
+@use "../../styles/common-theme/css/fluid-typography"as *;
+
+.investing-minors-container {
+    padding: 40px 0;
+
+    @include media (mobile-ed) {
+        padding: 0;
+    }
+
+    .investing-minors {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        align-self: stretch;
+
+        // height: 656px;
+        @include media (mobile-ed) {
+            flex-direction: column;
+            gap: 80px;
+        }
+
+        .investing-main {
+            width: 100%;
+
+            &1,
+            &2 {
+                flex: 49%;
+
+                @include media (mobile-ed) {
+                    flex: 100%;
+                }
+
+                .investing-sub1 {
+                    ul {
+                        margin: 0;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: flex-start;
+                        gap: 24px;
+                        list-style: none;
+
+                        li {
+                            list-style: disc;
+                        }
+
+                        .investing-detail {
+                            &1 {
+                                display: flex;
+                                align-items: center;
+                                gap: 24px;
+                                align-self: stretch;
+                                list-style: none;
+
+                                p {
+                                    margin: 0;
+                                    display: flex;
+                                    width: 64px;
+                                    height: 64px;
+                                    flex-direction: column;
+                                    justify-content: center;
+                                    align-items: center;
+                                    border-radius: 8px;
+                                    background: var(--neutrals-200, #EEE);
+                                    box-shadow: 0 5.333px 16px 0 rgb(0 0 0 / 5%);
+
+                                    @include media (mobile-ed) {
+                                        min-width: 64px;
+                                    }
+
+                                    span {
+                                        display: flex;
+                                        width: 31.781px;
+                                        height: 32px;
+                                        flex-direction: column;
+                                        justify-content: center;
+                                        align-items: center;
+                                        flex-shrink: 0;
+                                    }
+                                }
+
+                                ul {
+                                    list-style: none;
+
+                                    li {
+                                        list-style: none;
+                                        color: var(--blue-1800-primary, #2E2A94);
+                                        font-feature-settings: var(--font-features-default);
+                                        font-family: var(--body, Inter);
+                                        font-size: var(--body-xlarge-bold-size, 20px);
+                                        font-style: normal;
+                                        font-weight: 600;
+                                        line-height: var(--body-xlarge-bold-line-height, 24px);
+                                    }
+                                }
+                            }
+
+                            &2 {
+                                display: flex;
+                                padding: 0 80px;
+                                justify-content: center;
+                                align-items: center;
+                                gap: 10px;
+                                align-self: stretch;
+
+                                @include media (mobile-ed) {
+                                    padding: 0;
+                                }
+
+                                ul {
+                                    margin: 0;
+                                    gap: 40px;
+
+                                    li {
+                                        position: relative;
+                                        padding-left: 16px;
+                                        display: inline-flex;
+                                        flex-direction: column;
+                                        list-style-position: outside;
+                                        color: var(--text-body-2, #616161);
+                                        font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
+                                        font-family: var(--body, Inter);
+                                        font-size: var(--body-medium-regular-size, 16px);
+                                        font-style: normal;
+                                        font-weight: 400;
+                                        line-height: 24px;
+
+                                        @include media (mobile-ed) {
+                                            line-height: var(--body-medium-regular-line-height, 20px);
+                                        }
+
+                                        &::before {
+                                            content: "•";
+                                            color: #424242;
+                                            position: absolute;
+                                            left: 0;
+                                            height: auto;
+                                        }
+
+                                        strong {
+                                            color: var(--text-body, #424242);
+                                            font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
+                                            font-family: var(--body, Inter);
+                                            font-size: var(--body-medium-regular-size, 16px);
+                                            font-style: normal;
+                                            font-weight: 600;
+                                            line-height: 24px;
+
+                                            @include media (mobile-ed) {
+                                                line-height: var(--body-medium-semibold-line-height, 20px);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            &2 {
+                .investing-sub1 {
+                    .investing-inner1 {
+                        .investing-detail {
+                            // &1 {
+                            //     display: flex;
+                            //     align-items: center;
+                            //     gap: 24px;
+                            //     align-self: stretch;
+                            //     list-style: none;
+
+                            //     p {
+                            //         margin: 0;
+                            //         display: flex;
+                            //         width: 64px;
+                            //         height: 64px;
+                            //         flex-direction: column;
+                            //         justify-content: center;
+                            //         align-items: center;
+                            //         border-radius: 8px;
+                            //         background: var(--neutrals-200, #EEE);
+                            //         box-shadow: 0 5.333px 16px 0 rgb(0 0 0 / 5%);
+
+                            //         span {
+                            //             display: flex;
+                            //             width: 31.781px;
+                            //             height: 32px;
+                            //             flex-direction: column;
+                            //             justify-content: center;
+                            //             align-items: center;
+                            //             flex-shrink: 0;
+                            //         }
+                            //     }
+
+                            //     ul {
+                            //         list-style: none;
+
+                            //         li {
+                            //             list-style: none;
+                            //             color: var(--blue-1800-primary, #2E2A94);
+                            //             font-feature-settings: var(--font-features-default);
+                            //             font-family: var(--body, Inter);
+                            //             font-size: var(--body-xlarge-bold-size, 20px);
+                            //             font-style: normal;
+                            //             font-weight: 600;
+                            //             line-height: var(--body-xlarge-bold-line-height, 24px);
+                            //         }
+                            //     }
+                            // }
+
+                            &2 {
+                                flex-direction: column;
+                                gap: 40px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

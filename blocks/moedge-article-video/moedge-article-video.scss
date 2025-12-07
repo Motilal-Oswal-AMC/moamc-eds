@@ -31,10 +31,10 @@
             font-weight: 400;
             line-height: var(--body-medium-regular-line-height, 24px);
 
-            &:nth-child(1).leftartitem1,
-            &:nth-child(2).leftartitem2 {
-                display: none;
-            }
+            // &:nth-child(1).leftartitem1,
+            // &:nth-child(2).leftartitem2 {
+            //     display: none;
+            // }
         }
 
         ul {

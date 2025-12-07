@@ -217,6 +217,7 @@
 
             .calc-inner-input-wrapper {
                 display: flex;
+                gap: 4px;
                 align-items: center;
             }
 
@@ -569,6 +570,7 @@ a.calc-overview-cta.button,
 
         max-width: calc(50% - 6px);
         width: 100%;
+        max-height: fit-content;
         display: flex;
         padding: 11.2px 8px;
         justify-content: center;
