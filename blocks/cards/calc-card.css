@@ -111,6 +111,20 @@
   height: 11px;
 }
 
+.section.partner-blog .default-content-wrapper .cal-item-sub1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--blue-1-800-primary);
+  text-align: center;
+  font-feature-settings: "ss01" on, "ss04" on, "cv01" on, "cv02" on, "cv03" on, "cv04" on, "cv06" on, "cv09" on, "cv10" on, "cv11" on;
+  font-family: var(--TItle, Inter);
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 40px;
+  padding-bottom: 40px;
+}
 .section.partner-blog .cards-wrapper .cards .cal-item-inner1 .sub-cal-item1 .sub-inner-cal-item2 .sub-cal-item-inner1 {
   color: var(--Neutrals-900, #212121);
   font-feature-settings: "ss01" on, "ss04" on, "cv01" on, "cv02" on, "cv03" on, "cv04" on, "cv06" on, "cv09" on, "cv10" on, "cv11" on;

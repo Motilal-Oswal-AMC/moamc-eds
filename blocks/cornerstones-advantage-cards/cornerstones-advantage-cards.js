@@ -50,6 +50,10 @@ export default function decorate(block) {
     const partnerConnect = block.closest('main').querySelector('.section.partner-connect');
     dataMapMoObj.CLASS_PREFIXES = ['partner-connect-contain', 'partner-connect-txt'];
     dataMapMoObj.addIndexed(partnerConnect);
+
+    const MoPartner = block.closest('main').querySelector('.section.mo-partner');
+    dataMapMoObj.CLASS_PREFIXES = ['mo-partner-contain', 'mo-partner-list', 'mo-partner-txt', 'mo-partner-subtxt', 'mo-partner-subtxt-item', 'mo-partner-subtxt-item-content', 'mo-partner-subtxt-item-content-detail'];
+    dataMapMoObj.addIndexed(MoPartner);
     loadCSS(
       `${window.hlx.codeBasePath}/blocks/cards/become-a-partner.css`,
     );
