@@ -1,3 +1,4 @@
+@import "../../../styles/fonts.css";
 .section.partner-connect .default-content-wrapper .cal-car-inner1 {
   display: none;
 }
@@ -69,6 +70,10 @@
   align-self: stretch;
   border-radius: 16px;
   background: var(--neutrals-200);
+}
+.section.mo-partner .default-content-wrapper ul {
+  margin: 0;
+  list-style: none;
 }
 .section.mo-partner .default-content-wrapper .mo-partner-list1 .mo-partner-txt1 .mo-partner-subtxt1 {
   margin: unset;
@@ -184,6 +189,11 @@
   align-items: center;
   gap: 18px;
   align-self: stretch;
+}
+@media (max-width: 768px) {
+  .section.mo-partner .default-content-wrapper .mo-partner-txt2 .mo-partner-subtxt1 {
+    display: none;
+  }
 }
 .section.mo-partner .default-content-wrapper .mo-partner-txt2 .mo-partner-subtxt1 .mo-partner-subtxt-item1 .mo-partner-subtxt-item-content1 .mo-partner-subtxt-item-content-detail1 {
   display: flex;

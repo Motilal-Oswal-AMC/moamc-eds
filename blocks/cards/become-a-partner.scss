@@ -1,4 +1,7 @@
-// become a partner 
+// become a partner
+@use "sass:map";
+@use "../../styles/common-theme/css/variables_mixins" as *;
+@use "../../styles/common-theme/css/fluid-typography" as *;
 
 .section.partner-connect {
     .default-content-wrapper {
@@ -92,6 +95,11 @@
         align-self: stretch;
         border-radius: 16px;
         background: var(--neutrals-200);
+
+        ul {
+            margin: 0;
+            list-style: none;
+        }
 
         .mo-partner-list1 {
             .mo-partner-txt1 {
@@ -242,6 +250,10 @@
                 align-items: center;
                 gap: 18px;
                 align-self: stretch;
+
+                @include media(mobile) {
+                    display: none;
+                }
 
                 .mo-partner-subtxt-item1 {
                     .mo-partner-subtxt-item-content1 {
