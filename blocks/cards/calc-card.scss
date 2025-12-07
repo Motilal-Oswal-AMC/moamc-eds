@@ -200,14 +200,16 @@
   position: unset;
   width: unset;
   height: unset;
-  color: var(--Neutrals-Black, #111);
+  color: var(--neutrals-black);
   font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
-
-  /* Desktop/Paragraph/Small-regular */
-  font-family: var(--Body, Inter);
-  font-size: var(--Body-Small-regular-Size, 14px);
+  font-family: var(--Body, Inter)+;
+  font-size: 14px;
   font-style: normal;
   font-weight: 400;
-  line-height: var(--Label-Large-Line-Height, 20px);
-  /* 142.857% */
+  line-height: 20px;
+  padding-left: 30px;
+
+  @include media(mobile) {
+    padding-left: 31px;
+  }
 }

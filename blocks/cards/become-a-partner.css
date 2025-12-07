@@ -15,6 +15,12 @@
   font-weight: 600;
   line-height: 40px;
 }
+@media (max-width: 768px) {
+  .section.partner-connect .cal-car1 .cal-car-inner2 .cal-car-sub-inner2 .cal-car-sub-inner-sub1 .cal-car-sub-inner-sub-inner1 {
+    font-size: 24px;
+    line-height: 28px;
+  }
+}
 .section.partner-connect .cal-car1 .cal-car-inner2 .cal-car-sub-inner2 .cal-car-sub-inner-sub1 .cal-car-sub-inner-sub-inner2 {
   color: var(--neutrals-white);
   font-feature-settings: "ss01" on, "ss04" on, "cv01" on, "cv02" on, "cv03" on, "cv04" on, "cv06" on, "cv09" on, "cv10" on, "cv11" on;
@@ -72,7 +78,7 @@
   .section.mo-partner {
     margin-left: 16px;
     margin-right: 16px;
-    padding: 40px 0;
+    padding: unset;
   }
 }
 .section.mo-partner .default-content-wrapper {
