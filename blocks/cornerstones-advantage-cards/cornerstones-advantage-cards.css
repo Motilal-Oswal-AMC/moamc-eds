@@ -211,9 +211,22 @@
   flex-direction: column;
   padding: 0 40px 24px;
 }
+@media (max-width: 768px) {
+  .section.cornerstones-become-partner {
+    margin-left: 16px;
+    margin-right: 16px;
+    width: unset;
+    padding: 24px 16px;
+  }
+}
 .section.cornerstones-become-partner .default-content-wrapper {
   display: flex;
   padding-top: 24px;
+}
+@media (max-width: 768px) {
+  .section.cornerstones-become-partner .default-content-wrapper {
+    padding: unset;
+  }
 }
 .section.cornerstones-become-partner .default-content-wrapper h6 {
   margin: unset;
@@ -225,9 +238,20 @@
   font-weight: 600;
   line-height: 28px;
 }
+@media (max-width: 768px) {
+  .section.cornerstones-become-partner .default-content-wrapper h6 {
+    font-size: 20px;
+    line-height: 24px;
+  }
+}
 .section.cornerstones-become-partner .cornerstones-advantage-cards-wrapper {
   max-width: unset;
   margin: unset;
+}
+@media (max-width: 768px) {
+  .section.cornerstones-become-partner .cornerstones-advantage-cards-wrapper {
+    padding: unset;
+  }
 }
 .section.cornerstones-become-partner .cornerstones-advantage-cards-wrapper .cornerstones-advantage-cards {
   display: flex;
@@ -239,7 +263,12 @@
   max-width: 364px;
   min-height: 162px;
 }
-.section.cornerstones-become-partner .cornerstones-advantage-cards-wrapper .cornerstones-advantage-cards .cards-item .item-child-2 {
+@media (max-width: 768px) {
+  .section.cornerstones-become-partner .cornerstones-advantage-cards-wrapper .cornerstones-advantage-cards .cards-item div {
+    display: block;
+  }
+}
+.section.cornerstones-become-partner .cornerstones-advantage-cards-wrapper .cornerstones-advantage-cards .cards-item div .item-child-2 {
   margin: 10px 0 4px;
   color: var(--blue-1-800-primary);
   font-feature-settings: "ss01" on, "ss04" on, "cv01" on, "cv02" on, "cv03" on, "cv04" on, "cv06" on, "cv09" on, "cv10" on, "cv11" on;
@@ -249,7 +278,7 @@
   font-weight: 600;
   line-height: var(--Body-Large-regular-Line-Height, 28px);
 }
-.section.cornerstones-become-partner .cornerstones-advantage-cards-wrapper .cornerstones-advantage-cards .cards-item .item-child-3 {
+.section.cornerstones-become-partner .cornerstones-advantage-cards-wrapper .cornerstones-advantage-cards .cards-item div .item-child-3 {
   padding-bottom: unset;
   color: var(--blue-1-800-primary);
   font-feature-settings: "ss01" on, "ss04" on, "cv01" on, "cv02" on, "cv03" on, "cv04" on, "cv06" on, "cv09" on, "cv10" on, "cv11" on;
@@ -257,6 +286,12 @@
   font-size: var(--Body-Large-regular-Size, 18px);
   font-style: normal;
   font-weight: 400;
-  line-height: var(--Body-Large-regular-Line-Height, 28px);
+  line-height: 28px;
   /* 155.556% */
+}
+@media (max-width: 768px) {
+  .section.cornerstones-become-partner .cornerstones-advantage-cards-wrapper .cornerstones-advantage-cards .cards-item div .item-child-3 {
+    font-size: 16px;
+    line-height: 24px;
+  }
 }/*# sourceMappingURL=cornerstones-advantage-cards.css.map */

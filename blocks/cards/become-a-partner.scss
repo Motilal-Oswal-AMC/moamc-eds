@@ -81,11 +81,26 @@
             line-height: 20px;
             margin-bottom: 44px;
         }
+
+        .choose-us-para3 {
+            a {
+                @include media(mobile) {
+                    width: 100%;
+                    max-width: 340px;
+                }
+            }
+        }
     }
 }
 
 .section.mo-partner {
     padding: 80px 0;
+
+    @include media(mobile) {
+        margin-left: 16px;
+        margin-right: 16px;
+        padding: 40px 0;
+    }
 
     .default-content-wrapper {
         display: flex;
@@ -95,6 +110,12 @@
         align-self: stretch;
         border-radius: 16px;
         background: var(--neutrals-200);
+
+        @include media(mobile) {
+            flex-direction: column;
+            // gap: 80px;
+            padding: 40px 12px;
+        }
 
         ul {
             margin: 0;
@@ -131,6 +152,11 @@
                                 font-style: normal;
                                 font-weight: 600;
                                 line-height: 40px;
+
+                                @include media(mobile) {
+                                    font-size: 28px;
+                                    line-height: 24px;
+                                }
                             }
                         }
                     }
@@ -180,6 +206,12 @@
                             margin: unset;
                             border-top: 1px solid var(--neutrals-400);
 
+                            @include media(mobile) {
+                                flex-direction: column;
+                                align-items: flex-start;
+                                gap: 8px;
+                            }
+
                             .mo-partner-subtxt-item-content-detail1 {
                                 width: 100%;
                                 max-width: 319px;
@@ -191,6 +223,11 @@
                                 font-style: normal;
                                 font-weight: 600;
                                 line-height: 20px;
+
+                                @include media(mobile) {
+                                    font-size: 18px;
+                                    font-weight: 500;
+                                }
 
                                 ul {
                                     margin-top: 4px;
@@ -209,6 +246,11 @@
                                                 font-style: normal;
                                                 font-weight: 600;
                                                 line-height: 20px;
+
+                                                @include media(mobile) {
+                                                    font-size: 14px;
+                                                    font-weight: 400;
+                                                }
                                             }
                                         }
                                     }
@@ -235,6 +277,10 @@
                                 font-style: normal;
                                 font-weight: 500;
                                 line-height: 20px;
+
+                                @include media(mobile) {
+                                    width: 100%;
+                                }
                             }
                         }
                     }
