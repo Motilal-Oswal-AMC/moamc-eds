@@ -35,6 +35,7 @@ export function validateInputWithEvent({
   locale = "en-IN",
   ignoreMin = false,
   allowEmpty = false,
+  eventType = "",
 }) {
   const inputEl = event.target;
   const rawValue = (inputEl.value || "").toString().trim();
@@ -53,7 +54,7 @@ export function validateInputWithEvent({
 
   // MIN logic
   if (ignoreMin) {
-    if (min === "") errorType = "MIN_EMPTY";
+    if (min === "" || (min === 0 && num < Number(min))) errorType = "MIN_EMPTY";
   } else if (min !== "" && num < Number(min)) {
     num = Number(min);
     errorType = "MIN_EMPTY";
@@ -73,6 +74,8 @@ export function validateInputWithEvent({
   const finalValue = currency
     ? num !== 0
       ? formatNumber({ value: num, currencyCode, locale })
+      : Number(min) === 0 && eventType === "blur"
+      ? 0
       : ""
     : rawValue === "" && allowEmpty
     ? rawValue
@@ -324,6 +327,7 @@ export function createInputBlock({
     },
     onblur: (e) => {
       const hasError = e.target.classList.contains("calc-error");
+      debugger;
       if (hasError && ignoreMin) {
         const { numeric } = validateInputWithEvent({
           event: e,
@@ -334,6 +338,7 @@ export function createInputBlock({
           locale: "en-IN",
           ignoreMin: false,
           allowEmpty: false,
+          eventType: "blur",
         });
         e.target.classList.remove("calc-error");
         if (variant === "stepper") {
@@ -380,6 +385,7 @@ export function createInputBlock({
         locale: "en-IN",
         ignoreMin: false,
         allowEmpty: false,
+        eventType: "blur",
       });
       const { numeric: num } = result;
 
