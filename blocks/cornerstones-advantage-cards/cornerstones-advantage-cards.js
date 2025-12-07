@@ -1,4 +1,6 @@
+import { loadCSS } from '../../scripts/aem.js';
 import dataMapMoObj from '../../scripts/constant.js';
+
 
 export default function decorate(block) {
   const cardsChildren = block.querySelectorAll('.cornerstones-advantage-cards > div');
@@ -43,5 +45,17 @@ export default function decorate(block) {
       develem.appendChild(element);
     });
     fundPhilosophy.appendChild(develem);
+  }
+  if (window.location.href.includes('/static-pages/become-a-partner')) {
+    const partnerConnect = block.closest('main').querySelector('.section.partner-connect');
+    dataMapMoObj.CLASS_PREFIXES = ['partner-connect-contain', 'partner-connect-txt'];
+    dataMapMoObj.addIndexed(partnerConnect);
+
+    const MoPartner = block.closest('main').querySelector('.section.mo-partner');
+    dataMapMoObj.CLASS_PREFIXES = ['mo-partner-contain', 'mo-partner-list', 'mo-partner-txt', 'mo-partner-subtxt', 'mo-partner-subtxt-item', 'mo-partner-subtxt-item-content', 'mo-partner-subtxt-item-content-detail'];
+    dataMapMoObj.addIndexed(MoPartner);
+    loadCSS(
+      `${window.hlx.codeBasePath}/blocks/cards/become-a-partner.css`,
+    );
   }
 }

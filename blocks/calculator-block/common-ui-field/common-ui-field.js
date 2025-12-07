@@ -35,10 +35,12 @@ export function validateInputWithEvent({
   locale = "en-IN",
   ignoreMin = false,
   allowEmpty = false,
+  eventType = "",
 }) {
   const inputEl = event.target;
   const rawValue = (inputEl.value || "").toString().trim();
-
+  const minValue = Number(min);
+  const maxValue = Number(max);
   let errorType = null;
 
   // Normalize numeric text
@@ -53,15 +55,16 @@ export function validateInputWithEvent({
 
   // MIN logic
   if (ignoreMin) {
-    if (min === "") errorType = "MIN_EMPTY";
-  } else if (min !== "" && num < Number(min)) {
-    num = Number(min);
+    if (minValue === "" || (minValue !== 0 && num < minValue))
+      errorType = "MIN_EMPTY";
+  } else if (minValue !== "" && num < minValue) {
+    num = minValue;
     errorType = "MIN_EMPTY";
   }
 
   // MAX logic
-  if (max !== "" && num > Number(max)) {
-    num = Number(max);
+  if (maxValue !== "" && num > maxValue) {
+    num = maxValue;
     // errorType = "ABOVE_MAX";
   }
 
@@ -70,9 +73,12 @@ export function validateInputWithEvent({
   else inputEl.classList.remove("calc-error");
 
   // Decide finalValue
+  // debugger;
   const finalValue = currency
     ? num !== 0
       ? formatNumber({ value: num, currencyCode, locale })
+      : minValue === 0 && eventType === "blur"
+      ? 0
       : ""
     : rawValue === "" && allowEmpty
     ? rawValue
@@ -324,6 +330,7 @@ export function createInputBlock({
     },
     onblur: (e) => {
       const hasError = e.target.classList.contains("calc-error");
+      // debugger;
       if (hasError && ignoreMin) {
         const { numeric } = validateInputWithEvent({
           event: e,
@@ -334,6 +341,7 @@ export function createInputBlock({
           locale: "en-IN",
           ignoreMin: false,
           allowEmpty: false,
+          eventType: "blur",
         });
         e.target.classList.remove("calc-error");
         if (variant === "stepper") {
@@ -380,6 +388,7 @@ export function createInputBlock({
         locale: "en-IN",
         ignoreMin: false,
         allowEmpty: false,
+        eventType: "blur",
       });
       const { numeric: num } = result;
 
@@ -835,6 +844,15 @@ export function createBarSummaryBlock({
   parent.appendChild(investedEstWrapper);
 
   // CTA button
+  const ctaBtn = createSummaryCTA({
+    container,
+  });
+  parent.appendChild(ctaBtn);
+
+  return parent;
+}
+
+export function createSummaryCTA({ container }) {
   const authorCTAData = container.querySelector(".calc-author-sub4 a");
   const ctaBtn = button(
     {
@@ -845,9 +863,7 @@ export function createBarSummaryBlock({
     },
     authorCTAData?.textContent.trim() || "Start SIP"
   );
-  parent.appendChild(ctaBtn);
-
-  return parent;
+  return ctaBtn;
 }
 
 export const CALC_FILENAME_MAPPING = {
