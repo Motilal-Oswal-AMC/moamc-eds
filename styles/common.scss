@@ -632,7 +632,6 @@ main>.section.previous-studies-tab.tabs-container {
 }
 
 .default-content-wrapper.annual-wealth-wrap1 {
-
   h1,
   h2,
   h3,
@@ -1265,11 +1264,10 @@ main>.section.previous-studies-tab.tabs-container {
 
     @include media(mobile) {
       padding: 0 16px;
-      margin-right: 25px;
+      margin-right: 0;
       -ms-overflow-style: none;
       scrollbar-width: none;
-
-      // overflow-x: auto;
+      overflow-x: auto;
     }
 
     &::-webkit-scrollbar {
@@ -1332,10 +1330,10 @@ main>.section.previous-studies-tab.tabs-container {
           line-height: var(--label-small-line-height);
 
           @include media (mobile-ed) {
-            // display: block;
-            // width: 72px;
-            // text-overflow: ellipsis;
-            // overflow: hidden;
+            display: block;
+            width: 72px;
+            text-overflow: ellipsis;
+            overflow: hidden;
 
             // &::after {
             //   // content: "...";
@@ -1358,7 +1356,7 @@ main>.section.previous-studies-tab.tabs-container {
       .breadlist {
         @include media (mobile-ed) {
           display: block;
-          width: 72px;
+          width: auto;
           text-overflow: ellipsis;
           overflow: hidden;
         }
@@ -1540,7 +1538,6 @@ main>.section.previous-studies-tab.tabs-container {
           font-size: var(--button-medium-size);
           line-height: var(--button-medium-line-height);
           padding: 12px;
-          // display: block;
           width: 100%;
           max-width: 192px;
           height: 40px;
@@ -1922,64 +1919,6 @@ main.nfo-nav {
 
 // QGLP static end
 
-// why invest minor account css start
-.section.why-invest-minor {
-  margin: 80px 0;
-
-  @include media (mobile-ed) {
-    margin: 0;
-    padding-bottom: 40px;
-  }
-
-  .why-invest-minor-main1 {
-    display: flex;
-    align-items: flex-start;
-    gap: 16px;
-
-    @include media (mobile-ed) {
-      flex-direction: column;
-    }
-
-    .why-invest-minor-sub {
-      &1 {
-        margin: 0;
-        width: 32.5%;
-        color: var(--blue-1800-primary, #2E2A94);
-        font-feature-settings: var(--font-features-default);
-        font-family: var(--title, Inter);
-        font-size: var(--heading-h4-size, 28px);
-        font-style: normal;
-        font-weight: 600;
-        line-height: 32px;
-
-        @include media (mobile-ed) {
-          width: 100%;
-          font-size: 24px;
-          line-height: 28px;
-        }
-      }
-
-      &2 {
-        width: 66.2%;
-        display: inline-block;
-        margin: 0;
-        color: var(--text-body, #424242);
-        font-feature-settings: var(--font-features-default);
-        font-family: var(--body, Inter);
-        font-size: var(--body-medium-regular-size, 16px);
-        font-style: normal;
-        font-weight: 400;
-        line-height: 24px;
-
-        @include media (mobile-ed) {
-          width: 100%;
-        }
-      }
-    }
-  }
-}
-
-// why invest minor account css End
 
 // conclusion css start 
 
@@ -1998,19 +1937,19 @@ main.nfo-nav {
     gap: 40px;
 
     .conclusion-title {
-      &1 {
-        margin: 0;
-        padding: 0;
-        color: var(--blue-1800-primary, #2E2A94);
-        font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
-        font-family: var(--title, Inter);
-        font-size: var(--heading-h4-size, 28px);
-        font-style: normal;
-        font-weight: 600;
-        line-height: 32px;
-      }
+      // &1 {
+      //   margin: 0;
+      //   padding: 0;
+      //   color: var(--blue-1800-primary, #2E2A94);
+      //   font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
+      //   font-family: var(--title, Inter);
+      //   font-size: var(--heading-h4-size, 28px);
+      //   font-style: normal;
+      //   font-weight: 600;
+      //   line-height: 32px;
+      // }
 
-      &2 {
+      &1 {
         margin: 0;
         color: var(--text-body, #424242);
         font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
@@ -2021,7 +1960,7 @@ main.nfo-nav {
         line-height: var(--body-xlarge-regular-line-height, 32px);
       }
 
-      &3 {
+      &2 {
         margin: 0;
         color: var(--blue-1800-primary, #2E2A94);
         font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on, 'liga' off;
@@ -2185,7 +2124,7 @@ main.nfo-nav {
         padding: 0;
       }
 
-      .icon.icon-Rupees.comlist.high-skin-component-paragraph1 {
+      .icon.icon-rupees.comlist.high-skin-component-paragraph1 {
         display: inline-flex;
         justify-content: center;
         align-items: center;
@@ -2698,9 +2637,6 @@ main.nfo-nav {
 
 // Skin in the game static end
 
-
-
-
 // elss fund page 
 
 .section.fund-tax {
@@ -2720,12 +2656,11 @@ main.nfo-nav {
     width: 100%;
     color: var(--blue-1-800-primary);
     font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
-    font-family: var(--TItle, Inter);
+    font-family: var(--title, Inter);
     font-size: 28px;
     font-style: normal;
     font-weight: 600;
-    line-height: 32px;
-    /* 114.286% */
+    line-height: 32px
   }
 
   .fund-tax-txt2 {
@@ -2734,12 +2669,11 @@ main.nfo-nav {
     width: 100%;
     color: var(--neutrals-800);
     font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
-    font-family: var(--Body, Inter);
+    font-family: var(--body, Inter);
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
     line-height: 24px;
-    /* 150% */
   }
 }
 
@@ -2755,31 +2689,25 @@ main.nfo-nav {
     gap: 40px;
     align-self: stretch;
     border-radius: 8px;
-    background: linear-gradient(257deg, rgba(154, 148, 255, 0.50) -5.54%, rgba(235, 234, 255, 0.50) 100%);
+    background: linear-gradient(257deg, #9A94FF80 -5.54%, #EBEAFF80 100%);
   }
 
   .invest-blog-txt1 {
     margin: unset;
     color: var(--blue-1-800-primary);
     font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
-    font-family: var(--Body, Inter);
+    font-family: var(--body, Inter);
     font-size: 20px;
     font-style: normal;
     font-weight: 500;
     line-height: 28px;
-
-    // @include font-style(var(--body-medium-semibold-size),
-    //   var(--body-medium-semibold-line-height),
-    //   var(--neutrals-black),
-    //   600,
-    //   var(--body));
   }
 
   .invest-blog-txt2 {
     margin: unset;
     color: var(--blue-1-800-primary);
     font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
-    font-family: var(--Body, Inter);
+    font-family: var(--body, Inter);
     font-size: 20px;
     font-style: normal;
     font-weight: 500;
@@ -2788,7 +2716,7 @@ main.nfo-nav {
 }
 
 .section.tax-blog {
-  background: var(--Neutrals-100, #F5F5F5);
+  background: var(--neutrals-100, #F5F5F5);
   padding: 80px 67px 64px;
   margin: unset;
 
@@ -2811,7 +2739,7 @@ main.nfo-nav {
     .tax-blog-txt1 {
       color: var(--blue-1-800-primary);
       font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
-      font-family: var(--TItle, Inter);
+      font-family: var(--title, Inter);
       font-size: 28px;
       font-style: normal;
       font-weight: 600;
@@ -2829,31 +2757,28 @@ main.nfo-nav {
       .tax-blog-subtxt1 {
         color: var(--text-body);
         font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
-        font-family: var(--Body, Inter);
+        font-family: var(--body, Inter);
         font-size: 14px;
         font-style: normal;
         font-weight: 400;
         line-height: 20px;
-        /* 142.857% */
       }
 
       .tax-blog-subtxt2 {
         color: var(--text-body);
         font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
-        font-family: var(--Body, Inter);
+        font-family: var(--body, Inter);
         font-size: 14px;
         font-style: normal;
         font-weight: 400;
         line-height: 20px;
-
-        /* 142.857% */
       }
     }
   }
 }
 
 .section.sip-blog {
-  background: var(--Neutrals-100, #F5F5F5);
+  background: var(--neutrals-100, #F5F5F5);
   padding-bottom: 80px;
   margin: unset;
 
@@ -2871,7 +2796,7 @@ main.nfo-nav {
     .sip-blog-txt1 {
       color: var(--blue-1-800-primary);
       font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
-      font-family: var(--TItle, Inter);
+      font-family: var(--title, Inter);
       font-size: 28px;
       font-style: normal;
       font-weight: 600;
@@ -2896,7 +2821,7 @@ main.nfo-nav {
       .sip-blog-subtxt1 {
         color: var(--text-body);
         font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
-        font-family: var(--Body, Inter);
+        font-family: var(--body, Inter);
         font-size: 14px;
         font-style: normal;
         font-weight: 400;
@@ -2921,7 +2846,7 @@ main.nfo-nav {
       .sip-blog-subtxt2 {
         color: var(--text-body);
         font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
-        font-family: var(--Body, Inter);
+        font-family: var(--body, Inter);
         font-size: 14px;
         font-style: normal;
         font-weight: 400;
@@ -2933,7 +2858,6 @@ main.nfo-nav {
           gap: 8px;
         }
 
-        /* 142.857% */
         p {
           .icon-elss-sip2 {
             width: 68px;
@@ -2953,7 +2877,7 @@ main.nfo-nav {
     .sebi-blog-txt1 {
       margin: unset;
       color: var(--neutrals-700);
-      font-family: var(--Body, Inter);
+      font-family: var(--body, Inter);
       font-size: 12px;
       font-style: normal;
       font-weight: 400;
@@ -2969,15 +2893,13 @@ main.nfo-nav {
     .elss-stock-table-txt1 {
       color: var(--blue-1-800-primary);
       font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
-      font-family: var(--TItle, Inter);
+      font-family: var(--title, Inter);
       font-size: 28px;
       font-style: normal;
       font-weight: 600;
       line-height: 32px;
       padding-bottom: 24px;
       margin-top: 80px;
-
-      /* 114.286% */
     }
 
     .elss-stock-table-txt2 {
@@ -2985,7 +2907,6 @@ main.nfo-nav {
 
       @include media(mobile) {
         width: 100%;
-        overflow-x: auto;
         overflow-y: hidden;
         -webkit-overflow-scrolling: touch;
         scrollbar-width: none;
@@ -3001,7 +2922,6 @@ main.nfo-nav {
 
         @include media(mobile) {
           width: 1188px;
-          /* your span width */
           display: inline-block;
         }
       }

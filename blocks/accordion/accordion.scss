@@ -563,8 +563,8 @@
 
                 @include media(mobile) {
                   padding: 0;
-                  font-size: var(--paragraph-xsmall-size);
-                  line-height: var(--paragraph-xsmall-line-height);
+                  font-size: var(--paragraph-small-regular-size);
+                  line-height: var(--paragraph-small-regular-line-height);
                 }
               }
             }

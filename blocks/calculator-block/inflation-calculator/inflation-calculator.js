@@ -66,9 +66,12 @@ export function calculateInflationSummary({
   callbackFunc,
 }) {
   let data;
-
+  const inputErrors = document.querySelectorAll(".calc-input.calc-error");
   // Guard clause for invalid inputs
-  if (!currentCost || !rateOfInflation || !timePeriod) {
+  if (
+    (!currentCost || !rateOfInflation || !timePeriod) &&
+    inputErrors?.length
+  ) {
     data = {
       currentCost: 0,
       futureCost: 0,

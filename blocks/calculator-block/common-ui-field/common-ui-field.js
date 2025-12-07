@@ -174,9 +174,9 @@ export const updateInputSuffix = (ele) => {
  * Updates the input value and disables/enables the increment/decrement buttons based on min/max
  * @param {HTMLInputElement} inputEl - The input element
  */
-function updateStepperButtons(inputEl) {
+function updateStepperButtons(inputEl, inputValue) {
   if (!inputEl) return;
-  debugger;
+  // debugger;
   const wrapper = inputEl.closest(".calc-input-wrapper.stepper");
   if (!wrapper) return;
   const input = wrapper.querySelector(".calc-input");
@@ -185,11 +185,11 @@ function updateStepperButtons(inputEl) {
 
   const min = parseFloat(input.min) || 0;
   const max = parseFloat(input.max) || Infinity;
-  const value = parseFloat(input.value) || 0;
+  // const value = parseFloat(input.value) || 0;
 
   // Update disabled state
-  if (decBtn) decBtn.disabled = value <= min;
-  if (incBtn) incBtn.disabled = value >= max;
+  if (decBtn) decBtn.disabled = inputValue <= min;
+  if (incBtn) incBtn.disabled = inputValue >= max;
 }
 
 /**
@@ -226,10 +226,16 @@ export function createInputBlock({
   ...rest
 }) {
   const FIELD_TYPE_MAPPING = {
-    year: {
-      min: `${min} ${min === 1 ? "year" : "years"}`,
-      max: `${max} years`,
-    },
+    year:
+      variant === "stepper"
+        ? {
+            min: `${min} ${min === 1 ? "year" : "years"}`,
+            max: `${max} years`,
+          }
+        : {
+            min: `Min. ${min}`,
+            max: `Max. ${max}`,
+          },
     currency: {
       min: `Min. ${formatNumber({
         value: min,
@@ -298,6 +304,7 @@ export function createInputBlock({
         ["stepper", "number"].includes(variant) &&
         fieldType !== "currency"
       ) {
+        // debugger;
         const { numeric, finalValue } = validateInputWithEvent({
           event: e,
           min,
@@ -309,9 +316,9 @@ export function createInputBlock({
           allowEmpty: true,
         });
         e.target.value = ignoreMin ? finalValue : numeric;
-      }
-      if (variant === "stepper") {
-        updateStepperButtons(e.target);
+        if (variant === "stepper") {
+          updateStepperButtons(e.target, numeric);
+        }
       }
       rest?.onInput?.(e);
     },
@@ -330,7 +337,7 @@ export function createInputBlock({
         });
         e.target.classList.remove("calc-error");
         if (variant === "stepper") {
-          updateStepperButtons(e.target);
+          updateStepperButtons(e.target, numeric);
         }
         onChange(numeric);
         if (suffix) {
@@ -499,7 +506,7 @@ export function createInputBlock({
         ? current - 1
         : Math.max(Number(min) || 0, current - 1);
 
-      updateStepperButtons(inputEl);
+      updateStepperButtons(inputEl, newVal);
       inputEl.value = newVal;
       updateInputSuffix(inputEl);
       onChange(newVal);
@@ -517,7 +524,7 @@ export function createInputBlock({
         ? current + 1
         : Math.min(Number(max) || current + 1, current + 1);
 
-      updateStepperButtons(inputEl);
+      updateStepperButtons(inputEl, newVal);
       inputEl.value = newVal;
       updateInputSuffix(inputEl);
       onChange(newVal);
@@ -585,6 +592,8 @@ export function createRadioSelectorBlock({
   onChange = () => {},
   blockAttr = {},
 } = {}) {
+  console.log("default : ", defVal);
+
   // ---------- Title Label ----------
   const titleEl = label({ for: id, class: "calc-radio-title" }, title);
 
@@ -913,4 +922,28 @@ export function extractOptionsSelect({ listContainer }) {
       return { label, value };
     })
     .filter((o) => o !== null);
+}
+
+/**
+ * Get a query parameter value from a URL.
+ *
+ * @param {string} key - Name of the query parameter to retrieve.
+ * @param {string} [url=window.location.href] - Optional URL to extract from.
+ * @returns {string|null} The value of the query param, or null if not found.
+ *
+ * @example
+ * // If URL is: https://example.com/?type=plan-a-trip
+ * getQueryParam("type"); // "plan-a-trip"
+ *
+ * @example
+ * getQueryParam("id", "https://site.com/page?id=42"); // "42"
+ */
+export function getQueryParam(key, url = window.location.href) {
+  try {
+    const params = new URL(url).searchParams;
+    return params.get(key);
+  } catch (err) {
+    console.warn("Invalid URL:", url);
+    return null;
+  }
 }
