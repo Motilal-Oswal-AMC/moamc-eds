@@ -107,9 +107,15 @@ export default async function decorate(block) {
           }
         }
         block.querySelector(`#${event.currentTarget.getAttribute('aria-controls')}`).innerHTML = '';
-        dataCf.map((elementfunds) => block.querySelector(`#${event.currentTarget.getAttribute('aria-controls')}`)
-          .append(fundCardblock(elementfunds)));
+        dataCf.map((elementfunds) => block.querySelector(`#${event.currentTarget.getAttribute('aria-controls')}`).append(fundCardblock(elementfunds)));
         block.querySelector(`#${event.currentTarget.getAttribute('aria-controls')}`).style.display = 'flex';
+        block?.querySelectorAll('.button-container').forEach((btneach, bthnind) => {
+          btneach.querySelectorAll('a').forEach((anchoreach) => {
+            anchoreach.setAttribute('id', `a${bthnind + 1}`);
+            anchoreach.setAttribute('aria-labelledby', `a${bthnind + 1}`);
+          })
+        });
+
       });
     });
 
@@ -121,7 +127,7 @@ export default async function decorate(block) {
         { class: 'btndesk' },
         a(
           {
-            class: 'btndesk', 
+            class: 'btndesk',
             href: block.closest('.section').querySelector('.button-container a').getAttribute('href'),
             'aria-label': block.closest('.section').querySelector('.button-container a').textContent.trim(),
           },
@@ -133,7 +139,7 @@ export default async function decorate(block) {
     const tabspanel = block.querySelectorAll('.tabs-panel');
     block.innerHTML = '';
     block.append(wrapperTablist);
-    tabspanel.forEach((el) => {
+    tabspanel.forEach((el, index) => {
       block.append(el);
     });
 
@@ -183,6 +189,14 @@ export default async function decorate(block) {
         dataCf.map((knowfunds) => block.querySelector(`#${event.currentTarget.getAttribute('aria-controls')}`)
           .append(fundCardblock(knowfunds)));
         block.querySelector(`#${event.currentTarget.getAttribute('aria-controls')}`).style.display = 'flex';
+
+        block?.querySelectorAll('.button-container').forEach((btneach, bthnind) => {
+          btneach.querySelectorAll('a').forEach((anchoreach) => {
+            anchoreach.setAttribute('id', `a${bthnind + 1}`);
+            anchoreach.setAttribute('aria-labelledby', `a${bthnind + 1}`);
+          })
+        });
+        
       });
     });
     block.querySelector('#tab-others').style.display = 'none';
@@ -797,9 +811,9 @@ export default async function decorate(block) {
   // Get all the tab buttons
   const tabsPreviousStudies1 = document.querySelectorAll('.glossary-tabs .tabs-list .tabs-tab');
   if (tabsPreviousStudies1) {
-  // Function to handle switching tabs
+    // Function to handle switching tabs
     const switchTab = (clickedTab) => {
-    // 1. Remove 'active' and 'aria-selected' from all tabs
+      // 1. Remove 'active' and 'aria-selected' from all tabs
       Array.from(tabsPreviousStudies1).forEach((tab) => {
         tab.classList.remove('active');
         tab.setAttribute('aria-selected', 'false');
@@ -818,7 +832,7 @@ export default async function decorate(block) {
     // Add a click event listener to each tab
     Array.from(tabsPreviousStudies1).forEach((tab) => {
       tab.addEventListener('click', () => {
-      // When a tab is clicked, run the switchTab function
+        // When a tab is clicked, run the switchTab function
         switchTab(tab);
       });
     });
@@ -877,9 +891,9 @@ export default async function decorate(block) {
     const tabsPreviousStudies = document.querySelectorAll('.previous-studies-ctn .tabs-list .tabs-tab');
 
     if (tabsPreviousStudies) {
-    // Function to handle switching tabs
+      // Function to handle switching tabs
       const switchTab = (clickedTab) => {
-      // 1. Remove 'active' and 'aria-selected' from all tabs
+        // 1. Remove 'active' and 'aria-selected' from all tabs
         tabsPreviousStudies.forEach((tab) => {
           tab.classList.remove('active');
           tab.setAttribute('aria-selected', 'false');
@@ -901,7 +915,7 @@ export default async function decorate(block) {
       // Add a click event listener to each tab
       tabsPreviousStudies.forEach((tab) => {
         tab.addEventListener('click', () => {
-        // When a tab is clicked, run the switchTab function
+          // When a tab is clicked, run the switchTab function
           switchTab(tab);
         });
       });

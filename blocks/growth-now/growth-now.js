@@ -22,6 +22,7 @@ export default function decorate(block) {
 
   dataMapMoObj.CLASS_PREFIXES = ['growth-sectri', 'growth-mainthr', 'growth-subthr'];
   dataMapMoObj.addIndexed(ulfund);
+  console.log(ulfund);
   ulfund.querySelectorAll('a').forEach((ela) => {
     ela.classList.add('ahreg');
   });
@@ -36,4 +37,27 @@ export default function decorate(block) {
     goggleplaystore.querySelector('.comlist.growth-sectri2 img'),
     'Download on the App Store',
   );
+
+
+  if (ulfund) {
+    // Convert LI elements first
+    const liItems = ulfund.querySelectorAll('li.growth-subthr1, li.growth-subthr2');
+
+    liItems.forEach((li) => {
+      const span = document.createElement('span');
+      span.className = li.className;
+      span.innerHTML = li.innerHTML;
+      li.replaceWith(span);
+    });
+
+    // After LI replacement: now convert the UL (optional)
+    const ulItems = ulfund.querySelectorAll('ul.growth-mainthr2');
+
+    ulItems.forEach((ul) => {
+      const span = document.createElement('span');
+      span.className = ul.className;
+      span.innerHTML = ul.innerHTML;
+      ul.replaceWith(span);
+    });
+  };
 }

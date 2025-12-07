@@ -21,7 +21,7 @@ import {
 function toTitleCase(str) {
   return str.toLowerCase().replace(/\b\w/g, (char) => char.toUpperCase());
 }
-export default function decorate(block, index) {
+export default function decorate(block) {
   let planFlow = 'Direct';
   if (document.querySelector('.fund-toggle-wrap [type="checkbox"]')) {
     planFlow = document.querySelector('.fund-toggle-wrap [type="checkbox"]')
@@ -461,8 +461,8 @@ export default function decorate(block, index) {
           a(
             {
               class: 'know-more card-btn',
-              'id': `a${index + 1}`,
-              'aria-labelledby': `a${index + 1}`,
+              // 'id': `a${index + 1}`,
+              // 'aria-labelledby': `a${index + 1}`,
               "href" : getSchemeURL(block.schDetail.schemeName),
               onclick: (event) => {
                 let planFlowsec = 'Direct';
@@ -497,8 +497,8 @@ export default function decorate(block, index) {
             {
               href: '/mutual-fund/in/en/modals/invest-now-homepage',
               class: 'invest-now card-btn',
-              'id': `a${index + 1}`,
-              'aria-labelledby': `a${index + 1}`,
+              // 'id': `a${index + 1}`,
+              // 'aria-labelledby': `a${index + 1}`,
             },
             'Invest',
           ),

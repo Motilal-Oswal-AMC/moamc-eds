@@ -38,6 +38,8 @@ function initScrollToTop() {
   scrollBtn.addEventListener('click', (e) => {
     e.preventDefault();
     window.scrollTo({ top: 0, behavior: 'smooth' });
+    scrollBtn.blur();
+
   });
 }
 
@@ -114,6 +116,7 @@ export default async function decorate(block) {
 
   const eventv2 = evenFunc.querySelector('.section-content1 .list-items2');
   const eventv3 = eventv2.querySelector('.list-inneritem-1').children;
+
   const pathname = '/mutual-fund/in/en/our-funds';
   Array.from(eventv3).forEach((eventElem) => {
     eventElem.querySelector('a').setAttribute('href', `${window.location.origin}${pathname}`);
@@ -166,9 +169,12 @@ export default async function decorate(block) {
     });
   }
 
+
+
   // wrap .footer-sub-cont2 and .footer-sub-cont3 in a container
   const social = footer.querySelector('.footer-sub-cont2');
   const store = footer.querySelector('.footer-sub-cont3');
+
   if (social && store) {
     const wrapper = document.createElement('div');
     wrapper.classList.add('footer-sub-wrapper');
@@ -341,8 +347,29 @@ export default async function decorate(block) {
           formem.nextElementSibling.style.display = 'none';
         }
       });
-    }
-  }
+    };
+
+    if (store) {
+      // Convert LI elements first
+      const liItems = store.querySelectorAll('li.list-inneritem-1, li.list-inneritem-2');
+      liItems.forEach((li) => {
+        const span = document.createElement('span');
+        span.className = li.className;
+        span.innerHTML = li.innerHTML;
+        li.replaceWith(span);
+      });
+      // After LI replacement: now convert the UL (optional)
+      const ulItems = store.querySelectorAll('ul.list-items2');
+      ulItems.forEach((ul) => {
+        const span = document.createElement('span');
+        span.className = ul.className;
+        span.innerHTML = ul.innerHTML;
+        ul.replaceWith(span);
+      });
+    };
+  };
+
+
   removeClassAfterDelay();
 }
 
@@ -365,6 +392,7 @@ if (container) {
       image.setAttribute('alt', altText);
     }
   });
+
 }
 
 // Function to hide footer on WCS PAGE

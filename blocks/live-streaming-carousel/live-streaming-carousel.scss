@@ -1,7 +1,7 @@
 /* Reset */
 @use "sass:map";
-@use "../../styles/common-theme/css/variables_mixins"as *;
-@use "../../styles/common-theme/css/fluid-typography"as *;
+@use "../../styles/common-theme/css/variables_mixins" as *;
+@use "../../styles/common-theme/css/fluid-typography" as *;
 @import "../swiper/swiper-bundle.min.css"; // Modern Sass @use rule is preferred
 
 .section.live-streaming-carousel-container {
@@ -188,7 +188,7 @@
       }
     }
 
-    ul {
+    ul , span {
       padding: 16px 0 0;
       margin: 0;
       list-style: none;
@@ -205,7 +205,7 @@
         gap: 8px;
       }
 
-      li:first-of-type {
+      li:first-of-type , span:first-of-type {
         @include font-style(var(--body-medium-regular-size), 24px, var(--neutrals-800), 400, var(--body));
 
         @include media(mobile) {
@@ -214,7 +214,7 @@
         }
       }
 
-      li:last-of-type {
+      li:last-of-type , span:last-of-type {
         display: flex;
         align-items: center;
         gap: 8px;
@@ -234,8 +234,8 @@
     }
 
     .swiper-slide[data-swiper-slide-index='0'] {
-      ul {
-        li:last-of-type {
+      ul ,span {
+        li:last-of-type , span:last-of-type {
           &::before {
             content: "";
             width: 9px;
@@ -313,4 +313,14 @@
       }
     }
   }
+}
+
+p.good-afternoon-start-your-day-with-investment-ideas {
+  margin: 0 0 8px;
+  font-size: var(--body-small-medium-size);
+  line-height: var(--body-small-medium-line-height);
+  color: var(--blue-1-800-primary);
+  font-family: var(--body);
+  font-feature-settings: "ss01" on, "ss04" on, "cv01" on, "cv02" on, "cv03" on, "cv04" on, "cv06" on, "cv09" on, "cv10" on, "cv11" on;
+  font-weight: 500
 }

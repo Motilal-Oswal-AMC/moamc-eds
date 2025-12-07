@@ -29,11 +29,12 @@ export default function decorate(block) {
   const prevBtn = div({ class: 'swiper-button-prev' });
 
   block.append(swiperWrapper, paginationDiv, nextBtn, prevBtn);
-  Swiper(block, {
+  const swiperInstance = Swiper(block, {
     loop: true,
     autoplay: {
       delay: 5000,
       pauseOnMouseEnter: true,
+      disableOnInteraction: false,
     },
     pagination: {
       el: '.swiper-pagination',
@@ -44,5 +45,19 @@ export default function decorate(block) {
       nextEl: block.querySelector('.swiper-button-next'),
       prevEl: block.querySelector('.swiper-button-prev'),
     },
+  });
+
+  // ⏳ STOP AUTOPLAY AFTER 10 SECONDS
+  setTimeout(() => {
+    swiperInstance.autoplay.stop();
+    console.log("Autoplay stopped after 5 seconds");
+  }, 10000);
+
+  swiperWrapper.addEventListener("mouseenter", () => {
+    swiperInstance.autoplay.stop();
+  });
+
+  swiperWrapper.addEventListener("mouseleave", () => {
+    swiperInstance.autoplay.start();
   });
 }

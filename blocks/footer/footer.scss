@@ -1,6 +1,6 @@
 @use "sass:map";
-@use "../../styles/common-theme/css/variables_mixins"as *;
-@use "../../styles/common-theme/css/fluid-typography"as *;
+@use "../../styles/common-theme/css/variables_mixins" as *;
+@use "../../styles/common-theme/css/fluid-typography" as *;
 
 .sr-only {
     position: absolute;
@@ -520,8 +520,8 @@
                 // grid-template-columns: minmax(auto, 190px) 1fr;
                 display: grid;
                 grid-template-areas:
-                "info links"
-                "contact contact";
+                    "info links"
+                    "contact contact";
                 grid-template-columns: 12.3% 76.3%;
                 row-gap: 60px;
                 justify-content: space-between;
@@ -611,7 +611,32 @@
                                         line-height: var(--label-large-line-height);
                                     }
 
+                                    span.list-inneritem-1 {
+                                        display: block;
+                                        color: var(--neutrals-white);
+                                        font-feature-settings: var(--font-features-default);
+                                        font-family: var(--body);
+                                        font-size: var(--body-small-regular-size);
+                                        font-style: normal;
+                                        font-weight: 400;
+                                        line-height: var(--label-large-line-height);
+                                    }
+
                                     li:last-child {
+                                        a {
+                                            color: var(--neutrals-white);
+                                            font-feature-settings: var(--font-features-default);
+                                            font-family: var(--body);
+                                            font-size: var(--body-small-semibold-size);
+                                            font-style: normal;
+                                            font-weight: 600;
+                                            line-height: var(--body-small-semibold-line-height);
+                                        }
+                                    }
+
+                                    span:last-child {
+                                        display: block;
+
                                         a {
                                             color: var(--neutrals-white);
                                             font-feature-settings: var(--font-features-default);
@@ -767,6 +792,14 @@
                                     font-weight: 600;
                                     line-height: var(--body-xsmall-semibold-line-height);
                                 }
+
+                            }
+
+                            h2.accordion-item-label {
+                                font-size: var(--body-xsmall-semibold-size);
+                                font-style: normal;
+                                font-weight: 600;
+                                line-height: var(--body-xsmall-semibold-line-height);
                             }
 
                             .accordion-item-body {

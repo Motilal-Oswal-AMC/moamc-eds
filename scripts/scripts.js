@@ -388,10 +388,56 @@ window.hlx.utils = {
 /* ---------------- Initialize ---------------- */
 const initComponent = (selector, prefixes) => {
   const el = document.querySelector(selector);
+
   if (el) {
     dataMapMoObj.CLASS_PREFIXES = prefixes;
     dataMapMoObj.addIndexed(el);
-  }
+
+    if (el.classList.contains('quick-actions')) {
+      const store = el; // current container
+      // Convert LI first (children) so they don't get deleted
+      const liItems = store.querySelectorAll('li.quckactmain-sub-wrp1');
+
+      liItems.forEach((li) => {
+        const span = document.createElement('span');
+        span.className = li.className;
+        span.innerHTML = li.innerHTML;
+        li.replaceWith(span);
+      });
+
+      // Now convert the UL parent
+      const ulItems = store.querySelectorAll('ul.quckactmain-sub1');
+
+      ulItems.forEach((ul) => {
+        const span = document.createElement('span');
+        span.className = ul.className;
+        span.innerHTML = ul.innerHTML;
+        ul.replaceWith(span);
+      });
+
+    } else if (el.classList.contains('welcome-component')) {
+      const store = el; // current container
+      // Convert LI first (children) so they don't get deleted
+      const liItems = store.querySelectorAll('li.comlist');
+
+      liItems.forEach((li) => {
+        const span = document.createElement('span');
+        span.className = li.className;
+        span.innerHTML = li.innerHTML;
+        li.replaceWith(span);
+      });
+
+      // Now convert the UL parent
+      const ulItems = store.querySelectorAll('ul.welcomemain-sub1');
+
+      ulItems.forEach((ul) => {
+        const span = document.createElement('span');
+        span.className = ul.className;
+        span.innerHTML = ul.innerHTML;
+        ul.replaceWith(span);
+      });
+    };
+  };
   if (document.querySelector('.quicksubactmain2') !== null) {
     Array.from(document.querySelector('.quicksubactmain2').children).forEach(
       (elmain) => {
@@ -399,6 +445,7 @@ const initComponent = (selector, prefixes) => {
       },
     );
   }
+
 };
 
 function loadDelayed() {

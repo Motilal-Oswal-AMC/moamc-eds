@@ -6,12 +6,31 @@ import {
   input,
 } from '../../scripts/dom-helpers.js';
 
+
+function replaceTag(oldEl, newTag) {
+  if (!oldEl) return null;
+
+  const newEl = document.createElement(newTag);
+
+  // Copy attributes
+  for (const attr of oldEl.attributes) {
+    newEl.setAttribute(attr.name, attr.value);
+  }
+
+  // Copy children
+  newEl.innerHTML = oldEl.innerHTML;
+
+  oldEl.replaceWith(newEl);
+  return newEl;
+}
+
 export default function decorate(block) {
   if (window.location.href.includes('author')) {
     return 1;
   }
   // 1. Setup main Swiper container
   block.classList.add('swiper');
+  block.setAttribute('tabindex', 0);
 
   const swiperWrapper = document.createElement('div');
   swiperWrapper.classList.add('swiper-wrapper');
@@ -56,10 +75,16 @@ export default function decorate(block) {
     ];
 
     const buttons = card2.querySelectorAll('.button-container');
+
     buttons.forEach((button, btnIndex) => {
       if (btnIndex === 0) {
         button.setAttribute('id', `b${index + 1}`);
-      } 
+        const parent = button.parentElement;
+
+        if (parent && parent.tagName === "LI") {
+          replaceTag(parent, "span");
+        }
+      }
       else if (btnIndex === 1) {
         button.setAttribute('id', `a${index + 1}`);
         button.setAttribute('aria-labelledby', `a${index + 1} b${index + 1}`);
@@ -99,6 +124,24 @@ export default function decorate(block) {
 
   // 4. Final assembly of the Swiper block
   block.appendChild(swiperWrapper);
+
+  const innerLis = block.querySelectorAll('.list-child-12 li');
+  innerLis.forEach((li) => {
+    replaceTag(li, 'span');
+  });
+  const innerUl = block.querySelectorAll('ul.list-child-12');
+  innerUl.forEach((li) => {
+    replaceTag(li, 'span');
+  });
+  const outerLis = block.querySelectorAll('.cards-listcards1 li');
+  outerLis.forEach((li) => {
+    replaceTag(li, 'span');
+  });
+  const outerUl = block.querySelectorAll('ul.cards-listcards1');
+  outerUl.forEach((li) => {
+    replaceTag(li, 'span');
+  });
+
 
   Array.from(block.querySelector('.swiper-slide-cards-2 .cards-listcards1').children).forEach((ele, ind) => {
     ele.classList.add('card-list');

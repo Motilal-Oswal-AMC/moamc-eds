@@ -93,7 +93,18 @@ export default function decorate(block) {
       );
     } else {
       dataMapMoObj.addIndexed(Array.from(riskmet.children)[1]);
-    }
+    };
+
+    const container = block.closest('.risk-o-meter-container');
+    const supEl = container.querySelector('.defone1 sup');
+    if (supEl) {
+      const spanEl = document.createElement('span');
+      spanEl.className = 'sr-only';
+      spanEl.textContent = 'footnote';
+      supEl.parentNode.insertBefore(spanEl, supEl);
+    };
+
+    block.closest('.risk-o-meter-container').querySelector('.defone1').querySelector('sup').setAttribute('id', localStorage.getItem('planCode').split('-')[0]);
     if (riskmet.querySelector('.defone2') !== null) {
       Array.from(riskmet.querySelector('.defone2').children).forEach((elde) => {
         elde.classList.add('defli');

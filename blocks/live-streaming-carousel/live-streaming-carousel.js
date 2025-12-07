@@ -1,12 +1,37 @@
 import Swiper from '../swiper/swiper-bundle.min.js';
 import { div, p } from '../../scripts/dom-helpers.js';
 
+function replaceTag(oldEl, newTag) {
+  const newEl = document.createElement(newTag);
+
+  // Copy ALL attributes
+  for (const attr of oldEl.attributes) {
+    newEl.setAttribute(attr.name, attr.value);
+  }
+
+  // Move child nodes (safer than innerHTML, preserves events inside)
+  while (oldEl.firstChild) {
+    newEl.appendChild(oldEl.firstChild);
+  }
+
+  oldEl.replaceWith(newEl);
+  return newEl;
+}
+
 export default function decorate(block) {
+  
   block.classList.add('swiper');
   const swiperWrapper = div({ class: 'swiper-wrapper' });
 
+  // Accessibility attributes for screen readers
+  block.setAttribute("role", "region");
+  block.setAttribute("aria-label", "Live Streaming Carousel");
+  block.setAttribute("aria-live", "polite");
+
   Array.from(block.children).forEach((ele) => {
     ele.classList.add('swiper-slide');
+    ele.querySelectorAll('li').forEach(li => replaceTag(li, 'span'));
+    ele.querySelectorAll('ul').forEach(li => replaceTag(li, 'span'));
     swiperWrapper.append(ele);
   });
   const firstImage = swiperWrapper.querySelector('.swiper-slide:first-child img');
@@ -41,7 +66,7 @@ export default function decorate(block) {
 
   // const wrapper = document.querySelector('.live-streaming-carousel-wrapper');
   const swiperEl = wrapper.querySelector('.swiper');
-  const lis = swiperEl.querySelectorAll('.swiper-slide ul li');
+  const lis = swiperEl.querySelectorAll('.swiper-slide ul li , .swiper-slide ul span');
   lis.forEach((lielem) => {
     const link = lielem.querySelector('a');
     const text = lielem.textContent.trim();
@@ -53,10 +78,11 @@ export default function decorate(block) {
   });
 
 
-  Swiper(block, {
+  const swiperInstance = Swiper(block, {
     loop: true,
     autoplay: {
       delay: 5000,
+      disableOnInteraction: false,
     },
     pagination: {
       el: wrapper.querySelector('.swiper-pagination'),
@@ -88,5 +114,19 @@ export default function decorate(block) {
         }
       },
     },
+  });
+
+  // ⏳ STOP AUTOPLAY AFTER 20 SECONDS
+  setTimeout(() => {
+    swiperInstance.autoplay.stop();
+    console.log("Autoplay stopped after 5 seconds");
+  }, 20000);
+
+  wrapper.addEventListener("mouseenter", () => {
+    swiperInstance.autoplay.stop();
+  });
+
+  wrapper.addEventListener("mouseleave", () => {
+    swiperInstance.autoplay.start();
   });
 }

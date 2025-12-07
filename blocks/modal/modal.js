@@ -357,7 +357,8 @@ export function initializeModalHandlers() {
         if (link.closest('.card-container')) {
           const schode = link.closest('.card-container')
             .querySelector('.star-wrap .star').getAttribute('schcode');
-          localStorage.setItem('planCode', `Direct:${schode}`);
+          const getId = link.closest('.card-container').querySelector('.button-container a').getAttribute('id');
+          localStorage.setItem('planCode', `${getId}-Direct:${schode}`);
         }
         if (link.closest('.card-wrap')) {
           const schode = link.closest('.card-wrap')

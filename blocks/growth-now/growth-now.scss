@@ -714,6 +714,70 @@
                                 }
                             }
 
+                            span.growth-mainthr2 {
+                                margin: 0;
+                                padding: 0;
+                                list-style: none;
+
+                                span.comlist.growth-subthr1:first-child {
+                                    display: block;
+                                    color: var(--neutrals-white);
+                                    font-family: var(--body);
+                                    font-size: var(--paragraph-xsmall-size);
+                                    font-style: normal;
+                                    font-weight: 400;
+                                    line-height: var(--paragraph-xsmall-line-height);
+                                    font-feature-settings: var(--font-features-default);
+                                    cursor: pointer;
+
+                                    @include media(mobile) {
+                                        @include font-style(var(--paragraph-xsmall-size), var(--paragraph-xsmall-line-height), var(--neutrals-white), 400, var(--body));
+                                    }
+
+                                    // &:hover {
+                                    //     text-decoration-line: underline;
+                                    //     opacity: 1 !important;
+                                    //     color: #fff;
+                                    // }
+                                }
+
+                                span.comlist.growth-subthr2:nth-child(2) {
+                                    color: #FFF;
+                                    font-family: var(--body);
+                                    font-size: 14px;
+                                    font-style: normal;
+                                    font-weight: 600;
+                                    line-height: 16px;
+                                    cursor: pointer;
+
+                                    display: block;
+
+                                    a {
+                                        color: var(--neutrals-white);
+                                        font-family: var(--body);
+                                        font-size: var(--body-small-semibold-size);
+                                        font-style: normal;
+                                        font-weight: 600;
+                                        line-height: var(--body-small-semibold-line-height);
+                                        font-feature-settings: var(--font-features-default);
+                                        cursor: pointer;
+
+                                        @include media(mobile) {
+                                            @include font-style(var(--body-small-semibold-size), var(--body-small-semibold-line-height), var(--neutrals-white), 600, var(--body));
+                                        }
+
+                                        &:hover {
+                                            text-decoration-line: underline;
+                                            opacity: 1 !important;
+                                            color: #fff;
+                                        }
+                                    }
+
+                                }
+                            }
+
+
+
                             .icon {
                                 width: 21px;
                                 height: 24px;

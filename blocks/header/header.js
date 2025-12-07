@@ -13,9 +13,10 @@ export const isDesktop = window.matchMedia('(min-width: 900px)');
  * @param {Boolean} expanded Whether the element should be expanded or collapsed
  */
 function toggleAllNavSections(sections, expanded = false) {
-  sections.querySelectorAll('.nav-sections .default-content-wrapper > ul > li').forEach((section) => {
+  sections.querySelectorAll('.nav-sections .default-content-wrapper > ul > li , .nav-sections .default-content-wrapper > span > span').forEach((section) => {
     // remove attr from nav onload
-    section.setAttribute('aria-expanded', expanded);
+    section.setAttribute('data-aria-expanded', expanded);
+    section.setAttribute('tabibdex', 0);
   });
 }
 
@@ -64,6 +65,23 @@ function openOnKeydown(e) {
 
 function focusNavSection() {
   document.activeElement.addEventListener('keydown', openOnKeydown);
+}
+
+function replaceTag(oldEl, newTag) {
+  const newEl = document.createElement(newTag);
+
+  // Copy ALL attributes
+  for (const attr of oldEl.attributes) {
+    newEl.setAttribute(attr.name, attr.value);
+  }
+
+  // Move child nodes (safer than innerHTML, preserves events inside)
+  while (oldEl.firstChild) {
+    newEl.appendChild(oldEl.firstChild);
+  }
+
+  oldEl.replaceWith(newEl);
+  return newEl;
 }
 
 /**
@@ -193,6 +211,12 @@ export default async function decorate(block) {
       });
     });
   }
+
+  ['ul.navbrand-sec3', 'li.navbrand-sub1'].forEach((selector) => {
+    const el = navBrand.querySelector(selector);
+    if (el) replaceTag(el, 'span');
+  });
+
   const getDropdownTrigger = navBrand.querySelector('.navbrand-sec3 .navbrand-inner-net1');
   const dropdownMenu = navBrand.querySelector('.navbrand-sec3 .navbrand-inner-net2');
 
@@ -282,7 +306,10 @@ export default async function decorate(block) {
           // Assuming toggleAllNavSections(navSections, false) closes all menus.
           toggleAllNavSections(navSections, false);
           // remove attr on hover as well for li
-          navSection.setAttribute('aria-expanded', 'true');
+          navSection.setAttribute('data-aria-expanded', 'true');
+
+          const btn = navSection.querySelector('.nav-sec-inner-text1');
+          btn.setAttribute('aria-expanded', 'true');
 
           // Prevent body scrolling while the menu is open.
           document.body.classList.add('no-scroll');
@@ -388,7 +415,11 @@ export default async function decorate(block) {
             // Fix: Set aria-expanded to 'false' when the menu is closing.
 
             // need to check here
-            navSection.setAttribute('aria-expanded', 'false');
+            navSection.setAttribute('data-aria-expanded', 'false');
+
+            const btn = navSection.querySelector('.nav-sec-inner-text1');
+            btn.setAttribute('aria-expanded', 'false');
+
             document.body.classList.remove('no-scroll');
           }, 300); // A 300ms delay feels smooth and prevents accidental closing.
         }
@@ -400,7 +431,11 @@ export default async function decorate(block) {
             leaveTimer = setTimeout(() => {
               toggleAllNavSections(navSections, false);
               // Fix: Set aria-expanded to 'false' when the menu is closing.
-              navSection.setAttribute('aria-expanded', 'false');
+              navSection.setAttribute('data-aria-expanded', 'false');
+
+              const btn = navSection.querySelector('.nav-sec-inner-text1');
+              btn.setAttribute('aria-expanded', 'false');
+
               document.body.classList.remove('no-scroll');
             }, 300); // A 300ms delay feels smooth and prevents accidental closing.
           }
@@ -464,11 +499,31 @@ export default async function decorate(block) {
       ];
       subHeader.forEach((sublist) => {
         dataMapMoObj.addIndexed(sublist);
-        sublist.setAttribute('aria-label','');
+        sublist.setAttribute('aria-label', '');
       });
 
       // Find the main container of your component
       const container = navSection.querySelector('.sub-popup-sec1');
+
+      navSections.querySelectorAll('.nav-sec-sub2 .sub-popup-inner-text2 li,.nav-sec-sub2 ul.sub-popup-inner-text2 ,.nav-sec-sub2 ul.sub-popup-list-content2 ,.nav-sec-sub2 ul.sub-popup-sec1 li ,.nav-sec-sub2 .sub-popup-cont1 ul,.nav-sec-sub2 ul.nav-sec-inner-text2 li ,.nav-sec-sub2 ul').forEach(li => replaceTag(li, 'span'));
+      navSections.querySelectorAll('.nav-sec-sub3 .sub-popup-inner-text2 li ,.nav-sec-sub3 ul.sub-popup-inner-text2 ,.nav-sec-sub3 ul.sub-popup-list-content2 ,.nav-sec-sub3 ul.sub-popup-sec1 li ,.nav-sec-sub3 .sub-popup-cont1 ul,.nav-sec-sub3 ul').forEach(li => replaceTag(li, 'span'));
+
+      navSections.querySelectorAll('.nav-sec-sub4 .sub-popup-inner-text2 li, .nav-sec-sub4 ul.sub-popup-inner-text2 ,.nav-sec-sub4 ul.sub-popup-list-content2 ,.nav-sec-sub4 ul.sub-popup-sec1 li ,.nav-sec-sub4 .sub-popup-cont1 ul,.nav-sec-sub4 ul').forEach(li => replaceTag(li, 'span'));
+
+      navSections.querySelectorAll('.nav-sec-sub5 .sub-popup-inner-text2 li, .nav-sec-sub5 ul.sub-popup-inner-text2 ,.nav-sec-sub5 ul.sub-popup-list-content2 ,.nav-sec-sub5 ul.sub-popup-sec1 li ,.nav-sec-sub5 .sub-popup-cont1 ul,.nav-sec-sub5 ul').forEach(li => replaceTag(li, 'span'));
+
+      navSections.querySelectorAll('.nav-sec-sub6 .sub-popup-inner-text2 li, .nav-sec-sub6 ul.sub-popup-inner-text2 ,.nav-sec-sub6 ul.sub-popup-list-content2 ,.nav-sec-sub6 ul.sub-popup-sec1 li ,.nav-sec-sub6 .sub-popup-cont1 ul,.nav-sec-sub6 ul').forEach(li => replaceTag(li, 'span'));
+
+      setTimeout(() => {
+        navSections.querySelectorAll('.nav-sec-sub3 li ,.nav-sec-sub4 li,.nav-sec-sub5 li').forEach(li => replaceTag(li, 'span'));
+      }, 1000);
+
+      // navSections.querySelectorAll('ul.sub-popup-inner-text2').forEach(li => replaceTag(li, 'span'));
+      // navSections.querySelectorAll('li.sub-popup-sub1 , li.sub-popup-sub2 , li.sub-popup-sub3 , li.sub-popup-sub4').forEach(li => replaceTag(li, 'span'));
+      // navSections.querySelectorAll('ul.sub-popup-sec1,ul.sub-popup-sec2').forEach(li => replaceTag(li, 'span'));
+      // // navSections.querySelectorAll('li.nav-sec-list1').forEach(li => replaceTag(li, 'span'));
+      // navSections.querySelectorAll('ul.nav-sec-inner-text2').forEach(li => replaceTag(li, 'span'));
+
       if (container) {
         const altTextMap = {
           // FIX 1: Removed unnecessary quotes from valid identifier keys
@@ -504,7 +559,18 @@ export default async function decorate(block) {
       'nav-sec-list-content',
     ];
     dataMapMoObj.addIndexed(navSections);
-  }
+
+    const items = navSections.querySelectorAll('.nav-sec-inner-text1');
+    items.forEach((oldEl) => {
+      const btn = document.createElement('button');
+      btn.className = oldEl.className;
+      btn.innerHTML = oldEl.innerHTML;
+      btn.setAttribute('type', 'button');
+      btn.setAttribute('aria-expanded', 'false');
+      oldEl.replaceWith(btn);
+    });
+
+  };
 
   const navTools = nav.querySelector('.nav-tools');
   if (navTools) {
@@ -534,7 +600,14 @@ export default async function decorate(block) {
       'header-top-list-content',
     ];
     dataMapMoObj.addIndexed(headerTop);
-  }
+
+    const headerTopItems = headerTop?.querySelectorAll('.header-top-sec1 > li');
+    headerTopItems?.forEach((item) => {
+      item.setAttribute("tabindex", 0);
+    });
+
+
+  };
   if (headerTop !== null) {
     const getDropTrigger = headerTop.querySelector('.header-top-sec1 .header-top-sub5 .header-top-inner-text1');
     const dropMenu = headerTop.querySelector('.header-top-sec1 .header-top-sub5 .header-top-inner-text2');
@@ -585,6 +658,7 @@ export default async function decorate(block) {
         }
       });
     }
+
   }
 
   const nfoBanner = nav.querySelector('.section.nfo-banner');
@@ -602,11 +676,47 @@ export default async function decorate(block) {
   (function initializeNfoBanner() {
     try {
       const setupUI = () => {
+        const liveIndicatorContainerWrapper = nfoBanner.querySelector('.nfo-banner-sub1');
+        liveIndicatorContainerWrapper.setAttribute('tabindex', 0);
+        const listliveIndicatorContainerWrapper = nfoBanner.querySelectorAll('.nfo-banner-sub1 li,.nfo-banner-sub1 ul');
+        listliveIndicatorContainerWrapper.forEach((each) => {
+          replaceTag(each, 'span');
+        });
+
         const liveIndicatorContainer = nfoBanner.querySelector('.nfo-banner-sub1 .nfo-banner-list1');
+        const callBackBtn = nfoBanner.querySelector('.nfo-banner-sub2 .nfo-banner-list1');
+        callBackBtn.setAttribute('tabindex', 0);
+        replaceTag(callBackBtn, 'span');
+
+        const liveIndicatorContainerInvestbutton = nfoBanner.querySelector('.nfo-banner-sub2 .nfo-banner-list2');
+        liveIndicatorContainerInvestbutton.setAttribute('tabindex', 0);
+        replaceTag(liveIndicatorContainerInvestbutton, 'span');
+
+        const liveIndicatorContainerUl = nfoBanner.querySelector('.nfo-banner-sub2 ul');
+        replaceTag(liveIndicatorContainerUl, 'span');
+
+        const liveIndicatorContainerInvestbuttonLi = nfoBanner.querySelector('li.nfo-banner-sub2');
+        replaceTag(liveIndicatorContainerInvestbuttonLi, 'span');
+
+        const elementsToReplace = [
+          nfoBanner.querySelector('.nfo-banner-sec1 li'),
+          nfoBanner.querySelector('.nfo-banner-cont1 ul'),
+        ];
+
+        elementsToReplace.forEach((el, i) => {
+          if (el) {
+            const newEl = replaceTag(el, 'span');
+            console.log(`Replaced element ${i + 1}:`, newEl);
+          }
+        });
+
+
         if (liveIndicatorContainer) {
           const liveIndicator = document.createElement('div');
           liveIndicator.className = 'live-indicator';
           liveIndicatorContainer.appendChild(liveIndicator);
+          liveIndicatorContainer.setAttribute('tabindex', 1);
+
         }
 
         const timerContainer = nfoBanner.querySelector('.nfo-banner-sub1 .nfo-banner-list3');
@@ -617,6 +727,7 @@ export default async function decorate(block) {
           timerContainer.appendChild(timerElement);
           return timerElement;
         }
+
         return null;
       };
 
@@ -697,13 +808,15 @@ export default async function decorate(block) {
       // navsort.querySelector('.sub-popup-list6 .sub-popup-list-content2').style.display = 'flex';
 
       const navinner = navSections.querySelector('.nav-sec-list1 .sub-popup-sub3 .sub-popup-inner-text2');
-      navinner.querySelectorAll('ul').forEach((navel) => { navel.style.display = 'block'; });
+      navinner.querySelectorAll('ul,span').forEach((navel) => { navel.style.display = 'block'; });
 
       const navinnfive = navSections.querySelector('.nav-sec-sub5 .sub-popup-sub2 .sub-popup-inner-text2');
-      navinnfive.querySelectorAll('ul').forEach((five) => { five.style.display = 'block'; });
+      navinnfive.querySelectorAll('ul,span').forEach((five) => { five.style.display = 'block'; });
 
       const navinnfour = navSections.querySelector('.nav-sec-sub4 .sub-popup-sub2 .sub-popup-inner-text2');
-      navinnfour.querySelectorAll('ul').forEach((four) => { four.style.display = 'block'; });
+      navinnfour.querySelectorAll('ul,span').forEach((four) => { four.style.display = 'block'; });
+
+
     });
   }
   if (window.innerWidth < 900) {
@@ -741,7 +854,7 @@ export default async function decorate(block) {
     //     }
     //   }
     // });
-  }
+  };
 
   const searchtemp = block.querySelector('.nav-tools .nav-tools-sec1 .nav-tools-inner-net1');
 
@@ -849,4 +962,5 @@ export default async function decorate(block) {
   //     }
 
   //   }
-}
+
+};
