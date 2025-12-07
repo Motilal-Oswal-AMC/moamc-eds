@@ -1370,3 +1370,92 @@ $breakpoint-tablet: 900px;
 }
 
 // Styling for Privacy Policy 
+
+// gift city Start //
+
+.section.gift-campaign {
+
+   @include media(mobile) {
+          padding: 20px 16px 40px;
+        }
+  .wrapper-policy {
+    .pp-banner-wrap1 {
+      .fdp-campaign {
+
+        @include media(mobile) {
+          height: 296px;
+        }
+
+        .pp-banner-img1 {
+          position: relative;
+
+          .pp-banner-imginner1 {
+            left: 216px;
+            width: 338.012px;
+            height: 345.891px;
+            position: absolute;
+            top: -37px;
+
+            @include media(mobile) {
+              width: 114.987px;
+              height: 83px;
+
+            }
+
+          }
+
+
+        }
+
+        .pp-banner-img2 {
+
+          @include media(mobile) {
+            position: absolute;
+            top: 141px;
+            right: -16px;
+
+
+          }
+
+
+          .pp-banner-imginner1 {
+
+
+            @include media(mobile) {
+              width: 211px;
+              height: 215px;
+
+            }
+
+          }
+
+
+        }
+
+        .pp-banner-img3 {
+
+          @include media(mobile) {
+            top: 34px;
+          }
+
+
+          .pp-banner-imginner1 {
+            .comlist.pp-banner-picture1 {
+              @include media(mobile) {
+                font-size: 24px;
+                line-height: 28px;
+                width: 175px;
+
+              }
+
+            }
+
+          }
+        }
+
+      }
+    }
+  }
+}
+
+// gift city End //

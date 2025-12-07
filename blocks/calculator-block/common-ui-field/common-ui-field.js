@@ -171,7 +171,7 @@ export const updateInputSuffix = (ele) => {
   const inputValue = ele?.value || ele?.target?.value || 0;
   if (suffixEle && fieldType) {
     if (fieldType === "year") {
-      suffixEle.textContent = Number(inputValue) <= 1 ? "year" : "years";
+      suffixEle.textContent = Number(inputValue) <= 1 ? "Year" : "Years";
     }
   }
 };

@@ -183,8 +183,78 @@
   }
 }
 
+.section.cornerstones-advantage.gift-cornerstones-advantage {
+  .cornerstones-advantage-cards-wrapper {
+    .cornerstones-advantage-cards {
+      gap: 60px 64px;
+
+      @include media(mobile) {
+        gap: 40px;
+
+      }
+
+
+      .cards-item {
+        min-height: unset;
+        width: 259px;
+
+        @include media(mobile) {
+          width: 100%;
+
+        }
+
+        div {
+          padding: 0;
+
+          @include media(mobile) {
+            display: flex;
+            flex-direction: column;
+
+          }
+
+          .item-child-1 {
+            width: 100%;
+            color: #212121;
+            font-family: var(--bod, Inter);
+            font-size: var(--sub-header-medium-size, );
+            font-style: normal;
+            font-weight: 500;
+            line-height: var(--sub-header-medium-line-height);
+
+            @include media(mobile) {
+              font-size: 18px;
+              line-height: 24px;
+              height: unset;
+              margin-bottom: 6px;
+            }
+
+          }
+
+          .item-child-2 {
+            margin: 0;
+            width: 100%;
+            color: #424242;
+            font-family: var(--body);
+            font-size: var(--body-medium-regular-size);
+            font-style: normal;
+            font-weight: 400;
+            line-height: var(--body-medium-regular-line-height);
+            /* 150% */
+
+            @include media(mobile) {
+              font-size: 14px;
+              line-height: 20px;
+            }
+
+          }
+        }
+      }
+    }
+  }
+}
+
 .section.cornerstones-elss-fund {
-  padding: 80px 0;
+  padding: unset;
 
   .cornerstones-advantage-cards-wrapper {
     .cornerstones-advantage-cards {
@@ -192,7 +262,7 @@
       flex-wrap: wrap;
       gap: 24px;
       justify-content: space-between;
-      margin: 64px 0 0;
+      margin: 40px 0 0;
     }
   }
 
@@ -201,6 +271,10 @@
       max-width: 296px;
       width: 100%;
       min-height: 244px;
+
+      @include media(tab) {
+        min-height: unset;
+      }
     }
   }
 }

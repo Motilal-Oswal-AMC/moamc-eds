@@ -159,8 +159,10 @@ body:has(.calculator-container) {
                 @include font-style(14px, 16px, $primary-white, 400, $inter);
 
                 display: none;
+                max-width: 124px;
                 min-width: 124px;
-                padding: 7.2px 12px;
+                max-height: 32px;
+                padding: 8px 12px;
                 justify-content: center;
                 align-items: center;
                 gap: 8px;
@@ -231,6 +233,12 @@ body:has(.calculator-container) {
                         }
 
                         .cagr-container {
+                            .cagr-dropdown {
+                                .selectedtext {
+                                    gap: 0;
+                                }
+                            }
+
                             @include media(mobile) {
                                 min-height: 74px;
                             }
@@ -261,6 +269,19 @@ body:has(.calculator-container) {
                 }
             }
         }
+    }
+}
+
+
+body:has(.calc-error) {
+
+    .calculator-sticky-cta-container .button.calculator-container-title-btn,
+    div.calculator-container_title.default-content-wrapper .calculator-container-title-item1 p.button-container a.calculator-container-title-btn {
+        // opacity: 0.58;
+        // cursor: not-allowed;
+        color: $neutrals-550;
+        border: 1px solid $neutrals-400;
+        pointer-events: none;
     }
 }
 
@@ -359,6 +380,7 @@ main {
 
                     @include media(mobile) {
                         margin-bottom: 0;
+
                     }
                 }
 
@@ -430,6 +452,7 @@ main {
                             background-color: transparent;
                             color: var(--text-button-default, #2E2A94);
                             text-align: center;
+                            transition: color 0.3s ease, border 0.3s ease;
                         }
                     }
                 }
@@ -974,7 +997,7 @@ main {
 
                         background-color: $primary-blue;
                         border: none;
-                        border-radius: 8px;
+                        border-radius: 4px;
                         padding: 12px;
                         cursor: pointer;
                         margin: 0;
@@ -988,7 +1011,8 @@ main {
                             font-size: 16px;
                             line-height: 20px;
                             width: 100%;
-                            padding: 10px 12px;
+                            max-height: 40px;
+                            // padding: 10px 12px;
                         }
                     }
                 }
@@ -1137,7 +1161,7 @@ main {
                 }
             }
 
- 
+
             .answer-container:not(:last-child) {
                 margin-bottom: 38px;
             }

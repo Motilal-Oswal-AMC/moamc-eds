@@ -447,6 +447,22 @@
 
 // Faq css End
 
+.section.gift-accordion {
+  @include media(mobile) {
+    margin-bottom: 0;
+  }
+
+  .faq-our-fund {
+    &>.default-content-wrapper:nth-child(3){
+      @include media(mobile) {
+        margin: 0;
+      }
+
+    }
+  }
+
+}
+
 // Privacy Policy QnA Styling Start
 .privacypolicy-container {
   .privacy-policy-banner {
