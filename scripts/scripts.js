@@ -938,17 +938,6 @@ if (conclusion != null) {
 }
 // conclusion container end
 
-// why-invest-minor section start
-const whyInvestminor = document.querySelector('.section.why-invest-minor');
-if (whyInvestminor != null) {
-  dataMapMoObj.CLASS_PREFIXES = [
-    'why-invest-minor-main',
-    'why-invest-minor-sub',
-    'why-invest-minor-inner',
-  ];
-  dataMapMoObj.addIndexed(whyInvestminor);
-}
-
 // Adding custom scrollbar to WCS pages
 try {
   if (document.querySelector('header [data-id="wcs-header"]')) {
