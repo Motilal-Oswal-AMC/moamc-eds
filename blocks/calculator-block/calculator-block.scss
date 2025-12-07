@@ -354,6 +354,14 @@ main {
                 margin: 0;
                 width: 100%;
 
+                li.calculator-container-title-subitem1 {
+                    margin-bottom: auto;
+
+                    @include media(mobile) {
+                        margin-bottom: 0;
+                    }
+                }
+
                 li[class*='calculator-container-title-subitem'] {
                     &:has(.button-container) {
                         margin-left: auto;
@@ -409,8 +417,9 @@ main {
                             @include font-style(14px, 16px, $blue-1-800-primary, 500, $inter);
 
                             min-width: 164px;
+                            max-height: 32px;
                             display: flex;
-                            padding: 8px 18px;
+                            padding: 8px 12px;
                             justify-content: center;
                             align-items: center;
                             gap: 8px;
