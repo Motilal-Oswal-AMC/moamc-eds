@@ -3,8 +3,8 @@
 /* media-feature-range-notation */
 
 @use "sass:map";
-@use "../styles/common-theme/css/variables_mixins"as *;
-@use "../styles/common-theme/css/fluid-typography"as *;
+@use "../styles/common-theme/css/variables_mixins" as *;
+@use "../styles/common-theme/css/fluid-typography" as *;
 
 // @import "../blocks/moedge-article-details/moedge-article-details.css";
 // @import '../blocks/Investor-details/investor-details.css';
@@ -1953,7 +1953,7 @@ main.nfo-nav {
       &1 {
         margin: 0;
         color: var(--text-body, #424242);
-        font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
+        font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
         font-family: var(--body, Inter);
         font-size: var(--body-xlarge-regular-size, 20px);
         font-style: normal;
@@ -1964,7 +1964,7 @@ main.nfo-nav {
       &2 {
         margin: 0;
         color: var(--blue-1800-primary, #2E2A94);
-        font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on, 'liga'off;
+        font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on, 'liga' off;
         font-family: var(--body, Inter);
         font-size: var(--body-xlarge-bold-size, 20px);
         font-style: normal;
@@ -2700,6 +2700,9 @@ main.nfo-nav {
     align-items: flex-start;
     align-self: stretch;
 
+    @include media(mobile) {
+      flex-direction: column;
+    }
 
   }
 
@@ -2707,12 +2710,13 @@ main.nfo-nav {
     max-width: 343px;
     width: 100%;
     color: var(--blue-1-800-primary);
-    font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
+    font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
     font-family: var(--title, Inter);
     font-size: 28px;
     font-style: normal;
     font-weight: 600;
-    line-height: 32px
+    line-height: 32px;
+    margin: unset;
   }
 
   .fund-tax-txt2 {
@@ -2720,7 +2724,7 @@ main.nfo-nav {
     max-width: 608px;
     width: 100%;
     color: var(--neutrals-800);
-    font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
+    font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
     font-family: var(--body, Inter);
     font-size: 16px;
     font-style: normal;
@@ -2730,7 +2734,7 @@ main.nfo-nav {
 }
 
 .section.invest-blog {
-  margin: 0 0 80px;
+  margin: 0 0 40px;
 
   .invest-blog-contain1 {
     display: flex;
@@ -2742,12 +2746,16 @@ main.nfo-nav {
     align-self: stretch;
     border-radius: 8px;
     background: linear-gradient(257deg, #9A94FF80 -5.54%, #EBEAFF80 100%);
+
+    @include media(mobile) {
+      background: linear-gradient(257deg, rgba(235, 234, 255, 0.50) -5.54%, rgba(154, 148, 255, 0.50) 100%);
+    }
   }
 
   .invest-blog-txt1 {
     margin: unset;
     color: var(--blue-1-800-primary);
-    font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
+    font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
     font-family: var(--body, Inter);
     font-size: 20px;
     font-style: normal;
@@ -2758,7 +2766,7 @@ main.nfo-nav {
   .invest-blog-txt2 {
     margin: unset;
     color: var(--blue-1-800-primary);
-    font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
+    font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
     font-family: var(--body, Inter);
     font-size: 20px;
     font-style: normal;
@@ -2790,7 +2798,7 @@ main.nfo-nav {
 
     .tax-blog-txt1 {
       color: var(--blue-1-800-primary);
-      font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
+      font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
       font-family: var(--title, Inter);
       font-size: 28px;
       font-style: normal;
@@ -2808,7 +2816,7 @@ main.nfo-nav {
 
       .tax-blog-subtxt1 {
         color: var(--text-body);
-        font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
+        font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
         font-family: var(--body, Inter);
         font-size: 14px;
         font-style: normal;
@@ -2818,7 +2826,7 @@ main.nfo-nav {
 
       .tax-blog-subtxt2 {
         color: var(--text-body);
-        font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
+        font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
         font-family: var(--body, Inter);
         font-size: 14px;
         font-style: normal;
@@ -2847,7 +2855,7 @@ main.nfo-nav {
 
     .sip-blog-txt1 {
       color: var(--blue-1-800-primary);
-      font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
+      font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
       font-family: var(--title, Inter);
       font-size: 28px;
       font-style: normal;
@@ -2872,7 +2880,7 @@ main.nfo-nav {
 
       .sip-blog-subtxt1 {
         color: var(--text-body);
-        font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
+        font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
         font-family: var(--body, Inter);
         font-size: 14px;
         font-style: normal;
@@ -2897,7 +2905,7 @@ main.nfo-nav {
 
       .sip-blog-subtxt2 {
         color: var(--text-body);
-        font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
+        font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
         font-family: var(--body, Inter);
         font-size: 14px;
         font-style: normal;
@@ -2944,7 +2952,7 @@ main.nfo-nav {
   .elss-stock-table-contain1 {
     .elss-stock-table-txt1 {
       color: var(--blue-1-800-primary);
-      font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
+      font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
       font-family: var(--title, Inter);
       font-size: 28px;
       font-style: normal;
