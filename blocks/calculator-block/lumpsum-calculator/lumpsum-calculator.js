@@ -91,7 +91,7 @@ export function updateCalculateSummary({ container, data }) {
     totalReturnsEl.textContent = formatNumber({
       value: data.totalValue,
       currency: true,
-    });
+    })?.replace("₹", "₹ ");
   }
 
   if (investedAmountEl) {
@@ -222,7 +222,7 @@ export default function decorate(block) {
       class: "tp-inp-container",
     },
     fieldType: "year",
-    suffix: tp?.default > 1 ? "years" : "year",
+    suffix: tp?.default > 1 ? "Years" : "Year",
     variant: "stepper",
     ignoreMin: true,
     updateWidthonChange: true,

@@ -222,6 +222,10 @@
             "name": "GLP TAB Price",
             "value": "glp-tab-price"
           },
+           {
+            "name": "Gift Campaign",
+            "value": "gift-campaign"
+          },
           {
             "name": "Wealth-Register",
             "value": "wealth-register"
@@ -265,6 +269,34 @@
           {
             "name": "fdp-kyc-form",
             "value": "fdp-kyc-form"
+          },
+          {
+            "name": "Gift Hero",
+            "value": "gift-hero"
+          },
+          {
+            "name": "Gift Cornerstones Advantage",
+            "value": "gift-cornerstones-advantage"
+          },
+          {
+            "name": "Gift High Skin",
+            "value": "gift-high-skin"
+          },
+          {
+            "name": "Gift Investing Style",
+            "value": "gift-investing-style"
+          },
+          {
+            "name": "Gift High Skin",
+            "value": "gift-high-skin"
+          },
+          {
+            "name": "Choose Gift",
+            "value": "choose-gift"
+          },
+          {
+            "name": "Gift Accordion",
+            "value": "gift-accordion"
           },
           {
             "name": "pan-details-modal",

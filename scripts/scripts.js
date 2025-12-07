@@ -483,6 +483,23 @@ if (glpDecoding != null) {
 
 /* glp page End */
 
+/* Gift City Start */
+const chooseGift = document.querySelector('.choose-gift');
+
+if (chooseGift != null) {
+  dataMapMoObj.CLASS_PREFIXES = [
+    'gift-choose',
+    'gift-choose-inner',
+    'gift-choose-sub-inner',
+    'gift-choose-sub-inner-sub',
+    'gift-choose-sub-inner-sub-inner',
+    'choose-gift-sub-inner-sub-inner',
+  ];
+  dataMapMoObj.addIndexed(chooseGift);
+}
+
+/* Gift City End */
+
 const tabLinks = document.querySelectorAll('.table-wrapper');
 
 const observer = new IntersectionObserver(

@@ -19,7 +19,7 @@ export function updateCalculateSummary({ container, data }) {
     futureCostEl.textContent = formatNumber({
       value: data.futureCost,
       currency: true,
-    });
+    })?.replace("₹", "₹ ");
   }
 
   if (currentCostEl) {
@@ -236,7 +236,7 @@ export default function decorate(block) {
   const tpBlock = createInputBlock({
     id: "time-period",
     ...tp,
-    suffix: tp?.default > 1 ? "years" : "year",
+    suffix: tp?.default > 1 ? "Years" : "Year",
     fieldType: "year",
     variant: "stepper",
     ignoreMin: true,
