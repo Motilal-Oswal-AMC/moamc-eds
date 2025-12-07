@@ -78,6 +78,31 @@ export default async function decorate(block) {
     el.classList.add(`tabpanel${index + 1}`);
   });
   if (block.closest('.our-popular-funds')) {
+    dataMapMoObj.getlisting().then((resp) => {
+      console.log(resp.cfDataObjs);
+      const mop = [];
+      const plan = [];
+      const retval = [];
+      const nav = [];
+      resp.cfDataObjs.forEach((element) => {
+        if (!element.fundsTaggingSection) {
+          mop.push(element.schemeName);
+        }
+        if (!element.planList) {
+          plan.push(element.schemeName);
+        }
+        if (!element.returns) {
+          retval.push(element.schemeName);
+        }
+        if (!element.nav) {
+          nav.push(element.schemeName);
+        }
+      });
+      console.log('Tagging', mop);
+      console.log('planList', plan);
+      console.log('returns', retval);
+      console.log('nav', nav);
+    }).catch((error) => error);
     block.closest('.our-popular-funds').classList.add('fund-tab');
     let dataCf = dataCfObj.cfDataObjs.slice(0, 4);
 
