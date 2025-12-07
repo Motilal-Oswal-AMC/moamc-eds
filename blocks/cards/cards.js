@@ -293,6 +293,16 @@ export default function decorate(block) {
     dataMapMoObj.CLASS_PREFIXES = ['global-card', 'global-cardsub', 'global-cardinner', 'global-cardchild', 'global-carditem', 'global-cardsubitem'];
     dataMapMoObj.addIndexed(block);
   }
+
+  if (window.location.pathname.includes('/static-pages/skin-in-the-game')) {
+    const matterSection = block.closest('main').querySelector('.why-matters-component .cards');
+    if (matterSection) {
+      dataMapMoObj.CLASS_PREFIXES = [
+        'matters-ul',
+        'matters-li',];
+      dataMapMoObj.addIndexed(matterSection);
+    }
+  }
 }
 
 function decorateArticlePage() {

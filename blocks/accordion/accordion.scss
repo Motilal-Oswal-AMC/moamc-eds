@@ -3,8 +3,8 @@
 /*   media-feature-range-notation */
 
 @use "sass:map";
-@use "../../styles/common-theme/css/variables_mixins" as *;
-@use "../../styles/common-theme/css/fluid-typography" as *;
+@use "../../styles/common-theme/css/variables_mixins"as *;
+@use "../../styles/common-theme/css/fluid-typography"as *;
 @import "./faq-page.css";
 
 .accordion-container {
@@ -481,7 +481,7 @@
             p.comlist {
               margin: unset;
               color: var(--blue-1-800-primary);
-              font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
+              font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
               font-family: var(--body);
               font-size: var(--body-large-medium-size);
               font-style: normal;
@@ -590,4 +590,31 @@
     }
   }
 }
+
 // Privacy Policy QnA Styling End
+
+// Minor's folio css start
+.minors-folio-faq.accordion-container {
+  @include media (mobile) {
+    margin-top: 0;
+    padding: 0;
+  }
+
+  .faq-our-fund {
+    grid-template-columns: 32.5% 66.24%;
+
+    >.default-content-wrapper:nth-child(1) p {
+      @include media (mobile) {
+        letter-spacing: 0.5px;
+        font-size: var(--heading-h4-size, 28px);
+        font-style: normal;
+        font-weight: 600;
+        line-height: var(--sub-header-large-line-height, 32px);
+      }
+    }
+
+    >.default-content-wrapper:nth-child(3) {
+      display: none;
+    }
+  }
+}

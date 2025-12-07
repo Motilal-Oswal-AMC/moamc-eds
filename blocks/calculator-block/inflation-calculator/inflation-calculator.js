@@ -19,7 +19,7 @@ export function updateCalculateSummary({ container, data }) {
     futureCostEl.textContent = formatNumber({
       value: data.futureCost,
       currency: true,
-    });
+    })?.replace("₹", "₹ ");
   }
 
   if (currentCostEl) {
@@ -66,9 +66,12 @@ export function calculateInflationSummary({
   callbackFunc,
 }) {
   let data;
-
+  const inputErrors = document.querySelectorAll(".calc-input.calc-error");
   // Guard clause for invalid inputs
-  if (!currentCost || !rateOfInflation || !timePeriod) {
+  if (
+    (!currentCost || !rateOfInflation || !timePeriod) &&
+    inputErrors?.length
+  ) {
     data = {
       currentCost: 0,
       futureCost: 0,
@@ -233,7 +236,7 @@ export default function decorate(block) {
   const tpBlock = createInputBlock({
     id: "time-period",
     ...tp,
-    suffix: tp?.default > 1 ? "years" : "year",
+    suffix: tp?.default > 1 ? "Years" : "Year",
     fieldType: "year",
     variant: "stepper",
     ignoreMin: true,
