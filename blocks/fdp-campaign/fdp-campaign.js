@@ -81,6 +81,37 @@ export default function decorate(block) {
     });
   }
 
+
+  // gift fdp-campaign  start
+
+  if (window.location.href.includes("http://localhost:3000/mutual-fund/in/en/static-pages/gift-city")) {
+    // const giftParent = document.querySelector(".gift-campaign .fdp-campaign-wrapper");
+
+    // console.log(giftParent)
+
+    // const giftWrapper = div({ class: 'wrapper-policy'});
+
+    // giftWrapper.append(giftParent);
+
+    const giftParent = document.querySelector(".gift-campaign .fdp-campaign-wrapper");
+
+console.log(giftParent);
+
+const giftWrapper = div({ class: 'wrapper-policy' });
+
+// Insert wrapper before giftParent
+giftParent.parentNode.insertBefore(giftWrapper, giftParent);
+
+// Move giftParent inside wrapper
+giftWrapper.appendChild(giftParent);
+
+
+
+  }
+
+
+
+  // gift fdp-campaign  End
   // document.addEventListener("DOMContentLoaded", function () {
   // Select all li elements with class starting with "strategy2" (like strategy21, strategy25...)
   const listItemsStrategy = document.querySelectorAll("li.comlist[class*='strategy2']");
@@ -185,7 +216,7 @@ export default function decorate(block) {
     }
   }
   privacyPlicyBtn()
-  
+
   // if (mainblock.querySelectorAll('.privacy-policy-banner').length !== 0) {
   //   Array.from(mainblock.querySelectorAll('.privacy-policy-banner')).forEach((elem) => {
   //     const btnstru = div({ class: 'button-container' },
@@ -245,18 +276,4 @@ export default function decorate(block) {
     });
   });
   // Privacy Policy Functionality End
-
-  // gift fdp-campaign  start
-   
-
-//   const giftParent = document.querySelector(".fdp-campaign");
-// const giftChildren = [...giftParent.children];
-// const giftWrapper = div({ class: 'wrapper-policy' });
-
-// giftParent.appendChild(giftWrapper);
-
-// giftChildren.forEach(child => giftWrapper.appendChild(child));
-
-
-   // gift fdp-campaign  End
 }
