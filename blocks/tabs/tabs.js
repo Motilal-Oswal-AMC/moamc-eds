@@ -78,6 +78,39 @@ export default async function decorate(block) {
     el.classList.add(`tabpanel${index + 1}`);
   });
   if (block.closest('.our-popular-funds')) {
+    dataMapMoObj.getlisting().then((resp) => {
+      console.log(resp.cfDataObjs);
+      const mop = [];
+      const plan = [];
+      const retval = [];
+      const nav = [];
+      const svgAry = [];
+      resp.cfDataObjs.forEach(async (element) => {
+        if (!element.fundsTaggingSection) {
+          mop.push(element.schemeName);
+        }
+        if (!element.planList) {
+          plan.push(element.schemeName);
+        }
+        if (!element.returns) {
+          retval.push(element.schemeName);
+        }
+        if (!element.nav) {
+          nav.push(element.schemeName);
+        }
+        const urllink = `http://localhost:3000/icons/schemeicons/MO_${element.schcode}.svg`;
+        let mopsch = await fetch(urllink);
+        if (mopsch.status !== 200) {
+          console.log('schname', element.schemeName);
+          console.log('schcode', element.schcode);
+        }
+      });
+      console.log('Tagging', mop);
+      console.log('planList', plan);
+      console.log('returns', retval);
+      console.log('nav', nav);
+      console.log('icons', svgAry);
+    }).catch((error) => error);
     block.closest('.our-popular-funds').classList.add('fund-tab');
     let dataCf = dataCfObj.cfDataObjs.slice(0, 4);
 
