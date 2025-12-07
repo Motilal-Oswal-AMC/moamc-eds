@@ -362,10 +362,12 @@
         min-height: unset;
         padding: unset;
         flex-basis: 40.91%;
+        margin-top: 27px;
 
         @include media (mobile-ed) {
           max-width: 100%;
           flex-basis: 100%;
+          margin-top: 0;
         }
 
         .subimagelist {
@@ -373,10 +375,10 @@
           display: flex;
           flex-direction: column;
           align-items: flex-start;
-          gap: 20px;
+          gap: 0;
 
           @include media (mobile-ed) {
-            gap: 8px;
+            // gap: 8px;
             margin-top: 0;
             min-width: inherit;
             min-height: inherit;
@@ -393,16 +395,18 @@
           h5,
           h6 {
             color: var(--blue-1800-primary, #2E2A94);
-            font-feature-settings: var(--font-feature-default);
+            font-feature-settings: var(--font-features-default);
             font-family: var(--title, Inter);
             font-size: var(--heading-h2-size, 40px);
             font-style: normal;
             font-weight: 600;
             line-height: var(--heading-h2-line-height, 48px);
+            margin-bottom: 40px;
 
             @include media (mobile-ed) {
               font-size: var(--heading-h4-size, 28px);
               line-height: var(--sub-header-large-line-height, 32px);
+              margin-bottom: 8px;
             }
           }
 
@@ -416,8 +420,8 @@
             }
 
             &.button-container {
+              // width: 240px;
               display: flex;
-              width: 240px;
               height: 48px;
               padding: var(--spacing-20, 20px) var(--spacing-12, 12px);
               justify-content: center;
@@ -425,10 +429,10 @@
               gap: var(--spacing-8, 8px);
               border-radius: var(--border-radius-8, 8px);
               background: var(--blue-1800-primary, #2E2A94);
-              margin-top: 20px;
+              margin-top: 40px;
 
               @include media (mobile-ed) {
-                margin-top: 16px;
+                margin-top: 24px;
                 padding: var(--spacing-12, 12px);
                 height: 40px;
               }
@@ -436,7 +440,7 @@
               .button {
                 color: var(--neutrals-white, #FFF);
                 text-align: center;
-                font-feature-settings: var(--font-feature-default);
+                font-feature-settings: var(--font-features-default);
                 font-family: var(--body, Inter);
                 font-size: var(--button-large-size, 18px);
                 font-style: normal;
@@ -460,6 +464,11 @@
             font-style: normal;
             font-weight: 600;
             line-height: var(--body-small-semibold-line-height, 16px);
+            margin-bottom: 16px;
+
+            @include media (mobile-ed) {
+              margin-bottom: 0;
+            }
           }
 
           p:nth-child(3) {
@@ -479,6 +488,21 @@
             }
           }
 
+          p:last-child {
+            color: var(--text-body, #424242);
+            font-feature-settings: var(--font-feature-default);
+            font-family: var(--body, Inter);
+            font-size: var(--body-xsmall-regular-size, 12px);
+            font-style: normal;
+            font-weight: 400;
+            line-height: var(--body-xsmall-regular-line-height, 14px);
+            margin-top: 8px;
+
+            @include media (mobile-ed) {
+              font-size: var(--body-xsmall-regular-size, 12px);
+              line-height: var(--body-xsmall-regular-line-height, 14px);
+            }
+          }
         }
       }
 
@@ -606,7 +630,7 @@
           display: flex;
           flex-direction: column;
           align-items: flex-start;
-          gap: 20px;
+          gap: 16px;
 
           // margin-top: 43px;
 
@@ -634,10 +658,14 @@
             font-style: normal;
             font-weight: 600;
             line-height: var(--heading-h5-line-height, 32px);
+            max-inline-size: 21ch;
+            text-wrap: balance;
 
             @include media (mobile-ed) {
               font-size: var(--sub-header-large-size, 24px);
-              line-height: var(--sub-header-medium-line-height, 28px);
+              line-height: 28px;
+              max-inline-size: unset;
+              text-wrap: unset;
             }
           }
 
@@ -743,7 +771,7 @@
           height: 360px;
 
           @include media (mobile-ed) {
-            height: 226px;
+           height: 207.853px;
           }
 
           img {
