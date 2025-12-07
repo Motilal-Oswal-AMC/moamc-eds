@@ -1,4 +1,6 @@
+import { loadCSS } from '../../scripts/aem.js';
 import dataMapMoObj from '../../scripts/constant.js';
+
 
 export default function decorate(block) {
   const cardsChildren = block.querySelectorAll('.cornerstones-advantage-cards > div');
@@ -45,8 +47,11 @@ export default function decorate(block) {
     fundPhilosophy.appendChild(develem);
   }
   if (window.location.href.includes('/static-pages/become-a-partner')) {
-    const fundTax = block.closest('main').querySelector('.section.fund-tax');
-    dataMapMoObj.CLASS_PREFIXES = ['fund-tax-contain', 'fund-tax-txt'];
-    dataMapMoObj.addIndexed(fundTax);
+    const partnerConnect = block.closest('main').querySelector('.section.partner-connect');
+    dataMapMoObj.CLASS_PREFIXES = ['partner-connect-contain', 'partner-connect-txt'];
+    dataMapMoObj.addIndexed(partnerConnect);
+    loadCSS(
+      `${window.hlx.codeBasePath}/blocks/cards/become-a-partner.css`,
+    );
   }
 }

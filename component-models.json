@@ -203,6 +203,10 @@
             "value": "elss-stock-table"
           },
           {
+            "name": "Mo Partner",
+            "value": "mo-partner"
+          },
+          {
             "name": "Calculators Card",
             "value": "calculators-card"
           },

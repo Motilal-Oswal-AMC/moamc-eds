@@ -207,7 +207,7 @@
 
 .section.cornerstones-become-partner {
   border-radius: 16px;
-  background: var(--blue-1-50, #D5DEFF);
+  background: var(--blue-1-50);
   max-width: 1232px;
   display: flex;
   flex-direction: column;
@@ -219,7 +219,7 @@
 
     h6 {
       margin: unset;
-      color: var(--blue-1-800-primary, #2E2A94);
+      color: var(--blue-1-800-primary);
       font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
       font-family: var(--TItle, Inter);
       font-size: 24px;
@@ -246,7 +246,7 @@
 
         .item-child-2 {
           margin: 10px 0 4px;
-          color: var(--blue-1-800-primary, #2E2A94);
+          color: var(--blue-1-800-primary);
           font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
           font-family: var(--Body, Inter);
           font-size: var(--Body-Large-regular-Size, 18px);
@@ -257,7 +257,7 @@
 
         .item-child-3 {
           padding-bottom: unset;
-          color: var(--blue-1-800-primary, #2E2A94);
+          color: var(--blue-1-800-primary);
           font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
           font-family: var(--Body, Inter);
           font-size: var(--Body-Large-regular-Size, 18px);
