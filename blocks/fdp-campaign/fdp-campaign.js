@@ -85,27 +85,11 @@ export default function decorate(block) {
   // gift fdp-campaign  start
 
   if (window.location.href.includes("http://localhost:3000/mutual-fund/in/en/static-pages/gift-city")) {
-    // const giftParent = document.querySelector(".gift-campaign .fdp-campaign-wrapper");
-
-    // console.log(giftParent)
-
-    // const giftWrapper = div({ class: 'wrapper-policy'});
-
-    // giftWrapper.append(giftParent);
 
     const giftParent = document.querySelector(".gift-campaign .fdp-campaign-wrapper");
-
-console.log(giftParent);
-
-const giftWrapper = div({ class: 'wrapper-policy' });
-
-// Insert wrapper before giftParent
-giftParent.parentNode.insertBefore(giftWrapper, giftParent);
-
-// Move giftParent inside wrapper
-giftWrapper.appendChild(giftParent);
-
-
+    const giftWrapper = div({ class: 'wrapper-policy' });
+    giftParent.parentNode.insertBefore(giftWrapper, giftParent);
+    giftWrapper.appendChild(giftParent);
 
   }
 
