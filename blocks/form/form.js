@@ -107,36 +107,81 @@ export default async function decorate(block) {
     }
   });
 
+  // if (block.closest('.growth-now-container')) {
+  //   const phno = block.querySelector('#form-1');
+
+  //   if (phno) {
+  //     phno.setAttribute('maxlength', '10');
+
+  //     const sanitizeInput = (event) => {
+  //       const inputValue = event.target.value;
+  //       const sanitizedValue = inputValue.replace(/[^\d]/g, '');
+  //       event.target.value = sanitizedValue;
+  //     };
+  //     phno.addEventListener('input', sanitizeInput);
+  //     const wrapper = phno.closest('.field-wrapper');
+
+  //     if (wrapper) {
+  //       const label = wrapper.querySelector('label');
+  //       if (label) {
+  //         wrapper.appendChild(label);
+  //       }
+  //     }
+  //   }
+
+  //   dataMapMoObj.updateSelectIds('countrySelect', 'countryLabel');
+  // }
+
+  // Change select id and its label
   if (block.closest('.growth-now-container')) {
     const phno = block.querySelector('#form-1');
 
     if (phno) {
-      // 1. Existing Logic: Set Max Length & Sanitize Input
+      // 1. Sanitize Input (Numbers Only)
       phno.setAttribute('maxlength', '10');
+      phno.addEventListener('input', (e) => {
+        e.target.value = e.target.value.replace(/[^\d]/g, '');
+      });
 
-      const sanitizeInput = (event) => {
-        const inputValue = event.target.value;
-        const sanitizedValue = inputValue.replace(/[^\d]/g, '');
-        event.target.value = sanitizedValue;
-      };
-      phno.addEventListener('input', sanitizeInput);
-
-      // 2. New Logic: Move Label Below Input
-      // Find the parent wrapper of this specific input
+      // 2. Setup Wrapper & Label
       const wrapper = phno.closest('.field-wrapper');
-
       if (wrapper) {
-        const label = wrapper.querySelector('label'); // Find the label inside this wrapper
+        wrapper.classList.add('phnodata'); // Ensure class exists for CSS
+
+        // Move Label AFTER Input (Crucial for consistent layout)
+        const label = wrapper.querySelector('label');
         if (label) {
-          wrapper.appendChild(label); // Moves the label to the end (bottom)
+          wrapper.appendChild(label); // Physically moves label to end
         }
+
+        // 3. Floating Logic (The "Active" Check)
+        const checkInputState = () => {
+          // If input has value OR is currently focused -> Float the label
+          if (phno.value.trim().length > 0 || document.activeElement === phno) {
+            if (label) label.classList.add('active-label');
+          } else if (label) label.classList.remove('active-label');
+        };
+
+        // Run on load (in case browser autofills)
+        checkInputState();
+
+        // Listen for events
+        phno.addEventListener('focus', () => {
+          if (label) label.classList.add('active-label');
+        });
+
+        phno.addEventListener('blur', checkInputState); // On click out, check if we should drop down
+        phno.addEventListener('input', checkInputState); // On typing
+        phno.addEventListener('change', checkInputState); // On autofill
       }
     }
 
-    dataMapMoObj.updateSelectIds('countrySelect', 'countryLabel');
+    // Update country dropdowns if needed
+    if (typeof dataMapMoObj !== 'undefined') {
+      dataMapMoObj.updateSelectIds('countrySelect', 'countryLabel');
+    }
   }
 
-  // Change select id and its label
   function updateSelectIds(newSelectId, newLabelId) {
     const selectEl = block.querySelector('form .countrycode select');
     const labelEl = block.querySelector('form .countrycode label');
