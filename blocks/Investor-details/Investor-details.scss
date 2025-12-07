@@ -15,6 +15,7 @@ main.nfo-nav .main-wrapper .section:first-of-type {
   display: flex;
   gap: 30px;
   justify-content: space-between;
+
   //   align-items: start;
 
   @include media(desktop-sm) {
@@ -346,6 +347,7 @@ main.nfo-nav .main-wrapper .section:first-of-type {
         }
 
       }
+
       .co-branding-wrapper {
         .co-branding {
           margin: 24px 0 0;
@@ -359,7 +361,6 @@ main.nfo-nav .main-wrapper .section:first-of-type {
               p.comlist,
               ul,
               ul >li.comlist,
-              ol >li.comlist,
               ol >li.comlist {
                 margin: 0 0 24px;
 
@@ -401,7 +402,6 @@ main.nfo-nav .main-wrapper .section:first-of-type {
 
       .default-content-wrapper.comlist{
         p.investarticle-leftsub1{
-          background-color: red;
           margin: 24px 0;
 
           picture.investarticle-leftinner1{
@@ -426,6 +426,7 @@ main.nfo-nav .main-wrapper .section:first-of-type {
     display: flex;
     flex-direction: column;
     gap: 40px;
+
     // position: sticky;
     // top: 180px;
 
