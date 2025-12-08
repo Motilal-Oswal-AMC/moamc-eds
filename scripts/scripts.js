@@ -1178,4 +1178,10 @@ async function getinsights() {
   return resp;
 }
 dataMapMoObj.getinsights = getinsights;
+
+async function getinvestorblog() {
+  const resp = await myAPI('GET', 'https://main--moamc-eds--motilal-oswal-amc.aem.live/query-index-investorblog.json');
+  return resp;
+}
+dataMapMoObj.getinvestorblog = getinvestorblog;
 // dataMapMoObj.qglpwcs = qglpwcs;
