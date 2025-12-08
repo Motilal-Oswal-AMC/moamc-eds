@@ -886,6 +886,26 @@
     ]
   },
   {
+    "id": "cards",
+    "fields": [
+      {
+        "component": "multiselect",
+        "name": "style",
+        "label": "Style",
+        "options": [
+          {
+            "name": "Left Key card",
+            "value": "left-key-card"
+          },
+          {
+            "name": "Right Key card",
+            "value": "right-key-card"
+          }
+        ]
+      }
+    ]
+  },
+  {
     "id": "card",
     "fields": [
       {
