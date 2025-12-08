@@ -244,7 +244,7 @@ async function loadLazy(doc) {
   wrapImgsInLinks(doc);
   await loadSections(main);
   dataMapMoObj.article();
-  dataMapMoObj.qglpwcs();
+  // dataMapMoObj.qglpwcs();
 
   const shareWrapper = document.querySelector(".itemmainleftart3");
   const shareBtn = shareWrapper.querySelector(".submainleftart1");
@@ -1004,5 +1004,5 @@ async function getinsights() {
   const resp = await myAPI('GET', 'https://main--moamc-eds--motilal-oswal-amc.aem.live/query-index-insights.json');
   return resp;
 }
-dataMapMoObj.qglpwcs = qglpwcs;
+// dataMapMoObj.qglpwcs = qglpwcs;
 
