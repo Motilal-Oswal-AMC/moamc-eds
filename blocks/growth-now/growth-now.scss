@@ -362,23 +362,14 @@
                             background-color: transparent;
                         }
 
-                        // .phnodata:has(input:focus) label,
-                        // .phnodata:has(input:not(:placeholder-shown)) label {
-                        //     top: -8px;
-                        //     transform: translateY(0);
-                        //     padding: 0 5px;
-                        //     font-size: 12PX;
-                        //     line-height: 14px;
-                        //     color: #fff;
-                        //     background: #2E2A94;
-                        // }
+
 
                          .phnodata input:focus{
                             border-color: #6a38ee;
                         }
 
-                        .phnodata input:focus+label,
-                        .phnodata input:not(:placeholder-shown)+label {
+                       
+                        .phnodata label.active-label {
                             top: -8px;
                             transform: translateY(0);
                             padding: 0 5px;

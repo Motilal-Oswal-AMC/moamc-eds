@@ -195,21 +195,21 @@
 }
 
 
-.section.section.partner-blog .cards-wrapper .cards .cal-item-inner1>.comlist .cards-card-body .sub-cal-item-inner3 {
+.section.partner-blog .cards-wrapper .cards .cal-item-inner1>.comlist .cards-card-body .sub-cal-item-inner3 {
   display: block;
   position: unset;
   width: unset;
   height: unset;
   color: var(--neutrals-black);
   font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
-  font-family: var(--Body, Inter)+;
+  font-family: var(--Body, Inter);
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
   line-height: 20px;
-  padding-left: 30px;
+  list-style: none;
+}
 
-  @include media(mobile) {
-    padding-left: 31px;
-  }
+.section.partner-blog .cards-wrapper .cards .cal-item-inner1>.comlist .cards-card-body .sub-cal-item-inner2 {
+  list-style: none;
 }

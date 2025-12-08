@@ -83,6 +83,21 @@ export default function decorate(block) {
     });
   }
 
+
+  // gift fdp-campaign  start
+
+  if (window.location.href.includes("http://localhost:3000/mutual-fund/in/en/static-pages/gift-city") || window.location.href.includes("https://mosl-dev-upd--moamc-eds--motilal-oswal-amc.aem.live/mutual-fund/in/en/static-pages/gift-city")) {
+
+    const giftParent = document.querySelector(".gift-campaign .fdp-campaign-wrapper");
+    const giftWrapper = div({ class: 'wrapper-policy' });
+    giftParent.parentNode.insertBefore(giftWrapper, giftParent);
+    giftWrapper.appendChild(giftParent);
+
+  }
+
+
+
+  // gift fdp-campaign  End
   // document.addEventListener("DOMContentLoaded", function () {
   // Select all li elements with class starting with "strategy2" (like strategy21, strategy25...)
   const listItemsStrategy = document.querySelectorAll("li.comlist[class*='strategy2']");

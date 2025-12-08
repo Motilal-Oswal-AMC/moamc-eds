@@ -632,6 +632,7 @@ main>.section.previous-studies-tab.tabs-container {
 }
 
 .default-content-wrapper.annual-wealth-wrap1 {
+
   h1,
   h2,
   h3,
@@ -1957,7 +1958,7 @@ main.nfo-nav {
         font-size: var(--body-xlarge-regular-size, 20px);
         font-style: normal;
         font-weight: 400;
-        line-height: var(--body-xlarge-regular-line-height, 32px);
+        line-height: 32px;
       }
 
       &2 {
@@ -1969,6 +1970,10 @@ main.nfo-nav {
         font-style: normal;
         font-weight: 600;
         line-height: var(--body-xlarge-bold-line-height, 24px);
+
+        @include media (mobile-ed) {
+          letter-spacing: 0.1px;
+        }
       }
     }
   }
@@ -2082,6 +2087,60 @@ main.nfo-nav {
   }
 }
 
+.section.high-skin-text.gift-high-skin {
+  .high-skin-wrap-one1 {
+    .high-skin-wrap-two1 {
+      @include media(mobile) {
+        margin: 0;
+      }
+
+      .high-skin-wrap-three1 {
+        .high-skin-heading1 {
+          .high-skin-subheading1 {
+            max-width: 395px;
+            width: 100%;
+
+            .high-skin-paragraph1 {
+              max-width: 100%;
+              color: var(--blue-1-800-primary);
+              font-family: var(--title);
+              font-size: var(--heading-h5-size);
+              font-style: normal;
+              font-weight: 600;
+              line-height: var(--heading-h5-line-height);
+
+              @include media(mobile) {
+                font-size: var(--sub-header-large-size);
+                line-height: var(--sub-header-medium-line-height);
+                margin: 0 0 24px;
+              }
+
+            }
+          }
+
+          .high-skin-subheading2 {
+            max-width: 628px;
+
+            .high-skin-paragraph1 {
+
+
+              .high-skin-paragraph-one1 {
+                color: var(--text-body);
+                font-family: var(--body);
+                font-size: var(--body-medium-regular-size);
+                font-style: normal;
+                font-weight: 400;
+                line-height:24px;
+                /* 150% */
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
 .section.high-image-component {
   width: 100%;
   border-radius: 12px;
@@ -2096,13 +2155,16 @@ main.nfo-nav {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #2B24A4;
+    // background-color: #2B24A4;
     border-radius: 16px;
     padding: 0;
     margin: 0 16px;
+    gap: unset;
+    background-color: #2b24a4;
 
     @media screen and (width > 768px) {
       max-width: 1240px;
+      background-color: #2b24a4;
     }
 
     .comlist.high-skin-component-heading1 {
@@ -2116,12 +2178,39 @@ main.nfo-nav {
       background: linear-gradient(256deg,
           rgb(154 148 255 / 50%) -40.11%,
           rgb(214 211 255 / 50%) 100%);
-      padding: 42.5px 55.259px 31.502px 55.242px;
+      // padding: 42.5px 55.259px 31.502px 55.242px;
 
       @media screen and (width > 768px) {
         height: 328px;
+        max-width: 1240px;
         align-items: end;
         padding: 0;
+      }
+
+      .icon-skinrupee {
+        height: 330px;
+        width: 100%;
+        display: block;
+
+        @include media(mobile) {
+          display: none;
+        }
+
+        .high-skin-component-ctn1 {
+          height: unset;
+          width: 100%;
+        }
+      }
+
+      .icon-skinrupee-mbl {
+        display: none;
+
+        @include media(mobile) {
+          display: block;
+          max-height: 328px;
+          height: 100%;
+          width: 100%;
+        }
       }
 
       .icon.icon-rupees.comlist.high-skin-component-paragraph1 {
@@ -2157,8 +2246,10 @@ main.nfo-nav {
           flex-direction: column;
           justify-content: flex-start;
           background-color: #2B24A4;
-          padding: 28px 16px;
-          border-radius: 16px;
+          padding: 28px 16px 28px;
+          // border-radius: 16px;
+          border-bottom-left-radius: 16px;
+          border-bottom-right-radius: 16px;
           margin: 0;
 
           @media screen and (width > 768px) {
@@ -2169,7 +2260,7 @@ main.nfo-nav {
 
           .high-skin-component-external1 {
             color: var(--neutrals-white);
-            font-feature-settings: var(--font-features-default);
+            font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
             font-family: var(--title);
             font-size: 20px;
             line-height: 24px;
@@ -2216,7 +2307,7 @@ main.nfo-nav {
 
   .moamc-component-main-head1 {
     color: var(--blue-1-800-primary);
-    font-feature-settings: var(--font-features-default);
+    font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
     font-family: var(--title);
     font-size: var(--sub-header-large-size);
     line-height: var(--sub-header-medium-line-height);
@@ -2241,7 +2332,7 @@ main.nfo-nav {
     .moamc-component-title1 {
       .moamc-component-para1 {
         margin-top: 0;
-        margin-bottom: 56px;
+        margin-bottom: 40px;
         display: flex;
         flex-direction: column;
         gap: 40px;
@@ -2265,8 +2356,8 @@ main.nfo-nav {
     }
 
     .moamc-component-para-three1 {
-      color: var(--neutrals-900);
-      font-feature-settings: var(--font-features-default);
+      color: var(--blue-1800-primary, #2E2A94);
+      font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on, 'liga'off;
       font-family: var(--body);
       font-size: var(--body-large-semibold-size);
       font-style: normal;
@@ -2284,7 +2375,7 @@ main.nfo-nav {
 
     .moamc-component-para-three2 {
       color: var(--neutrals-800);
-      font-feature-settings: var(--font-features-default);
+      font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
       font-family: var(--body);
       font-size: var(--body-medium-regular-size);
       font-style: normal;
@@ -2328,6 +2419,7 @@ main.nfo-nav {
           display: flex;
           flex-direction: column-reverse;
           justify-content: flex-start;
+          align-items: center;
           background: var(--neutrals-100, #F5F5F5);
           width: 100%;
           border: none;
@@ -2335,10 +2427,11 @@ main.nfo-nav {
           @media screen and (width > 768px) {
             flex-direction: row-reverse;
             justify-content: space-between;
+            align-items: center;
           }
 
           .cards-card-image {
-            padding: 36px 43.22px 69px 42.22px;
+            padding: 36px 0 40px;
 
             @media screen and (width > 768px) {
               padding: 0;
@@ -2346,8 +2439,8 @@ main.nfo-nav {
 
             picture {
               img {
-                width: 250px;
-                height: 234px;
+                width: 273px;
+                height: 263px;
                 object-fit: unset;
 
                 @media screen and (width > 768px) {
@@ -2420,7 +2513,7 @@ main.nfo-nav {
     font-size: var(--body-medium-regular-size);
     font-style: normal;
     font-weight: 400;
-    line-height: var(--body-medium-regular-line-height);
+    line-height: 24px;
     max-width: 628px;
     width: 100%;
     margin: 0;
@@ -2443,6 +2536,7 @@ main.nfo-nav {
     margin: 0;
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 40px;
     max-width: 1232px;
     width: 100%;
@@ -2454,7 +2548,7 @@ main.nfo-nav {
     }
 
     @include media(desktop-sm) {
-      padding: 40px 16px;
+      padding: 32px 16px;
     }
 
     .why-matters-wrap1 {
@@ -2464,12 +2558,13 @@ main.nfo-nav {
 
       .why-matters-heading1 {
         color: var(--blue-1-800-primary);
-        font-feature-settings: var(--font-features-default);
+        font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
         font-family: var(--title);
         font-size: var(--sub-header-large-size);
         font-weight: 600;
         line-height: var(--sub-header-medium-line-height);
         margin-bottom: 16px;
+        margin-top: unset;
 
         @media screen and (width > 768px) {
           max-width: 504px;
@@ -2514,15 +2609,25 @@ main.nfo-nav {
 
             .cards-card-body {
               display: flex;
+              align-items: center;
               margin: 0;
               gap: 8px;
               background-color: $neutrals-100;
             }
           }
+
+          li.matters-li1,
+          li.matters-li2,
+          li.matters-li3 {
+            padding: 12px;
+            background-color: unset;
+          }
         }
 
         .why-matters-title1 {
           margin: 0;
+          width: 64px;
+          height: 64px;
 
           .why-matters-sub-title1 {
             width: 64px;
@@ -2532,17 +2637,18 @@ main.nfo-nav {
 
         .why-matters-title2 {
           margin: 0;
+          gap: 4px;
 
           .why-matters-sub-title1 {
             list-style: none;
-            color: var(--neutrals-900);
-            font-feature-settings: var(--font-features-default);
+            color: var(--blue-1-800-primary);
+            font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
             font-family: var(--body);
-            font-size: var(--body-large-medium-size);
+            font-size: var(--sub-header-medium-size);
             font-style: normal;
             font-weight: 500;
             line-height: 28px;
-            margin-bottom: 4px;
+            // margin-bottom: 4px;
             width: 100%;
             max-width: 276px;
           }
@@ -2550,7 +2656,7 @@ main.nfo-nav {
           .why-matters-sub-title2 {
             list-style: none;
             color: var(--neutrals-800);
-            font-feature-settings: var(--font-features-default);
+            font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
             font-family: var(--body);
             font-size: var(--body-small-regular-size);
             font-style: normal;
@@ -2579,7 +2685,7 @@ main.nfo-nav {
 
     .promise-qglp-ctn1 {
       position: unset;
-      margin-left: 16px;
+      // margin-left: 16px;
     }
 
     .promise-qglp-ctn2 {
@@ -2648,6 +2754,9 @@ main.nfo-nav {
     align-items: flex-start;
     align-self: stretch;
 
+    @include media(mobile) {
+      flex-direction: column;
+    }
 
   }
 
@@ -2660,7 +2769,8 @@ main.nfo-nav {
     font-size: 28px;
     font-style: normal;
     font-weight: 600;
-    line-height: 32px
+    line-height: 32px;
+    margin: unset;
   }
 
   .fund-tax-txt2 {
@@ -2678,7 +2788,7 @@ main.nfo-nav {
 }
 
 .section.invest-blog {
-  margin: 0 0 80px;
+  margin: 0 0 40px;
 
   .invest-blog-contain1 {
     display: flex;
@@ -2690,6 +2800,10 @@ main.nfo-nav {
     align-self: stretch;
     border-radius: 8px;
     background: linear-gradient(257deg, #9A94FF80 -5.54%, #EBEAFF80 100%);
+
+    @include media(mobile) {
+      background: linear-gradient(257deg, rgba(235, 234, 255, 0.50) -5.54%, rgba(154, 148, 255, 0.50) 100%);
+    }
   }
 
   .invest-blog-txt1 {

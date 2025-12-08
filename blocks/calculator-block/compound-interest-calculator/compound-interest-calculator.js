@@ -218,7 +218,7 @@ export default function decorate(block) {
   const tpBlock = createInputBlock({
     id: "time-period",
     ...tp,
-    suffix: tp?.default > 1 ? "years" : "year",
+    suffix: tp?.default > 1 ? "Years" : "Year",
     fieldType: "year",
     ignoreMin: true,
     suffixAttr: { class: "input-suffix" },
