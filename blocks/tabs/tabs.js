@@ -302,7 +302,8 @@ export default async function decorate(block) {
         planslabel = planobj[0] !== undefined ? planobj[0].schcode : '';
       }
       // const planslabel = planCode.split(':')[1];
-      const planObj = dataMapMoObj.getlisting.cfDataObjs.filter((el) => planslabel === el.schcode);
+      const planObj = dataMapMoObj.schemeCodeResp;
+      // dataMapMoObj.getlisting.cfDataObjs.filter((el) => planslabel === el.schcode);
       const cfObj = planObj;
       cfObj[0].returns.forEach((ret) => {
         if (ret.plancode + ret.optioncode === dataMapMoObj.gropcodevalue) {
@@ -313,7 +314,7 @@ export default async function decorate(block) {
         { class: 'fund-data-table' },
         tr(
           { class: 'fund-name-value return-funds' },
-          td({ class: 'fund-name' }, cfObj[0].schemeName),
+          td({ class: 'fund-name' }, cfObj[0].schDetail.schemeName),
           // ul(
           //   { class: 'fund-data-list' },
           td({ class: 'fund-data' }, formatReturn((returnValue[0][`oneYear${param}`]))),
@@ -386,7 +387,7 @@ export default async function decorate(block) {
     );
     Array.from(container.querySelector('.headgrp2').children).forEach((el) => ary.push(el));
     container.querySelector('.headgrp2').innerHTML = '';
-    if (planObj[0].periodicReturnsTc !== '<p>NIL</p>\n') {
+    if (planObj[0].periodicReturnsTc !== '<p>NIL</p>\n' && planObj[0].periodicReturnsTc !== undefined) {
       container.querySelector('.headgrp2').innerHTML += planObj[0].periodicReturnsTc;
     }
     ary.forEach((elfor) => {
@@ -489,8 +490,9 @@ export default async function decorate(block) {
     planslabel = planobj[0] !== undefined ? planobj[0].schcode : '';
   }
   // const planslabel = planCode.split(':')[1];
-  const planObj = dataMapMoObj.getlisting.cfDataObjs.filter((el) => planslabel === el.schcode);
   if (block.closest('.tabdiv')) {
+    const planObj = dataMapMoObj.schemeCodeResp;
+    //dataMapMoObj.getlisting.cfDataObjs.filter((el) => planslabel === el.schcode);
     dataMapMoObj.scheme = planObj;
     generateBarChart(planObj[0].sector);
     const tabButtons = document.querySelectorAll('.tabs-tab');

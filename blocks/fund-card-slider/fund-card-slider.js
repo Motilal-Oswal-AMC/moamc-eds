@@ -1,5 +1,5 @@
 import dataMapMoObj from '../../scripts/constant.js';
-import dataCfObj from '../../scripts/dataCfObj.js';
+// import dataCfObj from '../../scripts/dataCfObj.js';
 import fundcardblock from '../fund-card/fund-card.js';
 import swiperblock from '../swiper/swiper.js';
 
@@ -7,6 +7,13 @@ export default function decorate(block) {
   dataMapMoObj.CLASS_PREFIXES = [];
   dataMapMoObj.CLASS_PREFIXES = ['itemcards', 'subitemcards'];
   dataMapMoObj.addIndexed(block);
+
+  const tempDfilt = dataMapMoObj.getlisting.cfDataObjs.filter((el) => {
+    if (!el.fundsTaggingSection || !el.planList || !el.returns) {
+      return false;
+    }
+    return el;
+  });
 
   const planCode = localStorage.getItem('planCode');
   let planslabel;
@@ -17,14 +24,14 @@ export default function decorate(block) {
     planslabel = 'LM';
   } else {
     const path = window.location.pathname.split('/').at(-1);
-    const planobj = dataCfObj.cfDataObjs.filter(
+    const planobj = tempDfilt.filter(
       (el) => path === el.schDetail.schemeName.toLocaleLowerCase().split(' ').join('-'),
     );
     planslabel = planobj[0].schcode;
   }
-  const planObj = dataCfObj.cfDataObjs.filter((el) => planslabel === el.schcode);
+  const planObj = tempDfilt.filter((el) => planslabel === el.schcode);
   const plantag = planObj[0].fundsTaggingSection[1];
-  const cardtemp = dataCfObj.cfDataObjs.filter(
+  const cardtemp = tempDfilt.filter(
     (el) => (el.fundsTaggingSection.includes(plantag) && el.schcode !== planslabel),
   );
   let data;

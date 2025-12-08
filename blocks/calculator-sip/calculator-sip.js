@@ -1,7 +1,6 @@
 import {
   div, a, label, input, span, button, ul, li, img,
 } from '../../scripts/dom-helpers.js';
-import dataCfObj from '../../scripts/dataCfObj.js';
 import dataMapMoObj from '../../scripts/constant.js';
 
 export default function decorate(block) {
@@ -14,7 +13,14 @@ export default function decorate(block) {
   const col3 = block.children[2].querySelectorAll('p');
   const col4 = block.children[3].querySelectorAll('p');
 
-  const schemeNames = dataMapMoObj.getlisting.cfDataObjs.map((fund) => fund.schemeName);
+  const tempDfilt = dataMapMoObj.getlisting.cfDataObjs.filter((el) => {
+    if (!el.fundsTaggingSection || !el.planList || !el.returns) {
+      return false;
+    }
+    return el;
+  });
+
+  const schemeNames = tempDfilt.map((fund) => fund.schemeName);
 
   // let selectedFund = dataCfObj.find((fund) => fund.schcode === 'FM'); // CP
   const planCode = localStorage.getItem('planCode');
@@ -27,12 +33,12 @@ export default function decorate(block) {
     schcode = 'LM';
   } else {
     const path = window.location.pathname.split('/').at(-1);
-    const planobj = dataMapMoObj.getlisting.cfDataObjs.filter(
+    const planobj = tempDfilt.filter(
       (el) => path === el.schemeName.toLocaleLowerCase().split(' ').join('-'),
     );
     schcode = planobj[0].schcode;
   }
-  let selectedFund = dataMapMoObj.getlisting.cfDataObjs.find((fund) => fund.schcode === schcode);
+  let selectedFund = tempDfilt.find((fund) => fund.schcode === schcode);
   let returnCAGR = 0;
   dataMapMoObj.mode = 'sip';
   let planType = 'Direct';
@@ -587,8 +593,7 @@ export default function decorate(block) {
         searchInput.value = name;
         // searchInput.style.backgroundPosition = 'left center';
         // searchInput.style.paddingLeft = '24px';
-        selectedFund = dataMapMoObj.getlisting
-          .cfDataObjs.find((f) => f.schemeName === name);
+        selectedFund = tempDfilt.find((f) => f.schemeName === name);
         searchResults.innerHTML = '';
         updatePlanOptions(selectedFund);
         updateReturnRate();
@@ -655,8 +660,7 @@ export default function decorate(block) {
       ligrp.addEventListener('click', (event) => {
         const name = event.target.textContent;
         searchInput.value = name;
-        selectedFund = dataMapMoObj.getlisting
-          .cfDataObjs.find((f) => f.schemeName === name);
+        selectedFund = tempDfilt.find((f) => f.schemeName === name);
         searchResults.innerHTML = '';
         updatePlanOptions(selectedFund);
         updateReturnRate();
