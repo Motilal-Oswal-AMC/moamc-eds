@@ -1384,7 +1384,7 @@ $breakpoint-tablet: 900px;
 // gift city Start //
 
 .section.gift-campaign {
-
+display: block;
    @include media(mobile) {
           padding: 20px 16px 40px;
         }
