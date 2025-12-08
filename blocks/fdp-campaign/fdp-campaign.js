@@ -10,8 +10,7 @@ export default function decorate(block) {
 
   if (heroBlock) {
     // const paragraphs = heroBlock.querySelectorAll('p');
-    dataMapMoObj.CLASS
-    _PREFIXES = ['para', 'p2', 'p3'];
+    dataMapMoObj.CLASS_PREFIXES = ['para', 'p2', 'p3'];
     dataMapMoObj.addIndexed(heroBlock);
   }
 
@@ -83,19 +82,14 @@ export default function decorate(block) {
     });
   }
 
-
   // gift fdp-campaign  start
 
-  if (window.location.href.includes("http://localhost:3000/mutual-fund/in/en/static-pages/gift-city") || window.location.href.includes("https://mosl-dev-upd--moamc-eds--motilal-oswal-amc.aem.live/mutual-fund/in/en/static-pages/gift-city")) {
-
-    const giftParent = document.querySelector(".gift-campaign .fdp-campaign-wrapper");
+  if (window.location.href.includes('http://localhost:3000/mutual-fund/in/en/static-pages/gift-city') || window.location.href.includes('https://mosl-dev-upd--moamc-eds--motilal-oswal-amc.aem.live/mutual-fund/in/en/static-pages/gift-city')) {
+    const giftParent = document.querySelector('.gift-campaign .fdp-campaign-wrapper');
     const giftWrapper = div({ class: 'wrapper-policy' });
     giftParent.parentNode.insertBefore(giftWrapper, giftParent);
     giftWrapper.appendChild(giftParent);
-
   }
-
-
 
   // gift fdp-campaign  End
   // document.addEventListener("DOMContentLoaded", function () {
