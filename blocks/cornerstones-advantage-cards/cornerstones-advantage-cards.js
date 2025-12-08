@@ -1,7 +1,6 @@
 import { loadCSS } from '../../scripts/aem.js';
 import dataMapMoObj from '../../scripts/constant.js';
 
-
 export default function decorate(block) {
   const cardsChildren = block.querySelectorAll('.cornerstones-advantage-cards > div');
   cardsChildren.forEach((ele) => {

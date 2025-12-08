@@ -1,7 +1,7 @@
 import { getMetadata } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
 import dataMapMoObj from '../../scripts/constant.js';
-import dataCfObj from '../../scripts/dataCfObj.js';
+// import dataCfObj from '../../scripts/dataCfObj.js';
 // import { loadAutoBlock } from '../../scripts/scripts.js';
 // import {a,button,div,h3,li,ul} from '../../scripts/dom-helpers.js';
 // yogesh bhai OG
@@ -306,8 +306,14 @@ export default async function decorate(block) {
 
                     if (Array.from(event.currentTarget.classList).length === 0) {
                       // Logic for specific fund links
-                      dataCfObj.cfDataObjs.forEach((datael) => {
-                        if (datael.schDetail.schemeName === textcurr) {
+                      const tempDfilt = dataMapMoObj.getlisting.cfDataObjs.filter((el) => {
+                        if (!el.fundsTaggingSection) {
+                          return false;
+                        }
+                        return el;
+                      });
+                      tempDfilt.forEach((datael) => {
+                        if (datael.schemeName === textcurr) {
                           dataMapMoObj.selectviewFunds = datael.schcode;
                         }
                       });

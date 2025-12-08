@@ -25,7 +25,7 @@ export default function decorate(block) {
   } else {
     const path = window.location.pathname.split('/').at(-1);
     const planobj = tempDfilt.filter(
-      (el) => path === el.schDetail.schemeName.toLocaleLowerCase().split(' ').join('-'),
+      (el) => path === el.schemeName.toLocaleLowerCase().split(' ').join('-'),
     );
     planslabel = planobj[0].schcode;
   }

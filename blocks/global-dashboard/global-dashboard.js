@@ -5,6 +5,7 @@ export default function decorate(block) {
   dataMapMoObj.addIndexed(block);
 
   // const textPart = block.closest('.global-dashboard-container');
-  // dataMapMoObj.CLASS_PREFIXES = ['global-text', 'global-textsub', 'global-textinner', 'global-textsubinner'];
+  // dataMapMoObj.CLASS_PREFIXES = ['glo
+  //  bal-text', 'global-textsub', 'global-textinner', 'global-textsubinner'];
   // dataMapMoObj.addIndexed(textPart);
 }

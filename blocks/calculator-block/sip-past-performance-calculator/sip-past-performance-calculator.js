@@ -1,5 +1,5 @@
 import dataMapMoObj from '../../../scripts/constant.js';
-import dataCfObj from '../../../scripts/dataCfObj.js';
+// import dataCfObj from '../../../scripts/dataCfObj.js';
 import {
   div,
   img,
@@ -21,6 +21,12 @@ dataMapMoObj.mode = 'sip';
 const planType = 'Direct';
 let planOption = 'Growth';
 
+const tempDfilt = dataMapMoObj.getlisting.cfDataObjs.filter((el) => {
+  if (!el.fundsTaggingSection) {
+    return false;
+  }
+  return el;
+});
 function updatePlanOptions(fund, block) {
   const wrapper = block.querySelector('.custom-select-plan');
   const optionsContainer = wrapper.querySelector('.select-options-plan');
@@ -71,8 +77,8 @@ export default function decorate(block) {
     console.warn('No .calc-author-main1 element found.');
     return;
   }
-  const schemeNames = dataCfObj.cfDataObjs.map(
-    (fund) => fund.schDetail.schemeName,
+  const schemeNames = tempDfilt.map(
+    (fund) => fund.schemeName,
   );
 
   const authors = [
@@ -118,13 +124,13 @@ export default function decorate(block) {
     schcode = 'LM';
   } else {
     const path = window.location.pathname.split('/').at(-1);
-    const planobj = dataCfObj.cfDataObjs.filter(
+    const planobj = tempDfilt.filter(
       (el) => path
-        === el.schDetail.schemeName.toLocaleLowerCase().split(' ').join('-'),
+        === el.schemeName.toLocaleLowerCase().split(' ').join('-'),
     );
     schcode = planobj[0] !== undefined ? planobj[0].schcode : 'LM';
   }
-  let selectedFund = dataCfObj.cfDataObjs.find(
+  let selectedFund = tempDfilt.find(
     (fund) => fund.schcode === schcode,
   );
 
@@ -298,8 +304,8 @@ export default function decorate(block) {
         searchInput.value = name;
         // searchInput.style.backgroundPosition = 'left center';
         // searchInput.style.paddingLeft = '24px';
-        selectedFund = dataCfObj.cfDataObjs.find(
-          (f) => f.schDetail.schemeName === name,
+        selectedFund = tempDfilt.find(
+          (f) => f.schemeName === name,
         );
         searchResults.innerHTML = '';
         updatePlanOptions(selectedFund, block);

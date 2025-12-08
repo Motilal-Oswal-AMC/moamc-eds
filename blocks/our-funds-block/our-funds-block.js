@@ -610,13 +610,13 @@ function searchFunctionality(block) {
       const listcard = block.querySelector('.listby-container');
       if (Array.from(listcard).includes('list-view-active')) {
         if (cardsContainer && cardsContainer.checkVisibility()) {
-          const tempDfilt = dataMapMoObj.getlisting.cfDataObjs.filter((el) => {
+          const tempDfilta = dataMapMoObj.getlisting.cfDataObjs.filter((el) => {
             if (!el.fundsTaggingSection) {
               return false;
             }
             return el;
           });
-          const datatem = tempDfilt.filter(
+          const datatem = tempDfilta.filter(
             (elsch) => (elsch.schemeName === searchInput.value),
           );
           listHeader.innerHTML = '';

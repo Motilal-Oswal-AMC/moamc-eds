@@ -17,7 +17,7 @@ import dataMapMoObj from '../../scripts/constant.js';
 const useLiveApi = true;
 
 // The API endpoint is now a single URL.
-const fundManagerAPIv = 'https://www.motilaloswalmf.com/mutualfund/api/v1/GetFundMangerBySchemeId';
+// const fundManagerAPIv = 'https://www.motilaloswalmf.com/mutualfund/api/v1/GetFundMangerBySchemeId';
 
 export default async function decorate(block) {
   let fundManagers;
@@ -77,8 +77,9 @@ export default async function decorate(block) {
         // if (!response.ok) {
         //   return;
         // }
-
-        const data = await dataMapMoObj.getfundmanager;
+        planslabel = dataMapMoObj.schemeCodeResp !== undefined
+          ? dataMapMoObj.schemeCodeResp[0].schcode : planslabel;
+        const data = await dataMapMoObj.getfundmanager(planslabel);
         const managerDetails = data.data.response.mangerDetails;
         const managerSchemesAll = data.data.response.schemeReturns;
         let managerId;

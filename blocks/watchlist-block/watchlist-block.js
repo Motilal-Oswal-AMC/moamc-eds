@@ -10,6 +10,12 @@ import dataMapMoObj from '../../scripts/constant.js';
 // import dataCfObj from '../../scripts/dataCfObj.js';
 
 export default function decorate(block) {
+  const tempDfilt = dataMapMoObj.getlisting.cfDataObjs.filter((el) => {
+    if (!el.fundsTaggingSection) {
+      return false;
+    }
+    return el;
+  });
   Array.from(block.children).forEach((child, ind) => {
     child.classList.add(`watchlist-items${ind + 1}`);
     Array.from(child.children).forEach((subChild, subind) => {
@@ -20,7 +26,7 @@ export default function decorate(block) {
     });
   });
 
-  const data = dataMapMoObj.getlisting.cfDataObjs.filter((el) => {
+  const data = tempDfilt.filter((el) => {
     if (!el.fundsTaggingSection) {
       return false;
     }
