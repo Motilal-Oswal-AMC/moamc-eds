@@ -54,3 +54,43 @@ indices:
       robots:
         select: head > meta[name="robots"]
         value: attribute(el, "content")
+  investorblog:
+    include:
+      - '/mutual-fund/in/en/investor-education/blogs/**'
+    exclude:
+      - '/**.json'
+    target: /query-index-investorblog.json
+    properties:
+      title:
+        select: head > meta[property="og:title"]
+        value: attribute(el, "content")
+      description:
+        select: head > meta[name="description"]
+        value: attribute(el, "content")
+      image:
+        select: head > meta[property="og:image"]
+        value: attribute(el, "content")
+      tag:
+        select: body > main > .section > ul > li > p
+        value: textContent(el)
+      time:
+        select: head > meta[name="published-time"]
+        value: attribute(el, "content")
+      date:
+        select: head > meta[name="modified-time"]
+        value: attribute(el, "content")
+      readmoreurl:
+        select: head > link[rel="canonical"]
+        value: attribute(el, "href")
+      lastModified:
+        select: none
+        value: parseTimestamp(headers["last-modified"], "ddd, DD MMM YYYY hh:mm:ss GMT")
+      robots:
+        select: head > meta[name="robots"]
+        value: attribute(el, "content")
+      youtubeurl:
+        select: body .embed-container a[href^="https://youtu.be"]
+        value: attribute(el, "href")
+      contenttype:
+        select: body .embed-container ul ul li:first-child
+        value: textContent(el)
