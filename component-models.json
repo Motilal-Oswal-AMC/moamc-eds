@@ -853,6 +853,10 @@
           {
             "name": "Minors folio FAQ",
             "value": "minors-folio-faq"
+          },
+          {
+            "name": "Key Details Maincards",
+            "value": "key-details-card-container"
           }
         ]
       },
