@@ -8,7 +8,7 @@
 
 | Environment | URL |
 |-------------|-----|
-| Preview | https://BRANCH--mosl-eds--Motilal-Oswal-AMC.aem.page/ |
+| Preview | https://BRANCH--moamc-eds--Motilal-Oswal-AMC.aem.page/ |
 | Block/Page | <!-- Add specific page URL --> |
 
 
