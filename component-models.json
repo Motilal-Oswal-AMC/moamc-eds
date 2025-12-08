@@ -222,7 +222,7 @@
             "name": "GLP TAB Price",
             "value": "glp-tab-price"
           },
-           {
+          {
             "name": "Gift Campaign",
             "value": "gift-campaign"
           },
@@ -865,6 +865,10 @@
           {
             "name": "Minors folio FAQ",
             "value": "minors-folio-faq"
+          },
+          {
+            "name": "Open share popup",
+            "value": "open-share-popup"
           }
         ]
       },

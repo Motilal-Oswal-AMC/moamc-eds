@@ -130,16 +130,16 @@ export default function decorate(block) {
   // const shareBtn = shareWrapper.querySelector(".submainleftart1");
   // const dropdown = shareWrapper.querySelector(".submainleftart2");
 
-  // Toggle dropdown when clicking share icon
-  shareBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    dropdown.classList.toggle('active');
-  });
+  // // Toggle dropdown when clicking share icon
+  // shareBtn.addEventListener('click', (e) => {
+  //   e.stopPropagation();
+  //   dropdown.classList.toggle('active');
+  // });
 
   // // Close dropdown on outside click
-  // document.addEventListener("click", function (e) {
+  // document.addEventListener('click', (e) => {
   //   if (!shareWrapper.contains(e.target)) {
-  //     dropdown.classList.remove("active");
+  //     dropdown.classList.remove('active');
   //   }
   // });
 

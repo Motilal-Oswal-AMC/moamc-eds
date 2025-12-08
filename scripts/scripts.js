@@ -244,24 +244,25 @@ async function loadLazy(doc) {
   wrapImgsInLinks(doc);
   await loadSections(main);
   dataMapMoObj.article();
-  dataMapMoObj.qglpwcs();
+  // dataMapMoObj.qglpwcs();
 
-  const shareWrapper = document.querySelector(".itemmainleftart3");
-  const shareBtn = shareWrapper.querySelector(".submainleftart1");
-  const dropdown = shareWrapper.querySelector(".submainleftart2");
+  // const shareWrapper = document.querySelector('.itemmainleftart3');
+  const shareBtn = document.querySelector('.icon-share-black');
+  const dropdown = document.querySelector('.submainleftart2');
+  if (document.querySelector('.open-share-popup')) {
+    // Toggle dropdown when clicking share icon
+    shareBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      dropdown.classList.toggle('active');
+    });
 
-  // Toggle dropdown when clicking share icon
-  shareBtn.addEventListener("click", function (e) {
-    e.stopPropagation();
-    dropdown.classList.toggle("active");
-  });
-
-  // Close dropdown on outside click
-  document.addEventListener("click", function (e) {
-    if (!shareWrapper.contains(e.target)) {
-      dropdown.classList.remove("active");
-    }
-  });
+    // Close dropdown on outside click
+    document.addEventListener('click', (e) => {
+      if (!shareBtn.contains(e.target)) {
+        dropdown.classList.remove('active');
+      }
+    });
+  }
 
   const { hash } = window.location;
   const element = hash ? doc.getElementById(hash.substring(1)) : false;
@@ -1005,5 +1006,5 @@ async function getinsights() {
   const resp = await myAPI('GET', 'https://main--moamc-eds--motilal-oswal-amc.aem.live/query-index-insights.json');
   return resp;
 }
-dataMapMoObj.qglpwcs = qglpwcs;
+// dataMapMoObj.qglpwcs = qglpwcs;
 
