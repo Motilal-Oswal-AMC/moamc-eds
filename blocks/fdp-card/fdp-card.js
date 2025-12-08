@@ -502,7 +502,7 @@ export default function decorate(block) {
                     class: `listval ${textvalret === eloption.replace('Since', '')
                       ? 'active'
                       : ''
-                      }`,
+                    }`,
                     value: dataMapMoObj.ObjTempfdp[eloption],
                   },
                   eloption,
@@ -1133,7 +1133,7 @@ export default function decorate(block) {
   // ---------------- SHARE DATA ----------------
   const getShareData = () => {
     const shareUrl = window.location.href;
-    const shareText = dataMapMoObj.planText || "Check this out";
+    const shareText = dataMapMoObj.planText || 'Check this out';
     return { shareUrl, shareText };
   };
 
@@ -1182,12 +1182,11 @@ export default function decorate(block) {
         await navigator.clipboard.writeText(shareUrl);
 
         msgBox.style.display = 'block';
-        setTimeout(() => msgBox.style.display = 'none', 1000);
-
+        setTimeout(() => { msgBox.style.display = 'none'; }, 1000);
       } catch (err) {
         msgBox.textContent = 'Could not copy URL. Please check browser settings.';
         msgBox.style.display = 'block';
-        setTimeout(() => msgBox.style.display = 'none', 1000);
+        setTimeout(() => { msgBox.style.display = 'none'; }, 1000);
       }
     });
   }
@@ -1214,8 +1213,8 @@ export default function decorate(block) {
 
   // ---------------- CLOSE POPUP WHEN CLICKED OUTSIDE ----------------
   document.addEventListener('click', (event) => {
-    if (!shareContainer.contains(event.target) &&
-      !imgAltmain.querySelector('.subbreadcrb2').contains(event.target)) {
+    if (!shareContainer.contains(event.target)
+      && !imgAltmain.querySelector('.subbreadcrb2').contains(event.target)) {
       shareContainer.style.display = 'none';
     }
   });

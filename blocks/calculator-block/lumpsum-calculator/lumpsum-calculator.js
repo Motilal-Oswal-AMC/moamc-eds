@@ -3,7 +3,7 @@ import {
   createBarSummaryBlock,
   getAuthorData,
   formatNumber,
-} from "../common-ui-field/common-ui-field.js";
+} from '../common-ui-field/common-ui-field.js';
 
 /**
  * Calculate Lumpsum Investment summary
@@ -29,13 +29,14 @@ export function calculateLumpsumSummary({
   callbackFunc,
 }) {
   let data;
-  const inputErrors = document.querySelectorAll(".calc-input.calc-error");
+  const inputErrors = document.querySelectorAll('.calc-input.calc-error');
+
   if (!totalInvestment || !rateOfReturn || !timePeriod || inputErrors?.length) {
     data = {
       totalInvestment: 0,
       totalValue: 0,
       estimatedReturns: 0,
-      compoundingAt: "1.0x",
+      compoundingAt: '1.0x',
       investedPercentage: 0,
       returnsPercentage: 0,
     };
@@ -44,20 +45,23 @@ export function calculateLumpsumSummary({
   }
 
   const num = (v, d = 0) => (v != null ? parseFloat(v) : d);
-  totalInvestment = num(totalInvestment);
-  rateOfReturn = num(rateOfReturn);
-  timePeriod = num(timePeriod);
 
-  const rate = rateOfReturn / 100;
+  // 1. FIX: Create new variables instead of overwriting parameters
+  const parsedTotalInvestment = num(totalInvestment);
+  const parsedRateOfReturn = num(rateOfReturn);
+  const parsedTimePeriod = num(timePeriod);
+
+  const rate = parsedRateOfReturn / 100;
 
   // Formula: Future Value = P * (1 + r)^t
-  const totalValue = totalInvestment * (1 + rate) ** timePeriod;
-  const estimatedReturns = totalValue - totalInvestment;
+  // 2. FIX: Use the new parsed variables in the calculation
+  const totalValue = parsedTotalInvestment * (1 + rate) ** parsedTimePeriod;
+  const estimatedReturns = totalValue - parsedTotalInvestment;
 
-  const multiplier = totalValue / totalInvestment;
+  const multiplier = totalValue / parsedTotalInvestment;
   const compoundingAt = `${multiplier.toFixed(1)}x`;
 
-  const investedPercentage = (totalInvestment / totalValue) * 100;
+  const investedPercentage = (parsedTotalInvestment / totalValue) * 100;
   const returnsPercentage = (estimatedReturns / totalValue) * 100;
 
   const roundValue = (val) => {
@@ -66,7 +70,7 @@ export function calculateLumpsumSummary({
   };
 
   data = {
-    totalInvestment: roundValue(totalInvestment),
+    totalInvestment: roundValue(parsedTotalInvestment),
     totalValue: roundValue(totalValue),
     estimatedReturns: roundValue(estimatedReturns),
     compoundingAt,
@@ -81,17 +85,17 @@ export function calculateLumpsumSummary({
 export function updateCalculateSummary({ container, data }) {
   if (!container || !data) return;
 
-  const totalReturnsEl = container.querySelector("#sip-total-returns");
-  const investedAmountEl = container.querySelector("#total-invested-amount");
+  const totalReturnsEl = container.querySelector('#sip-total-returns');
+  const investedAmountEl = container.querySelector('#total-invested-amount');
   const estimatedReturnsEl = container.querySelector(
-    "#total-estimated-returns"
+    '#total-estimated-returns',
   );
-  const compoundRateEl = container.querySelector("#compound-rate");
+  const compoundRateEl = container.querySelector('#compound-rate');
   if (totalReturnsEl) {
     totalReturnsEl.textContent = formatNumber({
       value: data.totalValue,
       currency: true,
-    })?.replace("₹", "₹ ");
+    })?.replace('₹', '₹ ');
   }
 
   if (investedAmountEl) {
@@ -113,12 +117,14 @@ export function updateCalculateSummary({ container, data }) {
   }
 }
 
-function recalculateLumpsum({ ti, ror, tp, roundDecimal = 0, container }) {
+function recalculateLumpsum({
+  ti, ror, tp, roundDecimal = 0, container,
+}) {
   if (!container) return;
   // If values are not passed, fetch from input elements
-  const tiInput = container.querySelector("#total-investment-amt");
-  const rorInput = container.querySelector("#rate-return");
-  const tpInput = container.querySelector("#time-period");
+  const tiInput = container.querySelector('#total-investment-amt');
+  const rorInput = container.querySelector('#rate-return');
+  const tpInput = container.querySelector('#time-period');
 
   const totalInvestment = ti != null ? Number(ti) : Number(tiInput?.value || 0);
   const rateOfReturn = ror != null ? Number(ror) : Number(rorInput?.value || 0);
@@ -132,7 +138,7 @@ function recalculateLumpsum({ ti, ror, tp, roundDecimal = 0, container }) {
     roundDecimal,
   });
   container.querySelector(
-    ".calc-compounding .estimated-returns-bar"
+    '.calc-compounding .estimated-returns-bar',
   ).style.width = `${summary?.returnsPercentage}%`;
   // 2️⃣ Update the UI with the new values
   updateCalculateSummary({
@@ -144,49 +150,47 @@ function recalculateLumpsum({ ti, ror, tp, roundDecimal = 0, container }) {
 }
 
 export default function decorate(block) {
-  const CALC_AUTHOR_MAIN = block.querySelector(".calc-author-main1");
+  const CALC_AUTHOR_MAIN = block.querySelector('.calc-author-main1');
   if (!CALC_AUTHOR_MAIN) {
-    console.warn("No .calc-author-main1 element found.");
+    console.warn('No .calc-author-main1 element found.');
     return;
   }
 
   const authors = [
-    { key: "TI", selector: ":scope > .calc-author-sub1" },
-    { key: "ROR", selector: ":scope > .calc-author-sub2" },
-    { key: "IP", selector: ":scope > .calc-author-sub3" },
+    { key: 'TI', selector: ':scope > .calc-author-sub1' },
+    { key: 'ROR', selector: ':scope > .calc-author-sub2' },
+    { key: 'IP', selector: ':scope > .calc-author-sub3' },
   ];
 
   const CALC_AUTHORED_DATA = authors.map(({ key, selector }) => {
     const author = CALC_AUTHOR_MAIN.querySelector(selector);
     const data = author
-      ? [...author.querySelectorAll(".comlist")].map((el) =>
-          el.textContent.trim()
-        )
+      ? [...author.querySelectorAll('.comlist')].map((el) => el.textContent.trim())
       : [];
     return { key, data };
   });
   const OVERVIEW_DATA = CALC_AUTHOR_MAIN.querySelector(
-    ":scope > .calc-author-sub4"
+    ':scope > .calc-author-sub4',
   );
   const lumpsumBlock = createBarSummaryBlock({
     container: OVERVIEW_DATA,
   });
-  CALC_AUTHOR_MAIN.innerHTML = "";
+  CALC_AUTHOR_MAIN.innerHTML = '';
 
-  const ti = getAuthorData(CALC_AUTHORED_DATA, "TI");
-  const ror = getAuthorData(CALC_AUTHORED_DATA, "ROR");
-  const tp = getAuthorData(CALC_AUTHORED_DATA, "IP");
+  const ti = getAuthorData(CALC_AUTHORED_DATA, 'TI');
+  const ror = getAuthorData(CALC_AUTHORED_DATA, 'ROR');
+  const tp = getAuthorData(CALC_AUTHORED_DATA, 'IP');
   const tiBlock = createInputBlock({
-    id: "total-investment-amt",
+    id: 'total-investment-amt',
     ...ti,
-    prefix: "₹",
-    fieldType: "currency",
+    prefix: '₹',
+    fieldType: 'currency',
     ignoreMin: true,
-    prefixAttr: { class: "currency-prefix" },
+    prefixAttr: { class: 'currency-prefix' },
     inputBlockAttr: {
-      class: "ti-inp-container",
+      class: 'ti-inp-container',
     },
-    variant: "number",
+    variant: 'number',
     onInput: (e) => {
       recalculateLumpsum({ ti: e.target.value, container: block });
     },
@@ -196,15 +200,15 @@ export default function decorate(block) {
   });
 
   const rorBlock = createInputBlock({
-    id: "rate-return",
+    id: 'rate-return',
     ...ror,
-    suffix: "%",
+    suffix: '%',
     inputBlockAttr: {
-      class: "ror-inp-container",
+      class: 'ror-inp-container',
     },
-    suffixAttr: { class: "input-suffix" },
-    fieldType: "percent",
-    variant: "stepper",
+    suffixAttr: { class: 'input-suffix' },
+    fieldType: 'percent',
+    variant: 'stepper',
     ignoreMin: true,
     updateWidthonChange: true,
     onInput: (e) => {
@@ -216,14 +220,14 @@ export default function decorate(block) {
   });
 
   const tpBlock = createInputBlock({
-    id: "time-period",
+    id: 'time-period',
     ...tp,
     inputBlockAttr: {
-      class: "tp-inp-container",
+      class: 'tp-inp-container',
     },
-    fieldType: "year",
-    suffix: tp?.default > 1 ? "Years" : "Year",
-    variant: "stepper",
+    fieldType: 'year',
+    suffix: tp?.default > 1 ? 'Years' : 'Year',
+    variant: 'stepper',
     ignoreMin: true,
     updateWidthonChange: true,
     onInput: (e) => {
