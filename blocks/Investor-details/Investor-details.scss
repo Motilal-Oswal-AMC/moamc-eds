@@ -416,117 +416,6 @@ main.nfo-nav .main-wrapper .section:first-of-type {
         }
       }
 
-      // &.key-details-card-container {
-      //   margin: 40px auto 24px;
-      //   display: flex;
-      //   flex-direction: column;
-      //   gap: 40px;
-
-      //   .hero-wrapper {
-      //     all: unset;
-
-      //     .hero.key-details-card {
-      //       all: unset;
-      //       display: flex;
-      //       gap: 16px;
-      //       align-items: start;
-      //       background-color: lavenderblush;
-
-      //       &.right-key-card {
-      //         flex-direction: row-reverse;
-      //         padding-right: 37px;
-
-      //         @include media(tab) {
-      //           padding: 0;
-      //         }
-      //       }
-
-      //       &.left-key-card {
-      //         padding-right: 44px;
-
-      //         @include media(tab) {
-      //           padding: 0;
-      //         }
-      //       }
-
-      //       .investarticle-leftinner {
-      //         &1 {
-      //           min-width: 260px;
-      //           width: 260px;
-      //           // width: 51.69%;
-      //           height: 260px;
-
-      //           .investsub-leftarticle1 {
-      //             all: unset;
-      //             display: block;
-      //             width: 100%;
-      //             height: 100%;
-
-      //             .investleft-subinner1 {
-      //               line-height: 0;
-      //               height: 100%;
-      //               display: block;
-
-      //               .investleft-articleitem4 {
-      //                 width: 100%;
-      //                 height: 100%;
-      //               }
-      //             }
-      //           }
-      //         }
-
-      //         &2 {
-      //           width: 100%;
-      //           height: 100%;
-
-      //           .investsub-leftarticle1 {
-      //             all: unset;
-      //             line-height: 0;
-      //             height: 100%;
-      //             display: block;
-
-      //             .investleft-subinner {
-      //               &1 {
-      //                 all: unset;
-
-      //                 @include font-style(
-      //                   var(--body-large-semibold-size),
-      //                   var(--body-large-semibold-line-height),
-      //                   var(--blue-1-800-primary),
-      //                   600,
-      //                   var(--body)
-      //                 );
-
-      //                 @include media(mobile) {
-      //                   font-size: var(--body-large-semibold-size);
-      //                   line-height: var(--body-large-semibold-line-height);
-      //                 }
-      //               }
-
-      //               &2 {
-      //                 margin: 24px 0 0;
-
-      //                 @include font-style(
-      //                   var(--body-medium-regular-size),
-      //                   24px,
-      //                   #3d3d3d,
-      //                   400,
-      //                   var(--body)
-      //                 );
-
-      //                 @include media(mobile) {
-      //                   font-size: var(--paragraph-small-regular-size);
-      //                   line-height: var(--paragraph-small-regular-line-height);
-      //                 }
-      //               }
-      //             }
-      //           }
-      //         }
-      //       }
-      //     }
-      //   }
-      // }
-
       &.key-details-card {
         padding: 40px 0 0;
 
@@ -594,7 +483,6 @@ main.nfo-nav .main-wrapper .section:first-of-type {
               min-width: 260px;
               width: 260px;
               height: 260px;
-              background-color: green;
 
               @include media(mobile) {
                 max-width: 100%;
