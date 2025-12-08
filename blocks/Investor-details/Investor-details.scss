@@ -528,10 +528,24 @@ main.nfo-nav .main-wrapper .section:first-of-type {
       // }
 
       &.key-details-card {
+        padding: 40px 0 0;
+
+        &:last-of-type {
+          margin: 0 0 24px;
+
+          @include media(mobile) {
+            margin: 0;
+          }
+        }
+
+        @include media(mobile) {
+          padding: 24px 0 0;
+          margin: 0;
+        }
+
         .default-content-wrapper.investarticle-leftmain1 {
           display: grid;
           grid-template-columns: 1fr;
-          background-color: red;
           gap: 0 16px;
           padding: 0;
 
@@ -540,7 +554,6 @@ main.nfo-nav .main-wrapper .section:first-of-type {
               all: unset;
               grid-area: title-area;
               margin: 0;
-              background-color: green;
 
               @include font-style(
                 var(--body-large-semibold-size),
@@ -559,7 +572,6 @@ main.nfo-nav .main-wrapper .section:first-of-type {
             &2 {
               margin: 24px 0 0;
               grid-area: text-area;
-              background-color: green;
 
               @include font-style(
                 var(--body-medium-regular-size),
@@ -570,6 +582,7 @@ main.nfo-nav .main-wrapper .section:first-of-type {
               );
 
               @include media(mobile) {
+                margin: 0;
                 font-size: var(--paragraph-small-regular-size);
                 line-height: var(--paragraph-small-regular-line-height);
               }
@@ -577,11 +590,19 @@ main.nfo-nav .main-wrapper .section:first-of-type {
 
             &3 {
               all: unset;
-              background-color: green;
               grid-area: image-area;
               min-width: 260px;
               width: 260px;
               height: 260px;
+              background-color: green;
+
+              @include media(mobile) {
+                max-width: 100%;
+                width: 100%;
+                min-width: unset;
+                height: auto;
+                aspect-ratio: 1 / 1;
+              }
 
               .investarticle-leftinner1 {
                 all: unset;
@@ -598,10 +619,47 @@ main.nfo-nav .main-wrapper .section:first-of-type {
         }
 
         &.right-key-card {
-          grid-template-areas:
-            "title-area image-area"
-            "text-area image-area";
-          padding-right: 37px;
+          .default-content-wrapper.investarticle-leftmain1 {
+            grid-template-areas:
+              "title-area image-area"
+              "text-area image-area";
+            padding-right: 37px;
+
+            @include media(tab) {
+              padding: 0;
+            }
+
+            @media screen and (width <= 900px) {
+              padding: 0;
+              grid-template-areas:
+                "title-area"
+                "image-area"
+                "text-area";
+              gap: 16px;
+            }
+          }
+        }
+
+        &.left-key-card {
+          .default-content-wrapper.investarticle-leftmain1 {
+            grid-template-areas:
+              "image-area title-area"
+              "image-area text-area";
+            padding-right: 44px;
+
+            @include media(tab) {
+              padding: 0;
+            }
+
+            @media screen and (width <= 900px) {
+              padding: 0;
+              grid-template-areas:
+                "title-area"
+                "image-area"
+                "text-area";
+              gap: 16px;
+            }
+          }
         }
       }
     }
@@ -1107,4 +1165,3 @@ main.nfo-nav .main-wrapper .section:first-of-type {
     }
   }
 }
-
