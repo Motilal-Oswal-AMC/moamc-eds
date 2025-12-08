@@ -71,7 +71,7 @@ indices:
         select: head > meta[property="og:image"]
         value: attribute(el, "content")
       tag:
-        select: body > main > .icon-mic-1
+        select: body main span.icon-mic-1
         value: textContent(el)
       time:
         select: head > meta[name="published-time"]
