@@ -265,7 +265,6 @@ async function loadLazy(doc) {
     });
   }
 
-  debugger;
   document.querySelectorAll('.comlist.submainart3.itemmainleftart3').forEach((listItem) => {
     const ul = listItem.querySelector('.comlist.submainleftart2');
     if (!ul) return;
