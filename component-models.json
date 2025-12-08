@@ -853,6 +853,18 @@
           {
             "name": "Minors folio FAQ",
             "value": "minors-folio-faq"
+          },
+          {
+            "name": "Key Details Card",
+            "value": "key-details-card"
+          },
+          {
+            "name": "Left Key card",
+            "value": "left-key-card"
+          },
+          {
+            "name": "Right Key card",
+            "value": "right-key-card"
           }
         ]
       },
