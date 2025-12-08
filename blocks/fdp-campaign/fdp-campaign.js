@@ -28,11 +28,11 @@ export default function decorate(block) {
     dataMapMoObj.addIndexed(divwrp);
     ghi.append(divwrp);
 
-    const divwrp1 = document.createElement('div');
-    const divwrp2 = document.createElement('div');
-    const divwrp3 = document.createElement('div');
-    const divwrp4 = document.createElement('div');
-    const divwrp5 = document.createElement('div');
+    const divwrp1 = document.createElement('ul');
+    const divwrp2 = document.createElement('ul');
+    const divwrp3 = document.createElement('ul');
+    const divwrp4 = document.createElement('ul');
+    const divwrp5 = document.createElement('ul');
 
     divwrp1.classList.add('li-wrapper-1');
     divwrp2.classList.add('li-wrapper-2');
