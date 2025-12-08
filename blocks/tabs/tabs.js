@@ -1,5 +1,6 @@
 import { toClassName } from '../../scripts/aem.js';
 import dataCfObj from '../../scripts/dataCfObj.js';
+// eslint-disable-next-line
 import fundCardblock from '../fund-card/fund-card.js';
 import {
   button, a, div, input, ul, li, img, table, thead, tbody, tr, th, td, p,
@@ -54,6 +55,19 @@ export default async function decorate(block) {
         tabpanel.querySelector(`#${attr} .section`).style.display = 'block';
         tabpanel.querySelector(`#${attr} .section`).style.display = 'flex';
       }
+
+      // Investor Landing - Our Service Tab Gradient
+      const ourServiceTab = block.closest('main').querySelector('.our-service.block');
+      if (ourServiceTab !== null) {
+        const ourServiceTabList = ourServiceTab.querySelector('.tabs-list');
+        if ((Array.from(ourServiceTabList.children).length - 3) > i) {
+          ourServiceTab.classList.add('gradient-show');
+          ourServiceTabList.children[i].setAttribute('aria-selected', true);
+        } else {
+          ourServiceTab.classList.remove('gradient-show');
+          ourServiceTabList.children[i].setAttribute('aria-selected', true);
+        }
+      }
     });
     tablist.append(tabbtn);
     tab.remove();
@@ -93,7 +107,8 @@ export default async function decorate(block) {
           }
         }
         block.querySelector(`#${event.currentTarget.getAttribute('aria-controls')}`).innerHTML = '';
-        dataCf.map((elementfunds) => block.querySelector(`#${event.currentTarget.getAttribute('aria-controls')}`).append(fundCardblock(elementfunds)));
+        dataCf.map((elementfunds) => block.querySelector(`#${event.currentTarget.getAttribute('aria-controls')}`)
+          .append(fundCardblock(elementfunds)));
         block.querySelector(`#${event.currentTarget.getAttribute('aria-controls')}`).style.display = 'flex';
       });
     });
@@ -160,11 +175,12 @@ export default async function decorate(block) {
           dataMapMoObj.selectviewFunds = 'OtherFund';
         }
         block.querySelector(`#${event.currentTarget.getAttribute('aria-controls')}`).innerHTML = '';
-        dataCf.map((knowfunds) => block.querySelector(`#${event.currentTarget.getAttribute('aria-controls')}`).append(fundCardblock(knowfunds)));
+        dataCf.map((knowfunds) => block.querySelector(`#${event.currentTarget.getAttribute('aria-controls')}`)
+          .append(fundCardblock(knowfunds)));
         block.querySelector(`#${event.currentTarget.getAttribute('aria-controls')}`).style.display = 'flex';
       });
     });
-
+    block.querySelector('#tab-others').style.display = 'none';
     const wrapperTablist = document.createElement('div');
     wrapperTablist.classList.add('wrappertablist');
     wrapperTablist.append(block.querySelector('.tabs-list'));
@@ -446,35 +462,35 @@ export default async function decorate(block) {
   }
   // const planslabel = planCode.split(':')[1];
   const planObj = dataCfObj.cfDataObjs.filter((el) => planslabel === el.schcode);
-  if (block.closest('tabdiv')) {
+  if (block.closest('.tabdiv')) {
     dataMapMoObj.scheme = planObj;
     generateBarChart(planObj[0].sector);
-  }
-  const tabButtons = document.querySelectorAll('.tabs-tab');
-  tabButtons.forEach((tabBtn) => {
-    const tabIddata = tabBtn.id.replace('tab-', '');
-    if (tabIddata === 'sector-holdings' && planObj[0].sector === undefined) {
-      tabBtn.style.display = 'none';
-    }
-    if (tabIddata === 'stock-holdings' && planObj[0].holdings === undefined) {
-      tabBtn.style.display = 'none';
-    }
-    tabBtn.addEventListener('click', () => {
-      const tabId = tabBtn.id.replace('tab-', '');
-      const panel = document.getElementById(`tabpanel-${tabId}`);
-      if (tabId === 'sector-holdings') {
-        if (panel && !panel.querySelector('.chart-wrapper')) {
-          const chart = generateBarChart(dataMapMoObj.scheme[0].sector);
-          panel.appendChild(chart);
-        }
-      } else if (tabId === 'stock-holdings') {
-        if (panel && !panel.querySelector('.chart-wrapper')) {
-          const chart = generateBarChartHoldings(dataMapMoObj.scheme[0].holdings);
-          panel.appendChild(chart);
-        }
+    const tabButtons = document.querySelectorAll('.tabs-tab');
+    tabButtons.forEach((tabBtn) => {
+      const tabIddata = tabBtn.id.replace('tab-', '');
+      if (tabIddata === 'sector-holdings' && planObj[0].sector === undefined) {
+        tabBtn.style.display = 'none';
       }
+      if (tabIddata === 'stock-holdings' && planObj[0].holdings === undefined) {
+        tabBtn.style.display = 'none';
+      }
+      tabBtn.addEventListener('click', () => {
+        const tabId = tabBtn.id.replace('tab-', '');
+        const panel = document.getElementById(`tabpanel-${tabId}`);
+        if (tabId === 'sector-holdings') {
+          if (panel && !panel.querySelector('.chart-wrapper')) {
+            const chart = generateBarChart(dataMapMoObj.scheme[0].sector);
+            panel.appendChild(chart);
+          }
+        } else if (tabId === 'stock-holdings') {
+          if (panel && !panel.querySelector('.chart-wrapper')) {
+            const chart = generateBarChartHoldings(dataMapMoObj.scheme[0].holdings);
+            panel.appendChild(chart);
+          }
+        }
+      });
     });
-  });
+  }
 
   /// //////////////////////first Tab ////////////////////////////
 
@@ -742,6 +758,21 @@ export default async function decorate(block) {
         dropdown.classList.remove('dropdown-active');
       }
     });
+
+    // When clicking outside the search container, if the input is empty
+    // remove the visual 'search-active' so the cancel button hides.
+    document.addEventListener('click', (event) => {
+      if (!droplist.contains(event.target)) {
+        dropdown.classList.remove('dropdown-active');
+        try {
+          if (searchFireld && searchFireld.value.trim() === '') {
+            searchFireld.closest('.search-wrapper').classList.remove('search-active');
+          }
+        } catch (e) {
+          // ignore
+        }
+      }
+    });
     cancelbtn.addEventListener('click', () => {
       searchFireld.value = '';
       searchFireld.closest('.search-wrapper').classList.remove('search-active');
@@ -758,6 +789,50 @@ export default async function decorate(block) {
     divtab.append(tabList);
     block.prepend(divtab);
   }
+
+  const glossary = block.closest('.glossary-tabs');
+  if (glossary) {
+    // const paragraphs = heroBlock.querySelectorAll('p');
+    // dataMapMoObj.CLASS_PREFIXES = ['tab1', 'tab2',
+    // 'tab3', 'tab4', 'tab5', 'tab6', 'tab7',
+    // 'tab8', 'tab9'];
+    dataMapMoObj.CLASS_PREFIXES = ['tabmain', 'tab-inner', 'tab-subinner', 'tab-child', 'tab-subchild', 'tab-itemmain', 'tab-subitem', 'tab-itemchild', 'tab-iteminner'];
+    dataMapMoObj.addIndexed(block);
+
+    const nextitem = block.closest('.tabs-wrapper').nextElementSibling;
+    dataMapMoObj.CLASS_PREFIXES = ['defitem', 'mainitem', 'inneritem'];
+    dataMapMoObj.addIndexed(nextitem);
+  }
+  // Get all the tab buttons
+  const tabsPreviousStudies1 = document.querySelectorAll('.glossary-tabs .tabs-list .tabs-tab');
+  if (tabsPreviousStudies1) {
+    // Function to handle switching tabs
+    const switchTab = (clickedTab) => {
+      // 1. Remove 'active' and 'aria-selected' from all tabs
+      Array.from(tabsPreviousStudies1).forEach((tab) => {
+        tab.classList.remove('active');
+        tab.setAttribute('aria-selected', 'false');
+      });
+      // 2. Add 'active' and 'aria-selected' to the one you clicked
+      clickedTab.classList.add('active');
+      clickedTab.setAttribute('aria-selected', 'true');
+    };
+    // --- Set Initial State ---
+    // Find the tab that is already selected in your HTML
+    const initialActiveTab = document.querySelector('.tabs-tab[aria-selected="true"]');
+    if (initialActiveTab) {
+      initialActiveTab.classList.add('active');
+    }
+    // --- Add Click Listeners ---
+    // Add a click event listener to each tab
+    Array.from(tabsPreviousStudies1).forEach((tab) => {
+      tab.addEventListener('click', () => {
+        // When a tab is clicked, run the switchTab function
+        switchTab(tab);
+      });
+    });
+  }
+  // previous studies tab end
 
   document.addEventListener('click', (event) => {
     document.querySelectorAll('.cagr-container').forEach((el) => {
@@ -793,52 +868,53 @@ export default async function decorate(block) {
         elchild.remove();
       }
     });
-  }
-
-  // previous studies tab start
-  const previousStudiesCtn = block.closest('.previous-studies-ctn');
-  if (previousStudiesCtn !== null) {
-    dataMapMoObj.CLASS_PREFIXES = ['previous-studies-ex', 'previous-studies-inter', 'previous-studies-wrp', 'previous-studies-cover', 'previous-studies-txt'];
-    dataMapMoObj.addIndexed(previousStudiesCtn);
-  }
-
-  // Wait for the HTML document to be fully loaded
-
-  // Get all the tab buttons
-  const tabsPreviousStudies = document.querySelectorAll('.previous-studies-ctn .tabs-list .tabs-tab');
-
-  if (tabsPreviousStudies) {
-    // Function to handle switching tabs
-    const switchTab = (clickedTab) => {
-      // 1. Remove 'active' and 'aria-selected' from all tabs
-      tabsPreviousStudies.forEach((tab) => {
-        tab.classList.remove('active');
-        tab.setAttribute('aria-selected', 'false');
-      });
-
-      // 2. Add 'active' and 'aria-selected' to the one you clicked
-      clickedTab.classList.add('active');
-      clickedTab.setAttribute('aria-selected', 'true');
-    };
-
-    // --- Set Initial State ---
-    // Find the tab that is already selected in your HTML
-    const initialActiveTab = document.querySelector('.tabs-tab[aria-selected="true"]');
-    if (initialActiveTab) {
-      initialActiveTab.classList.add('active');
-    }
-
-    // --- Add Click Listeners ---
-    // Add a click event listener to each tab
-    tabsPreviousStudies.forEach((tab) => {
-      tab.addEventListener('click', () => {
-        // When a tab is clicked, run the switchTab function
-        switchTab(tab);
-      });
-    });
+    mainwrapper.querySelector('.decoding-qglp img')
+      .setAttribute('fetchpriority', 'high');
   }
 
   if (block.closest('.previous-studies-ctn')) {
+    // previous studies tab start
+    const previousStudiesCtn = block.closest('.previous-studies-ctn');
+    if (previousStudiesCtn !== null) {
+      dataMapMoObj.CLASS_PREFIXES = ['previous-studies-ex', 'previous-studies-inter', 'previous-studies-wrp', 'previous-studies-cover', 'previous-studies-txt'];
+      dataMapMoObj.addIndexed(previousStudiesCtn);
+    }
+
+    // Wait for the HTML document to be fully loaded
+
+    // Get all the tab buttons
+    const tabsPreviousStudies = document.querySelectorAll('.previous-studies-ctn .tabs-list .tabs-tab');
+
+    if (tabsPreviousStudies) {
+      // Function to handle switching tabs
+      const switchTab = (clickedTab) => {
+        // 1. Remove 'active' and 'aria-selected' from all tabs
+        tabsPreviousStudies.forEach((tab) => {
+          tab.classList.remove('active');
+          tab.setAttribute('aria-selected', 'false');
+        });
+
+        // 2. Add 'active' and 'aria-selected' to the one you clicked
+        clickedTab.classList.add('active');
+        clickedTab.setAttribute('aria-selected', 'true');
+      };
+
+      // --- Set Initial State ---
+      // Find the tab that is already selected in your HTML
+      const initialActiveTab = document.querySelector('.tabs-tab[aria-selected="true"]');
+      if (initialActiveTab) {
+        initialActiveTab.classList.add('active');
+      }
+
+      // --- Add Click Listeners ---
+      // Add a click event listener to each tab
+      tabsPreviousStudies.forEach((tab) => {
+        tab.addEventListener('click', () => {
+          // When a tab is clicked, run the switchTab function
+          switchTab(tab);
+        });
+      });
+    }
     const mainwrapper = block.closest('main');
     const grpwrap = mainwrapper.querySelectorAll('.previous-studies-each-details');
     const panel = block.closest('.previous-studies-ex2 .previous-studies-inter1').querySelectorAll('.tabs-panel');
@@ -857,24 +933,41 @@ export default async function decorate(block) {
     });
   }
   // previous studies tab end
+
   if (block.closest('.previous-studies-tab')) {
     const mainblk = block.closest('main');
+    Array.from(block.querySelector('.tabs-list').children)
+      .forEach((tabtitle) => {
+        // console.log(tabtitle.textContent);
+        const tabheada = `<span class='selcontent'>${dataMapMoObj.getOrdinalSuperscript(parseInt(tabtitle.textContent, 10))}</span>`;
+        const tabheadb = tabtitle.textContent
+          .replace(parseInt(tabtitle.textContent, 10), '').slice(2);
+        const tabheadfin = tabheada.concat(tabheadb);
+        tabtitle.textContent = '';
+        tabtitle.innerHTML += tabheadfin;
+      });
     const blk = mainblk.querySelectorAll('.prev-studies-wrapper');
-    Array.from(blk).forEach((mainblk) => {
+    Array.from(blk).forEach((mainblkelem) => {
       // dataMapMoObj.CLASS_PREFIXES = ['prev-studies'];
       // dataMapMoObj.addIndexed(mainblk);
       const divwrapper = document.createElement('div');
-      Array.from(mainblk.children).forEach((elblk, index) => {
+      const atag = dataMapMoObj.getOrdinalSuperscript(parseInt(mainblkelem.querySelector('h1').textContent, 10));
+      const btag = mainblkelem.querySelector('h1').textContent
+        .replace(parseInt(mainblkelem.querySelector('h1').textContent, 10), '').slice(2);
+      const fintag = atag.concat(btag);
+      mainblkelem.querySelector('h1').textContent = '';
+      mainblkelem.querySelector('h1').innerHTML += fintag;
+      Array.from(mainblkelem.children).forEach((elblk, index) => {
         divwrapper.classList.add('prev-main-wrapper');
         if (index !== 0) {
           divwrapper.append(elblk);
         }
       });
-      mainblk.append(divwrapper);
+      mainblkelem.append(divwrapper);
     });
     const panel = block.querySelectorAll('.tabs-panel');
     Array.from(panel).forEach((inner, index) => {
-      panel.innerHTML = ''
+      panel.innerHTML = '';
       inner.append(blk[index]);
     });
 
@@ -904,19 +997,27 @@ export default async function decorate(block) {
     const selectedTab = dropdownWrap.querySelector('.selected-tab');
     Array.from(dropdownlist.children).forEach((tab) => {
       if (tab.getAttribute('aria-selected') === 'true') {
-        selectedTab.textContent = tab.textContent;
+        const tabheada = `<span class='selcontent'>${dataMapMoObj.getOrdinalSuperscript(parseInt(tab.textContent, 10))}</span>`;
+        const tabheadb = tab.textContent
+          .replace(parseInt(tab.textContent, 10), '').slice(2);
+        const tabheadfin = tabheada.concat(tabheadb);
+        tab.textContent = '';
+        tab.innerHTML += tabheadfin;
+        selectedTab.innerHTML = '';
+        selectedTab.innerHTML += tab.innerHTML;
       }
     });
 
     dropdownWrap.addEventListener('click', (evetn) => {
       evetn.preventDefault();
-      console.log('droplist : ', dropList.classList);
+      // console.log('droplist : ', dropList.classList);
       if (!Array.from(dropList.classList).includes('active')) {
         dropList.classList.add('active');
       } else {
         Array.from(dropdownlist.children).forEach((tab) => {
           if (tab.getAttribute('aria-selected') === 'true') {
-            selectedTab.textContent = tab.textContent;
+            selectedTab.innerHTML = '';
+            selectedTab.innerHTML += tab.innerHTML;
           }
         });
         dropList.classList.remove('active');
@@ -936,9 +1037,19 @@ export default async function decorate(block) {
         dataMapMoObj.addIndexed(dsp);
       }
 
+      // MAIN WRAPPER (span.icon-share parent → <p>)
       const eventvar = elemevent.parentElement;
 
-      // 🔹 Popup Toggle
+      // EXTRA TRIGGER → p.comlist.embedsubinner1
+      const textTrigger = eventvar.querySelector('.embedsubinner1');
+      if (textTrigger) {
+        textTrigger.addEventListener('click', (e) => {
+          e.stopPropagation();
+          eventvar.click(); // open same popup
+        });
+      }
+
+      // POPUP TOGGLE (main)
       eventvar.addEventListener('click', (e) => {
         e.stopPropagation();
 
@@ -947,8 +1058,10 @@ export default async function decorate(block) {
 
         const isVisible = dspblk.style.display === 'block';
 
-        // Close all others
-        prevpage.querySelectorAll('.share-popup').forEach(p => p.style.display = 'none');
+        // Close all
+        prevpage.querySelectorAll('.share-popup').forEach((pelem) => {
+          pelem.style.display = 'none';
+        });
 
         dspblk.style.display = isVisible ? 'none' : 'block';
       });
@@ -956,50 +1069,51 @@ export default async function decorate(block) {
       const dspblk = elemevent.parentElement.nextElementSibling;
       if (!dspblk) return;
 
-      // Common share data
+      // SHARE DATA
       const getShareData = () => {
         const shareUrl = window.location.href;
-        const card = elemevent.closest("li");
-        const shareText = card?.querySelector("h3")?.innerText || "Check this out";
+        const card = elemevent.closest('li');
+        const shareText = card?.querySelector('h3')?.innerText || 'Check this out';
         return { shareUrl, shareText };
       };
 
-      // 🔹 Facebook Share
-      const facebookBtn = dspblk.querySelector(".listindex1");
+      // FACEBOOK SHARE
+      const facebookBtn = dspblk.querySelector('.listindex1');
       if (facebookBtn) {
-        facebookBtn.addEventListener("click", (e) => {
-          facebookBtn.querySelector('a').removeAttribute('href');
+        facebookBtn.querySelector('a').removeAttribute('href');
+        facebookBtn.addEventListener('click', (e) => {
           e.stopPropagation();
           const { shareUrl } = getShareData();
           const fbLink = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`;
-          window.open(fbLink, "_blank");
+          window.open(fbLink, '_blank');
         });
       }
 
-      // 🔹 WhatsApp Share
-      const whatsappBtn = dspblk.querySelector(".listindex2");
+      // WHATSAPP SHARE
+      const whatsappBtn = dspblk.querySelector('.listindex2');
       if (whatsappBtn) {
         whatsappBtn.querySelector('a').removeAttribute('href');
-        whatsappBtn.addEventListener("click", (e) => {
+        whatsappBtn.addEventListener('click', (e) => {
           e.stopPropagation();
           const { shareUrl, shareText } = getShareData();
           const wpLink = `https://wa.me/?text=${encodeURIComponent(`${shareText} ${shareUrl}`)}`;
-          window.open(wpLink, "_blank");
+          window.open(wpLink, '_blank');
         });
       }
 
-      // 🔹 X (Twitter) Share
-      const twitterBtn = dspblk.querySelector(".listindex3");
+      // X (TWITTER) SHARE
+      const twitterBtn = dspblk.querySelector('.listindex3');
       if (twitterBtn) {
         twitterBtn.querySelector('a').removeAttribute('href');
-        twitterBtn.addEventListener("click", (e) => {
+        twitterBtn.addEventListener('click', (e) => {
           e.stopPropagation();
           const { shareUrl, shareText } = getShareData();
           const twLink = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`;
-          window.open(twLink, "_blank");
+          window.open(twLink, '_blank');
         });
       }
 
+      // COPY SHARE
       const copyfunc = dspblk.querySelector('.listindex4');
       if (copyfunc) {
         copyfunc.querySelector('a').removeAttribute('href');
@@ -1011,38 +1125,198 @@ export default async function decorate(block) {
             navigator.clipboard.writeText(currentUrl);
 
             urlCopied.style.display = 'block';
-            setTimeout(() => {
-              urlCopied.style.display = 'none';
-              // breadcrumb.style.display = 'none';
-            }, 1000);
+            setTimeout(() => { urlCopied.style.display = 'none'; }, 1000);
           } catch (err) {
             urlCopied.textContent = 'Could not copy URL. Please make sure the window is focused.';
             urlCopied.style.display = 'block';
-            setTimeout(() => {
-              urlCopied.style.display = 'none';
-            }, 1000);
+            setTimeout(() => { urlCopied.style.display = 'none'; }, 1000);
           }
-        })
+        });
       }
     });
 
-    // Click outside → close popup
-    document.addEventListener("click", (event) => {
-      if (!dropList.contains(event.target) && !selectedTab.contains(event.target)) {
-        dropList.classList.remove("active");
-      }
+    // CLOSE POPUPS WHEN CLICKING OUTSIDE
+    document.addEventListener('click', (event) => {
+      const clickedShareIcon = event.target.closest('.icon-share');
+      const clickedSharePopup = event.target.closest('.share-popup');
 
-      const clickedShareIcon = event.target.closest(".icon-share");
-      const clickedSharePopup = event.target.closest(".share-popup");
+      // Do not close when clicking inside icon, popup, OR inside <p>
+      if (clickedShareIcon || clickedSharePopup || event.target.closest('p')) return;
 
-      if (clickedShareIcon || clickedSharePopup || event.target.closest("p")) return;
-
-      prevpage.querySelectorAll(".prev-studies-wrapper .icon-share").forEach((icon) => {
+      prevpage.querySelectorAll('.prev-studies-wrapper .icon-share').forEach((icon) => {
         const popup = icon.parentElement.nextElementSibling;
-        if (popup) popup.style.display = "none";
+        if (popup) popup.style.display = 'none';
       });
     });
-
-
   }
+
+  //  START SEARCH FUNCTIONALITY
+  const glossaryPanel = document.querySelectorAll('.tabs-panel');
+  const searchNewElement = document.querySelector('.search-results');
+  const searchFldkey = document.querySelector('#our-experts-search');
+  const keySearchNewEle = document.querySelector('.search-results');
+
+  let titleArr = [];
+  let currentFocusIndex = -1;
+
+  // Collect all titles
+  glossaryPanel.forEach((panel) => {
+    const glossaryTitles = panel.querySelectorAll('.tab-iteminner1');
+    glossaryTitles.forEach((title) => {
+      titleArr.push(title.textContent.trim());
+    });
+  });
+
+  // Remove duplicates
+  titleArr = [...new Set(titleArr)];
+
+  // Create result list
+  titleArr.forEach((value) => {
+    const newItem = document.createElement('p');
+    newItem.classList.add('result-item');
+    newItem.setAttribute('data-original-text', value);
+
+    const anchorTag = document.createElement('a');
+    anchorTag.classList.add('list', 'no-redirect');
+    anchorTag.textContent = value;
+
+    newItem.appendChild(anchorTag);
+    searchNewElement.appendChild(newItem);
+  });
+
+  // FILTER FUNCTION
+  const filterListItems = (searchTerm) => {
+    const listItems = document.querySelectorAll('.result-item');
+    const term = searchTerm.trim();
+
+    listItems.forEach((item) => {
+      item.querySelector('.list').innerHTML = item.dataset.originalText;
+
+      if (!term) {
+        item.style.display = 'list-item';
+        return;
+      }
+
+      const escaped = term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      const searchRegex = new RegExp(`(${escaped})`, 'gi');
+
+      const txt = item.dataset.originalText.toLowerCase();
+      if (txt.includes(term.toLowerCase())) {
+        item.style.display = 'list-item';
+        item.querySelector('.list').innerHTML = item.dataset.originalText.replace(searchRegex, '<strong>$1</strong>');
+      } else {
+        item.style.display = 'none';
+      }
+    });
+  };
+
+  // SHOW DROPDOWN ON FOCUS
+  searchFldkey.addEventListener('focus', () => {
+    keySearchNewEle.classList.remove('dsp-none');
+    if (searchFldkey.value.trim()) filterListItems(searchFldkey.value);
+  });
+
+  // CLICK HANDLER (USED BY ENTER ALSO)
+  searchNewElement.addEventListener('click', (event) => {
+    const resultItem = event.target.closest('.result-item');
+    if (!resultItem) return;
+
+    const selectedText = resultItem.getAttribute('data-original-text')
+      || resultItem.textContent.trim();
+
+    const firstLetter = selectedText.charAt(0).toUpperCase();
+    const tabIdentifier = firstLetter === '#' ? '#' : firstLetter;
+
+    const glossaryTabList = document.querySelector('.tabs-list.comlist.tabmain1');
+
+    const matchingTab = Array.from(glossaryTabList.querySelectorAll('.tabs-tab'))
+      .find((tab) => tab.textContent.trim() === tabIdentifier);
+
+    if (matchingTab) matchingTab.click();
+
+    setTimeout(() => {
+      const activePanel = document.querySelector('[role="tabpanel"][aria-hidden="false"]');
+      if (!activePanel) return;
+
+      const resultInPanel = Array.from(activePanel.querySelectorAll('.tab-iteminner1'))
+        .find((item) => item.textContent.trim() === selectedText);
+
+      if (resultInPanel) {
+        resultInPanel.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        resultInPanel.style.backgroundColor = 'rgba(46, 42, 148, 0.1)';
+        setTimeout(() => { resultInPanel.style.backgroundColor = ''; }, 1500);
+      }
+    }, 100);
+
+    searchFldkey.value = selectedText;
+    searchFldkey.closest('.search-wrapper').classList.add('search-active');
+    keySearchNewEle.classList.add('dsp-none');
+  });
+
+  // HIGHLIGHT FUNCTION
+  function highlightItem(items) {
+    items.forEach((el) => el.classList.remove('active-item'));
+    if (items[currentFocusIndex]) {
+      items[currentFocusIndex].classList.add('active-item');
+      items[currentFocusIndex].scrollIntoView({ block: 'nearest' });
+    }
+  }
+
+  // ENTER + ARROW KEY HANDLING
+  searchFldkey.addEventListener('keydown', (event) => {
+    const visibleItems = Array.from(document.querySelectorAll('.result-item')).filter((item) => item.style.display !== 'none');
+    if (event.key === 'ArrowDown') {
+      event.preventDefault();
+      if (visibleItems.length === 0) return;
+
+      currentFocusIndex = (currentFocusIndex + 1) % visibleItems.length;
+      highlightItem(visibleItems);
+    }
+    // const visibleItems2 = (param) => {
+    //   if (param === undefined) {
+    //     return Array.from(keySearchNewEle.querySelectorAll('.list'))
+    //       .filter((item) => item.parentElement.style.display !== 'none'
+    //         && !item.classList.contains('no-results-message'));
+    //   }
+    //   const items = Array.from(keySearchNewEle.querySelectorAll('.list'));
+    //   const searchTerm = param.toLocaleLowerCase();
+    //   items.forEach((item) => {
+    //     const itemText = item.textContent.toLocaleLowerCase();
+    //     const isVisible = itemText.includes(searchTerm);
+
+    //     // Apply the style based on the match
+    //     item.parentElement.style.display = isVisible ? 'block' : 'none';
+
+    //     if (visibleItems.length === 0) return;
+
+    //     currentFocusIndex = (currentFocusIndex + 1) % visibleItems.length;
+    //     highlightItem(visibleItems);
+    //   });
+    //   return param;
+    // };
+
+    if (event.key === 'ArrowUp') {
+      event.preventDefault();
+      if (visibleItems.length === 0) return;
+
+      currentFocusIndex = (currentFocusIndex - 1 + visibleItems.length) % visibleItems.length;
+      highlightItem(visibleItems);
+    }
+
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      if (visibleItems.length === 0) return;
+
+      const selected = visibleItems[currentFocusIndex] || visibleItems[0];
+      selected.querySelector('.list').click(); // SAME AS CLICK
+    }
+  });
+
+  // INPUT CLEAR HANDLER
+  searchFldkey.addEventListener('input', (event) => {
+    if (event.target.value.trim() === '') {
+      keySearchNewEle.classList.remove('dsp-none');
+      searchFldkey.closest('.search-wrapper').classList.remove('search-active');
+    }
+  });
 }

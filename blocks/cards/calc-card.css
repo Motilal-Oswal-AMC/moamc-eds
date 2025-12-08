@@ -18,7 +18,7 @@
   max-width: 400px;
   width: 100%;
   height: 360px;
-  padding: 24px 16px 0 16px;
+  padding: 24px 16px 0;
   flex-direction: column;
   align-items: flex-start;
   gap: 36px;
@@ -109,4 +109,65 @@
 .section.calc-cards .cards-wrapper .cards .cal-item-inner1 > .comlist .cards-card-body .sub-cal-item-inner3 .button .icon-cal-vector img {
   width: 11px;
   height: 11px;
+}
+
+.section.partner-blog .default-content-wrapper .cal-item-sub1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--blue-1-800-primary);
+  text-align: center;
+  font-feature-settings: "ss01" on, "ss04" on, "cv01" on, "cv02" on, "cv03" on, "cv04" on, "cv06" on, "cv09" on, "cv10" on, "cv11" on;
+  font-family: var(--TItle, Inter);
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 40px;
+  padding-bottom: 40px;
+}
+@media (max-width: 768px) {
+  .section.partner-blog .default-content-wrapper .cal-item-sub1 {
+    font-size: 28px;
+    line-height: 24px;
+    padding-bottom: 24px;
+    margin-top: unset;
+    margin-bottom: unset;
+  }
+}
+.section.partner-blog .cards-wrapper .cards .cal-item-inner1 .sub-cal-item1 .sub-inner-cal-item2 .sub-cal-item-inner1 {
+  color: var(--Neutrals-900, #212121);
+  font-feature-settings: "ss01" on, "ss04" on, "cv01" on, "cv02" on, "cv03" on, "cv04" on, "cv06" on, "cv09" on, "cv10" on, "cv11" on;
+  font-family: var(--Body, Inter);
+  font-size: var(--Sub-Header-Medium-Size, 20px);
+  font-style: normal;
+  font-weight: 500;
+  line-height: var(--Sub-Header-Medium-Line-Height, 28px);
+}
+.section.partner-blog .cards-wrapper .cards .cal-item-inner1 .sub-cal-item1 .sub-inner-cal-item2 .sub-cal-item-inner2 {
+  color: var(--Neutrals-Black, #111);
+  font-feature-settings: "ss01" on, "ss04" on, "cv01" on, "cv02" on, "cv03" on, "cv04" on, "cv06" on, "cv09" on, "cv10" on, "cv11" on;
+  font-family: var(--Body, Inter);
+  font-size: var(--Body-Small-regular-Size, 14px);
+  font-style: normal;
+  font-weight: 400;
+  line-height: var(--Label-Large-Line-Height, 20px);
+}
+
+.section.partner-blog .cards-wrapper .cards .cal-item-inner1 > .comlist .cards-card-body .sub-cal-item-inner3 {
+  display: block;
+  position: unset;
+  width: unset;
+  height: unset;
+  color: var(--neutrals-black);
+  font-feature-settings: "ss01" on, "ss04" on, "cv01" on, "cv02" on, "cv03" on, "cv04" on, "cv06" on, "cv09" on, "cv10" on, "cv11" on;
+  font-family: var(--Body, Inter);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  list-style: none;
+}
+
+.section.partner-blog .cards-wrapper .cards .cal-item-inner1 > .comlist .cards-card-body .sub-cal-item-inner2 {
+  list-style: none;
 }/*# sourceMappingURL=calc-card.css.map */

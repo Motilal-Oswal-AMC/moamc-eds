@@ -184,8 +184,20 @@ export default function decorate(block) {
   }
   // aif component end
 
+  const ourstrategiesComponent = block.closest('main').querySelector('.our-strategies-aif');
+  if (ourstrategiesComponent != null) {
+    dataMapMoObj.CLASS_PREFIXES = [
+      'our-strategies-wrap',
+      'our-strategies-text',
+      'our-strategies-acc-wrap',
+      'our-strategies-question',
+      'our-strategies-answer',
+    ];
+    dataMapMoObj.addIndexed(ourstrategiesComponent);
+  }
+
   // // Investor Education article left and right wrapper
-  // if (window.location.href.includes('/investor-education/all-articles/') 
+  // if (window.location.href.includes('/investor-education/all-articles/')
   // || window.location.href.includes('/motilal-oswal-edge/article-details')) {
   //   const maincloser = block.closest('main');
   //   const rightSub = maincloser.querySelectorAll('.article-sub-right');
@@ -243,13 +255,64 @@ export default function decorate(block) {
 
     // Only run this pagination logic if we are in the correct block
     if (mainContainer) {
-    // Select all the card items
+      // Select all the card items
       const items = Array.from(mainContainer.querySelectorAll('li'));
       const itemsPerPage = items.slice(0, 12).length;
 
       if (items.length > itemsPerPage) {
         dataMapMoObj.setupPagination(mainContainer, items, itemsPerPage);
       }
+    }
+  }
+
+  // Error Screen adding
+  const error = block.closest('.section.screen-400, .section.screen-401, .section.screen-403, .section.screen-408, .section.screen-500, .section.service-screen');
+  if (error) {
+    const newEle = document.createElement('div');
+    newEle.classList.add('errscn-txtwrap');
+    const secondP = document.querySelector('.cards-container .cards-card-body p:nth-child(2)');
+    const errscnCont = document.querySelector('.cards-container .cards-card-body');
+    errscnCont.append(newEle);
+    newEle.append(secondP);
+    dataMapMoObj.CLASS_PREFIXES = ['error-screen-wrapper', 'error-screen-wrap', 'error-screen-ul', 'error-screen-li', 'errscrn-img-cont', 'errscrn-cont', 'errscrn-inner-cont'];
+    dataMapMoObj.addIndexed(error);
+  }
+
+  if (window.location.pathname.includes('/static-pages/about') || window.location.pathname.includes('/static-pages/gift-city')) {
+    const aboutSection = block.closest('main').querySelector('.section.trusted-asset');
+    if (aboutSection) {
+      dataMapMoObj.CLASS_PREFIXES = ['trusted-main', 'asset-inner', 'asset-sub', 'asset-subinner', 'asset-item', 'asset-inneritem', 'assest-childitem'];
+      dataMapMoObj.addIndexed(aboutSection);
+    }
+
+    const investPhilosophy = block.closest('main').querySelector('.section.about-invest-philosophy');
+    if (investPhilosophy) {
+      dataMapMoObj.CLASS_PREFIXES = ['investment-main', 'investment-inner', 'investment-sub', 'investment-subinner', 'investment-item', 'investment-inneritem'];
+      dataMapMoObj.addIndexed(investPhilosophy);
+    }
+
+    const missionTab = block.closest('main').querySelectorAll('.behind-mission-tab');
+    missionTab.forEach((el) => {
+      const missionTabCard = el.querySelector('.cards');
+      if (missionTabCard) {
+        dataMapMoObj.CLASS_PREFIXES = ['missioncard-main', 'missioncard-inner', 'missioncard-sub', 'missioncard-subinner', 'missioncard-item', 'missioncard-inneritem'];
+        dataMapMoObj.addIndexed(missionTabCard);
+      }
+    });
+  }
+  const textPart = block.closest('.global-dashboard-container');
+  if (textPart) {
+    dataMapMoObj.CLASS_PREFIXES = ['global-card', 'global-cardsub', 'global-cardinner', 'global-cardchild', 'global-carditem', 'global-cardsubitem'];
+    dataMapMoObj.addIndexed(block);
+  }
+
+  if (window.location.pathname.includes('/static-pages/skin-in-the-game')) {
+    const matterSection = block.closest('main').querySelector('.why-matters-component .cards');
+    if (matterSection) {
+      dataMapMoObj.CLASS_PREFIXES = [
+        'matters-ul',
+        'matters-li'];
+      dataMapMoObj.addIndexed(matterSection);
     }
   }
 }
@@ -297,6 +360,18 @@ subSection.forEach((sublist) => {
 
   dataMapMoObj.addIndexed(sublist);
 });
+
+const newSection = document.querySelectorAll('.our-investing-style.cards-container');
+dataMapMoObj.CLASS_PREFIXES = [
+  'our-invest-cont',
+  'our-invest-sec',
+  'our-invest-sub',
+  'our-invest-inner-text',
+  'our-invest-list',
+  'our-invest-list-content',
+  'our-invest-list-row',
+];
+newSection.forEach((sublist) => dataMapMoObj.addIndexed(sublist));
 
 // const emailFields = document.querySelectorAll(
 //   '.section.article-sub-right.subscribe-email .field-wrapper.email-wrapper input'

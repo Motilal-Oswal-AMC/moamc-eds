@@ -34,11 +34,11 @@ export default function decorate(block) {
   // const planslabel = planCode.split(':')[1];
   // const mop = [];
   const planobj = dataCfObj.cfDataObjs.filter((el) => el.schcode === planslabel);
-  console.log(planobj);
+  // console.log(planobj);
 
   if (block.closest('.product-label')) {
-    console.log(planobj[0].benchmarkreturns[0].groupName);// + Risk- O-Meter
-    console.log(planobj[0].schDetail.schemeName); // + 'Risk- O-Meter'
+    // console.log(planobj[0].benchmarkreturns[0].groupName);// + Risk- O-Meter
+    // console.log(planobj[0].schDetail.schemeName); // + 'Risk- O-Meter'
 
     // Bench image
 

@@ -48,6 +48,9 @@ function initScrollToTop() {
 export default async function decorate(block) {
   const mainBlock = block.closest('body');
   const download = mainBlock.querySelector('main .download');
+  if (mainBlock.querySelector('header [data-id="wcs-header"]')) {
+    block.closest('footer').style.display = 'none';
+  }
   if (download != null) {
     dataMapMoObj.CLASS_PREFIXES = [
       'download-p',
@@ -207,10 +210,10 @@ export default async function decorate(block) {
 
     //   const altText = altTextMap[iconName];
 
-  //   if (altText) {
-  //     image.setAttribute('alt', altText);
-  //   }
-  // });
+    //   if (altText) {
+    //     image.setAttribute('alt', altText);
+    //   }
+    // });
   }
 
   const delay = (ms) => new Promise((resolve) => { setTimeout(resolve, ms); });
@@ -222,6 +225,9 @@ export default async function decorate(block) {
     } else if (block.querySelector('#form-email')) {
       blokform = block.querySelector('#form-email');
     }
+    const footerfield = block.querySelector('.footer-section2 .footer-sub-cont2');
+    footerfield.style.display = 'none';
+    blokform.style.display = 'none';
     if (blokform !== null && blokform !== undefined) {
       const elemObj = {};
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -302,3 +308,34 @@ if (container) {
     }
   });
 }
+
+// Function to hide footer on WCS PAGE
+
+const currentPath = window.location.pathname;
+
+const targetPath = '/wcs';
+
+if (currentPath.includes(targetPath)) {
+  const hideFooter = () => {
+    const footer = document.querySelector('footer');
+    if (footer) {
+      footer.style.display = 'none';
+    }
+  };
+
+  hideFooter();
+
+  const observer = new MutationObserver((mutations, obs) => {
+    const footer = document.querySelector('footer');
+    if (footer) {
+      footer.style.display = 'none';
+      obs.disconnect();
+    }
+  });
+  observer.observe(document.body, {
+    childList: true,
+    subtree: true,
+  });
+}
+
+// Code End Function to hide footer on WCS PAGE

@@ -4,7 +4,6 @@ import {
   div,
   label,
   input,
-  img,
 } from '../../scripts/dom-helpers.js';
 
 export default function decorate(block) {
@@ -73,12 +72,12 @@ export default function decorate(block) {
   };
 
   const imagesToFix = swiperWrapper.querySelectorAll('img[alt=""]');
-  imagesToFix.forEach((img) => {
-    const { iconName } = img.dataset;
+  imagesToFix.forEach((imgelem) => {
+    const { iconName } = imgelem.dataset;
     const altText = altTextMap[iconName];
 
     if (altText !== undefined) {
-      img.setAttribute('alt', altText);
+      imgelem.setAttribute('alt', altText);
     }
   });
   // =================================================================
@@ -141,68 +140,465 @@ export default function decorate(block) {
       },
     };
   } else {
-    const leftarrow = document.createElement('div');
-    leftarrow.classList.add('swiper-button-prev');
-    block.appendChild(leftarrow);
-    const rightarrow = document.createElement('div');
-    rightarrow.classList.add('swiper-button-next');
-    block.appendChild(rightarrow);
-    const pagination = document.createElement('div');
-    pagination.classList.add('swiper-pagination');
-    const navigationWrap = document.createElement('div');
-    navigationWrap.classList.add('navigate-wrap');
-    navigationWrap.append(leftarrow, pagination, rightarrow);
-    // block.appendChild(pagination);
-    block.appendChild(navigationWrap);
-    config = {
-      slidesPerView: 'auto',
-      // spaceBetween: 12,
-      loop: true,
-      navigation: {
-        nextEl: block.querySelector('.swiper-button-next'),
-        prevEl: block.querySelector('.swiper-button-prev'),
-      }, // will be false if no buttons
-      pagination: {
-        el: block.querySelector('.swiper-pagination'), // Selector for your pagination container
-        clickable: true, // Makes pagination bullets clickable
-        renderBullet(index, className) {
-          // Customize the bullet content to display numbers
-          return `<span class="${className}">${index + 1}</span>`;
-        },
-      },
-      // breakpoints: {
-      //   769: {
-      //     spaceBetween: 16,
-      //   },
-      // },
-    };
+    // const leftarrow = document.createElement('div');
+    // leftarrow.classList.add('swiper-button-prev');
+    // block.appendChild(leftarrow);
+    // const rightarrow = document.createElement('div');
+    // rightarrow.classList.add('swiper-button-next');
+    // block.appendChild(rightarrow);
+    // const pagination = document.createElement('div');
+    // pagination.classList.add('swiper-pagination');
+    // const navigationWrap = document.createElement('div');
+    // navigationWrap.classList.add('navigate-wrap');
+    // navigationWrap.append(leftarrow, pagination, rightarrow);
+    // // block.appendChild(pagination);
+    // block.appendChild(navigationWrap);
+    // config = {
+    //   slidesPerView: 'auto',
+    //   // spaceBetween: 12,
+    //   loop: true,
+    //   navigation: {
+    //     nextEl: block.querySelector('.swiper-button-next'),
+    //     prevEl: block.querySelector('.swiper-button-prev'),
+    //   }, // will be false if no buttons
+    //   pagination: {
+    //     el: block.querySelector('.swiper-pagination'), // Selector for your pagination container
+    //     clickable: true, // Makes pagination bullets clickable
+    //     renderBullet(index, className) {
+    //       // Customize the bullet content to display numbers
+    //       return `<span class="${className}">${index + 1}</span>`;
+    //     },
+    //   },
+    //   // breakpoints: {
+    //   //   769: {
+    //   //     spaceBetween: 16,
+    //   //   },
+    //   // },
+    // };
 
     // creating Sear Box for Key Investing
     const keyInvestSection = block.closest('.section');
     const keyInvestSearchWrap = keyInvestSection.querySelector('.default-content-wrapper');
     if (keyInvestSection.classList.contains('key-investing')) {
       const keyInvestSearch = div(
-        { class: 'keyinvest-search' },
-        input({ class: 'keyinvest-inp', id: 'keyinvest' }),
-        label({ class: 'keyinvest-label', for: 'keyinvest' }, 'Search here'),
+        { class: 'keyinvest-wrap' },
+        div({ class: 'keyinvest-search' },
+          input({ class: 'keyinvest-inp', id: 'keyinvest', placeholder: ' ' }),
+          label({ class: 'keyinvest-label', for: 'keyinvest' }, 'Search here'),
+        ),
       );
       keyInvestSearchWrap.append(keyInvestSearch);
     }
   }
   Swiper(block, config);
 
-  window.addEventListener('resize', () => {
-    if (window.innerWidth <= 767) {
-      const futureBuildingSection = document.querySelector('.future-building-container');
-      const stayUpdatedSection = document
-        .querySelector('.article-sub-right.stay-updated.comlist.articlesub2');
+  // window.addEventListener('resize', () => {
+  //   if (window.innerWidth <= 767) {
+  //     const futureBuildingSection = document.querySelector('.future-building-container');
+  //     const stayUpdatedSection = document
+  //       .querySelector('.article-sub-right.stay-updated.comlist.articlesub2');
 
-      if (futureBuildingSection && stayUpdatedSection) {
-      // Move future-building-container above stay-updated
-        stayUpdatedSection.parentNode.insertBefore(futureBuildingSection, stayUpdatedSection);
-        console.log('✅ future-building-container moved above stay-updated');
+  //     if (futureBuildingSection && stayUpdatedSection) {
+  //       // Move future-building-container above stay-updated
+  //       // Move future-building-container above stay-updated
+  //       stayUpdatedSection.parentNode.insertBefore(futureBuildingSection, stayUpdatedSection);
+  //       console.log('✅ future-building-container moved above stay-updated');
+  //     } else {
+  //       console.warn('⚠️ Required sections not found in DOM');
+  //     }
+  //   }
+  // });
+
+  //  START SEARCH FUNCTIONALITY
+
+  const keySearchSection = document.querySelector('.key-investing .keyinvest-search');
+  const keySearchNewEle = document.createElement('div');
+  keySearchNewEle.classList.add('key-search-results', 'dsp-none');
+  keySearchSection.appendChild(keySearchNewEle);
+  const wrapper = document.querySelector('.key-investing .keyinvest-search');
+
+  const crossIconWrap = document.createElement('span');
+  crossIconWrap.classList.add('cross-icon-wrap');
+  wrapper.appendChild(crossIconWrap);
+  crossIconWrap.style.display = 'none';
+  const crossIcon = document.createElement('img');
+  crossIcon.classList.add('cancel-btn');
+  crossIcon.setAttribute('src', '/icons/input-cancel.svg');
+  crossIcon.setAttribute('alt', 'cancel button');
+  crossIcon.setAttribute('loading', 'eager');
+  crossIcon.style.display = 'flex';
+  crossIcon.style.cursor = 'pointer';
+  crossIconWrap.appendChild(crossIcon);
+
+  const searchFldkey = document.querySelector('#keyinvest');
+  const closeBtn = document.querySelector('.cross-icon-wrap');
+  let currentFocusIndex = -1;
+  const inputField = document.querySelector('.keyinvest-search input');
+  inputField.addEventListener('click', () => {
+    inputField.focus();
+    inputField.classList.add('focus-visible');
+  });
+  // Keep label floated when input has a value even after blur
+  if (searchFldkey) {
+    searchFldkey.addEventListener('blur', () => {
+      if (searchFldkey.value && searchFldkey.value.trim() !== '') {
+        searchFldkey.classList.add('focus-visible');
+        // CSS uses .active + label to float label when input has value
+        searchFldkey.classList.add('active');
       } else {
-        console.warn('⚠️ Required sections not found in DOM');
+        try {
+          searchFldkey.classList.remove('focus-visible');
+          searchFldkey.classList.remove('active');
+        } catch (e) {
+          // ignore
+        }
+      }
+    });
+  }
+  if (searchFldkey) {
+    const listContainer = keySearchNewEle;
+
+    const updateActiveItem = (items) => {
+      items.forEach((item, idx) => {
+        if (idx === currentFocusIndex) {
+          item.classList.add('active-search-item');
+          item.scrollIntoView({ block: 'nearest' });
+        } else {
+          item.classList.remove('active-search-item');
+        }
+      });
+    };
+
+    // 👉 Filter Function
+    const filterListItems = (searchTerm) => {
+      const listItems = document.querySelectorAll('.result-item');
+      const term = searchTerm.trim();
+
+      const noMsg = listContainer.querySelector('.no-results-message');
+      if (noMsg) noMsg.remove();
+
+      if (!term) {
+        listItems.forEach((item) => {
+          item.querySelector('.list').innerHTML = item.dataset.originalText;
+          item.style.display = 'block';
+        });
+        return;
+      }
+
+      let matchesFound = false;
+
+      listItems.forEach((item) => {
+        const txt = item.dataset.originalText.toLowerCase();
+        const match = txt.includes(term.toLowerCase());
+
+        if (match) {
+          matchesFound = true;
+          item.querySelector('.list').innerHTML = item.dataset.originalText.replace(new RegExp(`(${term?.toLocaleLowerCase()})`, 'gi'), '<strong>$1</strong>');
+          item.style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+
+      if (!matchesFound) {
+        const msg = document.createElement('li');
+        msg.className = 'list-fund-name no-results-message';
+        msg.textContent = 'No matching results';
+        listContainer.appendChild(msg);
+      }
+    };
+
+    // 👉 On Focus – Load Titles or Re-apply Filter
+    searchFldkey.addEventListener('focus', () => {
+      keySearchNewEle.classList.remove('dsp-none');
+
+      // If there's a search term, re-apply the filter to preserve no-results-message
+      if (searchFldkey.value.trim()) {
+        filterListItems(searchFldkey.value);
+        return;
+      }
+
+      // Otherwise, show the full list
+      keySearchNewEle.innerHTML = '';
+      const titles = document.querySelectorAll('.cards-listcards1');
+      const titleAry = [];
+
+      titles.forEach((title) => {
+        const titleText = title.textContent.trim();
+        if (titleText) {
+          titleAry.push(titleText);
+        }
+      });
+
+      const uniqueTitleAry = [...new Set(titleAry)];
+      // console.log('Titles Array:', uniqueTitleAry);
+
+      uniqueTitleAry.forEach((value) => {
+        const newItem = document.createElement('p');
+        newItem.classList.add('result-item');
+        newItem.setAttribute('data-original-text', value);
+
+        const anchorTag = document.createElement('a');
+        anchorTag.classList.add('list');
+        anchorTag.setAttribute(
+          'href',
+          'https://mosl-dev-upd--mosl-eds--motilal-oswal-amc.aem.live/mutual-fund/in/en/motilal-oswal-edge/article-details-list',
+        );
+
+        anchorTag.textContent = value;
+
+        newItem.appendChild(anchorTag);
+        keySearchNewEle.appendChild(newItem);
+      });
+
+      // console.log("Titles Array:", titleAry);
+    });
+
+    // Prevent pointerdown on the list from blurring the input so the label stays in position
+    listContainer.addEventListener('pointerdown', (e) => {
+      // Prevent default on pointerdown avoids the input losing focus on option click
+      e.preventDefault();
+    });
+
+    // 👉 Click Selection
+    listContainer.addEventListener('click', (event) => {
+      event.preventDefault(); // keep default navigation off
+      closeBtn.style.display = 'flex';
+
+      // set the input value from clicked item
+      searchFldkey.value = event.target.textContent;
+
+      // Keep input focused and the visual focus state so the label doesn't move
+      try {
+        searchFldkey.focus();
+        searchFldkey.classList.add('focus-visible');
+        searchFldkey.classList.add('active');
+      } catch (err) {
+        // ignore if focus fails in some environments
+      }
+      let dataref = '';
+      if ([...event.target.classList].includes('result-item')) {
+        dataref = event.target.querySelector('a').getAttribute('href');
+      } else {
+        dataref = event.target.getAttribute('href');
+      }
+      window.location.href = dataref;
+      listContainer.classList.add('dsp-none');
+    });
+
+    // 👉 On Input
+
+    searchFldkey.addEventListener('input', (event) => {
+      filterListItems(event.target.value);
+      Array.from(listContainer.querySelectorAll('.list')).forEach((list) => {
+        if (list.textContent.toLocaleLowerCase().includes(searchFldkey.value.toLocaleLowerCase())) {
+          list.parentElement.style.display = 'block';
+        } else {
+          list.parentElement.style.display = 'none';
+        }
+      });
+      closeBtn.style.display = event.target.value.length > 0 ? 'flex' : 'none';
+      // toggle .active used by CSS to keep the label floated when value exists
+      if (event.target.value && event.target.value.trim() !== '') {
+        searchFldkey.classList.add('active');
+      } else {
+        searchFldkey.classList.remove('active');
+      }
+      // persist state so label stays floated even when input loses focus
+    });
+    closeBtn.addEventListener('click', () => {
+      searchFldkey.value = '';
+      filterListItems('');
+      closeBtn.style.display = 'none';
+      // remove visual float when cleared
+      try {
+        searchFldkey.classList.remove('focus-visible');
+        // placeholder-driven CSS will handle the float state; no JS class needed
+        searchFldkey.classList.remove('active');
+      } catch (e) {
+        // ignore
+      }
+    });
+    searchFldkey.addEventListener('keydown', (event) => {
+      const visibleItems = (param) => {
+        if (param === undefined) {
+          return Array.from(listContainer.querySelectorAll('.list'))
+            .filter((item) => item.parentElement.style.display !== 'none' && !item.classList.contains('no-results-message'));
+        }
+        const items = Array.from(listContainer.querySelectorAll('.list'));
+        const searchTerm = param.toLocaleLowerCase();
+        items.forEach((item) => {
+          const itemText = item.textContent.toLocaleLowerCase();
+          const isVisible = itemText.includes(searchTerm);
+
+          // Apply the style based on the match
+          item.parentElement.style.display = isVisible ? 'block' : 'none';
+        });
+        return param;
+      };
+
+      switch (event.key) {
+        case 'ArrowDown': {
+          event.preventDefault();
+          const v = visibleItems();
+          if (v.length === 0) break;
+          currentFocusIndex = (currentFocusIndex + 1) % v.length;
+          updateActiveItem(v);
+          break;
+        }
+        case 'ArrowUp': {
+          event.preventDefault();
+          const vUp = visibleItems();
+          if (vUp.length === 0) break;
+          currentFocusIndex = ((currentFocusIndex - 1 + vUp.length) % vUp.length);
+          updateActiveItem(vUp);
+          break;
+        }
+        // case 'Enter': {
+        //   // Prevent form submission/navigation — populate input and close dropdown
+        //   event.preventDefault();
+        //   const vEnt = visibleItems();
+        //   if (vEnt.length === 0) return false;
+        //   const sel = vEnt[(currentFocusIndex <
+        //  0 || currentFocusIndex >= vEnt.length) ? 0 : currentFocusIndex];
+        //   if (sel) {
+        //     searchFldkey.value = sel.textContent.trim();
+
+        //     closeBtn.style.display = 'flex';
+        //     listContainer.classList.add('dsp-none');
+        //   }
+        //   break;
+        // }
+
+        case 'Enter': {
+          event.preventDefault();
+
+          const vEnt = visibleItems();
+          if (vEnt.length === 0) return false;
+
+          const selIndex = (currentFocusIndex < 0 || currentFocusIndex >= vEnt.length)
+            ? 0
+            : currentFocusIndex;
+
+          const sel = vEnt[selIndex];
+          if (sel) {
+            // Set text in input
+            searchFldkey.value = sel.textContent.trim();
+
+            // Show close button
+            closeBtn.style.display = 'flex';
+
+            // Hide dropdown
+            listContainer.classList.add('dsp-none');
+
+            // 👉 Get the href from the selected item
+            const redUrl = sel.getAttribute('href');
+
+            // 👉 Redirect if href exists
+            if (redUrl && redUrl !== '#') {
+              window.location.href = redUrl;
+            }
+          }
+          break;
+        }
+
+        default:
+          break;
+      }
+      return event;
+    });
+
+    // 👉 Clear Button
+    closeBtn.addEventListener('click', () => {
+      searchFldkey.value = '';
+      filterListItems('');
+      closeBtn.style.display = 'none';
+      try {
+        searchFldkey.classList.remove('focus-visible');
+        searchFldkey.classList.remove('has-value');
+      } catch (e) {
+        // ignore
+      }
+    });
+
+    // 👉 Keyboard Navigation
+    // searchFldkey.addEventListener('keydown', (event) => {
+    //   const visibleItems = () =>
+    //     Array.from(listContainer.querySelectorAll('.list'))
+    //       .filter((item) => item.parentElement.style.display !== 'none');
+    //   switch (event.key) {
+    //     case 'ArrowDown':
+    //       event.preventDefault();
+    //       currentFocusIndex = (currentFocusIndex + 1) % visibleItems().length;
+    //       updateActiveItem(visibleItems());
+    //       break;
+    //     case 'ArrowUp':
+    //       event.preventDefault();
+    //       currentFocusIndex =
+    //         (currentFocusIndex - 1 + visibleItems().length) % visibleItems().length;
+    //       updateActiveItem(visibleItems());
+    //       break;
+    //     case 'Enter': {
+    //       if (visibleItems().length === 0) return false;
+    //       const selected = visibleItems()[currentFocusIndex] || visibleItems()[0];
+    //       searchFldkey.value = selected.textContent.trim();
+    //       keySearchNewEle.classList.add('dsp-none');
+    //       break;
+    //     }
+    //     default:
+    //       break;
+    //   }
+    // });
+  }
+
+  const url = window.location.href;
+  console.log('URL::::', url);
+
+  // 👉 Hide on document click
+  document.addEventListener('click', (event) => {
+    const inputKey = document.querySelector('#keyinvest');
+    const inputInvestEducate = document.querySelector('#our-experts-search');
+    const listBox = document.querySelector('.key-search-results');
+
+    if (!inputKey.contains(event.target) && !listBox.contains(event.target)) {
+      listBox.classList.add('dsp-none');
+      // If the input has a value, keep the label floated. Otherwise remove the float class.
+      if (searchFldkey.value && searchFldkey.value.trim() !== '') {
+        try {
+          inputKey.classList.add('focus-visible');
+          inputKey.classList.add('active');
+        } catch (e) {
+          // ignore
+        }
+      } else if (dataMapMoObj.searchFld === undefined || dataMapMoObj.searchFld === '') {
+        // check current page URL
+        const currentPath = window.location.pathname;
+
+        if (currentPath === '/mutual-fund/in/en/investor-education') {
+          if (inputInvestEducate.value !== '') {
+            closeBtn.style.display = 'block';
+          } else {
+            closeBtn.style.display = 'none';
+          }
+        } else {
+          try {
+            inputInvestEducate.classList.remove('focus-visible');
+            inputInvestEducate.classList.remove('active');
+          } catch (e) {
+            // ignore
+          }
+        }
+
+
+        // else if (dataMapMoObj.searchFld === undefined || dataMapMoObj.searchFld === '') {
+        //   closeBtn.style.display = 'none';
+        //   try {
+        //     input.classList.remove('focus-visible');
+        //     input.classList.remove('active');
+        //   } catch (e) {
+        //     // ignore
+        //   }
+        // }
       }
     }
   });

@@ -47,6 +47,11 @@
                                 width: 20px;
                                 height: 20px;
 
+                                @include media (mobile) {
+                                    width: 16px;
+                                    height: 16px;
+                                }
+
                             }
 
                         }
@@ -73,6 +78,13 @@
                                     height: 12px;
                                     aspect-ratio: 1/1;
                                     margin-bottom: 2px;
+                                }
+
+                                .submainleftart1 {
+                                    margin: 0;
+                                    display: flex;
+                                    align-items: center;
+                                    gap: 4px;
                                 }
                             }
 
@@ -171,6 +183,7 @@
                         .submainart3.itemmainleftart3 {
                             position: relative;
                             list-style: none;
+                            cursor: pointer;
 
                             p {
                                 margin: 0;
@@ -184,7 +197,7 @@
                                 background: #fff;
                                 border-radius: 6px;
                                 padding: 10px 0;
-                                box-shadow: 0 4px 14px rgba(0, 0, 0, .15);
+                                box-shadow: 0 4px 14px rgb(0 0 0 / 15%);
                                 position: absolute;
                                 top: 31px;
                                 width: 180px;
@@ -212,9 +225,9 @@
 
                                 }
 
-                                // li::last-child {
-                                //     display: none;
-                                // }
+                                li:last-child {
+                                    display: none;
+                                }
                             }
                         }
 
@@ -227,6 +240,10 @@
 
         .mainarticle2 {
             margin-top: 24px;
+
+            @include media (mobile) {
+                margin-top: 24px;
+            }
 
             .itemarticle1 {
                 .itemsubart1 {

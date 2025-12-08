@@ -130,11 +130,11 @@ export default function decorate(block) {
   // const shareBtn = shareWrapper.querySelector(".submainleftart1");
   // const dropdown = shareWrapper.querySelector(".submainleftart2");
 
-  // // Toggle dropdown when clicking share icon
-  // shareBtn.addEventListener("click", function (e) {
-  //   e.stopPropagation();6
-  //   dropdown.classList.toggle("active");
-  // });
+  // Toggle dropdown when clicking share icon
+  shareBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    dropdown.classList.toggle('active');
+  });
 
   // // Close dropdown on outside click
   // document.addEventListener("click", function (e) {
@@ -144,6 +144,8 @@ export default function decorate(block) {
   // });
 
   //  // Investor Education article left and right wrapper
+  // if (window.location.href.includes('/investor-education/all-articles/')
+  //  || window.location.href.includes('/motilal-oswal-edge/article-details')) {
   // if (window.location.href.includes('/investor-education/all-articles/')
   //  || window.location.href.includes('/motilal-oswal-edge/article-details')) {
   //   const maincloser = block.closest('main');
