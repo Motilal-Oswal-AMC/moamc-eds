@@ -3,20 +3,8 @@ import {
   div, ul, li, p, input, label, button, img,
 } from '../../scripts/dom-helpers.js';
 import { myAPI, generateAppId } from '../../scripts/scripts.js';
-import { createModal } from '../modal/modal.js';
 
-async function popup(param) {
-  // Create NEW container for the modal
-  const videoContainer = document.createElement('div');
-  videoContainer.append(param);
-  // Open Modal
-  const { showModal } = await createModal([videoContainer]);
-  showModal();
-}
 export default function decorate(block) {
-  const delay = (ms) => new Promise((resolve) => {
-    setTimeout(resolve, ms);
-  });
   const wealthModalData = Array.from(block.children);
   const wealthModal = wealthModalData[0];
 
@@ -213,10 +201,6 @@ export default function decorate(block) {
     };
   }
 
-  // delay(800).then(() => {
-  //   const thankYouScreen = document.querySelector('.modal-content .thank-you-screen');
-  //   if (thankYouScreen) {}
-  // });
   async function validateField(inputarg) {
     const nameError = wealthModal.querySelector('.name-error');
     const emailError = wealthModal.querySelector('.email-error');
@@ -301,7 +285,7 @@ export default function decorate(block) {
   moclosse.querySelector('.thank-you-scr-sec4').addEventListener('click', () => {
     moclosse.style.display = 'none';
   });
-  submitButton.addEventListener('click', async (e) => { 
+  submitButton.addEventListener('click', async (e) => {
     e.preventDefault();
     fields.forEach((f) => touchedFields.add(f));
     if (validateForm()) {

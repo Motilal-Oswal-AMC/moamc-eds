@@ -149,7 +149,7 @@ export default function decorate(block) {
     mainwrapper.append(divwrapper);
   }
 
-   const allAccordions = Array.from(document.querySelectorAll('.nri-accordion'));
+  const allAccordions = Array.from(document.querySelectorAll('.nri-accordion'));
 
   allAccordions.forEach((nriAccordion) => {
     const children = Array.from(nriAccordion.children);
