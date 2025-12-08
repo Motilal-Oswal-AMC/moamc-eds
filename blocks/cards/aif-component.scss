@@ -154,6 +154,131 @@
   }
 }
 
+// Our strategies component aif start 
+
+.section.our-strategies-aif {
+  display: flex;
+  flex-direction: column;
+  padding: 40px 0;
+  margin: 0;
+
+  @media screen and (width > 768px) {
+    padding: 60px 0;
+  }
+
+  .our-strategies-wrap1 {
+    display: flex;
+    justify-content: center;
+    .our-strategies-text1 {
+      color: var(--blue-1-800-primary);
+      font-family: var(--body);
+      font-size: 32px;
+      font-weight: 500;
+      line-height: 56px;
+      text-align: center;
+      margin-top: 0;
+      margin-bottom: 60px;
+      position: relative;
+
+      &::before {
+        content: "";
+        position: absolute;
+        left: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 83.744px;
+        height: 89px;
+        background-image: url("/icons/Arc-c-icon.svg");
+        background-size: 100%;
+        background-repeat: no-repeat;
+      }
+
+      @media screen and (width > 768px) {
+        font-size: var(--heading-h1-size);
+        margin-bottom: 60px;
+
+        &::before {
+          left: -26px;
+        }
+      }
+    }
+  }
+
+  .our-strategies-wrap2 {
+    width: 100%;
+    padding: 0;
+
+    .our-strategies-text1 {
+      details {
+        display: flex;
+        flex-direction: column;
+        justify-content: unset;
+        padding: 28px 16px;
+        border: none;
+        border-bottom: 1px solid var(--neutrals-300);
+
+        @media screen and (width > 768px) {
+          flex-direction: row;
+          justify-content: space-between;
+          padding: 28px;
+        }
+
+        summary {
+          &::after {
+            display: none;
+          }
+        }
+
+        .accordion-item-label {
+          padding: 0;
+
+          .our-strategies-answer1 {
+            color: var(--blue-1-800-primary);
+            font-family: var(--body);
+            font-size: var(--body-large-semibold-size);
+            font-weight: 600;
+            line-height: var(--body-xlarge-bold-line-height);
+            margin: 0;
+            padding: 0;
+            font-feature-settings: var(--font-features-default);
+
+            @media screen and (width > 768px) {
+              font-size: var(--body-xlarge-bold-size);
+            }
+          }
+        }
+
+        .accordion-item-body {
+          padding: 0;
+          border-top: 0;
+          background: var(--neutrals-100);
+
+          .our-strategies-answer1 {
+            color: var(--text-body-2);
+            font-family: var(--body);
+            font-size: var(--body-medium-regular-size);
+            font-weight: 400;
+            line-height: var(--body-xlarge-bold-line-height);
+            max-width: 476px;
+            margin: 24px 0 0;
+            padding: 0;
+            background: var(--neutrals-100);
+            font-feature-settings: var(--font-features-default);
+
+            @media screen and (width > 768px) {
+              margin-top: 0;
+            }
+          }
+        }
+
+        &[open] {
+          background: var(--neutrals-100);
+        }
+      }
+    }
+  }
+}
+// Our strategies componnent aif end 
 // Desktop (≥ 1024px)
 // @media (min-width: 1024px) {
 //   .aif-component {
