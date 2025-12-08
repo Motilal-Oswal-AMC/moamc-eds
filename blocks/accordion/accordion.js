@@ -137,5 +137,36 @@ export default function decorate(block) {
       });
       mainwrapper.append(divwrapper);
     }
+  } else if (
+    block.closest('.section').getAttribute('data-id') === 'faq-section-show'
+  ) {
+    const mainwrapper = block.closest('.section.freq-ask-ques');
+    const divwrapper = document.createElement('div');
+    divwrapper.classList.add('faq-our-fund');
+    Array.from(mainwrapper.children).forEach((elchild) => {
+      divwrapper.append(elchild);
+    });
+    mainwrapper.append(divwrapper);
   }
+
+   const allAccordions = Array.from(document.querySelectorAll('.nri-accordion'));
+
+  allAccordions.forEach((nriAccordion) => {
+    const children = Array.from(nriAccordion.children);
+    const hasWrapper = children.some((child) => child.classList.contains('faq-our-fund'));
+
+    if (hasWrapper) {
+      return;
+    }
+
+    const wrapperAccordion = document.createElement('div');
+    wrapperAccordion.classList.add('faq-our-fund');
+
+    children.forEach((child) => {
+      wrapperAccordion.append(child);
+    });
+
+    nriAccordion.append(wrapperAccordion);
+  });
+  /* NRI Wrapper Js  End */
 }

@@ -70,7 +70,8 @@
       "rich-tabs",
       "wealth-modal",
       "blog-author-details",
-      "global-gateway"
+      "global-gateway",
+      "investing-minors"
     ]
   },
   {
@@ -222,6 +223,21 @@
     "id": "rich-tabs",
     "components": [
       "rich-tabsitem"
+    ]
+  },
+  {
+    "id": "calculator-block",
+    "components": [
+      "sip-calculator-item",
+      "swp-calculator-item",
+      "lumpsum-calculator-item",
+      "inflation-calculator-item",
+      "sip-top-up-calculator-item",
+      "systematic-transfer-plan-calculator-item",
+      "sip-delay-calculator-item",
+      "compound-interest-calculator-item",
+      "sip-past-performance-calculator-item",
+      "goal-calculator-item"
     ]
   }
 ]

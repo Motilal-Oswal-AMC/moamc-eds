@@ -6,11 +6,95 @@
     margin-top: 32px;
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 24px;
+
+    @include media (mobile) {
+        margin-top: 0;
+        gap: 24px;
+    }
+
+    .default-content-wrapper.default-content {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+
+        p {
+            margin: 0;
+            padding: 0;
+            padding-left: 22px;
+            color: #3D3D3D;
+            font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
+            font-family: var(--body, Inter);
+            font-size: var(--body-medium-regular-size, 16px);
+            font-style: normal;
+            font-weight: 400;
+            line-height: var(--body-medium-regular-line-height, 24px);
+
+            // &:nth-child(1).leftartitem1,
+            // &:nth-child(2).leftartitem2 {
+            //     display: none;
+            // }
+        }
+
+        ul {
+            margin: 0;
+            padding: 0;
+            padding-left: 22px;
+
+            @include media (mobile) {
+                padding-left: 16px;
+            }
+
+            li {
+                color: #3D3D3D;
+                font-feature-settings: var(--font-features-default);
+                font-family: var(--body, Inter);
+                font-size: var(--body-medium-regular-size, 16px);
+                font-style: normal;
+                font-weight: 400;
+                line-height: 24px;
+
+                @include media (mobile) {
+                    font-size: 14px;
+                    line-height: 20px;
+                }
+            }
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            color: var(--blue-1800-primary, #2E2A94);
+            font-feature-settings: var(--font-features-default);
+            font-family: var(--body, Inter);
+            font-size: var(--body-large-semibold-size, 18px);
+            font-style: normal;
+            font-weight: 600;
+            line-height: 24px;
+            margin: 0;
+            margin-bottom: 22px;
+
+            strong {
+                font-weight: unset;
+            }
+
+            @include media (mobile) {
+                margin-top: 16px;
+            }
+        }
+    }
 }
 
 .moedge-article-video-wrapper {
     .moedge-article-video {
+        // .subleftart1 {
+        //     padding-top: 24px;
+        // }
+
         .articles-wrapper {
             position: relative;
             height: 320px;
@@ -43,6 +127,8 @@
                         width: 816px;
                         height: 320px;
                         flex-shrink: 0;
+                        border-radius: 8px;
+                        object-fit: cover;
 
                         @include media(mobile) {
                             height: 160px;
@@ -50,7 +136,9 @@
                     }
                 }
 
-
+                // &.subleftart1 {
+                //     padding-top: 24px;
+                // }
             }
 
             .mainarticle2 {
@@ -278,7 +366,7 @@
             // width: max-content;
             padding: 0;
             margin: 0;
-            margin: 40px 0 0;
+            margin: 16px 0 0;
 
             // display: none;
 
@@ -286,7 +374,7 @@
                 display: block;
                 max-width: 100%;
                 width: 100%;
-                margin-top: 40px;
+                margin-top: 0;
             }
 
             .itemarticle1 {
@@ -442,7 +530,7 @@
                 font-size: var(--body-large-semibold-size);
                 font-weight: 600;
                 line-height: var(--body-large-semibold-line-height);
-                padding-bottom: 16px;
+                padding-bottom: 24px;
             }
 
             ul.comlist {
@@ -514,6 +602,11 @@
                     font-size: var(--body-medium-regular-size);
                     font-weight: 400;
                     line-height: 24px;
+
+                    @include media (mobile) {
+                        font-size: var(--paragraph-small-regular-size, 14px);
+                        line-height: var(--paragraph-small-regular-line-height, 20px);
+                    }
                 }
             }
         }

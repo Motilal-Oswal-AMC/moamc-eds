@@ -1,5 +1,6 @@
 import dataMapMoObj from '../../scripts/constant.js';
-
+import { button, div } from '../../scripts/dom-helpers.js';
+import accordionBlock from '../accordion/accordion.js';
 export default function decorate(block) {
   dataMapMoObj.CLASS_PREFIXES = ['compaign', 'compaignsub', 'compaigninner'];
   dataMapMoObj.addIndexed(block);
@@ -80,6 +81,21 @@ export default function decorate(block) {
     });
   }
 
+
+  // gift fdp-campaign  start
+
+  if (window.location.href.includes("http://localhost:3000/mutual-fund/in/en/static-pages/gift-city") || window.location.href.includes("https://mosl-dev-upd--moamc-eds--motilal-oswal-amc.aem.live/mutual-fund/in/en/static-pages/gift-city")) {
+
+    const giftParent = document.querySelector(".gift-campaign .fdp-campaign-wrapper");
+    const giftWrapper = div({ class: 'wrapper-policy' });
+    giftParent.parentNode.insertBefore(giftWrapper, giftParent);
+    giftWrapper.appendChild(giftParent);
+
+  }
+
+
+
+  // gift fdp-campaign  End
   // document.addEventListener("DOMContentLoaded", function () {
   // Select all li elements with class starting with "strategy2" (like strategy21, strategy25...)
   const listItemsStrategy = document.querySelectorAll("li.comlist[class*='strategy2']");
@@ -140,4 +156,108 @@ export default function decorate(block) {
       window.location.href = compaignLink.href;
     });
   }
+
+  // Privacy Policy Functionality Start
+  mainblock.classList.add('privacypolicy-container');
+  const securitySection = mainblock.querySelectorAll('.privacy-policy-banner')[0].classList.add('active');
+  const banners = mainblock.querySelectorAll('.privacy-policy-banner');
+
+  if (window.innerWidth <= 767) {
+    banners[1].style.marginTop = '58px';
+  } else {
+    banners[1].style.marginTop = '76px';
+  }
+  const fpdCampaignSection = block.parentElement.parentElement;
+  if (fpdCampaignSection.classList.contains('accordion-container')) {
+    const accordionContent = fpdCampaignSection.querySelector('.accordion-wrapper .accordion.block');
+    accordionBlock(accordionContent)
+  }
+
+  function privacyPlicyBtn() {
+    if (mainblock.querySelectorAll('.privacy-policy-banner')) {
+      // Array.from(mainblock.querySelectorAll('.privacy-policy-banner')).forEach((elem) => {
+      const btnstru = div({ class: 'button-container' },
+        ...Array.from(mainblock.querySelectorAll('.privacy-policy-banner')).map((element) => {
+          return button({ class: 'button', dataAttr: element.getAttribute('data-id') }, element.getAttribute('data-id'))
+        })
+      );
+      const seqDiv = div({ class: 'wrapper-policy' });
+      const contentDiv = div({ class: 'wrapper-content' });
+      const banner = fpdCampaignSection.querySelector('.fdp-campaign-wrapper').cloneNode(true) //banner image
+      const contentstru = fpdCampaignSection.querySelector('.pp-banner-wrap2').cloneNode(true); // disclaimer
+      fpdCampaignSection.innerHTML = "";
+      if (!fpdCampaignSection.querySelector('.wrapper-policy')) {
+
+        contentDiv.appendChild(btnstru.cloneNode(true));
+        contentDiv.appendChild(contentstru);
+
+        seqDiv.appendChild(banner);
+        seqDiv.appendChild(contentDiv);
+
+        fpdCampaignSection.appendChild(seqDiv);
+      }
+      // });
+    }
+  }
+  privacyPlicyBtn()
+
+  // if (mainblock.querySelectorAll('.privacy-policy-banner').length !== 0) {
+  //   Array.from(mainblock.querySelectorAll('.privacy-policy-banner')).forEach((elem) => {
+  //     const btnstru = div({ class: 'button-container' },
+  //       ...Array.from(mainblock.querySelectorAll('.privacy-policy-banner')).map((element) => {
+  //         return button({ class: 'button', dataAttr: element.getAttribute('data-id') }, element.getAttribute('data-id'))
+  //       })
+  //     );
+  //     const seqDiv = div({ class: 'wrapper-policy' });
+  //     const contentDiv = div({ class: 'wrapper-content' });
+  //     // const accordionContent = elem.querySelector('.accordion-wrapper .accordion.block');
+  //     // debugger;
+  //     // if (accordionContent && elem.classList.contains('accordion-container')) {
+  //     //   accordionBlock(accordionContent)
+  //     // }
+  //     const banner = elem.querySelector('.fdp-campaign-wrapper').cloneNode(true) //banner image
+  //     const contentstru = elem.querySelector('.pp-banner-wrap2').cloneNode(true); // disclaimer
+  //     elem.innerHTML = "";
+  //     if (!elem.querySelector('.wrapper-policy')) {
+
+  //       contentDiv.appendChild(btnstru.cloneNode(true));
+  //       contentDiv.appendChild(contentstru);
+
+  //       seqDiv.appendChild(banner);
+  //       seqDiv.appendChild(contentDiv);
+
+  //       elem.appendChild(seqDiv);
+
+  //     }
+  //   });
+  // }
+
+  mainblock.querySelectorAll('.button')[0].classList.add('active');
+  document.querySelectorAll('.privacy-policy-banner .button').forEach((btn) => {
+    btn.addEventListener('click', () => {
+
+      const selectedAttr = btn.getAttribute('dataattr'); // button clicked value
+
+      // Remove active from ALL buttons first
+      document.querySelectorAll('.privacy-policy-banner .button')
+        .forEach(b => b.classList.remove('active'));
+
+      // Add active to ALL buttons that match the clicked button
+      document.querySelectorAll(`.privacy-policy-banner .button[dataattr="${selectedAttr}"]`)
+        .forEach(b => b.classList.add('active'));
+
+      document.querySelectorAll('.privacy-policy-banner').forEach((section) => {
+        const sectionAttr = section.getAttribute('data-id');
+
+        if (sectionAttr === selectedAttr) {
+          section.classList.add('active')  // show matching section
+        } else {
+          section.classList.remove('active')  // hide others
+        }
+
+      });
+
+    });
+  });
+  // Privacy Policy Functionality End
 }

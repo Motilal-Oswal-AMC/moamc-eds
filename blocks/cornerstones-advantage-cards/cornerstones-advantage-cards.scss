@@ -15,7 +15,8 @@
       padding: 24px 0 12px;
     }
 
-    .default-content-wrapper{
+    .default-content-wrapper {
+
       h1,
       h2,
       h3,
@@ -25,7 +26,7 @@
         margin: 0 0 4px;
         text-align: center;
 
-        @include font-style( var(--heading-h4-size), var(--heading-h4-line-height), var(--blue-1-800-primary), 600, var(--title));
+        @include font-style(var(--heading-h4-size), var(--heading-h4-line-height), var(--blue-1-800-primary), 600, var(--title));
 
         @include media(mobile) {
           text-align: left;
@@ -85,7 +86,7 @@
           padding-right: 0;
         }
 
-        > div {
+        >div {
           height: 100%;
           display: flex;
           flex-direction: column;
@@ -164,18 +165,210 @@
               display: block;
               text-align: left;
 
-              @include font-style(
-                var(--text-link-small-size),
+              @include font-style(var(--text-link-small-size),
                 var(--text-link-small-line-height),
                 var(--text-text-link),
                 400,
-                var(--body)
-              );
+                var(--body));
 
-              @include media(mobile){
+              @include media(mobile) {
                 font-size: var(--text-link-small-size);
                 line-height: var(--text-link-small-line-height);
               }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.section.cornerstones-advantage.gift-cornerstones-advantage {
+  .cornerstones-advantage-cards-wrapper {
+    .cornerstones-advantage-cards {
+      gap: 60px 64px;
+
+      @include media(mobile) {
+        gap: 40px;
+
+      }
+
+
+      .cards-item {
+        min-height: unset;
+        width: 259px;
+
+        @include media(mobile) {
+          width: 100%;
+
+        }
+
+        div {
+          padding: 0;
+
+          @include media(mobile) {
+            display: flex;
+            flex-direction: column;
+
+          }
+
+          .item-child-1 {
+            width: 100%;
+            color: #212121;
+            font-family: var(--bod, Inter);
+            font-size: var(--sub-header-medium-size, );
+            font-style: normal;
+            font-weight: 500;
+            line-height: var(--sub-header-medium-line-height);
+
+            @include media(mobile) {
+              font-size: 18px;
+              line-height: 24px;
+              height: unset;
+              margin-bottom: 6px;
+            }
+
+          }
+
+          .item-child-2 {
+            margin: 0;
+            width: 100%;
+            color: #424242;
+            font-family: var(--body);
+            font-size: var(--body-medium-regular-size);
+            font-style: normal;
+            font-weight: 400;
+            line-height: var(--body-medium-regular-line-height);
+            /* 150% */
+
+            @include media(mobile) {
+              font-size: 14px;
+              line-height: 20px;
+            }
+
+          }
+        }
+      }
+    }
+  }
+}
+
+.section.cornerstones-elss-fund {
+  padding: unset;
+
+  .cornerstones-advantage-cards-wrapper {
+    .cornerstones-advantage-cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      justify-content: space-between;
+      margin: 40px 0 0;
+    }
+  }
+
+  .cornerstones-advantage-cards {
+    .cards-item {
+      max-width: 296px;
+      width: 100%;
+      min-height: 244px;
+
+      @include media(tab) {
+        min-height: unset;
+      }
+    }
+  }
+}
+
+.section.cornerstones-become-partner {
+  border-radius: 16px;
+  background: var(--blue-1-50);
+  max-width: 1232px;
+  display: flex;
+  flex-direction: column;
+  padding: 0 40px 24px;
+  margin-top: -17px;
+
+  @include media(mobile) {
+    margin-left: 16px;
+    margin-right: 16px;
+    width: unset;
+    padding: 24px 16px;
+  }
+
+  .default-content-wrapper {
+    display: flex;
+    padding-top: 24px;
+
+    @include media(mobile) {
+      padding: unset;
+    }
+
+
+    h6 {
+      margin: unset;
+      color: var(--blue-1-800-primary);
+      font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
+      font-family: var(--TItle, Inter);
+      font-size: 24px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 28px;
+
+      @include media(mobile) {
+        font-size: 20px;
+        line-height: 24px;
+      }
+    }
+  }
+
+  .cornerstones-advantage-cards-wrapper {
+    max-width: unset;
+    margin: unset;
+
+    @include media(mobile) {
+      padding: unset;
+    }
+
+    .cornerstones-advantage-cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      margin: 24px 0 0;
+
+      .cards-item {
+        max-width: 364px;
+        min-height: 162px;
+
+        div {
+          @include media(mobile) {
+            display: block;
+          }
+
+          .item-child-2 {
+            margin: 10px 0 4px;
+            color: var(--blue-1-800-primary);
+            font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
+            font-family: var(--Body, Inter);
+            font-size: var(--Body-Large-regular-Size, 18px);
+            font-style: normal;
+            font-weight: 600;
+            line-height: var(--Body-Large-regular-Line-Height, 28px);
+          }
+
+          .item-child-3 {
+            padding-bottom: unset;
+            color: var(--blue-1-800-primary);
+            font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
+            font-family: var(--Body, Inter);
+            font-size: var(--Body-Large-regular-Size, 18px);
+            font-style: normal;
+            font-weight: 400;
+            line-height: 28px;
+            /* 155.556% */
+
+            @include media(mobile) {
+              font-size: 16px;
+              line-height: 24px;
             }
           }
         }

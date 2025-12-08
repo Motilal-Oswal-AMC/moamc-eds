@@ -1,0 +1,1 @@
+@import"../../../styles/fonts.css";.calculator-container .calculator-block .calc-author-main1{display:flex;flex-wrap:wrap}.calculator-container .calculator-block .calc-author-main1 .calc-input-block{width:100%;max-width:calc(50% - 8px)}@media(max-width: 768px){.calculator-container .calculator-block .calc-author-main1 .calc-input-block{max-width:100%}}

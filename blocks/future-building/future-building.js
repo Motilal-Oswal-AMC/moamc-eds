@@ -233,7 +233,7 @@ export default function decorate(block) {
   const searchFldkey = document.querySelector('#keyinvest');
   const closeBtn = document.querySelector('.cross-icon-wrap');
   let currentFocusIndex = -1;
-  let inputField = document.querySelector(".keyinvest-search input");
+  const inputField = document.querySelector('.keyinvest-search input');
   inputField.addEventListener('click', () => {
     inputField.focus();
     inputField.classList.add('focus-visible');
@@ -268,78 +268,6 @@ export default function decorate(block) {
         }
       });
     };
-
-    // 👉 On Focus – Load Titles or Re-apply Filter
-    searchFldkey.addEventListener('focus', () => {
-      keySearchNewEle.classList.remove('dsp-none');
-
-      // If there's a search term, re-apply the filter to preserve no-results-message
-      if (searchFldkey.value.trim()) {
-        filterListItems(searchFldkey.value);
-        return;
-      }
-
-      // Otherwise, show the full list
-      keySearchNewEle.innerHTML = '';
-      const titles = document.querySelectorAll('.cards-listcards1');
-      const titleAry = [];
-
-      titles.forEach((title) => {
-        const titleText = title.textContent.trim();
-        if (titleText) {
-          titleAry.push(titleText);
-        }
-      });
-
-      const uniqueTitleAry = [...new Set(titleAry)];
-      console.log("Titles Array:", uniqueTitleAry);
-
-      uniqueTitleAry.forEach((value) => {
-        const newItem = document.createElement('p');
-        newItem.classList.add('result-item');
-        newItem.setAttribute('data-original-text', value);
-
-        const anchorTag = document.createElement('a');
-        anchorTag.classList.add('list');
-        // anchorTag.setAttribute(
-        //   'href',
-        //   'https://mosl-dev-upd--mosl-eds--motilal-oswal-amc.aem.live/mutual-fund/in/en/motilal-oswal-edge/article-details-list'
-        // );
-
-        anchorTag.textContent = value;
-
-        newItem.appendChild(anchorTag);
-        keySearchNewEle.appendChild(newItem);
-      });
-
-      console.log("Titles Array:", titleAry);
-    });
-
-    // Prevent pointerdown on the list from blurring the input so the label stays in position
-    listContainer.addEventListener('pointerdown', (e) => {
-      // Prevent default on pointerdown avoids the input losing focus on option click
-      e.preventDefault();
-    });
-
-    // 👉 Click Selection
-    listContainer.addEventListener('click', (event) => {
-      event.preventDefault(); // keep default navigation off
-      closeBtn.style.display = 'block';
-
-      // set the input value from clicked item
-      searchFldkey.value = event.target.textContent;
-
-      // Keep input focused and the visual focus state so the label doesn't move
-      try {
-        searchFldkey.focus();
-        searchFldkey.classList.add('focus-visible');
-        searchFldkey.classList.add('active');
-      } catch (err) {
-        // ignore if focus fails in some environments
-      }
-
-      listContainer.classList.add('dsp-none');
-    });
 
     // 👉 Filter Function
     const filterListItems = (searchTerm) => {
@@ -380,6 +308,84 @@ export default function decorate(block) {
       }
     };
 
+    // 👉 On Focus – Load Titles or Re-apply Filter
+    searchFldkey.addEventListener('focus', () => {
+      keySearchNewEle.classList.remove('dsp-none');
+
+      // If there's a search term, re-apply the filter to preserve no-results-message
+      if (searchFldkey.value.trim()) {
+        filterListItems(searchFldkey.value);
+        return;
+      }
+
+      // Otherwise, show the full list
+      keySearchNewEle.innerHTML = '';
+      const titles = document.querySelectorAll('.cards-listcards1');
+      const titleAry = [];
+
+      titles.forEach((title) => {
+        const titleText = title.textContent.trim();
+        if (titleText) {
+          titleAry.push(titleText);
+        }
+      });
+
+      const uniqueTitleAry = [...new Set(titleAry)];
+      // console.log('Titles Array:', uniqueTitleAry);
+
+      uniqueTitleAry.forEach((value) => {
+        const newItem = document.createElement('p');
+        newItem.classList.add('result-item');
+        newItem.setAttribute('data-original-text', value);
+
+        const anchorTag = document.createElement('a');
+        anchorTag.classList.add('list');
+        anchorTag.setAttribute(
+          'href',
+          'https://mosl-dev-upd--mosl-eds--motilal-oswal-amc.aem.live/mutual-fund/in/en/motilal-oswal-edge/article-details-list',
+        );
+
+        anchorTag.textContent = value;
+
+        newItem.appendChild(anchorTag);
+        keySearchNewEle.appendChild(newItem);
+      });
+
+      // console.log("Titles Array:", titleAry);
+    });
+
+    // Prevent pointerdown on the list from blurring the input so the label stays in position
+    listContainer.addEventListener('pointerdown', (e) => {
+      // Prevent default on pointerdown avoids the input losing focus on option click
+      e.preventDefault();
+    });
+
+    // 👉 Click Selection
+    listContainer.addEventListener('click', (event) => {
+      event.preventDefault(); // keep default navigation off
+      closeBtn.style.display = 'flex';
+
+      // set the input value from clicked item
+      searchFldkey.value = event.target.textContent;
+
+      // Keep input focused and the visual focus state so the label doesn't move
+      try {
+        searchFldkey.focus();
+        searchFldkey.classList.add('focus-visible');
+        searchFldkey.classList.add('active');
+      } catch (err) {
+        // ignore if focus fails in some environments
+      }
+      let dataref = '';
+      if ([...event.target.classList].includes('result-item')) {
+        dataref = event.target.querySelector('a').getAttribute('href');
+      } else {
+        dataref = event.target.getAttribute('href');
+      }
+      window.location.href = dataref;
+      listContainer.classList.add('dsp-none');
+    });
+
     // 👉 On Input
 
     searchFldkey.addEventListener('input', (event) => {
@@ -414,7 +420,6 @@ export default function decorate(block) {
       }
     });
     searchFldkey.addEventListener('keydown', (event) => {
-      closeBtn.style.display = 'block';
       const visibleItems = (param) => {
         if (param === undefined) {
           return Array.from(listContainer.querySelectorAll('.list'))
@@ -449,19 +454,54 @@ export default function decorate(block) {
           updateActiveItem(vUp);
           break;
         }
+        // case 'Enter': {
+        //   // Prevent form submission/navigation — populate input and close dropdown
+        //   event.preventDefault();
+        //   const vEnt = visibleItems();
+        //   if (vEnt.length === 0) return false;
+        //   const sel = vEnt[(currentFocusIndex <
+        //  0 || currentFocusIndex >= vEnt.length) ? 0 : currentFocusIndex];
+        //   if (sel) {
+        //     searchFldkey.value = sel.textContent.trim();
+
+        //     closeBtn.style.display = 'flex';
+        //     listContainer.classList.add('dsp-none');
+        //   }
+        //   break;
+        // }
+
         case 'Enter': {
-          // Prevent form submission/navigation — populate input and close dropdown
           event.preventDefault();
+
           const vEnt = visibleItems();
           if (vEnt.length === 0) return false;
-          const sel = vEnt[(currentFocusIndex < 0 || currentFocusIndex >= vEnt.length) ? 0 : currentFocusIndex];
+
+          const selIndex = (currentFocusIndex < 0 || currentFocusIndex >= vEnt.length)
+            ? 0
+            : currentFocusIndex;
+
+          const sel = vEnt[selIndex];
           if (sel) {
+            // Set text in input
             searchFldkey.value = sel.textContent.trim();
-            closeBtn.style.display = 'block';
+
+            // Show close button
+            closeBtn.style.display = 'flex';
+
+            // Hide dropdown
             listContainer.classList.add('dsp-none');
+
+            // 👉 Get the href from the selected item
+            const redUrl = sel.getAttribute('href');
+
+            // 👉 Redirect if href exists
+            if (redUrl && redUrl !== '#') {
+              window.location.href = redUrl;
+            }
           }
           break;
         }
+
         default:
           break;
       }
@@ -482,58 +522,83 @@ export default function decorate(block) {
     });
 
     // 👉 Keyboard Navigation
-    searchFldkey.addEventListener('keydown', (event) => {
-      const visibleItems = () =>
-        Array.from(listContainer.querySelectorAll('.list'))
-          .filter((item) => item.parentElement.style.display !== 'none');
-      switch (event.key) {
-        case 'ArrowDown':
-          event.preventDefault();
-          currentFocusIndex = (currentFocusIndex + 1) % visibleItems().length;
-          updateActiveItem(visibleItems());
-          break;
-        case 'ArrowUp':
-          event.preventDefault();
-          currentFocusIndex =
-            (currentFocusIndex - 1 + visibleItems().length) % visibleItems().length;
-          updateActiveItem(visibleItems());
-          break;
-        case 'Enter': {
-          if (visibleItems().length === 0) return false;
-          const selected = visibleItems()[currentFocusIndex] || visibleItems()[0];
-          searchFldkey.value = selected.textContent.trim();
-          keySearchNewEle.classList.add('dsp-none');
-          break;
-        }
-        default:
-          break;
-      }
-    });
+    // searchFldkey.addEventListener('keydown', (event) => {
+    //   const visibleItems = () =>
+    //     Array.from(listContainer.querySelectorAll('.list'))
+    //       .filter((item) => item.parentElement.style.display !== 'none');
+    //   switch (event.key) {
+    //     case 'ArrowDown':
+    //       event.preventDefault();
+    //       currentFocusIndex = (currentFocusIndex + 1) % visibleItems().length;
+    //       updateActiveItem(visibleItems());
+    //       break;
+    //     case 'ArrowUp':
+    //       event.preventDefault();
+    //       currentFocusIndex =
+    //         (currentFocusIndex - 1 + visibleItems().length) % visibleItems().length;
+    //       updateActiveItem(visibleItems());
+    //       break;
+    //     case 'Enter': {
+    //       if (visibleItems().length === 0) return false;
+    //       const selected = visibleItems()[currentFocusIndex] || visibleItems()[0];
+    //       searchFldkey.value = selected.textContent.trim();
+    //       keySearchNewEle.classList.add('dsp-none');
+    //       break;
+    //     }
+    //     default:
+    //       break;
+    //   }
+    // });
   }
+
+  const url = window.location.href;
+  console.log('URL::::', url);
 
   // 👉 Hide on document click
   document.addEventListener('click', (event) => {
-    const input = document.querySelector('#keyinvest');
+    const inputKey = document.querySelector('#keyinvest');
+    const inputInvestEducate = document.querySelector('#our-experts-search');
     const listBox = document.querySelector('.key-search-results');
 
-    if (!input.contains(event.target) && !listBox.contains(event.target)) {
+    if (!inputKey.contains(event.target) && !listBox.contains(event.target)) {
       listBox.classList.add('dsp-none');
       // If the input has a value, keep the label floated. Otherwise remove the float class.
       if (searchFldkey.value && searchFldkey.value.trim() !== '') {
         try {
-          input.classList.add('focus-visible');
-          input.classList.add('active');
+          inputKey.classList.add('focus-visible');
+          inputKey.classList.add('active');
         } catch (e) {
           // ignore
         }
       } else if (dataMapMoObj.searchFld === undefined || dataMapMoObj.searchFld === '') {
-        closeBtn.style.display = 'none';
-        try {
-          input.classList.remove('focus-visible');
-          input.classList.remove('active');
-        } catch (e) {
-          // ignore
+        // check current page URL
+        const currentPath = window.location.pathname;
+
+        if (currentPath === '/mutual-fund/in/en/investor-education') {
+          if (inputInvestEducate.value !== '') {
+            closeBtn.style.display = 'block';
+          } else {
+            closeBtn.style.display = 'none';
+          }
+        } else {
+          try {
+            inputInvestEducate.classList.remove('focus-visible');
+            inputInvestEducate.classList.remove('active');
+          } catch (e) {
+            // ignore
+          }
         }
+
+
+        // else if (dataMapMoObj.searchFld === undefined || dataMapMoObj.searchFld === '') {
+        //   closeBtn.style.display = 'none';
+        //   try {
+        //     input.classList.remove('focus-visible');
+        //     input.classList.remove('active');
+        //   } catch (e) {
+        //     // ignore
+        //   }
+        // }
       }
     }
   });

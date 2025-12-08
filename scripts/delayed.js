@@ -133,7 +133,8 @@ if (newSection) {
 }
 // if (window.innerWidth <= 767) {
 //   const futureBuildingSection = document.querySelector('.future-building-container');
-//   const stayUpdatedSection = document.querySelector('.article-sub-right.stay-updated.comlist.articlesub2');
+//   const stayUpdatedSection =
+// document.querySelector('.article-sub-right.stay-updated.comlist.articlesub2');
 
 //   if (futureBuildingSection && stayUpdatedSection) {
 //     // Move future-building-container above stay-updated

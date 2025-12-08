@@ -1,0 +1,61 @@
+@use "sass:map";
+@use "../../../styles/common-theme/css/variables_mixins" as *;
+@use "../../../styles/common-theme/css/fluid-typography" as *;
+
+
+.calculator-container {
+    .calculator-block {
+        .calc-author-main1 {
+            display: flex;
+            flex-wrap: wrap;
+
+
+            // @include media(mobile) {}
+            .laitss-inp-container {
+                max-width: 100%;
+            }
+
+            .tosi-inp-container,
+            .msa-inp-container,
+            .erfts-inp-container,
+            .erfss-inp-container {
+                max-width: calc(50% - 8px);
+            }
+        }
+
+        .calc-overview-summary {
+            .comlist {
+                margin: 0;
+            }
+
+            ul[class*='calc-overview-item'] {
+                list-style: none;
+
+                &:has(.calc-overview-amount) {
+                    max-width: calc(45%);
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 4px;
+                }
+
+                li[class*='calc-overview-subitem'] {
+                    max-height: fit-content;
+                    list-style: none;
+
+                    &.calc-overview-small-title {
+                        @include font-style(12px, 16px, $neutrals-700, 400, $inter);
+                    }
+
+                    &.calc-overview-amount {
+                        @include font-style(16px, 20px, $primary-blue, 600, $inter);
+                    }
+
+                    .calc-overview-cta {
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+}

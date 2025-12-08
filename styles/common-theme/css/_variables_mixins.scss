@@ -150,6 +150,7 @@ $neutrals-50: #FAFAFA;
 $neutrals-400: #bdbdbd;
 $neutrals-300: #E0E0E0;
 $neutrals-200: #EEE;
+$neutrals-550: #737373;
 $neutrals-600: #757575;
 $text-body-2: #616161;
 $neutrals-black: #111;
@@ -241,6 +242,7 @@ $spacing: (
 // ----------------------------------------
 // $box-shadow-soft: 0 8px 24px rgba(map.get($primary-black, 1), 0.08);
 $box-shadow-soft: 0 8px 24px rgba($primary-black, 0.08);
+$primary-box-shadow: 0 4px 12px 0 rgb(0 0 0 / 5%);
 
 // ----------------------------------------
 // BREAKPOINTS
@@ -436,6 +438,7 @@ $orange-100: #ffcc80;
 $orange-50: #ffe0b2;
 $orange-25: #fff3e0;
 $green-600: #068c46;
+$green-500-secondary: #009B2C;
 $green-500-primary: #00a850;
 $green-400: #07cc64;
 $green-300: #22e17c;

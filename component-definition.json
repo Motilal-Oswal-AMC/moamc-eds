@@ -1248,6 +1248,187 @@
               }
             }
           }
+        },
+        {
+          "title": "Calculator Block",
+          "id": "calculator-block",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "Calculator Block",
+                  "model": "calculator-block",
+                  "filter": "calculator-block"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "SIP Calculator Item",
+          "id": "sip-calculator-item",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "SIP Calculator Item",
+                  "model": "sip-calculator-item"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "SWP Calculator Item",
+          "id": "swp-calculator-item",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "SWP Calculator Item",
+                  "model": "swp-calculator-item"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Lumpsum Calculator Item",
+          "id": "lumpsum-calculator-item",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Lumpsum Calculator Item",
+                  "model": "lumpsum-calculator-item"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Inflation Calculator Item",
+          "id": "inflation-calculator-item",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Inflation Calculator Item",
+                  "model": "inflation-calculator-item"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "SIP Top Up Calculator Item",
+          "id": "sip-top-up-calculator-item",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "SIP Top Up Calculator Item",
+                  "model": "sip-top-up-calculator-item"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Systematic Transfer Plan Calculator Item",
+          "id": "systematic-transfer-plan-calculator-item",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Systematic Transfer Plan Calculator Item",
+                  "model": "systematic-transfer-plan-calculator-item"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "SIP Delay Calculator Item",
+          "id": "sip-delay-calculator-item",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "SIP Delay Calculator Item",
+                  "model": "sip-delay-calculator-item"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Compound Interest Calculator Item",
+          "id": "compound-interest-calculator-item",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Compound Interest Calculator Item",
+                  "model": "compound-interest-calculator-item"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "SIP Past Performance Calculator Item",
+          "id": "sip-past-performance-calculator-item",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "SIP Past Performance Calculator Item",
+                  "model": "sip-past-performance-calculator-item"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Goal Calculator Item",
+          "id": "goal-calculator-item",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Goal Calculator Item",
+                  "model": "goal-calculator-item"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Investing Minors",
+          "id": "investing-minors",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "Investing Minors",
+                  "model": "investing-minors"
+                }
+              }
+            }
+          }
         }
       ]
     }

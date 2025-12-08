@@ -175,6 +175,38 @@
             "value": "highlight"
           },
           {
+            "name": "Fund Tax",
+            "value": "fund-tax"
+          },
+          {
+            "name": "Invest Blog",
+            "value": "invest-blog"
+          },
+          {
+            "name": "Tax Blog",
+            "value": "tax-blog"
+          },
+          {
+            "name": "Sip Blog",
+            "value": "sip-blog"
+          },
+          {
+            "name": "SEBI Blog",
+            "value": "sebi-blog"
+          },
+          {
+            "name": "Fund Philosophy",
+            "value": "fund-philosophy"
+          },
+          {
+            "name": "Elss Stock Table",
+            "value": "elss-stock-table"
+          },
+          {
+            "name": "Mo Partner",
+            "value": "mo-partner"
+          },
+          {
             "name": "Calculators Card",
             "value": "calculators-card"
           },
@@ -189,6 +221,10 @@
           {
             "name": "GLP TAB Price",
             "value": "glp-tab-price"
+          },
+           {
+            "name": "Gift Campaign",
+            "value": "gift-campaign"
           },
           {
             "name": "Wealth-Register",
@@ -233,6 +269,34 @@
           {
             "name": "fdp-kyc-form",
             "value": "fdp-kyc-form"
+          },
+          {
+            "name": "Gift Hero",
+            "value": "gift-hero"
+          },
+          {
+            "name": "Gift Cornerstones Advantage",
+            "value": "gift-cornerstones-advantage"
+          },
+          {
+            "name": "Gift High Skin",
+            "value": "gift-high-skin"
+          },
+          {
+            "name": "Gift Investing Style",
+            "value": "gift-investing-style"
+          },
+          {
+            "name": "Gift High Skin",
+            "value": "gift-high-skin"
+          },
+          {
+            "name": "Choose Gift",
+            "value": "choose-gift"
+          },
+          {
+            "name": "Gift Accordion",
+            "value": "gift-accordion"
           },
           {
             "name": "pan-details-modal",
@@ -627,12 +691,12 @@
             "value": "why-matters-component"
           },
           {
-            "name":"Our Commitment Component",
-            "value":"our-commitment-component"
+            "name": "Our Commitment Component",
+            "value": "our-commitment-component"
           },
           {
-            "name":"What Stake Component",
-            "value":"what-stake-component"
+            "name": "What Stake Component",
+            "value": "what-stake-component"
           },
           {
             "name": "Mo Inter Business",
@@ -691,12 +755,44 @@
             "value": "listing-our-expert"
           },
           {
+            "name": "Investor Term Blog",
+            "value": "investor-term-blog"
+          },
+          {
+            "name": "Cornerstones Elss Fund",
+            "value": "cornerstones-elss-fund"
+          },
+          {
             "name": "Fund Investment Options",
             "value": "fund-investment-options"
           },
           {
             "name": "Thank You Screen",
             "value": "thank-you-screen"
+          },
+          {
+            "name": "Partner Blog",
+            "value": "partner-blog"
+          },
+          {
+            "name": "Partner Connect",
+            "value": "partner-connect"
+          },
+          {
+            "name": "Partner Banner",
+            "value": "partner-banner"
+          },
+          {
+            "name": "Partner Amc",
+            "value": "partner-amc"
+          },
+          {
+            "name": "Cornerstones become partner",
+            "value": "cornerstones-become-partner"
+          },
+          {
+            "name": "Privacy Policy Banner",
+            "value": "privacy-policy-banner"
           },
           {
             "name": "Invest Minor Account",
@@ -749,6 +845,26 @@
           {
             "name": "About Structure Governance Tab",
             "value": "structure-governance-tab"
+          },
+          {
+            "name": "Why Invest Minor",
+            "value": "why-invest-minor"
+          },
+          {
+            "name": "Key Details Card",
+            "value": "key-details-card"
+          },
+          {
+            "name": "Left Align Card",
+            "value": "left-align-card"
+          },
+          {
+            "name": "Right Align Card",
+            "value": "right-align-card"
+          },
+          {
+            "name": "Minors folio FAQ",
+            "value": "minors-folio-faq"
           }
         ]
       },
@@ -2069,37 +2185,42 @@
       {
         "component": "reference",
         "valueType": "string",
-        "name": "image",
+        "name": "col1_image",
         "label": "Image for Desktop",
         "multi": false
       },
       {
         "component": "text",
         "valueType": "string",
-        "name": "imageAlt",
+        "name": "col1_imageAlt",
         "label": "Alt for Desktop",
         "value": ""
       },
       {
         "component": "reference",
         "valueType": "string",
-        "name": "image2",
+        "name": "col2_image2",
         "label": "Image for Mobile",
         "multi": false
       },
       {
         "component": "text",
         "valueType": "string",
-        "name": "image2Alt",
+        "name": "col2_image2Alt",
         "label": "Alt for mobile",
         "value": ""
       },
       {
         "component": "richtext",
-        "name": "text",
+        "name": "col3_text",
         "value": "",
         "label": "Text",
         "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "col3_id",
+        "label": "Enter Block Id"
       }
     ]
   },
@@ -2739,6 +2860,1091 @@
       {
         "component": "richtext",
         "name": "two_text",
+        "value": "",
+        "label": "Text",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "swp-calculator-item",
+    "fields": [
+      {
+        "component": "text",
+        "name": "col1_IIA_label",
+        "label": "Initial Investment amount Label"
+      },
+      {
+        "component": "number",
+        "name": "col1_IIA_default",
+        "label": "Default Initial Investment amount (₹)"
+      },
+      {
+        "component": "number",
+        "name": "col1_IIA_min",
+        "label": "Minimum Initial Investment amount (₹)"
+      },
+      {
+        "component": "number",
+        "name": "col1_IIA_max",
+        "label": "Maximum Initial Investment amount (₹)"
+      },
+      {
+        "component": "text",
+        "name": "col1_SST_label",
+        "label": "SWP Start Time Label"
+      },
+      {
+        "component": "number",
+        "name": "col1_SST_default",
+        "label": "Default SWP Start Time (years)"
+      },
+      {
+        "component": "number",
+        "name": "col1_SST_min",
+        "label": "Minimum SWP Start Time (years)"
+      },
+      {
+        "component": "number",
+        "name": "col1_SST_max",
+        "label": "Maximum SWP Start Time (years)"
+      },
+      {
+        "component": "text",
+        "name": "col3_ROR_label",
+        "label": "Expected Rate of Return Label"
+      },
+      {
+        "component": "number",
+        "name": "col3_ROR_default",
+        "label": "Default Rate of Return (%)"
+      },
+      {
+        "component": "number",
+        "name": "col3_ROR_min",
+        "label": "Minimum Rate of Return (%)"
+      },
+      {
+        "component": "number",
+        "name": "col3_ROR_max",
+        "label": "Maximum Rate of Return (%)"
+      },
+      {
+        "component": "text",
+        "name": "col3_SAPM_label",
+        "label": "SWP Amount per month Label"
+      },
+      {
+        "component": "number",
+        "name": "col3_SAPM_default",
+        "label": "Default SWP Amount per month (₹)"
+      },
+      {
+        "component": "number",
+        "name": "col3_SAPM_min",
+        "label": "Minimum SWP Amount per month (₹)"
+      },
+      {
+        "component": "number",
+        "name": "col3_SAPM_max",
+        "label": "Maximum SWP Amount per month (₹)"
+      },
+      {
+        "component": "text",
+        "name": "col3_AIISAY_label",
+        "label": "Annual increase in SWP Amount yearly Label"
+      },
+      {
+        "component": "number",
+        "name": "col3_AIISAY_default",
+        "label": "Default Annual increase in SWP Amount yearly (%)"
+      },
+      {
+        "component": "number",
+        "name": "col3_AIISAY_min",
+        "label": "Minimum Annual increase in SWP Amount yearly (%)"
+      },
+      {
+        "component": "number",
+        "name": "col3_AIISAY_max",
+        "label": "Maximum Annual increase in SWP Amount yearly (%)"
+      },
+      {
+        "component": "text",
+        "name": "col3_RORDS_label",
+        "label": "Expected Rate of Return during SWP Label"
+      },
+      {
+        "component": "number",
+        "name": "col3_RORDS_default",
+        "label": "Default Expected Rate of Return during SWP (%)"
+      },
+      {
+        "component": "number",
+        "name": "col3_RORDS_min",
+        "label": "Minimum Expected Rate of Return during SWP (%)"
+      },
+      {
+        "component": "number",
+        "name": "col3_RORDS_max",
+        "label": "Maximum Expected Rate of Return during SWP (%)"
+      },
+      {
+        "component": "richtext",
+        "name": "col4_text",
+        "value": "",
+        "label": "Calculation overview"
+      }
+    ]
+  },
+  {
+    "id": "lumpsum-calculator-item",
+    "fields": [
+      {
+        "component": "text",
+        "name": "col1_Investment",
+        "label": "Total Investment Label",
+        "value": "Total Investment"
+      },
+      {
+        "component": "number",
+        "name": "col1_Placeholder",
+        "label": "Default Total Investment (₹)",
+        "value": "10000"
+      },
+      {
+        "component": "number",
+        "name": "col1_min",
+        "label": "Minimum Total Investment (₹)"
+      },
+      {
+        "component": "number",
+        "name": "col1_max",
+        "label": "Maximum Total Investment (₹)"
+      },
+      {
+        "component": "text",
+        "name": "col2_Return",
+        "label": "Expected Rate of Return Label"
+      },
+      {
+        "component": "number",
+        "name": "col2_Default",
+        "label": "Default Rate of Return (%)",
+        "value": "13"
+      },
+      {
+        "component": "number",
+        "name": "col2_min",
+        "label": "Minimum Rate of Return (%)"
+      },
+      {
+        "component": "number",
+        "name": "col2_max",
+        "label": "Maximum Rate of Return (%)"
+      },
+      {
+        "component": "text",
+        "name": "col3_Period",
+        "label": "Time period Label"
+      },
+      {
+        "component": "number",
+        "name": "col3_Rate",
+        "label": "Default Time period (Year)",
+        "value": "7 Years"
+      },
+      {
+        "component": "number",
+        "name": "col3_Min",
+        "label": "Minimum Time period (Year)"
+      },
+      {
+        "component": "number",
+        "name": "col3_Max",
+        "label": "Maximum Time period (Year)"
+      },
+      {
+        "component": "richtext",
+        "name": "col4_text",
+        "value": "",
+        "label": "Calculation overview"
+      }
+    ]
+  },
+  {
+    "id": "inflation-calculator-item",
+    "fields": [
+      {
+        "component": "text",
+        "name": "col1_Investment",
+        "label": "Current Cost Label",
+        "value": "Current Cost"
+      },
+      {
+        "component": "number",
+        "name": "col1_Placeholder",
+        "label": "Default Current Cost (₹)",
+        "value": "100000"
+      },
+      {
+        "component": "number",
+        "name": "col1_min",
+        "label": "Minimum Current Cost (₹)"
+      },
+      {
+        "component": "number",
+        "name": "col1_max",
+        "label": "Maximum Current Cost (₹)"
+      },
+      {
+        "component": "text",
+        "name": "col2_Return",
+        "label": "Rate of Inflation Label"
+      },
+      {
+        "component": "number",
+        "name": "col2_Default",
+        "label": "Default Rate of Inflation (%)",
+        "value": "13"
+      },
+      {
+        "component": "number",
+        "name": "col2_min",
+        "label": "Minimum Rate of Inflation (%)"
+      },
+      {
+        "component": "number",
+        "name": "col2_max",
+        "label": "Maximum Rate of Inflation (%)"
+      },
+      {
+        "component": "text",
+        "name": "col3_Period",
+        "label": "Time period Label"
+      },
+      {
+        "component": "number",
+        "name": "col3_Rate",
+        "label": "Default Time period (Year)",
+        "value": "5 Year"
+      },
+      {
+        "component": "number",
+        "name": "col3_Min",
+        "label": "Minimum Time period (Year)"
+      },
+      {
+        "component": "number",
+        "name": "col3_Max",
+        "label": "Maximum Time period (Year)"
+      },
+      {
+        "component": "richtext",
+        "name": "col4_text",
+        "value": "",
+        "label": "Calculation overview"
+      }
+    ]
+  },
+  {
+    "id": "sip-top-up-calculator-item",
+    "fields": [
+      {
+        "component": "text",
+        "name": "col1_MI_label",
+        "label": "Monthly Investment Label"
+      },
+      {
+        "component": "number",
+        "name": "col1_MI_default",
+        "label": "Default Monthly Investment (₹)"
+      },
+      {
+        "component": "number",
+        "name": "col1_MI_min",
+        "label": "Minimum Monthly Investment (₹)"
+      },
+      {
+        "component": "number",
+        "name": "col1_MI_max",
+        "label": "Maximum Monthly Investment (₹)"
+      },
+      {
+        "component": "text",
+        "name": "col2_ASU_label",
+        "label": "Annual Step Up Label"
+      },
+      {
+        "component": "number",
+        "name": "col2_ASU_default",
+        "label": "Default Annual Step Up (%)"
+      },
+      {
+        "component": "number",
+        "name": "col2_ASU_min",
+        "label": "Minimum Annual Step Up (%)"
+      },
+      {
+        "component": "number",
+        "name": "col2_ASU_max",
+        "label": "Maximum Annual Step Up (%)"
+      },
+      {
+        "component": "text",
+        "name": "col3_ERR_label",
+        "label": "Expected Rate of Return Label"
+      },
+      {
+        "component": "number",
+        "name": "col3_ERR_default",
+        "label": "Default Expected Rate of Return (%)"
+      },
+      {
+        "component": "number",
+        "name": "col3_ERR_min",
+        "label": "Minimum Expected Rate of Return (%)"
+      },
+      {
+        "component": "number",
+        "name": "col3_ERR_max",
+        "label": "Maximum Expected Rate of Return (%)"
+      },
+      {
+        "component": "text",
+        "name": "col4_TP_label",
+        "label": "Time period Label"
+      },
+      {
+        "component": "number",
+        "name": "col4_TP_default",
+        "label": "Default Time period (Years)"
+      },
+      {
+        "component": "number",
+        "name": "col4_TP_min",
+        "label": "Minimum Time period (Years)"
+      },
+      {
+        "component": "number",
+        "name": "col4_TP_max",
+        "label": "Maximum Time period (Years)"
+      },
+      {
+        "component": "richtext",
+        "name": "col4_text",
+        "label": "Calculation overview"
+      }
+    ]
+  },
+  {
+    "id": "systematic-transfer-plan-calculator-item",
+    "fields": [
+      {
+        "component": "text",
+        "name": "col1_LAISS_label",
+        "label": "Lumpsum Amount in the Source Scheme Label"
+      },
+      {
+        "component": "number",
+        "name": "col1_LAISS_default",
+        "label": "Default Lumpsum Amount in the Source Scheme (₹)"
+      },
+      {
+        "component": "number",
+        "name": "col1_LAISS_min",
+        "label": "Minimum Lumpsum Amount in the Source Scheme (₹)"
+      },
+      {
+        "component": "number",
+        "name": "col1_LAISS_max",
+        "label": "Maximum Lumpsum Amount in the Source Scheme (₹)"
+      },
+      {
+        "component": "text",
+        "name": "col2_TOSI_label",
+        "label": "Tenure of STP Investment Label"
+      },
+      {
+        "component": "number",
+        "name": "col2_TOSI_default",
+        "label": "Default Tenure of STP Investment (Years)"
+      },
+      {
+        "component": "number",
+        "name": "col2_TOSI_min",
+        "label": "Minimum Tenure of STP Investment (Years)"
+      },
+      {
+        "component": "number",
+        "name": "col2_TOSI_max",
+        "label": "Maximum Tenure of STP Investment (Years)"
+      },
+      {
+        "component": "text",
+        "name": "col2_EMSA_label",
+        "label": "Expected Monthly STP Amount Label"
+      },
+      {
+        "component": "number",
+        "name": "col2_EMSA_default",
+        "label": "Default Expected Monthly STP Amount (₹)"
+      },
+      {
+        "component": "number",
+        "name": "col2_EMSA_min",
+        "label": "Minimum Expected Monthly STP Amount (₹)"
+      },
+      {
+        "component": "number",
+        "name": "col2_EMSA_max",
+        "label": "Maximum Expected Monthly STP Amount (₹)"
+      },
+      {
+        "component": "text",
+        "name": "col3_ERFTS_label",
+        "label": "Expected Return from Target Scheme Label"
+      },
+      {
+        "component": "number",
+        "name": "col3_ERFTS_default",
+        "label": "Default Expected Return from Target Scheme (%)"
+      },
+      {
+        "component": "number",
+        "name": "col3_ERFTS_min",
+        "label": "Minimum Expected Return from Target Scheme (%)"
+      },
+      {
+        "component": "number",
+        "name": "col3_ERFTS_max",
+        "label": "Maximum Expected Return from Target Scheme (%)"
+      },
+      {
+        "component": "text",
+        "name": "col3_ERFSS_label",
+        "label": "Expected Return from Source Scheme Label"
+      },
+      {
+        "component": "number",
+        "name": "col3_ERFSS_default",
+        "label": "Default Expected Return from Source Scheme (%)"
+      },
+      {
+        "component": "number",
+        "name": "col3_ERFSS_min",
+        "label": "Minimum Expected Return from Source Scheme (%)"
+      },
+      {
+        "component": "number",
+        "name": "col3_ERFSS_max",
+        "label": "Maximum Expected Return from Source Scheme (%)"
+      },
+      {
+        "component": "richtext",
+        "name": "col4_text",
+        "label": "Calculation overview"
+      }
+    ]
+  },
+  {
+    "id": "sip-delay-calculator-item",
+    "fields": [
+      {
+        "component": "text",
+        "name": "col1_AICIPM_label",
+        "label": "Monthly Investment Amount Label"
+      },
+      {
+        "component": "number",
+        "name": "col1_AICIPM_default",
+        "label": "Default Monthly Investment Amount (₹)"
+      },
+      {
+        "component": "number",
+        "name": "col1_AICIPM_min",
+        "label": "Minimum Monthly Investment Amount (₹)"
+      },
+      {
+        "component": "number",
+        "name": "col1_AICIPM_max",
+        "label": "Maximum Monthly Investment Amount (₹)"
+      },
+      {
+        "component": "text",
+        "name": "col2_IWIF_label",
+        "label": "Investment Period Label"
+      },
+      {
+        "component": "number",
+        "name": "col2_IWIF_default",
+        "label": "Default Investment Period (Years)"
+      },
+      {
+        "component": "number",
+        "name": "col2_IWIF_min",
+        "label": "Minimum Investment Period (Years)"
+      },
+      {
+        "component": "number",
+        "name": "col2_IWIF_max",
+        "label": "Maximum Investment Period (Years)"
+      },
+      {
+        "component": "text",
+        "name": "col3_EROR_label",
+        "label": "Expected Rate of Returns Label"
+      },
+      {
+        "component": "number",
+        "name": "col3_EROR_default",
+        "label": "Default Expected Rate of Returns (₹)"
+      },
+      {
+        "component": "number",
+        "name": "col3_EROR_min",
+        "label": "Minimum Expected Rate of Returns (₹)"
+      },
+      {
+        "component": "number",
+        "name": "col3_EROR_max",
+        "label": "Maximum Expected Rate of Returns (₹)"
+      },
+      {
+        "component": "text",
+        "name": "col4_IWPSIA_label",
+        "label": "Expected Start Time Label"
+      },
+      {
+        "component": "number",
+        "name": "col4_IWPSIA_default",
+        "label": "Default Expected Start Time (Years)"
+      },
+      {
+        "component": "number",
+        "name": "col4_IWPSIA_min",
+        "label": "Minimum Expected Start Time (Years)"
+      },
+      {
+        "component": "number",
+        "name": "col4_IWPSIA_max",
+        "label": "Maximum Expected Start Time (Years)"
+      },
+      {
+        "component": "richtext",
+        "name": "col4_text",
+        "label": "Calculation overview"
+      }
+    ]
+  },
+  {
+    "id": "compound-interest-calculator-item",
+    "fields": [
+      {
+        "component": "text",
+        "name": "col1_Label",
+        "label": "Principal Amount Label"
+      },
+      {
+        "component": "number",
+        "name": "col1_Default",
+        "label": "Default Principal Amount (₹)"
+      },
+      {
+        "component": "number",
+        "name": "col1_Min",
+        "label": "Minimum Principal Amount (₹)"
+      },
+      {
+        "component": "number",
+        "name": "col1_Max",
+        "label": "Maximum Principal Amount (₹)"
+      },
+      {
+        "component": "text",
+        "name": "col2_Label",
+        "label": "Expected Time Period Label"
+      },
+      {
+        "component": "number",
+        "name": "col2_Default",
+        "label": "Default Time Period (Years)"
+      },
+      {
+        "component": "number",
+        "name": "col2_Min",
+        "label": "Minimum Time Period (Years)"
+      },
+      {
+        "component": "number",
+        "name": "col2_Max",
+        "label": "Maximum Time Period (Years)"
+      },
+      {
+        "component": "text",
+        "name": "col3_Label",
+        "label": "Rate of Interest Label"
+      },
+      {
+        "component": "number",
+        "name": "col3_Default",
+        "label": "Default Rate of Interest (%)"
+      },
+      {
+        "component": "number",
+        "name": "col3_Min",
+        "label": "Minimum Rate of Interest (%)"
+      },
+      {
+        "component": "number",
+        "name": "col3_Max",
+        "label": "Maximum Rate of Interest (%)"
+      },
+      {
+        "component": "richtext",
+        "name": "col4_duration",
+        "label": "Compund Frequency details"
+      },
+      {
+        "component": "richtext",
+        "name": "col4_text",
+        "label": "Calculation overview"
+      }
+    ]
+  },
+  {
+    "id": "sip-past-performance-calculator-item",
+    "fields": [
+      {
+        "component": "text",
+        "name": "col1_Label",
+        "label": "SIP Amount Label"
+      },
+      {
+        "component": "number",
+        "name": "col1_Default",
+        "label": "Default SIP Amount (₹)"
+      },
+      {
+        "component": "number",
+        "name": "col1_Min",
+        "label": "Minimum SIP Amount (₹)"
+      },
+      {
+        "component": "number",
+        "name": "col1_Max",
+        "label": "Maximum SIP Amount (₹)"
+      },
+      {
+        "component": "text",
+        "name": "col2_Label",
+        "label": "Invested Time Period Label"
+      },
+      {
+        "component": "number",
+        "name": "col2_Default",
+        "label": "Default Invested Time Period (Years)"
+      },
+      {
+        "component": "number",
+        "name": "col2_Min",
+        "label": "Minimum Invested Time Period (Years)"
+      },
+      {
+        "component": "number",
+        "name": "col2_Max",
+        "label": "Maximum Invested Time Period (Years)"
+      },
+      {
+        "component": "richtext",
+        "name": "col3_duration",
+        "label": "Duration Details"
+      },
+      {
+        "component": "richtext",
+        "name": "col4_text",
+        "label": "Calculation overview"
+      }
+    ]
+  },
+  {
+    "id": "goal-calculator-item",
+    "fields": [
+      {
+        "component": "richtext",
+        "name": "col1_custom_goal_details",
+        "label": "Custom Goals Details"
+      },
+      {
+        "component": "text",
+        "name": "col1_corpus_label",
+        "label": "Corpus I want to achieve Label"
+      },
+      {
+        "component": "number",
+        "name": "col1_corpus_default",
+        "label": "Default Corpus I want to achieve (₹)"
+      },
+      {
+        "component": "number",
+        "name": "col1_corpus_min",
+        "label": "Minimum Corpus I want to achieve (₹)"
+      },
+      {
+        "component": "number",
+        "name": "col1_corpus_max",
+        "label": "Maximum Corpus I want to achieve (₹)"
+      },
+      {
+        "component": "text",
+        "name": "col1_retire_after_label",
+        "label": "I want to retire after Label"
+      },
+      {
+        "component": "number",
+        "name": "col1_retire_after_default",
+        "label": "Default I want to retire after (Years)"
+      },
+      {
+        "component": "number",
+        "name": "col1_retire_after_min",
+        "label": "Minimum I want to retire after (Years)"
+      },
+      {
+        "component": "number",
+        "name": "col1_retire_after_max",
+        "label": "Maximum I want to retire after (Years)"
+      },
+      {
+        "component": "text",
+        "name": "col1_savings_label",
+        "label": "Savings I have Label"
+      },
+      {
+        "component": "number",
+        "name": "col1_savings_default",
+        "label": "Default Savings I have (₹)"
+      },
+      {
+        "component": "number",
+        "name": "col1_savings_min",
+        "label": "Minimum Savings I have (₹)"
+      },
+      {
+        "component": "number",
+        "name": "col1_savings_max",
+        "label": "Maximum Savings I have (₹)"
+      },
+      {
+        "component": "text",
+        "name": "col1_return_rate_label",
+        "label": "Expected Rate of Return Label"
+      },
+      {
+        "component": "number",
+        "name": "col1_return_rate_default",
+        "label": "Default Expected Rate of Return (%)"
+      },
+      {
+        "component": "number",
+        "name": "col1_return_rate_min",
+        "label": "Minimum Expected Rate of Return (%)"
+      },
+      {
+        "component": "number",
+        "name": "col1_return_rate_max",
+        "label": "Maximum Expected Rate of Return (%)"
+      },
+      {
+        "component": "text",
+        "name": "col1_buy_house_by_label",
+        "label": "I plan to buy a house by Label"
+      },
+      {
+        "component": "number",
+        "name": "col1_buy_house_by_default",
+        "label": "Default I plan to buy a house by (Years)"
+      },
+      {
+        "component": "number",
+        "name": "col1_buy_house_by_min",
+        "label": "Minimum I plan to buy a house by (Years)"
+      },
+      {
+        "component": "number",
+        "name": "col1_buy_house_by_max",
+        "label": "Maximum I plan to buy a house by (Years)"
+      },
+      {
+        "component": "text",
+        "name": "col1_budget_label",
+        "label": "Budget I’m looking at Label"
+      },
+      {
+        "component": "number",
+        "name": "col1_budget_default",
+        "label": "Default Budget I’m looking at (₹)"
+      },
+      {
+        "component": "number",
+        "name": "col1_budget_min",
+        "label": "Minimum Budget I’m looking at (₹)"
+      },
+      {
+        "component": "number",
+        "name": "col1_budget_max",
+        "label": "Maximum Budget I’m looking at (₹)"
+      },
+      {
+        "component": "text",
+        "name": "col1_downpayment_label",
+        "label": "Budget for a downpayment upfront Label"
+      },
+      {
+        "component": "number",
+        "name": "col1_downpayment_default",
+        "label": "Default Budget for a downpayment upfront (₹)"
+      },
+      {
+        "component": "number",
+        "name": "col1_downpayment_min",
+        "label": "Minimum Budget for a downpayment upfront (₹)"
+      },
+      {
+        "component": "number",
+        "name": "col1_downpayment_max",
+        "label": "Maximum Budget for a downpayment upfront (₹)"
+      },
+      {
+        "component": "text",
+        "name": "col2_trip_year_label",
+        "label": "I plan to go by Label"
+      },
+      {
+        "component": "number",
+        "name": "col2_trip_year_default",
+        "label": "Default I plan to go by (Years)"
+      },
+      {
+        "component": "number",
+        "name": "col2_trip_year_min",
+        "label": "Minimum I plan to go by (Years)"
+      },
+      {
+        "component": "number",
+        "name": "col2_trip_year_max",
+        "label": "Maximum I plan to go by (Years)"
+      },
+      {
+        "component": "text",
+        "name": "col2_trip_budget_label",
+        "label": "Budget for the trip Label"
+      },
+      {
+        "component": "number",
+        "name": "col2_trip_budget_default",
+        "label": "Default Budget for the trip (₹)"
+      },
+      {
+        "component": "number",
+        "name": "col2_trip_budget_min",
+        "label": "Minimum Budget for the trip (₹)"
+      },
+      {
+        "component": "number",
+        "name": "col2_trip_budget_max",
+        "label": "Maximum Budget for the trip (₹)"
+      },
+      {
+        "component": "richtext",
+        "name": "col2_current_savings_details",
+        "label": "How far along am I toward this goal details"
+      },
+      {
+        "component": "text",
+        "name": "col2_current_savings_label",
+        "label": "Amount I have set aside Label"
+      },
+      {
+        "component": "number",
+        "name": "col2_current_savings_default",
+        "label": "Amount I have set aside Default"
+      },
+      {
+        "component": "text",
+        "name": "col2_car_year_label",
+        "label": "I want to buy this car by Label"
+      },
+      {
+        "component": "number",
+        "name": "col2_car_year_default",
+        "label": "Default I want to buy this car by (Years)"
+      },
+      {
+        "component": "number",
+        "name": "col2_car_year_min",
+        "label": "Minimum I want to buy this car by (Years)"
+      },
+      {
+        "component": "number",
+        "name": "col2_car_year_max",
+        "label": "Maximum I want to buy this car by (Years)"
+      },
+      {
+        "component": "text",
+        "name": "col2_car_budget_label",
+        "label": "Budget for the car Label"
+      },
+      {
+        "component": "number",
+        "name": "col2_car_budget_default",
+        "label": "Default Budget for the car (₹)"
+      },
+      {
+        "component": "number",
+        "name": "col2_car_budget_min",
+        "label": "Minimum Budget for the car (₹)"
+      },
+      {
+        "component": "number",
+        "name": "col2_car_budget_max",
+        "label": "Maximum Budget for the car (₹)"
+      },
+      {
+        "component": "richtext",
+        "name": "col2_downpayment_details",
+        "label": "I also need lumpsum money for downpayment details"
+      },
+      {
+        "component": "text",
+        "name": "col2_downpayment_label",
+        "label": "Amount for the downpayment Label"
+      },
+      {
+        "component": "number",
+        "name": "col2_downpayment_default",
+        "label": "Default Amount for the downpayment (₹)"
+      },
+      {
+        "component": "number",
+        "name": "col2_downpayment_min",
+        "label": "Minimum Amount for the downpayment (₹)"
+      },
+      {
+        "component": "number",
+        "name": "col2_downpayment_max",
+        "label": "Maximum Amount for the downpayment (₹)"
+      },
+      {
+        "component": "text",
+        "name": "col3_goal_name_label",
+        "label": "Goal Name Label"
+      },
+      {
+        "component": "text",
+        "name": "col3_goal_name_default",
+        "label": "Default Goal Name"
+      },
+      {
+        "component": "text",
+        "name": "col3_custom_corpus_label",
+        "label": "Custom Corpus I want to achieve Label"
+      },
+      {
+        "component": "number",
+        "name": "col3_custom_corpus_default",
+        "label": "Default Custom Corpus I want to achieve (₹)"
+      },
+      {
+        "component": "number",
+        "name": "col3_custom_corpus_min",
+        "label": "Minimum Custom Corpus I want to achieve (₹)"
+      },
+      {
+        "component": "number",
+        "name": "col3_custom_corpus_max",
+        "label": "Maximum Custom Corpus I want to achieve (₹)"
+      },
+      {
+        "component": "text",
+        "name": "col3_custom_year_label",
+        "label": "Custom I want to achieve this in Label"
+      },
+      {
+        "component": "number",
+        "name": "col3_custom_year_default",
+        "label": "Default Custom I want to achieve this in (Years)"
+      },
+      {
+        "component": "number",
+        "name": "col3_custom_year_min",
+        "label": "Minimum Custom I want to achieve this in (Years)"
+      },
+      {
+        "component": "number",
+        "name": "col3_custom_year_max",
+        "label": "Maximum Custom I want to achieve this in (Years)"
+      },
+      {
+        "component": "text",
+        "name": "col3_custom_savings_label",
+        "label": "Custom Savings I have Label"
+      },
+      {
+        "component": "number",
+        "name": "col3_custom_savings_default",
+        "label": "Default Custom Savings I have (₹)"
+      },
+      {
+        "component": "number",
+        "name": "col3_custom_savings_min",
+        "label": "Minimum Custom Savings I have (₹)"
+      },
+      {
+        "component": "number",
+        "name": "col3_custom_savings_max",
+        "label": "Maximum Custom Savings I have (₹)"
+      },
+      {
+        "component": "text",
+        "name": "col3_custom_return_rate_label",
+        "label": "Custom Expected Rate of Return Label"
+      },
+      {
+        "component": "number",
+        "name": "col3_custom_return_rate_default",
+        "label": "Default Custom Expected Rate of Return (%)"
+      },
+      {
+        "component": "number",
+        "name": "col3_custom_return_rate_min",
+        "label": "Minimum Custom Expected Rate of Return (%)"
+      },
+      {
+        "component": "number",
+        "name": "col3_custom_return_rate_max",
+        "label": "Maximum Custom Expected Rate of Return (%)"
+      },
+      {
+        "component": "richtext",
+        "name": "col4_text",
+        "label": "Calculation overview"
+      }
+    ]
+  },
+  {
+    "id": "investing-minors",
+    "fields": [
+      {
+        "component": "richtext",
+        "name": "one_text1",
+        "value": "",
+        "label": "Text",
+        "valueType": "string"
+      },
+      {
+        "component": "richtext",
+        "name": "two_text2",
         "value": "",
         "label": "Text",
         "valueType": "string"
