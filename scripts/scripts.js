@@ -247,9 +247,10 @@ async function loadLazy(doc) {
   // dataMapMoObj.qglpwcs();
 
   // const shareWrapper = document.querySelector('.itemmainleftart3');
-  const shareBtn = document.querySelector('.icon-share-black');
-  const dropdown = document.querySelector('.submainleftart2');
-  if (document.querySelector('.open-share-popup')) {
+  const openSharePopup = document.querySelector('.open-share-popup');
+  const shareBtn = openSharePopup.querySelector('.icon-share-black');
+  const dropdown = openSharePopup.querySelector('.submainleftart2');
+  if (openSharePopup) {
     // Toggle dropdown when clicking share icon
     shareBtn.addEventListener('click', (e) => {
       e.stopPropagation();
@@ -258,11 +259,117 @@ async function loadLazy(doc) {
 
     // Close dropdown on outside click
     document.addEventListener('click', (e) => {
-      if (!shareBtn.contains(e.target)) {
+      if (!e.target.closest('.open-share-popup')) {
         dropdown.classList.remove('active');
       }
     });
   }
+
+  debugger;
+  document.querySelectorAll('.comlist.submainart3.itemmainleftart3').forEach((listItem) => {
+    const ul = listItem.querySelector('.comlist.submainleftart2');
+    if (!ul) return;
+
+    [...ul.children].forEach((li, index) => {
+      li.classList.add(`listindex${index + 1}`);
+    });
+  });
+
+  document.querySelectorAll('.comlist.submainart3.itemmainleftart3').forEach((item) => {
+    const shareIcon = item.querySelector('.icon-share-black');
+    const popup = item.querySelector('.comlist.submainleftart2');
+
+    if (!shareIcon || !popup) return;
+
+    // Hide popup initially
+    popup.classList.remove('active');
+
+    // TOGGLE popup
+    shareIcon.addEventListener('click', (e) => {
+      e.stopPropagation();
+
+      const isVisible = popup.style.display === 'block';
+    });
+
+    // GET SHARE TEXT + URL
+    const getShareData = () => {
+      const shareUrl = window.location.href;
+      const shareText = item.querySelector('h3')?.innerText || 'Check this out';
+      return { shareUrl, shareText };
+    };
+
+    // FACEBOOK
+    const fb = popup.querySelector('.listindex1');
+    if (fb) {
+      fb.querySelector('a').removeAttribute('href');
+      fb.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const { shareUrl } = getShareData();
+        const link = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`;
+        window.open(link, '_blank');
+      });
+    }
+
+    // WHATSAPP
+    const wa = popup.querySelector('.listindex2');
+    if (wa) {
+      wa.querySelector('a').removeAttribute('href');
+      wa.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const { shareUrl, shareText } = getShareData();
+        const link = `https://wa.me/?text=${encodeURIComponent(`${shareText} ${shareUrl}`)}`;
+        window.open(link, '_blank');
+      });
+    }
+
+    // X (TWITTER)
+    const tw = popup.querySelector('.listindex3');
+    if (tw) {
+      tw.querySelector('a').removeAttribute('href');
+      tw.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const { shareUrl, shareText } = getShareData();
+        const link = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`;
+        window.open(link, '_blank');
+      });
+    }
+
+    // COPY URL
+    // COPY BUTTON (listindex4)
+    const cp = popup.querySelector('.listindex4');
+    const copyPopup = popup.querySelector('.listindex5');
+
+    if (cp && copyPopup) {
+      // hide listindex5 initially
+      copyPopup.style.display = 'none';
+      copyPopup.style.position = 'absolute';
+      copyPopup.style.left = '50%';
+      copyPopup.style.top = '50%';
+      copyPopup.style.transform = 'translate(-50%, -50%)';
+      copyPopup.style.zIndex = '999';
+
+      cp.querySelector('a')?.removeAttribute('href');
+
+      cp.addEventListener('click', async (e) => {
+        e.stopPropagation();
+
+        try {
+          await navigator.clipboard.writeText(window.location.href);
+
+          // show centered popup (listindex5)
+          copyPopup.style.display = 'block';
+
+          // auto-hide after 2 sec
+          setTimeout(() => {
+            copyPopup.style.display = 'none';
+          }, 2000);
+        } catch (err) {
+          console.log("Copy failed", err);
+        }
+      });
+    }
+  });
+
 
   const { hash } = window.location;
   const element = hash ? doc.getElementById(hash.substring(1)) : false;
