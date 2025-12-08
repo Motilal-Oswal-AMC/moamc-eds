@@ -71,7 +71,7 @@ indices:
         select: head > meta[property="og:image"]
         value: attribute(el, "content")
       tag:
-        select: body .default-content-wrapper ul ul li:first-child
+        select: body > div:nth-child(8) > ul > li > ul > li:first-child
         value: textContent(el)
       time:
         select: head > meta[name="published-time"]
@@ -89,5 +89,5 @@ indices:
         select: head > meta[name="robots"]
         value: attribute(el, "content")
       youtubeurl:
-        select: body .embed-wrapper a
+        select: body .embed a
         value: attribute(el, "href")
