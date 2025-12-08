@@ -483,6 +483,23 @@ if (glpDecoding != null) {
 
 /* glp page End */
 
+/* Gift City Start */
+const chooseGift = document.querySelector('.choose-gift');
+
+if (chooseGift != null) {
+  dataMapMoObj.CLASS_PREFIXES = [
+    'gift-choose',
+    'gift-choose-inner',
+    'gift-choose-sub-inner',
+    'gift-choose-sub-inner-sub',
+    'gift-choose-sub-inner-sub-inner',
+    'choose-gift-sub-inner-sub-inner',
+  ];
+  dataMapMoObj.addIndexed(chooseGift);
+}
+
+/* Gift City End */
+
 const tabLinks = document.querySelectorAll('.table-wrapper');
 
 const observer = new IntersectionObserver(
@@ -545,6 +562,15 @@ function articleStructure() {
     )
     || window.location.href.includes(
       '/motilal-oswal-edge/mo-edge-article-details-video',
+    )
+    || window.location.href.includes(
+      '/investor-education/keys-of-investing/',
+    )
+    || window.location.href.includes(
+      '/motilal-oswal-edge/insights/',
+    )
+    || window.location.href.includes(
+      '/investor-education/blogs/',
     )
   ) {
     const maincloser = document.querySelector('main');
@@ -623,6 +649,41 @@ function articleStructure() {
       ];
       dataMapMoObj.addIndexed(mainleft);
     }
+    // if (maincloser.querySelector('.moedge-article-details')) {
+    //   const videoContainer = maincloser.querySelector('.moedge-article-video-container');
+
+    //   if (videoContainer) {
+    //     const allWrappers = videoContainer.querySelectorAll('.default-content-wrapper');
+
+    //     // Array of class names you wanted to map
+    //     const classPrefixes = [
+    //       'main-article-content',
+    //       'main-article-heading',
+    //       'main-article-para',
+    //       'main-article-subheading'
+    //     ];
+
+    //     allWrappers.forEach((wrapper, index) => {
+    //       // Check if we have a class name for this specific index
+    //       if (classPrefixes[index]) {
+    //         wrapper.classList.add(classPrefixes[index]);
+    //       } else {
+    //         // Fallback for items exceeding the array length
+    //         wrapper.classList.add('main-article-general');
+    //       }
+    //     });
+    //   }
+    // }
+    const container = document.querySelector('.moedge-article-video-container');
+
+    if (container) {
+      const wrappers = container.querySelectorAll('.default-content-wrapper');
+
+      wrappers.forEach((wrapper) => {
+        wrapper.classList.add('default-content');
+      });
+    }
+
     const formpath = maincloser.querySelector(
       '.article-right-wrapper .subscribe-email',
     );
@@ -747,15 +808,12 @@ if (promiseQGLP != null) {
   dataMapMoObj.addIndexed(promiseQGLP);
 }
 // why qglp componet end
-
-// why qglp css lent start
 const whyQGLPWrp = document.querySelector('.why-qglp .default-content-wrapper');
 
 if (whyQGLPWrp) {
   whyQGLPWrp.classList.add('why-qglp-wrapper');
   // why qglp css lent end
 }
-// why qglp css lent end
 
 // promise qglp css lent start
 const promiseQGLPWrp = document.querySelector(
@@ -815,19 +873,19 @@ if (skinmoamcComponent != null) {
 const privacyPolicy = document.querySelectorAll('.privacy-policy-banner');
 
 const privacyPolicyArr = Array.from(privacyPolicy);
-privacyPolicyArr.forEach((child)=>{
+privacyPolicyArr.forEach((child) => {
 
-if (child != null) {
-  dataMapMoObj.CLASS_PREFIXES = [
-    'pp-banner-wrap',
-    'pp-banner-block',
-    'pp-banner-img',
-    'pp-banner-imginner',
-    'pp-banner-picture',
-    'pp-banner-pictureinner',
-  ];
-  dataMapMoObj.addIndexed(child);
-}
+  if (child != null) {
+    dataMapMoObj.CLASS_PREFIXES = [
+      'pp-banner-wrap',
+      'pp-banner-block',
+      'pp-banner-img',
+      'pp-banner-imginner',
+      'pp-banner-picture',
+      'pp-banner-pictureinner',
+    ];
+    dataMapMoObj.addIndexed(child);
+  }
 })
 
 const skinstakeComponent = document.querySelector('.what-stake-component');
@@ -896,17 +954,6 @@ if (conclusion != null) {
   dataMapMoObj.addIndexed(conclusion);
 }
 // conclusion container end
-
-// why-invest-minor section start
-const whyInvestminor = document.querySelector('.section.why-invest-minor');
-if (whyInvestminor != null) {
-  dataMapMoObj.CLASS_PREFIXES = [
-    'why-invest-minor-main',
-    'why-invest-minor-sub',
-    'why-invest-minor-inner',
-  ];
-  dataMapMoObj.addIndexed(whyInvestminor);
-}
 
 // Adding custom scrollbar to WCS pages
 try {

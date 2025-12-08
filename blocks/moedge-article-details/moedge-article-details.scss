@@ -239,7 +239,11 @@
         }
 
         .mainarticle2 {
-            // margin-top: 24px;
+            margin-top: 24px;
+
+            @include media (mobile) {
+                margin-top: 24px;
+            }
 
             .itemarticle1 {
                 .itemsubart1 {

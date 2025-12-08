@@ -207,6 +207,16 @@
             border: $neutrals-500 1px solid;
             transition: border-color 0.2s;
             padding: 8px 12px;
+            transition: border-color 0.2s ease-in-out, border-width 0.2s ease-in-out;
+
+            &:has(.calc-input:focus) {
+                border: 2px solid $blue-2-400;
+            }
+
+
+            &:has(.currency-prefix) {
+                gap: 4px;
+            }
 
             .currency-dual-input-wrapper {
                 width: 100%;
@@ -217,20 +227,21 @@
 
             .calc-inner-input-wrapper {
                 display: flex;
+                gap: 4px;
                 align-items: center;
             }
 
             .calc-input {
-                position: relative;
-                width: 100%;
-
                 @include font-style(16px, 20px, $neutrals-black, 400, $inter);
 
+                position: relative;
+                width: 100%;
                 flex: 1;
                 border: none;
                 background: transparent;
                 transition: width 0.05s ease;
                 padding: 1px 0;
+                caret-color: $blue-2-400;
 
                 &::placeholder {
                     color: #aaa;
@@ -278,7 +289,20 @@
                     align-items: center;
                     margin: 0;
                     background-color: transparent;
-                    transition: background-color 0.2s ease-in-out;
+                    opacity: 1;
+                    transition: background-color 0.2s ease-in-out, opacity 0.2s ease-in-out;
+
+                    &:disabled {
+                        cursor: not-allowed;
+
+                        // opacity: 0.5;
+                        // background-color: $neutrals-400;
+                        &.dec-btn::after,
+                        &.inc-btn::after,
+                        &.inc-btn::before {
+                            background-color: #82878F;
+                        }
+                    }
 
                     &.dec-btn {
                         padding: 11.5px 5.25px;
@@ -296,6 +320,7 @@
                             border-radius: 3px;
                         }
                     }
+
 
                     &.inc-btn {
                         padding: 11.5px 5.25px;
@@ -315,7 +340,7 @@
                         }
 
                         &::before {
-                            transform: translate(-50%, -50%);
+                            transform: translate(-50%, -50%) rotate(180deg);
                         }
                     }
 
@@ -328,11 +353,11 @@
                     }
 
 
-                    &:hover {
+                    &:hover:not(:disabled) {
                         background-color: map.get($button-secondary, hover);
                     }
 
-                    &:active {
+                    &:active:not(:disabled) {
                         background-color: map.get($button-secondary, hover);
                     }
                 }
@@ -555,11 +580,13 @@ a.calc-overview-cta.button,
         }
     }
 
+
     .button.calculator-container-title-btn {
         @include font-style(16px, 20px, $blue-1-800-primary, 500, $inter);
 
         max-width: calc(50% - 6px);
         width: 100%;
+        max-height: fit-content;
         display: flex;
         padding: 11.2px 8px;
         justify-content: center;
@@ -572,5 +599,6 @@ a.calc-overview-cta.button,
         background-color: transparent;
         color: var(--text-button-default, #2E2A94);
         text-align: center;
+        transition: color 0.3s ease, border 0.3s ease;
     }
 }

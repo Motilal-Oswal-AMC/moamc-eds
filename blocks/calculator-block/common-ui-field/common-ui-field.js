@@ -33,12 +33,14 @@ export function validateInputWithEvent({
   currency = false,
   currencyCode = "INR",
   locale = "en-IN",
-  ignoreMin = true,
-  allowEmpty = true,
+  ignoreMin = false,
+  allowEmpty = false,
+  eventType = "",
 }) {
   const inputEl = event.target;
   const rawValue = (inputEl.value || "").toString().trim();
-
+  const minValue = Number(min);
+  const maxValue = Number(max);
   let errorType = null;
 
   // Normalize numeric text
@@ -53,15 +55,16 @@ export function validateInputWithEvent({
 
   // MIN logic
   if (ignoreMin) {
-    if (min === "") errorType = "MIN_EMPTY";
-  } else if (min !== "" && num < Number(min)) {
-    num = Number(min);
+    if (minValue === "" || (minValue !== 0 && num < minValue))
+      errorType = "MIN_EMPTY";
+  } else if (minValue !== "" && num < minValue) {
+    num = minValue;
     errorType = "MIN_EMPTY";
   }
 
   // MAX logic
-  if (max !== "" && num > Number(max)) {
-    num = Number(max);
+  if (maxValue !== "" && num > maxValue) {
+    num = maxValue;
     // errorType = "ABOVE_MAX";
   }
 
@@ -70,20 +73,26 @@ export function validateInputWithEvent({
   else inputEl.classList.remove("calc-error");
 
   // Decide finalValue
+  // debugger;
   const finalValue = currency
     ? num !== 0
       ? formatNumber({ value: num, currencyCode, locale })
+      : minValue === 0 && eventType === "blur"
+      ? 0
       : ""
-    : rawValue == "" && allowEmpty
+    : rawValue === "" && allowEmpty
     ? rawValue
     : num;
 
   // Update input
   if (currency) {
     // Find fake input if it exists
-    const fakeInputEl = document.getElementById(`${inputEl.id}-fake`);
-    if (fakeInputEl) {
-      fakeInputEl.value = finalValue; // update formatted currency
+    const hiddenInputEl = document.getElementById(
+      `${inputEl.id?.replace("-fake", "")}`
+    );
+    if (hiddenInputEl) {
+      hiddenInputEl.value = num; // update numeric value in hidden input
+      inputEl.value = finalValue; // update formatted currency
     } else {
       inputEl.value = finalValue; // fallback to original input
     }
@@ -159,12 +168,35 @@ export const updateInputSuffix = (ele) => {
   const fieldType =
     ele?.target?.getAttribute?.("data-fieldType") ||
     ele?.getAttribute?.("data-fieldType");
+  const inputValue = ele?.value || ele?.target?.value || 0;
   if (suffixEle && fieldType) {
     if (fieldType === "year") {
-      suffixEle.textContent = Number(ele?.value || 0) <= 1 ? "year" : "years";
+      suffixEle.textContent = Number(inputValue) <= 1 ? "Year" : "Years";
     }
   }
 };
+
+/**
+ * Updates the input value and disables/enables the increment/decrement buttons based on min/max
+ * @param {HTMLInputElement} inputEl - The input element
+ */
+function updateStepperButtons(inputEl, inputValue) {
+  if (!inputEl) return;
+  // debugger;
+  const wrapper = inputEl.closest(".calc-input-wrapper.stepper");
+  if (!wrapper) return;
+  const input = wrapper.querySelector(".calc-input");
+  const decBtn = wrapper.querySelector(".dec-btn");
+  const incBtn = wrapper.querySelector(".inc-btn");
+
+  const min = parseFloat(input.min) || 0;
+  const max = parseFloat(input.max) || Infinity;
+  // const value = parseFloat(input.value) || 0;
+
+  // Update disabled state
+  if (decBtn) decBtn.disabled = inputValue <= min;
+  if (incBtn) incBtn.disabled = inputValue >= max;
+}
 
 /**
  * Create an input block UI for calculator fields (SIP, ROI, etc.)
@@ -200,10 +232,16 @@ export function createInputBlock({
   ...rest
 }) {
   const FIELD_TYPE_MAPPING = {
-    year: {
-      min: `${min} ${min === 1 ? "year" : "years"}`,
-      max: `${max} years`,
-    },
+    year:
+      variant === "stepper"
+        ? {
+            min: `${min} ${min === 1 ? "year" : "years"}`,
+            max: `${max} years`,
+          }
+        : {
+            min: `Min. ${min}`,
+            max: `Max. ${max}`,
+          },
     currency: {
       min: `Min. ${formatNumber({
         value: min,
@@ -247,13 +285,7 @@ export function createInputBlock({
         filteredValue = filteredValue ? filteredValue.replace(/,/g, "") : "";
         filteredValue = filteredValue?.replace(/[^\d]/g, ""); // allow only digits
       }
-      updateInputSuffix({
-        ...e,
-        target: {
-          ...e.target,
-          value: filteredValue,
-        },
-      });
+      updateInputSuffix(e);
     },
     oninput: (e) => {
       let filteredValue = e.target.value;
@@ -266,13 +298,7 @@ export function createInputBlock({
         filteredValue = filteredValue?.replace(/[^\d]/g, ""); // allow only digits
       }
 
-      updateInputSuffix({
-        ...e,
-        target: {
-          ...e.target,
-          value: filteredValue,
-        },
-      });
+      updateInputSuffix(e);
       if (updateWidthonChange) {
         e.target.style.setProperty(
           "--input-ch-width",
@@ -284,6 +310,7 @@ export function createInputBlock({
         ["stepper", "number"].includes(variant) &&
         fieldType !== "currency"
       ) {
+        // debugger;
         const { numeric, finalValue } = validateInputWithEvent({
           event: e,
           min,
@@ -295,12 +322,15 @@ export function createInputBlock({
           allowEmpty: true,
         });
         e.target.value = ignoreMin ? finalValue : numeric;
+        if (variant === "stepper") {
+          updateStepperButtons(e.target, numeric);
+        }
       }
       rest?.onInput?.(e);
     },
     onblur: (e) => {
       const hasError = e.target.classList.contains("calc-error");
-      debugger;
+      // debugger;
       if (hasError && ignoreMin) {
         const { numeric } = validateInputWithEvent({
           event: e,
@@ -310,10 +340,17 @@ export function createInputBlock({
           currencyCode: "INR",
           locale: "en-IN",
           ignoreMin: false,
+          allowEmpty: false,
+          eventType: "blur",
         });
-
         e.target.classList.remove("calc-error");
+        if (variant === "stepper") {
+          updateStepperButtons(e.target, numeric);
+        }
         onChange(numeric);
+        if (suffix) {
+          updateInputSuffix(e);
+        }
       }
       rest?.onBlur?.(e);
     },
@@ -342,7 +379,6 @@ export function createInputBlock({
 
     // SYNC: fake → hidden
     fakeInput.addEventListener("blur", (e) => {
-      debugger;
       const result = validateInputWithEvent({
         event: e,
         min,
@@ -351,6 +387,8 @@ export function createInputBlock({
         currencyCode: "INR",
         locale: "en-IN",
         ignoreMin: false,
+        allowEmpty: false,
+        eventType: "blur",
       });
       const { numeric: num } = result;
 
@@ -365,10 +403,7 @@ export function createInputBlock({
         onChange(num);
       }
 
-      updateInputSuffix({
-        ...e,
-        target: fakeInput,
-      });
+      updateInputSuffix(e);
     });
     fakeInput.addEventListener("input", (e) => {
       const result = validateInputWithEvent({
@@ -379,6 +414,7 @@ export function createInputBlock({
         currencyCode: "INR",
         locale: "en-IN",
         ignoreMin,
+        allowEmpty: false,
       });
       const { numeric: num, finalValue } = result;
       // update hidden input
@@ -393,10 +429,7 @@ export function createInputBlock({
         target: { ...hiddenInput, value: String(num) },
       });
 
-      updateInputSuffix({
-        ...e,
-        target: fakeInput,
-      });
+      updateInputSuffix(e);
     });
 
     fakeInput.addEventListener("change", (e) => {
@@ -451,19 +484,27 @@ export function createInputBlock({
 
   // Stepper buttons
   if (variant === "stepper") {
+    const disableBtn = {
+      min: Number(defVal) <= Number(min), // true if decrement should be disabled
+      max: Number(defVal) >= Number(max), // true if increment should be disabled
+    };
+
     const decBtn = button(
       {
         class: "calc-btn dec-btn",
         type: "button",
         "aria-label": "decrease-btn",
+        ...(disableBtn.min && { disabled: true }), // only add disabled if condition is true
       },
       ""
     );
+
     const incBtn = button(
       {
         class: "calc-btn inc-btn",
         type: "button",
         "aria-label": "increase-btn",
+        ...(disableBtn.max && { disabled: true }), // only add disabled if condition is true
       },
       ""
     );
@@ -473,6 +514,8 @@ export function createInputBlock({
       const newVal = noLimit
         ? current - 1
         : Math.max(Number(min) || 0, current - 1);
+
+      updateStepperButtons(inputEl, newVal);
       inputEl.value = newVal;
       updateInputSuffix(inputEl);
       onChange(newVal);
@@ -489,6 +532,8 @@ export function createInputBlock({
       const newVal = noLimit
         ? current + 1
         : Math.min(Number(max) || current + 1, current + 1);
+
+      updateStepperButtons(inputEl, newVal);
       inputEl.value = newVal;
       updateInputSuffix(inputEl);
       onChange(newVal);
@@ -556,6 +601,8 @@ export function createRadioSelectorBlock({
   onChange = () => {},
   blockAttr = {},
 } = {}) {
+  console.log("default : ", defVal);
+
   // ---------- Title Label ----------
   const titleEl = label({ for: id, class: "calc-radio-title" }, title);
 
@@ -797,6 +844,15 @@ export function createBarSummaryBlock({
   parent.appendChild(investedEstWrapper);
 
   // CTA button
+  const ctaBtn = createSummaryCTA({
+    container,
+  });
+  parent.appendChild(ctaBtn);
+
+  return parent;
+}
+
+export function createSummaryCTA({ container }) {
   const authorCTAData = container.querySelector(".calc-author-sub4 a");
   const ctaBtn = button(
     {
@@ -807,9 +863,7 @@ export function createBarSummaryBlock({
     },
     authorCTAData?.textContent.trim() || "Start SIP"
   );
-  parent.appendChild(ctaBtn);
-
-  return parent;
+  return ctaBtn;
 }
 
 export const CALC_FILENAME_MAPPING = {
@@ -884,4 +938,28 @@ export function extractOptionsSelect({ listContainer }) {
       return { label, value };
     })
     .filter((o) => o !== null);
+}
+
+/**
+ * Get a query parameter value from a URL.
+ *
+ * @param {string} key - Name of the query parameter to retrieve.
+ * @param {string} [url=window.location.href] - Optional URL to extract from.
+ * @returns {string|null} The value of the query param, or null if not found.
+ *
+ * @example
+ * // If URL is: https://example.com/?type=plan-a-trip
+ * getQueryParam("type"); // "plan-a-trip"
+ *
+ * @example
+ * getQueryParam("id", "https://site.com/page?id=42"); // "42"
+ */
+export function getQueryParam(key, url = window.location.href) {
+  try {
+    const params = new URL(url).searchParams;
+    return params.get(key);
+  } catch (err) {
+    console.warn("Invalid URL:", url);
+    return null;
+  }
 }

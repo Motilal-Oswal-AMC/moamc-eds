@@ -266,7 +266,7 @@ export default function decorate(block) {
     dataMapMoObj.addIndexed(error);
   }
 
-  if (window.location.pathname.includes('/static-pages/about')) {
+  if (window.location.pathname.includes('/static-pages/about') || window.location.pathname.includes('/static-pages/gift-city')) {
     const aboutSection = block.closest('main').querySelector('.section.trusted-asset');
     if (aboutSection) {
       dataMapMoObj.CLASS_PREFIXES = ['trusted-main', 'asset-inner', 'asset-sub', 'asset-subinner', 'asset-item', 'asset-inneritem', 'assest-childitem'];
@@ -305,6 +305,16 @@ export default function decorate(block) {
       'card-contentinner-img'
     ];
     dataMapMoObj.addIndexed(unclaimedCard);
+  }
+
+  if (window.location.pathname.includes('/static-pages/skin-in-the-game')) {
+    const matterSection = block.closest('main').querySelector('.why-matters-component .cards');
+    if (matterSection) {
+      dataMapMoObj.CLASS_PREFIXES = [
+        'matters-ul',
+        'matters-li',];
+      dataMapMoObj.addIndexed(matterSection);
+    }
   }
 }
 

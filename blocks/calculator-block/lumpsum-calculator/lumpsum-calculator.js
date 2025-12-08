@@ -30,7 +30,6 @@ export function calculateLumpsumSummary({
 }) {
   let data;
   const inputErrors = document.querySelectorAll(".calc-input.calc-error");
-
   if (!totalInvestment || !rateOfReturn || !timePeriod || inputErrors?.length) {
     data = {
       totalInvestment: 0,
@@ -92,7 +91,7 @@ export function updateCalculateSummary({ container, data }) {
     totalReturnsEl.textContent = formatNumber({
       value: data.totalValue,
       currency: true,
-    });
+    })?.replace("₹", "₹ ");
   }
 
   if (investedAmountEl) {
@@ -182,6 +181,7 @@ export default function decorate(block) {
     ...ti,
     prefix: "₹",
     fieldType: "currency",
+    ignoreMin: true,
     prefixAttr: { class: "currency-prefix" },
     inputBlockAttr: {
       class: "ti-inp-container",
@@ -205,6 +205,7 @@ export default function decorate(block) {
     suffixAttr: { class: "input-suffix" },
     fieldType: "percent",
     variant: "stepper",
+    ignoreMin: true,
     updateWidthonChange: true,
     onInput: (e) => {
       recalculateLumpsum({ ror: e.target.value, container: block });
@@ -221,8 +222,9 @@ export default function decorate(block) {
       class: "tp-inp-container",
     },
     fieldType: "year",
-    suffix: tp?.default > 1 ? "years" : "year",
+    suffix: tp?.default > 1 ? "Years" : "Year",
     variant: "stepper",
+    ignoreMin: true,
     updateWidthonChange: true,
     onInput: (e) => {
       recalculateLumpsum({ tp: e.target.value, container: block });

@@ -5,7 +5,7 @@ import {
   extractOptionsSelect,
   formatNumber,
   getAuthorData,
-} from '../common-ui-field/common-ui-field.js';
+} from "../common-ui-field/common-ui-field.js";
 
 const freqMap = {
   yearly: 1,
@@ -17,12 +17,12 @@ const freqMap = {
 function updateCalculateCompoundSummary({ container, data }) {
   if (!container || !data) return;
 
-  const principalEl = container.querySelector('#total-invested-amount');
-  const totalValueEl = container.querySelector('#sip-total-returns');
-  const interestEarnedEl = container.querySelector('#total-estimated-returns');
-  const multiplierEl = container.querySelector('#compound-multiplier');
+  const principalEl = container.querySelector("#total-invested-amount");
+  const totalValueEl = container.querySelector("#sip-total-returns");
+  const interestEarnedEl = container.querySelector("#total-estimated-returns");
+  const multiplierEl = container.querySelector("#compound-multiplier");
   container.querySelector(
-    '.calc-compounding .estimated-returns-bar',
+    ".calc-compounding .estimated-returns-bar"
   ).style.width = `${data?.returnsPercentage}%`;
 
   if (principalEl) {
@@ -102,11 +102,12 @@ function recalculateCompoundInterest({
   if (!container) return;
 
   // Get DOM inputs if arguments aren’t provided:
-  const principalInput = container.querySelector('#principal-amount');
-  const rateInput = container.querySelector('#rate-of-interest');
-  const yearsInput = container.querySelector('#time-period');
-  const freqInput = container.querySelector('#compoundFrequency');
-  const P = principal != null ? Number(principal) : Number(principalInput?.value || 0);
+  const principalInput = container.querySelector("#principal-amount");
+  const rateInput = container.querySelector("#rate-of-interest");
+  const yearsInput = container.querySelector("#time-period");
+  const freqInput = container.querySelector("#compoundFrequency");
+  const P =
+    principal != null ? Number(principal) : Number(principalInput?.value || 0);
   const r = rate != null ? Number(rate) : Number(rateInput?.value || 0);
   const t = years != null ? Number(years) : Number(yearsInput?.value || 0);
   const freqSel = frequencyValue != null ? frequencyValue : freqInput?.value;
@@ -122,7 +123,7 @@ function recalculateCompoundInterest({
 
   // Update UI bar if you have one
   const bar = container.querySelector(
-    '.calc‑compounding .estimated‑interest‑bar',
+    ".calc‑compounding .estimated‑interest‑bar"
   );
   if (bar && summary.totalValue > 0) {
     const perc = (summary.interestEarned / summary.totalValue) * 100;
@@ -139,50 +140,52 @@ function recalculateCompoundInterest({
 }
 
 export default function decorate(block) {
-  const CALC_AUTHOR_MAIN = block.querySelector('.calc-author-main1');
+  const CALC_AUTHOR_MAIN = block.querySelector(".calc-author-main1");
   if (!CALC_AUTHOR_MAIN) {
-    console.warn('No .calc-author-main1 element found.');
+    console.warn("No .calc-author-main1 element found.");
     return;
   }
 
   const authors = [
-    { key: 'PI', selector: ':scope > .calc-author-sub1' },
-    { key: 'TP', selector: ':scope > .calc-author-sub2' },
-    { key: 'ROI', selector: ':scope > .calc-author-sub3' },
+    { key: "PI", selector: ":scope > .calc-author-sub1" },
+    { key: "TP", selector: ":scope > .calc-author-sub2" },
+    { key: "ROI", selector: ":scope > .calc-author-sub3" },
   ];
 
   const CALC_AUTHORED_DATA = authors.map(({ key, selector }) => {
     const author = CALC_AUTHOR_MAIN.querySelector(selector);
     const data = author
-      ? [...author.querySelectorAll('.comlist')].map((el) => el.textContent.trim())
+      ? [...author.querySelectorAll(".comlist")].map((el) =>
+          el.textContent.trim()
+        )
       : [];
     return { key, data };
   });
   const OVERVIEW_DATA = CALC_AUTHOR_MAIN.querySelector(
-    ':scope > .calc-author-sub4',
+    ":scope > .calc-author-sub4"
   );
   // Select subitem1 and subitem2 together
   const firstGroup = OVERVIEW_DATA.querySelectorAll(
-    '.calc-author-subitem1, .calc-author-subitem2',
+    ".calc-author-subitem1, .calc-author-subitem2"
   );
 
   // Select all other subitems (subitem3–subitem6)
   const OVERVIEW_AUTHOR_DATA = OVERVIEW_DATA.querySelectorAll(
-    '.calc-author-subitem3, .calc-author-subitem4, .calc-author-subitem5, .calc-author-subitem6',
+    ".calc-author-subitem3, .calc-author-subitem4, .calc-author-subitem5, .calc-author-subitem6"
   );
   // Create a new container div
-  const container = document.createElement('div');
-  container.classList.add('calc-second-group'); // optional class name
+  const container = document.createElement("div");
+  container.classList.add("calc-second-group"); // optional class name
   OVERVIEW_AUTHOR_DATA.forEach((el) => container.appendChild(el));
 
   const sipBlock = createBarSummaryBlock({
     container,
   });
-  CALC_AUTHOR_MAIN.innerHTML = '';
+  CALC_AUTHOR_MAIN.innerHTML = "";
 
-  const pi = getAuthorData(CALC_AUTHORED_DATA, 'PI');
-  const tp = getAuthorData(CALC_AUTHORED_DATA, 'TP');
-  const roi = getAuthorData(CALC_AUTHORED_DATA, 'ROI');
+  const pi = getAuthorData(CALC_AUTHORED_DATA, "PI");
+  const tp = getAuthorData(CALC_AUTHORED_DATA, "TP");
+  const roi = getAuthorData(CALC_AUTHORED_DATA, "ROI");
 
   const compoundFreqTitle = firstGroup[0]?.textContent;
 
@@ -191,15 +194,16 @@ export default function decorate(block) {
   });
 
   const piBlock = createInputBlock({
-    id: 'principal-amount',
+    id: "principal-amount",
     ...pi,
-    prefix: '₹',
-    fieldType: 'currency',
-    prefixAttr: { class: 'currency-prefix' },
+    prefix: "₹",
+    fieldType: "currency",
+    ignoreMin: true,
+    prefixAttr: { class: "currency-prefix" },
     inputBlockAttr: {
-      class: 'pi-inp-container',
+      class: "pi-inp-container",
     },
-    variant: 'number',
+    variant: "number",
     onInput: (e) => {
       recalculateCompoundInterest({
         principal: e.target.value,
@@ -212,16 +216,17 @@ export default function decorate(block) {
   });
 
   const tpBlock = createInputBlock({
-    id: 'time-period',
+    id: "time-period",
     ...tp,
-    suffix: tp?.default > 1 ? 'years' : 'year',
-    fieldType: 'year',
-    suffixAttr: { class: 'input-suffix' },
+    suffix: tp?.default > 1 ? "Years" : "Year",
+    fieldType: "year",
+    ignoreMin: true,
+    suffixAttr: { class: "input-suffix" },
     inputBlockAttr: {
-      class: 'tp-inp-container',
+      class: "tp-inp-container",
     },
     updateWidthonChange: true,
-    variant: 'stepper',
+    variant: "stepper",
     onInput: (e) => {
       recalculateCompoundInterest({ years: e.target.value, container: block });
     },
@@ -230,16 +235,17 @@ export default function decorate(block) {
     },
   });
   const roiBlock = createInputBlock({
-    id: 'rate-of-interest',
+    id: "rate-of-interest",
     ...roi,
-    suffix: '%',
-    fieldType: 'percent',
+    suffix: "%",
+    fieldType: "percent",
     updateWidthonChange: true,
-    suffixAttr: { class: 'input-suffix' },
+    ignoreMin: true,
+    suffixAttr: { class: "input-suffix" },
     inputBlockAttr: {
-      class: 'roi-inp-container',
+      class: "roi-inp-container",
     },
-    variant: 'stepper',
+    variant: "stepper",
     onInput: (e) => {
       recalculateCompoundInterest({ rate: e.target.value, container: block });
     },
@@ -249,10 +255,10 @@ export default function decorate(block) {
   });
 
   const selector = createOptionSelectorBlock({
-    id: 'compoundFrequency',
+    id: "compoundFrequency",
     label: compoundFreqTitle,
     options: compoundFreqOptions,
-    default: 'yearly',
+    default: "yearly",
     onChange: (val) => {
       recalculateCompoundInterest({ frequency: val, container: block });
     },
@@ -265,7 +271,7 @@ export default function decorate(block) {
     principal: Number(pi?.default),
     annualRateRate: Number(roi?.default),
     years: Number(tp?.default),
-    compoundingFrequency: freqMap[compoundFreqOptions[0]?.value || 'yearly'], // e.g., 1,2,4,12 based on value
+    compoundingFrequency: freqMap[compoundFreqOptions[0]?.value || "yearly"], // e.g., 1,2,4,12 based on value
     roundDecimal: 0,
   });
 

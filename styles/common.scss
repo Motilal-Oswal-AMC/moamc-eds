@@ -1265,11 +1265,10 @@ main>.section.previous-studies-tab.tabs-container {
 
     @include media(mobile) {
       padding: 0 16px;
-      margin-right: 25px;
+      margin-right: 0;
       -ms-overflow-style: none;
       scrollbar-width: none;
-
-      // overflow-x: auto;
+      overflow-x: auto;
     }
 
     &::-webkit-scrollbar {
@@ -1332,10 +1331,10 @@ main>.section.previous-studies-tab.tabs-container {
           line-height: var(--label-small-line-height);
 
           @include media (mobile-ed) {
-            // display: block;
-            // width: 72px;
-            // text-overflow: ellipsis;
-            // overflow: hidden;
+            display: block;
+            width: 72px;
+            text-overflow: ellipsis;
+            overflow: hidden;
 
             // &::after {
             //   // content: "...";
@@ -1358,7 +1357,7 @@ main>.section.previous-studies-tab.tabs-container {
       .breadlist {
         @include media (mobile-ed) {
           display: block;
-          width: 72px;
+          width: auto;
           text-overflow: ellipsis;
           overflow: hidden;
         }
@@ -1540,9 +1539,12 @@ main>.section.previous-studies-tab.tabs-container {
           font-size: var(--button-medium-size);
           line-height: var(--button-medium-line-height);
           padding: 12px;
-          display: block;
           width: 100%;
           max-width: 192px;
+          height: 40px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
       }
     }
@@ -1627,6 +1629,10 @@ main>.section.previous-studies-tab.tabs-container {
         .cards-card-image {
           width: 68px;
           flex-shrink: 0;
+
+          @include media(mobile) {
+            width: unset;
+          }
 
           img {
             width: 48px;
@@ -1914,64 +1920,6 @@ main.nfo-nav {
 
 // QGLP static end
 
-// why invest minor account css start
-.section.why-invest-minor {
-  margin: 80px 0;
-
-  @include media (mobile-ed) {
-    margin: 0;
-    padding-bottom: 40px;
-  }
-
-  .why-invest-minor-main1 {
-    display: flex;
-    align-items: flex-start;
-    gap: 16px;
-
-    @include media (mobile-ed) {
-      flex-direction: column;
-    }
-
-    .why-invest-minor-sub {
-      &1 {
-        margin: 0;
-        width: 32.5%;
-        color: var(--blue-1800-primary, #2E2A94);
-        font-feature-settings: var(--font-features-default);
-        font-family: var(--title, Inter);
-        font-size: var(--heading-h4-size, 28px);
-        font-style: normal;
-        font-weight: 600;
-        line-height: 32px;
-
-        @include media (mobile-ed) {
-          width: 100%;
-          font-size: 24px;
-          line-height: 28px;
-        }
-      }
-
-      &2 {
-        width: 66.2%;
-        display: inline-block;
-        margin: 0;
-        color: var(--text-body, #424242);
-        font-feature-settings: var(--font-features-default);
-        font-family: var(--body, Inter);
-        font-size: var(--body-medium-regular-size, 16px);
-        font-style: normal;
-        font-weight: 400;
-        line-height: 24px;
-
-        @include media (mobile-ed) {
-          width: 100%;
-        }
-      }
-    }
-  }
-}
-
-// why invest minor account css End
 
 // conclusion css start 
 
@@ -1990,19 +1938,19 @@ main.nfo-nav {
     gap: 40px;
 
     .conclusion-title {
-      &1 {
-        margin: 0;
-        padding: 0;
-        color: var(--blue-1800-primary, #2E2A94);
-        font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
-        font-family: var(--title, Inter);
-        font-size: var(--heading-h4-size, 28px);
-        font-style: normal;
-        font-weight: 600;
-        line-height: 32px;
-      }
+      // &1 {
+      //   margin: 0;
+      //   padding: 0;
+      //   color: var(--blue-1800-primary, #2E2A94);
+      //   font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
+      //   font-family: var(--title, Inter);
+      //   font-size: var(--heading-h4-size, 28px);
+      //   font-style: normal;
+      //   font-weight: 600;
+      //   line-height: 32px;
+      // }
 
-      &2 {
+      &1 {
         margin: 0;
         color: var(--text-body, #424242);
         font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
@@ -2010,10 +1958,10 @@ main.nfo-nav {
         font-size: var(--body-xlarge-regular-size, 20px);
         font-style: normal;
         font-weight: 400;
-        line-height: var(--body-xlarge-regular-line-height, 32px);
+        line-height: 32px;
       }
 
-      &3 {
+      &2 {
         margin: 0;
         color: var(--blue-1800-primary, #2E2A94);
         font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on, 'liga' off;
@@ -2022,6 +1970,10 @@ main.nfo-nav {
         font-style: normal;
         font-weight: 600;
         line-height: var(--body-xlarge-bold-line-height, 24px);
+
+        @include media (mobile-ed) {
+          letter-spacing: 0.1px;
+        }
       }
     }
   }
@@ -2135,6 +2087,60 @@ main.nfo-nav {
   }
 }
 
+.section.high-skin-text.gift-high-skin {
+  .high-skin-wrap-one1 {
+    .high-skin-wrap-two1 {
+      @include media(mobile) {
+        margin: 0;
+      }
+
+      .high-skin-wrap-three1 {
+        .high-skin-heading1 {
+          .high-skin-subheading1 {
+            max-width: 395px;
+            width: 100%;
+
+            .high-skin-paragraph1 {
+              max-width: 100%;
+              color: var(--blue-1-800-primary);
+              font-family: var(--title);
+              font-size: var(--heading-h5-size);
+              font-style: normal;
+              font-weight: 600;
+              line-height: var(--heading-h5-line-height);
+
+              @include media(mobile) {
+                font-size: var(--sub-header-large-size);
+                line-height: var(--sub-header-medium-line-height);
+                margin: 0 0 24px;
+              }
+
+            }
+          }
+
+          .high-skin-subheading2 {
+            max-width: 628px;
+
+            .high-skin-paragraph1 {
+
+
+              .high-skin-paragraph-one1 {
+                color: var(--text-body);
+                font-family: var(--body);
+                font-size: var(--body-medium-regular-size);
+                font-style: normal;
+                font-weight: 400;
+                line-height:24px;
+                /* 150% */
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
 .section.high-image-component {
   width: 100%;
   border-radius: 12px;
@@ -2149,13 +2155,16 @@ main.nfo-nav {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #2B24A4;
+    // background-color: #2B24A4;
     border-radius: 16px;
     padding: 0;
     margin: 0 16px;
+    gap: unset;
+    background-color: #2b24a4;
 
     @media screen and (width > 768px) {
       max-width: 1240px;
+      background-color: #2b24a4;
     }
 
     .comlist.high-skin-component-heading1 {
@@ -2169,15 +2178,42 @@ main.nfo-nav {
       background: linear-gradient(256deg,
           rgb(154 148 255 / 50%) -40.11%,
           rgb(214 211 255 / 50%) 100%);
-      padding: 42.5px 55.259px 31.502px 55.242px;
+      // padding: 42.5px 55.259px 31.502px 55.242px;
 
       @media screen and (width > 768px) {
         height: 328px;
+        max-width: 1240px;
         align-items: end;
         padding: 0;
       }
 
-      .icon.icon-Rupees.comlist.high-skin-component-paragraph1 {
+      .icon-skinrupee {
+        height: 330px;
+        width: 100%;
+        display: block;
+
+        @include media(mobile) {
+          display: none;
+        }
+
+        .high-skin-component-ctn1 {
+          height: unset;
+          width: 100%;
+        }
+      }
+
+      .icon-skinrupee-mbl {
+        display: none;
+
+        @include media(mobile) {
+          display: block;
+          max-height: 328px;
+          height: 100%;
+          width: 100%;
+        }
+      }
+
+      .icon.icon-rupees.comlist.high-skin-component-paragraph1 {
         display: inline-flex;
         justify-content: center;
         align-items: center;
@@ -2210,8 +2246,10 @@ main.nfo-nav {
           flex-direction: column;
           justify-content: flex-start;
           background-color: #2B24A4;
-          padding: 28px 16px;
-          border-radius: 16px;
+          padding: 28px 16px 28px;
+          // border-radius: 16px;
+          border-bottom-left-radius: 16px;
+          border-bottom-right-radius: 16px;
           margin: 0;
 
           @media screen and (width > 768px) {
@@ -2222,7 +2260,7 @@ main.nfo-nav {
 
           .high-skin-component-external1 {
             color: var(--neutrals-white);
-            font-feature-settings: var(--font-features-default);
+            font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
             font-family: var(--title);
             font-size: 20px;
             line-height: 24px;
@@ -2269,7 +2307,7 @@ main.nfo-nav {
 
   .moamc-component-main-head1 {
     color: var(--blue-1-800-primary);
-    font-feature-settings: var(--font-features-default);
+    font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
     font-family: var(--title);
     font-size: var(--sub-header-large-size);
     line-height: var(--sub-header-medium-line-height);
@@ -2294,7 +2332,7 @@ main.nfo-nav {
     .moamc-component-title1 {
       .moamc-component-para1 {
         margin-top: 0;
-        margin-bottom: 56px;
+        margin-bottom: 40px;
         display: flex;
         flex-direction: column;
         gap: 40px;
@@ -2318,8 +2356,8 @@ main.nfo-nav {
     }
 
     .moamc-component-para-three1 {
-      color: var(--neutrals-900);
-      font-feature-settings: var(--font-features-default);
+      color: var(--blue-1800-primary, #2E2A94);
+      font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on, 'liga'off;
       font-family: var(--body);
       font-size: var(--body-large-semibold-size);
       font-style: normal;
@@ -2337,7 +2375,7 @@ main.nfo-nav {
 
     .moamc-component-para-three2 {
       color: var(--neutrals-800);
-      font-feature-settings: var(--font-features-default);
+      font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
       font-family: var(--body);
       font-size: var(--body-medium-regular-size);
       font-style: normal;
@@ -2381,6 +2419,7 @@ main.nfo-nav {
           display: flex;
           flex-direction: column-reverse;
           justify-content: flex-start;
+          align-items: center;
           background: var(--neutrals-100, #F5F5F5);
           width: 100%;
           border: none;
@@ -2388,10 +2427,11 @@ main.nfo-nav {
           @media screen and (width > 768px) {
             flex-direction: row-reverse;
             justify-content: space-between;
+            align-items: center;
           }
 
           .cards-card-image {
-            padding: 36px 43.22px 69px 42.22px;
+            padding: 36px 0 40px;
 
             @media screen and (width > 768px) {
               padding: 0;
@@ -2399,8 +2439,8 @@ main.nfo-nav {
 
             picture {
               img {
-                width: 250px;
-                height: 234px;
+                width: 273px;
+                height: 263px;
                 object-fit: unset;
 
                 @media screen and (width > 768px) {
@@ -2473,7 +2513,7 @@ main.nfo-nav {
     font-size: var(--body-medium-regular-size);
     font-style: normal;
     font-weight: 400;
-    line-height: var(--body-medium-regular-line-height);
+    line-height: 24px;
     max-width: 628px;
     width: 100%;
     margin: 0;
@@ -2496,6 +2536,7 @@ main.nfo-nav {
     margin: 0;
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 40px;
     max-width: 1232px;
     width: 100%;
@@ -2507,7 +2548,7 @@ main.nfo-nav {
     }
 
     @include media(desktop-sm) {
-      padding: 40px 16px;
+      padding: 32px 16px;
     }
 
     .why-matters-wrap1 {
@@ -2517,12 +2558,13 @@ main.nfo-nav {
 
       .why-matters-heading1 {
         color: var(--blue-1-800-primary);
-        font-feature-settings: var(--font-features-default);
+        font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
         font-family: var(--title);
         font-size: var(--sub-header-large-size);
         font-weight: 600;
         line-height: var(--sub-header-medium-line-height);
         margin-bottom: 16px;
+        margin-top: unset;
 
         @media screen and (width > 768px) {
           max-width: 504px;
@@ -2567,15 +2609,25 @@ main.nfo-nav {
 
             .cards-card-body {
               display: flex;
+              align-items: center;
               margin: 0;
               gap: 8px;
               background-color: $neutrals-100;
             }
           }
+
+          li.matters-li1,
+          li.matters-li2,
+          li.matters-li3 {
+            padding: 12px;
+            background-color: unset;
+          }
         }
 
         .why-matters-title1 {
           margin: 0;
+          width: 64px;
+          height: 64px;
 
           .why-matters-sub-title1 {
             width: 64px;
@@ -2585,17 +2637,18 @@ main.nfo-nav {
 
         .why-matters-title2 {
           margin: 0;
+          gap: 4px;
 
           .why-matters-sub-title1 {
             list-style: none;
-            color: var(--neutrals-900);
-            font-feature-settings: var(--font-features-default);
+            color: var(--blue-1-800-primary);
+            font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
             font-family: var(--body);
-            font-size: var(--body-large-medium-size);
+            font-size: var(--sub-header-medium-size);
             font-style: normal;
             font-weight: 500;
             line-height: 28px;
-            margin-bottom: 4px;
+            // margin-bottom: 4px;
             width: 100%;
             max-width: 276px;
           }
@@ -2603,7 +2656,7 @@ main.nfo-nav {
           .why-matters-sub-title2 {
             list-style: none;
             color: var(--neutrals-800);
-            font-feature-settings: var(--font-features-default);
+            font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
             font-family: var(--body);
             font-size: var(--body-small-regular-size);
             font-style: normal;
@@ -2632,7 +2685,7 @@ main.nfo-nav {
 
     .promise-qglp-ctn1 {
       position: unset;
-      margin-left: 16px;
+      // margin-left: 16px;
     }
 
     .promise-qglp-ctn2 {
@@ -2689,6 +2742,7 @@ main.nfo-nav {
 }
 
 // Skin in the game static end
+
 // elss fund page 
 
 .section.fund-tax {
@@ -2700,6 +2754,9 @@ main.nfo-nav {
     align-items: flex-start;
     align-self: stretch;
 
+    @include media(mobile) {
+      flex-direction: column;
+    }
 
   }
 
@@ -2708,12 +2765,12 @@ main.nfo-nav {
     width: 100%;
     color: var(--blue-1-800-primary);
     font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
-    font-family: var(--TItle, Inter);
+    font-family: var(--title, Inter);
     font-size: 28px;
     font-style: normal;
     font-weight: 600;
     line-height: 32px;
-    /* 114.286% */
+    margin: unset;
   }
 
   .fund-tax-txt2 {
@@ -2722,17 +2779,16 @@ main.nfo-nav {
     width: 100%;
     color: var(--neutrals-800);
     font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
-    font-family: var(--Body, Inter);
+    font-family: var(--body, Inter);
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
     line-height: 24px;
-    /* 150% */
   }
 }
 
 .section.invest-blog {
-  margin: 0 0 80px;
+  margin: 0 0 40px;
 
   .invest-blog-contain1 {
     display: flex;
@@ -2743,31 +2799,29 @@ main.nfo-nav {
     gap: 40px;
     align-self: stretch;
     border-radius: 8px;
-    background: linear-gradient(257deg, rgba(154, 148, 255, 0.50) -5.54%, rgba(235, 234, 255, 0.50) 100%);
+    background: linear-gradient(257deg, #9A94FF80 -5.54%, #EBEAFF80 100%);
+
+    @include media(mobile) {
+      background: linear-gradient(257deg, rgba(235, 234, 255, 0.50) -5.54%, rgba(154, 148, 255, 0.50) 100%);
+    }
   }
 
   .invest-blog-txt1 {
     margin: unset;
     color: var(--blue-1-800-primary);
     font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
-    font-family: var(--Body, Inter);
+    font-family: var(--body, Inter);
     font-size: 20px;
     font-style: normal;
     font-weight: 500;
     line-height: 28px;
-
-    // @include font-style(var(--body-medium-semibold-size),
-    //   var(--body-medium-semibold-line-height),
-    //   var(--neutrals-black),
-    //   600,
-    //   var(--body));
   }
 
   .invest-blog-txt2 {
     margin: unset;
     color: var(--blue-1-800-primary);
     font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
-    font-family: var(--Body, Inter);
+    font-family: var(--body, Inter);
     font-size: 20px;
     font-style: normal;
     font-weight: 500;
@@ -2776,7 +2830,7 @@ main.nfo-nav {
 }
 
 .section.tax-blog {
-  background: var(--Neutrals-100, #F5F5F5);
+  background: var(--neutrals-100, #F5F5F5);
   padding: 80px 67px 64px;
   margin: unset;
 
@@ -2799,7 +2853,7 @@ main.nfo-nav {
     .tax-blog-txt1 {
       color: var(--blue-1-800-primary);
       font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
-      font-family: var(--TItle, Inter);
+      font-family: var(--title, Inter);
       font-size: 28px;
       font-style: normal;
       font-weight: 600;
@@ -2817,31 +2871,28 @@ main.nfo-nav {
       .tax-blog-subtxt1 {
         color: var(--text-body);
         font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
-        font-family: var(--Body, Inter);
+        font-family: var(--body, Inter);
         font-size: 14px;
         font-style: normal;
         font-weight: 400;
         line-height: 20px;
-        /* 142.857% */
       }
 
       .tax-blog-subtxt2 {
         color: var(--text-body);
         font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
-        font-family: var(--Body, Inter);
+        font-family: var(--body, Inter);
         font-size: 14px;
         font-style: normal;
         font-weight: 400;
         line-height: 20px;
-
-        /* 142.857% */
       }
     }
   }
 }
 
 .section.sip-blog {
-  background: var(--Neutrals-100, #F5F5F5);
+  background: var(--neutrals-100, #F5F5F5);
   padding-bottom: 80px;
   margin: unset;
 
@@ -2859,7 +2910,7 @@ main.nfo-nav {
     .sip-blog-txt1 {
       color: var(--blue-1-800-primary);
       font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
-      font-family: var(--TItle, Inter);
+      font-family: var(--title, Inter);
       font-size: 28px;
       font-style: normal;
       font-weight: 600;
@@ -2884,7 +2935,7 @@ main.nfo-nav {
       .sip-blog-subtxt1 {
         color: var(--text-body);
         font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
-        font-family: var(--Body, Inter);
+        font-family: var(--body, Inter);
         font-size: 14px;
         font-style: normal;
         font-weight: 400;
@@ -2909,7 +2960,7 @@ main.nfo-nav {
       .sip-blog-subtxt2 {
         color: var(--text-body);
         font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
-        font-family: var(--Body, Inter);
+        font-family: var(--body, Inter);
         font-size: 14px;
         font-style: normal;
         font-weight: 400;
@@ -2921,7 +2972,6 @@ main.nfo-nav {
           gap: 8px;
         }
 
-        /* 142.857% */
         p {
           .icon-elss-sip2 {
             width: 68px;
@@ -2941,7 +2991,7 @@ main.nfo-nav {
     .sebi-blog-txt1 {
       margin: unset;
       color: var(--neutrals-700);
-      font-family: var(--Body, Inter);
+      font-family: var(--body, Inter);
       font-size: 12px;
       font-style: normal;
       font-weight: 400;
@@ -2957,15 +3007,13 @@ main.nfo-nav {
     .elss-stock-table-txt1 {
       color: var(--blue-1-800-primary);
       font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
-      font-family: var(--TItle, Inter);
+      font-family: var(--title, Inter);
       font-size: 28px;
       font-style: normal;
       font-weight: 600;
       line-height: 32px;
       padding-bottom: 24px;
       margin-top: 80px;
-
-      /* 114.286% */
     }
 
     .elss-stock-table-txt2 {
@@ -2973,7 +3021,6 @@ main.nfo-nav {
 
       @include media(mobile) {
         width: 100%;
-        overflow-x: auto;
         overflow-y: hidden;
         -webkit-overflow-scrolling: touch;
         scrollbar-width: none;
@@ -2989,7 +3036,6 @@ main.nfo-nav {
 
         @include media(mobile) {
           width: 1188px;
-          /* your span width */
           display: inline-block;
         }
       }
@@ -3091,404 +3137,4 @@ main.nfo-nav {
 }
 
 
-
-// elss fund page 
-
-.section.fund-tax {
-  margin: 40px 0;
-
-  .fund-tax-contain1 {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    align-self: stretch;
-
-
-  }
-
-  .fund-tax-txt1 {
-    max-width: 343px;
-    width: 100%;
-    color: var(--blue-1-800-primary);
-    font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
-    font-family: var(--TItle, Inter);
-    font-size: 28px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 32px;
-    /* 114.286% */
-  }
-
-  .fund-tax-txt2 {
-    margin: unset;
-    max-width: 608px;
-    width: 100%;
-    color: var(--neutrals-800);
-    font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
-    font-family: var(--Body, Inter);
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 24px;
-    /* 150% */
-  }
-}
-
-.section.invest-blog {
-  margin: 0 0 80px;
-
-  .invest-blog-contain1 {
-    display: flex;
-    padding: 24px;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 40px;
-    align-self: stretch;
-    border-radius: 8px;
-    background: linear-gradient(257deg, rgba(154, 148, 255, 0.50) -5.54%, rgba(235, 234, 255, 0.50) 100%);
-  }
-
-  .invest-blog-txt1 {
-    margin: unset;
-    color: var(--blue-1-800-primary);
-    font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
-    font-family: var(--Body, Inter);
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 28px;
-
-    // @include font-style(var(--body-medium-semibold-size),
-    //   var(--body-medium-semibold-line-height),
-    //   var(--neutrals-black),
-    //   600,
-    //   var(--body));
-  }
-
-  .invest-blog-txt2 {
-    margin: unset;
-    color: var(--blue-1-800-primary);
-    font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
-    font-family: var(--Body, Inter);
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 28px;
-  }
-}
-
-.section.tax-blog {
-  background: var(--Neutrals-100, #F5F5F5);
-  padding: 80px 67px 64px;
-  margin: unset;
-
-  @include media(mobile) {
-    padding: 80px 16px 40px;
-  }
-
-  .tax-blog-contain1 {
-    display: flex;
-    align-items: flex-start;
-    gap: 146px;
-    align-self: stretch;
-
-    @include media(mobile) {
-      flex-direction: column;
-      gap: 12px;
-      margin: unset;
-    }
-
-    .tax-blog-txt1 {
-      color: var(--blue-1-800-primary);
-      font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
-      font-family: var(--TItle, Inter);
-      font-size: 28px;
-      font-style: normal;
-      font-weight: 600;
-      line-height: 32px;
-
-      @include media(mobile) {
-        margin: unset;
-      }
-    }
-
-    .tax-blog-txt2 {
-      max-width: 728px;
-      width: 100%;
-
-      .tax-blog-subtxt1 {
-        color: var(--text-body);
-        font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
-        font-family: var(--Body, Inter);
-        font-size: 14px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: 20px;
-        /* 142.857% */
-      }
-
-      .tax-blog-subtxt2 {
-        color: var(--text-body);
-        font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
-        font-family: var(--Body, Inter);
-        font-size: 14px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: 20px;
-
-        /* 142.857% */
-      }
-    }
-  }
-}
-
-.section.sip-blog {
-  background: var(--Neutrals-100, #F5F5F5);
-  padding-bottom: 80px;
-  margin: unset;
-
-  .sip-blog-contain1 {
-    display: flex;
-    align-items: flex-start;
-    gap: 111px;
-    align-self: stretch;
-
-    @include media(mobile) {
-      flex-direction: column;
-      gap: 20px;
-    }
-
-    .sip-blog-txt1 {
-      color: var(--blue-1-800-primary);
-      font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
-      font-family: var(--TItle, Inter);
-      font-size: 28px;
-      font-style: normal;
-      font-weight: 600;
-      line-height: 32px;
-
-      @include media(mobile) {
-        margin: unset;
-      }
-    }
-
-    .sip-blog-txt2 {
-      display: flex;
-      gap: 60px;
-      max-width: 735px;
-      width: 100%;
-
-      @include media(mobile) {
-        flex-direction: column;
-        gap: 32px;
-      }
-
-      .sip-blog-subtxt1 {
-        color: var(--text-body);
-        font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
-        font-family: var(--Body, Inter);
-        font-size: 14px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: 20px;
-        list-style-type: none;
-
-        @include media(mobile) {
-          display: flex;
-          gap: 8px;
-        }
-
-        p {
-          .icon-elss-sip1 {
-            width: 68px;
-            height: 68px;
-          }
-        }
-
-        /* 142.857% */
-      }
-
-      .sip-blog-subtxt2 {
-        color: var(--text-body);
-        font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
-        font-family: var(--Body, Inter);
-        font-size: 14px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: 20px;
-        list-style-type: none;
-
-        @include media(mobile) {
-          display: flex;
-          gap: 8px;
-        }
-
-        /* 142.857% */
-        p {
-          .icon-elss-sip2 {
-            width: 68px;
-            height: 68px;
-          }
-        }
-      }
-    }
-  }
-}
-
-.section.sebi-blog {
-  margin: unset;
-  padding-bottom: 80px;
-
-  .sebi-blog-contain1 {
-    .sebi-blog-txt1 {
-      margin: unset;
-      color: var(--neutrals-700);
-      font-family: var(--Body, Inter);
-      font-size: 12px;
-      font-style: normal;
-      font-weight: 400;
-      line-height: 16px;
-    }
-  }
-}
-
-.section.elss-stock-table {
-  margin: 0 0 80px;
-
-  .elss-stock-table-contain1 {
-    .elss-stock-table-txt1 {
-      color: var(--blue-1-800-primary);
-      font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
-      font-family: var(--TItle, Inter);
-      font-size: 28px;
-      font-style: normal;
-      font-weight: 600;
-      line-height: 32px;
-      padding-bottom: 24px;
-      margin-top: 80px;
-
-      /* 114.286% */
-    }
-
-    .elss-stock-table-txt2 {
-      margin: unset;
-
-      @include media(mobile) {
-        width: 100%;
-        overflow-x: auto;
-        overflow-y: hidden;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-
-        .elss-stock-table-txt2::-webkit-scrollbar {
-          display: none;
-        }
-      }
-
-      .elss-stock-table-subtxt1 {
-        width: 1188px;
-        height: auto;
-
-        @include media(mobile) {
-          width: 1188px;
-          /* your span width */
-          display: inline-block;
-        }
-      }
-    }
-  }
-}
-
-.section.fund-philosophy {
-  border-radius: 8px;
-  background: var(--blue-1-800-primary, #2E2A94);
-
-  @include media(mobile) {
-    border-radius: 0;
-  }
-
-  .eels-vedio-wrap {
-    display: flex;
-    padding: 16px 0;
-    justify-content: center;
-    align-items: center;
-    gap: 64px;
-    align-self: stretch;
-
-    @include media(mobile) {
-      flex-direction: column;
-      gap: 24px;
-      padding: 40px 16px;
-    }
-
-    .fund-philosophy-contain1 {
-      max-width: 40.02%;
-      width: 100%;
-
-      @include media(mobile) {
-        max-width: 100%;
-      }
-
-      .fund-philosophy-txt1 {
-        margin: 0 0 2px;
-        color: var(--neutrals-white);
-        font-feature-settings: var(--font-features-default);
-        font-family: var(--title);
-        font-size: var(--heading-h5-size);
-        font-style: normal;
-        font-weight: 600;
-        line-height: var(--heading-h5-line-height);
-
-        @include media(mobile) {
-          font-size: var(--sub-header-large-size);
-          line-height: 28px;
-        }
-      }
-
-      .fund-philosophy-txt2 {
-        margin: unset;
-        color: var(--blue-1-50);
-        font-feature-settings: var(--font-features-default);
-        font-family: var(--body);
-        font-size: var(--body-medium-regular-size);
-        font-style: normal;
-        font-weight: 400;
-        line-height: 24px;
-
-        @include media(mobile) {
-          font-size: var(--paragraph-small-regular-size);
-          line-height: var(--paragraph-small-regular-line-height);
-        }
-      }
-    }
-
-    .fund-philosophy-contain2 {
-      width: 320px;
-      height: 180px;
-      aspect-ratio: 16/9;
-      padding: 0;
-
-      @include media(mobile) {
-        width: 100%;
-        height: 190px;
-      }
-
-      .embed {
-        width: 100%;
-        height: 100%;
-
-        >div {
-          width: 100%;
-          height: 100%;
-
-          iframe {
-            border-radius: 8px;
-            width: 100%;
-            height: 100%;
-          }
-        }
-      }
-    }
-  }
-}
+//  Become a Partner section

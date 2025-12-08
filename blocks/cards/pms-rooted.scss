@@ -1,6 +1,6 @@
 @use "sass:map";
-@use "../../styles/common-theme/css/variables_mixins"as *;
-@use "../../styles/common-theme/css/fluid-typography"as *;
+@use "../../styles/common-theme/css/variables_mixins" as *;
+@use "../../styles/common-theme/css/fluid-typography" as *;
 
 $breakpoint-desktop-s: 1100px;
 $breakpoint-desktop-ss: 1280px;
@@ -568,7 +568,7 @@ $breakpoint-tablet: 900px;
                         color: var(--blue-1800-primary, #2E2A94);
                         font-weight: 600;
                         text-align: center;
-                        font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
+                        font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
                         font-family: var(--title, Inter);
                         font-size: var(--heading-h4-size, 32px);
                         font-style: normal;
@@ -609,3 +609,290 @@ $breakpoint-tablet: 900px;
 
     }
 }
+
+// Gift City //
+
+.section.high-skin.gift-high-skin {
+    max-width: 1232px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 0 80px 0px;
+    background: unset;
+
+    @include media(mobile) {
+        padding: 0 16px 80px 16px;
+        background: unset;
+        margin: 0;
+    }
+
+
+    .pms-high-skin1 {
+        background: #F5F5F5;
+        padding: 40px 0 0 0;
+        border-radius: 12px;
+
+        @include media(mobile) {
+            padding: 40px 16px 0px 16px;
+            // background: #F5F5F5;
+            border-radius: 24px;
+        }
+
+        .pms-high-skin-card1 {
+            .pms-high-skin-card-cont1 {
+                .pms-high-skin-card-subcont1 {
+                    .cards-card-body {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 24px;
+
+                        h2 {
+                            color: #2E2A94;
+                            text-align: center;
+                            font-family: var(--title);
+                            font-size: 28px;
+                            font-style: normal;
+                            font-weight: 600;
+                            line-height: 32px;
+
+                            @include media(mobile) {
+                                font-size: 24px;
+                                line-height: 28px;
+
+                            }
+
+                        }
+
+                        p {
+                            max-width: 496px;
+                            margin: 0 0 57px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+
+// Gift City Card Start //
+
+.section.choose-gift {
+    max-width: 100%;
+    width: 100%;
+    background: #FAFAFA;
+    display: flex;
+    padding: 80px 0  0;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 64px;
+
+    @include media(mobile) {
+        padding: 40px 16px;
+        gap: 24px;
+    }
+
+    .gift-choose1 {
+        .gift-choose-inner1 {
+            text-align: center;
+            color: var(--blue-1-800-primary);
+            text-align: center;
+            font-family: var(--title);
+            font-size: 28px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: 32px;
+            margin: 0;
+
+            @include media(mobile) {
+                font-size: 24px;
+                line-height: 28px;
+            }
+        }
+    }
+
+    .gift-choose2 {
+        max-width: 1232px;
+        width: 100%;
+        height: 454px;
+
+        @include media(mobile) {
+            padding: 0;
+        }
+
+        .gift-choose-inner1 {
+            ul {
+                display: unset;
+
+                li {
+                    display: flex;
+                    gap: 24px;
+                    align-items: center;
+                    border: none;
+                    background: #FAFAFA;
+
+                    @include media(mobile) {
+                        flex-direction: column;
+                    }
+
+
+                    .cards-card-image {
+                        max-width: 660px;
+                        height: 369px;
+                        flex-shrink: 0;
+                        aspect-ratio: unset;
+
+                        @include media(mobile) {
+                            height: 205px;
+                        }
+
+
+                        img {
+                            border-radius: 12px;
+                            aspect-ratio: unset;
+                            height: 100%;
+                            object-fit: cover;
+                        }
+                    }
+
+                    .cards-card-body {
+                        height: auto;
+                        margin: 0px;
+
+                        .gift-choose-sub-inner-sub-inner1 {
+                            display: flex;
+                            flex-direction: column;
+                            gap: 12px;
+                            justify-content: center;
+                            margin: 0;
+
+
+                            li.comlist {
+                                padding: 0 16px;
+                                color: #212121;
+                                font-family: var(--body);
+                                font-size: var(--body-large-medium-size);
+                                font-style: normal;
+                                font-weight: 500;
+                                line-height: var(--body-large-medium-line-height);
+
+                                /* 133.333% */
+                                @include media(mobile) {
+                                    padding: 7px 0;
+                                    gap: 24px;
+                                    flex-direction: row;
+                                    gap: auto;
+
+
+                                }
+
+
+                                .icon-skin-game {
+                                    width: 50px;
+                                    height: 50px;
+                                }
+                            }
+                        }
+                    }
+
+                }
+            }
+        }
+    }
+}
+
+// Gift City Card End //
+
+
+// Gift city component $17.54 B START
+
+
+.section.high-skin-text.gift-high-skin {
+
+
+    @include media(mobile) {
+               padding: 0 0 80px;
+            }
+
+    .high-skin-wrap-one1 {
+        .high-skin-wrap-two1{
+            .high-skin-wrap-three1{
+                .high-skin-heading1{
+                   
+                    .high-skin-subheading2{
+                        .high-skin-paragraph1{
+                            .high-skin-paragraph-one2{
+                                 margin-bottom: 80px;
+
+                                @include media(mobile) {
+                margin-bottom: 24px;
+            }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .high-skin-wrap-two2 {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            list-style: none;
+              margin: 0;
+              padding-bottom: 40px;
+
+
+            @include media(mobile) {
+                align-items: unset;
+                flex-direction: column;
+                gap: 20px;
+                padding-bottom: 0;
+            }
+
+            >.comlist {
+                color: #2E2A94;
+                font-family: var(--title, Inter);
+                font-size: 36px;
+                font-style: normal;
+                font-weight: 600;
+                line-height: 44px;
+                 margin: 4px;
+
+                @include media(mobile) {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    font-size: 20px;
+                    line-height: 24px;
+                }
+
+
+                /* 122.222% */
+                .comlist {
+                    list-style: none;
+                    color: var(--text-body-2);
+                    font-family: var(--body);
+                    font-size: var(--body-small-regular-size);
+                    font-style: normal;
+                    font-weight: 400;
+                    line-height: var(--body-small-regular-line-height);
+
+                    @include media(mobile) {
+                        font-size: 14px;
+                        line-height: 20px;
+                        max-width: 200px;
+                        margin: 0px;
+                        width: 100%;
+                    }
+
+                    /* 114.286% */
+                }
+            }
+        }
+    }
+}
+
+
+
+// Gift city component $17.54 B END

@@ -203,6 +203,10 @@
             "value": "elss-stock-table"
           },
           {
+            "name": "Mo Partner",
+            "value": "mo-partner"
+          },
+          {
             "name": "Calculators Card",
             "value": "calculators-card"
           },
@@ -217,6 +221,10 @@
           {
             "name": "GLP TAB Price",
             "value": "glp-tab-price"
+          },
+           {
+            "name": "Gift Campaign",
+            "value": "gift-campaign"
           },
           {
             "name": "Wealth-Register",
@@ -261,6 +269,34 @@
           {
             "name": "fdp-kyc-form",
             "value": "fdp-kyc-form"
+          },
+          {
+            "name": "Gift Hero",
+            "value": "gift-hero"
+          },
+          {
+            "name": "Gift Cornerstones Advantage",
+            "value": "gift-cornerstones-advantage"
+          },
+          {
+            "name": "Gift High Skin",
+            "value": "gift-high-skin"
+          },
+          {
+            "name": "Gift Investing Style",
+            "value": "gift-investing-style"
+          },
+          {
+            "name": "Gift High Skin",
+            "value": "gift-high-skin"
+          },
+          {
+            "name": "Choose Gift",
+            "value": "choose-gift"
+          },
+          {
+            "name": "Gift Accordion",
+            "value": "gift-accordion"
           },
           {
             "name": "pan-details-modal",
@@ -735,6 +771,26 @@
             "value": "thank-you-screen"
           },
           {
+            "name": "Partner Blog",
+            "value": "partner-blog"
+          },
+          {
+            "name": "Partner Connect",
+            "value": "partner-connect"
+          },
+          {
+            "name": "Partner Banner",
+            "value": "partner-banner"
+          },
+          {
+            "name": "Partner Amc",
+            "value": "partner-amc"
+          },
+          {
+            "name": "Cornerstones become partner",
+            "value": "cornerstones-become-partner"
+          },
+          {
             "name": "Privacy Policy Banner",
             "value": "privacy-policy-banner"
           },
@@ -795,16 +851,24 @@
             "value": "unclaimed-redemption"
           },
           {
-            "name": "Moedge Article One",
-            "value": "moedge-article-one"
+            "name": "Why Invest Minor",
+            "value": "why-invest-minor"
           },
           {
-            "name": "Moedge Article Second",
-            "value": "moedge-article-second"
+            "name": "Key Details Card",
+            "value": "key-details-card"
           },
           {
-            "name": "Moedge Article Three",
-            "value": "moedge-article-three"
+            "name": "Left Align Card",
+            "value": "left-align-card"
+          },
+          {
+            "name": "Right Align Card",
+            "value": "right-align-card"
+          },
+          {
+            "name": "Minors folio FAQ",
+            "value": "minors-folio-faq"
           }
         ]
       },
@@ -3869,6 +3933,25 @@
         "component": "richtext",
         "name": "col4_text",
         "label": "Calculation overview"
+      }
+    ]
+  },
+  {
+    "id": "investing-minors",
+    "fields": [
+      {
+        "component": "richtext",
+        "name": "one_text1",
+        "value": "",
+        "label": "Text",
+        "valueType": "string"
+      },
+      {
+        "component": "richtext",
+        "name": "two_text2",
+        "value": "",
+        "label": "Text",
+        "valueType": "string"
       }
     ]
   }
