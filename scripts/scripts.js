@@ -41,6 +41,8 @@ function wrapImgsInLinks(container) {
   });
 }
 
+
+
 export function moveAttributes(from, to, attributes) {
   let attrs = attributes;
   if (!attrs) {
@@ -226,6 +228,23 @@ async function loadLazy(doc) {
   await loadSections(main);
   dataMapMoObj.article();
   dataMapMoObj.qglpwcs();
+
+  const shareWrapper = document.querySelector(".itemmainleftart3");
+  const shareBtn = shareWrapper.querySelector(".submainleftart1");
+  const dropdown = shareWrapper.querySelector(".submainleftart2");
+
+  // Toggle dropdown when clicking share icon
+  shareBtn.addEventListener("click", function (e) {
+    e.stopPropagation();
+    dropdown.classList.toggle("active");
+  });
+
+  // Close dropdown on outside click
+  document.addEventListener("click", function (e) {
+    if (!shareWrapper.contains(e.target)) {
+      dropdown.classList.remove("active");
+    }
+  });
 
   const {
     hash,
@@ -689,3 +708,4 @@ function qglpwcs() {
   }
 }
 dataMapMoObj.qglpwcs = qglpwcs;
+
