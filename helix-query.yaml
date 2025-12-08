@@ -71,7 +71,7 @@ indices:
         select: head > meta[property="og:image"]
         value: attribute(el, "content")
       tag:
-        select: body > main > .section > ul > li > p
+        select: '#podcast-detail-section .default-content-wrapper ul ul li:first-child'
         value: textContent(el)
       time:
         select: head > meta[name="published-time"]
@@ -89,8 +89,5 @@ indices:
         select: head > meta[name="robots"]
         value: attribute(el, "content")
       youtubeurl:
-        select: body .embed-container a[href^="https://youtu.be"]
+        select: .embed-container a[href^="https://youtu.be"]
         value: attribute(el, "href")
-      contenttype:
-        select: body .embed-container ul ul li:first-child
-        value: textContent(el)
