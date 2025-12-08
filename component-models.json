@@ -851,18 +851,6 @@
             "value": "why-invest-minor"
           },
           {
-            "name": "Key Details Card",
-            "value": "key-details-card"
-          },
-          {
-            "name": "Left Align Card",
-            "value": "left-align-card"
-          },
-          {
-            "name": "Right Align Card",
-            "value": "right-align-card"
-          },
-          {
             "name": "Minors folio FAQ",
             "value": "minors-folio-faq"
           }
@@ -941,6 +929,10 @@
         "name": "style",
         "label": "Style",
         "options": [
+          {
+            "name": "Key Details Card",
+            "value": "key-details-card"
+          },
           {
             "name": "Left Key card",
             "value": "left-key-card"
