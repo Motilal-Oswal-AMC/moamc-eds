@@ -3,23 +3,23 @@ import {
   createBarSummaryBlock,
   getAuthorData,
   formatNumber,
-} from "../common-ui-field/common-ui-field.js";
+} from '../common-ui-field/common-ui-field.js';
 
 export function updateCalculateSummary({ container, data }) {
   if (!container || !data) return;
 
-  const futureCostEl = container.querySelector("#sip-total-returns");
-  const currentCostEl = container.querySelector("#total-invested-amount");
+  const futureCostEl = container.querySelector('#sip-total-returns');
+  const currentCostEl = container.querySelector('#total-invested-amount');
   const inflationIncreaseEl = container.querySelector(
-    "#total-estimated-returns"
+    '#total-estimated-returns',
   );
-  const compoundRateEl = container.querySelector("#compound-rate");
+  const compoundRateEl = container.querySelector('#compound-rate');
 
   if (futureCostEl) {
     futureCostEl.textContent = formatNumber({
       value: data.futureCost,
       currency: true,
-    })?.replace("₹", "₹ ");
+    })?.replace('₹', '₹ ');
   }
 
   if (currentCostEl) {
@@ -66,17 +66,17 @@ export function calculateInflationSummary({
   callbackFunc,
 }) {
   let data;
-  const inputErrors = document.querySelectorAll(".calc-input.calc-error");
+  const inputErrors = document.querySelectorAll('.calc-input.calc-error');
   // Guard clause for invalid inputs
   if (
-    (!currentCost || !rateOfInflation || !timePeriod) &&
-    inputErrors?.length
+    (!currentCost || !rateOfInflation || !timePeriod)
+    && inputErrors?.length
   ) {
     data = {
       currentCost: 0,
       futureCost: 0,
       inflationIncrease: 0,
-      inflationMultiplier: "1.0x",
+      inflationMultiplier: '1.0x',
       currentCostPercentage: 0,
       inflationIncreasePercentage: 0,
     };
@@ -99,10 +99,9 @@ export function calculateInflationSummary({
   const currentCostPercentage = (currentCost / futureCost) * 100;
   const inflationIncreasePercentage = (inflationIncrease / futureCost) * 100;
 
-  const roundValue = (val) =>
-    roundDecimal === null || roundDecimal === undefined
-      ? val
-      : Number(val.toFixed(roundDecimal));
+  const roundValue = (val) => (roundDecimal === null || roundDecimal === undefined
+    ? val
+    : Number(val.toFixed(roundDecimal)));
 
   data = {
     currentCost: roundValue(currentCost),
@@ -117,16 +116,17 @@ export function calculateInflationSummary({
   return data;
 }
 
-function recalculateInflation({ cc, roi, tp, roundDecimal = 0, container }) {
+function recalculateInflation({
+  cc, roi, tp, roundDecimal = 0, container,
+}) {
   if (!container) return;
 
-  const ccInput = container.querySelector("#current-cost");
-  const roiInput = container.querySelector("#rate-inflation");
-  const tpInput = container.querySelector("#time-period");
+  const ccInput = container.querySelector('#current-cost');
+  const roiInput = container.querySelector('#rate-inflation');
+  const tpInput = container.querySelector('#time-period');
 
   const currentCost = cc != null ? Number(cc) : Number(ccInput?.value || 0);
-  const rateOfInflation =
-    roi != null ? Number(roi) : Number(roiInput?.value || 0);
+  const rateOfInflation = roi != null ? Number(roi) : Number(roiInput?.value || 0);
   const timePeriod = tp != null ? Number(tp) : Number(tpInput?.value || 0);
 
   const summary = calculateInflationSummary({
@@ -137,7 +137,7 @@ function recalculateInflation({ cc, roi, tp, roundDecimal = 0, container }) {
   });
 
   const bar = container.querySelector(
-    ".calc-compounding .estimated-returns-bar"
+    '.calc-compounding .estimated-returns-bar',
   );
   if (bar) {
     bar.style.width = `${summary.inflationIncreasePercentage}%`;
@@ -152,31 +152,29 @@ function recalculateInflation({ cc, roi, tp, roundDecimal = 0, container }) {
 }
 
 export default function decorate(block) {
-  const CALC_AUTHOR_MAIN = block.querySelector(".calc-author-main1");
+  const CALC_AUTHOR_MAIN = block.querySelector('.calc-author-main1');
   if (!CALC_AUTHOR_MAIN) {
-    console.warn("No .calc-author-main1 element found.");
+    console.warn('No .calc-author-main1 element found.');
     return;
   }
 
   // Input fields structure:
   const authors = [
-    { key: "CC", selector: ":scope > .calc-author-sub1" }, // Current Cost
-    { key: "ROI", selector: ":scope > .calc-author-sub2" }, // Rate of Inflation
-    { key: "TP", selector: ":scope > .calc-author-sub3" }, // Time Period
+    { key: 'CC', selector: ':scope > .calc-author-sub1' }, // Current Cost
+    { key: 'ROI', selector: ':scope > .calc-author-sub2' }, // Rate of Inflation
+    { key: 'TP', selector: ':scope > .calc-author-sub3' }, // Time Period
   ];
 
   const CALC_AUTHORED_DATA = authors.map(({ key, selector }) => {
     const author = CALC_AUTHOR_MAIN.querySelector(selector);
     const data = author
-      ? [...author.querySelectorAll(".comlist")].map((el) =>
-          el.textContent.trim()
-        )
+      ? [...author.querySelectorAll('.comlist')].map((el) => el.textContent.trim())
       : [];
     return { key, data };
   });
 
   const OVERVIEW_DATA = CALC_AUTHOR_MAIN.querySelector(
-    ":scope > .calc-author-sub4"
+    ':scope > .calc-author-sub4',
   );
 
   const inflationBlock = createBarSummaryBlock({
@@ -184,25 +182,25 @@ export default function decorate(block) {
   });
 
   // Clear old contents
-  CALC_AUTHOR_MAIN.innerHTML = "";
+  CALC_AUTHOR_MAIN.innerHTML = '';
 
   // Extract field defaults
-  const cc = getAuthorData(CALC_AUTHORED_DATA, "CC");
-  const roi = getAuthorData(CALC_AUTHORED_DATA, "ROI");
-  const tp = getAuthorData(CALC_AUTHORED_DATA, "TP");
+  const cc = getAuthorData(CALC_AUTHORED_DATA, 'CC');
+  const roi = getAuthorData(CALC_AUTHORED_DATA, 'ROI');
+  const tp = getAuthorData(CALC_AUTHORED_DATA, 'TP');
 
   // 🏠 Current Cost
   const ccBlock = createInputBlock({
-    id: "current-cost",
+    id: 'current-cost',
     ...cc,
-    prefix: "₹",
-    fieldType: "currency",
+    prefix: '₹',
+    fieldType: 'currency',
     ignoreMin: true,
-    prefixAttr: { class: "currency-prefix" },
+    prefixAttr: { class: 'currency-prefix' },
     inputBlockAttr: {
-      class: "cc-inp-container",
+      class: 'cc-inp-container',
     },
-    variant: "number",
+    variant: 'number',
     onInput: (e) => {
       recalculateInflation({ cc: e.target.value, container: block });
     },
@@ -213,15 +211,15 @@ export default function decorate(block) {
 
   // 📈 Rate of Inflation
   const roiBlock = createInputBlock({
-    id: "rate-inflation",
+    id: 'rate-inflation',
     ...roi,
-    suffix: "%",
-    fieldType: "percent",
-    variant: "stepper",
+    suffix: '%',
+    fieldType: 'percent',
+    variant: 'stepper',
     ignoreMin: true,
-    suffixAttr: { class: "input-suffix" },
+    suffixAttr: { class: 'input-suffix' },
     inputBlockAttr: {
-      class: "roi-inp-container",
+      class: 'roi-inp-container',
     },
     updateWidthonChange: true,
     onInput: (e) => {
@@ -234,14 +232,14 @@ export default function decorate(block) {
 
   // ⏳ Time Period
   const tpBlock = createInputBlock({
-    id: "time-period",
+    id: 'time-period',
     ...tp,
-    suffix: tp?.default > 1 ? "Years" : "Year",
-    fieldType: "year",
-    variant: "stepper",
+    suffix: tp?.default > 1 ? 'Years' : 'Year',
+    fieldType: 'year',
+    variant: 'stepper',
     ignoreMin: true,
     inputBlockAttr: {
-      class: "tp-inp-container",
+      class: 'tp-inp-container',
     },
     updateWidthonChange: true,
     onInput: (e) => {

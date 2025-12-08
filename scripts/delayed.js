@@ -163,6 +163,27 @@ if (futureBuildingSection && stayUpdatedSection) {
 //   }
 // });
 
+const link = document.querySelector('.moedge-article-details .button.investleft-subchild1');
+
+if (link) {
+  const title = link.getAttribute('title');
+  if (title) {
+    link.setAttribute('data-title', title);
+    link.removeAttribute('title');
+  }
+
+  const newHeading = document.createElement('h1');
+
+  newHeading.innerHTML = link.innerHTML;
+  newHeading.className = link.className;
+
+  if (link.getAttribute('data-title')) {
+    newHeading.setAttribute('data-title', link.getAttribute('data-title'));
+  }
+
+  link.replaceWith(newHeading);
+}
+
 // function articleStructure() {
 //    // Investor Education article left and right wrapper
 //   if (window.location.href.includes('/investor-education/all-articles/')
