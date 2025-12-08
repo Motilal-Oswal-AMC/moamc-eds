@@ -361,6 +361,7 @@
   padding: 28px 0;
   border-bottom: 1px solid var(--neutrals-300);
   margin: 0;
+  list-style: none;
 }
 @media (max-width: 768px) {
   .our-strategies .strategy-wrapper .strategy11 .li-wrapper-1 {
@@ -456,6 +457,7 @@
   padding: 28px 0;
   border-bottom: 1px solid var(--neutrals-300);
   margin: 0;
+  list-style: none;
 }
 @media (max-width: 768px) {
   .our-strategies .strategy-wrapper .strategy11 .li-wrapper-2 {
@@ -544,6 +546,7 @@
   padding: 28px 0;
   border-bottom: 1px solid var(--neutrals-300);
   margin: 0;
+  list-style: none;
 }
 @media (max-width: 768px) {
   .our-strategies .strategy-wrapper .strategy11 .li-wrapper-3 {
@@ -639,6 +642,7 @@
   padding: 28px 0;
   border-bottom: 1px solid var(--neutrals-300);
   margin: 0;
+  list-style: none;
 }
 @media (max-width: 768px) {
   .our-strategies .strategy-wrapper .strategy11 .li-wrapper-4 {
