@@ -148,6 +148,7 @@ $breakpoint-tablet: 900px;
         font-style: normal;
         font-weight: 500;
         line-height: 40px;
+
         /* 111.111% */
       }
 
@@ -244,12 +245,13 @@ $breakpoint-tablet: 900px;
           font-style: normal;
           font-weight: 400;
           line-height: var(--body-large-regular-line-height);
+
           /* 155.556% */
           width: 500px;
 
           @include media(mobile) {
             color: var(--text-white, #FFF);
-            font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
+            font-feature-settings: var(--font-features-default);
 
             /* Mobile/Paragraph/Small */
             font-family: var(--body);
@@ -257,6 +259,7 @@ $breakpoint-tablet: 900px;
             font-style: normal;
             font-weight: 400;
             line-height: var(--paragraph-small-line-height);
+
             /* 142.857% */
             max-width: 100%;
             width: 100%;
@@ -282,7 +285,7 @@ $breakpoint-tablet: 900px;
             background: var(--neutrals-white);
             color: var(--text-button-default);
             text-align: center;
-            font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
+            font-feature-settings: var(--font-features-default);
 
             /* Mobile/Button/Medium */
             font-family: var(--body);
@@ -290,6 +293,7 @@ $breakpoint-tablet: 900px;
             font-style: normal;
             font-weight: 500;
             line-height: var(--button-medium-line-height);
+
             /* 125% */
             position: absolute;
             left: 0;
@@ -319,6 +323,7 @@ $breakpoint-tablet: 900px;
         font-style: normal;
         font-weight: 500;
         line-height: var(--button-medium-line-height);
+
         /* 125% */
         width: 100%;
         padding: 12px;
@@ -397,12 +402,13 @@ $breakpoint-tablet: 900px;
 .our-strategies {
   h2 {
     color: var(--blue-1-800-primary);
-    font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
+    font-feature-settings: var(--font-features-default);
     font-family: var(--title);
     font-size: var(--heading-h3-size);
     font-style: normal;
     font-weight: 500;
     line-height: var(--heading-h3-line-height);
+
     /* 122.222% */
     margin-bottom: 12px;
 
@@ -441,7 +447,7 @@ $breakpoint-tablet: 900px;
 
         .strategy21.comlist {
           color: var(--blue-1-800-primary);
-          font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
+          font-feature-settings: var(--font-features-default);
 
           /* Desktop/Body/Xlarge-regular */
           font-family: var(--body);
@@ -449,6 +455,7 @@ $breakpoint-tablet: 900px;
           font-style: normal;
           font-weight: 400;
           line-height: var(--body-xlarge-regular-line-height);
+
           /* 120% */
           text-decoration: none;
           display: flex;
@@ -483,7 +490,7 @@ $breakpoint-tablet: 900px;
 
           @include media(mobile) {
             color: var(--blue-1-800-primary);
-            font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
+            font-feature-settings: var(--font-features-default);
 
             /* Desktop/Body/Xlarge-regular */
             font-family: var(--body);
@@ -491,6 +498,7 @@ $breakpoint-tablet: 900px;
             font-style: normal;
             font-weight: 400;
             line-height: var(--body-xlarge-regular-line-height);
+
             /* 120% */
             text-decoration: none;
             width: 100%;
@@ -501,7 +509,7 @@ $breakpoint-tablet: 900px;
 
         .strategy22 {
           color: var(--neutrals-700);
-          font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
+          font-feature-settings: var(--font-features-default);
 
           /* Desktop/Paragraph/Small-regular */
           font-family: var(--body);
@@ -509,6 +517,7 @@ $breakpoint-tablet: 900px;
           font-style: normal;
           font-weight: 400;
           line-height: var(--label-large-line-height);
+
           /* 142.857% */
           text-decoration: none;
           width: 497px;
@@ -521,7 +530,7 @@ $breakpoint-tablet: 900px;
 
           @include media(mobile) {
             color: var(--neutrals-700);
-            font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
+            font-feature-settings: var(--font-features-default);
 
             /* Desktop/Paragraph/Small-regular */
             font-family: var(--body);
@@ -529,6 +538,7 @@ $breakpoint-tablet: 900px;
             font-style: normal;
             font-weight: 400;
             line-height: var(--label-large-line-height);
+
             /* 142.857% */
             align-self: stretch;
             width: 100%;
@@ -551,7 +561,7 @@ $breakpoint-tablet: 900px;
 
         .strategy23 {
           color: var(--blue-1-800-primary);
-          font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
+          font-feature-settings: var(--font-features-default);
 
           /* Desktop/Body/Xlarge-regular */
           font-family: var(--body);
@@ -559,6 +569,7 @@ $breakpoint-tablet: 900px;
           font-style: normal;
           font-weight: 400;
           line-height: var(--body-xlarge-regular-line-height);
+
           /* 120% */
           text-decoration: none;
           display: flex;
@@ -586,7 +597,7 @@ $breakpoint-tablet: 900px;
 
           @include media(mobile) {
             color: var(--blue-1-800-primary);
-            font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
+            font-feature-settings: var(--font-features-default);
 
             /* Desktop/Body/Xlarge-regular */
             font-family: var(--body);
@@ -594,6 +605,7 @@ $breakpoint-tablet: 900px;
             font-style: normal;
             font-weight: 400;
             line-height: var(--body-xlarge-regular-line-height);
+
             /* 120% */
             text-decoration: none;
             width: 100%;
@@ -604,7 +616,7 @@ $breakpoint-tablet: 900px;
 
         .strategy24 {
           color: var(--neutrals-700);
-          font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
+          font-feature-settings: var(--font-features-default);
 
           /* Desktop/Paragraph/Small-regular */
           font-family: var(--body);
@@ -612,6 +624,7 @@ $breakpoint-tablet: 900px;
           font-style: normal;
           font-weight: 400;
           line-height: var(--label-large-line-height);
+
           /* 142.857% */
           text-decoration: none;
           width: 497px;
@@ -625,7 +638,7 @@ $breakpoint-tablet: 900px;
 
           @include media(mobile) {
             color: var(--neutrals-700);
-            font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
+            font-feature-settings: var(--font-features-default);
 
             /* Desktop/Paragraph/Small-regular */
             font-family: var(--body);
@@ -633,6 +646,7 @@ $breakpoint-tablet: 900px;
             font-style: normal;
             font-weight: 400;
             line-height: var(--label-large-line-height);
+
             /* 142.857% */
             align-self: stretch;
             width: 100%;
@@ -655,7 +669,7 @@ $breakpoint-tablet: 900px;
 
         li.strategy25 {
           color: var(--blue-1-800-primary);
-          font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
+          font-feature-settings: var(--font-features-default);
 
           /* Desktop/Body/Xlarge-regular */
           font-family: var(--body);
@@ -663,6 +677,7 @@ $breakpoint-tablet: 900px;
           font-style: normal;
           font-weight: 400;
           line-height: var(--body-xlarge-regular-line-height);
+
           /* 120% */
           text-decoration: none;
           display: flex;
@@ -699,6 +714,7 @@ $breakpoint-tablet: 900px;
             font-style: normal;
             font-weight: 400;
             line-height: var(--body-xlarge-regular-line-height);
+
             /* 120% */
             width: 100%;
             margin-bottom: 12px;
@@ -708,7 +724,7 @@ $breakpoint-tablet: 900px;
 
         .strategy26 {
           color: var(--neutrals-700);
-          font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
+          font-feature-settings: var(--font-features-default);
 
           /* Desktop/Paragraph/Small-regular */
           font-family: var(--body);
@@ -716,6 +732,7 @@ $breakpoint-tablet: 900px;
           font-style: normal;
           font-weight: 400;
           line-height: var(--label-large-line-height);
+
           /* 142.857% */
           text-decoration: none;
           width: 497px;
@@ -734,7 +751,7 @@ $breakpoint-tablet: 900px;
 
           @include media(mobile) {
             color: var(--neutrals-700);
-            font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
+            font-feature-settings: var(--font-features-default);
 
             /* Desktop/Paragraph/Small-regular */
             font-family: var(--body);
@@ -742,6 +759,7 @@ $breakpoint-tablet: 900px;
             font-style: normal;
             font-weight: 400;
             line-height: var(--label-large-line-height);
+
             /* 142.857% */
             align-self: stretch;
             width: 100%;
@@ -762,7 +780,7 @@ $breakpoint-tablet: 900px;
 
         .strategy27 {
           color: var(--blue-1-800-primary);
-          font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
+          font-feature-settings: var(--font-features-default);
 
           /* Desktop/Body/Xlarge-regular */
           font-family: var(--body);
@@ -770,6 +788,7 @@ $breakpoint-tablet: 900px;
           font-style: normal;
           font-weight: 400;
           line-height: var(--body-xlarge-regular-line-height);
+
           /* 120% */
           text-decoration: none;
           display: flex;
@@ -805,7 +824,7 @@ $breakpoint-tablet: 900px;
 
           @include media(mobile) {
             color: var(--blue-1-800-primary);
-            font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
+            font-feature-settings: var(--font-features-default);
 
             /* Desktop/Body/Xlarge-regular */
             font-family: var(--body);
@@ -813,6 +832,7 @@ $breakpoint-tablet: 900px;
             font-style: normal;
             font-weight: 400;
             line-height: var(--body-xlarge-regular-line-height);
+
             /* 120% */
             width: 100%;
             margin-bottom: 12px;
@@ -822,7 +842,7 @@ $breakpoint-tablet: 900px;
 
         .strategy28 {
           color: var(--neutrals-700);
-          font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
+          font-feature-settings: var(--font-features-default);
 
           /* Desktop/Paragraph/Small-regular */
           font-family: var(--body);
@@ -830,6 +850,7 @@ $breakpoint-tablet: 900px;
           font-style: normal;
           font-weight: 400;
           line-height: var(--label-large-line-height);
+
           /* 142.857% */
           text-decoration: none;
           width: 497px;
@@ -842,7 +863,7 @@ $breakpoint-tablet: 900px;
 
           @include media(mobile) {
             color: var(--neutrals-700);
-            font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
+            font-feature-settings: var(--font-features-default);
 
             /* Desktop/Paragraph/Small-regular */
             font-family: var(--body);
@@ -850,6 +871,7 @@ $breakpoint-tablet: 900px;
             font-style: normal;
             font-weight: 400;
             line-height: var(--label-large-line-height);
+
             /* 142.857% */
             align-self: stretch;
             width: 100%;
@@ -871,7 +893,7 @@ $breakpoint-tablet: 900px;
 
         .strategy29 {
           color: var(--blue-1-800-primary);
-          font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
+          font-feature-settings: var(--font-features-default);
 
           /* Desktop/Body/Xlarge-regular */
           font-family: var(--body);
@@ -879,6 +901,7 @@ $breakpoint-tablet: 900px;
           font-style: normal;
           font-weight: 400;
           line-height: var(--body-xlarge-regular-line-height);
+
           /* 120% */
           display: flex;
           justify-content: space-between;
@@ -916,7 +939,7 @@ $breakpoint-tablet: 900px;
 
           @include media(mobile) {
             color: var(--blue-1-800-primary);
-            font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
+            font-feature-settings: var(--font-features-default);
 
             /* Desktop/Body/Xlarge-regular */
             font-family: var(--body);
@@ -924,6 +947,7 @@ $breakpoint-tablet: 900px;
             font-style: normal;
             font-weight: 400;
             line-height: var(--body-xlarge-regular-line-height);
+
             /* 120% */
             width: 100%;
             margin-bottom: 12px;
@@ -935,12 +959,13 @@ $breakpoint-tablet: 900px;
 
         .strategy210 {
           color: var(--neutrals-700);
-          font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
+          font-feature-settings: var(--font-features-default);
           font-family: var(--body);
           font-size: var(--body-small-regular-size);
           font-style: normal;
           font-weight: 400;
           line-height: var(--label-large-line-height);
+
           /* 142.857% */
           text-decoration: none;
           width: 497px;
@@ -953,7 +978,7 @@ $breakpoint-tablet: 900px;
 
           @include media(mobile) {
             color: var(--neutrals-700);
-            font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
+            font-feature-settings: var(--font-features-default);
 
             /* Desktop/Paragraph/Small-regular */
             font-family: var(--body);
@@ -961,6 +986,7 @@ $breakpoint-tablet: 900px;
             font-style: normal;
             font-weight: 400;
             line-height: var(--label-large-line-height);
+
             /* 142.857% */
             align-self: stretch;
             width: 100%;
@@ -1115,7 +1141,6 @@ $breakpoint-tablet: 900px;
 
 // Styling for Privacy Policy 
 .section.privacy-policy-banner {
-
   display: none;
 
   &.active {
@@ -1139,7 +1164,6 @@ $breakpoint-tablet: 900px;
     }
 
     .fdp-campaign-wrapper {
-
       @include media(mobile) {
         padding-left: 16px;
       }
@@ -1153,7 +1177,7 @@ $breakpoint-tablet: 900px;
         flex-direction: row-reverse;
         gap: 97px;
         border-radius: 15px;
-        background: linear-gradient(100deg, rgba(221, 219, 255, 0) 54.34%, #DDDBFF 102.92%);
+        background: linear-gradient(100deg, rgb(221 219 255 / 0%) 54.34%, #DDDBFF 102.92%);
         height: 272px;
 
         @include media(mobile) {
@@ -1189,7 +1213,6 @@ $breakpoint-tablet: 900px;
         }
 
         .pp-banner-img3 {
-
           @include media(mobile) {
             max-width: 251px;
             width: 100%;
@@ -1281,9 +1304,9 @@ $breakpoint-tablet: 900px;
           background: transparent;
           padding: 8px 12px;
           color: var(--text-body);
-          font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
+          font-feature-settings: var(--font-features-default);
           font-family: var(--body);
-          font-size: var(--Body-Small-medium-Size, 14px);
+          font-size: var(--body-small-medium-size, 14px);
           font-style: normal;
           font-weight: 500;
           line-height: var(--body-small-medium-line-height);
@@ -1323,7 +1346,7 @@ $breakpoint-tablet: 900px;
       .pp-banner-wrap2 {
         padding: 0 16px;
         color: var(--text-body);
-        font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
+        font-feature-settings: var(--font-features-default);
         font-family: var(--body);
         font-size: var(--body-medium-regular-size);
         font-weight: 400;
@@ -1385,13 +1408,14 @@ $breakpoint-tablet: 900px;
 
 .section.gift-campaign {
 display: block;
+
    @include media(mobile) {
           padding: 20px 16px 40px;
         }
+
   .wrapper-policy {
     .pp-banner-wrap1 {
       .fdp-campaign {
-
         @include media(mobile) {
           height: 296px;
         }
@@ -1418,7 +1442,6 @@ display: block;
         }
 
         .pp-banner-img2 {
-
           @include media(mobile) {
             position: absolute;
             top: 141px;
@@ -1429,8 +1452,6 @@ display: block;
 
 
           .pp-banner-imginner1 {
-
-
             @include media(mobile) {
               width: 211px;
               height: 215px;
@@ -1443,7 +1464,6 @@ display: block;
         }
 
         .pp-banner-img3 {
-
           @include media(mobile) {
             top: 34px;
           }
