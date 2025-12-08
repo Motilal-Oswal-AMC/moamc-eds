@@ -874,7 +874,6 @@ const privacyPolicy = document.querySelectorAll('.privacy-policy-banner');
 
 const privacyPolicyArr = Array.from(privacyPolicy);
 privacyPolicyArr.forEach((child) => {
-
   if (child != null) {
     dataMapMoObj.CLASS_PREFIXES = [
       'pp-banner-wrap',
@@ -886,7 +885,7 @@ privacyPolicyArr.forEach((child) => {
     ];
     dataMapMoObj.addIndexed(child);
   }
-})
+});
 
 const skinstakeComponent = document.querySelector('.what-stake-component');
 if (skinstakeComponent != null) {
