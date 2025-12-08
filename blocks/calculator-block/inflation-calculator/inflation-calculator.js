@@ -3,7 +3,8 @@ import {
   createBarSummaryBlock,
   getAuthorData,
   formatNumber,
-} from '../common-ui-field/common-ui-field.js';
+  safeUpdateMinimalReflow,
+} from "../common-ui-field/common-ui-field.js";
 
 export function updateCalculateSummary({ container, data }) {
   if (!container || !data) return;
@@ -182,7 +183,7 @@ export default function decorate(block) {
   });
 
   // Clear old contents
-  CALC_AUTHOR_MAIN.innerHTML = '';
+  // CALC_AUTHOR_MAIN.innerHTML = "";
 
   // Extract field defaults
   const cc = getAuthorData(CALC_AUTHORED_DATA, 'CC');
@@ -251,7 +252,16 @@ export default function decorate(block) {
   });
 
   // Add all inputs to container
-  CALC_AUTHOR_MAIN.append(ccBlock, roiBlock, tpBlock);
+  safeUpdateMinimalReflow(
+    CALC_AUTHOR_MAIN,
+    () => {
+      const frag = document.createDocumentFragment();
+      frag.append(ccBlock, roiBlock, tpBlock);
+      return frag;
+    },
+    /* useReserve= */ true,
+    /* extraPx= */ 0
+  );
 
   // Add summary block
   block.appendChild(inflationBlock);

@@ -632,7 +632,6 @@ main>.section.previous-studies-tab.tabs-container {
 }
 
 .default-content-wrapper.annual-wealth-wrap1 {
-
   h1,
   h2,
   h3,
@@ -2122,8 +2121,6 @@ main.nfo-nav {
             max-width: 628px;
 
             .high-skin-paragraph1 {
-
-
               .high-skin-paragraph-one1 {
                 color: var(--text-body);
                 font-family: var(--body);
@@ -2131,6 +2128,7 @@ main.nfo-nav {
                 font-style: normal;
                 font-weight: 400;
                 line-height:24px;
+
                 /* 150% */
               }
             }
@@ -2155,6 +2153,7 @@ main.nfo-nav {
     display: flex;
     flex-direction: column;
     align-items: center;
+
     // background-color: #2B24A4;
     border-radius: 16px;
     padding: 0;
@@ -2178,6 +2177,7 @@ main.nfo-nav {
       background: linear-gradient(256deg,
           rgb(154 148 255 / 50%) -40.11%,
           rgb(214 211 255 / 50%) 100%);
+
       // padding: 42.5px 55.259px 31.502px 55.242px;
 
       @media screen and (width > 768px) {
@@ -2246,7 +2246,8 @@ main.nfo-nav {
           flex-direction: column;
           justify-content: flex-start;
           background-color: #2B24A4;
-          padding: 28px 16px 28px;
+          padding: 28px 16px;
+
           // border-radius: 16px;
           border-bottom-left-radius: 16px;
           border-bottom-right-radius: 16px;
@@ -2356,7 +2357,7 @@ main.nfo-nav {
     }
 
     .moamc-component-para-three1 {
-      color: var(--blue-1800-primary, #2E2A94);
+      color: var(--neutrals-900);
       font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on, 'liga'off;
       font-family: var(--body);
       font-size: var(--body-large-semibold-size);
@@ -2641,13 +2642,14 @@ main.nfo-nav {
 
           .why-matters-sub-title1 {
             list-style: none;
-            color: var(--blue-1-800-primary);
+            color: var(--neutrals-900);
             font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
             font-family: var(--body);
             font-size: var(--sub-header-medium-size);
             font-style: normal;
             font-weight: 500;
             line-height: 28px;
+
             // margin-bottom: 4px;
             width: 100%;
             max-width: 276px;
@@ -2685,6 +2687,8 @@ main.nfo-nav {
 
     .promise-qglp-ctn1 {
       position: unset;
+      height: 203px;
+
       // margin-left: 16px;
     }
 
@@ -2802,7 +2806,7 @@ main.nfo-nav {
     background: linear-gradient(257deg, #9A94FF80 -5.54%, #EBEAFF80 100%);
 
     @include media(mobile) {
-      background: linear-gradient(257deg, rgba(235, 234, 255, 0.50) -5.54%, rgba(154, 148, 255, 0.50) 100%);
+      background: linear-gradient(257deg, rgb(235 234 255 / 50%) -5.54%, rgb(154 148 255 / 50%) 100%);
     }
   }
 

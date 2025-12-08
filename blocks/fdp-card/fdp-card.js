@@ -491,180 +491,180 @@ export default function decorate(block) {
                       ptext.innerText = '';
                       ptext.innerText = textval;
 
-                      const returnClass = event.target.closest('.return-grp');
-                      const valueCagr = returnClass.querySelector('.value-cagr');
-                      const dataValue = event.target.getAttribute('value');
-                      valueCagr.innerHTML = '';
-                      valueCagr.append(finPlangrp[0][dataValue]);
-                      valueCagr.append(
-                        span(
-                          {
-                            class: 'percent',
-                          },
-                          '%',
-                        ),
-                      );
-                      const parentElem = event.target.parentElement.classList;
-                      parentElem.remove('dropdown-active');
-                    },
+                    const returnClass = event.target.closest('.return-grp');
+                    const valueCagr = returnClass.querySelector('.value-cagr');
+                    const dataValue = event.target.getAttribute('value');
+                    valueCagr.innerHTML = '';
+                    valueCagr.append(finPlangrp[0][dataValue]);
+                    valueCagr.append(
+                      span(
+                        {
+                          class: 'percent',
+                        },
+                        '%',
+                      ),
+                    );
+                    const parentElem = event.target.parentElement.classList;
+                    parentElem.remove('dropdown-active');
                   },
-                  ...tempReturns.map((eloption) => li(
-                    {
-                      class: `listval ${textvalret === eloption.replace('Since', '')
-                        ? 'active'
-                        : ''
-                      }`,
-                      value: dataMapMoObj.ObjTempfdp[eloption],
-                    },
-                    eloption,
-                  )),
+                },
+                ...tempReturns.map((eloption) => li(
+                  {
+                    class: `listval ${textvalret === eloption.replace('Since', '')
+                      ? 'active'
+                      : ''
+                    }`,
+                    value: dataMapMoObj.ObjTempfdp[eloption],
+                  },
+                  eloption,
+                )),
+              ),
+            ),
+            div(
+              {
+                class: 'return-cagr',
+              },
+              p(
+                {
+                  class: 'value-cagr',
+                },
+                `${finPlangrp[0][dataMapMoObj.ObjTempfdp[returnYear]]}`,
+                span(
+                  {
+                    class: 'percent',
+                  },
+                  '%',
                 ),
+              ),
+            ),
+          ),
+          div(
+            {
+              class: 'nav-grp',
+            },
+            p(
+              {
+                class: 'nav-label',
+                style: `display:${navdatecss}`,
+              },
+              'NAV as on ',
+              span(
+                {
+                  class: 'nav-date',
+                },
+                navdaterper,
+              ),
+            ),
+            p(
+              {
+                class: 'nav-label',
+                style: `display:${navnotpresent}`,
+              },
+              'NAV',
+            ),
+            div(
+              {
+                class: 'nav-value-grp',
+              },
+              p(
+                {
+                  class: 'value-nav',
+                },
+                Number(navlistArr[0].latnav).toFixed(2),
+                span({
+                  class: 'percent',
+                }),
               ),
               div(
                 {
-                  class: 'return-cagr',
+                  class: 'perecent-value',
+                  style: `display:${displaynav}`,
                 },
+                img({
+                  class: 'nav-img',
+                  src: '/icons/upperecent.svg',
+                  alt: 'navalt',
+                }),
                 p(
                   {
-                    class: 'value-cagr',
+                    class: 'nav-percent',
                   },
-                  `${finPlangrp[0][dataMapMoObj.ObjTempfdp[returnYear]]}`,
+                  navchg,
                   span(
                     {
-                      class: 'percent',
+                      class: 'navper',
                     },
                     '%',
                   ),
                 ),
               ),
             ),
-            div(
+          ),
+        ),
+      ),
+      div(
+        {
+          class: 'lowerdiv',
+        },
+        div(
+          {
+            class: 'form-wrapper',
+          },
+          div(
+            {
+              class: 'input-wrapper',
+            },
+            label(
               {
-                class: 'nav-grp',
+                for: 'pan-details', // Connects to the input's ID
               },
-              p(
-                {
-                  class: 'nav-label',
-                  style: `display:${navdatecss}`,
-                },
-                'NAV as on ',
-                span(
-                  {
-                    class: 'nav-date',
-                  },
-                  navdaterper,
-                ),
-              ),
-              p(
-                {
-                  class: 'nav-label',
-                  style: `display:${navnotpresent}`,
-                },
-                'NAV',
-              ),
-              div(
-                {
-                  class: 'nav-value-grp',
-                },
-                p(
-                  {
-                    class: 'value-nav',
-                  },
-                  Number(navlistArr[0].latnav).toFixed(2),
-                  span({
-                    class: 'percent',
-                  }),
-                ),
-                div(
-                  {
-                    class: 'perecent-value',
-                    style: `display:${displaynav}`,
-                  },
-                  img({
-                    class: 'nav-img',
-                    src: '/icons/upperecent.svg',
-                    alt: 'navalt',
-                  }),
-                  p(
-                    {
-                      class: 'nav-percent',
-                    },
-                    navchg,
-                    span(
-                      {
-                        class: 'navper',
-                      },
-                      '%',
-                    ),
-                  ),
-                ),
-              ),
+              'Enter PAN details', // Visible text for the label
+            ),
+            input({
+              id: 'pan-details',
+              placeholder: 'Enter PAN details',
+              type: 'text',
+            }),
+            span(
+              {
+                class: 'error-span',
+              },
+              'Enter Valid Pan Number',
+            ),
+          ),
+          div(
+            {
+              class: 'btn-wrapper',
+            },
+            a(
+              {
+                class: 'submit ',
+                type: 'submit',
+                href: 'https://mosldev--eds-cloud--rupeshdept.aem.live/mutual-fund/in/en/modals/invest-now-homepage',
+              },
+              'Invest Now',
             ),
           ),
         ),
         div(
           {
-            class: 'lowerdiv',
+            class: 'notify-discription',
           },
-          div(
+          img({
+            class: 'icon-person',
+            src: '/icons/Icon.svg',
+            alt: 'person',
+          }),
+          p(
             {
-              class: 'form-wrapper',
+              class: 'notify-dis',
             },
-            div(
-              {
-                class: 'input-wrapper',
-              },
-              label(
-                {
-                  for: 'pan-details', // Connects to the input's ID
-                },
-                'Enter PAN details', // Visible text for the label
-              ),
-              input({
-                id: 'pan-details',
-                placeholder: 'Enter PAN details',
-                type: 'text',
-              }),
-              span(
-                {
-                  class: 'error-span',
-                },
-                'Enter Valid Pan Number',
-              ),
-            ),
-            div(
-              {
-                class: 'btn-wrapper',
-              },
-              a(
-                {
-                  class: 'submit ',
-                  type: 'submit',
-                  href: '/mutual-fund/in/en/modals/invest-now-homepage',
-                },
-                'Invest Now',
-              ),
-            ),
-          ),
-          div(
-            {
-              class: 'notify-discription',
-            },
-            img({
-              class: 'icon-person',
-              src: '/icons/Icon.svg',
-              alt: 'person',
-            }),
-            p(
-              {
-                class: 'notify-dis',
-              },
-              '88.87K have invested in this fund as on 1 Jul 2025',
-            ),
+            '88.87K have invested in this fund as on 1 Jul 2025',
           ),
         ),
       ),
-    );
+    ),
+  );
 
     const ptag = p({ class: 'selectedtext-fdp' }, 'Performance');
     const item2Ul = block.closest('.section').querySelector('.item2 ul');
@@ -1141,12 +1141,12 @@ export default function decorate(block) {
       if (link) link.removeAttribute('href');
     });
 
-    // ---------------- SHARE DATA ----------------
-    const getShareData = () => {
-      const shareUrl = window.location.href;
-      const shareText = dataMapMoObj.planText || 'Check this out';
-      return { shareUrl, shareText };
-    };
+  // ---------------- SHARE DATA ----------------
+  const getShareData = () => {
+    const shareUrl = window.location.href;
+    const shareText = dataMapMoObj.planText || 'Check this out';
+    return { shareUrl, shareText };
+  };
 
     // ---------------- FACEBOOK ----------------
     const fbBtn = shareContainer.querySelector('.listindex1');
@@ -1192,15 +1192,15 @@ export default function decorate(block) {
           const { shareUrl } = getShareData();
           await navigator.clipboard.writeText(shareUrl);
 
-          msgBox.style.display = 'block';
-          setTimeout(() => msgBox.style.display = 'none', 1000);
-        } catch (err) {
-          msgBox.textContent = 'Could not copy URL. Please check browser settings.';
-          msgBox.style.display = 'block';
-          setTimeout(() => msgBox.style.display = 'none', 1000);
-        }
-      });
-    }
+        msgBox.style.display = 'block';
+        setTimeout(() => { msgBox.style.display = 'none'; }, 1000);
+      } catch (err) {
+        msgBox.textContent = 'Could not copy URL. Please check browser settings.';
+        msgBox.style.display = 'block';
+        setTimeout(() => { msgBox.style.display = 'none'; }, 1000);
+      }
+    });
+  }
 
     // ---------------- PLAN TEXT CAPTURE ----------------
     block.querySelector('.btn-wrapper').addEventListener('click', () => {
@@ -1222,13 +1222,13 @@ export default function decorate(block) {
       class: 'submit',
     }, textVal));
 
-    // ---------------- CLOSE POPUP WHEN CLICKED OUTSIDE ----------------
-    document.addEventListener('click', (event) => {
-      if (!shareContainer.contains(event.target)
+  // ---------------- CLOSE POPUP WHEN CLICKED OUTSIDE ----------------
+  document.addEventListener('click', (event) => {
+    if (!shareContainer.contains(event.target)
       && !imgAltmain.querySelector('.subbreadcrb2').contains(event.target)) {
-        shareContainer.style.display = 'none';
-      }
-    });
+      shareContainer.style.display = 'none';
+    }
+  });
 
     // Remove title attribute from all tab anchors
     document.querySelectorAll('.fdp-tab a').forEach((anc) => {

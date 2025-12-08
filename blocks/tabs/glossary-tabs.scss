@@ -57,6 +57,7 @@
       flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
+
       // padding: 24px 0;
       gap: 16px 0;
 
@@ -84,7 +85,7 @@
         }
 
         &:last-of-type {
-          padding: 24px 0px 24px 18px;
+          padding: 24px 0 24px 18px;
         }
 
         .tab-subinner1 {

@@ -1,6 +1,6 @@
 @use "sass:map";
-@use "../../styles/common-theme/css/variables_mixins" as *;
-@use "../../styles/common-theme/css/fluid-typography" as *;
+@use "../../styles/common-theme/css/variables_mixins"as *;
+@use "../../styles/common-theme/css/fluid-typography"as *;
 
 $breakpoint-desktop-s: 1100px;
 $breakpoint-desktop-ss: 1280px;
@@ -99,22 +99,18 @@ $breakpoint-tablet: 900px;
                             width: 64px;
                             height: 64px;
 
-                            img {
-                                // width: 64px;
-                                // height: 64px;
-                            }
+                            // img {
+                            //     // width: 64px;
+                            //     // height: 64px;
+                            // }
                         }
 
-                        color: var(--neutrals-900);
-
-                        /* Desktop/Body/Large-regular */
-                        font-family: var(--body);
-                        font-size: var(--body-large-regular-size);
-                        font-style: normal;
-                        font-weight: 400;
-                        line-height: var(--body-large-regular-line-height);
-
-                        /* 133.333% */
+                        // color: var(--neutrals-900);
+                        // font-family: var(--body);
+                        // font-size: var(--body-large-regular-size);
+                        // font-style: normal;
+                        // line-height: var(--body-large-regular-line-height);
+                        // font-weight:400;
 
                         @include media(mobile) {
                             font-size: var(--paragraph-large-size);
@@ -568,7 +564,7 @@ $breakpoint-tablet: 900px;
                         color: var(--blue-1800-primary, #2E2A94);
                         font-weight: 600;
                         text-align: center;
-                        font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
+                        font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
                         font-family: var(--title, Inter);
                         font-size: var(--heading-h4-size, 32px);
                         font-style: normal;
@@ -616,11 +612,11 @@ $breakpoint-tablet: 900px;
     max-width: 1232px;
     width: 100%;
     margin: 0 auto;
-    padding: 0 0 80px 0px;
+    padding: 0 0 80px;
     background: unset;
 
     @include media(mobile) {
-        padding: 0 16px 80px 16px;
+        padding: 0 16px 80px;
         background: unset;
         margin: 0;
     }
@@ -628,11 +624,12 @@ $breakpoint-tablet: 900px;
 
     .pms-high-skin1 {
         background: #F5F5F5;
-        padding: 40px 0 0 0;
+        padding: 40px 0 0;
         border-radius: 12px;
 
         @include media(mobile) {
-            padding: 40px 16px 0px 16px;
+            padding: 40px 16px 0;
+
             // background: #F5F5F5;
             border-radius: 24px;
         }
@@ -682,7 +679,7 @@ $breakpoint-tablet: 900px;
     width: 100%;
     background: #FAFAFA;
     display: flex;
-    padding: 80px 0  0;
+    padding: 80px 0 0;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -695,7 +692,6 @@ $breakpoint-tablet: 900px;
 
     .gift-choose1 {
         .gift-choose-inner1 {
-            text-align: center;
             color: var(--blue-1-800-primary);
             text-align: center;
             font-family: var(--title);
@@ -758,7 +754,7 @@ $breakpoint-tablet: 900px;
 
                     .cards-card-body {
                         height: auto;
-                        margin: 0px;
+                        margin: 0;
 
                         .gift-choose-sub-inner-sub-inner1 {
                             display: flex;
@@ -780,7 +776,6 @@ $breakpoint-tablet: 900px;
                                 /* 133.333% */
                                 @include media(mobile) {
                                     padding: 7px 0;
-                                    gap: 24px;
                                     flex-direction: row;
                                     gap: auto;
 
@@ -809,38 +804,36 @@ $breakpoint-tablet: 900px;
 
 
 .section.high-skin-text.gift-high-skin {
-
-
     @include media(mobile) {
-               padding: 0 0 80px;
-            }
+        padding: 0 0 80px;
+    }
 
     .high-skin-wrap-one1 {
-        .high-skin-wrap-two1{
-            .high-skin-wrap-three1{
-                .high-skin-heading1{
-                   
-                    .high-skin-subheading2{
-                        .high-skin-paragraph1{
-                            .high-skin-paragraph-one2{
-                                 margin-bottom: 80px;
+        .high-skin-wrap-two1 {
+            .high-skin-wrap-three1 {
+                .high-skin-heading1 {
+                    .high-skin-subheading2 {
+                        .high-skin-paragraph1 {
+                            .high-skin-paragraph-one2 {
+                                margin-bottom: 80px;
 
                                 @include media(mobile) {
-                margin-bottom: 24px;
-            }
+                                    margin-bottom: 24px;
+                                }
                             }
                         }
                     }
                 }
             }
         }
+
         .high-skin-wrap-two2 {
             display: flex;
             align-items: center;
             justify-content: space-between;
             list-style: none;
-              margin: 0;
-              padding-bottom: 40px;
+            margin: 0;
+            padding-bottom: 40px;
 
 
             @include media(mobile) {
@@ -857,7 +850,7 @@ $breakpoint-tablet: 900px;
                 font-style: normal;
                 font-weight: 600;
                 line-height: 44px;
-                 margin: 4px;
+                margin: 4px;
 
                 @include media(mobile) {
                     display: flex;
@@ -882,7 +875,7 @@ $breakpoint-tablet: 900px;
                         font-size: 14px;
                         line-height: 20px;
                         max-width: 200px;
-                        margin: 0px;
+                        margin: 0;
                         width: 100%;
                     }
 

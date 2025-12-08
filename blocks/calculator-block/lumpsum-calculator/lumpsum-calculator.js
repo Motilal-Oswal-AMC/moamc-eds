@@ -3,7 +3,8 @@ import {
   createBarSummaryBlock,
   getAuthorData,
   formatNumber,
-} from '../common-ui-field/common-ui-field.js';
+  safeUpdateMinimalReflow,
+} from "../common-ui-field/common-ui-field.js";
 
 /**
  * Calculate Lumpsum Investment summary
@@ -30,6 +31,7 @@ export function calculateLumpsumSummary({
 }) {
   let data;
   const inputErrors = document.querySelectorAll('.calc-input.calc-error');
+
   if (!totalInvestment || !rateOfReturn || !timePeriod || inputErrors?.length) {
     data = {
       totalInvestment: 0,
@@ -44,20 +46,23 @@ export function calculateLumpsumSummary({
   }
 
   const num = (v, d = 0) => (v != null ? parseFloat(v) : d);
-  totalInvestment = num(totalInvestment);
-  rateOfReturn = num(rateOfReturn);
-  timePeriod = num(timePeriod);
 
-  const rate = rateOfReturn / 100;
+  // 1. FIX: Create new variables instead of overwriting parameters
+  const parsedTotalInvestment = num(totalInvestment);
+  const parsedRateOfReturn = num(rateOfReturn);
+  const parsedTimePeriod = num(timePeriod);
+
+  const rate = parsedRateOfReturn / 100;
 
   // Formula: Future Value = P * (1 + r)^t
-  const totalValue = totalInvestment * (1 + rate) ** timePeriod;
-  const estimatedReturns = totalValue - totalInvestment;
+  // 2. FIX: Use the new parsed variables in the calculation
+  const totalValue = parsedTotalInvestment * (1 + rate) ** parsedTimePeriod;
+  const estimatedReturns = totalValue - parsedTotalInvestment;
 
-  const multiplier = totalValue / totalInvestment;
+  const multiplier = totalValue / parsedTotalInvestment;
   const compoundingAt = `${multiplier.toFixed(1)}x`;
 
-  const investedPercentage = (totalInvestment / totalValue) * 100;
+  const investedPercentage = (parsedTotalInvestment / totalValue) * 100;
   const returnsPercentage = (estimatedReturns / totalValue) * 100;
 
   const roundValue = (val) => {
@@ -66,7 +71,7 @@ export function calculateLumpsumSummary({
   };
 
   data = {
-    totalInvestment: roundValue(totalInvestment),
+    totalInvestment: roundValue(parsedTotalInvestment),
     totalValue: roundValue(totalValue),
     estimatedReturns: roundValue(estimatedReturns),
     compoundingAt,
@@ -171,7 +176,7 @@ export default function decorate(block) {
   const lumpsumBlock = createBarSummaryBlock({
     container: OVERVIEW_DATA,
   });
-  CALC_AUTHOR_MAIN.innerHTML = '';
+  // CALC_AUTHOR_MAIN.innerHTML = "";
 
   const ti = getAuthorData(CALC_AUTHORED_DATA, 'TI');
   const ror = getAuthorData(CALC_AUTHORED_DATA, 'ROR');
@@ -234,7 +239,17 @@ export default function decorate(block) {
     },
   });
   // Append to container
-  CALC_AUTHOR_MAIN.append(tiBlock, rorBlock, tpBlock);
+  // CALC_AUTHOR_MAIN.append(tiBlock, rorBlock, tpBlock);
+  safeUpdateMinimalReflow(
+    CALC_AUTHOR_MAIN,
+    () => {
+      const frag = document.createDocumentFragment();
+      frag.append(tiBlock, rorBlock, tpBlock);
+      return frag;
+    },
+    /* useReserve= */ true,
+    /* extraPx= */ 0
+  );
 
   block.appendChild(lumpsumBlock);
 
