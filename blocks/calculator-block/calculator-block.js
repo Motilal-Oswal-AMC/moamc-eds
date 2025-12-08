@@ -22,6 +22,19 @@ export default function decorate(block) {
   ];
   dataMapMoObj.addIndexed(block);
 
+  const CALC_PATH_ARRAY = window.location.pathname.split("/");
+  const CALC_TYPE = CALC_PATH_ARRAY[CALC_PATH_ARRAY.length - 1];
+
+  const CALC_AUTHOR_MAIN = block.querySelector(".calc-author-main1");
+  if (
+    !window.matchMedia("(max-width: 768px)").matches &&
+    ["lumpsum-calculator", "inflation-calculator"].includes(CALC_TYPE)
+  ) {
+    const prevHeight = CALC_AUTHOR_MAIN.offsetHeight;
+    CALC_AUTHOR_MAIN.style.maxHeight = `${prevHeight}px`; // temporarily fix height
+    CALC_AUTHOR_MAIN.style.overflow = "hidden";
+  }
+
   if (CALCULATOR_GRAPH_CONTAINER) {
     dataMapMoObj.CLASS_PREFIXES = [
       "calc-graph-main",
@@ -136,8 +149,6 @@ export default function decorate(block) {
   ICON_IMG.classList.add("calculator-container_title--icon");
   NESTED_LIST.classList.add("calculator-container-title-textcontent");
   BUTTON.classList.add("calculator-container-title-btn");
-  const CALC_PATH_ARRAY = window.location.pathname.split("/");
-  const CALC_TYPE = CALC_PATH_ARRAY[CALC_PATH_ARRAY.length - 1];
 
   const startInvestingBtn = createSummaryCTA({
     container: block.querySelector(".calc-author-main1"),
@@ -286,4 +297,14 @@ export default function decorate(block) {
   //     return 0.299 * r + 0.587 * g + 0.114 * b;
   //   }
   // }
+  // new PerformanceObserver((entryList) => {
+  //   const entries = entryList.getEntries();
+  //   entries.forEach((entry) => {
+  //     console.log("LCP element:", entry.element);
+  //   });
+  // }).observe({ type: "largest-contentful-paint", buffered: true });
+
+  // new PerformanceObserver((list) => {
+  //   console.log(list.getEntries());
+  // }).observe({ type: "layout-shift", buffered: true });
 }

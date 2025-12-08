@@ -38,6 +38,10 @@
 .calculator-container {
     .calculator-block {
         div.calc-author-main1 {
+            @include media(mobile) {
+                // min-height: 318px;
+            }
+
             display: flex;
             flex-wrap: wrap;
 

@@ -278,6 +278,11 @@ export function createInputBlock({
     min,
     max,
     "data-fieldType": fieldType,
+    ...(["currency", "percent", "year"].includes(fieldType)
+      ? {
+          inputmode: "numeric",
+        }
+      : {}),
     onchange: (e) => {
       let filteredValue = e.target.value;
       // onChange(e?.target?.value);
@@ -450,7 +455,10 @@ export function createInputBlock({
     inputEl.style.setProperty("--input-ch-width", getInputWidth(inputEl.value));
   }
   // ---------- Label ----------
-  const labelEl = label({ for: id, class: "calc-label" }, labelText);
+  const labelEl = label(
+    { for: fieldType === "currency" ? `${id}-fake` : id, class: "calc-label" },
+    labelText
+  );
 
   // ---------- Build input wrapper ----------
   const children = [];
@@ -961,5 +969,43 @@ export function getQueryParam(key, url = window.location.href) {
   } catch (err) {
     console.warn("Invalid URL:", url);
     return null;
+  }
+}
+/**
+ * Safely updates container content with minimal reflows / layout thrashing.
+ * Only reads layout once (if needed), does DOM update off‑DOM, then applies in one write.
+ *
+ * @param {HTMLElement} container  — element whose content will be replaced
+ * @param {Function} buildFn       — callback that returns a DocumentFragment or Node (new content)
+ * @param {boolean} useReserve     — whether to temporarily reserve height (optional)
+ * @param {number} [extraPx=0]     — extra pixels to add to reserved height
+ */
+export function safeUpdateMinimalReflow(
+  container,
+  buildFn,
+  useReserve = false,
+  extraPx = 0
+) {
+  if (!container || typeof buildFn !== "function") return;
+
+  let prevHeight = 0;
+  if (useReserve) {
+    // Read once — this may cause a reflow here
+    prevHeight = container.scrollHeight;
+    container.style.maxHeight = `${prevHeight + extraPx}px`;
+    container.style.overflow = "hidden";
+  }
+
+  // Build new content off-DOM
+  const newContent = buildFn();
+
+  // Replace content in one go — minimal writes
+  container.innerHTML = "";
+  container.appendChild(newContent);
+
+  if (useReserve) {
+    // Restore natural layout — avoid reading again if you don't need new height
+    container.style.maxHeight = "";
+    container.style.overflow = "";
   }
 }

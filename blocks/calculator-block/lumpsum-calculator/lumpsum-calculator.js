@@ -3,6 +3,7 @@ import {
   createBarSummaryBlock,
   getAuthorData,
   formatNumber,
+  safeUpdateMinimalReflow,
 } from "../common-ui-field/common-ui-field.js";
 
 /**
@@ -171,7 +172,7 @@ export default function decorate(block) {
   const lumpsumBlock = createBarSummaryBlock({
     container: OVERVIEW_DATA,
   });
-  CALC_AUTHOR_MAIN.innerHTML = "";
+  // CALC_AUTHOR_MAIN.innerHTML = "";
 
   const ti = getAuthorData(CALC_AUTHORED_DATA, "TI");
   const ror = getAuthorData(CALC_AUTHORED_DATA, "ROR");
@@ -234,7 +235,17 @@ export default function decorate(block) {
     },
   });
   // Append to container
-  CALC_AUTHOR_MAIN.append(tiBlock, rorBlock, tpBlock);
+  // CALC_AUTHOR_MAIN.append(tiBlock, rorBlock, tpBlock);
+  safeUpdateMinimalReflow(
+    CALC_AUTHOR_MAIN,
+    () => {
+      const frag = document.createDocumentFragment();
+      frag.append(tiBlock, rorBlock, tpBlock);
+      return frag;
+    },
+    /* useReserve= */ true,
+    /* extraPx= */ 0
+  );
 
   block.appendChild(lumpsumBlock);
 
