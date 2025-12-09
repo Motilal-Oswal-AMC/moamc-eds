@@ -16,6 +16,7 @@
     }
 
     .default-content-wrapper {
+
       h1,
       h2,
       h3,
@@ -254,7 +255,11 @@
 }
 
 .section.cornerstones-elss-fund {
-  padding: unset;
+  padding: 80px 0;
+
+  @include media(mobile) {
+    padding: 40px 0;
+  }
 
   .cornerstones-advantage-cards-wrapper {
     .cornerstones-advantage-cards {
@@ -262,7 +267,12 @@
       flex-wrap: wrap;
       gap: 24px;
       justify-content: space-between;
-      margin: 40px 0 0;
+      margin: 64px 0 0;
+
+      @include media(mobile) {
+        flex-direction: column;
+        gap: 24px;
+      }
     }
   }
 
@@ -272,8 +282,51 @@
       width: 100%;
       min-height: 244px;
 
-      @include media(tab) {
-        min-height: unset;
+      @include media(mobile) {
+        max-width: unset;
+        width: 100%;
+        min-height: 116px;
+      }
+
+      div {
+        .item-child.item-child-2 {
+          color: var(--neutrals-900);
+          font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
+          font-family: var(--Body, Inter);
+          font-size: 20px;
+          font-style: normal;
+          font-weight: 500;
+          line-height: 28px;
+
+          @include media(mobile) {
+            margin: unset;
+            font-size: 18px;
+            font-weight: 500;
+            line-height: 24px;
+            /* 133.333% */
+          }
+        }
+
+        .item-child.item-child-3 {
+          color: var(--neutrals-800);
+          font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
+          font-family: var(--Body, Inter);
+          font-size: 16px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 24px;
+          padding-bottom: 24px;
+
+          @include media(mobile) {
+            padding-bottom: unset;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 24px;
+            /* 150% */
+
+          }
+
+        }
       }
     }
   }
