@@ -34,8 +34,8 @@ indices:
         select: head > meta[name="description"]
         value: attribute(el, "content")
       image:
-        select: head > meta[property="og:image"]
-        value: attribute(el, "content")
+        select: head > picture > img
+        value: attribute(el, "src")
       tag:
         select: body > main > .section > ul > li > p
         value: textContent(el)
