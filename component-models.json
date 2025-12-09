@@ -659,6 +659,10 @@
             "value": "section-one"
           },
           {
+            "name": "Customized Section",
+            "value": "customized-section"
+          },
+          {
             "name": "Section Two",
             "value": "section-two"
           },
