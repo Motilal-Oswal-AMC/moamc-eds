@@ -228,6 +228,8 @@ export default function decorate(block) {
   //   });
   // }
 
+  // Privacy Policy Functionality start
+  mainblock.querySelectorAll('.privacy-policy-banner')[0].classList.add('active');
   mainblock.querySelectorAll('.button')[0].classList.add('active');
   document.querySelectorAll('.privacy-policy-banner .button').forEach((btn) => {
     btn.addEventListener('click', () => {
@@ -243,6 +245,8 @@ export default function decorate(block) {
 
       document.querySelectorAll('.privacy-policy-banner').forEach((section) => {
         const sectionAttr = section.getAttribute('data-id');
+
+        // document.querySelectorAll('.privacy-policy-banner').forEach(sec => sec.classList.remove('active'));
 
         if (sectionAttr === selectedAttr) {
           section.classList.add('active'); // show matching section

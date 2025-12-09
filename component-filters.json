@@ -242,6 +242,12 @@
     ]
   },
   {
+    "id": "unclaimed-redemption-form",
+    "components": [
+      "unclaimed-redemption-form-item"
+    ]
+  },
+  {
     "id": "quick-purchase-block",
     "components": [
       "quick-purchase-item"

@@ -1,6 +1,6 @@
 @use "sass:map";
-@use "../../styles/common-theme/css/variables_mixins" as *;
-@use "../../styles/common-theme/css/fluid-typography" as *;
+@use "../../styles/common-theme/css/variables_mixins"as *;
+@use "../../styles/common-theme/css/fluid-typography"as *;
 
 main>.section.investing-terms-container {
   margin: var(--spacing-40) 0 var(--spacing-80);
@@ -76,6 +76,7 @@ main>.section.investing-terms-container {
         margin: 0;
         padding-bottom: 12px;
         font-style: normal;
+        cursor: pointer;
 
         @include font-style(var(--body-small-medium-size),
           var(--body-small-medium-line-height),
@@ -181,8 +182,55 @@ main>.section.investing-terms-container {
             font-style: normal;
             font-weight: 500;
             line-height: 20px;
+
+            @include media (mobile) {
+              max-width: 100%;
+              height: 40px;
+              padding: 12px var(--spacing-12, 12px);
+              font-size: 16px;
+            }
           }
         }
+      }
+    }
+  }
+}
+
+.section.fab-container.investing-terms-container {
+  margin: var(--spacing-40) 0;
+  margin-bottom: 0;
+
+  @include media (mobile) {
+    margin: var(--spacing-40) 0;
+  }
+
+  >.default-content-wrapper {
+    margin-top: 40px;
+
+    p {
+      margin: 0;
+      padding: 0;
+      color: var(--text-disclaimer, #616161);
+      font-family: var(--body, Inter);
+      font-size: var(--disclaimer-xsmall-size, 12px);
+      font-style: normal;
+      font-weight: 400;
+      line-height: var(--disclaimer-xsmall-line-height, 16px);
+
+      a {
+        color: var(--text-text-link, #2E2A94);
+        font-family: var(--body, Inter);
+        font-size: var(--text-link-xsmall-size, 12px);
+        font-style: normal;
+        font-weight: 400;
+        line-height: var(--text-link-xsmall-line-height, 16px);
+        text-decoration-line: underline;
+        text-decoration-style: solid;
+        text-decoration-skip-ink: auto;
+        text-decoration-thickness: auto;
+        text-underline-offset: -0.8px;
+        text-underline-position: from-font;
+        cursor: pointer;
       }
     }
   }

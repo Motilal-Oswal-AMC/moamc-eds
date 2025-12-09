@@ -847,6 +847,10 @@
             "value": "structure-governance-tab"
           },
           {
+            "name": "Unclaimed Redemption",
+            "value": "unclaimed-redemption"
+          },
+          {
             "name": "Why Invest Minor",
             "value": "why-invest-minor"
           },
@@ -865,6 +869,18 @@
           {
             "name": "Right Key card",
             "value": "right-key-card"
+          },
+          {
+            "name": "Fab Download",
+            "value": "fab-download"
+          },
+          {
+            "name": "Unclaimed Redemption Procedure",
+            "value": "unclaimed-redemption-procedure"
+          },
+          {
+            "name": "Fab Container",
+            "value": "fab-container"
           }
         ]
       },

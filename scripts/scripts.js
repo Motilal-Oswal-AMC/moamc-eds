@@ -741,11 +741,32 @@ function articleStructure() {
     const openSharePopup = document.querySelector('.open-share-popup');
     const shareBtn = openSharePopup.querySelector('.icon-share-black');
     const dropdown = openSharePopup.querySelector('.submainleftart2');
+    let dropdownV2;
+    if (dropdown === null) {
+      const sharemedia = `<ul class="comlist list-share-media">
+                        <li class="listindex1"><a title="Facebook"><span class="icon icon-facebookfdp"><img data-icon-name="facebookfdp" src="/icons/facebookfdp.svg" alt="" loading="lazy" width="16" height="16"></span>Facebook</a></li>
+                        <li class="listindex2"><a title="WhatsApp"><span class="icon icon-whatsapp"><img data-icon-name="whatsapp" src="/icons/whatsapp.svg" alt="" loading="lazy" width="16" height="16"></span>WhatsApp</a></li>
+                        <li class="listindex3"><a title="X"><span class="icon icon-Twitter"><img data-icon-name="Twitter" src="/icons/Twitter.svg" alt="" loading="lazy" width="16" height="16"></span>X</a></li>
+                        <li class="listindex4"><a title="Copy"><span class="icon icon-copyfdp"><img data-icon-name="copyfdp" src="/icons/copyfdp.svg" alt="" loading="lazy" width="16" height="16"></span>Copy</a></li>
+                        <li class="listindex5" style="display: none; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 999;">URL Copied</li>
+                      </ul>`;
+      const sharemediaV2 = document.createElement('div');
+      sharemediaV2.classList.add('list-share-popup');
+      // sharemediaV2.style.display = 'none';
+      sharemediaV2.innerHTML += sharemedia;
+      shareBtn.closest('li').appendChild(sharemediaV2);
+      shareBtn.closest('li').classList.add('mediaicons');
+      dropdownV2 = openSharePopup.querySelector('.list-share-popup');
+    }
     if (openSharePopup) {
       // Toggle dropdown when clicking share icon
       shareBtn.addEventListener('click', (e) => {
         e.stopPropagation();
-        dropdown.classList.toggle('active');
+        if (dropdown !== null) {
+          dropdown.classList.toggle('active');
+        } else if (dropdownV2 !== null) {
+          dropdownV2.classList.toggle('active');
+        }
       });
 
       // Close dropdown on outside click
@@ -756,18 +777,18 @@ function articleStructure() {
       });
     }
 
-    document.querySelectorAll('.comlist.submainart3.itemmainleftart3').forEach((listItem) => {
-      const ul = listItem.querySelector('.comlist.submainleftart2');
-      if (!ul) return;
+    // document.querySelectorAll('.comlist.submainart3.itemmainleftart3').forEach((listItem) => {
+    //   const ul = listItem.querySelector('.list-share-popup');
+    //   if (!ul) return;
 
-      [...ul.children].forEach((li, index) => {
-        li.classList.add(`listindex${index + 1}`);
-      });
-    });
+    //   [...ul.children].forEach((li, index) => {
+    //     li.classList.add(`listindex${index + 1}`);
+    //   });
+    // });
 
-    document.querySelectorAll('.comlist.submainart3.itemmainleftart3').forEach((item) => {
+    document.querySelectorAll('.mediaicons').forEach((item) => {
       const shareIcon = item.querySelector('.icon-share-black');
-      const popup = item.querySelector('.comlist.submainleftart2');
+      const popup = item.querySelector('.list-share-popup');
 
       if (!shareIcon || !popup) return;
 
@@ -859,6 +880,7 @@ function articleStructure() {
         });
       }
     });
+
     const delay = (ms) => new Promise((resolve) => { setTimeout(resolve, ms); });
     delay(2000).then(() => {
       let blokform;
@@ -1154,6 +1176,29 @@ try {
 } catch (error) {
   // console.log(error);
 }
+
+// Unclaimed Redemption Block
+try {
+  // if (window.location.href == 'mutual-fund/in/en/static-pages/unclaimed-redemptions') {
+    const section = document.querySelector('.unclaimed-redemption');
+    const cardSection = document.querySelector('.unclaimed-redemption .cards-wrapper');
+    const unclaimedForm = document.querySelector('.unclaimed-redemption .wealth-modal-wrapper');
+    const elementNew = document.createElement('div');
+    const elementDiv = document.createElement('div');
+    elementDiv.classList.add('section-container');
+    elementNew.classList.add('container');
+    if (section !== null) {
+      section.appendChild(elementNew);
+      section.appendChild(elementDiv);
+      elementDiv.appendChild(elementNew);
+      elementNew.appendChild(cardSection);
+      elementNew.appendChild(unclaimedForm);
+    }
+  // }
+} catch (error) {
+  console.log(error);
+}
+// Unclaimed Redemption Block
 
 async function getlisting() {
   const resp = await myAPI('GET', 'https://m71vqgw4cj.execute-api.ap-south-1.amazonaws.com/dev/api/public/v1/funds/listing');
