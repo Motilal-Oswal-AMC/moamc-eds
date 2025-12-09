@@ -1246,13 +1246,13 @@ async function getfundmanager(param) {
 dataMapMoObj.getfundmanager = getfundmanager;
 
 async function getinsights() {
-  const resp = await myAPI('GET', 'https://main--moamc-eds--motilal-oswal-amc.aem.live/query-index-insights.json');
+  const resp = await myAPI('GET', '/query-index-insights.json');
   return resp;
 }
 dataMapMoObj.getinsights = getinsights();
 
 async function getinvestorblog() {
-  const resp = await myAPI('GET', 'https://main--moamc-eds--motilal-oswal-amc.aem.live/query-index-investorblog.json');
+  const resp = await myAPI('GET', '/query-index-investorblog.json');
   return resp;
 }
 dataMapMoObj.getinvestorblog = await getinvestorblog();
