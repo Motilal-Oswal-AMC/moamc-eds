@@ -585,33 +585,36 @@ function articleStructure() {
       leftarticle.append(leftel);
     });
 
-    Array.from(leftSub).forEach((subleft) => {
-      dataMapMoObj.CLASS_PREFIXES = [
-        'investarticle-leftmain',
-        'investarticle-leftsub',
-        'investarticle-leftinner',
-        'investsub-leftarticle',
-        'investleft-subinner',
-        'investleft-articleitem',
-        'investleft-itemchild',
-        'investleft-subchild',
-      ];
-      dataMapMoObj.addIndexed(subleft);
-    });
+    if (!maincloser.querySelector('.moedge-article-details')) {
+      Array.from(leftSub).forEach((subleft) => {
+        dataMapMoObj.CLASS_PREFIXES = [
+          'investarticle-leftmain',
+          'investarticle-leftsub',
+          'investarticle-leftinner',
+          'investsub-leftarticle',
+          'investleft-subinner',
+          'investleft-articleitem',
+          'investleft-itemchild',
+          'investleft-subchild',
+        ];
+        dataMapMoObj.addIndexed(subleft);
+      });
+  
+      Array.from(rightSub).forEach((subright) => {
+        dataMapMoObj.CLASS_PREFIXES = [
+          'investarticle-rightmain',
+          'investarticle-rightsub',
+          'investarticle-rightinner',
+          'investsub-rightarticle',
+          'investright-subinner',
+          'investright-articleitem',
+          'investright-itemchild',
+          'investright-subchild',
+        ];
+        dataMapMoObj.addIndexed(subright);
+      });
+    }
 
-    Array.from(rightSub).forEach((subright) => {
-      dataMapMoObj.CLASS_PREFIXES = [
-        'investarticle-rightmain',
-        'investarticle-rightsub',
-        'investarticle-rightinner',
-        'investsub-rightarticle',
-        'investright-subinner',
-        'investright-articleitem',
-        'investright-itemchild',
-        'investright-subchild',
-      ];
-      dataMapMoObj.addIndexed(subright);
-    });
     const maindiv = maincloser.querySelector('.main-wrapper');
     maindiv.classList.add('open-share-popup');
     // maindiv.classList.add('main-wrapper');
