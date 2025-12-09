@@ -551,6 +551,39 @@ main.nfo-nav .main-wrapper .section:first-of-type {
         }
       }
     }
+
+    .section.article-sub-left.podcast-section {
+      .embed-wrapper {
+        height: auto;
+
+        .embed {
+          flex-direction: column;
+
+          audio {
+            background-color: green;
+            border: 6px solid red;
+            border-radius: 4px;
+            padding: 10px 20px;
+            width: 100%;
+            max-width: 500px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            margin: 10px 0 0;
+
+            &::-webkit-media-controls-panel {
+              background-color: #e3f2fd; /* Light Blue */
+            }
+
+            &::-webkit-media-controls-play-button {
+              background-color: #0288d1; /* Dark Blue */
+              border-radius: 50%;
+              color: white;
+            }
+          }
+        }
+      }
+    }
   }
 
   .section.article-right-wrapper {
