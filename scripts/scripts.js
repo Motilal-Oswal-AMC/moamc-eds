@@ -760,11 +760,11 @@ function articleStructure() {
     let dropdownV2;
     if (dropdown === null) {
       const sharemedia = `<ul class="comlist list-share-media">
-                        <li class="listindex1"><a title="Facebook"><span class="icon icon-facebookfdp"><img data-icon-name="facebookfdp" src="/icons/facebookfdp.svg" alt="" loading="lazy" width="16" height="16"></span>Facebook</a></li>
-                        <li class="listindex2"><a title="WhatsApp"><span class="icon icon-whatsapp"><img data-icon-name="whatsapp" src="/icons/whatsapp.svg" alt="" loading="lazy" width="16" height="16"></span>WhatsApp</a></li>
-                        <li class="listindex3"><a title="X"><span class="icon icon-Twitter"><img data-icon-name="Twitter" src="/icons/Twitter.svg" alt="" loading="lazy" width="16" height="16"></span>X</a></li>
-                        <li class="listindex4"><a title="Copy"><span class="icon icon-copyfdp"><img data-icon-name="copyfdp" src="/icons/copyfdp.svg" alt="" loading="lazy" width="16" height="16"></span>Copy</a></li>
-                        <li class="listindex5" style="display: none; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 999;">URL Copied</li>
+                        <li class="list-media listindex1"><a class="list-link" title="Facebook"><span class="media-icon icon icon-facebookfdp"><img data-icon-name="facebookfdp" src="/icons/facebookfdp.svg" alt="" loading="lazy" width="16" height="16"></span>Facebook</a></li>
+                        <li class="list-media listindex2"><a class="list-link" title="WhatsApp"><span class="media-icon icon icon-whatsapp"><img data-icon-name="whatsapp" src="/icons/whatsapp.svg" alt="" loading="lazy" width="16" height="16"></span>WhatsApp</a></li>
+                        <li class="list-media listindex3"><a class="list-link" title="X"><span class="media-icon icon icon-Twitter"><img data-icon-name="Twitter" src="/icons/Twitter.svg" alt="" loading="lazy" width="16" height="16"></span>X</a></li>
+                        <li class="list-media listindex4"><a class="list-link" title="Copy"><span class="media-icon icon icon-copyfdp"><img data-icon-name="copyfdp" src="/icons/copyfdp.svg" alt="" loading="lazy" width="16" height="16"></span>Copy</a></li>
+                        <li class="list-media listindex5" style="display: none;">URL Copied</li>
                       </ul>`;
       const sharemediaV2 = document.createElement('div');
       sharemediaV2.classList.add('list-share-popup');
@@ -926,12 +926,15 @@ function articleStructure() {
             inpelm.remove('email-success');
             closblock.querySelector('.errormsg').style.display = 'none';
             formem.nextElementSibling.style.display = 'none';
+            event.target.closest('.email-wrapper').classList.remove('active');
           } else if (emailRegex.test(inpval)) {
             closblock.querySelector('.errormsg').style.display = 'none';
             inpelm.remove('email-fail');
             formem.nextElementSibling.style.display = 'none';
+            event.target.closest('.email-wrapper').classList.add('active');
             // inpelm.add('email-success');
           } else {
+            event.target.closest('.email-wrapper').classList.add('active');
             closblock.querySelector('.errormsg').style.display = 'block';
             inpelm.add('email-fail');
             formem.nextElementSibling.style.display = 'block';
@@ -944,13 +947,18 @@ function articleStructure() {
         wrapperimg.append(img({
           src: '/icons/error-cross.svg',
           alt: 'Img',
-          class: 'crossimg',
+          class: 'crossimg crosserror',
           onclick: () => {
             formem.value = '';
             formem.parentElement.classList.remove('email-fail');
             elemObj.errorelm.querySelector('.errormsg').style.display = 'none';
             formem.nextElementSibling.style.display = 'none';
           },
+        }));
+        wrapperimg.append(img({
+          src: '/icons/success-cross.svg',
+          alt: 'Img',
+          class: 'crossimg crosssuccess',
         }));
         formdiv.querySelector('.email-wrapper').append(wrapperimg);
         formdiv.querySelector('.submit-btn .button').addEventListener('click', () => {
