@@ -2339,8 +2339,72 @@ main.nfo-nav {
 
 // elss fund page 
 
+.section.elss-fund-banner {
+  padding-bottom: 40px;
+
+  .default-content-wrapper {
+    .choose-us-para1 {
+      color: var(--blue-1-800-primary);
+      font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
+      font-family: var(--TItle, Inter);
+      font-size: 32px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 40px;
+
+      @include media(mobile) {
+        font-size: 28px;
+        font-weight: 600;
+        line-height: 32px;
+      }
+    }
+
+    .choose-us-para2 {
+      color: var(--sub-header);
+      font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
+      font-family: var(--Body, Inter);
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 24px;
+
+      @include media(mobile) {
+        margin-bottom: 24px;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 24px;
+        /* 150% */
+      }
+    }
+
+    .choose-us-para3 {
+      .choose-us-img1 {
+        max-width: 160px;
+        width: 100%;
+        color: var(--neutrals-white);
+        text-align: center;
+        font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
+        font-family: var(--Body, Inter);
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 16px;
+        border-radius: 8px;
+        background: var(--blue-1-800-primary);
+        padding: 8px 12px;
+      }
+    }
+  }
+}
+
+
 .section.fund-tax {
   margin: 40px 0;
+
+  @include media(mobile) {
+    margin: unset;
+    margin-bottom: 40px;
+  }
 
   .fund-tax-contain1 {
     display: flex;
@@ -2348,6 +2412,10 @@ main.nfo-nav {
     align-items: flex-start;
     align-self: stretch;
 
+    @include media(mobile) {
+      flex-direction: column;
+      gap: 12px;
+    }
 
   }
 
@@ -2362,6 +2430,10 @@ main.nfo-nav {
     font-weight: 600;
     line-height: 32px;
     /* 114.286% */
+
+    @include media(mobile) {
+      margin-top: unset;
+    }
   }
 
   .fund-tax-txt2 {
@@ -2392,6 +2464,10 @@ main.nfo-nav {
     align-self: stretch;
     border-radius: 8px;
     background: linear-gradient(257deg, rgba(154, 148, 255, 0.50) -5.54%, rgba(235, 234, 255, 0.50) 100%);
+
+    @include media(mobile) {
+      padding: 24px 12px;
+    }
   }
 
   .invest-blog-txt1 {
@@ -2455,12 +2531,21 @@ main.nfo-nav {
 
       @include media(mobile) {
         margin: unset;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 28px;
+        /* 116.667% */
       }
     }
 
     .tax-blog-txt2 {
       max-width: 728px;
       width: 100%;
+      margin: unset;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
 
       .tax-blog-subtxt1 {
         color: var(--text-body);
@@ -2515,6 +2600,11 @@ main.nfo-nav {
 
       @include media(mobile) {
         margin: unset;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 28px;
+        /* 116.667% */
       }
     }
 
@@ -2523,6 +2613,7 @@ main.nfo-nav {
       gap: 60px;
       max-width: 735px;
       width: 100%;
+      margin: unset;
 
       @include media(mobile) {
         flex-direction: column;
@@ -2538,20 +2629,26 @@ main.nfo-nav {
         font-weight: 400;
         line-height: 20px;
         list-style-type: none;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
 
         @include media(mobile) {
           display: flex;
           gap: 8px;
+          flex-direction: unset;
         }
 
-        p {
-          .icon-elss-sip1 {
-            width: 68px;
-            height: 68px;
+        .icon-elss-sip1 {
+          width: 68px;
+          height: 68px;
+
+          @include media(mobile) {
+            width: 39px;
+            height: 33px;
           }
         }
 
-        /* 142.857% */
       }
 
       .sip-blog-subtxt2 {
@@ -2563,17 +2660,24 @@ main.nfo-nav {
         font-weight: 400;
         line-height: 20px;
         list-style-type: none;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
 
         @include media(mobile) {
           display: flex;
           gap: 8px;
+          flex-direction: unset;
         }
 
         /* 142.857% */
-        p {
-          .icon-elss-sip2 {
-            width: 68px;
-            height: 68px;
+        .icon-elss-sip2 {
+          width: 68px;
+          height: 68px;
+
+          @include media(mobile) {
+            width: 39px;
+            height: 33px;
           }
         }
       }
@@ -2648,6 +2752,7 @@ main.nfo-nav {
 .section.fund-philosophy {
   border-radius: 8px;
   background: var(--blue-1-800-primary, #2E2A94);
+  margin: unset;
 
   @include media(mobile) {
     border-radius: 0;
