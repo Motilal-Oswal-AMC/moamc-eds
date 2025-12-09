@@ -17,7 +17,7 @@ import dataMapMoObj from '../../scripts/constant.js';
 const useLiveApi = true;
 
 // The API endpoint is now a single URL.
-const fundManagerAPIv = 'https://www.motilaloswalmf.com/mutualfund/api/v1/GetFundMangerBySchemeId';
+// const fundManagerAPIv = 'https://www.motilaloswalmf.com/mutualfund/api/v1/GetFundMangerBySchemeId';
 
 export default async function decorate(block) {
   let fundManagers;
@@ -42,25 +42,44 @@ export default async function decorate(block) {
   async function fundManagerAPI() {
     if (useLiveApi) {
       try {
-        const schemeCodeValue = localStorage.getItem('schcodeactive');
-
-        // Create the POST request to the API
-        const response = await fetch(fundManagerAPIv, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            api_name: 'GetFundMangerBySchemeId',
-            schcode: schemeCodeValue,
-          }),
+        const tempDfilt = dataMapMoObj.getlisting.cfDataObjs.filter((el) => {
+          if (!el.fundsTaggingSection || !el.planList || !el.returns) {
+            return false;
+          }
+          return el;
         });
-
-        if (!response.ok) {
-          return;
+        const schemeCodeValue = localStorage.getItem('schcodeactive');
+        // let planFlow;
+        let planslabel;
+        if (window.location.href.includes('/our-funds/funds-details-page')) {
+          planslabel = 'LM';
+          // planFlow = 'Direct';
+        } else {
+          const path = window.location.pathname.split('/').at(-1);
+          const planobj = tempDfilt.filter(
+            (el) => path === el.schemeName.toLocaleLowerCase().split(' ').join('-'),
+          );
+          planslabel = planobj[0].schcode;
+          // planFlow = 'Direct';
         }
+        // Create the POST request to the API
+        // const response = await fetch(fundManagerAPIv, {
+        //   method: 'POST',
+        //   headers: {
+        //     'Content-Type': 'application/json',
+        //   },
+        //   body: JSON.stringify({
+        //     api_name: 'GetFundMangerBySchemeId',
+        //     schcode: schemeCodeValue,
+        //   }),
+        // });
 
-        const data = await response.json();
+        // if (!response.ok) {
+        //   return;
+        // }
+        planslabel = dataMapMoObj.schemeCodeResp !== undefined
+          ? dataMapMoObj.schemeCodeResp[0].schcode : planslabel;
+        const data = await dataMapMoObj.getfundmanager(planslabel);
         const managerDetails = data.data.response.mangerDetails;
         const managerSchemesAll = data.data.response.schemeReturns;
         let managerId;

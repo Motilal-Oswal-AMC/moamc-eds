@@ -2,8 +2,8 @@
 
 /*   media-feature-range-notation */
 @use "sass:map";
-@use "../../styles/common-theme/css/variables_mixins"as *;
-@use "../../styles/common-theme/css/fluid-typography"as *;
+@use "../../styles/common-theme/css/variables_mixins" as *;
+@use "../../styles/common-theme/css/fluid-typography" as *;
 @import '../swiper/swiper-bundle.min.css';
 
 
@@ -73,7 +73,7 @@
 
                     @include media(mobile) {
                         color: var(--neutrals-white);
-                        font-feature-settings: 'liga'off;
+                        font-feature-settings: 'liga' off;
                         font-family: var(--body);
                         font-size: 36px;
                         font-style: normal;
@@ -620,7 +620,7 @@
                 align-items: center;
                 gap: 4px;
 
-                h4 {
+                h1, h2, h3, h4, h5, h6 {
                     margin: 0;
                     color: var(--neutrals-white, #FFF);
                     text-align: center;
@@ -674,4 +674,53 @@
             }
         }
     }
+}
+
+
+.section.mo-inter-business.gift-hero {
+    .hero-wrapper {
+        max-width: 100%;
+        width: 100%;
+
+        @include media (mobile) {
+            padding: 0;
+        }
+
+
+        .mo-inter-sec1 {
+            padding: 40px 67px 0;
+
+
+            @include media (mobile) {
+                padding: 0;
+            }
+
+            .mo-inter-sub1 {
+                @include media (mobile) {
+                    margin: 0;
+                }
+
+            }
+
+            .mo-inter-sub2 {
+                max-width: 878px;
+
+            }
+
+            .mo-inter-inner-text1 {
+                .mo-inter-list-content4 {
+                    height: 100%;
+                    object-fit: cover;
+                }
+            }
+        }
+
+        .mo-inter-sub2 {
+            @include media (mobile) {
+                padding: 40px 16px 0;
+            }
+
+        }
+    }
+
 }

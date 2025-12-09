@@ -182,7 +182,8 @@ export default function decorate(block) {
     if (keyInvestSection.classList.contains('key-investing')) {
       const keyInvestSearch = div(
         { class: 'keyinvest-wrap' },
-        div({ class: 'keyinvest-search' },
+        div(
+          { class: 'keyinvest-search' },
           input({ class: 'keyinvest-inp', id: 'keyinvest', placeholder: ' ' }),
           label({ class: 'keyinvest-label', for: 'keyinvest' }, 'Search here'),
         ),
@@ -588,7 +589,6 @@ export default function decorate(block) {
             // ignore
           }
         }
-
 
         // else if (dataMapMoObj.searchFld === undefined || dataMapMoObj.searchFld === '') {
         //   closeBtn.style.display = 'none';

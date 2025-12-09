@@ -6,9 +6,16 @@ import {
   img,
   a,
 } from '../../scripts/dom-helpers.js';
-import dataCfObj from '../../scripts/dataCfObj.js';
+import dataMapMoObj from '../../scripts/constant.js';
+// import dataCfObj from '../../scripts/dataCfObj.js';
 
 export default function decorate(block) {
+  const tempDfilt = dataMapMoObj.getlisting.cfDataObjs.filter((el) => {
+    if (!el.fundsTaggingSection) {
+      return false;
+    }
+    return el;
+  });
   Array.from(block.children).forEach((child, ind) => {
     child.classList.add(`watchlist-items${ind + 1}`);
     Array.from(child.children).forEach((subChild, subind) => {
@@ -19,11 +26,11 @@ export default function decorate(block) {
     });
   });
 
-  const data = dataCfObj.cfDataObjs.filter((el) => {
-    if ([...el.fundsTaggingSection].includes('motilal-oswal:conservative')) {
-      return true;
+  const data = tempDfilt.filter((el) => {
+    if (!el.fundsTaggingSection) {
+      return false;
     }
-    return false;
+    return [...el.fundsTaggingSection].includes('motilal-oswal:conservative');
   });
 
   const cardContainer = div(
@@ -87,7 +94,7 @@ export default function decorate(block) {
             // ),
             div(
               { class: 'fund-name' },
-              data[0].schDetail.schemeName, // .replaceAll('Motilal Oswal', ''),
+              data[0].schemeName, // .replaceAll('Motilal Oswal', ''),
             ),
           ),
           div(

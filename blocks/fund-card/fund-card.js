@@ -9,7 +9,6 @@ import {
   a,
 } from '../../scripts/dom-helpers.js';
 import dataMapMoObj from '../../scripts/constant.js';
-import dataCfObj from '../../scripts/dataCfObj.js';
 // eslint-disable-next-line
 import {
   evaluateByDays,
@@ -131,7 +130,7 @@ export default function decorate(block) {
               { class: 'brand-fund-wrap' },
               h2(
                 { class: 'fund-name-title' },
-                block.schDetail.schemeName,
+                block.schemeName,
               ),
             ),
           ),
@@ -268,7 +267,7 @@ export default function decorate(block) {
             },
             h2(
               { class: 'fund-name-title' },
-              block.schDetail.schemeName,
+              block.schemeName,
             ),
           ),
         ),
@@ -473,9 +472,9 @@ export default function decorate(block) {
                   `${planFlowsec}:${cardWrapperSh}`,
                 );
                 let schCard;
-                dataCfObj.cfDataObjs.forEach((el) => {
+                dataMapMoObj.getlisting.cfDataObjs.forEach((el) => {
                   if (el.schcode === cardWrapperSh) {
-                    schCard = el.schDetail.schemeName.toLowerCase().split(' ').join('-');
+                    schCard = el.schemeName.toLowerCase().split(' ').join('-');
                   }
                 });
                 if (schCard === undefined) {

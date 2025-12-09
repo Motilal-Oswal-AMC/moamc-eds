@@ -1,4 +1,5 @@
-/*   */
+// import dataMapMoObj from '../../scripts/constant.js';
+
 export default function decorate(block) {
   Array.from(block.children).forEach((el, index) => {
     el.classList.add(`imagelist${index + 1}`);
@@ -23,3 +24,14 @@ export default function decorate(block) {
     });
   });
 }
+
+// // why-invest-minor section start
+// const whyInvestminor = document.querySelector('.why-invest-minor think-equity-container');
+// if (whyInvestminor != null) {
+//   dataMapMoObj.CLASS_PREFIXES = [
+//     'why-invest-minor-main',
+//     'why-invest-minor-sub',
+//     'why-invest-minor-inner',
+//   ];
+//   dataMapMoObj.addIndexed(whyInvestminor);
+// }

@@ -1,8 +1,13 @@
 import dataMapMoObj from '../../scripts/constant.js';
-import dataCfObj from '../../scripts/dataCfObj.js';
 import { img } from '../../scripts/dom-helpers.js';
 
 export default function decorate(block) {
+  const tempDfilt = dataMapMoObj.getlisting.cfDataObjs.filter((el) => {
+    if (!el.fundsTaggingSection || !el.planList || !el.returns) {
+      return false;
+    }
+    return el;
+  });
   const riskmet = block.closest('.risk-o-meter-container');
   Array.from(block.children).forEach((row, rowIndex) => {
     row.classList.add('risk-meter-cont', `corner-${rowIndex + 1}`);
@@ -26,17 +31,18 @@ export default function decorate(block) {
     planslabel = 'LM';
   } else {
     const path = window.location.pathname.split('/').at(-1);
-    const planobj = dataCfObj.cfDataObjs.filter(
-      (el) => path === el.schDetail.schemeName.toLocaleLowerCase().split(' ').join('-'),
+    const planobj = tempDfilt.filter(
+      (el) => path === el.schemeName.toLocaleLowerCase().split(' ').join('-'),
     );
     planslabel = planobj[0].schcode;
   }
   // const planslabel = planCode.split(':')[1];
   // const mop = [];
-  const planobj = dataCfObj.cfDataObjs.filter((el) => el.schcode === planslabel);
+  let planobj = tempDfilt.filter((el) => el.schcode === planslabel);
   // console.log(planobj);
 
   if (block.closest('.product-label')) {
+    planobj = dataMapMoObj.schemeCodeResp;
     // console.log(planobj[0].benchmarkreturns[0].groupName);// + Risk- O-Meter
     // console.log(planobj[0].schDetail.schemeName); // + 'Risk- O-Meter'
 
@@ -103,7 +109,7 @@ export default function decorate(block) {
     if (planobj[0].risk.benchmarkRisk) {
       const riskMiterBanch = block.querySelector('.corner-1 p');
       riskMiterBanch.textContent = '';
-      riskMiterBanch.textContent = `${planobj[0].schDetail.schemeName} Risk- O-Meter`;
+      riskMiterBanch.textContent = `${planobj[0].schemeName} Risk- O-Meter`;
       block.querySelector('.corner-1 .column-2').innerHTML = '';
       block.querySelector('.corner-1 .column-2').append(img(
         { src: `/icons/larg-risk-icon/${planobj[0].risk.benchmarkRisk.split(' ').join('-')}.svg`, alt: 'img' },

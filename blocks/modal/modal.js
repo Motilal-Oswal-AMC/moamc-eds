@@ -4,7 +4,7 @@ import {
   buildBlock, decorateBlock, loadBlock, loadCSS,
 } from '../../scripts/aem.js';
 import dataMapMoObj from '../../scripts/constant.js';
-import dataCfObj from '../../scripts/dataCfObj.js';
+// import dataCfObj from '../../scripts/dataCfObj.js';
 
 export async function createModal(contentNodes) {
   await loadCSS(`${window.hlx.codeBasePath}/blocks/modal/modal.css`);
@@ -187,6 +187,12 @@ export async function openModal(fragmentUrl) {
 
 // --- Specialized function for On-Card Modals (New) ---
 async function openModalOnElement(fragmentUrl, clickedElement) {
+  const tempDfilt = dataMapMoObj.getlisting.cfDataObjs.filter((el) => {
+    if (!el.fundsTaggingSection) {
+      return false;
+    }
+    return el;
+  });
   // This business logic for schcode can remain the same
   let schcodeactive;
   const cardWrapper = clickedElement.closest('.card-wrapper'); // More robust DOM traversal
@@ -219,7 +225,7 @@ async function openModalOnElement(fragmentUrl, clickedElement) {
     // let plan;
     dataMapMoObj.planText = `${flow} | ${homecal
       .querySelector('.plan-option-select .select-selected-plan').textContent.trim()}`;
-    dataCfObj.cfDataObjs.forEach((funddata) => {
+    tempDfilt.forEach((funddata) => {
       if (funddata.schDetail.schemeName === dataMapMoObj.plantext) {
         schcodeactive = funddata.schcode;
         dataMapMoObj.planlistArr = funddata.planList;
@@ -239,7 +245,7 @@ async function openModalOnElement(fragmentUrl, clickedElement) {
     dataMapMoObj.plantext = fdpcont.textContent.trim();
     const stickplan = clickedElement.closest('.sticky-item1');
     const planName = stickplan.querySelector('.sticky-inner-item1').textContent;
-    dataCfObj.cfDataObjs.forEach((funddata) => {
+    tempDfilt.forEach((funddata) => {
       if (funddata.schDetail.schemeName === planName) {
         schcodeactive = funddata.schcode;
         dataMapMoObj.planlistArr = funddata.planList;
