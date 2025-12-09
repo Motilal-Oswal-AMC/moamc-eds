@@ -196,6 +196,15 @@
       h3 {
         text-align: left;
         margin: 0;
+        font-size: 28px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 32px;
+
+        @include media (mobile) {
+          font-size: 24px;
+          line-height: 28px;
+        }
       }
     }
 
@@ -216,12 +225,14 @@
 
         >div {
           padding-right: 0;
+          gap: 24px;
 
           @include media (mobile) {
             padding-bottom: 0;
             display: flex;
             flex-direction: unset;
             align-items: center;
+            gap: 8px;
           }
         }
 
@@ -233,8 +244,12 @@
           }
 
           &-2 {
-            letter-spacing: 0.4px;
+            letter-spacing: 0.9px;
             margin: 0;
+
+            @include media (mobile) {
+              letter-spacing: 0.4px;
+            }
           }
         }
       }

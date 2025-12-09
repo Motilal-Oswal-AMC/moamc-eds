@@ -76,6 +76,7 @@ main>.section.investing-terms-container {
         margin: 0;
         padding-bottom: 12px;
         font-style: normal;
+        cursor: pointer;
 
         @include font-style(var(--body-small-medium-size),
           var(--body-small-medium-line-height),
@@ -196,6 +197,9 @@ main>.section.investing-terms-container {
 }
 
 .section.fab-container.investing-terms-container {
+  margin: var(--spacing-40) 0;
+  margin-bottom: 0;
+
   @include media (mobile) {
     margin: var(--spacing-40) 0;
   }
@@ -213,7 +217,7 @@ main>.section.investing-terms-container {
       font-weight: 400;
       line-height: var(--disclaimer-xsmall-line-height, 16px);
 
-      u {
+      a {
         color: var(--text-text-link, #2E2A94);
         font-family: var(--body, Inter);
         font-size: var(--text-link-xsmall-size, 12px);
@@ -226,6 +230,7 @@ main>.section.investing-terms-container {
         text-decoration-thickness: auto;
         text-underline-offset: -0.8px;
         text-underline-position: from-font;
+        cursor: pointer;
       }
     }
   }
