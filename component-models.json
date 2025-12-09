@@ -865,6 +865,14 @@
           {
             "name": "Right Key card",
             "value": "right-key-card"
+          },
+          {
+            "name": "Fab Download",
+            "value": "fab-download"
+          },
+          {
+            "name": "Fab Container",
+            "value": "fab-container"
           }
         ]
       },

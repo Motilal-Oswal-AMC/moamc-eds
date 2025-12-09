@@ -141,9 +141,11 @@
 .section.our-author-detail.our-authors-container {
     padding-top: 0;
     margin-top: 16px;
+    padding-bottom: 40px;
 
     @include media(mobile) {
         margin-top: 0;
+        padding-bottom: 0;
     }
 }
 
