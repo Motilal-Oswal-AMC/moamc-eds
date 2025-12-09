@@ -60,7 +60,7 @@
                         }
 
                         li {
-                           width: 100%;
+                            width: 100%;
                         }
                     }
                 }
@@ -290,8 +290,10 @@
     display: none;
 }
 
-// .moedge-list.edge-filter-container {
-//     @include media(mobile) {
-//         display: none;
-//     }
-// }
+.moedge-list.edge-filter-container {
+    display: none;
+
+    @include media(mobile) {
+        display: none;
+    }
+}

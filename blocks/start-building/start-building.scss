@@ -237,3 +237,111 @@
         }
     }
 }
+
+
+// download css start 
+
+// Variables for colors (Easy to adjust)
+$color-primary-blue: #312E81; // The deep Motilal Blue
+$color-bg-gray: #F7F8FA; // Light gray background
+$color-white: #FFF;
+$border-radius: 4px;
+
+.fab-download.start-building-container {
+    .start-building {
+        // 1. Container Styles
+        border-radius: 8px;
+        background: var(--Neutrals-100, #F5F5F5);
+        padding: 24px 20px;
+        width: 100%;
+        box-sizing: border-box;
+
+        // Ensure images don't overflow
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        // 2. Main Flex Wrapper (Targeting specific class from your HTML)
+        .start-section1 {
+            display: flex;
+            flex-direction: column; // Mobile First: Stack vertically
+            gap: 20px;
+
+            // Desktop View: Switch to horizontal row
+            @media (min-width: 992px) {
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+                max-width: 1200px; // Optional constraint for large screens
+                margin: 0 auto; // Center content
+                padding: 10px 0;
+            }
+
+            // 3. The "Download" Title
+            h5 {
+                color: $color-primary-blue;
+                font-size: 20px;
+                font-weight: 700;
+                margin: 0;
+                line-height: 1.2;
+            }
+
+            // 4. The List of Links
+            ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+                display: flex;
+                flex-direction: column; // Mobile: Stack items
+                gap: 16px;
+
+                // Desktop: Row of items
+                @media (min-width: 992px) {
+                    flex-direction: row;
+                    gap: 48px; // Generous spacing as seen in design
+                    align-items: center;
+                }
+
+                li {
+                    margin: 0;
+                }
+            }
+
+            // 5. The Link Item
+            a {
+                text-decoration: none;
+                display: flex;
+                align-items: center;
+                color: $color-primary-blue;
+                font-size: 14px;
+                font-weight: 500;
+                transition: opacity 0.3s ease;
+
+                &:hover {
+                    opacity: 0.8;
+                }
+
+                // 6. The Icon Box (Square Blue Background)
+                .icon {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 32px; // Fixed square size
+                    height: 32px;
+                    background-color: $color-primary-blue;
+                    border-radius: $border-radius;
+                    margin-right: 12px; // Space between icon and text
+                    flex-shrink: 0; // Prevent squishing on small screens
+
+                    // The Image inside the icon box
+                    img {
+                        width: 16px;
+                        height: 16px;
+                        filter: brightness(0) invert(1);
+                    }
+                }
+            }
+        }
+    }
+}
