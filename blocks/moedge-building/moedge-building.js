@@ -168,28 +168,313 @@ export default function decorate(block) {
   const mainblklist = block.closest('.section');// ('[data-id="listing-article-cards"]');
 
   // Only run this pagination logic if we are in the correct block
+  function convertDate(dateStr) {
+    const date = new Date(dateStr);
+
+    // Formatting options
+    const options = {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
+    };
+
+    return date.toLocaleDateString('en-US', options);
+  }
+
   if (mainblklist.getAttribute('data-id') === 'listing-article-cards') {
     // Select all the card items
-    const items = Array.from(block.querySelectorAll(':scope > [class*="moedge-build-cont"]'));
-    const itemsPerPage = items.slice(0, 9).length;
+    // 1. Create an array of Promises using .map() instead of .forEach()
+    const htmlPromises = dataMapMoObj.getinvestorblog.data.map(async (elem, index) => {
+      // Check condition
+      if (!elem.path.includes('/images/')) {
+        return null; // Return null if condition isn't met
+      }
 
-    if (items.length > itemsPerPage) {
-      dataMapMoObj.setupPagination(block, items, itemsPerPage);
-    }
+      // Perform async operation
+      const readtime = await dataMapMoObj.getReadingTime(elem.path);
 
-    const blockdo = block.closest('body');
-    const blkcamp = blockdo.querySelector('.listing-investor-banner');
-    const level = blkcamp.getAttribute('data-id');
-    const leveliteration = (Number(level) * 3);
-    if (leveliteration) {
-      block.innerHTML = '';
-      // let leveliteration = Number(level) * 3;
-      items.forEach((el, index) => {
-        block.appendChild(el);
-        if (index === (leveliteration - 1)) {
-          block.appendChild(blkcamp);
+      // Prepare variables
+      const imagePAth = `./${elem.image.split('/')[elem.image.split('/').length - 1]}`;
+      const titleText = dataMapMoObj.toTitleCase(elem.title.replaceAll('-', ' '));
+      const dateText = convertDate(elem.date.split('T')[0]);
+
+      // Return the HTML string
+      return `<div class="comlist moedge-build-cont${index + 1}">
+      <div class="secs-wrapper"><div class="comlist moedge-build-sec1">
+        <picture class="comlist moedge-build-sub1">
+          <source type="image/webp" srcset="${imagePAth}" media="(min-width: 600px)" class="comlist moedge-build-inner-text1">
+          <source type="image/webp" srcset="${imagePAth}" class="comlist moedge-build-inner-text2">
+          <source type="image/jpeg" srcset="${imagePAth}" media="(min-width: 600px)" class="comlist moedge-build-inner-text3">
+          <img loading="lazy" alt="edge-img" src="${imagePAth}" width="800" height="440" class="comlist moedge-build-inner-text4">
+        </picture>
+      </div><div class="button-container comlist moedge-build-sec2"><p class="comlist moedge-build-sub1"><a href="${elem.path}" title="/mutual-fund/in/en/modals/youtube-video" class="button comlist moedge-build-inner-text1">/mutual-fund/in/en/modals/youtube-video</a></p></div></div>
+      
+      <div class="comlist moedge-build-sec3">
+        <ul class="comlist moedge-build-sub1">
+          <li class="comlist moedge-build-inner-text1">
+            <p class="comlist moedge-build-list1"><span class="icon icon-Article comlist moedge-build-list-content1"><img data-icon-name="Article" src="/icons/Article.svg" alt="" loading="lazy" width="16" height="16"></span>Article</p>
+            <ul class="comlist moedge-build-list2">
+              <li class="comlist moedge-build-list-content1"> ${readtime.minutes} min read</li>
+              <li class="comlist moedge-build-list-content2"><span class="icon icon-calendar-01"><img data-icon-name="calendar-01" src="/icons/calendar-01.svg" alt="" loading="lazy" width="16" height="16"></span>${dateText}</li>
+            </ul>
+          </li>
+          <li class="comlist moedge-build-inner-text2">
+            <p class="button-container comlist moedge-build-list1"><a href="${elem.path}" title="${titleText}" class="button comlist moedge-build-list-content1">${titleText}</a></p>
+          </li>
+          <li class="comlist moedge-build-inner-text3">
+            <p class="comlist moedge-build-list1">${elem.description}</p>
+          </li>
+          <li class="comlist moedge-build-inner-text4">
+            <p class="button-container comlist moedge-build-list1"><a href="${elem.path}" title="Read Now" class="button comlist moedge-build-list-content1">Read Now</a></p>
+          </li>
+          <li class="comlist moedge-build-inner-text5">
+            <p class="button-container comlist moedge-build-list1"><a href="${elem.path}" title="" class="button comlist moedge-build-list-content1"><span class="icon icon-Subtract"><img data-icon-name="Subtract" src="/icons/Subtract.svg" alt="" loading="lazy" width="16" height="16"></span></a></p>
+          </li>
+        </ul>
+      </div>
+    </div>`;
+    });
+
+    // 2. Wait for ALL promises to resolve
+    Promise.all(htmlPromises).then((htmlArray) => {
+      // Filter out nulls (from the if check) and join into one big string
+      const validHtml = htmlArray.filter(Boolean).join('');
+
+      // 3. Update DOM ONCE (Much faster than innerHTML += in a loop)
+      block.innerHTML = validHtml;
+
+      // 4. NOW it is safe to query the DOM
+      const items = Array.from(block.querySelectorAll(':scope > [class*="moedge-build-cont"]'));
+      const itemsPerPage = items.slice(0, 9).length;
+
+      if (items.length > itemsPerPage) {
+        dataMapMoObj.setupPagination(block, items, itemsPerPage);
+      }
+
+      // Banner Logic
+      const blockdo = block.closest('body');
+      const blkcamp = blockdo?.querySelector('.listing-investor-banner');
+
+      // Only proceed if blkcamp exists
+      if (blkcamp) {
+        const level = blkcamp.getAttribute('data-id');
+        const leveliteration = (Number(level) * 3);
+
+        if (leveliteration && items.length > 0) {
+          block.innerHTML = ''; // Clear to re-order
+          items.forEach((el, index) => {
+            block.appendChild(el);
+            // Insert banner at specific index
+            if (index === (leveliteration - 1)) {
+              block.appendChild(blkcamp);
+            }
+          });
         }
-      });
-    }
+      }
+    });
+  }
+  if (mainblklist.getAttribute('data-id') === 'listing-video-cards') {
+    // Select all the card items
+    // 1. Create an array of Promises using .map() instead of .forEach()
+    const htmlPromises = dataMapMoObj.getinvestorblog.data.map(async (elem, index) => {
+      // Check condition
+      if (!elem.path.includes('/videos/')) {
+        return null; // Return null if condition isn't met
+      }
+
+      // Perform async operation
+      const readtime = await dataMapMoObj.getReadingTime(elem.path);
+
+      // Prepare variables
+      const imagePAth = `./${elem.image.split('/')[elem.image.split('/').length - 1]}`;
+      const titleText = dataMapMoObj.toTitleCase(elem.title.replaceAll('-', ' '));
+      const dateText = convertDate(elem.date.split('T')[0]);
+
+      // Return the HTML string
+      return `<div class="comlist moedge-build-cont${index + 1}">
+  <div class="secs-wrapper">
+    <a class="redirection " href="${elem.path}">
+    <div class="comlist moedge-build-sec1">
+        <picture class="comlist moedge-build-sub1">
+          <source type="image/webp" srcset="${imagePAth}" media="(min-width: 600px)"
+            class="comlist moedge-build-inner-text1">
+          <source type="image/webp" srcset="${imagePAth}" class="comlist moedge-build-inner-text2">
+          <source type="image/jpeg" srcset="${imagePAth}" media="(min-width: 600px)"
+            class="comlist moedge-build-inner-text3">
+          <img loading="lazy" alt="edge-img" src="${imagePAth}" width="800" height="440"
+            class="comlist moedge-build-inner-text4">
+        </picture>
+    </div>
+    <div class="button-container comlist moedge-build-sec2">
+      <p class="comlist moedge-build-sub1"><a href="${elem.path}" title="/mutual-fund/in/en/modals/youtube-video"
+          class="button comlist moedge-build-inner-text1">/mutual-fund/in/en/modals/youtube-video</a></p>
+    </div>
+    </a>
+  </div>
+  <div class="comlist moedge-build-sec3">
+    <ul class="comlist moedge-build-sub1">
+      <li class="comlist moedge-build-inner-text1" style="display: none;">
+        <p class="comlist moedge-build-list1"><span class="icon icon-Article comlist moedge-build-list-content1"><img
+              data-icon-name="Article" src="/icons/Article.svg" alt="" loading="lazy" width="16"
+              height="16"></span>Article</p>
+        <ul class="comlist moedge-build-list2">
+          <li class="comlist moedge-build-list-content1"> ${readtime.minutes} min read</li>
+          <li class="comlist moedge-build-list-content2"><span class="icon icon-calendar-01"><img
+                data-icon-name="calendar-01" src="/icons/calendar-01.svg" alt="" loading="lazy" width="16"
+                height="16"></span>${dateText}</li>
+        </ul>
+      </li>
+      <li class="comlist moedge-build-inner-text2">
+        <p class="button-container comlist moedge-build-list1"><a href="${elem.path}" title="${titleText}"
+            class="button comlist moedge-build-list-content1">${titleText}</a></p>
+      </li>
+      <li class="comlist moedge-build-inner-text3">
+        <p class="comlist moedge-build-list1">${elem.description}</p>
+      </li>
+      <li class="comlist moedge-build-inner-text4">
+        <p class="button-container comlist moedge-build-list1"><a href="${elem.path}" title="Read Now"
+            class="button comlist moedge-build-list-content1">Read Now</a></p>
+      </li>
+      <li class="comlist moedge-build-inner-text5">
+        <p class="button-container comlist moedge-build-list1"><a href="${elem.path}" title=""
+            class="button comlist moedge-build-list-content1"><span class="icon icon-Subtract"><img
+                data-icon-name="Subtract" src="/icons/Subtract.svg" alt="" loading="lazy" width="16"
+                height="16"></span></a></p>
+      </li>
+    </ul>
+  </div>
+</div>`;
+    });
+
+    // 2. Wait for ALL promises to resolve
+    Promise.all(htmlPromises).then((htmlArray) => {
+      // Filter out nulls (from the if check) and join into one big string
+      const validHtml = htmlArray.filter(Boolean).join('');
+
+      // 3. Update DOM ONCE (Much faster than innerHTML += in a loop)
+      block.innerHTML = validHtml;
+      block.classList.add('video-listing')
+
+      // 4. NOW it is safe to query the DOM
+      const items = Array.from(block.querySelectorAll(':scope > [class*="moedge-build-cont"]'));
+      const itemsPerPage = items.slice(0, 9).length;
+
+      if (items.length > itemsPerPage) {
+        dataMapMoObj.setupPagination(block, items, itemsPerPage);
+      }
+
+      // Banner Logic
+      const blockdo = block.closest('body');
+      const blkcamp = blockdo?.querySelector('.listing-investor-banner');
+
+      // Only proceed if blkcamp exists
+      if (blkcamp) {
+        const level = blkcamp.getAttribute('data-id');
+        const leveliteration = (Number(level) * 3);
+
+        if (leveliteration && items.length > 0) {
+          block.innerHTML = ''; // Clear to re-order
+          items.forEach((el, index) => {
+            block.appendChild(el);
+            // Insert banner at specific index
+            if (index === (leveliteration - 1)) {
+              block.appendChild(blkcamp);
+            }
+          });
+        }
+      }
+    });
+  }
+  if (mainblklist.getAttribute('data-id') === 'listing-podcast-cards') {
+    // Select all the card items
+    // 1. Create an array of Promises using .map() instead of .forEach()
+    const htmlPromises = dataMapMoObj.getinvestorblog.data.map(async (elem, index) => {
+      // Check condition
+      if (!elem.path.includes('/podcast/')) {
+        return null; // Return null if condition isn't met
+      }
+
+      // Perform async operation
+      const readtime = await dataMapMoObj.getReadingTime(elem.path);
+
+      // Prepare variables
+      const imagePAth = `./${elem.image.split('/')[elem.image.split('/').length - 1]}`;
+      const titleText = dataMapMoObj.toTitleCase(elem.title.replaceAll('-', ' '));
+      const dateText = convertDate(elem.date.split('T')[0]);
+
+      // Return the HTML string
+      return `<div class="comlist moedge-build-cont${index + 1}">
+      <div class="secs-wrapper"><div class="comlist moedge-build-sec1">
+        <picture class="comlist moedge-build-sub1">
+          <source type="image/webp" srcset="${imagePAth}" media="(min-width: 600px)" class="comlist moedge-build-inner-text1">
+          <source type="image/webp" srcset="${imagePAth}" class="comlist moedge-build-inner-text2">
+          <source type="image/jpeg" srcset="${imagePAth}" media="(min-width: 600px)" class="comlist moedge-build-inner-text3">
+          <img loading="lazy" alt="edge-img" src="${imagePAth}" width="800" height="440" class="comlist moedge-build-inner-text4">
+        </picture>
+      </div><div class="button-container comlist moedge-build-sec2"><p class="comlist moedge-build-sub1"><a href="${elem.path}" title="/mutual-fund/in/en/modals/youtube-video" class="button comlist moedge-build-inner-text1">/mutual-fund/in/en/modals/youtube-video</a></p></div></div>
+      
+      <div class="comlist moedge-build-sec3">
+        <ul class="comlist moedge-build-sub1">
+          <li class="comlist moedge-build-inner-text1" style="display: none;">
+            <p class="comlist moedge-build-list1"><span class="icon icon-Article comlist moedge-build-list-content1"><img data-icon-name="Article" src="/icons/Article.svg" alt="" loading="lazy" width="16" height="16"></span>Article</p>
+            <ul class="comlist moedge-build-list2">
+              <li class="comlist moedge-build-list-content1"> ${readtime.minutes} min read</li>
+              <li class="comlist moedge-build-list-content2"><span class="icon icon-calendar-01"><img data-icon-name="calendar-01" src="/icons/calendar-01.svg" alt="" loading="lazy" width="16" height="16"></span>${dateText}</li>
+            </ul>
+          </li>
+          <li class="comlist moedge-build-inner-text2">
+            <p class="button-container comlist moedge-build-list1"><a href="${elem.path}" title="${titleText}" class="button comlist moedge-build-list-content1">${titleText}</a></p>
+          </li>
+          <li class="comlist moedge-build-inner-text3">
+            <p class="comlist moedge-build-list1">${elem.description}</p>
+          </li>
+          <li class="comlist moedge-build-inner-text4">
+            <p class="button-container comlist moedge-build-list1"><a href="${elem.path}" title="Read Now" class="button comlist moedge-build-list-content1">Read Now</a></p>
+          </li>
+          <li class="comlist moedge-build-inner-text5">
+            <p class="button-container comlist moedge-build-list1"><a href="${elem.path}" title="" class="button comlist moedge-build-list-content1"><span class="icon icon-Subtract"><img data-icon-name="Subtract" src="/icons/Subtract.svg" alt="" loading="lazy" width="16" height="16"></span></a></p>
+          </li>
+        </ul>
+      </div>
+    </div>`;
+    });
+
+    // 2. Wait for ALL promises to resolve
+    Promise.all(htmlPromises).then((htmlArray) => {
+      // Filter out nulls (from the if check) and join into one big string
+      const validHtml = htmlArray.filter(Boolean).join('');
+
+      // 3. Update DOM ONCE (Much faster than innerHTML += in a loop)
+      block.innerHTML = validHtml;
+
+      // 4. NOW it is safe to query the DOM
+      const items = Array.from(block.querySelectorAll(':scope > [class*="moedge-build-cont"]'));
+      const itemsPerPage = items.slice(0, 9).length;
+
+      if (items.length > itemsPerPage) {
+        dataMapMoObj.setupPagination(block, items, itemsPerPage);
+      }
+
+      // Banner Logic
+      const blockdo = block.closest('body');
+      const blkcamp = blockdo?.querySelector('.listing-investor-banner');
+
+      // Only proceed if blkcamp exists
+      if (blkcamp) {
+        const level = blkcamp.getAttribute('data-id');
+        const leveliteration = (Number(level) * 3);
+
+        if (leveliteration && items.length > 0) {
+          block.innerHTML = ''; // Clear to re-order
+          items.forEach((el, index) => {
+            block.appendChild(el);
+            // Insert banner at specific index
+            if (index === (leveliteration - 1)) {
+              block.appendChild(blkcamp);
+            }
+          });
+        }
+      }
+    });
   }
 }

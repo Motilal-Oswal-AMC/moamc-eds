@@ -70,7 +70,9 @@
       "rich-tabs",
       "wealth-modal",
       "blog-author-details",
-      "global-gateway"
+      "global-gateway",
+      "investing-minors",
+      "quick-purchase-block"
     ]
   },
   {
@@ -237,6 +239,18 @@
       "compound-interest-calculator-item",
       "sip-past-performance-calculator-item",
       "goal-calculator-item"
+    ]
+  },
+  {
+    "id": "unclaimed-redemption-form",
+    "components": [
+      "unclaimed-redemption-form-item"
+    ]
+  },
+  {
+    "id": "quick-purchase-block",
+    "components": [
+      "quick-purchase-item"
     ]
   }
 ]

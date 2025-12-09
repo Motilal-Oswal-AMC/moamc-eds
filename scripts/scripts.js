@@ -19,6 +19,7 @@ import formBlock, { createForm } from '../blocks/form/form.js';
 
 // eslint-disable-next-line import/no-cycle
 import { initializeModalHandlers } from '../blocks/modal/modal.js';
+import { img, span } from './dom-helpers.js';
 
 // console.log('f1 code');
 
@@ -243,7 +244,6 @@ async function loadLazy(doc) {
   await loadSections(main);
   dataMapMoObj.article();
   // dataMapMoObj.qglpwcs();
-
   const { hash } = window.location;
   const element = hash ? doc.getElementById(hash.substring(1)) : false;
   if (hash && element) element.scrollIntoView();
@@ -483,6 +483,23 @@ if (glpDecoding != null) {
 
 /* glp page End */
 
+/* Gift City Start */
+const chooseGift = document.querySelector('.choose-gift');
+
+if (chooseGift != null) {
+  dataMapMoObj.CLASS_PREFIXES = [
+    'gift-choose',
+    'gift-choose-inner',
+    'gift-choose-sub-inner',
+    'gift-choose-sub-inner-sub',
+    'gift-choose-sub-inner-sub-inner',
+    'choose-gift-sub-inner-sub-inner',
+  ];
+  dataMapMoObj.addIndexed(chooseGift);
+}
+
+/* Gift City End */
+
 const tabLinks = document.querySelectorAll('.table-wrapper');
 
 const observer = new IntersectionObserver(
@@ -549,6 +566,12 @@ function articleStructure() {
     || window.location.href.includes(
       '/investor-education/keys-of-investing/',
     )
+    || window.location.href.includes(
+      '/motilal-oswal-edge/insights/',
+    )
+    || window.location.href.includes(
+      '/investor-education/blogs/',
+    )
   ) {
     const maincloser = document.querySelector('main');
     const rightSub = maincloser.querySelectorAll('.article-sub-right');
@@ -562,34 +585,38 @@ function articleStructure() {
       leftarticle.append(leftel);
     });
 
-    Array.from(leftSub).forEach((subleft) => {
-      dataMapMoObj.CLASS_PREFIXES = [
-        'investarticle-leftmain',
-        'investarticle-leftsub',
-        'investarticle-leftinner',
-        'investsub-leftarticle',
-        'investleft-subinner',
-        'investleft-articleitem',
-        'investleft-itemchild',
-        'investleft-subchild',
-      ];
-      dataMapMoObj.addIndexed(subleft);
-    });
-
     Array.from(rightSub).forEach((subright) => {
-      dataMapMoObj.CLASS_PREFIXES = [
-        'investarticle-rightmain',
-        'investarticle-rightsub',
-        'investarticle-rightinner',
-        'investsub-rightarticle',
-        'investright-subinner',
-        'investright-articleitem',
-        'investright-itemchild',
-        'investright-subchild',
-      ];
-      dataMapMoObj.addIndexed(subright);
-    });
+        dataMapMoObj.CLASS_PREFIXES = [
+          'investarticle-rightmain',
+          'investarticle-rightsub',
+          'investarticle-rightinner',
+          'investsub-rightarticle',
+          'investright-subinner',
+          'investright-articleitem',
+          'investright-itemchild',
+          'investright-subchild',
+        ];
+        dataMapMoObj.addIndexed(subright);
+      });
+
+    if (!maincloser.querySelector('.moedge-article-details')) {
+      Array.from(leftSub).forEach((subleft) => {
+        dataMapMoObj.CLASS_PREFIXES = [
+          'investarticle-leftmain',
+          'investarticle-leftsub',
+          'investarticle-leftinner',
+          'investsub-leftarticle',
+          'investleft-subinner',
+          'investleft-articleitem',
+          'investleft-itemchild',
+          'investleft-subchild',
+        ];
+        dataMapMoObj.addIndexed(subleft);
+      });
+    }
+
     const maindiv = maincloser.querySelector('.main-wrapper');
+    maindiv.classList.add('open-share-popup');
     // maindiv.classList.add('main-wrapper');
     maindiv.append(maincloser.querySelector('.article-left-wrapper'));
     maindiv.append(maincloser.querySelector('.article-right-wrapper'));
@@ -626,6 +653,41 @@ function articleStructure() {
       ];
       dataMapMoObj.addIndexed(mainleft);
     }
+    // if (maincloser.querySelector('.moedge-article-details')) {
+    //   const videoContainer = maincloser.querySelector('.moedge-article-video-container');
+
+    //   if (videoContainer) {
+    //     const allWrappers = videoContainer.querySelectorAll('.default-content-wrapper');
+
+    //     // Array of class names you wanted to map
+    //     const classPrefixes = [
+    //       'main-article-content',
+    //       'main-article-heading',
+    //       'main-article-para',
+    //       'main-article-subheading'
+    //     ];
+
+    //     allWrappers.forEach((wrapper, index) => {
+    //       // Check if we have a class name for this specific index
+    //       if (classPrefixes[index]) {
+    //         wrapper.classList.add(classPrefixes[index]);
+    //       } else {
+    //         // Fallback for items exceeding the array length
+    //         wrapper.classList.add('main-article-general');
+    //       }
+    //     });
+    //   }
+    // }
+    const container = document.querySelector('.moedge-article-video-container');
+
+    if (container) {
+      const wrappers = container.querySelectorAll('.default-content-wrapper');
+
+      wrappers.forEach((wrapper) => {
+        wrapper.classList.add('default-content');
+      });
+    }
+
     const formpath = maincloser.querySelector(
       '.article-right-wrapper .subscribe-email',
     );
@@ -677,6 +739,276 @@ function articleStructure() {
       // mainwrapperDiv.appendChild(main1);
       // mainwrapperDiv.appendChild(main2);
     }
+
+    function addIndexedThree(parentElement, level = 0) {
+    const prefix = 'rightlist';
+    const { children } = parentElement; // Cache children for clarity.
+    for (let i = 0; i < children.length; i += 1) {
+      let parClass = Array.from(children[0].parentElement.classList)[0].split('-').at(-2);
+      const child = children[i];
+      const index = i + 1; // Class names are typically 1-based.
+      child.classList.add(`${prefix}`);
+      parClass = '';
+      addIndexedThree(child, level + 1);
+    }
+    }
+    addIndexedThree(maincloser.querySelector('.article-right-wrapper'));
+    // const shareWrapper = document.querySelector('.itemmainleftart3');
+    const openSharePopup = document.querySelector('.open-share-popup');
+    const shareBtn = openSharePopup.querySelector('.icon-share-black');
+    const dropdown = openSharePopup.querySelector('.submainleftart2');
+    let dropdownV2;
+    if (dropdown === null) {
+      const sharemedia = `<ul class="comlist list-share-media">
+                        <li class="list-media listindex1"><a class="list-link" title="Facebook"><span class="media-icon icon icon-facebookfdp"><img data-icon-name="facebookfdp" src="/icons/facebookfdp.svg" alt="" loading="lazy" width="16" height="16"></span>Facebook</a></li>
+                        <li class="list-media listindex2"><a class="list-link" title="WhatsApp"><span class="media-icon icon icon-whatsapp"><img data-icon-name="whatsapp" src="/icons/whatsapp.svg" alt="" loading="lazy" width="16" height="16"></span>WhatsApp</a></li>
+                        <li class="list-media listindex3"><a class="list-link" title="X"><span class="media-icon icon icon-Twitter"><img data-icon-name="Twitter" src="/icons/Twitter.svg" alt="" loading="lazy" width="16" height="16"></span>X</a></li>
+                        <li class="list-media listindex4"><a class="list-link" title="Copy"><span class="media-icon icon icon-copyfdp"><img data-icon-name="copyfdp" src="/icons/copyfdp.svg" alt="" loading="lazy" width="16" height="16"></span>Copy</a></li>
+                        <li class="list-media listindex5">URL Copied</li>
+                      </ul>`;
+      const sharemediaV2 = document.createElement('div');
+      sharemediaV2.classList.add('list-share-popup');
+      // sharemediaV2.style.display = 'none';
+      sharemediaV2.innerHTML += sharemedia;
+      sharemediaV2.querySelector('.listindex5').style.display = 'none';
+      shareBtn.closest('li').appendChild(sharemediaV2);
+      shareBtn.closest('li').classList.add('mediaicons');
+      dropdownV2 = openSharePopup.querySelector('.list-share-popup');
+    }
+    if (openSharePopup) {
+      // Toggle dropdown when clicking share icon
+      shareBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (dropdown !== null) {
+          dropdown.classList.toggle('active');
+        } else if (dropdownV2 !== null) {
+          dropdownV2.classList.toggle('active');
+        }
+      });
+
+      // Close dropdown on outside click
+      document.addEventListener('click', (e) => {
+        if (!e.target.closest('.open-share-popup') && dropdown !== null) {
+          dropdown.classList.remove('active');
+        }
+        if (!e.target.closest('.list-share-popup') && dropdownV2 !== null) {
+          dropdownV2.classList.remove('active');
+        }
+      });
+    }
+    // document.querySelectorAll('.comlist.submainart3.itemmainleftart3').forEach((listItem) => {
+    //   const ul = listItem.querySelector('.list-share-popup');
+    //   if (!ul) return;
+
+    //   [...ul.children].forEach((li, index) => {
+    //     li.classList.add(`listindex${index + 1}`);
+    //   });
+    // });
+
+    document.querySelectorAll('.mediaicons').forEach((item) => {
+      const shareIcon = item.querySelector('.icon-share-black');
+      const popup = item.querySelector('.list-share-popup');
+
+      if (!shareIcon || !popup) return;
+
+      // Hide popup initially
+      popup.classList.remove('active');
+
+      // TOGGLE popup
+      shareIcon.addEventListener('click', (e) => {
+        e.stopPropagation();
+
+        // const isVisible = popup.style.display === 'block';
+      });
+
+      // GET SHARE TEXT + URL
+      const getShareData = () => {
+        const shareUrl = window.location.href;
+        const shareText = item.querySelector('h3')?.innerText || 'Check this out';
+        return { shareUrl, shareText };
+      };
+
+      // FACEBOOK
+      const fb = popup.querySelector('.listindex1');
+      if (fb) {
+        fb.querySelector('a').removeAttribute('href');
+        fb.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const { shareUrl } = getShareData();
+          const link = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`;
+          window.open(link, '_blank');
+        });
+      }
+
+      // WHATSAPP
+      const wa = popup.querySelector('.listindex2');
+      if (wa) {
+        wa.querySelector('a').removeAttribute('href');
+        wa.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const { shareUrl, shareText } = getShareData();
+          const link = `https://wa.me/?text=${encodeURIComponent(`${shareText} ${shareUrl}`)}`;
+          window.open(link, '_blank');
+        });
+      }
+
+      // X (TWITTER)
+      const tw = popup.querySelector('.listindex3');
+      if (tw) {
+        tw.querySelector('a').removeAttribute('href');
+        tw.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const { shareUrl, shareText } = getShareData();
+          const link = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`;
+          window.open(link, '_blank');
+        });
+      }
+
+      // COPY URL
+      // COPY BUTTON (listindex4)
+      const cp = popup.querySelector('.listindex4');
+      const copyPopup = popup.querySelector('.listindex5');
+
+      if (cp && copyPopup) {
+        // hide listindex5 initially
+        // copyPopup.style.display = 'none';
+        // copyPopup.style.position = 'absolute';
+        // copyPopup.style.left = '50%';
+        // copyPopup.style.top = '50%';
+        // copyPopup.style.transform = 'translate(-50%, -50%)';
+        // copyPopup.style.zIndex = '999';
+
+        cp.querySelector('a')?.removeAttribute('href');
+
+        cp.addEventListener('click', async (e) => {
+          e.stopPropagation();
+
+          try {
+            await navigator.clipboard.writeText(window.location.href);
+
+            // show centered popup (listindex5)
+            copyPopup.style.display = 'block';
+
+            // auto-hide after 2 sec
+            setTimeout(() => {
+              copyPopup.style.display = 'none';
+            }, 2000);
+          } catch (err) {
+            console.log('Copy failed', err);
+          }
+        });
+      }
+    });
+
+    const delay = (ms) => new Promise((resolve) => { setTimeout(resolve, ms); });
+    delay(2000).then(() => {
+      let blokform;
+      if (formdiv.querySelector('#form-email-1')) {
+        blokform = formdiv.querySelector('#form-email-1');
+      } else if (formdiv.querySelector('#form-email')) {
+        blokform = formdiv.querySelector('#form-email');
+      }
+      // const footerfield = formdiv.querySelector('.footer-section2 .footer-sub-cont2');
+      // footerfield.style.display = 'none';
+      // blokform.style.display = 'none';
+      if (blokform !== null && blokform !== undefined) {
+        const elemObj = {};
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const formem = blokform;
+        formem.classList.add('email-imput');
+        formem.addEventListener('input', (event) => {
+          const closblock = event.target.closest('.subscribe-email');
+          elemObj.errorelm = closblock;
+          if (closblock.querySelector('.errormsg') === null) {
+            closblock.querySelector('.field-wrapper').append(span({ class: 'errormsg' }, 'Enter a valid email address'));
+          }
+          const inpval = event.target.value;
+          const inpelm = event.target.parentElement.classList;
+          if (inpval.length < 1) {
+            inpelm.remove('email-fail');
+            inpelm.remove('email-success');
+            closblock.querySelector('.errormsg').style.display = 'none';
+            formem.nextElementSibling.style.display = 'none';
+            event.target.closest('.email-wrapper').classList.remove('active');
+          } else if (emailRegex.test(inpval)) {
+            closblock.querySelector('.errormsg').style.display = 'none';
+            inpelm.remove('email-fail');
+            formem.nextElementSibling.style.display = 'none';
+            event.target.closest('.email-wrapper').classList.add('active');
+            // inpelm.add('email-success');
+          } else {
+            event.target.closest('.email-wrapper').classList.add('active');
+            closblock.querySelector('.errormsg').style.display = 'block';
+            inpelm.add('email-fail');
+            formem.nextElementSibling.style.display = 'block';
+            inpelm.remove('email-success');
+          }
+        });
+        const wrapperimg = document.createElement('div');
+        wrapperimg.classList.add('wrapimgform');
+        wrapperimg.append(formem);
+        wrapperimg.append(img({
+          src: '/icons/error-cross.svg',
+          alt: 'Img',
+          class: 'crossimg crosserror',
+          onclick: () => {
+            formem.value = '';
+            formem.parentElement.classList.remove('email-fail');
+            elemObj.errorelm.querySelector('.errormsg').style.display = 'none';
+            formem.nextElementSibling.style.display = 'none';
+          },
+        }));
+        wrapperimg.append(img({
+          src: '/icons/success-cross.svg',
+          alt: 'Img',
+          class: 'crossimg crosssuccess',
+        }));
+        formdiv.querySelector('.email-wrapper').append(wrapperimg);
+        formdiv.querySelector('.submit-btn .button').addEventListener('click', () => {
+          if (emailRegex.test(formem.value)) {
+            elemObj.errorelm.querySelector('.errormsg').style.display = 'none';
+            formem.closest('.wrapimgform').classList
+              .remove('email-fail');
+            formem.closest('.wrapimgform').classList
+              .add('email-success');
+            formem.nextElementSibling.style.display = 'none';
+          }
+        });
+      }
+    });
+
+    document.querySelector('.future-building-wrapper .swiper-wrapper')
+    let arrayinv = dataMapMoObj.getinvestorblog.filter((element) => element.path.includes('/images/'));
+    console.log(arrayinv);
+    const dataswiper = `<div class="swiper-slide swiper-slide-active" data-swiper-slide-index="0" role="group" aria-label="1 / 3" style="margin-right: 16px;">
+    <div class="swiper-slide-cards-1"><a href="/content/eds-ru01/motilalfigma/modals/youtube-video" title="/content/eds-ru01/motilalfigma/modals/youtube-video" class="button"><picture>
+                <source type="image/webp" srcset="./media_198d0bd7effd4422c99c4935db941ebcd8230abb8.png?width=2000&amp;format=webply&amp;optimize=medium" media="(min-width: 600px)">
+                <source type="image/webp" srcset="./media_198d0bd7effd4422c99c4935db941ebcd8230abb8.png?width=750&amp;format=webply&amp;optimize=medium">
+                <source type="image/png" srcset="./media_198d0bd7effd4422c99c4935db941ebcd8230abb8.png?width=2000&amp;format=png&amp;optimize=medium" media="(min-width: 600px)">
+                <img loading="lazy" alt="planning for the future" src="./media_198d0bd7effd4422c99c4935db941ebcd8230abb8.png?width=750&amp;format=png&amp;optimize=medium" width="400" height="225">
+              </picture></a></div><div class="swiper-slide-cards-2">
+              <ul class="cards-listcards1">
+                <li class="cards-list-1-cards1 card-list">
+                  <p class="list-child-11"><span class="icon icon-Article list-grandch-child1"><img data-icon-name="Article" src="/icons/Article.svg" alt="Article icon" loading="lazy" width="16" height="16"></span>Article</p>
+                  <ul class="list-child-12">
+                    <li class="list-grandch-child1">4 min read</li>
+                    <li class="list-grandch-child2"><span class="icon icon-calendar-01"><img data-icon-name="calendar-01" src="/icons/calendar-01.svg" alt="" loading="lazy" width="16" height="16"></span>July 7, 2022</li>
+                  </ul>
+                </li>
+                <li class="cards-list-1-cards2 card-list">
+                  <p class="button-container list-child-11"><a href="/content/eds-ru01/motilalfigma/modals/youtube-video" title="Hear our fund managers talk" class="button list-grandch-button1">Hear our fund managers talk</a></p>
+                </li>
+                <li class="cards-list-1-cards3 card-list">
+                  <p class="list-child-11">Get expert insights straight from our fund managers as they break down market trends, strategies, and what’s shaping your investments.</p>
+                </li>
+                <li class="cards-list-1-cards4 card-list">
+                  <p class="button-container list-child-11"><a href="/content/eds-ru01/motilalfigma/modals/youtube-video" title="Read Now" class="button list-grandch-button1">Read Now</a></p>
+                </li>
+                <li class="cards-list-1-cards5 card-list">
+                  <p class="button-container list-child-11"><a href="/content/eds-ru01/motilalfigma/modals/youtube-video" title="" class="button list-grandch-button1"><span class="icon icon-Subtract"><img data-icon-name="Subtract" src="/icons/Subtract.svg" alt="Save for later" loading="lazy" width="16" height="16"></span></a></p>
+                </li>
+              </ul>
+            </div></div>`
   }
 }
 dataMapMoObj.article = articleStructure;
@@ -750,15 +1082,12 @@ if (promiseQGLP != null) {
   dataMapMoObj.addIndexed(promiseQGLP);
 }
 // why qglp componet end
-
-// why qglp css lent start
 const whyQGLPWrp = document.querySelector('.why-qglp .default-content-wrapper');
 
 if (whyQGLPWrp) {
   whyQGLPWrp.classList.add('why-qglp-wrapper');
   // why qglp css lent end
 }
-// why qglp css lent end
 
 // promise qglp css lent start
 const promiseQGLPWrp = document.querySelector(
@@ -818,20 +1147,19 @@ if (skinmoamcComponent != null) {
 const privacyPolicy = document.querySelectorAll('.privacy-policy-banner');
 
 const privacyPolicyArr = Array.from(privacyPolicy);
-privacyPolicyArr.forEach((child)=>{
-
-if (child != null) {
-  dataMapMoObj.CLASS_PREFIXES = [
-    'pp-banner-wrap',
-    'pp-banner-block',
-    'pp-banner-img',
-    'pp-banner-imginner',
-    'pp-banner-picture',
-    'pp-banner-pictureinner',
-  ];
-  dataMapMoObj.addIndexed(child);
-}
-})
+privacyPolicyArr.forEach((child) => {
+  if (child != null) {
+    dataMapMoObj.CLASS_PREFIXES = [
+      'pp-banner-wrap',
+      'pp-banner-block',
+      'pp-banner-img',
+      'pp-banner-imginner',
+      'pp-banner-picture',
+      'pp-banner-pictureinner',
+    ];
+    dataMapMoObj.addIndexed(child);
+  }
+});
 
 const skinstakeComponent = document.querySelector('.what-stake-component');
 if (skinstakeComponent != null) {
@@ -900,17 +1228,6 @@ if (conclusion != null) {
 }
 // conclusion container end
 
-// why-invest-minor section start
-const whyInvestminor = document.querySelector('.section.why-invest-minor');
-if (whyInvestminor != null) {
-  dataMapMoObj.CLASS_PREFIXES = [
-    'why-invest-minor-main',
-    'why-invest-minor-sub',
-    'why-invest-minor-inner',
-  ];
-  dataMapMoObj.addIndexed(whyInvestminor);
-}
-
 // Adding custom scrollbar to WCS pages
 try {
   if (document.querySelector('header [data-id="wcs-header"]')) {
@@ -920,11 +1237,34 @@ try {
   // console.log(error);
 }
 
+// Unclaimed Redemption Block
+try {
+  // if (window.location.href == 'mutual-fund/in/en/static-pages/unclaimed-redemptions') {
+    const section = document.querySelector('.unclaimed-redemption');
+    const cardSection = document.querySelector('.unclaimed-redemption .cards-wrapper');
+    const unclaimedForm = document.querySelector('.unclaimed-redemption .wealth-modal-wrapper');
+    const elementNew = document.createElement('div');
+    const elementDiv = document.createElement('div');
+    elementDiv.classList.add('section-container');
+    elementNew.classList.add('container');
+    if (section !== null) {
+      section.appendChild(elementNew);
+      section.appendChild(elementDiv);
+      elementDiv.appendChild(elementNew);
+      elementNew.appendChild(cardSection);
+      elementNew.appendChild(unclaimedForm);
+    }
+  // }
+} catch (error) {
+  console.log(error);
+}
+// Unclaimed Redemption Block
+
 async function getlisting() {
   const resp = await myAPI('GET', 'https://m71vqgw4cj.execute-api.ap-south-1.amazonaws.com/dev/api/public/v1/funds/listing');
   return resp;
 }
-dataMapMoObj.getlisting = getlisting;
+dataMapMoObj.getlisting = await getlisting();
 
 async function getscheme(param) {
   const resp = await myAPI('GET', `https://m71vqgw4cj.execute-api.ap-south-1.amazonaws.com/dev/api/public/v1/funds?schcode=${param}`);
@@ -942,4 +1282,11 @@ async function getinsights() {
   const resp = await myAPI('GET', 'https://main--moamc-eds--motilal-oswal-amc.aem.live/query-index-insights.json');
   return resp;
 }
-dataMapMoObj.getinsights = getinsights;
+dataMapMoObj.getinsights = getinsights();
+
+async function getinvestorblog() {
+  const resp = await myAPI('GET', 'https://main--moamc-eds--motilal-oswal-amc.aem.live/query-index-investorblog.json');
+  return resp;
+}
+dataMapMoObj.getinvestorblog = await getinvestorblog();
+// dataMapMoObj.qglpwcs = qglpwcs;

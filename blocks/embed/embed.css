@@ -105,6 +105,9 @@
   justify-content: center;
   position: absolute;
   inset: 0;
+  border-radius: 7.111px;
+  opacity: 0.6;
+  background: #2E2A94;
 }
 
 .embed .embed-placeholder picture img {
@@ -117,26 +120,28 @@
   box-sizing: border-box;
   position: relative;
   display: block;
-  transform: scale(3);
-  width: 22px;
-  height: 22px;
-  border: 2px solid;
-  border-radius: 20px;
+  transform: scale(1);
+  width: 36px;
+  height: 42px;
+  border: none;
+  border-radius: unset;
   padding: 0;
+  background: transparent;
+  margin: 0;
 }
 
 .embed .embed-placeholder-play button::before {
   content: "";
   display: block;
   box-sizing: border-box;
-  position: absolute;
-  width: 0;
-  height: 10px;
-  border-top: 5px solid transparent;
-  border-bottom: 5px solid transparent;
-  border-left: 6px solid;
+
+  /* position: absolute; */
+  width: 100%;
+  height: 100%;
+  border: unset;
   top: 4px;
   left: 7px;
+  background: url('../../icons/play-fab.svg') no-repeat center;
 }
 
 @media (width <=900px) {

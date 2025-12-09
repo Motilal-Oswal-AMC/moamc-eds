@@ -16,7 +16,7 @@
         gap: 16px;
         flex-wrap: wrap;
 
-        > .comlist {
+        >.comlist {
           position: relative;
           display: flex;
           max-width: 400px;
@@ -85,15 +85,15 @@
             }
 
             .sub-cal-item-inner3 {
-               position: absolute;
-                top: 10px;
-                right: 10px;
-                margin: 0;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                width: 32px;
-                height: 32px;
+              position: absolute;
+              top: 10px;
+              right: 10px;
+              margin: 0;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              width: 32px;
+              height: 32px;
 
 
               .button {
@@ -102,7 +102,7 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
-      
+
 
                 .icon-cal-vector {
                   display: flex;
@@ -133,4 +133,83 @@
       }
     }
   }
+}
+
+.section.partner-blog {
+  .default-content-wrapper {
+    .cal-item-sub1 {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--blue-1-800-primary);
+      text-align: center;
+      font-feature-settings: var(--font-features-default);
+      font-family: var(--title, Inter);
+      font-size: 32px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 40px;
+      padding-bottom: 40px;
+
+      @include media(mobile) {
+        font-size: 28px;
+        line-height: 24px;
+        padding-bottom: 24px;
+        margin-top: unset;
+        margin-bottom: unset;
+      }
+    }
+  }
+
+  .cards-wrapper {
+    .cards {
+      .cal-item-inner1 {
+        .sub-cal-item1 {
+          .sub-inner-cal-item2 {
+            .sub-cal-item-inner1 {
+              color: var(--neutrals-900, #212121);
+              font-feature-settings: var(--font-features-default);
+              font-family: var(--body, Inter);
+              font-size: var(--sub-header-medium-size, 20px);
+              font-style: normal;
+              font-weight: 500;
+              line-height: var(--sub-header-medium-line-height, 28px);
+            }
+
+            .sub-cal-item-inner2 {
+              color: var(--neutrals-black, #111);
+              font-feature-settings: var(--font-features-default);
+              font-family: var(--body, Inter);
+              font-size: var(--body-small-regular-size, 14px);
+              font-style: normal;
+              font-weight: 400;
+              line-height: var(--label-large-line-height, 20px);
+
+
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+.section.partner-blog .cards-wrapper .cards .cal-item-inner1>.comlist .cards-card-body .sub-cal-item-inner3 {
+  display: block;
+  position: unset;
+  width: unset;
+  height: unset;
+  color: var(--neutrals-black);
+  font-feature-settings: var(--font-features-default);
+  font-family: var(--body, Inter);
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  list-style: none;
+}
+
+.section.partner-blog .cards-wrapper .cards .cal-item-inner1>.comlist .cards-card-body .sub-cal-item-inner2 {
+  list-style: none;
 }

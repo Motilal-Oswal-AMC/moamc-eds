@@ -474,11 +474,10 @@ main > .section.our-service-container {
                   .embedsubinner2 {
                     position: absolute;
                     bottom: 100%;
-                    margin: 0;
                     left: 0;
                     border-radius: 6px;
                     border: 1px solid var(--neutrals-200);
-                    box-shadow: 0 0 14px 0 rgba(40, 40, 40, .06);
+                    box-shadow: 0 0 14px 0 rgb(40 40 40 / 6%);
                     width: 170px;
                     background: var(--neutrals-white);  
                     min-height: 126px;
@@ -486,7 +485,7 @@ main > .section.our-service-container {
                     margin: 0 0 4px;
                     padding: 2px 6px;
                     scrollbar-width: auto;
-                    scrollbar-color: rgba(0,0,0,0);
+                    scrollbar-color: rgb(0 0 0 / 0%);
                     list-style: none;
                     display: none;
 
@@ -523,7 +522,7 @@ main > .section.our-service-container {
                               bottom: 10%;
                               background-color: var(--neutrals-white);
                               color: var(--blue-1-800-primary);
-                              box-shadow: 0 4px 12px rgba(0, 0, 0, .1);
+                              box-shadow: 0 4px 12px rgb(0 0 0 / 10%);
                               padding: 4px 14px;
                               border-radius: 4px;
                               font-size: 14px;

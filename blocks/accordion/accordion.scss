@@ -3,8 +3,8 @@
 /*   media-feature-range-notation */
 
 @use "sass:map";
-@use "../../styles/common-theme/css/variables_mixins" as *;
-@use "../../styles/common-theme/css/fluid-typography" as *;
+@use "../../styles/common-theme/css/variables_mixins"as *;
+@use "../../styles/common-theme/css/fluid-typography"as *;
 @import "./faq-page.css";
 
 .accordion-container {
@@ -150,6 +150,33 @@
 
       @include media(mobile) {
         margin-top: 12px;
+      }
+    }
+  }
+}
+
+// Fab page 
+
+.section.freq-ask-ques.fab-container.accordion-container {
+  padding-bottom: 40px;
+
+  .default-content-wrapper {
+    &:nth-child(1) {
+      p {
+        font-size: var(--heading-h5-size, 28px);
+        font-weight: 600;
+        line-height: var(--heading-h5-line-height, 32px);
+
+        @include media (mobile) {
+          font-size: var(--sub-header-large-size, 24px);
+          line-height: 28px;
+        }
+      }
+    }
+
+    &:nth-child(3) {
+      @include media (mobile) {
+        display: none;
       }
     }
   }
@@ -509,6 +536,22 @@
 
 // NRI accordion End //
 
+.section.gift-accordion {
+  @include media(mobile) {
+    margin-bottom: 0;
+  }
+
+  .faq-our-fund {
+    &>.default-content-wrapper:nth-child(3) {
+      @include media(mobile) {
+        margin: 0;
+      }
+
+    }
+  }
+
+}
+
 // Privacy Policy QnA Styling Start
 .privacypolicy-container {
   .privacy-policy-banner {
@@ -527,7 +570,7 @@
             p.comlist {
               margin: unset;
               color: var(--blue-1-800-primary);
-              font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
+              font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
               font-family: var(--body);
               font-size: var(--body-large-medium-size);
               font-style: normal;
@@ -540,7 +583,7 @@
                 line-height: var(--body-medium-medium-line-height);
               }
 
-              &:after {
+              &::after {
                 content: "";
                 position: absolute;
                 top: 28px;
@@ -550,7 +593,7 @@
                 border: none;
                 border-width: unset;
                 transform: translateY(-50%);
-                background: url(/icons/plus-blue.svg);
+                background: url("/icons/plus-blue.svg");
               }
             }
           }
@@ -607,6 +650,7 @@
               padding: $spacing-16 $spacing-none;
               padding-top: 0;
               border-radius: 0 0 8px 8px;
+
               // box-shadow: 0 4px 12px 0 rgb(0 0 0 / 5%);
               background-color: transparent;
 
@@ -625,8 +669,8 @@
 
                 @include media(mobile) {
                   padding: 0;
-                  font-size: var(--paragraph-xsmall-size);
-                  line-height: var(--paragraph-xsmall-line-height);
+                  font-size: var(--paragraph-small-regular-size);
+                  line-height: var(--paragraph-small-regular-line-height);
                 }
               }
             }
@@ -638,3 +682,29 @@
 }
 
 // Privacy Policy QnA Styling End
+
+// Minor's folio css start
+.minors-folio-faq.accordion-container {
+  @include media (mobile) {
+    margin-top: 0;
+    padding: 0;
+  }
+
+  .faq-our-fund {
+    grid-template-columns: 32.5% 66.24%;
+
+    >.default-content-wrapper:nth-child(1) p {
+      @include media (mobile) {
+        letter-spacing: 0.5px;
+        font-size: var(--heading-h4-size, 28px);
+        font-style: normal;
+        font-weight: 600;
+        line-height: var(--sub-header-large-line-height, 32px);
+      }
+    }
+
+    >.default-content-wrapper:nth-child(3) {
+      display: none;
+    }
+  }
+}

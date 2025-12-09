@@ -184,6 +184,18 @@ export default function decorate(block) {
   }
   // aif component end
 
+  const ourstrategiesComponent = block.closest('main').querySelector('.our-strategies-aif');
+  if (ourstrategiesComponent != null) {
+    dataMapMoObj.CLASS_PREFIXES = [
+      'our-strategies-wrap',
+      'our-strategies-text',
+      'our-strategies-acc-wrap',
+      'our-strategies-question',
+      'our-strategies-answer',
+    ];
+    dataMapMoObj.addIndexed(ourstrategiesComponent);
+  }
+
   // // Investor Education article left and right wrapper
   // if (window.location.href.includes('/investor-education/all-articles/')
   // || window.location.href.includes('/motilal-oswal-edge/article-details')) {
@@ -266,7 +278,7 @@ export default function decorate(block) {
     dataMapMoObj.addIndexed(error);
   }
 
-  if (window.location.pathname.includes('/static-pages/about')) {
+  if (window.location.pathname.includes('/static-pages/about') || window.location.pathname.includes('/static-pages/gift-city')) {
     const aboutSection = block.closest('main').querySelector('.section.trusted-asset');
     if (aboutSection) {
       dataMapMoObj.CLASS_PREFIXES = ['trusted-main', 'asset-inner', 'asset-sub', 'asset-subinner', 'asset-item', 'asset-inneritem', 'assest-childitem'];
@@ -292,6 +304,29 @@ export default function decorate(block) {
   if (textPart) {
     dataMapMoObj.CLASS_PREFIXES = ['global-card', 'global-cardsub', 'global-cardinner', 'global-cardchild', 'global-carditem', 'global-cardsubitem'];
     dataMapMoObj.addIndexed(block);
+  }
+
+  const unclaimedCard = document.querySelector('.unclaimed-redemption .cards-wrapper');
+  if (unclaimedCard != null) {
+    dataMapMoObj.CLASS_PREFIXES = [
+      'card-ul',
+      'card-li',
+      'card-content',
+      'card-content-inner',
+      'card-contentinner-picture',
+      'card-contentinner-img'
+    ];
+    dataMapMoObj.addIndexed(unclaimedCard);
+  }
+
+  if (window.location.pathname.includes('/static-pages/skin-in-the-game')) {
+    const matterSection = block.closest('main').querySelector('.why-matters-component .cards');
+    if (matterSection) {
+      dataMapMoObj.CLASS_PREFIXES = [
+        'matters-ul',
+        'matters-li'];
+      dataMapMoObj.addIndexed(matterSection);
+    }
   }
 }
 

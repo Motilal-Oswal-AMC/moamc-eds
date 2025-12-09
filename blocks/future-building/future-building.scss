@@ -139,7 +139,7 @@
                         z-index: 2;
 
                         @include media(mobile) {
-                            height: 141px;
+                            height: 140px;
                         }
 
                         img {
@@ -611,9 +611,9 @@
 
                 // text-underline-offset: 20%;
 
-                @include media(mobile) {
-                    line-height: 16px;
-                }
+                // @include media(mobile) {
+                //     line-height: 16px;
+                // }
             }
 
             &:nth-child(3) {

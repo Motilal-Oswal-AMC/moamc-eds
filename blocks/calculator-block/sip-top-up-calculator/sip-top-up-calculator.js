@@ -31,6 +31,7 @@ export function calculateTopupSIPSummary({
   roundDecimal = 0,
   callbackFunc,
 }) {
+  // 1. Validation check
   if (
     !monthlyInvestment
     || !annualIncreaseRate
@@ -50,21 +51,24 @@ export function calculateTopupSIPSummary({
   }
 
   const num = (v, d = 0) => (v != null ? parseFloat(v) : d);
-  monthlyInvestment = num(monthlyInvestment);
-  annualIncreaseRate = num(annualIncreaseRate);
-  annualReturnRate = num(annualReturnRate);
-  years = num(years);
 
-  const months = years * 12;
-  const monthlyRate = annualReturnRate / 12 / 100;
-  const topUpRate = annualIncreaseRate / 100;
+  // 2. Fix: Assign processed values to NEW constants
+  const parsedMonthlyInvestment = num(monthlyInvestment);
+  const parsedAnnualIncreaseRate = num(annualIncreaseRate);
+  const parsedAnnualReturnRate = num(annualReturnRate);
+  const parsedYears = num(years);
+
+  // 3. Update calculations to use the new constants
+  const months = parsedYears * 12;
+  const monthlyRate = parsedAnnualReturnRate / 12 / 100;
+  const topUpRate = parsedAnnualIncreaseRate / 100;
 
   let totalValue = 0;
   let totalInvestment = 0;
-  let currentMonthly = monthlyInvestment;
+  let currentMonthly = parsedMonthlyInvestment; // Initialize with parsed value
 
   // Loop year by year
-  for (let y = 1; y <= years; y += 1) {
+  for (let y = 1; y <= parsedYears; y += 1) {
     for (let m = 1; m <= 12; m += 1) {
       const monthsLeft = months - (y - 1) * 12 - (m - 1);
       totalValue += currentMonthly * (1 + monthlyRate) ** monthsLeft;
@@ -91,7 +95,8 @@ export function calculateTopupSIPSummary({
     investedPercentage: roundValue(investedPercentage),
     returnsPercentage: roundValue(returnsPercentage),
   };
-  console.log('result : ', totalValue);
+
+  // console.log('result : ', totalValue); // Optional: removed/commented for cleaner linting
 
   if (callbackFunc) callbackFunc(result);
   return result;

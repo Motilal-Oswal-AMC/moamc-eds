@@ -1,5 +1,5 @@
 import dataMapMoObj from '../../../scripts/constant.js';
-import dataCfObj from '../../../scripts/dataCfObj.js';
+// import dataCfObj from '../../../scripts/dataCfObj.js';
 import {
   div,
   img,
@@ -19,8 +19,14 @@ import {
 
 dataMapMoObj.mode = 'sip';
 const planType = 'Direct';
-let planOption = 'Growth';
+dataMapMoObj.planOption = 'Growth';
 
+const tempDfilt = dataMapMoObj.getlisting.cfDataObjs.filter((el) => {
+  if (!el.fundsTaggingSection) {
+    return false;
+  }
+  return el;
+});
 function updatePlanOptions(fund, block) {
   const wrapper = block.querySelector('.custom-select-plan');
   const optionsContainer = wrapper.querySelector('.select-options-plan');
@@ -39,10 +45,9 @@ function updatePlanOptions(fund, block) {
       name,
     );
     optionEl.addEventListener('click', () => {
-      debugger;
       selectedDisplay.textContent = name;
       hiddenInput.value = name;
-      planOption = name;
+      dataMapMoObj.planOption = name;
       optionsContainer.classList.remove('open');
       // updateReturnRate();
     });
@@ -55,7 +60,7 @@ function updatePlanOptions(fund, block) {
       : uniqueOptions[0];
     selectedDisplay.textContent = defaultPlan;
     hiddenInput.value = defaultPlan;
-    planOption = defaultPlan;
+    dataMapMoObj.planOption = defaultPlan;
   }
 }
 
@@ -71,8 +76,8 @@ export default function decorate(block) {
     console.warn('No .calc-author-main1 element found.');
     return;
   }
-  const schemeNames = dataCfObj.cfDataObjs.map(
-    (fund) => fund.schDetail.schemeName,
+  const schemeNames = tempDfilt.map(
+    (fund) => fund.schemeName,
   );
 
   const authors = [
@@ -118,18 +123,18 @@ export default function decorate(block) {
     schcode = 'LM';
   } else {
     const path = window.location.pathname.split('/').at(-1);
-    const planobj = dataCfObj.cfDataObjs.filter(
+    const planobj = tempDfilt.filter(
       (el) => path
-        === el.schDetail.schemeName.toLocaleLowerCase().split(' ').join('-'),
+        === el.schemeName.toLocaleLowerCase().split(' ').join('-'),
     );
     schcode = planobj[0] !== undefined ? planobj[0].schcode : 'LM';
   }
-  let selectedFund = dataCfObj.cfDataObjs.find(
+  let selectedFund = tempDfilt.find(
     (fund) => fund.schcode === schcode,
   );
 
-  const returnCAGR = 0;
-  const selectedFundName = selectedFund.schDetail.schemeName;
+  // const returnCAGR = 0;
+  // const selectedFundName = selectedFund.schDetail.schemeName;
 
   const schemeSelect = div(
     { class: 'search-bar-wrapper' },
@@ -217,9 +222,11 @@ export default function decorate(block) {
     },
     variant: 'number',
     onInput: (e) => {
+      console.log(e);
       // recalculateSip({ sa: e.target.value, container: block });
     },
     onChange: (v) => {
+      console.log(v);
       // recalculateSip({ sa: v, container: block });
     },
   });
@@ -235,9 +242,11 @@ export default function decorate(block) {
     variant: 'stepper',
     updateWidthonChange: true,
     onInput: (e) => {
+      console.log(e);
       // recalculateSip({ itp: e.target.value, container: block });
     },
     onChange: (v) => {
+      console.log(v);
       // recalculateSip({ itp: v, container: block });
     },
   });
@@ -247,6 +256,7 @@ export default function decorate(block) {
     label: durationTitle,
     options: durationOptions,
     onChange: (val) => {
+      console.log(val);
       // recalculateCompoundInterest({ frequency: val, container: block });
     },
   });
@@ -262,11 +272,11 @@ export default function decorate(block) {
   const searchResults = block.querySelector('#searchResults');
   const searchWrapper = block.querySelector('.search-results-wrapper');
 
-  let currentFocus = -1;
+  dataMapMoObj.currentFocus = 0;
   searchInput.addEventListener('input', (e) => {
     const query = e.target.value.toLowerCase().trim();
     searchResults.innerHTML = '';
-    currentFocus = -1;
+    dataMapMoObj.currentFocus = -1;
     const filtered = query
       ? schemeNames.filter((name) => name.toLowerCase().includes(query))
       : schemeNames;
@@ -278,9 +288,9 @@ export default function decorate(block) {
       // errorLi.textContent = 'Fund not found';
       // searchResults.appendChild(errorLi);
       // calContainer.querySelector('.cancel-btn').style.display = 'block';
-      calContainer
-        .querySelector('.cancel-search-wrap')
-        .classList.remove('searchbar-active');
+      // calContainer
+      //   .querySelector('.cancel-search-wrap')
+      //   .classList.remove('searchbar-active');
       const searchError = document.querySelector('.search-error');
       searchError.classList.remove('error-hide');
       return; // Stop further execution
@@ -298,8 +308,8 @@ export default function decorate(block) {
         searchInput.value = name;
         // searchInput.style.backgroundPosition = 'left center';
         // searchInput.style.paddingLeft = '24px';
-        selectedFund = dataCfObj.cfDataObjs.find(
-          (f) => f.schDetail.schemeName === name,
+        selectedFund = tempDfilt.find(
+          (f) => f.schemeName === name,
         );
         searchResults.innerHTML = '';
         updatePlanOptions(selectedFund, block);

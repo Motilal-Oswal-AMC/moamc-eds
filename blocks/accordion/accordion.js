@@ -183,4 +183,25 @@ export default function decorate(block) {
     nriAccordion.append(wrapperAccordion);
   });
   /* NRI Wrapper Js  End */
+
+  const allAccordions2 = Array.from(document.querySelectorAll('.nri-accordion'));
+
+  allAccordions2.forEach((nriAccordion) => {
+    const children = Array.from(nriAccordion.children);
+    const hasWrapper = children.some((child) => child.classList.contains('faq-our-fund'));
+
+    if (hasWrapper) {
+      return;
+    }
+
+    const wrapperAccordion = document.createElement('div');
+    wrapperAccordion.classList.add('faq-our-fund');
+
+    children.forEach((child) => {
+      wrapperAccordion.append(child);
+    });
+
+    nriAccordion.append(wrapperAccordion);
+  });
+  /* NRI Wrapper Js  End */
 }
