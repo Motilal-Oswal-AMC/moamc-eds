@@ -1062,6 +1062,21 @@ if (skinmoamcComponent != null) {
   dataMapMoObj.addIndexed(skinmoamcComponent);
 }
 
+const customizedComponent = document.querySelector('.customized-section');
+if (customizedComponent != null) {
+  dataMapMoObj.CLASS_PREFIXES = [
+    'customize-wrap',
+    'customize-inner',
+    'customize-img-wrap',
+    'customize-img',
+    'customize-title',
+    'customize-subtitle',
+
+  ];
+  dataMapMoObj.addIndexed(customizedComponent);
+}
+
+
 const privacyPolicy = document.querySelectorAll('.privacy-policy-banner');
 
 const privacyPolicyArr = Array.from(privacyPolicy);
