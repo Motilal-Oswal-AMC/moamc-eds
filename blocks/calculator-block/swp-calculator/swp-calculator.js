@@ -122,7 +122,7 @@ export function calculateSWPSummary(params) {
 
   let monthsElapsed = 0;
 
-  for (let m = 1; m <= maxMonths; m++) {
+  for (let m = 1; m <= maxMonths; m += 1) {
     // Apply monthly return
     remaining *= 1 + swpMonthlyRate;
 

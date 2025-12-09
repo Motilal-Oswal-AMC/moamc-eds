@@ -222,7 +222,7 @@
             "name": "GLP TAB Price",
             "value": "glp-tab-price"
           },
-           {
+          {
             "name": "Gift Campaign",
             "value": "gift-campaign"
           },
@@ -855,20 +855,24 @@
             "value": "why-invest-minor"
           },
           {
+            "name": "Minors folio FAQ",
+            "value": "minors-folio-faq"
+          },
+          {
             "name": "Key Details Card",
             "value": "key-details-card"
           },
           {
-            "name": "Left Align Card",
-            "value": "left-align-card"
+            "name": "Left Key card",
+            "value": "left-key-card"
           },
           {
-            "name": "Right Align Card",
-            "value": "right-align-card"
+            "name": "Right Key card",
+            "value": "right-key-card"
           },
           {
-            "name": "Minors folio FAQ",
-            "value": "minors-folio-faq"
+            "name": "Fab Download",
+            "value": "fab-download"
           },
           {
             "name": "Unclaimed Redemption Procedure",

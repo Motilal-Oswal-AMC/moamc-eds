@@ -494,7 +494,7 @@
                 line-height: var(--body-medium-medium-line-height);
               }
 
-              &:after {
+              &::after {
                 content: "";
                 position: absolute;
                 top: 28px;
@@ -504,7 +504,7 @@
                 border: none;
                 border-width: unset;
                 transform: translateY(-50%);
-                background: url(/icons/plus-blue.svg);
+                background: url("/icons/plus-blue.svg");
               }
             }
           }
@@ -561,6 +561,7 @@
               padding: $spacing-16 $spacing-none;
               padding-top: 0;
               border-radius: 0 0 8px 8px;
+
               // box-shadow: 0 4px 12px 0 rgb(0 0 0 / 5%);
               background-color: transparent;
 

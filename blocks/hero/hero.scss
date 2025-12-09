@@ -688,7 +688,7 @@
 
 
         .mo-inter-sec1 {
-            padding: 40px 67px 0 67px;
+            padding: 40px 67px 0;
 
 
             @include media (mobile) {
@@ -717,7 +717,7 @@
 
         .mo-inter-sub2 {
             @include media (mobile) {
-                padding: 40px 16px 0 16px;
+                padding: 40px 16px 0;
             }
 
         }

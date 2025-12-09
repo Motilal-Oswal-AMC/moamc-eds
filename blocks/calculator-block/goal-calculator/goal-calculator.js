@@ -1,4 +1,4 @@
-import { div, form } from "../../../scripts/dom-helpers.js";
+import { div, form } from '../../../scripts/dom-helpers.js';
 import {
   createBarSummaryBlock,
   createInputBlock,
@@ -7,17 +7,17 @@ import {
   extractOptionsSelect,
   getQueryParam,
   formatNumber,
-} from "../common-ui-field/common-ui-field.js";
+} from '../common-ui-field/common-ui-field.js';
 
 export function updateCalculateSummary({ container, data }) {
   if (!container || !data) return;
 
-  const totalReturnsEl = container.querySelector("#sip-total-returns");
-  const totalInvestedEl = container.querySelector("#total-invested-amount");
+  const totalReturnsEl = container.querySelector('#sip-total-returns');
+  const totalInvestedEl = container.querySelector('#total-invested-amount');
   const estimatedReturnsEl = container.querySelector(
-    "#total-estimated-returns"
+    '#total-estimated-returns',
   );
-  const compoundRateEl = container.querySelector("#compound-rate");
+  const compoundRateEl = container.querySelector('#compound-rate');
 
   if (totalReturnsEl) {
     totalReturnsEl.textContent = formatNumber({
@@ -69,7 +69,7 @@ function calculateSIP({ monthlyAmount, annualRate, years }) {
   const n = toNumber(years) * 12; // months
 
   if (r === 0) return P * n;
-  return P * ((Math.pow(1 + r, n) - 1) / r) * (1 + r);
+  return P * (((1 + r) ** n - 1) / r) * (1 + r);
 }
 
 /**
@@ -89,8 +89,8 @@ function calculateHybridLumpsumRequired({
   const fvLumpsum = calculateFutureValue({
     // Reuses existing helper
     amount: currentAmount,
-    annualRate: annualRate,
-    years: years,
+    annualRate,
+    years,
   });
 
   // 2. Determine the remaining corpus needed
@@ -100,7 +100,7 @@ function calculateHybridLumpsumRequired({
   const r = toNumber(annualRate) / 100 / 12;
   const n = toNumber(years) * 12;
 
-  const principalRequired = fvNeededFromNewLumpsum / Math.pow(1 + r, n);
+  const principalRequired = fvNeededFromNewLumpsum / (1 + r) ** n;
 
   // 4. Calculate Summary Totals
   const totalInvested = currentAmount + principalRequired; // P0 + New Lumpsum Required
@@ -119,11 +119,11 @@ function calculateHybridLumpsumRequired({
     compoundMultiplier: `${round(multiplier, 1)}x`,
     totalInvestedPercentage: round(
       (totalInvested / totalReturns) * 100,
-      roundDecimal
+      roundDecimal,
     ),
     estimatedReturnsPercentage: round(
       (estimatedReturns / totalReturns) * 100,
-      roundDecimal
+      roundDecimal,
     ),
   };
 }
@@ -173,20 +173,20 @@ function calculateGoalSummary({
  * Calculates the Retirement Planning summary (Compounded Goal Solver)
  */
 function calculateRetirementSummary({ container, roundDecimal = 0 }) {
-  const prefix = "rp";
+  const prefix = 'rp';
 
   // Inputs based on Retirement Planning fields:
   const targetCorpus = toNumber(
-    container.querySelector(`#${prefix}-target-amount`)?.value
+    container.querySelector(`#${prefix}-target-amount`)?.value,
   );
   const years = toNumber(
-    container.querySelector(`#${prefix}-target-duration`)?.value
+    container.querySelector(`#${prefix}-target-duration`)?.value,
   );
   const currentSavings = toNumber(
-    container.querySelector(`#${prefix}-savings-amount`)?.value
+    container.querySelector(`#${prefix}-savings-amount`)?.value,
   );
   const rateOfReturn = toNumber(
-    container.querySelector(`#${prefix}-rate-of-return`)?.value
+    container.querySelector(`#${prefix}-rate-of-return`)?.value,
   );
 
   return calculateGoalSIPRequired({
@@ -208,7 +208,7 @@ function calculateFutureValue({ amount, annualRate, years }) {
   const n = toNumber(years) * 12; // total months
 
   // FV = P * (1 + r)^n
-  return P * Math.pow(1 + r, n);
+  return P * (1 + r) ** n;
 }
 // Assuming calculateFutureValue is available (it is in your provided code)
 
@@ -230,8 +230,8 @@ function calculateGoalSIPRequired({
   // 1. Calculate the FV of the current Lumpsum (P0)
   const fvLumpsum = calculateFutureValue({
     amount: currentAmount,
-    annualRate: annualRate,
-    years: years,
+    annualRate,
+    years,
   });
 
   // 2. Determine the remaining corpus needed from SIP
@@ -246,9 +246,8 @@ function calculateGoalSIPRequired({
 
   if (totalMonths > 0 && monthlyRate > 0) {
     // Annuity Due SIP Factor: [(1+r)^n - 1] / r * (1 + r)
-    sipFactor =
-      ((Math.pow(1 + monthlyRate, totalMonths) - 1) / monthlyRate) *
-      (1 + monthlyRate);
+    sipFactor = (((1 + monthlyRate) ** totalMonths - 1) / monthlyRate)
+      * (1 + monthlyRate);
     monthlySaving = fvSipNeeded / sipFactor;
   } else if (totalMonths > 0) {
     // Zero rate of return: simple division
@@ -270,11 +269,11 @@ function calculateGoalSIPRequired({
     compoundMultiplier: `${round(multiplier, 1)}x`,
     totalInvestedPercentage: round(
       (totalInvested / totalReturns) * 100,
-      roundDecimal
+      roundDecimal,
     ),
     estimatedReturnsPercentage: round(
       (estimatedReturns / totalReturns) * 100,
-      roundDecimal
+      roundDecimal,
     ),
   };
 }
@@ -290,7 +289,7 @@ export function calculateFixedGoal({
 }) {
   const remaining = Math.max(
     0,
-    toNumber(targetAmount) - toNumber(currentAmount)
+    toNumber(targetAmount) - toNumber(currentAmount),
   );
   const invested = toNumber(currentAmount) + remaining;
   const multiplier = currentAmount ? targetAmount / currentAmount : 1;
@@ -307,11 +306,11 @@ export function calculateFixedGoal({
     compoundMultiplier: `${round(multiplier, 1)}x`,
     totalInvestedPercentage: round(
       (currentAmount / targetAmount) * 100,
-      roundDecimal
+      roundDecimal,
     ),
     estimatedReturnsPercentage: round(
       (remaining / targetAmount) * 100,
-      roundDecimal
+      roundDecimal,
     ),
   };
 }
@@ -320,23 +319,23 @@ export function calculateFixedGoal({
  * Calculates the Buy a House summary (Compounded Goal Solver)
  */
 function calculateBuyAHouseSummary({ container, roundDecimal = 0 }) {
-  const prefix = "bah";
+  const prefix = 'bah';
 
   // Inputs based on Buy a House fields:
   const targetCorpus = toNumber(
-    container.querySelector(`#${prefix}-target-amount`)?.value
+    container.querySelector(`#${prefix}-target-amount`)?.value,
   );
   const currentLumpsum = toNumber(
-    container.querySelector(`#${prefix}-down-payment`)?.value || 0
+    container.querySelector(`#${prefix}-down-payment`)?.value || 0,
   ); // Budget for a downpayment upfront
 
   // NOTE: Requires a new input field for Expected Rate of Return for compounding
   const rateOfReturn = toNumber(
-    container.querySelector(`#${prefix}-rate-of-return`)?.value || 0
+    container.querySelector(`#${prefix}-rate-of-return`)?.value || 0,
   );
 
   const targetYear = toNumber(
-    container.querySelector(`#${prefix}-target-year`)?.value
+    container.querySelector(`#${prefix}-target-year`)?.value,
   );
   const currentYear = new Date().getFullYear();
   const years = Math.max(1, targetYear - currentYear);
@@ -364,10 +363,10 @@ function calculateSimpleFixedGoalSummary({
 }) {
   // --- Shared Input Extraction ---
   const targetAmount = toNumber(
-    container.querySelector(`#${prefix}-target-amount`)?.value
+    container.querySelector(`#${prefix}-target-amount`)?.value,
   );
   const targetYear = toNumber(
-    container.querySelector(`#${prefix}-target-year`)?.value
+    container.querySelector(`#${prefix}-target-year`)?.value,
   );
   const currentYear = new Date().getFullYear();
   const years = Math.max(1, targetYear - currentYear);
@@ -375,18 +374,18 @@ function calculateSimpleFixedGoalSummary({
   let currentAmount = 0;
 
   // --- Conditional Current Amount Logic ---
-  if (prefix === "bav") {
-    const savingsOption = container.querySelector("#bav-savings-radio")?.value;
-    if (savingsOption === "yes") {
+  if (prefix === 'bav') {
+    const savingsOption = container.querySelector('#bav-savings-radio')?.value;
+    if (savingsOption === 'yes') {
       currentAmount = toNumber(
-        container.querySelector("#bav-down-payment")?.value
+        container.querySelector('#bav-down-payment')?.value,
       );
     }
-  } else if (prefix === "pat") {
-    const savingsOption = container.querySelector("#pat-savings-radio")?.value;
-    if (savingsOption === "have-some-money-aside-for-this-goal") {
+  } else if (prefix === 'pat') {
+    const savingsOption = container.querySelector('#pat-savings-radio')?.value;
+    if (savingsOption === 'have-some-money-aside-for-this-goal') {
       currentAmount = toNumber(
-        container.querySelector("#pat-amount-i-have")?.value
+        container.querySelector('#pat-amount-i-have')?.value,
       );
     }
   }
@@ -409,13 +408,13 @@ function recalculateGoal({ prefix, container, roundDecimal = 0 }) {
   let summary;
 
   // 1. COMPOUNDING GOAL SOLVERS (Goal-Based SIP)
-  if (prefix === "rp") {
+  if (prefix === 'rp') {
     summary = calculateRetirementSummary({ container, roundDecimal });
-  } else if (prefix === "bah") {
+  } else if (prefix === 'bah') {
     summary = calculateBuyAHouseSummary({ container, roundDecimal });
 
     // 2. SIMPLE FIXED GOALS (Simple Division)
-  } else if (["pat", "bav"].includes(prefix)) {
+  } else if (['pat', 'bav'].includes(prefix)) {
     summary = calculateSimpleFixedGoalSummary({
       prefix,
       container,
@@ -426,17 +425,17 @@ function recalculateGoal({ prefix, container, roundDecimal = 0 }) {
   } else {
     // Assumed to be 'Create your own' (gc)
     const targetCorpus = toNumber(
-      container.querySelector(`#gc-target-amount`)?.value // Corpus I want to achieve
+      container.querySelector('#gc-target-amount')?.value, // Corpus I want to achieve
     );
     const timePeriod = toNumber(
-      container.querySelector(`#gc-target-duration`)?.value // I want to achieve this in
+      container.querySelector('#gc-target-duration')?.value, // I want to achieve this in
     );
     // ✅ NEW INPUT: Savings I Have (P0)
     const currentSavings = toNumber(
-      container.querySelector(`#gc-savings-amount`)?.value
+      container.querySelector('#gc-savings-amount')?.value,
     );
     const rateOfReturn = toNumber(
-      container.querySelector(`#gc-rate-of-return`)?.value
+      container.querySelector('#gc-rate-of-return')?.value,
     );
     debugger;
     summary = calculateHybridLumpsumRequired({
@@ -450,12 +449,12 @@ function recalculateGoal({ prefix, container, roundDecimal = 0 }) {
 
   // Safe bar percentage and Summary Update remains the same...
   const bar = container.querySelector(
-    ".calc-compounding .estimated-returns-bar"
+    '.calc-compounding .estimated-returns-bar',
   );
   if (bar) {
     const safePercentage = Math.min(
       Math.max(summary.estimatedReturnsPercentage, 0),
-      100
+      100,
     );
     bar.style.width = `${safePercentage}%`;
   }
@@ -464,9 +463,9 @@ function recalculateGoal({ prefix, container, roundDecimal = 0 }) {
 }
 
 function generateRetirementPlanning(block, CALC_AUTHOR_MAIN) {
-  const container = CALC_AUTHOR_MAIN.querySelector(".calc-author-sub1");
+  const container = CALC_AUTHOR_MAIN.querySelector('.calc-author-sub1');
   const inputsDetails = container.querySelectorAll(
-    "p:nth-child(n+2):nth-child(-n+17)"
+    'p:nth-child(n+2):nth-child(-n+17)',
   );
   // Convert NodeList → array of textContent
   const values = Array.from(inputsDetails).map((n) => n.textContent.trim());
@@ -488,82 +487,82 @@ function generateRetirementPlanning(block, CALC_AUTHOR_MAIN) {
   };
 
   const ciwtaBlock = createInputBlock({
-    id: "rp-target-amount",
+    id: 'rp-target-amount',
     ...result.CIWTA,
-    prefix: "₹",
-    fieldType: "currency",
+    prefix: '₹',
+    fieldType: 'currency',
     ignoreMin: true,
-    prefixAttr: { class: "currency-prefix" },
+    prefixAttr: { class: 'currency-prefix' },
     inputBlockAttr: {
-      class: "ciwta-inp-container",
+      class: 'ciwta-inp-container',
     },
-    variant: "number",
+    variant: 'number',
   });
   const iwtraBlock = createInputBlock({
-    id: "rp-target-duration",
+    id: 'rp-target-duration',
     ...result.IWTRA,
-    fieldType: "year",
+    fieldType: 'year',
     ignoreMin: true,
-    suffixAttr: { class: "input-suffix" },
+    suffixAttr: { class: 'input-suffix' },
     inputBlockAttr: {
-      class: "iwtra-inp-container",
+      class: 'iwtra-inp-container',
     },
-    variant: "number",
+    variant: 'number',
     onInput: (e) => {
-      recalculateGoal({ prefix: "rp", container: block });
+      recalculateGoal({ prefix: 'rp', container: block });
     },
     onChange: (v) => {
-      recalculateGoal({ prefix: "rp", container: block });
+      recalculateGoal({ prefix: 'rp', container: block });
     },
   });
   const sihBlock = createInputBlock({
-    id: "rp-savings-amount",
+    id: 'rp-savings-amount',
     ...result.SIH,
-    prefix: "₹",
-    fieldType: "currency",
+    prefix: '₹',
+    fieldType: 'currency',
     ignoreMin: true,
-    prefixAttr: { class: "currency-prefix" },
+    prefixAttr: { class: 'currency-prefix' },
     inputBlockAttr: {
-      class: "sih-inp-container",
+      class: 'sih-inp-container',
     },
-    variant: "number",
+    variant: 'number',
     onInput: (e) => {
-      recalculateGoal({ prefix: "rp", container: block });
+      recalculateGoal({ prefix: 'rp', container: block });
     },
     onChange: (v) => {
-      recalculateGoal({ prefix: "rp", container: block });
+      recalculateGoal({ prefix: 'rp', container: block });
     },
   });
   const erorBlock = createInputBlock({
-    id: "rp-rate-of-return",
+    id: 'rp-rate-of-return',
     ...result.EROR,
-    fieldType: "year",
+    fieldType: 'year',
     ignoreMin: true,
-    suffixAttr: { class: "input-suffix" },
-    variant: "number",
+    suffixAttr: { class: 'input-suffix' },
+    variant: 'number',
     inputBlockAttr: {
-      class: "iwtra-inp-container",
+      class: 'iwtra-inp-container',
     },
     onInput: (e) => {
-      recalculateGoal({ prefix: "rp", container: block });
+      recalculateGoal({ prefix: 'rp', container: block });
     },
     onChange: (v) => {
-      recalculateGoal({ prefix: "rp", container: block });
+      recalculateGoal({ prefix: 'rp', container: block });
     },
   });
   const RP_INPUTS_CONTAINER = div(
-    { class: "rp-inputs-container goal-inputs-container" },
+    { class: 'rp-inputs-container goal-inputs-container' },
     ciwtaBlock,
     iwtraBlock,
     sihBlock,
-    erorBlock
+    erorBlock,
   );
   return RP_INPUTS_CONTAINER;
 }
 function generateBuyAHouse(block, CALC_AUTHOR_MAIN) {
-  const container = CALC_AUTHOR_MAIN.querySelector(".calc-author-sub1");
+  const container = CALC_AUTHOR_MAIN.querySelector('.calc-author-sub1');
   const inputsDetails = container.querySelectorAll(
-    "p:nth-child(n+18):nth-child(-n+29)"
+    'p:nth-child(n+18):nth-child(-n+29)',
   );
   // Convert NodeList → array of textContent
   const values = Array.from(inputsDetails).map((n) => n.textContent.trim());
@@ -582,79 +581,79 @@ function generateBuyAHouse(block, CALC_AUTHOR_MAIN) {
     BFADU: toObj(values.slice(8, 12)),
   };
   const iptbahbBlock = createInputBlock({
-    id: "bah-target-year",
+    id: 'bah-target-year',
     ...result.IPTBAHB,
-    fieldType: "year",
+    fieldType: 'year',
     ignoreMin: true,
-    suffixAttr: { class: "input-suffix" },
+    suffixAttr: { class: 'input-suffix' },
     inputBlockAttr: {
-      class: "iptbahb-inp-container",
+      class: 'iptbahb-inp-container',
     },
-    variant: "number",
+    variant: 'number',
     onInput: (e) => {
-      recalculateGoal({ prefix: "bah", container: block });
+      recalculateGoal({ prefix: 'bah', container: block });
     },
     onChange: (v) => {
-      recalculateGoal({ prefix: "bah", container: block });
+      recalculateGoal({ prefix: 'bah', container: block });
     },
   });
   const bilaBlock = createInputBlock({
-    id: "bah-target-amount",
+    id: 'bah-target-amount',
     ...result.BILA,
-    prefix: "₹",
-    fieldType: "currency",
+    prefix: '₹',
+    fieldType: 'currency',
     ignoreMin: true,
-    prefixAttr: { class: "currency-prefix" },
+    prefixAttr: { class: 'currency-prefix' },
     inputBlockAttr: {
-      class: "bila-inp-container",
+      class: 'bila-inp-container',
     },
-    variant: "number",
+    variant: 'number',
     onInput: (e) => {
-      recalculateGoal({ prefix: "bah", container: block });
+      recalculateGoal({ prefix: 'bah', container: block });
     },
     onChange: (v) => {
-      recalculateGoal({ prefix: "bah", container: block });
+      recalculateGoal({ prefix: 'bah', container: block });
     },
   });
   const bfaduBlock = createInputBlock({
-    id: "bah-down-payment",
+    id: 'bah-down-payment',
     ...result.BFADU,
-    prefix: "₹",
-    fieldType: "currency",
+    prefix: '₹',
+    fieldType: 'currency',
     ignoreMin: true,
-    prefixAttr: { class: "currency-prefix" },
+    prefixAttr: { class: 'currency-prefix' },
     inputBlockAttr: {
-      class: "bfadu-inp-container",
+      class: 'bfadu-inp-container',
     },
-    variant: "number",
+    variant: 'number',
     onInput: (e) => {
-      recalculateGoal({ prefix: "bah", container: block });
+      recalculateGoal({ prefix: 'bah', container: block });
     },
     onChange: (v) => {
-      recalculateGoal({ prefix: "bah", container: block });
+      recalculateGoal({ prefix: 'bah', container: block });
     },
   });
   const BAH_INPUTS_CONTAINER = div(
-    { class: "bah-inputs-container goal-inputs-container" },
+    { class: 'bah-inputs-container goal-inputs-container' },
     iptbahbBlock,
     bilaBlock,
-    bfaduBlock
+    bfaduBlock,
   );
   return BAH_INPUTS_CONTAINER;
 }
 function generatePlanATrip(block, CALC_AUTHOR_MAIN) {
-  const container = CALC_AUTHOR_MAIN.querySelector(".calc-author-sub2");
+  const container = CALC_AUTHOR_MAIN.querySelector('.calc-author-sub2');
   const inputsDetails = container.querySelectorAll(
-    "p:nth-child(n+1):nth-child(-n+8)"
+    'p:nth-child(n+1):nth-child(-n+8)',
   );
 
   const radioDetails = {
     title: block
-      .querySelector(".calc-author-sub2 .calc-author-subitem9")
+      .querySelector('.calc-author-sub2 .calc-author-subitem9')
       .textContent.trim(),
     options: extractOptionsSelect({
       listContainer: block.querySelector(
-        ".calc-author-sub2 .calc-author-subitem10"
+        '.calc-author-sub2 .calc-author-subitem10',
       )?.children,
     }),
   };
@@ -672,18 +671,18 @@ function generatePlanATrip(block, CALC_AUTHOR_MAIN) {
 
   const radioSelector = createRadioSelectorBlock({
     ...radioDetails,
-    id: "pat-savings-radio",
+    id: 'pat-savings-radio',
     onChange: () => {
-      recalculateGoal({ prefix: "pat", container: block });
+      recalculateGoal({ prefix: 'pat', container: block });
     },
   });
 
   const amountIhave = {
     label: block
-      .querySelector(".calc-author-sub2 .calc-author-subitem11")
+      .querySelector('.calc-author-sub2 .calc-author-subitem11')
       .textContent.trim(),
     default: block
-      .querySelector(".calc-author-sub2 .calc-author-subitem12")
+      .querySelector('.calc-author-sub2 .calc-author-subitem12')
       .textContent.trim(),
   };
 
@@ -693,81 +692,81 @@ function generatePlanATrip(block, CALC_AUTHOR_MAIN) {
     BFTT: toObj(values.slice(4, 8)),
   };
   const itpgbBlock = createInputBlock({
-    id: "pat-target-year",
+    id: 'pat-target-year',
     ...result.ITPGB,
-    fieldType: "year",
+    fieldType: 'year',
     ignoreMin: true,
-    suffixAttr: { class: "input-suffix" },
+    suffixAttr: { class: 'input-suffix' },
     inputBlockAttr: {
-      class: "itpgb-inp-container",
+      class: 'itpgb-inp-container',
     },
-    variant: "number",
+    variant: 'number',
     onInput: (e) => {
-      recalculateGoal({ prefix: "pat", container: block });
+      recalculateGoal({ prefix: 'pat', container: block });
     },
     onChange: (v) => {
-      recalculateGoal({ prefix: "pat", container: block });
+      recalculateGoal({ prefix: 'pat', container: block });
     },
   });
   const bfttBlock = createInputBlock({
-    id: "pat-target-amount",
+    id: 'pat-target-amount',
     ...result.BFTT,
-    prefix: "₹",
-    fieldType: "currency",
+    prefix: '₹',
+    fieldType: 'currency',
     ignoreMin: true,
-    prefixAttr: { class: "currency-prefix" },
+    prefixAttr: { class: 'currency-prefix' },
     inputBlockAttr: {
-      class: "bftt-inp-container",
+      class: 'bftt-inp-container',
     },
-    variant: "number",
+    variant: 'number',
     onInput: (e) => {
-      recalculateGoal({ prefix: "pat", container: block });
+      recalculateGoal({ prefix: 'pat', container: block });
     },
     onChange: (v) => {
-      recalculateGoal({ prefix: "pat", container: block });
+      recalculateGoal({ prefix: 'pat', container: block });
     },
   });
   const amountIhaveBlock = createInputBlock({
-    id: "pat-amount-i-have",
+    id: 'pat-amount-i-have',
     ...amountIhave,
-    prefix: "₹",
-    fieldType: "currency",
-    prefixAttr: { class: "currency-prefix" },
+    prefix: '₹',
+    fieldType: 'currency',
+    prefixAttr: { class: 'currency-prefix' },
     inputBlockAttr: {
-      class: "amount-i-have-inp-container",
+      class: 'amount-i-have-inp-container',
     },
     noLimit: true,
-    variant: "number",
+    variant: 'number',
     onInput: (e) => {
-      recalculateGoal({ prefix: "pat", container: block });
+      recalculateGoal({ prefix: 'pat', container: block });
     },
     onChange: (v) => {
-      recalculateGoal({ prefix: "pat", container: block });
+      recalculateGoal({ prefix: 'pat', container: block });
     },
   });
   const PAT_INPUTS_CONTAINER = div(
-    { class: "pat-inputs-container goal-inputs-container" },
+    { class: 'pat-inputs-container goal-inputs-container' },
     itpgbBlock,
     bfttBlock,
     radioSelector,
-    amountIhaveBlock
+    amountIhaveBlock,
   );
   return PAT_INPUTS_CONTAINER;
 }
 function generateBuyAVehicle(block, CALC_AUTHOR_MAIN) {
-  const container = CALC_AUTHOR_MAIN.querySelector(".calc-author-sub2");
+  const container = CALC_AUTHOR_MAIN.querySelector('.calc-author-sub2');
   const inputsDetails = [
-    ...container.querySelectorAll("p:nth-child(n+13):nth-child(-n+20)"),
-    ...container.querySelectorAll("p:nth-child(n+23):nth-child(-n+26)"),
+    ...container.querySelectorAll('p:nth-child(n+13):nth-child(-n+20)'),
+    ...container.querySelectorAll('p:nth-child(n+23):nth-child(-n+26)'),
   ];
 
   const radioDetails = {
     title: block
-      .querySelector(".calc-author-sub2 .calc-author-subitem21")
+      .querySelector('.calc-author-sub2 .calc-author-subitem21')
       .textContent.trim(),
     options: extractOptionsSelect({
       listContainer: block.querySelector(
-        ".calc-author-sub2 .calc-author-subitem22"
+        '.calc-author-sub2 .calc-author-subitem22',
       )?.children,
     }),
   };
@@ -789,9 +788,9 @@ function generateBuyAVehicle(block, CALC_AUTHOR_MAIN) {
 
   const radioSelector = createRadioSelectorBlock({
     ...radioDetails,
-    id: "bav-savings-radio",
+    id: 'bav-savings-radio',
     onChange: () => {
-      recalculateGoal({ prefix: "bav", container: block });
+      recalculateGoal({ prefix: 'bav', container: block });
     },
   });
 
@@ -802,78 +801,78 @@ function generateBuyAVehicle(block, CALC_AUTHOR_MAIN) {
     AFTD: toObj(values.slice(8, 12)),
   };
   const iwtbtcbBlock = createInputBlock({
-    id: "bav-target-year",
+    id: 'bav-target-year',
     ...result.IWTBTCB,
-    fieldType: "year",
+    fieldType: 'year',
     ignoreMin: true,
-    suffixAttr: { class: "input-suffix" },
+    suffixAttr: { class: 'input-suffix' },
     inputBlockAttr: {
-      class: "iwtbtcb-inp-container",
+      class: 'iwtbtcb-inp-container',
     },
-    variant: "number",
+    variant: 'number',
     onInput: (e) => {
-      recalculateGoal({ prefix: "bav", container: block });
+      recalculateGoal({ prefix: 'bav', container: block });
     },
     onChange: (v) => {
-      recalculateGoal({ prefix: "bav", container: block });
+      recalculateGoal({ prefix: 'bav', container: block });
     },
   });
   const bfttBlock = createInputBlock({
-    id: "bav-target-amount",
+    id: 'bav-target-amount',
     ...result.BFTC,
-    prefix: "₹",
-    fieldType: "currency",
+    prefix: '₹',
+    fieldType: 'currency',
     ignoreMin: true,
-    prefixAttr: { class: "currency-prefix" },
+    prefixAttr: { class: 'currency-prefix' },
     inputBlockAttr: {
-      class: "bftc-inp-container",
+      class: 'bftc-inp-container',
     },
-    variant: "number",
+    variant: 'number',
     onInput: (e) => {
-      recalculateGoal({ prefix: "bav", container: block });
+      recalculateGoal({ prefix: 'bav', container: block });
     },
     onChange: (v) => {
-      recalculateGoal({ prefix: "bav", container: block });
+      recalculateGoal({ prefix: 'bav', container: block });
     },
   });
   const aftdBlock = createInputBlock({
-    id: "bav-down-payment",
+    id: 'bav-down-payment',
     ...result.AFTD,
-    prefix: "₹",
-    fieldType: "currency",
+    prefix: '₹',
+    fieldType: 'currency',
     ignoreMin: true,
-    prefixAttr: { class: "currency-prefix" },
+    prefixAttr: { class: 'currency-prefix' },
     inputBlockAttr: {
-      class: "aftd-inp-container",
+      class: 'aftd-inp-container',
     },
-    variant: "number",
+    variant: 'number',
     onInput: (e) => {
-      recalculateGoal({ prefix: "bav", container: block });
+      recalculateGoal({ prefix: 'bav', container: block });
     },
     onChange: (v) => {
-      recalculateGoal({ prefix: "bav", container: block });
+      recalculateGoal({ prefix: 'bav', container: block });
     },
   });
   const BAV_INPUTS_CONTAINER = div(
-    { class: "bav-inputs-container goal-inputs-container" },
+    { class: 'bav-inputs-container goal-inputs-container' },
     iwtbtcbBlock,
     bfttBlock,
     radioSelector,
-    aftdBlock
+    aftdBlock,
   );
   return BAV_INPUTS_CONTAINER;
 }
 function generateCreateYourOwn(block, CALC_AUTHOR_MAIN) {
-  const container = CALC_AUTHOR_MAIN.querySelector(".calc-author-sub3");
+  const container = CALC_AUTHOR_MAIN.querySelector('.calc-author-sub3');
   const inputsDetails = container.querySelectorAll(
-    "p:nth-child(n+3):nth-child(-n+18)"
+    'p:nth-child(n+3):nth-child(-n+18)',
   );
   const goalName = {
     label: CALC_AUTHOR_MAIN.querySelector(
-      ".calc-author-sub3 .calc-author-subitem1"
+      '.calc-author-sub3 .calc-author-subitem1',
     ).textContent.trim(),
     default: CALC_AUTHOR_MAIN.querySelector(
-      ".calc-author-sub3 .calc-author-subitem2"
+      '.calc-author-sub3 .calc-author-subitem2',
     ).textContent.trim(),
   };
 
@@ -897,111 +896,111 @@ function generateCreateYourOwn(block, CALC_AUTHOR_MAIN) {
   };
 
   const goalNameBlock = createInputBlock({
-    id: "gc-goal-name",
+    id: 'gc-goal-name',
     ...goalName,
     noLimit: true,
     inputBlockAttr: {
-      class: "goal-name-inp-container",
+      class: 'goal-name-inp-container',
     },
-    variant: "text",
+    variant: 'text',
   });
 
   const ciwtaBlock = createInputBlock({
-    id: "gc-target-amount",
+    id: 'gc-target-amount',
     ...result.CIWTA,
-    prefix: "₹",
-    fieldType: "currency",
+    prefix: '₹',
+    fieldType: 'currency',
     ignoreMin: true,
-    prefixAttr: { class: "currency-prefix" },
+    prefixAttr: { class: 'currency-prefix' },
     inputBlockAttr: {
-      class: "ciwta-inp-container",
+      class: 'ciwta-inp-container',
     },
-    variant: "number",
+    variant: 'number',
   });
 
   const iwtatiBlock = createInputBlock({
-    id: "gc-target-duration",
+    id: 'gc-target-duration',
     ...result.IWTATI,
-    fieldType: "year",
+    fieldType: 'year',
     ignoreMin: true,
-    suffix: result.IWTATI.default > 1 ? "years" : "year",
-    suffixAttr: { class: "input-suffix" },
+    suffix: result.IWTATI.default > 1 ? 'years' : 'year',
+    suffixAttr: { class: 'input-suffix' },
     inputBlockAttr: {
-      class: "iwtati-inp-container",
+      class: 'iwtati-inp-container',
     },
     updateWidthonChange: true,
-    variant: "stepper",
+    variant: 'stepper',
     onInput: (e) => {
-      recalculateGoal({ prefix: "gc", container: block });
+      recalculateGoal({ prefix: 'gc', container: block });
     },
     onChange: (v) => {
-      recalculateGoal({ prefix: "gc", container: block });
+      recalculateGoal({ prefix: 'gc', container: block });
     },
   });
 
   const sihBlock = createInputBlock({
-    id: "gc-savings-amount",
+    id: 'gc-savings-amount',
     ...result.SIH,
-    prefix: "₹",
-    fieldType: "currency",
+    prefix: '₹',
+    fieldType: 'currency',
     ignoreMin: true,
-    prefixAttr: { class: "currency-prefix" },
+    prefixAttr: { class: 'currency-prefix' },
     inputBlockAttr: {
-      class: "sih-inp-container",
+      class: 'sih-inp-container',
     },
-    variant: "number",
+    variant: 'number',
     onInput: (e) => {
-      recalculateGoal({ prefix: "gc", container: block });
+      recalculateGoal({ prefix: 'gc', container: block });
     },
     onChange: (v) => {
-      recalculateGoal({ prefix: "gc", container: block });
+      recalculateGoal({ prefix: 'gc', container: block });
     },
   });
 
   const erorBlock = createInputBlock({
-    id: "gc-rate-of-return",
+    id: 'gc-rate-of-return',
     ...result.EROR,
-    fieldType: "percent",
+    fieldType: 'percent',
     ignoreMin: true,
-    suffix: "%",
-    suffixAttr: { class: "input-suffix" },
-    variant: "stepper",
+    suffix: '%',
+    suffixAttr: { class: 'input-suffix' },
+    variant: 'stepper',
     updateWidthonChange: true,
     inputBlockAttr: {
-      class: "iwtra-inp-container",
+      class: 'iwtra-inp-container',
     },
     onInput: (e) => {
-      recalculateGoal({ prefix: "gc", container: block });
+      recalculateGoal({ prefix: 'gc', container: block });
     },
     onChange: (v) => {
-      recalculateGoal({ prefix: "gc", container: block });
+      recalculateGoal({ prefix: 'gc', container: block });
     },
   });
 
   const RP_INPUTS_CONTAINER = div(
-    { class: "gc-inputs-container goal-inputs-container" },
+    { class: 'gc-inputs-container goal-inputs-container' },
     goalNameBlock,
     ciwtaBlock,
     iwtatiBlock,
     sihBlock,
-    erorBlock
+    erorBlock,
   );
   return RP_INPUTS_CONTAINER;
 }
 
 function handleGoalTypeChange(value, goalIndex = 0, container) {
   container
-    .querySelectorAll(".goal-inputs-container")
+    .querySelectorAll('.goal-inputs-container')
     .forEach((container, index) => {
       if (index === goalIndex) {
-        container.classList.remove("dsp-none");
+        container.classList.remove('dsp-none');
       } else {
-        container.classList.add("dsp-none");
+        container.classList.add('dsp-none');
       }
     });
 
   // Get the prefix based on the selected goal type
-  const goalPrefixes = ["rp", "bah", "pat", "bav", "gc"];
+  const goalPrefixes = ['rp', 'bah', 'pat', 'bav', 'gc'];
   const selectedPrefix = goalPrefixes[goalIndex];
 
   // Recalculate the summary for the newly selected goal type
@@ -1011,42 +1010,41 @@ function handleGoalTypeChange(value, goalIndex = 0, container) {
 }
 
 export default function decorate(block) {
-  const CALC_AUTHOR_MAIN = block.querySelector(".calc-author-main1");
+  const CALC_AUTHOR_MAIN = block.querySelector('.calc-author-main1');
   if (!CALC_AUTHOR_MAIN) {
-    console.warn("No .calc-author-main1 element found.");
+    console.warn('No .calc-author-main1 element found.');
     return;
   }
-  const formContainer = form({ class: "goal-calculator-form" });
+  const formContainer = form({ class: 'goal-calculator-form' });
   CALC_AUTHOR_MAIN.parentNode.insertBefore(formContainer, CALC_AUTHOR_MAIN);
   formContainer.appendChild(CALC_AUTHOR_MAIN);
 
   const goalSelectorTitle = block.querySelector(
-    ".calc-author-sub1 .calc-author-subitem1"
+    '.calc-author-sub1 .calc-author-subitem1',
   );
   const goalOptions = extractOptionsSelect({
     listContainer: block.querySelector(
-      ".calc-author-sub1 .calc-author-subitem2"
+      '.calc-author-sub1 .calc-author-subitem2',
     ).children,
   });
 
   const OVERVIEW_DATA = CALC_AUTHOR_MAIN.querySelector(
-    ":scope > .calc-author-sub4"
+    ':scope > .calc-author-sub4',
   );
 
   const calculatorOverview = createBarSummaryBlock({
     container: OVERVIEW_DATA,
   });
   // Value taken from URL query param
-  const urlSelectedType = getQueryParam("type");
+  const urlSelectedType = getQueryParam('type');
 
   // Default option defined inside radioDetails
-  const configDefaultType =
-    goalOptions.find((opt) => opt?.value === urlSelectedType)?.value ||
-    goalOptions?.[0]?.value;
+  const configDefaultType = goalOptions.find((opt) => opt?.value === urlSelectedType)?.value
+    || goalOptions?.[0]?.value;
 
   // Create the radio selector block
   const selector = createOptionSelectorBlock({
-    id: "select-goal-type",
+    id: 'select-goal-type',
     label: goalSelectorTitle,
     options: goalOptions,
     default: configDefaultType,
@@ -1060,7 +1058,7 @@ export default function decorate(block) {
   const PAT_CONTAINER = generatePlanATrip(block, CALC_AUTHOR_MAIN);
   const BAV_CONTAINER = generateBuyAVehicle(block, CALC_AUTHOR_MAIN);
   const CYO_CONTAINER = generateCreateYourOwn(block, CALC_AUTHOR_MAIN);
-  CALC_AUTHOR_MAIN.innerHTML = "";
+  CALC_AUTHOR_MAIN.innerHTML = '';
   formContainer.parentNode.insertBefore(selector, formContainer);
 
   CALC_AUTHOR_MAIN.append(
@@ -1068,7 +1066,7 @@ export default function decorate(block) {
     BAH_CONTAINER,
     PAT_CONTAINER,
     BAV_CONTAINER,
-    CYO_CONTAINER
+    CYO_CONTAINER,
   );
   block.append(calculatorOverview);
   // show first goal inputs by default
@@ -1076,6 +1074,6 @@ export default function decorate(block) {
   handleGoalTypeChange(
     configDefaultType,
     goalOptions.findIndex((opt) => opt.value === configDefaultType) || 0,
-    block
+    block,
   );
 }
