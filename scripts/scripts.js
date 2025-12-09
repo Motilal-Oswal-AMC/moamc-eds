@@ -585,6 +585,20 @@ function articleStructure() {
       leftarticle.append(leftel);
     });
 
+    Array.from(rightSub).forEach((subright) => {
+        dataMapMoObj.CLASS_PREFIXES = [
+          'investarticle-rightmain',
+          'investarticle-rightsub',
+          'investarticle-rightinner',
+          'investsub-rightarticle',
+          'investright-subinner',
+          'investright-articleitem',
+          'investright-itemchild',
+          'investright-subchild',
+        ];
+        dataMapMoObj.addIndexed(subright);
+      });
+
     if (!maincloser.querySelector('.moedge-article-details')) {
       Array.from(leftSub).forEach((subleft) => {
         dataMapMoObj.CLASS_PREFIXES = [
@@ -598,20 +612,6 @@ function articleStructure() {
           'investleft-subchild',
         ];
         dataMapMoObj.addIndexed(subleft);
-      });
-  
-      Array.from(rightSub).forEach((subright) => {
-        dataMapMoObj.CLASS_PREFIXES = [
-          'investarticle-rightmain',
-          'investarticle-rightsub',
-          'investarticle-rightinner',
-          'investsub-rightarticle',
-          'investright-subinner',
-          'investright-articleitem',
-          'investright-itemchild',
-          'investright-subchild',
-        ];
-        dataMapMoObj.addIndexed(subright);
       });
     }
 
