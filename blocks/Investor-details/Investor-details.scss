@@ -455,11 +455,34 @@ main.nfo-nav .main-wrapper .section:first-of-type {
                 }
               }
 
+              p.button-container {
+                line-height: 0;
+
+                .button {
+                  margin: 0;
+                  padding: 12px;
+                  justify-content: center;
+                  align-items: center;
+                  gap: 4px;
+                  border-radius: 8px;
+                  background: #2e2a94;
+                  width: max-content;
+                  font-size: 16px;
+                  line-height: 20px;
+                  color: #fff;
+                  font-family: "Inter", sans-serif;
+                  font-feature-settings: "ss01" on, "ss04" on, "cv01" on,
+                    "cv02" on, "cv03" on, "cv04" on, "cv06" on, "cv09" on,
+                    "cv10" on, "cv11" on;
+                  font-weight: 500;
+                }
+              }
+
               h2.comlist,
               h3.comlist,
               h4.comlist,
               h5.comlist,
-              h6.comlist{
+              h6.comlist {
                 margin: 0 0 24px;
 
                 @include font-style(
@@ -480,7 +503,7 @@ main.nfo-nav .main-wrapper .section:first-of-type {
               h3.comlist strong,
               h4.comlist strong,
               h5.comlist strong,
-              h6.comlist strong{
+              h6.comlist strong {
                 font-weight: 600;
               }
             }
