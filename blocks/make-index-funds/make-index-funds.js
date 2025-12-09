@@ -3,7 +3,7 @@ import {
   h2,
   img,
 } from '../../scripts/dom-helpers.js';
-import dataCfObj from '../../scripts/dataCfObj.js';
+// import dataCfObj from '../../scripts/dataCfObj.js';
 import Swiper from '../swiper/swiper-bundle.min.js';
 import dataMapMoObj from '../../scripts/constant.js';
 // --- CONSTANTS AND STATE ---
@@ -54,7 +54,7 @@ function createCardElement(cardData, brandName, iconsTemplate) {
       { class: 'title-subtitle' },
       div(
         { class: 'title title-logo' },
-        h2(cardData.schDetail.schemeName),
+        h2(cardData.schemeName),
       ),
     ),
     // Create an empty container for the icons
@@ -185,7 +185,12 @@ export default function decorate(block) {
   }
 
   // 2. Create the card elements in memory
-  const makeArr = dataCfObj.cfDataObjs.filter((el) => el.fundsTaggingSection.includes('motilal-oswal:index-funds'));
+  const makeArr = dataMapMoObj.getlisting.cfDataObjs.filter((el) => {
+    if (!el.fundsTaggingSection) {
+      return false;
+    }
+    return [...el.fundsTaggingSection].includes('motilal-oswal:index-funds');
+  });
   const cardData = makeArr.slice(0, 5);
   const cardElements = cardData.map((data) => createCardElement(data, brandName, iconsTemplate));
 

@@ -4,7 +4,7 @@ import {
   getAuthorData,
   formatNumber,
   safeUpdateMinimalReflow,
-} from "../common-ui-field/common-ui-field.js";
+} from '../common-ui-field/common-ui-field.js';
 
 export function updateCalculateSummary({ container, data }) {
   if (!container || !data) return;
@@ -260,7 +260,7 @@ export default function decorate(block) {
       return frag;
     },
     /* useReserve= */ true,
-    /* extraPx= */ 0
+    /* extraPx= */ 0,
   );
 
   // Add summary block

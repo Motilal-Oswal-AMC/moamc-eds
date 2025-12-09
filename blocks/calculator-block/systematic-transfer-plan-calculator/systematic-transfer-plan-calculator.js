@@ -24,7 +24,8 @@ export function updateSTPCalcSummary(data) {
   }
   if (IIISS_EL) {
     IIISS_EL.textContent = formatNumber({
-      value: data?.totalValue - data?.totalGain,
+    // Check each value; if undefined, default to 0
+      value: (data?.totalValue ?? 0) - (data?.totalGain ?? 0),
       currency: true,
     });
   }

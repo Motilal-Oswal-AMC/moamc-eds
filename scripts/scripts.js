@@ -815,7 +815,7 @@ function articleStructure() {
       shareIcon.addEventListener('click', (e) => {
         e.stopPropagation();
 
-        const isVisible = popup.style.display === 'block';
+        // const isVisible = popup.style.display === 'block';
       });
 
       // GET SHARE TEXT + URL
@@ -1201,11 +1201,34 @@ try {
   // console.log(error);
 }
 
+// Unclaimed Redemption Block
+try {
+  // if (window.location.href == 'mutual-fund/in/en/static-pages/unclaimed-redemptions') {
+    const section = document.querySelector('.unclaimed-redemption');
+    const cardSection = document.querySelector('.unclaimed-redemption .cards-wrapper');
+    const unclaimedForm = document.querySelector('.unclaimed-redemption .wealth-modal-wrapper');
+    const elementNew = document.createElement('div');
+    const elementDiv = document.createElement('div');
+    elementDiv.classList.add('section-container');
+    elementNew.classList.add('container');
+    if (section !== null) {
+      section.appendChild(elementNew);
+      section.appendChild(elementDiv);
+      elementDiv.appendChild(elementNew);
+      elementNew.appendChild(cardSection);
+      elementNew.appendChild(unclaimedForm);
+    }
+  // }
+} catch (error) {
+  console.log(error);
+}
+// Unclaimed Redemption Block
+
 async function getlisting() {
   const resp = await myAPI('GET', 'https://m71vqgw4cj.execute-api.ap-south-1.amazonaws.com/dev/api/public/v1/funds/listing');
   return resp;
 }
-dataMapMoObj.getlisting = getlisting;
+dataMapMoObj.getlisting = await getlisting();
 
 async function getscheme(param) {
   const resp = await myAPI('GET', `https://m71vqgw4cj.execute-api.ap-south-1.amazonaws.com/dev/api/public/v1/funds?schcode=${param}`);

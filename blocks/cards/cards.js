@@ -306,6 +306,19 @@ export default function decorate(block) {
     dataMapMoObj.addIndexed(block);
   }
 
+  const unclaimedCard = document.querySelector('.unclaimed-redemption .cards-wrapper');
+  if (unclaimedCard != null) {
+    dataMapMoObj.CLASS_PREFIXES = [
+      'card-ul',
+      'card-li',
+      'card-content',
+      'card-content-inner',
+      'card-contentinner-picture',
+      'card-contentinner-img'
+    ];
+    dataMapMoObj.addIndexed(unclaimedCard);
+  }
+
   if (window.location.pathname.includes('/static-pages/skin-in-the-game')) {
     const matterSection = block.closest('main').querySelector('.why-matters-component .cards');
     if (matterSection) {

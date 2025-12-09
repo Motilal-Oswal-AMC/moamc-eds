@@ -1,3 +1,4 @@
+import dataMapMoObj from '../../../scripts/constant.js';
 import {
   div,
   label,
@@ -73,15 +74,21 @@ export function validateInputWithEvent({
 
   // Decide finalValue
   // debugger;
-  const finalValue = currency
-    ? num !== 0
-      ? formatNumber({ value: num, currencyCode, locale })
-      : minValue === 0 && eventType === 'blur'
-        ? 0
-        : ''
-    : rawValue === '' && allowEmpty
-      ? rawValue
-      : num;
+  let finalValue;
+
+  if (currency) {
+    if (num !== 0) {
+      finalValue = dataMapMoObj.formatNumber({ value: num, currencyCode, locale });
+    } else if (minValue === 0 && eventType === 'blur') {
+      finalValue = 0;
+    } else {
+      finalValue = '';
+    }
+  } else if (rawValue === '' && allowEmpty) {
+    finalValue = rawValue;
+  } else {
+    finalValue = num;
+  }
 
   // Update input
   if (currency) {
@@ -140,6 +147,7 @@ export function formatNumber({
     useGrouping,
   });
 }
+dataMapMoObj.formatNumber = formatNumber;
 
 /**
  * Derive input width in `ch` based on its value length
@@ -274,11 +282,11 @@ export function createInputBlock({
           : 'number',
     min,
     max,
-    "data-fieldType": fieldType,
-    ...(["currency", "percent", "year"].includes(fieldType)
+    'data-fieldType': fieldType,
+    ...(['currency', 'percent', 'year'].includes(fieldType)
       ? {
-          inputmode: "numeric",
-        }
+        inputmode: 'numeric',
+      }
       : {}),
     onchange: (e) => {
       let filteredValue = e.target.value;
@@ -453,8 +461,8 @@ export function createInputBlock({
   }
   // ---------- Label ----------
   const labelEl = label(
-    { for: fieldType === "currency" ? `${id}-fake` : id, class: "calc-label" },
-    labelText
+    { for: fieldType === 'currency' ? `${id}-fake` : id, class: 'calc-label' },
+    labelText,
   );
 
   // ---------- Build input wrapper ----------
@@ -981,28 +989,28 @@ export function safeUpdateMinimalReflow(
   container,
   buildFn,
   useReserve = false,
-  extraPx = 0
+  extraPx = 0,
 ) {
-  if (!container || typeof buildFn !== "function") return;
+  if (!container || typeof buildFn !== 'function') return;
 
   let prevHeight = 0;
   if (useReserve) {
     // Read once — this may cause a reflow here
     prevHeight = container.scrollHeight;
     container.style.maxHeight = `${prevHeight + extraPx}px`;
-    container.style.overflow = "hidden";
+    container.style.overflow = 'hidden';
   }
 
   // Build new content off-DOM
   const newContent = buildFn();
 
   // Replace content in one go — minimal writes
-  container.innerHTML = "";
+  container.innerHTML = '';
   container.appendChild(newContent);
 
   if (useReserve) {
     // Restore natural layout — avoid reading again if you don't need new height
-    container.style.maxHeight = "";
-    container.style.overflow = "";
+    container.style.maxHeight = '';
+    container.style.overflow = '';
   }
 }

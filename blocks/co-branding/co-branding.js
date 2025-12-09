@@ -8,8 +8,46 @@ import {
   p,
   span,
 } from '../../scripts/dom-helpers.js';
+import dataMapMoObj from '../../scripts/constant.js';
 
 export default function decorate(block) {
+
+  // Unclaimed Redemption Modal Content Ends Here
+  const unclaimed = block.closest('main').querySelector('.unclaimed-redemption-procedure');
+  if (unclaimed) {
+    dataMapMoObj.CLASS_PREFIXES =
+      ['unclaimed-head',
+        'urm-wrapper',
+        'urm-inner',
+        'urm-subinner',
+        'urm-content'
+      ];
+    dataMapMoObj.addIndexed(unclaimed);
+
+    const sourceParent = document.querySelector('.comlist.urm-subinner1');
+    const targetParent = document.querySelector('.comlist.urm-inner1');
+    const newEle = document.createElement('div');
+    newEle.classList.add('wrap-items-container');
+    targetParent.appendChild(newEle);
+
+    if (sourceParent && targetParent) {
+      const allPs = Array.from(sourceParent.querySelectorAll('p'));
+      const items = allPs.slice(1); // skip first <p> after h3
+
+      items.forEach((p, i) => {
+        if (i % 2 === 0) {  // every 2 <p> wrap in one div
+          const wrapper = document.createElement('div');
+          wrapper.classList.add('wrap-item');
+
+          wrapper.appendChild(p);
+          if (items[i + 1]) wrapper.appendChild(items[i + 1]);
+
+          newEle.appendChild(wrapper);
+        }
+      });
+    }
+  }
+
   const crosImage = Array.from(block.querySelectorAll('p'))[0];
   if (block.querySelector('h4') === null) {
     return false;
@@ -245,4 +283,5 @@ export default function decorate(block) {
     });
   }
   return block;
+
 }

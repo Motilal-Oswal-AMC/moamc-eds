@@ -1,5 +1,6 @@
 /*    */
-import dataCfObj from '../../scripts/dataCfObj.js';
+// import dataCfObj from '../../scripts/dataCfObj.js';
+import dataMapMoObj from '../../scripts/constant.js';
 import {
   div,
   span,
@@ -8,7 +9,13 @@ import {
   ul,
 } from '../../scripts/dom-helpers.js';
 
-export default function decorate(block) {
+export default async function decorate(block) {
+  const tempDfilt = dataMapMoObj.getlisting.cfDataObjs.filter((el) => {
+    if (!el.fundsTaggingSection || !el.planList || !el.returns) {
+      return false;
+    }
+    return el;
+  });
   Array.from(block.children).forEach((el, index) => {
     el.classList.add(`block-item${index + 1}`);
     Array.from(el.children).forEach((elsub, ind) => {
@@ -29,14 +36,20 @@ export default function decorate(block) {
     planFlow = 'Direct';
   } else {
     const path = window.location.pathname.split('/').at(-1);
-    const planobj = dataCfObj.cfDataObjs.filter(
-      (el) => path === el.schDetail.schemeName.toLocaleLowerCase().split(' ').join('-'),
+    const planobj = tempDfilt.filter(
+      (el) => path === el.schemeName.toLocaleLowerCase().split(' ').join('-'),
     );
     planslabel = planobj[0].schcode;
     planFlow = 'Direct';
   }
   // const [planFlow, planslabel] = planCode.split(':');
-  const planObj = dataCfObj.cfDataObjs.filter((el) => planslabel === el.schcode);
+  let planObj;
+  //= tempDfilt.filter((el) => planslabel === el.schcode);
+  if (dataMapMoObj.schemeCodeResp === undefined || dataMapMoObj.schemeCodeResp === null || dataMapMoObj.schemeCodeResp === '') {
+    planObj = await dataMapMoObj.getscheme(planslabel);
+  } else {
+    planObj = dataMapMoObj.schemeCodeResp;
+  }
   const data = planObj;
   const DirectPlanlistArr = planObj[0].planList.filter(
     (el) => el.planName === planFlow,
