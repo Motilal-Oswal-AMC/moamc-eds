@@ -245,4 +245,22 @@ export default function decorate(block) {
     });
   }
   return block;
+
+
+  // Unclaimed Redemption Modal Content Ends Here
+  // const container = document.querySelector('your-parent-selector'); // change this selector
+  // const paragraphs = container.querySelectorAll('p');
+
+  // for (let i = 0; i < paragraphs.length; i += 2) {
+  //   const wrapper = document.createElement('div');
+  //   wrapper.classList.add('wrap-pair'); // optional class
+
+  //   wrapper.appendChild(paragraphs[i]);
+  //   if (paragraphs[i + 1]) {
+  //     wrapper.appendChild(paragraphs[i + 1]);
+  //   }
+
+  //   container.appendChild(wrapper);
+  // }
+
 }

@@ -25,6 +25,101 @@ export default function decorate(block) {
     dataMapMoObj.addIndexed(wealthModal);
   }
 
+  // unclaimed redemption class handling
+  const unclaimedRedemptionModal = block.closest('main').querySelector('.unclaimed-redemption .wealth-modal');
+  if (unclaimedRedemptionModal) {
+    dataMapMoObj.CLASS_PREFIXES =
+      ['unclaimed-redemption-modal',
+        'urm-wrapper',
+        'urm-inner',
+        'urm-subinner'
+      ];
+    dataMapMoObj.addIndexed(unclaimedRedemptionModal);
+  }
+
+  // Unclaimed redemption structure update
+  const urmTitle = unclaimedRedemptionModal.querySelector('.urm-inner1');
+  const panLabel = unclaimedRedemptionModal.querySelector('.urm-inner2');
+  const orTxt = unclaimedRedemptionModal.querySelector('.urm-inner3');
+  const folioLabel = unclaimedRedemptionModal.querySelector('.urm-inner4');
+  const enterOtpLAbel = unclaimedRedemptionModal.querySelector('.urm-inner5');
+  const resendOtpLabel = unclaimedRedemptionModal.querySelector('.urm-inner6');
+  const otpMsg = unclaimedRedemptionModal.querySelector('.urm-inner7');
+  const urmSubmitBtn = unclaimedRedemptionModal.querySelector('.urm-inner8');
+  const urmDesc = unclaimedRedemptionModal.querySelector('.urm-inner9');
+
+  const urmModalContent =
+    div({ "class": 'urm-modal-content-wrapper' },
+      div(
+        { "class": 'urm-modal-content' },
+        div(
+          { "class": 'urm-modal-wrapper' },
+          div({ "class": 'urm-title-wrap' },
+            p({ "class": 'urm-title-txt' }, urmTitle.textContent)
+          ),
+          div({ "class": 'urm-pan-wrap' },
+            label({ "for": '', "class": 'urm-pan-lbl' }, panLabel.textContent),
+            input({ "type": 'text', "class": 'urm-pan-inp' })
+          ),
+          div({ "class": 'urm-or-txt' },
+            p({ "class": 'urm-txt' }, orTxt.textContent)
+          ),
+          div({ "class": 'urm-folio-wrap' },
+            label({ "for": '', "class": 'urm-folio-lbl' }, folioLabel.textContent),
+            input({ "type": 'text', "class": 'urm-folio-inp' })
+          ),
+          div({ "class": 'urm-enter-otp-wrap' },
+            p({ "class": 'urm-otp-txt' }, enterOtpLAbel.textContent),
+            div({ "class": 'urm-otp-field' },
+              div({ "class": 'urm-otp-field-wrap' },
+                div({ "class": 'urm-otpinp-wrap' },
+                  input({ "class": 'urm-otpinp', "type": 'text', "maxlength": '1', "aria-label": 'OTP digit 1 of 6' })
+                ),
+                div({ "class": 'urm-otpinp-wrap' },
+                  input({ "class": 'urm-otpinp', "type": 'text', "maxlength": '1', "aria-label": 'OTP digit 2 of 6' })
+                ),
+                div({ "class": 'urm-otpinp-wrap' },
+                  input({ "class": 'urm-otpinp', "type": 'text', "maxlength": '1', "aria-label": 'OTP digit 3 of 6' })
+                ),
+                div({ "class": 'urm-otpinp-wrap' },
+                  input({ "class": 'urm-otpinp', "type": 'text', "maxlength": '1', "aria-label": 'OTP digit 4 of 6' })
+                ),
+                div({ "class": 'urm-otpinp-wrap' },
+                  input({ "class": 'urm-otpinp', "type": 'text', "maxlength": '1', "aria-label": 'OTP digit 5 of 6' })
+                ),
+                div({ "class": 'urm-otpinp-wrap' },
+                  input({ "class": 'urm-otpinp', "type": 'text', "maxlength": '1', "aria-label": 'OTP digit 6 of 6' })
+                )
+              ),
+              button({ "class": 'urm-resend' }, resendOtpLabel.textContent)),
+          ),
+
+          div({ "class": 'urm-otp-msg-wrap' },
+            p({ "class": 'urm-otpmsg-txt' }, otpMsg.textContent)),
+          button({ "class": 'urm-submit' }, urmSubmitBtn.textContent)),
+      ),
+      div({ "class": 'urm-related-desc' },
+      p({ "class": 'urm-description' }, urmDesc.textContent))
+    );
+
+  unclaimedRedemptionModal.textContent = '';
+  unclaimedRedemptionModal.append(urmModalContent);
+
+  // const inputLabels = wealthModal.querySelectorAll('.urm-modal-wrapper label');
+  // const inputs = wealthModal.querySelectorAll('.urm-modal-wrapper input');
+
+  // inputs.forEach(input => {
+  //   input.addEventListener('focus', (e) => {   // when input is clicked or focused
+  //     const parentLabel = input.closest('label'); // find the parent label
+
+  //     if (parentLabel && input.value === '') {
+  //       e.target.parentElement.classList.add('active');
+  //     }
+  //   });
+  // });
+
+
+
   const crossBtn = wealthModal.querySelector('.wealth-inner1').cloneNode(true);
   const flag = wealthModal.querySelector('.icon-national-flag').cloneNode(true);
   const ragLable = wealthModal.querySelector('.wealth1 .wealth-inner2');
@@ -301,7 +396,7 @@ export default function decorate(block) {
   moclosse.querySelector('.thank-you-scr-sec4').addEventListener('click', () => {
     moclosse.style.display = 'none';
   });
-  submitButton.addEventListener('click', async (e) => { 
+  submitButton.addEventListener('click', async (e) => {
     e.preventDefault();
     fields.forEach((f) => touchedFields.add(f));
     if (validateForm()) {
@@ -378,4 +473,7 @@ export default function decorate(block) {
 
   block.closest('.wealth-register')
     .classList.add('modal-show');
+
+
+
 }

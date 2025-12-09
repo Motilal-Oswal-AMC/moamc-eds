@@ -4,6 +4,8 @@
 
 .unclaimed-redemption {
 
+    margin-bottom: unset;
+
     .section-container {
         background: var(--neutrals-100);
         max-width: unset;
@@ -14,6 +16,12 @@
             display: flex;
             gap: 120px;
             padding: 60px 0;
+
+            @include media(mobile) {
+                flex-direction: column;
+                padding: 28px 0 48px;
+                gap: 28px 0;
+            }
 
             .cards-wrapper {
                 max-width: 504px;
@@ -35,6 +43,10 @@
                             // background: peru;
                             padding: 40px 40px 0;
                             border: unset;
+
+                            @include media(mobile) {
+                                padding: 40px 16px 0;
+                            }
 
                             .cards-card-image {
                                 position: absolute;
