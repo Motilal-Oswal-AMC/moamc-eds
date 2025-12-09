@@ -2303,6 +2303,11 @@ main.nfo-nav .section.decoding-qglp-container.decoding-qglp-static .decoding-qgl
 .section.invest-blog {
   margin: 0 0 80px;
 }
+@media (max-width: 768px) {
+  .section.invest-blog {
+    padding: 0 16px;
+  }
+}
 .section.invest-blog .invest-blog-contain1 {
   display: flex;
   padding: 24px;
@@ -2361,6 +2366,7 @@ main.nfo-nav .section.decoding-qglp-container.decoding-qglp-static .decoding-qgl
     flex-direction: column;
     gap: 12px;
     margin: unset;
+    padding: unset;
   }
 }
 .section.tax-blog .tax-blog-contain1 .tax-blog-txt1 {
@@ -2389,6 +2395,13 @@ main.nfo-nav .section.decoding-qglp-container.decoding-qglp-static .decoding-qgl
   display: flex;
   flex-direction: column;
   gap: 8px;
+}
+@media (max-width: 768px) {
+  .section.tax-blog .tax-blog-contain1 .tax-blog-txt2 {
+    max-width: unset;
+    width: unset;
+    margin: 0 0 0 16px;
+  }
 }
 .section.tax-blog .tax-blog-contain1 .tax-blog-txt2 .tax-blog-subtxt1 {
   color: var(--text-body);
@@ -2486,11 +2499,13 @@ main.nfo-nav .section.decoding-qglp-container.decoding-qglp-static .decoding-qgl
 }
 @media (max-width: 768px) {
   .section.sip-blog .sip-blog-contain1 .sip-blog-txt2 .sip-blog-subtxt1 .icon-elss-sip1 {
-    width: 39px;
-    height: 33px;
+    max-width: 48px;
+    max-height: 48px;
+    width: 100%;
+    height: 100%;
   }
 }
-.section.sip-blog .sip-blog-contain1 .sip-blog-txt2 .sip-blog-subtxt2 {
+.section.sip-blog .sip-blog-contain1 .sip-blog-subtxt2 {
   color: var(--text-body);
   font-feature-settings: "ss01" on, "ss04" on, "cv01" on, "cv02" on, "cv03" on, "cv04" on, "cv06" on, "cv09" on, "cv10" on, "cv11" on;
   font-family: var(--Body, Inter);
@@ -2505,20 +2520,22 @@ main.nfo-nav .section.decoding-qglp-container.decoding-qglp-static .decoding-qgl
   /* 142.857% */
 }
 @media (max-width: 768px) {
-  .section.sip-blog .sip-blog-contain1 .sip-blog-txt2 .sip-blog-subtxt2 {
+  .section.sip-blog .sip-blog-contain1 .sip-blog-subtxt2 {
     display: flex;
     gap: 8px;
     flex-direction: unset;
   }
 }
-.section.sip-blog .sip-blog-contain1 .sip-blog-txt2 .sip-blog-subtxt2 .icon-elss-sip2 {
+.section.sip-blog .sip-blog-contain1 .sip-blog-subtxt2 .icon-elss-sip2 {
   width: 68px;
   height: 68px;
 }
 @media (max-width: 768px) {
-  .section.sip-blog .sip-blog-contain1 .sip-blog-txt2 .sip-blog-subtxt2 .icon-elss-sip2 {
-    width: 39px;
-    height: 33px;
+  .section.sip-blog .sip-blog-contain1 .sip-blog-subtxt2 .icon-elss-sip2 {
+    max-width: 48px;
+    max-height: 48px;
+    width: 100%;
+    height: 100%;
   }
 }
 
