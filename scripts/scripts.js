@@ -737,6 +737,19 @@ function articleStructure() {
       // mainwrapperDiv.appendChild(main2);
     }
 
+    function addIndexedThree(parentElement, level = 0) {
+    const prefix = 'rightlist';
+    const { children } = parentElement; // Cache children for clarity.
+    for (let i = 0; i < children.length; i += 1) {
+      let parClass = Array.from(children[0].parentElement.classList)[0].split('-').at(-2);
+      const child = children[i];
+      const index = i + 1; // Class names are typically 1-based.
+      child.classList.add(`${prefix}`);
+      parClass = '';
+      addIndexedThree(child, level + 1);
+    }
+    }
+    addIndexedThree(maincloser.querySelector('.article-right-wrapper'));
     // const shareWrapper = document.querySelector('.itemmainleftart3');
     const openSharePopup = document.querySelector('.open-share-popup');
     const shareBtn = openSharePopup.querySelector('.icon-share-black');

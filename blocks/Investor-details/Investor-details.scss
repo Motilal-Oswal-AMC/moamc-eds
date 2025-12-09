@@ -610,7 +610,7 @@ main.nfo-nav .main-wrapper .section:first-of-type {
                 gap: 20px;
               }
 
-              > li.comlist {
+              > li.rightlist {
                 width: 32px;
                 height: 32px;
                 cursor: pointer;
@@ -786,7 +786,7 @@ main.nfo-nav .main-wrapper .section:first-of-type {
                     flex-direction: column;
                     gap: 0;
 
-                    > li.comlist {
+                    > li.rightlist {
                       padding: var(--spacing-16) 0;
                       border: none;
                       background-color: transparent;
@@ -799,12 +799,12 @@ main.nfo-nav .main-wrapper .section:first-of-type {
                         width: 88px;
                         height: 88px;
 
-                        picture {
+                        picture:first-of-type {
                           line-height: 0;
                           height: 100%;
                           display: block;
 
-                          img {
+                          img:first-of-type {
                             width: 100%;
                             height: 100%;
                           }
@@ -950,7 +950,7 @@ main.nfo-nav .main-wrapper .section:first-of-type {
               gap: 8px;
               list-style: none;
 
-              > li.comlist {
+              > li.rightlist {
                 padding: var(--spacing-16) 0;
 
                 .investsub-rightarticle {
@@ -978,7 +978,7 @@ main.nfo-nav .main-wrapper .section:first-of-type {
                     list-style: none;
                     margin: 0;
 
-                    > li.comlist {
+                    > li.rightlist {
                       @include font-style(
                         var(--label-small-size),
                         var(--label-small-line-height),
