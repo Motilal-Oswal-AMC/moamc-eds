@@ -6,9 +6,7 @@ export default function decorate(block) {
     'start-section',
   ];
   dataMapMoObj.addIndexed(block);
-
-  // CHANGE THIS LINE: Use querySelectorAll
-  const download = block.querySelectorAll('.section.fab-download');
+  const download = block.querySelectorAll('.fab-download.start-building-container');
 
   dataMapMoObj.CLASS_PREFIXES = [
     'fab-down-cont',
@@ -20,7 +18,6 @@ export default function decorate(block) {
     'fab-down-list-row',
   ];
 
-  // NOW this works because 'download' is a list
   if (download.length > 0) {
     download.forEach((sublist) => dataMapMoObj.addIndexed(sublist));
   }
