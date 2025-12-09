@@ -786,7 +786,7 @@ main.nfo-nav .main-wrapper .section:first-of-type {
                     flex-direction: column;
                     gap: 0;
 
-                    > li.rightlist {
+                    > li.rightlist.comlist {
                       padding: var(--spacing-16) 0;
                       border: none;
                       background-color: transparent;
@@ -931,7 +931,7 @@ main.nfo-nav .main-wrapper .section:first-of-type {
                   height: 160px;
                 }
 
-                img {
+                img.investsub-rightarticle4 {
                   width: 100%;
                   height: 100%;
                   border-radius: 3.92px;
