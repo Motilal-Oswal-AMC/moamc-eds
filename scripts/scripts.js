@@ -1156,18 +1156,26 @@ try {
 }
 
 // Unclaimed Redemption Block
-const section = document.querySelector('.unclaimed-redemption');
-const cardSection = document.querySelector('.unclaimed-redemption .cards-wrapper');
-const unclaimedForm = document.querySelector('.unclaimed-redemption .wealth-modal-wrapper');
-const elementNew = document.createElement('div');
-const elementDiv = document.createElement('div');
-elementDiv.classList.add('section-container');
-elementNew.classList.add('container');
-section.appendChild(elementNew);
-section.appendChild(elementDiv);
-elementDiv.appendChild(elementNew);
-elementNew.appendChild(cardSection);
-elementNew.appendChild(unclaimedForm);
+try {
+  // if (window.location.href == 'mutual-fund/in/en/static-pages/unclaimed-redemptions') {
+    const section = document.querySelector('.unclaimed-redemption');
+    const cardSection = document.querySelector('.unclaimed-redemption .cards-wrapper');
+    const unclaimedForm = document.querySelector('.unclaimed-redemption .wealth-modal-wrapper');
+    const elementNew = document.createElement('div');
+    const elementDiv = document.createElement('div');
+    elementDiv.classList.add('section-container');
+    elementNew.classList.add('container');
+    if (section !== null) {
+      section.appendChild(elementNew);
+      section.appendChild(elementDiv);
+      elementDiv.appendChild(elementNew);
+      elementNew.appendChild(cardSection);
+      elementNew.appendChild(unclaimedForm);
+    }
+  // }
+} catch (error) {
+  console.log(error);
+}
 // Unclaimed Redemption Block
 
 async function getlisting() {

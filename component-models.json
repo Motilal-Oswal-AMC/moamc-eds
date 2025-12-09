@@ -795,6 +795,10 @@
             "value": "privacy-policy-banner"
           },
           {
+            "name": "Privacy Policy Second Banner",
+            "value": "privacy-policy-second-banner"
+          },
+          {
             "name": "Invest Minor Account",
             "value": "invest-minor-account"
           },

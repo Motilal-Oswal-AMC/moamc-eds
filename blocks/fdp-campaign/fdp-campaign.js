@@ -228,6 +228,12 @@ export default function decorate(block) {
   //   });
   // }
 
+  // mainblock.querySelector('.privacy-policy-banner').classList.add('active');
+  // if(mainblock.querySelector('.privacy-policy-banner').contain('active')) {
+  //   mainblock.querySelector('.privacy-policy-banner').style.display = 'block';
+  // }else {
+  //   mainblock.querySelector('.privacy-policy-banner').style.display = 'none';
+  // }
   mainblock.querySelectorAll('.button')[0].classList.add('active');
   document.querySelectorAll('.privacy-policy-banner .button').forEach((btn) => {
     btn.addEventListener('click', () => {
