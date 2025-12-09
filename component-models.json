@@ -3956,7 +3956,7 @@
     ]
   },
   {
-    "id": "quick-purchase-item",
+    "id": "quick-purchase-block",
     "fields": [
       {
         "component": "text",
