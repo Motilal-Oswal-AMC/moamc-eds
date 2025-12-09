@@ -239,5 +239,8 @@
       "sip-past-performance-calculator-item",
       "goal-calculator-item"
     ]
+  },
+  {
+    "id": "quick-purchase-item"
   }
 ]

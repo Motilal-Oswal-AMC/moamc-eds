@@ -3954,5 +3954,75 @@
         "valueType": "string"
       }
     ]
+  },
+  {
+    "id": "quick-purchase-item",
+    "fields": [
+      {
+        "component": "text",
+        "name": "col1_Label",
+        "label": "Select Scheme Label"
+      },
+      {
+        "component": "richtext",
+        "name": "col1__Transaction_Type_Details",
+        "label": "Transaction Type Details"
+      },
+      {
+        "component": "text",
+        "name": "col1_Purchase_Amount_Label",
+        "label": "Purchase Amount Label"
+      },
+      {
+        "component": "number",
+        "name": "col1_Default_Purchase_Amount",
+        "label": "700000"
+      },
+      {
+        "component": "richtext",
+        "name": "col1_Advisor_Type",
+        "label": "Advisor Type Details"
+      },
+      {
+        "component": "text",
+        "name": "col1_Distributor_Code_label",
+        "label": "Distributor Code Label"
+      },
+      {
+        "component": "text",
+        "name": "col1_Default_Distributor_Code",
+        "label": "ARN Number"
+      },
+      {
+        "component": "text",
+        "name": "col1_SubDistributor_Code_label",
+        "label": "Sub Distributor Code Label"
+      },
+      {
+        "component": "text",
+        "name": "col1_Default_SubDistributor_Code",
+        "label": "ARN Sub Number"
+      },
+      {
+        "component": "text",
+        "name": "col1_Employee_Code_label",
+        "label": "Employee Code Label"
+      },
+      {
+        "component": "text",
+        "name": "col1_Euin_no_label",
+        "label": "EUIN Number Label"
+      },
+      {
+        "component": "richtext",
+        "name": "col2_quick_purchase_cta",
+        "label": "Quick Purchase CTA's Details"
+      },
+      {
+        "component": "richtext",
+        "name": "col3_generated_campaign_details",
+        "label": "Generated Campaign URL Details"
+      }
+    ]
   }
 ]

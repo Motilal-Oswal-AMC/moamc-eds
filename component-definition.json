@@ -1430,7 +1430,23 @@
               }
             }
           }
+        },    
+      {
+          "title": "Quick Purchase Item",
+          "id": "quick-purchase-item",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/item",
+                "template": {
+                  "name": "Quick Purchase Item",
+                  "model": "quick-purchase-item"
+                }
+              }
+            }
+          }
         }
+        
       ]
     }
   ]
