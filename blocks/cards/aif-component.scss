@@ -34,7 +34,6 @@
         li{
             border-radius: 16px;
             background: var(--neutrals-200);
-            max-width: 340px;
             width: 100%;
             border: 0;
             padding: 34px 12px;
@@ -75,7 +74,7 @@
                   font-style: normal;
                   font-weight: 600;
                   line-height: var(--body-large-semibold-line-height);
-                  max-width: 316px;
+                  width: 100%;
                   margin: 0;
               }
             }

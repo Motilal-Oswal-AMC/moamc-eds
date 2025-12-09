@@ -2,81 +2,102 @@
 @use "../../styles/common-theme/css/variables_mixins" as *;
 @use "../../styles/common-theme/css/fluid-typography" as *;
 
-.section .decoding-qglp-wrapper{
+main.nfo-nav {
+  .section.decoding-qglp-container {
+    margin-top: 32px;
+
+    @include media (mobile) {
+      margin-top: 0;
+      padding-bottom: 8px;
+    }
+  }
+}
+
+
+.section .decoding-qglp-wrapper {
   max-width: 1366px;
   width: 100%;
-  margin-top: 40px;
+  padding-top: 40px;
 
-   @include media(mobile) {
-     margin-top: 20px;
-  }
+  // @include media(mobile) {
+  //   padding-top: 56px;
+  // }
 
-.decoding-qglp {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 67px;
+  .decoding-qglp {
+    display: flex;
+    justify-content: space-between;
 
-  @include media(mobile) {
-    flex-direction: column;
-    gap: 20px;
-    padding: 0;
-  }
+    // align-items: center;
+    padding: 0 67px;
 
-  .glpcoding1 {
-    max-width: 504px;
-    width: 100%;
-
-    // padding-right:30px;  then as for figma
-
-    .glpcoding-inner1 {
-      display: flex;
+    @include media(mobile) {
       flex-direction: column;
-      gap: 12px;
+      gap: 20px;
+      padding: 0;
+    }
 
-      .glpcoding-sub-inner1 {
-        margin: 0;
+    .glpcoding1 {
+      max-width: 504px;
+      width: 100%;
 
-        @include font-style(
-          var(--heading-h1-size),
-          var(--heading-h1-line-height),
-          var(--blue-1-800-primary),
-          600,
-          var(--title)
-        );
+      // padding-right:30px;  then as for figma
 
-        @include media(mobile) {
-          font-size: 28px;
-          line-height: var(--sub-header-large-line-height);
-        }
-      }
-
-      .glpcoding-sub-inner2 {
-        margin: 0;
-
-        @include font-style(
-          var(--body-medium-regular-size),
-          24px,
-          var(--neutrals-800),
-          400,
-          var(--body)
-        );
+      .glpcoding-inner1 {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        
+        // margin-top: 47px;
 
         @include media(mobile) {
-          font-size: 16px;
-          line-height: 24px;
+          margin-top: 0;
         }
 
-        strong {
+        .glpcoding-sub-inner1 {
           margin: 0;
 
-          @include font-style(
-            var(--body-medium-regular-size),
-            var(--body-medium-regular-line-height),
-            var(--neutrals-800),
+          @include font-style(var(--heading-h1-size),
+            var(--heading-h1-line-height),
+            var(--blue-1-800-primary),
             600,
-            var(--body)
-          );
+            var(--title));
+
+          @include media(mobile) {
+            font-size: 28px;
+            line-height: var(--sub-header-large-line-height);
+          }
+        }
+
+        .glpcoding-sub-inner2 {
+          margin: 0;
+
+          @include font-style(var(--body-medium-regular-size), 24px, var(--neutrals-800), 400, var(--body));
+
+          @include media(mobile) {
+            font-size: 16px;
+            line-height: 24px;
+          }
+
+          strong {
+            margin: 0;
+
+            @include font-style(var(--body-medium-regular-size),
+              var(--body-medium-regular-line-height),
+              var(--neutrals-800),
+              600,
+              var(--body));
+
+            @include media(mobile) {
+              font-size: 16px;
+              line-height: 24px;
+            }
+          }
+        }
+
+        .glpcoding-sub-inner3 {
+          margin: 0;
+
+          @include font-style(var(--body-medium-regular-size), 24px, var(--neutrals-800), 400, var(--body));
 
           @include media(mobile) {
             font-size: 16px;
@@ -84,34 +105,22 @@
           }
         }
       }
+    }
 
-      .glpcoding-sub-inner3 {
-        margin: 0;
-
-        @include font-style(
-          var(--body-medium-regular-size),
-          24px,
-          var(--neutrals-800),
-          400,
-          var(--body)
-        );
-
-        @include media(mobile) {
-          font-size: 16px;
-          line-height: 24px;
-        }
+    .glpcoding2 {
+      .glpcoding-inner1 {
+        max-width: 608px;
+        max-height: 318px;
+        flex-shrink: 0;
+        border-radius: 16px;
+        background: var(--blue-1-25);
       }
     }
   }
+}
 
-  .glpcoding2 {
-    .glpcoding-inner1 {
-      max-width: 608px;
-      max-height: 318px;
-      flex-shrink: 0;
-      border-radius: 16px;
-      background: var(--blue-1-25);
-    }
-  }
-}
-}
+// .section.decoding-qglp-container {
+//   @include media(mobile) {
+//     padding-bottom: 8px;
+//   }
+// }

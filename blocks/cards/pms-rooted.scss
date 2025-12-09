@@ -236,7 +236,7 @@ $breakpoint-tablet: 900px;
                     }
 
                     p {
-                        color: var(--text-body, #424242);
+                        color: var(--text-body-2);
                         text-align: center;
                         font-family: var(--body);
                         font-size: var(--body-medium-regular-size);
@@ -251,8 +251,6 @@ $breakpoint-tablet: 900px;
                         @include media(mobile) {
                             font-size: var(--paragraph-small-size);
                             line-height: var(--paragraph-small-line-height);
-
-                            /* 142.857% */
                             margin: 0 0 110px;
                         }
 
@@ -277,6 +275,10 @@ $breakpoint-tablet: 900px;
                             flex-direction: column;
                             gap: 24px;
                             margin: 0 auto;
+
+                            @include media(mobile) {
+                                max-width: 164px;
+                            }
                         }
                     }
                 }
@@ -316,6 +318,7 @@ $breakpoint-tablet: 900px;
 
         @include media(mobile) {
             margin: 0 16px;
+
             // padding: 0 16px;
         }
 
@@ -408,8 +411,8 @@ $breakpoint-tablet: 900px;
         @include media(mobile) {
             margin: 0;
             padding-top: 16px;
+            padding-bottom: 0;
 
-            // padding-bottom: 0;
             // margin-left: unset;
             // padding-left: 16px;
             // padding-right: 16px;
@@ -483,7 +486,7 @@ $breakpoint-tablet: 900px;
                 max-width: 417px;
                 max-height: 385px;
 
-                @include media(mobile){
+                @include media(mobile) {
                     padding: 0;
                     border: 0;
                     border-radius: unset;
@@ -500,7 +503,7 @@ $breakpoint-tablet: 900px;
             line-height: 0;
             font-size: 0;
             z-index: -1;
-            
+
             @include media(desktop-md) {
                 left: 219px;
                 max-width: 417px;
@@ -528,11 +531,11 @@ $breakpoint-tablet: 900px;
                 aspect-ratio: 417/385;
                 height: 100%;
                 max-height: 385px;
-                
+
                 @include media(mobile) {
-                aspect-ratio: 372/349;
-                height: 100%;
-                max-height: 349px;
+                    aspect-ratio: 372/349;
+                    height: 100%;
+                    max-height: 349px;
                 }
             }
         }
@@ -570,6 +573,11 @@ $breakpoint-tablet: 900px;
                         font-size: var(--heading-h4-size, 32px);
                         font-style: normal;
                         line-height: var(--heading-h4-line-height, 40px);
+
+                        @include media (mobile) {
+                            font-size: var(--heading-h5-size, 28px);
+                            line-height: var(--sub-header-large-line-height, 32px);
+                        }
                     }
 
                     h5 {
@@ -582,9 +590,16 @@ $breakpoint-tablet: 900px;
 
                     p {
                         margin-bottom: 30px;
+                        max-width: 700px;
+                        font-feature-settings: var(--font-features-default);
 
                         @include media (mobile) {
                             margin-bottom: 93px;
+                            max-width: 100%;
+                        }
+
+                        @include media (mobile-md) {
+                            padding: 0 15px;
                         }
                     }
                 }

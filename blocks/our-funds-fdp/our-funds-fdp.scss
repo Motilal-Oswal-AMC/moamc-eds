@@ -478,7 +478,7 @@
 
         &::-webkit-scrollbar-thumb {
           width: 3px;
-          background-color: #6e6c6c; //#eee;
+          background-color: #6e6c6c; // #eee;
         }
 
         @include media(mobile) {

@@ -110,6 +110,31 @@
                     }
                 }
 
+                .video-wrap{
+                    position: relative;
+
+                    .leftartitem6{
+                        position: absolute;
+                        margin: 0;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        width: 100%;
+                        height: 100%;
+
+                        .button{
+                            margin: 0;
+                            width: 100%;
+                            height: 100%;
+                            background-color: transparent;
+                            color: transparent;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                        }
+                    }
+                }
+
                 .leftartitem7 {
                     border: none;
 
@@ -183,7 +208,7 @@
                 .comlist.leftartitem2,
                 .leftartitem3,
                 .leftartitem5 {
-                    margin: 24px 0 25px;
+                    margin: 24px 0;
                     color: #3D3D3D;
                     font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
                     font-family: var(--body);
@@ -283,7 +308,7 @@
                             box-sizing: border-box;
                             gap: unset;
 
-                            >li {
+                            >li.itemleftart1 {
                                 // padding: 0 0.5rem;
                                 flex-grow: 0;
                                 flex-shrink: 0;
@@ -422,6 +447,10 @@
                     }
                 }
 
+                .leftartitem4 {
+                   padding: 40px 0 0;
+                }
+
                 .leftartitem2.comlist {
                     margin: var(--spacing-40) 0 var(--spacing-16);
                     color: var(--blue-1800-primary, #2E2A94);
@@ -446,7 +475,7 @@
 
         .articlesub1 {
             @include media(mobile) {
-                display: none;
+                // display: none;
             }
 
             .default-content-wrapper.articleitem1 {
@@ -480,7 +509,7 @@
                     border-radius: var(--border-radius-8);
                     background: var(--neutrals-black);
 
-                    .button {
+                    .button.mainarticle1 {
                         color: var(--text-white);
                         text-align: center;
                         font-feature-settings: var(--font-features-default);
@@ -504,7 +533,7 @@
         .article-sub-right {
             &.recommended-posts.cards-container {
                 @include media (mobile) {
-                    padding-bottom: 40px;
+                    // padding-bottom: 40px;
                 }
             }
         }

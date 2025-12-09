@@ -1,6 +1,7 @@
 @import "../fund-card/fund-card.css";
 @import "./popular-acticles.css";
 @import "./previous-studies.css";
+@import './glossary-tabs.css';
 
 /* --- General Table Styling --- */
 table {
@@ -815,10 +816,89 @@ table>tbody>tr>td:nth-child(7) {
 }
 
 
+/* Previous Studies Start */
+.section.previous-studies-tab .tabs-wrapper .tabs .tabs-list {
+  border-radius: 8px;
+  background: var(--neutrals-white);
+  box-shadow: 0 4px 16px 0 rgb(47 64 84 / 12%);
+  max-height: 208px;
+  height: 100%;
+}
 
+.section.previous-studies-tab .tabs-wrapper .tabs .tabs-list::-webkit-scrollbar {
+  width: 3px;
+  background-color: #464343;
+}
+
+.section.previous-studies-tab .tabs-wrapper .tabs .tabs-list::-webkit-scrollbar-track {
+  width: 3px;
+  background-color: #fff;
+  border-radius: 0 1px 1px 0;
+}
+
+.section.previous-studies-tab .tabs-wrapper .tabs .tabs-list::-webkit-scrollbar-thumb {
+  width: 3px;
+  background-color: #464343;
+}
+
+.section.previous-studies-tab .tabs-wrapper .tabs .tabs-list .tabs-tab {
+  border: unset;
+  padding: 16px;
+  color: var(--neutrals-900);
+  font-feature-settings: var(--font-features-default);
+  font-family: var(--body);
+  font-size: var(--body-medium-regular-size);
+  font-weight: 400;
+  line-height: var(--body-medium-regular-line-height);
+  background: var(--surface-background-neutral-subtle);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 15px;
+}
+
+.section.previous-studies-tab .tabs-wrapper .tabs .tabs-list .tabs-tab::after {
+  content: '';
+  background: url('../../icons/dropdown-tick.svg') center center no-repeat;
+  width: 24px;
+  height: 24px;
+  display: none;
+  position: absolute;
+  right: 20px;
+}
+
+.section.previous-studies-tab .tabs-wrapper .tabs .tabs-list .tabs-tab:hover {
+    background: var(--blue-1-25);
+}
+
+.section.previous-studies-tab .tabs-wrapper .tabs .tabs-list .tabs-tab:focus {
+    background: var(--blue-1-50);
+}
+
+.section.previous-studies-tab .tabs-wrapper .tabs .tabs-list .tabs-tab[aria-selected='true'] {
+    color: var(--blue-1-800-primary);
+    font-size: var(--body-medium-semibold-size);
+    line-height: var(--body-medium-semibold-line-height);
+    font-weight: 600;
+}
+
+.section.previous-studies-tab .tabs-wrapper .tabs .tabs-list .tabs-tab[aria-selected='true']::after {
+    display: block;
+}
+
+@media screen and (max-width<=786px) {
+  .section.previous-studies-tab .tabs-wrapper .tabs .tabs-list {
+    background-color: #fff;
+    z-index: 9999999;
+  }
+}
+
+/* Previous Studies End */
 
 
 /* popular-tab  Start */
+
 /* 
 .section.popular-tab>.tabs-wrapper>.tabs>.popular-tabwrapper {
   display: flex;
@@ -898,7 +978,8 @@ table>tbody>tr>td:nth-child(7) {
 
 
 
-/* Leran Tabs  Start*/
+/* Leran Tabs  Start */
+
 /* 
 .section.learn-tab {
   padding: 40px 0;
@@ -989,4 +1070,4 @@ table>tbody>tr>td:nth-child(7) {
   }
 } */
 
-/* Leran Tabs  End*/
+/* Leran Tabs  End */

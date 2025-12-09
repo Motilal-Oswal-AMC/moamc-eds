@@ -340,7 +340,7 @@
 //   }
 // }
 
-//Accessibility  Done
+// Accessibility  Done
 
 @use "sass:map";
 @use "../../styles/common-theme/css/variables_mixins"as *;
@@ -354,7 +354,8 @@
   padding: 0;
   margin: -1px;
   overflow: hidden;
-  clip: rect(0 0 0 0);
+
+  // clip: rect(0 0 0 0);
   white-space: nowrap;
   border: 0;
 }

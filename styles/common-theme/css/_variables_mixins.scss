@@ -193,7 +193,7 @@ $font-weights: (
 // ----------------------------------------
 
 @mixin typography-h2 {
-  font-family: $butlerpro;
+  font-family: $inter;
   color: $primary-blue;
   font-weight: map.get($font-weights, bold);
   line-height: $line-height-h2;
@@ -250,6 +250,7 @@ $breakpoints: (
   mobile-sm: 361px,
   mobile-md: 391px,
   mobile: 768px,
+  mobile-ed: 899px,
   tab: 1025px,
   desktop-sm: 1299px,
   desktop-md: 1367px,
@@ -322,7 +323,7 @@ $breakpoints: (
 }
 
 
-//Typeface start
+// Typeface start
 
 $title: "Inter", sans-serif;
 $body: "Inter", sans-serif;
@@ -331,9 +332,9 @@ $weight-semibold: "Semibold";
 $weight-medium: "Medium";
 $weight-bold: "Bold";
 
-//Typeface end
+// Typeface end
 
-//spacing start
+// spacing start
 
 $spacing-none: 0px;
 $spacing-4: 4px;
@@ -370,7 +371,7 @@ $spacing-68: 68px;
 $spacing-76: 76px;
 $spacing-80: 80px;
 
-//spacing end
+// spacing end
 
 // colors start
 
@@ -456,7 +457,7 @@ $neutrals-white: #fff;
 // colors end
 
 
-//semantic-lights start
+// semantic-lights start
 
 $text-header: $blue-1-600;
 $text-sub-header: $neutrals-900;
@@ -515,9 +516,10 @@ $text-button-disabled: $neutrals-500;
 $card-stroke: #B9BBFF;
 $surface-icon-primary-normal: $blue-1-800-primary;
 
-//semantic-lights end
+//  semantic-lights end
 
-//typescale-desktop start
+//  typescale-desktop start
+
 $typography-desktop: (
   body-xlarge-bold-font: $body,
   body-xlarge-bold-weight: $weight-semibold,
@@ -674,9 +676,9 @@ $typography-desktop: (
   body-xsmall-regular-line-height: 14px
 );
 
-//typescale-desktop end
+// typescale-desktop end
 
-//typescale-mobile start
+// typescale-mobile start
 $typography-mobile: (
   body-xlarge-bold-font: $body,
   body-xlarge-bold-weight: $weight-semibold,
@@ -835,4 +837,4 @@ $typography-mobile: (
   body-xsmall-regular-line-height: 14px
 );
 
-//typescale-mobile end
+// typescale-mobile end

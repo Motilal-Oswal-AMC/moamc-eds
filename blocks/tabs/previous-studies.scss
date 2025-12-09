@@ -2,9 +2,26 @@
 @use "../../styles/common-theme/css/variables_mixins"as *;
 @use "../../styles/common-theme/css/fluid-typography"as *;
 
-// previous-studies start
+main.nfo-nav {
+  .previous-studies-ctn.section:first-of-type {
+    margin-top: 72px;
 
-.previous-studies-ctn.tabs-container{
+    @include media (mobile) {
+      margin-top: 0;
+    }
+  }
+}
+
+// previous-studies start
+.section.previous-studies-ctn.tabs-container.legendwordctn {
+  margin-top: 21px;
+
+  @include media (mobile) {
+    margin-top: 0;
+  }
+}
+
+.previous-studies-ctn.tabs-container {
   color: var(--blue-1-800-primary);
   font-family: var(--title, Inter);
   font-size: var(--heading-h1-size);
@@ -18,86 +35,93 @@
   }
 
   .default-content-wrapper.previous-studies-ex1 {
-    padding: 40px 0;
-    
+    padding: 0 0 40px;
+    margin-top: 40px;
+
     @include media(mobile) {
-      padding: 56px 16px 32px;
+      padding: 40px 16px 32px;
+      margin-top: 0;
     }
 
-    .previous-studies-inter1{
-        margin: 0;
+    .previous-studies-inter1 {
+      margin: 0;
+      color: var(--blue-1-800-primary);
+      font-family: var(--title);
+      font-size: var(--heading-h1-size);
+      font-style: normal;
+      font-weight: 600;
+      line-height: var(--heading-h1-line-height);
+
+      @include media(mobile) {
         color: var(--blue-1-800-primary);
         font-family: var(--title);
-        font-size: var(--heading-h1-size);
+        font-size: var(--heading-h5-size, 28px);
         font-style: normal;
         font-weight: 600;
-        line-height: var(--heading-h1-line-height);
-        
-        @include media(mobile) {
-            color: var(--blue-1-800-primary);
-            font-family: var(--title);
-            font-size: var(--heading-h5-size, 28px);
-            font-style: normal;
-            font-weight: 600;
-            line-height: var(--sub-header-large-line-height);
-        }
+        line-height: var(--sub-header-large-line-height);
+      }
     }
 
   }
 
-  .previous-studies-ex2{
+  .previous-studies-ex2 {
     @include media(mobile) {
       padding: 0;
     }
 
-    .tabs-list{
+    .tabs-list {
       gap: 8px;
       scrollbar-width: none;
 
-        @include media(mobile) {
-            padding: 0 16px;
-        }
+      &::-webkit-scrollbar {
+        display: none;
+      }
 
-      .tabs-tab{
+      @include media(mobile) {
+        padding: 0 16px;
+      }
+
+      .tabs-tab {
         border-radius: var(--border-radius-circle);
         padding: 8px 12px;
         border: var(--border-width-01) solid var(--strokes-disabled);
         background: var(--surface-disabled);
-        
-        &.active{          
+
+        &.active {
           border: var(--border-width-01) solid var(--strokes-selected);
           background: var(--surface-selected);
 
-          .comlist{
+          .comlist {
             color: #2E2A94;
             font-family: var(--body);
             font-size: var(--body-small-medium-size);
             font-style: normal;
             font-weight: 500;
             line-height: var(--body-small-medium-line-height);
-          
+
           }
         }
 
-        .previous-studies-txt1{
-            color: var(--text-body, #424242);
-            font-family: var(--body, Inter);
-            font-size: var(--body-small-regular-size);
-            font-style: normal;
-            font-weight: 400;
-            line-height: var(--label-large-line-height);
+        .previous-studies-txt1 {
+          color: var(--text-body, #424242);
+          font-family: var(--body, Inter);
+          font-size: var(--body-small-regular-size);
+          font-style: normal;
+          font-weight: 400;
+          line-height: var(--label-large-line-height);
         }
       }
 
     }
 
-    .tabs-panel{
+    .tabs-panel {
       border: none;
       padding: 40px 0;
+      margin: 0;
 
-        @include media(mobile) {
-            padding: 52px 16px 72px;
-        }
+      @include media(mobile) {
+        padding: 52px 0 72px;
+      }
     }
   }
 

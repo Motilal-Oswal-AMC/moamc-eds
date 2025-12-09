@@ -1,8 +1,10 @@
+// import dataMapMoObj from "../../scripts/constant";
 /**
  * Decorates the moedge-article-video block.
  * @param {Element} block The block element
  */
 export default function decorate(block) {
+  // dataMapMoObj.article();..
   const mainArticle1 = block.querySelector('.moedge-article-video .mainarticle1');
   const mainArticle2 = block.querySelector('.moedge-article-video .mainarticle2');
 

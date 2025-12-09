@@ -148,5 +148,158 @@ const dataMapMoObj = {
       })
       .join(' ');
   },
+  setupPagination: (blockdiv, items, itemsPerPage) => {
+    const funcObj = {};
+    const totalPages = Math.ceil(items.length / itemsPerPage);
+
+    // 1. If 1 or 0 pages, do nothing
+    if (totalPages <= 1) return;
+
+    let currentPage = 1;
+
+    const mainContainer = blockdiv.closest('.section');
+    if (!mainContainer) return;
+
+    // const defaultPagination = mainContainer.querySelector('.section > div');
+    // if (defaultPagination) defaultPagination.remove();
+
+    const paginationWrapper = document.createElement('div');
+    paginationWrapper.className = 'pagination-wrapper';
+
+    // --- CORE LOGIC: Adjustable Dots ---
+    function generatePaginationList(current, total) {
+    // A. IF 5 OR FEWER PAGES: Show everything, no dots
+      if (total <= 5) {
+        return Array.from({ length: total }, (_, i) => i + 1);
+      }
+
+      // B. IF MORE THAN 5 PAGES: Adjustable Logic
+
+      // 1. Near the START (Pages 1, 2, 3, 4)
+      // Show: 1 2 3 4 5 ... [Last]
+      if (current < 5) {
+        return [1, 2, 3, 4, 5, '...', total];
+      }
+
+      // 2. Near the END (Within the last 4 pages)
+      // Show: 1 ... 16 17 18 19 20
+      if (current >= total - 3) {
+        return [1, '...', total - 4, total - 3, total - 2, total - 1, total];
+      }
+
+      // 3. Somewhere in the MIDDLE
+      // Show: 1 ... [prev] [current] [next] ... [Last]
+      return [1, '...', current - 1, current, current + 1, '...', total];
+    }
+
+    // --- CONTROLLER ---
+    function goToPage(page) {
+      currentPage = page;
+      const start = (page - 1) * itemsPerPage;
+      const end = start + itemsPerPage;
+      // Toggle Visibility
+      items.forEach((item, index) => {
+        if (item.closest('.section').querySelector('.listing-investor-banner')) {
+          if (page === 1) {
+            item.closest('.section').querySelector('.listing-investor-banner').classList.remove('hidden-item');
+          } else {
+            item.closest('.section').querySelector('.listing-investor-banner').classList.add('hidden-item');
+          }
+        }
+        item.classList.toggle('hidden-item', index < start || index >= end);
+      });
+
+      funcObj.renderControls();
+
+      // Scroll Up Logic
+      if (mainContainer) {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    // --- RENDERER ---
+    const renderControls = () => {
+      paginationWrapper.innerHTML = '';
+
+      // Previous Arrow
+      const prevBtn = document.createElement('button');
+      prevBtn.innerHTML = '&lsaquo;';
+      prevBtn.className = 'pagination-arrow prev-btn';
+      prevBtn.ariaLabel = 'Previous Page';
+      prevBtn.disabled = currentPage === 1;
+      prevBtn.addEventListener('click', () => {
+        if (currentPage > 1) goToPage(currentPage - 1);
+      });
+      paginationWrapper.appendChild(prevBtn);
+
+      // Number Buttons
+      const pageList = generatePaginationList(currentPage, totalPages);
+
+      pageList.forEach((item) => {
+        if (item === '...') {
+          const ellipsis = document.createElement('span');
+          ellipsis.textContent = '...';
+          ellipsis.className = 'pagination-ellipsis';
+          paginationWrapper.appendChild(ellipsis);
+        } else {
+          const btn = document.createElement('button');
+          btn.textContent = item;
+          btn.className = 'pagination-btn';
+          if (item === currentPage) btn.classList.add('active');
+          btn.addEventListener('click', () => goToPage(item));
+          paginationWrapper.appendChild(btn);
+        }
+      });
+
+      // Next Arrow
+      const nextBtn = document.createElement('button');
+      nextBtn.innerHTML = '&rsaquo;';
+      nextBtn.className = 'pagination-arrow next-btn';
+      nextBtn.ariaLabel = 'Next Page';
+      nextBtn.disabled = currentPage === totalPages;
+      nextBtn.addEventListener('click', () => {
+        if (currentPage < totalPages) goToPage(currentPage + 1);
+      });
+      paginationWrapper.appendChild(nextBtn);
+    };
+    funcObj.renderControls = renderControls;
+    // Initialize
+    mainContainer.appendChild(paginationWrapper);
+    goToPage(1);
+  },
+  getOrdinalSuperscript: (n) => {
+  // Ensure the input is a number
+    if (typeof n !== 'number' || Number.isNaN(n)) {
+      return String(n); // Return the input as is if it's not a valid number
+    }
+
+    // Handle the special cases for 11, 12, and 13 (which always use 'th')
+    const s = n % 100;
+    if (s >= 11 && s <= 13) {
+      return `${n}<sup>th</sup>`;
+    }
+
+    // Handle the common cases using the last digit
+    const lastDigit = n % 10;
+    let suffix = '';
+
+    switch (lastDigit) {
+      case 1:
+        suffix = 'st';
+        break;
+      case 2:
+        suffix = 'nd';
+        break;
+      case 3:
+        suffix = 'rd';
+        break;
+      default:
+        suffix = 'th';
+        break;
+    }
+
+    // Return the number concatenated with the superscript suffix
+    return `${n}<sup>${suffix}</sup>`;
+  },
 };
 export default dataMapMoObj;

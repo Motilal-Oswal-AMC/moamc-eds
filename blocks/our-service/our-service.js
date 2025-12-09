@@ -4,14 +4,15 @@ import dataMapMoObj from '../../scripts/constant.js';
 
 export default function decorate(block) {
   buildtabblock(block);
+  block.classList.add('gradient-show');
 
   const tabPanels = block.querySelectorAll('.tabs-panel');
   tabPanels.forEach((el) => {
     el.setAttribute('aria-hidden', true);
   });
   tabPanels[0].setAttribute('aria-hidden', false);
-  const tabs = block.querySelectorAll('.tabs-tab');
-  console.log(tabs);
+  // const tabs = block.querySelectorAll('.tabs-tab');
+  // console.log(tabs);
   if (tabPanels.length > 0) {
     const wrapper = document.createElement('div');
     wrapper.classList.add('tabs-panels-wrapper');

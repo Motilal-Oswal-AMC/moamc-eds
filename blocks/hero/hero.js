@@ -112,4 +112,15 @@ export default function decorate(block) {
     }
   });
   // });
+  const newSection = document.querySelectorAll('.mo-inter-business.hero-container');
+  dataMapMoObj.CLASS_PREFIXES = [
+    'mo-inter-cont',
+    'mo-inter-sec',
+    'mo-inter-sub',
+    'mo-inter-inner-text',
+    'mo-inter-list',
+    'mo-inter-list-content',
+    'mo-inter-list-row',
+  ];
+  newSection.forEach((sublist) => dataMapMoObj.addIndexed(sublist));
 }

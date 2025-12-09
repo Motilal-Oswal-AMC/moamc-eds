@@ -31,13 +31,23 @@
 
         .our-authors-cont1 {
             display: flex;
-
-            // width: 196px;
             flex-direction: column;
             align-items: flex-start;
             gap: 5.297px;
+            
+            // margin-bottom: 8px;
+
+            @include media (mobile) {
+                margin-bottom: 0;
+            }
 
             .our-authors-section1 {
+                height: 196px;
+
+                @include media (mobile) {
+                    height: 308px;
+                }
+
                 img {
                     max-width: 196px;
                     height: 100%;
@@ -109,11 +119,12 @@
                     .authors-lists2 {
                         display: flex;
                         flex-direction: column;
-                        gap: 16px;
+                        gap: 12px;
+                        overflow-wrap: break-word;
 
                         p {
                             color: var(--text-body);
-                            font-feature-settings: (--font-features-default);
+                            font-feature-settings: var(--font-features-default);
                             font-family: var(--body);
                             font-size: var(--body-small-regular-size, 14px);
                             font-style: normal;
@@ -128,6 +139,9 @@
 }
 
 .section.our-author-detail.our-authors-container {
+    padding-top: 0;
+    margin-top: 16px;
+
     @include media(mobile) {
         margin-top: 0;
     }

@@ -13,6 +13,8 @@ import {
 import dataCfObj from '../../scripts/dataCfObj.js';
 import { initObserver, myAPI } from '../../scripts/scripts.js';
 
+window.am5.addLicense('AM5C-253273928');
+
 export default function decorate(block) {
   const col1 = block.children[0].querySelector('h4');
   const col2 = block.children[0].querySelector('p');

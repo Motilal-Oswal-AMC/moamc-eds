@@ -11,6 +11,9 @@ import {
 
 export default function decorate(block) {
   const crosImage = Array.from(block.querySelectorAll('p'))[0];
+  if (block.querySelector('h4') === null) {
+    return false;
+  }
   const heading = block.querySelector('h4').textContent.trim();
   const arn = Array.from(block.querySelectorAll('p'))[1].textContent;
   const distributor = Array.from(block.querySelectorAll('p'))[2].textContent;
@@ -241,4 +244,5 @@ export default function decorate(block) {
       removeClassAfterDelay();
     });
   }
+  return block;
 }
