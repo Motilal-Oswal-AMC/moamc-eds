@@ -472,6 +472,12 @@ main.nfo-nav .main-wrapper .section:first-of-type {
                   line-height: var(--body-large-semibold-line-height);
                 }
               }
+
+              h2.comlist strong,
+              h3.comlist strong,
+              h4.comlist strong{
+                font-weight: 600;
+              }
             }
           }
         }
