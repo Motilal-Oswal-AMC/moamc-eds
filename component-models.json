@@ -175,6 +175,22 @@
             "value": "highlight"
           },
           {
+            "name": "NRI Hero",
+            "value": "nri-hero"
+          },
+          {
+            "name": "NRI Why choose",
+            "value": "nri-why-choose"
+          },
+          {
+            "name": "NRI High Skin",
+            "value": "nri-high-skin"
+          },
+          {
+            "name": "NRI Accordion",
+            "value": "nri-accordion"
+          },
+          {
             "name": "Fund Tax",
             "value": "fund-tax"
           },
