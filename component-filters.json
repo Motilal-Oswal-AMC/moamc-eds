@@ -241,6 +241,9 @@
     ]
   },
   {
-    "id": "quick-purchase-block"
+    "id": "quick-purchase-block",
+    "components": [
+      "quick-purchase-item"
+    ]
   }
 ]
