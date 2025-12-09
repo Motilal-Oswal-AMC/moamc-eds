@@ -764,12 +764,13 @@ function articleStructure() {
                         <li class="list-media listindex2"><a class="list-link" title="WhatsApp"><span class="media-icon icon icon-whatsapp"><img data-icon-name="whatsapp" src="/icons/whatsapp.svg" alt="" loading="lazy" width="16" height="16"></span>WhatsApp</a></li>
                         <li class="list-media listindex3"><a class="list-link" title="X"><span class="media-icon icon icon-Twitter"><img data-icon-name="Twitter" src="/icons/Twitter.svg" alt="" loading="lazy" width="16" height="16"></span>X</a></li>
                         <li class="list-media listindex4"><a class="list-link" title="Copy"><span class="media-icon icon icon-copyfdp"><img data-icon-name="copyfdp" src="/icons/copyfdp.svg" alt="" loading="lazy" width="16" height="16"></span>Copy</a></li>
-                        <li class="list-media listindex5" style="display: none;">URL Copied</li>
+                        <li class="list-media listindex5">URL Copied</li>
                       </ul>`;
       const sharemediaV2 = document.createElement('div');
       sharemediaV2.classList.add('list-share-popup');
       // sharemediaV2.style.display = 'none';
       sharemediaV2.innerHTML += sharemedia;
+      sharemediaV2.querySelector('.listindex5').style.display = 'none';
       shareBtn.closest('li').appendChild(sharemediaV2);
       shareBtn.closest('li').classList.add('mediaicons');
       dropdownV2 = openSharePopup.querySelector('.list-share-popup');
@@ -787,12 +788,14 @@ function articleStructure() {
 
       // Close dropdown on outside click
       document.addEventListener('click', (e) => {
-        if (!e.target.closest('.open-share-popup')) {
+        if (!e.target.closest('.open-share-popup') && dropdown !== null) {
           dropdown.classList.remove('active');
+        }
+        if (!e.target.closest('.list-share-popup') && dropdownV2 !== null) {
+          dropdownV2.classList.remove('active');
         }
       });
     }
-
     // document.querySelectorAll('.comlist.submainart3.itemmainleftart3').forEach((listItem) => {
     //   const ul = listItem.querySelector('.list-share-popup');
     //   if (!ul) return;
@@ -868,12 +871,12 @@ function articleStructure() {
 
       if (cp && copyPopup) {
         // hide listindex5 initially
-        copyPopup.style.display = 'none';
-        copyPopup.style.position = 'absolute';
-        copyPopup.style.left = '50%';
-        copyPopup.style.top = '50%';
-        copyPopup.style.transform = 'translate(-50%, -50%)';
-        copyPopup.style.zIndex = '999';
+        // copyPopup.style.display = 'none';
+        // copyPopup.style.position = 'absolute';
+        // copyPopup.style.left = '50%';
+        // copyPopup.style.top = '50%';
+        // copyPopup.style.transform = 'translate(-50%, -50%)';
+        // copyPopup.style.zIndex = '999';
 
         cp.querySelector('a')?.removeAttribute('href');
 
@@ -914,7 +917,7 @@ function articleStructure() {
         const formem = blokform;
         formem.classList.add('email-imput');
         formem.addEventListener('input', (event) => {
-          const closblock = event.target.closest('.footer');
+          const closblock = event.target.closest('.subscribe-email');
           elemObj.errorelm = closblock;
           if (closblock.querySelector('.errormsg') === null) {
             closblock.querySelector('.field-wrapper').append(span({ class: 'errormsg' }, 'Enter a valid email address'));
@@ -938,7 +941,7 @@ function articleStructure() {
             closblock.querySelector('.errormsg').style.display = 'block';
             inpelm.add('email-fail');
             formem.nextElementSibling.style.display = 'block';
-            // inpelm.remove('email-success');
+            inpelm.remove('email-success');
           }
         });
         const wrapperimg = document.createElement('div');
@@ -973,6 +976,39 @@ function articleStructure() {
         });
       }
     });
+
+    document.querySelector('.future-building-wrapper .swiper-wrapper')
+    let arrayinv = dataMapMoObj.getinvestorblog.filter((element) => element.path.includes('/images/'));
+    console.log(arrayinv);
+    const dataswiper = `<div class="swiper-slide swiper-slide-active" data-swiper-slide-index="0" role="group" aria-label="1 / 3" style="margin-right: 16px;">
+    <div class="swiper-slide-cards-1"><a href="/content/eds-ru01/motilalfigma/modals/youtube-video" title="/content/eds-ru01/motilalfigma/modals/youtube-video" class="button"><picture>
+                <source type="image/webp" srcset="./media_198d0bd7effd4422c99c4935db941ebcd8230abb8.png?width=2000&amp;format=webply&amp;optimize=medium" media="(min-width: 600px)">
+                <source type="image/webp" srcset="./media_198d0bd7effd4422c99c4935db941ebcd8230abb8.png?width=750&amp;format=webply&amp;optimize=medium">
+                <source type="image/png" srcset="./media_198d0bd7effd4422c99c4935db941ebcd8230abb8.png?width=2000&amp;format=png&amp;optimize=medium" media="(min-width: 600px)">
+                <img loading="lazy" alt="planning for the future" src="./media_198d0bd7effd4422c99c4935db941ebcd8230abb8.png?width=750&amp;format=png&amp;optimize=medium" width="400" height="225">
+              </picture></a></div><div class="swiper-slide-cards-2">
+              <ul class="cards-listcards1">
+                <li class="cards-list-1-cards1 card-list">
+                  <p class="list-child-11"><span class="icon icon-Article list-grandch-child1"><img data-icon-name="Article" src="/icons/Article.svg" alt="Article icon" loading="lazy" width="16" height="16"></span>Article</p>
+                  <ul class="list-child-12">
+                    <li class="list-grandch-child1">4 min read</li>
+                    <li class="list-grandch-child2"><span class="icon icon-calendar-01"><img data-icon-name="calendar-01" src="/icons/calendar-01.svg" alt="" loading="lazy" width="16" height="16"></span>July 7, 2022</li>
+                  </ul>
+                </li>
+                <li class="cards-list-1-cards2 card-list">
+                  <p class="button-container list-child-11"><a href="/content/eds-ru01/motilalfigma/modals/youtube-video" title="Hear our fund managers talk" class="button list-grandch-button1">Hear our fund managers talk</a></p>
+                </li>
+                <li class="cards-list-1-cards3 card-list">
+                  <p class="list-child-11">Get expert insights straight from our fund managers as they break down market trends, strategies, and what’s shaping your investments.</p>
+                </li>
+                <li class="cards-list-1-cards4 card-list">
+                  <p class="button-container list-child-11"><a href="/content/eds-ru01/motilalfigma/modals/youtube-video" title="Read Now" class="button list-grandch-button1">Read Now</a></p>
+                </li>
+                <li class="cards-list-1-cards5 card-list">
+                  <p class="button-container list-child-11"><a href="/content/eds-ru01/motilalfigma/modals/youtube-video" title="" class="button list-grandch-button1"><span class="icon icon-Subtract"><img data-icon-name="Subtract" src="/icons/Subtract.svg" alt="Save for later" loading="lazy" width="16" height="16"></span></a></p>
+                </li>
+              </ul>
+            </div></div>`
   }
 }
 dataMapMoObj.article = articleStructure;

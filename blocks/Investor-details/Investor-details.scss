@@ -185,7 +185,7 @@ main.nfo-nav .main-wrapper .section:first-of-type {
                         font-feature-settings: var(--font-features-default);
                         font-weight: 400;
 
-                        .media-icon{
+                        .media-icon {
                           width: 24px;
                           height: 24px;
                         }
@@ -455,7 +455,8 @@ main.nfo-nav .main-wrapper .section:first-of-type {
               }
 
               h2.comlist,
-              h3.comlist {
+              h3.comlist,
+              h4.comlist {
                 margin: 0 0 24px;
 
                 @include font-style(
@@ -842,14 +843,14 @@ main.nfo-nav .main-wrapper .section:first-of-type {
                       display: none;
                     }
 
-                    &.email-fail{
-                      .crosserror{
+                    &.email-fail {
+                      .crosserror {
                         display: block;
                       }
                     }
 
-                    &.email-success{
-                      .crosssuccess{
+                    &.email-success {
+                      .crosssuccess {
                         display: block;
                       }
                     }
@@ -862,6 +863,18 @@ main.nfo-nav .main-wrapper .section:first-of-type {
                       top: -10px;
                       background-color: var(--blue-1-800-primary);
                     }
+                  }
+
+                  .errormsg {
+                    // position: absolute;
+                    bottom: -20px;
+                    color: #ff8088;
+                    font-weight: 400;
+                    font-feature-settings: var(--font-features-default);
+                    font-size: var(--paragraph-xsmall-size);
+                    line-height: var(--paragraph-xsmall-line-height);
+                    margin-top: 4px;
+                    margin-left: 5px;
                   }
                 }
 
