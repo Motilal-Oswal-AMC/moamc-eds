@@ -10,7 +10,7 @@ import {
   td,
 } from '../../scripts/dom-helpers.js';
 
-import objData from '../../scripts/dataCfObj.js';
+// import objData from '../../scripts/dataCfObj.js';
 import dataMapMoObj from '../../scripts/constant.js';
 
 // Set to `true` to use the live API.
@@ -29,7 +29,7 @@ export default async function decorate(block) {
   if (dataMapMoObj.fundManagerDetails.length !== 0) {
     fundManagers = dataMapMoObj.fundManagerDetails;
   } else {
-    fundManagers = objData.cfDataObjs[0].fundManager;
+    fundManagers = dataMapMoObj.schemeCodeResp[0].fundManager;
   }
   const selectedAgent = localStorage.getItem('FM-AgentName');
 
@@ -48,7 +48,7 @@ export default async function decorate(block) {
           }
           return el;
         });
-        const schemeCodeValue = localStorage.getItem('schcodeactive');
+        // const schemeCodeValue = localStorage.getItem('schcodeactive');
         // let planFlow;
         let planslabel;
         if (window.location.href.includes('/our-funds/funds-details-page')) {

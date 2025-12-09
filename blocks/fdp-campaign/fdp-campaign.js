@@ -200,7 +200,7 @@ export default function decorate(block) {
   //   Array.from(mainblock.querySelectorAll('.privacy-policy-banner')).forEach((elem) => {
   //     const btnstru = div({ class: 'button-container' },
   //       ...Array.from(mainblock.querySelectorAll('.privacy-policy-banner')).map((element) => {
-  //         return button({ class: 'button', dataAttr: 
+  //         return button({ class: 'button', dataAttr:
   // element.getAttribute('data-id') }, element.getAttribute('data-id'))
   //       })
   //     );

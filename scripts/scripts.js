@@ -778,7 +778,7 @@ function articleStructure() {
       shareIcon.addEventListener('click', (e) => {
         e.stopPropagation();
 
-        const isVisible = popup.style.display === 'block';
+        // const isVisible = popup.style.display === 'block';
       });
 
       // GET SHARE TEXT + URL
