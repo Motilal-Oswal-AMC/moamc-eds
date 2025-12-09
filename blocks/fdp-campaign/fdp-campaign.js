@@ -228,12 +228,8 @@ export default function decorate(block) {
   //   });
   // }
 
-  // mainblock.querySelector('.privacy-policy-banner').classList.add('active');
-  // if(mainblock.querySelector('.privacy-policy-banner').contain('active')) {
-  //   mainblock.querySelector('.privacy-policy-banner').style.display = 'block';
-  // }else {
-  //   mainblock.querySelector('.privacy-policy-banner').style.display = 'none';
-  // }
+  // Privacy Policy Functionality start
+  mainblock.querySelectorAll('.privacy-policy-banner')[0].classList.add('active');
   mainblock.querySelectorAll('.button')[0].classList.add('active');
   document.querySelectorAll('.privacy-policy-banner .button').forEach((btn) => {
     btn.addEventListener('click', () => {
@@ -249,6 +245,8 @@ export default function decorate(block) {
 
       document.querySelectorAll('.privacy-policy-banner').forEach((section) => {
         const sectionAttr = section.getAttribute('data-id');
+
+        // document.querySelectorAll('.privacy-policy-banner').forEach(sec => sec.classList.remove('active'));
 
         if (sectionAttr === selectedAttr) {
           section.classList.add('active'); // show matching section

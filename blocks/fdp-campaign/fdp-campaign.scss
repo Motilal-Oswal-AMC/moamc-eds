@@ -1142,7 +1142,7 @@ $breakpoint-tablet: 900px;
 // Styling for Privacy Policy 
 .privacypolicy-container {
   .section.privacy-policy-banner {
-    // display: none;
+    display: none;
 
     &.active {
       display: block;
@@ -1403,9 +1403,9 @@ $breakpoint-tablet: 900px;
     }
   }
 
-  .section.privacy-policy-second-banner {
-    display: none;
-  }
+  // .section.privacy-policy-second-banner {
+  //   display: none;
+  // }
 }
 
 // Styling for Privacy Policy 
