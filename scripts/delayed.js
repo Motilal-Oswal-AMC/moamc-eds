@@ -142,7 +142,6 @@ if (window.innerWidth <= 767) {
   } else {
     console.warn('⚠️ Required sections not found in DOM');
   }
-  //
 }
 // const shareWrapper = document.querySelector(".itemmainleftart3");
 // const shareBtn = shareWrapper.querySelector(".submainleftart1");

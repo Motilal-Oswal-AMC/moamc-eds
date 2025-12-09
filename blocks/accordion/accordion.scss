@@ -155,6 +155,31 @@
   }
 }
 
+// Fab page 
+
+.section.freq-ask-ques.fab-container.accordion-container {
+  padding-bottom: 40px;
+
+  .default-content-wrapper {
+    &:nth-child(1) {
+      p {
+        font-size: var(--heading-h5-size, 28px);
+        font-weight: 600;
+        line-height: var(--heading-h5-line-height, 32px);
+
+        @include media (mobile) {
+          font-size: var(--sub-header-large-size, 24px);
+          line-height: 28px;
+        }
+      }
+    }
+
+    &:nth-child(3) {
+      display: none;
+    }
+  }
+}
+
 // Faq css start
 
 .section.freq-ask-ques {
@@ -453,7 +478,7 @@
   }
 
   .faq-our-fund {
-    &>.default-content-wrapper:nth-child(3){
+    &>.default-content-wrapper:nth-child(3) {
       @include media(mobile) {
         margin: 0;
       }
@@ -494,7 +519,7 @@
                 line-height: var(--body-medium-medium-line-height);
               }
 
-              &:after {
+              &::after {
                 content: "";
                 position: absolute;
                 top: 28px;
@@ -504,7 +529,7 @@
                 border: none;
                 border-width: unset;
                 transform: translateY(-50%);
-                background: url(/icons/plus-blue.svg);
+                background: url("/icons/plus-blue.svg");
               }
             }
           }
@@ -561,6 +586,7 @@
               padding: $spacing-16 $spacing-none;
               padding-top: 0;
               border-radius: 0 0 8px 8px;
+
               // box-shadow: 0 4px 12px 0 rgb(0 0 0 / 5%);
               background-color: transparent;
 

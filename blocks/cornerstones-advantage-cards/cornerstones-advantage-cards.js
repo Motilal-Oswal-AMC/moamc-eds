@@ -11,9 +11,9 @@ export default function decorate(block) {
   });
 
   if (window.location.href.includes('/static-pages/elss-fund')) {
-    const fundTax = block.closest('main').querySelector('.section.fund-tax');
-    dataMapMoObj.CLASS_PREFIXES = ['fund-tax-contain', 'fund-tax-txt'];
-    dataMapMoObj.addIndexed(fundTax);
+    // const fundTax = block.closest('main').querySelector('.section.fund-tax');
+    // dataMapMoObj.CLASS_PREFIXES = ['fund-tax-contain', 'fund-tax-txt'];
+    // dataMapMoObj.addIndexed(fundTax);
 
     const investBlog = block.closest('main').querySelector('.section.invest-blog');
     dataMapMoObj.CLASS_PREFIXES = ['invest-blog-contain', 'invest-blog-txt'];
@@ -35,7 +35,19 @@ export default function decorate(block) {
     dataMapMoObj.CLASS_PREFIXES = ['elss-stock-table-contain', 'elss-stock-table-txt', 'elss-stock-table-subtxt'];
     dataMapMoObj.addIndexed(elssStockTable);
 
-    const fundPhilosophy = block.closest('main').querySelector('.section.fund-philosophy');
+    // const fundPhilosophy = block.closest('main').querySelector('.section.fund-philosophy');
+    // dataMapMoObj.CLASS_PREFIXES =
+    // ['fund-philosophy-contain', 'fund-philosophy-txt', 'fund-philosophy-subtxt'];
+    // dataMapMoObj.addIndexed(fundPhilosophy);
+    // const develem = document.createElement('div');
+    // develem.classList.add('eels-vedio-wrap');
+    // Array.from(fundPhilosophy.children).forEach((element) => {
+    //   develem.appendChild(element);
+    // });
+    // fundPhilosophy.appendChild(develem);
+  }
+  const fundPhilosophy = block.closest('main').querySelector('[data-id="fund-philosophy-vedio"]');
+  if (fundPhilosophy !== null) {
     dataMapMoObj.CLASS_PREFIXES = ['fund-philosophy-contain', 'fund-philosophy-txt', 'fund-philosophy-subtxt'];
     dataMapMoObj.addIndexed(fundPhilosophy);
     const develem = document.createElement('div');
@@ -44,6 +56,11 @@ export default function decorate(block) {
       develem.appendChild(element);
     });
     fundPhilosophy.appendChild(develem);
+  }
+  const fundTax = block.closest('main').querySelector('[data-id="fund-tax-data"]');
+  if (fundTax !== null) {
+    dataMapMoObj.CLASS_PREFIXES = ['fund-tax-contain', 'fund-tax-txt'];
+    dataMapMoObj.addIndexed(fundTax);
   }
   if (window.location.href.includes('/static-pages/become-a-partner')) {
     const partnerConnect = block.closest('main').querySelector('.section.partner-connect');

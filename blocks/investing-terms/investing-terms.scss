@@ -1,6 +1,6 @@
 @use "sass:map";
-@use "../../styles/common-theme/css/variables_mixins" as *;
-@use "../../styles/common-theme/css/fluid-typography" as *;
+@use "../../styles/common-theme/css/variables_mixins"as *;
+@use "../../styles/common-theme/css/fluid-typography"as *;
 
 main>.section.investing-terms-container {
   margin: var(--spacing-40) 0 var(--spacing-80);
@@ -171,20 +171,61 @@ main>.section.investing-terms-container {
             width: 100%;
             height: 48px;
             padding: 20px 12px;
-            border-radius: var(--Border-Radius-8, 8px);
-            background: var(--Button-Primary-Default, #2E2A94);
-
+            border-radius: var(--border-radius-8, 8px);
+            background: var(--button-primary-default, #2E2A94);
             color: #FFF;
             text-align: center;
-            font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
-            font-family: var(--Body, Inter);
+            font-feature-settings: var(--font-features-default);
+            font-family: var(--body, Inter);
             font-size: 18px;
             font-style: normal;
             font-weight: 500;
             line-height: 20px;
-            /* 111.111% */
+
+            @include media (mobile) {
+              max-width: 100%;
+              height: 40px;
+              padding: 12px var(--spacing-12, 12px);
+              font-size: 16px;
+            }
           }
         }
+      }
+    }
+  }
+}
+
+.section.fab-container.investing-terms-container {
+  @include media (mobile) {
+    margin: var(--spacing-40) 0;
+  }
+
+  >.default-content-wrapper {
+    margin-top: 40px;
+
+    p {
+      margin: 0;
+      padding: 0;
+      color: var(--text-disclaimer, #616161);
+      font-family: var(--body, Inter);
+      font-size: var(--disclaimer-xsmall-size, 12px);
+      font-style: normal;
+      font-weight: 400;
+      line-height: var(--disclaimer-xsmall-line-height, 16px);
+
+      u {
+        color: var(--text-text-link, #2E2A94);
+        font-family: var(--body, Inter);
+        font-size: var(--text-link-xsmall-size, 12px);
+        font-style: normal;
+        font-weight: 400;
+        line-height: var(--text-link-xsmall-line-height, 16px);
+        text-decoration-line: underline;
+        text-decoration-style: solid;
+        text-decoration-skip-ink: auto;
+        text-decoration-thickness: auto;
+        text-underline-offset: -0.8px;
+        text-underline-position: from-font;
       }
     }
   }

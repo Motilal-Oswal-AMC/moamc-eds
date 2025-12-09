@@ -1,14 +1,275 @@
-name: Build
-on: [push]
+# AEM Edge Delivery Services - CI/CD Workflow
+# Complements the built-in AEM Code Sync PSI checks
+# Based on: https://www.aem.live/docs/dev-collab-and-good-practices
+
+name: Build & Quality Checks
+
+on:
+  push:
+    branches:
+      - main
+      - 'feature/**'
+      - 'fix/**'
+  pull_request:
+    branches:
+      - main
+    types: [opened, synchronize, reopened]
+
+# Cancel in-progress runs for the same PR/branch
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
+  # ============================================
+  # Job 1: Build & Lint (Your existing workflow)
+  # ============================================
   build:
+    name: 🔨 Build & Lint
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-    - name: Use Node.js 20
-      uses: actions/setup-node@v4
-      with:
-        node-version: 20
-    - run: npm ci
-    - run: npm run lint
+      - uses: actions/checkout@v4
+
+      - name: Use Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - run: npm ci
+
+      - name: Run ESLint
+        run: npm run lint
+
+      - name: Run Stylelint (CSS)
+        run: npm run lint:css
+
+  # ============================================
+  # Job 2: Code Quality Checks
+  # ============================================
+  code-quality:
+    name: 📊 Code Quality
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check for console.log statements
+        run: |
+          echo "🔍 Checking for console.log statements..."
+          FOUND=$(grep -rn "console\.log" --include="*.js" blocks/ scripts/ 2>/dev/null | grep -v "// eslint-disable" || true)
+          if [ -n "$FOUND" ]; then
+            echo "⚠️  Warning: console.log statements found:"
+            echo "$FOUND"
+            echo ""
+            echo "Consider removing before production."
+          else
+            echo "✅ No console.log statements found."
+          fi
+
+      - name: Check for debugger statements
+        run: |
+          echo "🔍 Checking for debugger statements..."
+          if grep -rn "debugger" --include="*.js" blocks/ scripts/ 2>/dev/null; then
+            echo "❌ Error: debugger statements found!"
+            exit 1
+          else
+            echo "✅ No debugger statements found."
+          fi
+
+      - name: Validate JSON files
+        run: |
+          echo "🔍 Validating JSON files..."
+          ERRORS=0
+          for file in $(find . -name "*.json" -not -path "./node_modules/*"); do
+            if ! python3 -m json.tool "$file" > /dev/null 2>&1; then
+              echo "❌ Invalid JSON: $file"
+              ERRORS=$((ERRORS+1))
+            fi
+          done
+          if [ $ERRORS -gt 0 ]; then
+            exit 1
+          fi
+          echo "✅ All JSON files are valid."
+
+      - name: Check file sizes
+        run: |
+          echo "🔍 Checking for large files..."
+          MAX_JS_SIZE=50000   # 50KB
+          MAX_CSS_SIZE=30000  # 30KB
+          WARNINGS=0
+          
+          for file in $(find blocks scripts -name "*.js" 2>/dev/null || true); do
+            if [ -f "$file" ]; then
+              size=$(wc -c < "$file")
+              if [ "$size" -gt "$MAX_JS_SIZE" ]; then
+                echo "⚠️  Large JS: $file ($(($size/1024))KB)"
+                WARNINGS=$((WARNINGS+1))
+              fi
+            fi
+          done
+          
+          for file in $(find blocks styles -name "*.css" 2>/dev/null || true); do
+            if [ -f "$file" ]; then
+              size=$(wc -c < "$file")
+              if [ "$size" -gt "$MAX_CSS_SIZE" ]; then
+                echo "⚠️  Large CSS: $file ($(($size/1024))KB)"
+                WARNINGS=$((WARNINGS+1))
+              fi
+            fi
+          done
+          
+          if [ $WARNINGS -eq 0 ]; then
+            echo "✅ All files within size limits."
+          fi
+
+  # ============================================
+  # Job 3: Security Audit
+  # ============================================
+  security:
+    name: 🔒 Security Audit
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Use Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - run: npm ci
+
+      - name: Run npm audit
+        run: |
+          echo "🔍 Checking for vulnerabilities..."
+          npm audit --audit-level=high
+          echo ""
+          echo "ℹ️  High/Critical vulnerabilities will be flagged."
+
+  # ============================================
+  # Job 4: PR Validation (PRs only)
+  # ============================================
+  pr-validation:
+    name: 📝 PR Validation
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    steps:
+      - name: Check PR description for preview URL
+        run: |
+          PR_BODY="${{ github.event.pull_request.body }}"
+          
+          echo "🔍 Validating PR description..."
+          
+          # Check if PR body is empty
+          if [ -z "$PR_BODY" ]; then
+            echo "❌ PR description is empty!"
+            echo ""
+            echo "📌 Best Practice: Include preview URLs for reviewers"
+            echo "   Example: https://branch--DTIN-NipponAmc-Website-EDS--dept.aem.page/"
+            exit 1
+          fi
+          
+          # Check for AEM preview URL
+          if echo "$PR_BODY" | grep -qE "(aem\.page|aem\.live|hlx\.page|hlx\.live)"; then
+            echo "✅ Preview URL found in PR description."
+          else
+            echo "⚠️  No AEM preview URL found in PR description."
+            echo ""
+            echo "📌 Best Practice: Include a URL where reviewers can test your changes:"
+            echo "   https://<branch>--DTIN-NipponAmc-Website-EDS--dept.aem.page/"
+            echo ""
+            echo "   This helps reviewers see your changes in action!"
+          fi
+
+      - name: Remind about AEM PSI Check
+        run: |
+          echo ""
+          echo "📊 Reminder: AEM Code Sync automatically runs PageSpeed Insights"
+          echo "   ✓ Look for 'aem-psi-check' status on this PR"
+          echo "   ✓ Target: Lighthouse score of 100 for mobile & desktop"
+          echo "   ✓ PR will fail if score drops significantly"
+          echo ""
+          echo "🔗 Manual check: https://pagespeed.web.dev/"
+
+  # ============================================
+  # Job 5: Accessibility Quick Check
+  # ============================================
+  accessibility:
+    name: ♿ Accessibility Check
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.event_name == 'pull_request'
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check for common accessibility issues in code
+        run: |
+          echo "🔍 Checking for common accessibility patterns..."
+          ISSUES=0
+          
+          # Check for images without alt in HTML/JS
+          echo ""
+          echo "📷 Checking image alt attributes..."
+          MISSING_ALT=$(grep -rn '<img' --include="*.html" --include="*.js" blocks/ scripts/ 2>/dev/null | grep -v 'alt=' || true)
+          EMPTY_ALT=$(grep -rn '<img' --include="*.html" --include="*.js" blocks/ scripts/ 2>/dev/null | grep -E "alt=(\"\"|\'\')" || true)
+          if [ -n "$MISSING_ALT" ] || [ -n "$EMPTY_ALT" ]; then
+            if [ -n "$MISSING_ALT" ]; then
+              echo "⚠️  Possible images without alt attribute:"
+              echo "$MISSING_ALT"
+            fi
+            if [ -n "$EMPTY_ALT" ]; then
+              echo "⚠️  Images with empty alt attribute (ensure these are decorative only):"
+              echo "$EMPTY_ALT"
+            fi
+            ISSUES=$((ISSUES+1))
+          else
+            echo "✅ All img tags appear to have non-empty alt attributes."
+          fi
+          
+          # Check for buttons without accessible names
+          echo ""
+          echo "🔘 Checking button accessibility..."
+          EMPTY_BUTTONS=$(grep -rn '<button>' --include="*.html" --include="*.js" blocks/ 2>/dev/null | grep -v 'aria-label' || true)
+          if [ -n "$EMPTY_BUTTONS" ]; then
+            echo "⚠️  Check these buttons have accessible names:"
+            echo "$EMPTY_BUTTONS"
+          fi
+          
+          # Check for proper ARIA usage
+          echo ""
+          echo "🏷️  Checking ARIA attributes..."
+          ARIA_HIDDEN=$(grep -rn 'aria-hidden="true"' --include="*.js" blocks/ 2>/dev/null | head -5 || true)
+          if [ -n "$ARIA_HIDDEN" ]; then
+            echo "ℹ️  Found aria-hidden usage (verify it's correct):"
+            echo "$ARIA_HIDDEN"
+          fi
+          
+          echo ""
+          echo "ℹ️  Full accessibility testing done by AEM PSI check (Lighthouse)."
+
+  # ============================================
+  # Summary
+  # ============================================
+  summary:
+    name: 📋 Summary
+    runs-on: ubuntu-latest
+    needs: [build, code-quality, security, pr-validation, accessibility]
+    if: always() && github.event_name == 'pull_request'
+    steps:
+      - name: Generate Summary
+        run: |
+          echo "## 🎯 CI/CD Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Check | Status |" >> $GITHUB_STEP_SUMMARY
+          echo "|-------|--------|" >> $GITHUB_STEP_SUMMARY
+          echo "| Build & Lint | ${{ needs.build.result == 'success' && '✅ Passed' || '❌ Failed' }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Code Quality | ${{ needs.code-quality.result == 'success' && '✅ Passed' || '⚠️ Check Warnings' }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Security | ${{ needs.security.result == 'success' && '✅ Passed' || '⚠️ Review Needed' }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| PR Validation | ${{ needs.pr-validation.result == 'success' && '✅ Passed' || (needs.pr-validation.result == 'skipped' && '⏭️ Skipped' || '⚠️ Add Preview URL') }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| Accessibility | ${{ needs.accessibility.result == 'success' && '✅ Passed' || (needs.accessibility.result == 'skipped' && '⏭️ Skipped' || '⚠️ Review Needed') }} |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "### 🔔 Don't forget!" >> $GITHUB_STEP_SUMMARY
+          echo "- Check **aem-psi-check** status for Lighthouse scores" >> $GITHUB_STEP_SUMMARY
+          echo "- Target: **100** for Performance, Accessibility, SEO, Best Practices" >> $GITHUB_STEP_SUMMARY

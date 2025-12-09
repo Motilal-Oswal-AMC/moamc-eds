@@ -153,6 +153,7 @@
                     // max-width: 100%;
                     width: 100%;
                     flex: 1;
+
                     // flex-basis: 0;
 
                     @include media(tab){
@@ -314,7 +315,7 @@
                         aspect-ratio: unset;
                     }
 
-                    @media screen and (max-width: 371px) {
+                    @media screen and (width <= 371px) {
                         max-width: 47.236%;
                     }
 
