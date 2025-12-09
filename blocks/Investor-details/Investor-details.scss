@@ -456,7 +456,9 @@ main.nfo-nav .main-wrapper .section:first-of-type {
 
               h2.comlist,
               h3.comlist,
-              h4.comlist {
+              h4.comlist,
+              h5.comlist,
+              h6.comlist{
                 margin: 0 0 24px;
 
                 @include font-style(
@@ -475,7 +477,9 @@ main.nfo-nav .main-wrapper .section:first-of-type {
 
               h2.comlist strong,
               h3.comlist strong,
-              h4.comlist strong{
+              h4.comlist strong,
+              h5.comlist strong,
+              h6.comlist strong{
                 font-weight: 600;
               }
             }
