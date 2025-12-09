@@ -68,8 +68,8 @@ indices:
         select: head > meta[name="description"]
         value: attribute(el, "content")
       image:
-        select: head > meta[property="og:image"]
-        value: attribute(el, "content")
+        select: body .embed picture img
+        value: attribute(el, "src")
       tag:
         select: 'body > main > div:nth-of-type(8) > ul > li:first-child > ul > li:first-child'
         value: textContent(el)
