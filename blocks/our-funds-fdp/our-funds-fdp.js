@@ -29,6 +29,7 @@ export default async function decorate(block) {
     } else if (window.location.href.includes('/our-funds/funds-details-page')) {
       planslabel = 'LM';
       planFlow = 'Direct';
+      console.log(planFlow);
     } else {
       const path = window.location.pathname.split('/').at(-1);
       const planobj = tempDfilt.filter(

@@ -109,7 +109,7 @@ export default function decorate(block) {
     if (planobj[0].risk.benchmarkRisk) {
       const riskMiterBanch = block.querySelector('.corner-1 p');
       riskMiterBanch.textContent = '';
-      riskMiterBanch.textContent = `${planobj[0].schDetail.schemeName} Risk- O-Meter`;
+      riskMiterBanch.textContent = `${planobj[0].schemeName} Risk- O-Meter`;
       block.querySelector('.corner-1 .column-2').innerHTML = '';
       block.querySelector('.corner-1 .column-2').append(img(
         { src: `/icons/larg-risk-icon/${planobj[0].risk.benchmarkRisk.split(' ').join('-')}.svg`, alt: 'img' },

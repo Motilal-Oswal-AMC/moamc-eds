@@ -71,7 +71,8 @@
       "wealth-modal",
       "blog-author-details",
       "global-gateway",
-      "investing-minors"
+      "investing-minors",
+      "quick-purchase-block"
     ]
   },
   {
@@ -238,6 +239,12 @@
       "compound-interest-calculator-item",
       "sip-past-performance-calculator-item",
       "goal-calculator-item"
+    ]
+  },
+  {
+    "id": "quick-purchase-block",
+    "components": [
+      "quick-purchase-item"
     ]
   }
 ]
