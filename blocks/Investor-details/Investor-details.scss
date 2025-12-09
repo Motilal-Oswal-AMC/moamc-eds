@@ -130,12 +130,89 @@ main.nfo-nav .main-wrapper .section:first-of-type {
               }
 
               .investarticle-leftinner2 {
+                position: relative;
+
                 .investsub-leftarticle1,
                 .investleft-subinner1 {
                   margin: 0;
                   width: 28px;
                   height: 28px;
                   cursor: pointer;
+                }
+
+                .list-share-popup {
+                  position: absolute;
+                  top: 100%;
+                  margin: 4px 0 0;
+                  left: 0;
+                  border-radius: 6px;
+                  border: 1px solid var(--neutrals-200);
+                  box-shadow: 0 0 14px 0 rgba(40, 40, 40, 0.06);
+                  width: 170px;
+                  background: var(--neutrals-white);
+                  min-height: 126px;
+                  height: auto;
+                  padding: 2px 6px;
+                  scrollbar-width: auto;
+                  scrollbar-color: rgba(0, 0, 0, 0);
+                  list-style: none;
+                  display: none;
+
+                  &.active {
+                    display: block;
+                  }
+
+                  @include media(mobile) {
+                    left: unset;
+                    right: 0;
+                  }
+
+                  .list-share-media {
+                    margin: 0;
+                    list-style: none;
+
+                    .list-media {
+                      .list-link {
+                        padding: 3px 0;
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                        cursor: pointer;
+                        font-size: var(--body-xsmall-regular-size);
+                        line-height: var(--body-xsmall-regular-line-height);
+                        color: var(--text-body);
+                        font-family: var(--body);
+                        font-feature-settings: var(--font-features-default);
+                        font-weight: 400;
+
+                        .media-icon{
+                          width: 24px;
+                          height: 24px;
+                        }
+                      }
+
+                      &:last-of-type {
+                        position: fixed;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        margin: 0 auto;
+                        min-width: unset;
+                        width: -moz-max-content;
+                        width: max-content;
+                        bottom: 10%;
+                        background-color: var(--neutrals-white);
+                        color: var(--blue-1-800-primary);
+                        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+                        padding: 4px 14px;
+                        border-radius: 4px;
+                        font-size: 14px;
+                        line-height: 18px;
+                        font-weight: 400;
+                        font-family: var(--body);
+                        z-index: 10;
+                      }
+                    }
+                  }
                 }
               }
             }
@@ -551,6 +628,39 @@ main.nfo-nav .main-wrapper .section:first-of-type {
         }
       }
     }
+
+    .section.article-sub-left.podcast-section {
+      .embed-wrapper {
+        height: auto;
+
+        .embed {
+          flex-direction: column;
+
+          audio {
+            background-color: green;
+            border: 6px solid red;
+            border-radius: 4px;
+            padding: 10px 20px;
+            width: 100%;
+            max-width: 500px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            margin: 10px 0 0;
+
+            &::-webkit-media-controls-panel {
+              background-color: #e3f2fd; /* Light Blue */
+            }
+
+            &::-webkit-media-controls-play-button {
+              background-color: #0288d1; /* Dark Blue */
+              border-radius: 50%;
+              color: white;
+            }
+          }
+        }
+      }
+    }
   }
 
   .section.article-right-wrapper {
@@ -610,7 +720,7 @@ main.nfo-nav .main-wrapper .section:first-of-type {
                 gap: 20px;
               }
 
-              > li.comlist {
+              > li.rightlist {
                 width: 32px;
                 height: 32px;
                 cursor: pointer;
@@ -674,10 +784,10 @@ main.nfo-nav .main-wrapper .section:first-of-type {
                   //   border: var(--border-width-01) solid var(--neutrals-white);
                   //   padding: var(--spacing-8) var(--spacing-12);
                   position: relative;
-                  height: 40px;
+                  // height: 40px;
 
                   label,
-                  input {
+                  .email-imput {
                     @include font-style(
                       var(--body-medium-regular-size),
                       var(--body-medium-regular-line-height),
@@ -702,19 +812,50 @@ main.nfo-nav .main-wrapper .section:first-of-type {
                     cursor: auto;
                   }
 
-                  input {
-                    background-color: transparent;
-                    width: 100%;
+                  .wrapimgform {
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
                     border-radius: var(--border-radius-8);
                     border: var(--border-width-01) solid var(--neutrals-white);
                     padding: var(--spacing-8) var(--spacing-12);
-                    height: 100%;
+                    height: 40px;
 
-                    &::placeholder {
-                      color: transparent;
+                    .email-imput {
+                      background-color: transparent;
+                      width: 100%;
+                      padding: 2px 0;
+                      height: 100%;
+                      border: none;
+                      outline: none;
+
+                      &::placeholder {
+                        color: transparent;
+                      }
+                    }
+
+                    .crosserror,
+                    .crosssuccess {
+                      cursor: pointer;
+                      width: 24px;
+                      height: 24px;
+                      display: none;
+                    }
+
+                    &.email-fail{
+                      .crosserror{
+                        display: block;
+                      }
+                    }
+
+                    &.email-success{
+                      .crosssuccess{
+                        display: block;
+                      }
                     }
                   }
 
+                  &.active,
                   &:focus-within {
                     label {
                       transform: unset;
@@ -786,7 +927,7 @@ main.nfo-nav .main-wrapper .section:first-of-type {
                     flex-direction: column;
                     gap: 0;
 
-                    > li.comlist {
+                    > li.rightlist.comlist {
                       padding: var(--spacing-16) 0;
                       border: none;
                       background-color: transparent;
@@ -799,12 +940,12 @@ main.nfo-nav .main-wrapper .section:first-of-type {
                         width: 88px;
                         height: 88px;
 
-                        picture {
+                        picture:first-of-type {
                           line-height: 0;
                           height: 100%;
                           display: block;
 
-                          img {
+                          img:first-of-type {
                             width: 100%;
                             height: 100%;
                           }
@@ -931,7 +1072,7 @@ main.nfo-nav .main-wrapper .section:first-of-type {
                   height: 160px;
                 }
 
-                img {
+                img.investsub-rightarticle4 {
                   width: 100%;
                   height: 100%;
                   border-radius: 3.92px;
@@ -950,7 +1091,7 @@ main.nfo-nav .main-wrapper .section:first-of-type {
               gap: 8px;
               list-style: none;
 
-              > li.comlist {
+              > li.rightlist {
                 padding: var(--spacing-16) 0;
 
                 .investsub-rightarticle {
@@ -978,7 +1119,7 @@ main.nfo-nav .main-wrapper .section:first-of-type {
                     list-style: none;
                     margin: 0;
 
-                    > li.comlist {
+                    > li.rightlist {
                       @include font-style(
                         var(--label-small-size),
                         var(--label-small-line-height),
