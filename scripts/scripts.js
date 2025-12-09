@@ -1282,11 +1282,11 @@ async function getinsights() {
   const resp = await myAPI('GET', 'https://main--moamc-eds--motilal-oswal-amc.aem.live/query-index-insights.json');
   return resp;
 }
-dataMapMoObj.getinsights = getinsights;
+dataMapMoObj.getinsights = getinsights();
 
 async function getinvestorblog() {
   const resp = await myAPI('GET', 'https://main--moamc-eds--motilal-oswal-amc.aem.live/query-index-investorblog.json');
   return resp;
 }
-dataMapMoObj.getinvestorblog = getinvestorblog;
+dataMapMoObj.getinvestorblog = await getinvestorblog();
 // dataMapMoObj.qglpwcs = qglpwcs;
