@@ -643,8 +643,8 @@
 
             .urm-pan-lbl {
               position: absolute;
-              top: 0%;
-              left: 15px;
+              top: 50%;
+              left: 8px;
               padding: 0 4px;
               background-color: var(--neutrals-white);
               transform: translateY(-50%);
@@ -668,6 +668,12 @@
               font-size: var(--body-medium-regular-size);
               font-weight: 400;
               line-height: var(--body-medium-regular-line-height);
+            }
+          }
+
+          .urm-pan-wrap.active {
+            .urm-pan-lbl {
+              top: 0px;
             }
           }
 
@@ -695,8 +701,8 @@
 
             .urm-folio-lbl {
               position: absolute;
-              top: 0%;
-              left: 15px;
+              top: 50%;
+              left: 8px;
               padding: 0 4px;
               background-color: var(--neutrals-white);
               transform: translateY(-50%);
@@ -720,6 +726,12 @@
               font-size: var(--body-medium-regular-size);
               font-weight: 400;
               line-height: var(--body-medium-regular-line-height);
+            }
+          }
+
+          .urm-folio-wrap.active {
+            .urm-folio-lbl {
+              top: 0px;
             }
           }
 
