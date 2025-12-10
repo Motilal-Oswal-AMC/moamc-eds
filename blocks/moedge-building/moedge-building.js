@@ -346,9 +346,9 @@ export default function decorate(block) {
 </div>`;
     });
 
-    // 2. Wait for ALL promises to 
-    const blockHTML = block;
-    block.innerHTML = ''; 
+    // 2. Wait for ALL promises to
+    // const blockHTML = block;
+    block.innerHTML = '';
     Promise.all(htmlPromises).then((htmlArray) => {
       // 1. Join the HTML string
       const validHtml = htmlArray.filter(Boolean).join('');
