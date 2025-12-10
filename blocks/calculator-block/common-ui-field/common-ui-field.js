@@ -56,7 +56,9 @@ export function validateInputWithEvent({
 
   // MIN logic
   if (ignoreMin) {
-    if (minValue === '' || (minValue !== 0 && num < minValue)) { errorType = 'MIN_EMPTY'; }
+    if (minValue === '' || (minValue !== 0 && num < minValue)) {
+      errorType = 'MIN_EMPTY';
+    }
   } else if (minValue !== '' && num < minValue) {
     num = minValue;
     errorType = 'MIN_EMPTY';
@@ -240,7 +242,7 @@ export function createInputBlock({
     year:
       variant === 'stepper'
         ? {
-          min: `${min} ${min === 1 ? 'year' : 'years'}`,
+          min: `${min} ${Number(min) === 1 ? 'year' : 'years'}`,
           max: `${max} years`,
         }
         : {
