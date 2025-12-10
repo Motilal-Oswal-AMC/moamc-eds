@@ -35,7 +35,7 @@ indices:
         value: attribute(el, "content")
       image:
         select: head > meta[property="og:image"]
-        value: attribute(el, "src")
+        value: attribute(el, "content")
       tag:
         select: body > main > .section > ul > li > p
         value: textContent(el)
@@ -69,7 +69,7 @@ indices:
         value: attribute(el, "content")
       image:
         select: head > meta[property="og:image"]
-        value: attribute(el, "src")  
+        value: attribute(el, "content")  
       imgvedios:
         select: body .embed picture img
         value: attribute(el, "src")
