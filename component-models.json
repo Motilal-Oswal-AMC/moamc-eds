@@ -403,6 +403,10 @@
             "value": "fdp-calculator"
           },
           {
+            "name": "Demo",
+            "value": "demo"
+          },
+          {
             "name": "fund-card-section",
             "value": "fund-card-section"
           },
