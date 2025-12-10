@@ -25,7 +25,7 @@ import { img, span } from './dom-helpers.js';
 // console.log('f1 code');
 
 const placeholder = await fetchPlaceholders(
-  '/content/moamc-eds/mutual-fund/in/en',
+  '/mutual-fund/in/en',
 );
 export const { publisherUrl } = placeholder;
 
@@ -775,61 +775,61 @@ function articleStructure() {
     }
 
     function convertDate(dateStr) {
-    const date = new Date(dateStr);
-    const options = {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric',
-    };
-    return date.toLocaleDateString('en-US', options);
-  }
+      const date = new Date(dateStr);
+      const options = {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+      };
+      return date.toLocaleDateString('en-US', options);
+    }
 
     maincloser.querySelector('.cards .investright-articleitem1').innerHTML = '';
     let dataincl;
-        if (window.location.href.includes('/videos/')) {
-          dataincl = '/videos/';
-        } else {
-          dataincl = '/images/';
-        }
-        const currentUrl = window.location.href.replace(/\/$/, '');
-        const linktext = currentUrl.substring(currentUrl.lastIndexOf('/') + 1);
-        const data = dataMapMoObj.getinvestorblog.data
-          .filter((el) => linktext !== el.title && el.path.includes(dataincl))
-        // 1. Assign a random value to each item
-          .map((value) => ({ value, sort: Math.random() }))
-        // 2. Sort based on that random value
-          .sort((a, b) => a.sort - b.sort)
-        // 3. Extract the original object back
-          .map(({ value }) => value);
-    
-        console.log(data);
-        const datafin = data.slice(0, 3)
-     datafin.forEach((elem)=>{
+    if (window.location.href.includes('/videos/')) {
+      dataincl = '/videos/';
+    } else {
+      dataincl = '/images/';
+    }
+    const currentUrl = window.location.href.replace(/\/$/, '');
+    const linktext = currentUrl.substring(currentUrl.lastIndexOf('/') + 1);
+    const data = dataMapMoObj.getinvestorblog.data
+      .filter((el) => linktext !== el.title && el.path.includes(dataincl))
+    // 1. Assign a random value to each item
+      .map((value) => ({ value, sort: Math.random() }))
+    // 2. Sort based on that random value
+      .sort((a, b) => a.sort - b.sort)
+    // 3. Extract the original object back
+      .map(({ value }) => value);
+
+    console.log(data);
+    const datafin = data.slice(0, 3);
+    datafin.forEach((elem) => {
       const titleText = dataMapMoObj.toTitleCase(elem.title.replaceAll('-', ' '));
       const dateText = convertDate(elem.date.split('T')[0]);
-        const cardsRecom = `<li class="comlist investright-itemchild1 rightlist"><div class="cards-card-image comlist investright-subchild1 rightlist">
+      const cardsRecom = `<li class="comlist investright-itemchild1 rightlist"><div class="cards-card-image comlist investright-subchild1 rightlist">
         <a href="${elem.path}"><picture class="rightlist"><source type="image/webp" srcset="/mutual-fund/in/en/fragment/media_137cba9f427af426d8583a091e8135bb0fa14d0f7.svg?width=750&amp;format=webply&amp;optimize=medium" class="rightlist"><img loading="lazy" alt="" src="/mutual-fund/in/en/fragment/media_137cba9f427af426d8583a091e8135bb0fa14d0f7.svg?width=750&amp;format=svg&amp;optimize=medium" class="rightlist"></picture></a>
       </div><div class="cards-card-body comlist investright-subchild2 rightlist">
         <p class="rightlist">Trending</p>
         <a href="${elem.path}"><h4 id="${titleText}" class="rightlist">${titleText}</h4></a>
         <p class="rightlist"><span class="icon icon-calendar-inves rightlist"><img data-icon-name="calendar-inves" src="/icons/calendar-inves.svg" alt="" loading="lazy" width="16" height="16" class="rightlist"></span>${dateText}</p>
-      </div></li>`
+      </div></li>`;
       maincloser.querySelector('.cards .investright-articleitem1').innerHTML += cardsRecom;
-     });
+    });
 
     document.addEventListener('click', (e) => {
       const icon = e.target.closest('.article-right-wrapper .icon');
       if (icon) {
         const socialLinks = {
-            'facebook-black': 'https://www.facebook.com/MotilalOswalSecurities/',
-            'twitter-black': 'https://x.com/MotilalOswalLtd?lang=en',
-            'instagram-black': 'https://www.instagram.com/motilaloswalgroup/?hl=en',
-            'youtube-black': 'https://www.youtube.com/motilaloswalamc',
+          'facebook-black': 'https://www.facebook.com/MotilalOswalSecurities/',
+          'twitter-black': 'https://x.com/MotilalOswalLtd?lang=en',
+          'instagram-black': 'https://www.instagram.com/motilaloswalgroup/?hl=en',
+          'youtube-black': 'https://www.youtube.com/motilaloswalamc',
         };
 
         // Get attribute from the image inside, or the icon div itself
         const key = icon.getAttribute('data-icon-name') || icon.querySelector('img')?.getAttribute('data-icon-name');
-        
+
         if (socialLinks[key]) {
           window.open(socialLinks[key], '_blank');
         }
