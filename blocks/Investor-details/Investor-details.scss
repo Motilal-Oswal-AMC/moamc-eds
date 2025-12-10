@@ -495,7 +495,7 @@ main.nfo-nav .main-wrapper .section:first-of-type {
               var(--body)
             );
 
-            @include media(mobile){
+            @include media(mobile) {
               font-size: var(--paragraph-small-regular-size);
               line-height: var(--paragraph-small-regular-line-height);
             }
@@ -726,7 +726,7 @@ main.nfo-nav .main-wrapper .section:first-of-type {
               }
 
               ul > li.comlist,
-              ol > li.comlist{
+              ol > li.comlist {
                 margin: 0 0 24px 20px;
               }
 
@@ -949,8 +949,8 @@ main.nfo-nav .main-wrapper .section:first-of-type {
           .comlist:first-of-type {
             all: unset;
             margin: 0;
-            flex: 1 1 60%;
-            order: 1;
+            // flex: 1 1 60%;
+            // order: 1;
             // grid-area: title-area;
 
             @include font-style(
@@ -973,8 +973,8 @@ main.nfo-nav .main-wrapper .section:first-of-type {
 
           .comlist:not(:first-of-type, :last-of-type) {
             margin: 24px 0 0;
-            flex: 1 1 60%;
-            order: 1;
+            // flex: 1 1 60%;
+            // order: 1;
             // grid-area: text-area;
 
             @include font-style(
@@ -985,14 +985,14 @@ main.nfo-nav .main-wrapper .section:first-of-type {
               var(--body)
             );
 
-            @media screen and (width <= 1101px) {
-              flex: 1 1 40%;
-              order: 3;
-            }
+            // @media screen and (width <= 1101px) {
+            //   flex: 1 1 40%;
+            //   order: 3;
+            // }
 
-            @include media(tab) {
-              flex: 1 1 55%;
-            }
+            // @include media(tab) {
+            //   flex: 1 1 55%;
+            // }
 
             @include media(mobile) {
               margin: 0;
@@ -1006,30 +1006,35 @@ main.nfo-nav .main-wrapper .section:first-of-type {
             min-width: 260px;
             width: 260px;
             height: 260px;
-            order: 2;
-            margin-top: -24px;
+            // order: 2;
+            // margin-top: -24px;
             // grid-area: image-area;
 
-            @media screen and (width <= 1101px) {
-              order: 3;
-            }
+            // @media screen and (width <= 1101px) {
+            //   order: 3;
+            // }
 
-            @include media(tab) {
-              order: 2;
-              margin: 24px 0 0;
-            }
+            // @include media(tab) {
+            //   order: 2;
+            //   margin: 24px 0 0;
+            // }
 
             @include media(mobile) {
-              max-width: 100%;
-              width: 100%;
+              // max-width: 100%;
+              // width: 100%;
+              // min-width: unset;
+              // height: auto;
+              // aspect-ratio: 1 / 1;
+
+              width: auto;
               min-width: unset;
               height: auto;
-              aspect-ratio: 1 / 1;
+              aspect-ratio: unset;
             }
 
-            * {
-              margin: 0;
-            }
+            // * {
+            //   margin: 0;
+            // }
 
             .investarticle-leftinner1 {
               all: unset;
@@ -1043,20 +1048,17 @@ main.nfo-nav .main-wrapper .section:first-of-type {
             }
           }
 
-          .comlist:not(:first-of-type, :last-of-type, :nth-child(2)) {
-            order: 3;
+          // .comlist:not(:first-of-type, :last-of-type, :nth-child(2)) {
+          //   order: 3;
 
-            @media screen and (width <= 1101px) {
-              order: 5;
-            }
-          }
+          //   @media screen and (width <= 1101px) {
+          //     order: 5;
+          //   }
+          // }
         }
 
         &.right-key-card {
           .default-content-wrapper.investarticle-leftmain1 {
-            // grid-template-areas:
-            //   "title-area image-area"
-            //   "text-area image-area";
             padding-right: 37px;
 
             @include media(tab) {
@@ -1064,34 +1066,191 @@ main.nfo-nav .main-wrapper .section:first-of-type {
             }
 
             @media screen and (width <= 900px) {
-              padding: 0;
-              // grid-template-areas:
-              //   "title-area"
-              //   "image-area"
-              //   "text-area";
-              gap: 16px;
+              gap: 0 16px;
+              flex-direction: column;
+            }
+
+            .comlist:first-of-type {
+              flex: 1 1 60%;
+              order: 1;
+            }
+
+            .comlist:not(:first-of-type, :last-of-type) {
+              flex: 1 1 60%;
+              order: 1;
+
+              @media screen and (width <= 1101px) {
+                flex: 1 1 40%;
+                order: 3;
+              }
+
+              @include media(tab) {
+                flex: 1 1 55%;
+              }
+
+              @include media(mobile){
+                order: 3;
+                flex: 1 1 100%;
+              }
+            }
+
+            .comlist:last-of-type {
+              order: 2;
+              margin-top: -24px;
+
+              @media screen and (width <= 1101px) {
+                order: 3;
+              }
+
+              @include media(tab) {
+                order: 2;
+                margin: 24px 0 0;
+                flex: 1 1 100%;
+                width: 100%;
+                height: 100%;
+              }
+
+              * {
+                margin: 0;
+              }
+            }
+
+            .comlist:not(:first-of-type, :last-of-type, :nth-child(2)) {
+              order: 3;
+              margin: 40px 0 0;
+
+              @media screen and (width <= 1101px) {
+                order: 5;
+              }
+
+              @include media(mobile){
+                order: 4;
+              }
             }
           }
         }
 
         &.left-key-card {
           .default-content-wrapper.investarticle-leftmain1 {
-            // grid-template-areas:
-            //   "image-area title-area"
-            //   "image-area text-area";
             padding-right: 44px;
+            flex-wrap: wrap-reverse;
+            align-items: flex-end;
+            flex-direction: row-reverse;
 
             @include media(tab) {
               padding: 0;
+              flex-wrap: unset;
+              align-items: unset;
+              flex-direction: column;
             }
 
             @media screen and (width <= 900px) {
-              padding: 0;
-              // grid-template-areas:
-              //   "title-area"
-              //   "image-area"
-              //   "text-area";
-              gap: 16px;
+              gap: 0 16px;
+            }
+
+            .comlist:first-of-type {
+              flex: 0 1 64%;
+              order: 3;
+              margin-left: 276px;
+
+              @media screen and (width <= 1112px) {
+                // flex: 0 1 56%;
+                // order: 3;
+                flex: 0 1 56%;
+                order: 4;
+                margin-left: 0;
+              }
+
+              @include media(tab) {
+                flex: 1 1 100%;
+                order: 1;
+              }
+            }
+
+            .comlist:not(:first-of-type, :last-of-type) {
+              flex: 1 1 60%;
+              order: 1;
+
+              @media screen and (width <= 1112px) {
+                // flex: 1 1 40%;
+                // order: 2;
+                flex: 1 1 40%;
+                order: 3;
+              }
+
+              // @include media(tab) {
+              //   flex: 1 1 55%;
+              // }
+              @include media(tab) {
+                flex: 1 1 100%;
+                order: 3;
+              }
+            }
+
+            .comlist:last-of-type {
+              order: 2;
+              margin-top: -24px;
+
+              @media screen and (width <= 1112px) {
+                // order: 2;
+                order: 3;
+              }
+
+              // @include media(tab) {
+              //   order: 2;
+              //   margin: 24px 0 0;
+              // }
+              @include media(tab) {
+                order: 2;
+                margin: 24px 0 0;
+                flex: 1 1 100%;
+                width: 100%;
+                height: 100%;
+              }
+
+              * {
+                margin: 0;
+              }
+            }
+
+            .comlist:not(:first-of-type, :last-of-type, :nth-child(2)) {
+              order: 0;
+              margin: 40px 0 0;
+
+              @media screen and (width <= 1112px) {
+                // order: 5;
+                order: 2;
+                flex: 1 1 68%;
+              }
+
+              @include media(tab) {
+                order: 3;
+                flex: 1 1 68%;
+              }
+            }
+          }
+        }
+      }
+
+      &.key-details{
+        .investarticle-leftmain1{
+          padding: 0;
+
+          p.investarticle-leftsub1{
+            margin: 40px 0 0;
+
+            @include font-style(
+              var(--body-medium-regular-size),
+              24px,
+              #3d3d3d,
+              400,
+              var(--body)
+            );
+
+            @include media(mobile) {
+              margin: 24px 0 0;
+              font-size: var(--paragraph-small-regular-size);
+              line-height: var(--paragraph-small-regular-line-height);
             }
           }
         }
