@@ -595,16 +595,26 @@
 
 .mo-inter-business.hero-container {
     background: var(--blue-1-900, #242177);
+    margin-bottom: 80px;
+
+      @include media (mobile) {
+           margin-bottom: 40px;
+        }
+
 
     .mo-inter-sec1 {
         display: flex;
         flex-direction: column-reverse;
         align-items: center;
-        gap: 40px;
+        justify-content: space-between;
         padding: 40px 0;
+        min-height: 557px;
+       
 
         @include media (mobile) {
             padding: 40px 0;
+            min-height: unset;
+             height: 486px;
         }
 
 
@@ -662,7 +672,7 @@
 
         .mo-inter-sub1 {
             .mo-inter-inner-text1 {
-                height: 347px;
+                height: 321px;
 
                 @include media (mobile) {
                     height: 270px;
