@@ -1055,27 +1055,27 @@
   {
     "id": "accordion-item",
     "type": "accordion/text",
-    "fields": [ {
-          "component": "multiselect",
-          "name": "col2_classes",
-          "label": "Style",
-          "options": [
-            {
-              "name": "Tabs Item",
-              "value": "tabs-item"
-            }
-          ]
-        },
+    "fields": [{
+        "component": "multiselect",
+        "name": "style",
+        "label": "Style",
+        "options": [
+          {
+            "name": "Accordion Table",
+            "value": "accordion-table"
+          }
+        ]
+      },
       {
         "component": "richtext",
         "valueType": "string",
-        "name": "col1_question",
+        "name": "question",
         "label": "Question"
       },
       {
         "component": "richtext",
         "valueType": "string",
-        "name": "col2_answer",
+        "name": "answer",
         "label": "Answer",
         "raw": true
       }
