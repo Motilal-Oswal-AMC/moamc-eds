@@ -1055,17 +1055,7 @@
   {
     "id": "accordion-item",
     "type": "accordion/text",
-    "fields": [{
-        "component": "multiselect",
-        "name": "style",
-        "label": "Style",
-        "options": [
-          {
-            "name": "Accordion Table",
-            "value": "accordion-table"
-          }
-        ]
-      },
+    "fields": [
       {
         "component": "richtext",
         "valueType": "string",
@@ -1078,6 +1068,17 @@
         "name": "answer",
         "label": "Answer",
         "raw": true
+      },
+      {
+        "component": "multiselect",
+        "name": "style",
+        "label": "Style",
+        "options": [
+          {
+            "name": "Accordion Table",
+            "value": "accordion-table"
+          }
+        ]
       }
     ]
   },
