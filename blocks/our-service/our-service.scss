@@ -352,6 +352,12 @@ main > .section.our-service-container {
                   @include media(mobile) {
                     aspect-ratio: 16 / 8.848;
                   }
+
+                  >*{
+                    border-radius: unset;
+                    opacity: unset;
+                    background: unset;
+                  }
                 }
               }
 

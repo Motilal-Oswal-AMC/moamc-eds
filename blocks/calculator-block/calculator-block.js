@@ -28,7 +28,11 @@ export default function decorate(block) {
   const CALC_AUTHOR_MAIN = block.querySelector('.calc-author-main1');
   if (
     !window.matchMedia('(max-width: 768px)').matches
-    && ['lumpsum-calculator', 'inflation-calculator'].includes(CALC_TYPE)
+    && [
+      'lumpsum-calculator',
+      'inflation-calculator',
+      'compound-interest-calculator',
+    ].includes(CALC_TYPE)
   ) {
     const prevHeight = CALC_AUTHOR_MAIN.offsetHeight;
     CALC_AUTHOR_MAIN.style.maxHeight = `${prevHeight}px`; // temporarily fix height
@@ -108,7 +112,7 @@ export default function decorate(block) {
   const CALC_INSIGHT_N_DISCLAIMER = SECTION_CONTAINER.querySelector(
     '.calculator-container > .calculator-block-wrapper + .default-content-wrapper',
   );
-
+  CALC_INSIGHT_N_DISCLAIMER.classList.add('calculator-disclaimer-wrapper');
   const CALC_INSIGHT = CALC_INSIGHT_N_DISCLAIMER.querySelector('ul:first-child');
   CALC_INSIGHT.classList.add('calculator-container_insight');
 
@@ -250,10 +254,9 @@ export default function decorate(block) {
       return el;
     });
 
-    tempDfilt.slice(0, getCardsPerRow({ padding: 0 }))
-      .forEach((card) => {
-        FUNDS_CARDS_CONTAINER.append(fundBlock(card));
-      });
+    tempDfilt.slice(0, getCardsPerRow({ padding: 0 })).forEach((card) => {
+      FUNDS_CARDS_CONTAINER.append(fundBlock(card));
+    });
   }
   // const BREAD_CRUMB_CONTAINER =
   //   MAIN_CONTAINER.querySelector(".breadcrumbs-fdp");

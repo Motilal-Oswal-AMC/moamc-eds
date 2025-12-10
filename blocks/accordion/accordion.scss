@@ -309,6 +309,10 @@
                 border-width: unset;
                 transform: translateY(-50%);
                 background: url("/icons/plus-blue.svg");
+
+                @include media (mobile) {
+                  top: 17px;
+                }
               }
             }
           }
@@ -650,6 +654,7 @@
           }
 
         }
+
 
         .hidden {
           display: block;

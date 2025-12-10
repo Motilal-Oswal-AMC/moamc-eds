@@ -45,7 +45,10 @@ export function validateInputWithEvent({
   let errorType = null;
 
   // Normalize numeric text
-  const normalized = rawValue.replace(/,/g, '').replace(/[^\d.-]/g, '');
+  const normalized = rawValue
+    .replace(/,/g, '')
+    .replace(/\./g, '')
+    .replace(/[^\d-]/g, '');
   let num = Number(normalized);
 
   // INVALID number
@@ -56,7 +59,9 @@ export function validateInputWithEvent({
 
   // MIN logic
   if (ignoreMin) {
-    if (minValue === '' || (minValue !== 0 && num < minValue)) { errorType = 'MIN_EMPTY'; }
+    if (minValue === '' || (minValue !== 0 && num < minValue)) {
+      errorType = 'MIN_EMPTY';
+    }
   } else if (minValue !== '' && num < minValue) {
     num = minValue;
     errorType = 'MIN_EMPTY';
@@ -78,7 +83,11 @@ export function validateInputWithEvent({
 
   if (currency) {
     if (num !== 0) {
-      finalValue = dataMapMoObj.formatNumber({ value: num, currencyCode, locale });
+      finalValue = dataMapMoObj.formatNumber({
+        value: num,
+        currencyCode,
+        locale,
+      });
     } else if (minValue === 0 && eventType === 'blur') {
       finalValue = 0;
     } else {
@@ -159,7 +168,8 @@ dataMapMoObj.formatNumber = formatNumber;
 export function getInputWidth(value, minChars = 1, extraChars = 0) {
   const str = value != null ? String(value) : '';
   const { length } = str;
-  const widthCh = Math.max(length + extraChars, minChars);
+  const maxLen = length + extraChars > 2 ? 2 : length + extraChars;
+  const widthCh = Math.max(maxLen, minChars);
   return `${widthCh}ch`;
 }
 
@@ -240,8 +250,8 @@ export function createInputBlock({
     year:
       variant === 'stepper'
         ? {
-          min: `${min} ${min === 1 ? 'year' : 'years'}`,
-          max: `${max} years`,
+          min: `${min} ${Number(min) === 1 ? 'Year' : 'Years'}`,
+          max: `${max} Years`,
         }
         : {
           min: `Min. ${min}`,
@@ -297,6 +307,9 @@ export function createInputBlock({
       }
       updateInputSuffix(e);
     },
+    onbeforeinput: (e) => {
+      if (e.data === '.') e.preventDefault();
+    },
     oninput: (e) => {
       let filteredValue = e.target.value;
       // onChange(e?.target?.value);
@@ -312,7 +325,7 @@ export function createInputBlock({
       if (updateWidthonChange) {
         e.target.style.setProperty(
           '--input-ch-width',
-          `${getInputWidth(filteredValue)}`,
+          `${getInputWidth(e.target.value)}`,
         );
       }
       if (
@@ -385,6 +398,7 @@ export function createInputBlock({
       class: 'calc-input',
       'data-fieldType': fieldType,
       value: formatNumber({ value: defVal }),
+      inputmode: 'numeric',
     });
 
     // SYNC: fake → hidden
@@ -482,12 +496,15 @@ export function createInputBlock({
 
   if (suffix) {
     const inlineSuffix = span(
-      { ...suffixAttr, class: `calc-inline-suffix ${suffixAttr?.class || ''}` },
+      {
+        ...suffixAttr,
+        class: `calc-inline-suffix ${suffixAttr?.class || ''}`,
+      },
       suffix,
     );
     // Wrap input and suffix together
-    innerInputWrapper = div(
-      { class: 'calc-inner-input-wrapper' },
+    innerInputWrapper = label(
+      { class: 'calc-inner-input-wrapper', for: id },
       inputEl,
       inlineSuffix,
     );
@@ -866,7 +883,7 @@ export function createBarSummaryBlock({
 }
 
 export function createSummaryCTA({ container }) {
-  const authorCTAData = container.querySelector('.calc-author-sub4 a');
+  const authorCTAData = container.querySelector('a');
   const ctaBtn = button(
     {
       class: 'calc-overview-cta',
@@ -874,7 +891,7 @@ export function createSummaryCTA({ container }) {
         window.location.href = authorCTAData?.href || '#';
       },
     },
-    authorCTAData?.textContent.trim() || 'Start SIP',
+    authorCTAData?.textContent.trim() || 'tets',
   );
   return ctaBtn;
 }

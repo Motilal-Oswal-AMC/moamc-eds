@@ -671,6 +671,10 @@
             "value": "why-choose-card"
           },
           {
+            "name": "Customized Section",
+            "value": "customized-section"
+          },
+          {
             "name": "Section One",
             "value": "section-one"
           },
@@ -775,6 +779,10 @@
             "value": "investor-term-blog"
           },
           {
+            "name": " Elss Fund Banner",
+            "value": "elss-fund-banner"
+          },
+          {
             "name": "Cornerstones Elss Fund",
             "value": "cornerstones-elss-fund"
           },
@@ -873,6 +881,10 @@
           {
             "name": "Minors folio FAQ",
             "value": "minors-folio-faq"
+          },
+          {
+            "name": "Key Details",
+            "value": "key-details"
           },
           {
             "name": "Key Details Card",
@@ -4019,7 +4031,7 @@
       {
         "component": "number",
         "name": "col1_Default_Purchase_Amount",
-        "label": "700000"
+        "label": "Default Purchase Amount"
       },
       {
         "component": "richtext",
@@ -4034,7 +4046,7 @@
       {
         "component": "text",
         "name": "col1_Default_Distributor_Code",
-        "label": "ARN Number"
+        "label": "Default Distributor Code"
       },
       {
         "component": "text",
@@ -4044,7 +4056,7 @@
       {
         "component": "text",
         "name": "col1_Default_SubDistributor_Code",
-        "label": "ARN Sub Number"
+        "label": "Default Sub Distributor Code"
       },
       {
         "component": "text",
@@ -4053,8 +4065,18 @@
       },
       {
         "component": "text",
+        "name": "col1_Default_Employee_Code",
+        "label": "Default Employee Code"
+      },
+      {
+        "component": "text",
         "name": "col1_Euin_no_label",
         "label": "EUIN Number Label"
+      },
+      {
+        "component": "text",
+        "name": "col1_Default_Euin_no",
+        "label": "Default EUIN Number"
       },
       {
         "component": "richtext",
