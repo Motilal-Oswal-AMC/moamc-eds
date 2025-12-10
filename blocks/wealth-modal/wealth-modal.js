@@ -3,7 +3,7 @@ import {
   div, ul, li, p, input, label, button, img,
 } from '../../scripts/dom-helpers.js';
 import { myAPI, generateAppId } from '../../scripts/scripts.js';
-
+// OG bhai
 export default function decorate(block) {
   const wealthModalData = Array.from(block.children);
   const wealthModal = wealthModalData[0];
@@ -16,103 +16,131 @@ export default function decorate(block) {
   // unclaimed redemption class handling
   const unclaimedRedemptionModal = block.closest('main').querySelector('.unclaimed-redemption .wealth-modal');
   if (unclaimedRedemptionModal) {
-    dataMapMoObj.CLASS_PREFIXES =
-      ['unclaimed-redemption-modal',
-        'urm-wrapper',
-        'urm-inner',
-        'urm-subinner'
-      ];
+    dataMapMoObj.CLASS_PREFIXES = ['unclaimed-redemption-modal',
+      'urm-wrapper',
+      'urm-inner',
+      'urm-subinner',
+    ];
     dataMapMoObj.addIndexed(unclaimedRedemptionModal);
-  }
+    // Unclaimed redemption structure update
+    const urmTitle = unclaimedRedemptionModal.querySelector('.urm-inner1');
+    const panLabel = unclaimedRedemptionModal.querySelector('.urm-inner2');
+    const orTxt = unclaimedRedemptionModal.querySelector('.urm-inner3');
+    const folioLabel = unclaimedRedemptionModal.querySelector('.urm-inner4');
+    const enterOtpLAbel = unclaimedRedemptionModal.querySelector('.urm-inner5');
+    const resendOtpLabel = unclaimedRedemptionModal.querySelector('.urm-inner6');
+    const otpMsg = unclaimedRedemptionModal.querySelector('.urm-inner7');
+    const urmSubmitBtn = unclaimedRedemptionModal.querySelector('.urm-inner8');
+    const urmDesc = unclaimedRedemptionModal.querySelector('.urm-inner9');
 
-  // Unclaimed redemption structure update
-  const urmTitle = unclaimedRedemptionModal.querySelector('.urm-inner1');
-  const panLabel = unclaimedRedemptionModal.querySelector('.urm-inner2');
-  const orTxt = unclaimedRedemptionModal.querySelector('.urm-inner3');
-  const folioLabel = unclaimedRedemptionModal.querySelector('.urm-inner4');
-  const enterOtpLAbel = unclaimedRedemptionModal.querySelector('.urm-inner5');
-  const resendOtpLabel = unclaimedRedemptionModal.querySelector('.urm-inner6');
-  const otpMsg = unclaimedRedemptionModal.querySelector('.urm-inner7');
-  const urmSubmitBtn = unclaimedRedemptionModal.querySelector('.urm-inner8');
-  const urmDesc = unclaimedRedemptionModal.querySelector('.urm-inner9');
-
-  const urmModalContent =
-    div({ "class": 'urm-modal-content-wrapper' },
+    const urmModalContent = div(
+      { class: 'urm-modal-content-wrapper' },
       div(
-        { "class": 'urm-modal-content' },
+        { class: 'urm-modal-content' },
         div(
-          { "class": 'urm-modal-wrapper' },
-          div({ "class": 'urm-title-wrap' },
-            p({ "class": 'urm-title-txt' }, urmTitle.textContent)
+          { class: 'urm-modal-wrapper' },
+          div(
+            { class: 'urm-title-wrap' },
+            p({ class: 'urm-title-txt' }, urmTitle.textContent),
           ),
-          div({ "class": 'urm-pan-wrap' },
-            label({ "for": '', "class": 'urm-pan-lbl' }, panLabel.textContent),
-            input({ "type": 'text', "class": 'urm-pan-inp' })
+          div(
+            { class: 'urm-pan-wrap' },
+            label({ for: '', class: 'urm-pan-lbl' }, panLabel.textContent),
+            input({ type: 'text', class: 'urm-pan-inp' }),
           ),
-          div({ "class": 'urm-or-txt' },
-            p({ "class": 'urm-txt' }, orTxt.textContent)
+          div(
+            { class: 'urm-or-txt' },
+            p({ class: 'urm-txt' }, orTxt.textContent),
           ),
-          div({ "class": 'urm-folio-wrap' },
-            label({ "for": '', "class": 'urm-folio-lbl' }, folioLabel.textContent),
-            input({ "type": 'text', "class": 'urm-folio-inp' })
+          div(
+            { class: 'urm-folio-wrap' },
+            label({ for: '', class: 'urm-folio-lbl' }, folioLabel.textContent),
+            input({ type: 'text', class: 'urm-folio-inp' }),
           ),
-          div({ "class": 'urm-enter-otp-wrap' },
-            p({ "class": 'urm-otp-txt' }, enterOtpLAbel.textContent),
-            div({ "class": 'urm-otp-field' },
-              div({ "class": 'urm-otp-field-wrap' },
-                div({ "class": 'urm-otpinp-wrap' },
-                  input({ "class": 'urm-otpinp', "type": 'text', "maxlength": '1', "aria-label": 'OTP digit 1 of 6' })
+          div(
+            { class: 'urm-enter-otp-wrap' },
+            p({ class: 'urm-otp-txt' }, enterOtpLAbel.textContent),
+            div(
+              { class: 'urm-otp-field' },
+              div(
+                { class: 'urm-otp-field-wrap' },
+                div(
+                  { class: 'urm-otpinp-wrap' },
+                  input({
+                    class: 'urm-otpinp', type: 'text', maxlength: '1', 'aria-label': 'OTP digit 1 of 6',
+                  }),
                 ),
-                div({ "class": 'urm-otpinp-wrap' },
-                  input({ "class": 'urm-otpinp', "type": 'text', "maxlength": '1', "aria-label": 'OTP digit 2 of 6' })
+                div(
+                  { class: 'urm-otpinp-wrap' },
+                  input({
+                    class: 'urm-otpinp', type: 'text', maxlength: '1', 'aria-label': 'OTP digit 2 of 6',
+                  }),
                 ),
-                div({ "class": 'urm-otpinp-wrap' },
-                  input({ "class": 'urm-otpinp', "type": 'text', "maxlength": '1', "aria-label": 'OTP digit 3 of 6' })
+                div(
+                  { class: 'urm-otpinp-wrap' },
+                  input({
+                    class: 'urm-otpinp', type: 'text', maxlength: '1', 'aria-label': 'OTP digit 3 of 6',
+                  }),
                 ),
-                div({ "class": 'urm-otpinp-wrap' },
-                  input({ "class": 'urm-otpinp', "type": 'text', "maxlength": '1', "aria-label": 'OTP digit 4 of 6' })
+                div(
+                  { class: 'urm-otpinp-wrap' },
+                  input({
+                    class: 'urm-otpinp', type: 'text', maxlength: '1', 'aria-label': 'OTP digit 4 of 6',
+                  }),
                 ),
-                div({ "class": 'urm-otpinp-wrap' },
-                  input({ "class": 'urm-otpinp', "type": 'text', "maxlength": '1', "aria-label": 'OTP digit 5 of 6' })
+                div(
+                  { class: 'urm-otpinp-wrap' },
+                  input({
+                    class: 'urm-otpinp', type: 'text', maxlength: '1', 'aria-label': 'OTP digit 5 of 6',
+                  }),
                 ),
-                div({ "class": 'urm-otpinp-wrap' },
-                  input({ "class": 'urm-otpinp', "type": 'text', "maxlength": '1', "aria-label": 'OTP digit 6 of 6' })
-                )
+                div(
+                  { class: 'urm-otpinp-wrap' },
+                  input({
+                    class: 'urm-otpinp', type: 'text', maxlength: '1', 'aria-label': 'OTP digit 6 of 6',
+                  }),
+                ),
               ),
-              button({ "class": 'urm-resend' }, resendOtpLabel.textContent)),
+              button({ class: 'urm-resend' }, resendOtpLabel.textContent),
+            ),
           ),
 
-          div({ "class": 'urm-otp-msg-wrap' },
-            p({ "class": 'urm-otpmsg-txt' }, otpMsg.textContent)),
-          button({ "class": 'urm-submit' }, urmSubmitBtn.textContent)),
+          div(
+            { class: 'urm-otp-msg-wrap' },
+            p({ class: 'urm-otpmsg-txt' }, otpMsg.textContent),
+          ),
+          button({ class: 'urm-submit' }, urmSubmitBtn.textContent),
+        ),
       ),
-      div({ "class": 'urm-related-desc' },
-        p({ "class": 'urm-description' }, urmDesc.textContent))
+      div(
+        { class: 'urm-related-desc' },
+        p({ class: 'urm-description' }, urmDesc.textContent),
+      ),
     );
 
-  unclaimedRedemptionModal.textContent = '';
-  unclaimedRedemptionModal.append(urmModalContent);
+    unclaimedRedemptionModal.textContent = '';
+    unclaimedRedemptionModal.append(urmModalContent);
 
-  // const inputLabels = wealthModal.querySelectorAll('.urm-modal-wrapper label');
-  const urmInputs = unclaimedRedemptionModal.querySelectorAll('.urm-modal-wrapper input');
+    // const inputLabels = wealthModal.querySelectorAll('.urm-modal-wrapper label');
+    const urmInputs = unclaimedRedemptionModal.querySelectorAll('.urm-modal-wrapper input');
 
-  urmInputs.forEach(input => { // Add active on click
-    input.addEventListener('click', (e) => {
-      if (e.target.value === '') {
-        e.target.parentElement.classList.add('active');
-      }
+    urmInputs.forEach((inputarg) => { // Add active on click
+      inputarg.addEventListener('click', (e) => {
+        if (e.target.value === '') {
+          e.target.parentElement.classList.add('active');
+        }
+      });
     });
-  });
 
-  // Remove active when clicking outside empty input
-  document.addEventListener('click', (e) => {
-  urmInputs.forEach(input => {
-    if (!input.contains(e.target) && input.value === '') {
-      input.parentElement.classList.remove('active');
-    }
-  });
-});
-
+    // Remove active when clicking outside empty input
+    document.addEventListener('click', (e) => {
+      urmInputs.forEach((inputvalarg) => {
+        if (!inputvalarg.contains(e.target) && inputvalarg.value === '') {
+          inputvalarg.parentElement.classList.remove('active');
+        }
+      });
+    });
+  }
 
   try {
     const crossBtn = wealthModal.querySelector('.wealth-inner1').cloneNode(true);
@@ -124,6 +152,7 @@ export default function decorate(block) {
     const associatedLab = wealthModal.querySelector('.wealth1 .wealth-inner6');
     const botton = wealthModal.querySelector('.wealth1 .wealth-inner7');
     const mend = wealthModal.querySelector('.wealth1 .wealth-inner8');
+    const mentsub = mend === null ? 'Submit' : mend.textContent;
     const counCode = wealthModal.querySelector('.wealth1 .wealth-sub-inner-sub-li2');
 
     const wealthRagisterModal = div(
@@ -190,8 +219,8 @@ export default function decorate(block) {
         ),
         div(
           { class: 'btn-mand' },
-          button({ class: 'btn', disabled: true }, botton.textContent),
-          p({ class: 'mandatory' }, mend.textContent),
+          button({ class: 'btn', disabled: true }, mentsub),
+          p({ class: 'mandatory' }, botton.textContent),
         ),
       ),
     );
@@ -282,7 +311,6 @@ export default function decorate(block) {
       const allFilled = fields.every((f) => f.value.trim() !== '');
       const allValid = fields
         .every((f) => (touchedFields.has(f) ? dataMapMoObj.validateField(f) : true));
-
       submitButton.disabled = !(allFilled && allValid);
       submitButton.classList.toggle('active', allFilled && allValid);
     }
@@ -816,7 +844,4 @@ export default function decorate(block) {
 
   // block.closest('.wealth-register')
   //   .classList.add('modal-show');
-
-
-
 }

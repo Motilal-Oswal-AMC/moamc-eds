@@ -775,6 +775,10 @@
             "value": "investor-term-blog"
           },
           {
+            "name": "Static Modal",
+            "value": "static-modal"
+          },
+          {
             "name": " Elss Fund Banner",
             "value": "elss-fund-banner"
           },
