@@ -1722,9 +1722,11 @@ main>.section.previous-studies-tab.tabs-container {
           top: -61px;
           padding: var(--spacing-8, 8px) var(--spacing-12, 12px);
           gap: var(--spacing-8, 8px);
-          font-size: var(--button-small-size, 14px);
+          font-size: 14px;
           line-height: 16px;
-          max-width: 169px;
+          max-width: inherit;
+          width: max-content;
+          min-width: 101px;
           height: 32px;
 
         }

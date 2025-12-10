@@ -175,7 +175,9 @@
     }
 
     &:nth-child(3) {
-      display: none;
+      @include media (mobile) {
+        display: none;
+      }
     }
   }
 }
@@ -471,6 +473,68 @@
 }
 
 // Faq css End
+
+
+// NRI accordion Start //
+
+.section.freq-ask-ques.nri-accordion {
+  margin-top: 80px;
+
+  @include media(mobile) {
+    margin-top: 40px;
+  }
+
+  .faq-our-fund {
+    display: flex;
+    gap: 16px;
+
+    @include media(mobile) {
+      gap: 24px;
+    }
+
+
+    &>.default-content-wrapper:nth-child(1) {
+      max-width: 400px;
+      width: 100%;
+
+      p {
+        font-size: 28px;
+        line-height: 32px;
+
+        @include media(mobile) {
+          font-size: 24px;
+          line-height: 28px;
+        }
+
+      }
+    }
+
+    .accordion-wrapper {
+      .accordion {
+        .accordion-item[open]{
+          .accordion-item-body{
+            p{
+                      @include media(mobile) {
+           font-size: 14px;
+                   line-height: 20px;
+                   font-weight: 400;
+        }
+            }
+          }
+        }
+        .hidden {
+          display: block;
+        }
+      }
+    }
+
+    &>.default-content-wrapper:nth-child(3) {
+      display: none;
+    }
+  }
+}
+
+// NRI accordion End //
 
 .section.gift-accordion {
   @include media(mobile) {

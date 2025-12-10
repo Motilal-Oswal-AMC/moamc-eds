@@ -1,22 +1,19 @@
 {
   "mappings": [
-    "/content/mosleds/:/",
     "/content/moamc-eds/:/",
     "/content/moamc-eds/wcs/in/en/:/wcs-series",
-    "/content/mosleds/configuration:/.helix/config.json",
-    "/content/mosleds/metadata:/metadata.json",
-    "/content/mosleds/mutual-fund/in/api/faq:/api/faq.json",
-    "/content/mosleds/mutual-fund/in/api/form-api:/api/form-api.json",
-    "/content/mosleds/mutual-fund/in/api/fund-api:/api/fund-api.json",
-    "/content/mosleds/mutual-fund/in/placeholder:/placeholder.json",
-    "/content/mosleds/mutual-fund/in/schememaster:/schememaster.json",
-    "/content/mosleds/mutual-fund/in/api/nav-and-dividendupload:/api/nav-and-dividendupload.json",
+    "/content/moamc-eds/metadata:/metadata.json",
+    "/content/moamc-eds/mutual-fund/in/api/faq:/api/faq.json",
+    "/content/moamc-eds/mutual-fund/in/api/form-api:/api/form-api.json",
+    "/content/moamc-eds/mutual-fund/in/api/fund-api:/api/fund-api.json",
+    "/content/moamc-eds/mutual-fund/in/placeholder:/placeholder.json",
+    "/content/moamc-eds/mutual-fund/in/schememaster:/schememaster.json",
+    "/content/moamc-eds/mutual-fund/in/api/nav-and-dividendupload:/api/nav-and-dividendupload.json",
     "/content/moamc-eds/headers:/.helix/headers.json",
-    "/content/moamc-eds/redirects:/redirects.json"
-
+    "/content/moamc-eds/redirects:/.helix/redirects.json",
+    "/content/moamc-eds/configuration:/.helix/config.json"
   ],
   "includes": [
-    "/content/mosleds/",
     "/content/moamc-eds/"
   ]
 }
