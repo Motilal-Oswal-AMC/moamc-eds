@@ -3,8 +3,8 @@
 /* media-feature-range-notation */
 
 @use "sass:map";
-@use "../styles/common-theme/css/variables_mixins"as *;
-@use "../styles/common-theme/css/fluid-typography"as *;
+@use "../styles/common-theme/css/variables_mixins" as *;
+@use "../styles/common-theme/css/fluid-typography" as *;
 
 // @import "../blocks/moedge-article-details/moedge-article-details.css";
 // @import '../blocks/Investor-details/investor-details.css';
@@ -632,6 +632,7 @@ main>.section.previous-studies-tab.tabs-container {
 }
 
 .default-content-wrapper.annual-wealth-wrap1 {
+
   h1,
   h2,
   h3,
@@ -1998,7 +1999,7 @@ main.nfo-nav {
       &1 {
         margin: 0;
         color: var(--text-body, #424242);
-        font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
+        font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
         font-family: var(--body, Inter);
         font-size: var(--body-xlarge-regular-size, 20px);
         font-style: normal;
@@ -2009,7 +2010,7 @@ main.nfo-nav {
       &2 {
         margin: 0;
         color: var(--blue-1800-primary, #2E2A94);
-        font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on, 'liga'off;
+        font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on, 'liga' off;
         font-family: var(--body, Inter);
         font-size: var(--body-xlarge-bold-size, 20px);
         font-style: normal;
@@ -2307,7 +2308,7 @@ main.nfo-nav {
 
           .high-skin-component-external1 {
             color: var(--neutrals-white);
-            font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
+            font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
             font-family: var(--title);
             font-size: 20px;
             line-height: 24px;
@@ -2354,7 +2355,7 @@ main.nfo-nav {
 
   .moamc-component-main-head1 {
     color: var(--blue-1-800-primary);
-    font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
+    font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
     font-family: var(--title);
     font-size: var(--sub-header-large-size);
     line-height: var(--sub-header-medium-line-height);
@@ -2404,7 +2405,7 @@ main.nfo-nav {
 
     .moamc-component-para-three1 {
       color: var(--neutrals-900);
-      font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on, 'liga'off;
+      font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on, 'liga' off;
       font-family: var(--body);
       font-size: var(--body-large-semibold-size);
       font-style: normal;
@@ -2422,7 +2423,7 @@ main.nfo-nav {
 
     .moamc-component-para-three2 {
       color: var(--neutrals-800);
-      font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
+      font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
       font-family: var(--body);
       font-size: var(--body-medium-regular-size);
       font-style: normal;
@@ -2605,7 +2606,7 @@ main.nfo-nav {
 
       .why-matters-heading1 {
         color: var(--blue-1-800-primary);
-        font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
+        font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
         font-family: var(--title);
         font-size: var(--sub-header-large-size);
         font-weight: 600;
@@ -2689,7 +2690,7 @@ main.nfo-nav {
           .why-matters-sub-title1 {
             list-style: none;
             color: var(--neutrals-900);
-            font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
+            font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
             font-family: var(--body);
             font-size: var(--sub-header-medium-size);
             font-style: normal;
@@ -2704,7 +2705,7 @@ main.nfo-nav {
           .why-matters-sub-title2 {
             list-style: none;
             color: var(--neutrals-800);
-            font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
+            font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
             font-family: var(--body);
             font-size: var(--body-small-regular-size);
             font-style: normal;
@@ -2814,7 +2815,7 @@ main.nfo-nav {
     max-width: 343px;
     width: 100%;
     color: var(--blue-1-800-primary);
-    font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
+    font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
     font-family: var(--title, Inter);
     font-size: 28px;
     font-style: normal;
@@ -2828,7 +2829,7 @@ main.nfo-nav {
     max-width: 608px;
     width: 100%;
     color: var(--neutrals-800);
-    font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
+    font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
     font-family: var(--body, Inter);
     font-size: 16px;
     font-style: normal;
@@ -2891,7 +2892,7 @@ main.nfo-nav {
   .invest-blog-txt1 {
     margin: unset;
     color: var(--blue-1-800-primary);
-    font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
+    font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
     font-family: var(--body, Inter);
     font-size: 20px;
     font-style: normal;
@@ -2902,7 +2903,7 @@ main.nfo-nav {
   .invest-blog-txt2 {
     margin: unset;
     color: var(--blue-1-800-primary);
-    font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
+    font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
     font-family: var(--body, Inter);
     font-size: 20px;
     font-style: normal;
@@ -2934,7 +2935,7 @@ main.nfo-nav {
 
     .tax-blog-txt1 {
       color: var(--blue-1-800-primary);
-      font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
+      font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
       font-family: var(--title, Inter);
       font-size: 28px;
       font-style: normal;
@@ -2952,7 +2953,7 @@ main.nfo-nav {
 
       .tax-blog-subtxt1 {
         color: var(--text-body);
-        font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
+        font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
         font-family: var(--body, Inter);
         font-size: 14px;
         font-style: normal;
@@ -2962,7 +2963,7 @@ main.nfo-nav {
 
       .tax-blog-subtxt2 {
         color: var(--text-body);
-        font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
+        font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
         font-family: var(--body, Inter);
         font-size: 14px;
         font-style: normal;
@@ -2991,7 +2992,7 @@ main.nfo-nav {
 
     .sip-blog-txt1 {
       color: var(--blue-1-800-primary);
-      font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
+      font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
       font-family: var(--title, Inter);
       font-size: 28px;
       font-style: normal;
@@ -3016,7 +3017,7 @@ main.nfo-nav {
 
       .sip-blog-subtxt1 {
         color: var(--text-body);
-        font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
+        font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
         font-family: var(--body, Inter);
         font-size: 14px;
         font-style: normal;
@@ -3041,7 +3042,7 @@ main.nfo-nav {
 
       .sip-blog-subtxt2 {
         color: var(--text-body);
-        font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
+        font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
         font-family: var(--body, Inter);
         font-size: 14px;
         font-style: normal;
@@ -3088,7 +3089,7 @@ main.nfo-nav {
   .elss-stock-table-contain1 {
     .elss-stock-table-txt1 {
       color: var(--blue-1-800-primary);
-      font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
+      font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
       font-family: var(--title, Inter);
       font-size: 28px;
       font-style: normal;
