@@ -127,8 +127,10 @@
                                         font-weight: 400;
                                         line-height: 24px;
 
-                                        @include media (mobile-ed) {
-                                            line-height: var(--body-medium-regular-line-height, 20px);
+                                        &:first-child {
+                                            @include media (mobile-ed) {
+                                                line-height: var(--body-medium-regular-line-height, 20px);
+                                            }
                                         }
 
                                         &::before {
@@ -213,6 +215,18 @@
                             &2 {
                                 flex-direction: column;
                                 gap: 40px;
+
+                                ul {
+                                    li.comlist {
+                                        @include media (mobile-ed) {
+                                            line-height: 24px;
+
+                                            strong {
+                                                line-height: 24px;
+                                            }
+                                        }
+                                    }
+                                }
                             }
                         }
                     }

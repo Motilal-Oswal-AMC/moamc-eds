@@ -298,6 +298,7 @@ body:has(.calculator-container) {
 }
 
 
+
 body:has(.calc-error) {
     .calculator-sticky-cta-container .button.calculator-container-title-btn,
     div[class*='calculator-container_title'].default-content-wrapper .calculator-container-title-item1 p.button-container a.calculator-container-title-btn {
@@ -305,6 +306,7 @@ body:has(.calc-error) {
         // cursor: not-allowed;
         color: $neutrals-550;
         border: 1px solid $neutrals-400;
+        background-color: $neutrals-50;
         pointer-events: none;
     }
 }

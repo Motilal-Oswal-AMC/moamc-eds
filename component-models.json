@@ -671,6 +671,10 @@
             "value": "why-choose-card"
           },
           {
+            "name": "Customized Section",
+            "value": "customized-section"
+          },
+          {
             "name": "Section One",
             "value": "section-one"
           },
@@ -1076,6 +1080,17 @@
         "name": "answer",
         "label": "Answer",
         "raw": true
+      },
+      {
+        "component": "multiselect",
+        "name": "style",
+        "label": "Style",
+        "options": [
+          {
+            "name": "Accordion Table",
+            "value": "accordion-table"
+          }
+        ]
       }
     ]
   },

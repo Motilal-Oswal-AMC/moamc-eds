@@ -549,6 +549,7 @@ function articleStructure() {
   // Investor Education article left and right wrapper
   if (
     window.location.href.includes('/investor-education/all-articles/')
+    || window.location.href.includes('/investor-education/video-listing/')
     || window.location.href.includes('/motilal-oswal-edge/insights/blogs')
     || window.location.href.includes('/motilal-oswal-edge/article-details')
     || window.location.href.includes(
@@ -1198,6 +1199,41 @@ if (skinmoamcComponent != null) {
   ];
   dataMapMoObj.addIndexed(skinmoamcComponent);
 }
+const customizedComponent = document.querySelector('.customized-section');
+if (customizedComponent != null) {
+  dataMapMoObj.CLASS_PREFIXES = [
+    'customize-wrap',
+    'customize-inner',
+    'customize-img-wrap',
+    'customize-img',
+    'customize-title',
+    'customize-subtitle',
+
+  ];
+  dataMapMoObj.addIndexed(customizedComponent);
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  const customizedSection = document.querySelector(".customized-section");
+  if (!customizedSection) return;
+
+  const heroWrapper = customizedSection.querySelector(".hero-wrapper");
+  const purchaseWrapper = customizedSection.querySelector(".quick-purchase-block-wrapper");
+
+  if (!heroWrapper || !purchaseWrapper) return;
+
+  // Create the new wrapper
+  const newWrapper = document.createElement("div");
+  newWrapper.classList.add("custom-wrapper");
+
+  // Append wrapper INSIDE customized-section (NOT after it)
+  customizedSection.appendChild(newWrapper);
+
+  // Move both inside it
+  newWrapper.appendChild(heroWrapper);
+  newWrapper.appendChild(purchaseWrapper);
+});
+
 
 const privacyPolicy = document.querySelectorAll('.privacy-policy-banner');
 
@@ -1251,6 +1287,26 @@ try {
     ];
     dataMapMoObj.addIndexed(whymattersComponent);
   }
+
+  //  class added for accordion table start//
+
+     const accordionTable = maincloser.querySelector('.accordion-table');
+      dataMapMoObj.CLASS_PREFIXES = [
+        'leftartmain',
+        'leftartsub',
+        'leftartitem',
+        'subleftart',
+        'mainleftart',
+        'itemleftart',
+        'itemleftart',
+        'mainitemleftart',
+        'itemmainleftart',
+        'submainleftart',
+      ];
+      dataMapMoObj.addIndexed(accordionTable);
+
+
+    //  class added for accordion table end//
 
   const container = document.querySelector('.section.why-matters-component.cards-container');
 

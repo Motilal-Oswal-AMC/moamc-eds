@@ -56,7 +56,7 @@
                     align-items: center;
 
                     @include media(mobile) {
-                        gap: 8px;
+                        gap: 4px;
                     }
 
                     img {
@@ -321,7 +321,7 @@
                             width: 1.5px;
                             height: 13.5px;
                             flex-shrink: 0;
-                            background-color: $primary-black;
+                            background-color: $black-450;
                             border-radius: 3px;
                         }
                     }
@@ -340,7 +340,7 @@
                             width: 1.5px;
                             height: 13.5px;
                             flex-shrink: 0;
-                            background-color: $primary-black;
+                            background-color: $black-450;
                             border-radius: 3px;
                         }
 
