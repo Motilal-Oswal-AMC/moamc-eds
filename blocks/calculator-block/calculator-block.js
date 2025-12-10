@@ -108,7 +108,7 @@ export default function decorate(block) {
   const CALC_INSIGHT_N_DISCLAIMER = SECTION_CONTAINER.querySelector(
     '.calculator-container > .calculator-block-wrapper + .default-content-wrapper',
   );
-
+  CALC_INSIGHT_N_DISCLAIMER.classList.add('calculator-disclaimer-wrapper');
   const CALC_INSIGHT = CALC_INSIGHT_N_DISCLAIMER.querySelector('ul:first-child');
   CALC_INSIGHT.classList.add('calculator-container_insight');
 
