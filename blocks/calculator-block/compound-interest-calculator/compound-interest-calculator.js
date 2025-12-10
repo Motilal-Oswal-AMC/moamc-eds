@@ -5,6 +5,7 @@ import {
   extractOptionsSelect,
   formatNumber,
   getAuthorData,
+  safeUpdateMinimalReflow,
 } from '../common-ui-field/common-ui-field.js';
 
 const freqMap = {
@@ -185,12 +186,13 @@ export default function decorate(block) {
   // Create a new container div
   const container = document.createElement('div');
   container.classList.add('calc-second-group'); // optional class name
-  OVERVIEW_AUTHOR_DATA.forEach((el) => container.appendChild(el));
+  OVERVIEW_AUTHOR_DATA.forEach((el) => container.appendChild(el.cloneNode(true)));
+  // console.log(" container : ", container);
 
   const sipBlock = createBarSummaryBlock({
     container,
   });
-  CALC_AUTHOR_MAIN.innerHTML = '';
+  // CALC_AUTHOR_MAIN.innerHTML = "";
 
   const pi = getAuthorData(CALC_AUTHORED_DATA, 'PI');
   const tp = getAuthorData(CALC_AUTHORED_DATA, 'TP');
@@ -273,7 +275,16 @@ export default function decorate(block) {
     },
   });
 
-  CALC_AUTHOR_MAIN.append(piBlock, tpBlock, roiBlock, selector);
+  safeUpdateMinimalReflow(
+    CALC_AUTHOR_MAIN,
+    () => {
+      const frag = document.createDocumentFragment();
+      frag.append(piBlock, tpBlock, roiBlock, selector);
+      return frag;
+    },
+    /* useReserve= */ true,
+    /* extraPx= */ 0,
+  );
   block.appendChild(sipBlock);
 
   recalculateCompoundInterest({ container: block });
