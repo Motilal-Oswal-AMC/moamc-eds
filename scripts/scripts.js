@@ -586,18 +586,18 @@ function articleStructure() {
     });
 
     Array.from(rightSub).forEach((subright) => {
-        dataMapMoObj.CLASS_PREFIXES = [
-          'investarticle-rightmain',
-          'investarticle-rightsub',
-          'investarticle-rightinner',
-          'investsub-rightarticle',
-          'investright-subinner',
-          'investright-articleitem',
-          'investright-itemchild',
-          'investright-subchild',
-        ];
-        dataMapMoObj.addIndexed(subright);
-      });
+      dataMapMoObj.CLASS_PREFIXES = [
+        'investarticle-rightmain',
+        'investarticle-rightsub',
+        'investarticle-rightinner',
+        'investsub-rightarticle',
+        'investright-subinner',
+        'investright-articleitem',
+        'investright-itemchild',
+        'investright-subchild',
+      ];
+      dataMapMoObj.addIndexed(subright);
+    });
 
     if (!maincloser.querySelector('.moedge-article-details')) {
       Array.from(leftSub).forEach((subleft) => {
@@ -741,16 +741,16 @@ function articleStructure() {
     }
 
     function addIndexedThree(parentElement, level = 0) {
-    const prefix = 'rightlist';
-    const { children } = parentElement; // Cache children for clarity.
-    for (let i = 0; i < children.length; i += 1) {
-      let parClass = Array.from(children[0].parentElement.classList)[0].split('-').at(-2);
-      const child = children[i];
-      const index = i + 1; // Class names are typically 1-based.
-      child.classList.add(`${prefix}`);
-      parClass = '';
-      addIndexedThree(child, level + 1);
-    }
+      const prefix = 'rightlist';
+      const { children } = parentElement; // Cache children for clarity.
+      for (let i = 0; i < children.length; i += 1) {
+        let parClass = Array.from(children[0].parentElement.classList)[0].split('-').at(-2);
+        const child = children[i];
+        const index = i + 1; // Class names are typically 1-based.
+        child.classList.add(`${prefix}`);
+        parClass = '';
+        addIndexedThree(child, level + 1);
+      }
     }
     addIndexedThree(maincloser.querySelector('.article-right-wrapper'));
     // const shareWrapper = document.querySelector('.itemmainleftart3');
@@ -899,6 +899,8 @@ function articleStructure() {
         });
       }
     });
+
+
 
     const delay = (ms) => new Promise((resolve) => { setTimeout(resolve, ms); });
     delay(2000).then(() => {
@@ -1207,20 +1209,20 @@ try {
 // Unclaimed Redemption Block
 try {
   // if (window.location.href == 'mutual-fund/in/en/static-pages/unclaimed-redemptions') {
-    const section = document.querySelector('.unclaimed-redemption');
-    const cardSection = document.querySelector('.unclaimed-redemption .cards-wrapper');
-    const unclaimedForm = document.querySelector('.unclaimed-redemption .wealth-modal-wrapper');
-    const elementNew = document.createElement('div');
-    const elementDiv = document.createElement('div');
-    elementDiv.classList.add('section-container');
-    elementNew.classList.add('container');
-    if (section !== null) {
-      section.appendChild(elementNew);
-      section.appendChild(elementDiv);
-      elementDiv.appendChild(elementNew);
-      elementNew.appendChild(cardSection);
-      elementNew.appendChild(unclaimedForm);
-    }
+  const section = document.querySelector('.unclaimed-redemption');
+  const cardSection = document.querySelector('.unclaimed-redemption .cards-wrapper');
+  const unclaimedForm = document.querySelector('.unclaimed-redemption .wealth-modal-wrapper');
+  const elementNew = document.createElement('div');
+  const elementDiv = document.createElement('div');
+  elementDiv.classList.add('section-container');
+  elementNew.classList.add('container');
+  if (section !== null) {
+    section.appendChild(elementNew);
+    section.appendChild(elementDiv);
+    elementDiv.appendChild(elementNew);
+    elementNew.appendChild(cardSection);
+    elementNew.appendChild(unclaimedForm);
+  }
   // }
 } catch (error) {
   console.log(error);
