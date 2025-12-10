@@ -12,6 +12,7 @@ import {
   loadSection,
   loadSections,
   loadCSS,
+  fetchPlaceholders,
 } from './aem.js';
 
 import dataMapMoObj from './constant.js';
@@ -22,6 +23,11 @@ import { initializeModalHandlers } from '../blocks/modal/modal.js';
 import { img, span } from './dom-helpers.js';
 
 // console.log('f1 code');
+
+const placeholder = await fetchPlaceholders(
+  '/content/moamc-eds/mutual-fund/in/en',
+);
+export const { publisherUrl } = placeholder;
 
 /**
  * Moves all the attributes from a given elmenet to another given element.

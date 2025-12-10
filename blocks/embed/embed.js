@@ -11,6 +11,7 @@ import {
   div, table, thead, tbody, tr, p, sup, span,
 } from '../../scripts/dom-helpers.js';
 import { createModal } from '../modal/modal.js';
+import { publisherUrl } from '../../scripts/scripts.js';
 
 const loadScript = (url, callback, type) => {
   const head = document.querySelector('head');
@@ -98,7 +99,14 @@ export const loadEmbed = (block, link, autoplay) => {
 
 export default function decorate(block) {
   const placeholder = block.querySelector('picture');
-  const link = block.querySelector('a').href;
+
+  let link = block.querySelector('a').href;
+  const { pathname } = new URL(link);
+
+  if (pathname.startsWith('/content/') && publisherUrl) {
+    link = publisherUrl + pathname;
+  }
+
   if (!block.closest('.media-coverage') && !block.closest('.prev-studies-wrapper')) {
     block.textContent = '';
   }

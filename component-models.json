@@ -1023,7 +1023,7 @@
         ]
       },
       {
-        "component": "aem-content",
+        "component": "reference",
         "name": "video_url",
         "label": "Video URL"
       },
