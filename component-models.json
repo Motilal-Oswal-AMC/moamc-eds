@@ -674,6 +674,10 @@
             "name": "Customized Section",
             "value": "customized-section"
           },
+           {
+            "name": "Instant Account",
+            "value": "instant-account"
+          },
           {
             "name": "Section One",
             "value": "section-one"
