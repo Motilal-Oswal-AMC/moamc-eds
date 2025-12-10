@@ -1069,13 +1069,13 @@
       {
         "component": "richtext",
         "valueType": "string",
-        "name": "question",
+        "name": "col1_question",
         "label": "Question"
       },
       {
         "component": "richtext",
         "valueType": "string",
-        "name": "answer",
+        "name": "col2_answer",
         "label": "Answer",
         "raw": true
       }
