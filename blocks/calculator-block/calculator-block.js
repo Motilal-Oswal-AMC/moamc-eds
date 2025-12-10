@@ -28,7 +28,11 @@ export default function decorate(block) {
   const CALC_AUTHOR_MAIN = block.querySelector('.calc-author-main1');
   if (
     !window.matchMedia('(max-width: 768px)').matches
-    && ['lumpsum-calculator', 'inflation-calculator'].includes(CALC_TYPE)
+    && [
+      'lumpsum-calculator',
+      'inflation-calculator',
+      'compound-interest-calculator',
+    ].includes(CALC_TYPE)
   ) {
     const prevHeight = CALC_AUTHOR_MAIN.offsetHeight;
     CALC_AUTHOR_MAIN.style.maxHeight = `${prevHeight}px`; // temporarily fix height
@@ -250,10 +254,9 @@ export default function decorate(block) {
       return el;
     });
 
-    tempDfilt.slice(0, getCardsPerRow({ padding: 0 }))
-      .forEach((card) => {
-        FUNDS_CARDS_CONTAINER.append(fundBlock(card));
-      });
+    tempDfilt.slice(0, getCardsPerRow({ padding: 0 })).forEach((card) => {
+      FUNDS_CARDS_CONTAINER.append(fundBlock(card));
+    });
   }
   // const BREAD_CRUMB_CONTAINER =
   //   MAIN_CONTAINER.querySelector(".breadcrumbs-fdp");
