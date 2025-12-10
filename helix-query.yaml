@@ -68,6 +68,9 @@ indices:
         select: head > meta[name="description"]
         value: attribute(el, "content")
       image:
+        select: head > meta[property="og:image"]
+        value: attribute(el, "src")  
+      imgvedios:
         select: body .embed picture img
         value: attribute(el, "src")
       tag:
