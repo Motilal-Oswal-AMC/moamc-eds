@@ -694,7 +694,7 @@
         }
 
         .hero {
-            padding: 119px 0 0;
+            padding: 77px 0 0;
             gap: 33px;
             max-width: 100%;
             width: 100%;
@@ -755,6 +755,7 @@
 
             .mo-inter-sub2 {
                 max-width: 588px;
+                padding-top: 40px;
 
                 @include media(mobile) {
                     padding: 40px 16px 0;
