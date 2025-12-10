@@ -2,10 +2,6 @@ import { div } from '../../scripts/dom-helpers.js';
 import { loadCSS } from '../../scripts/aem.js';
 import dataMapMoObj from '../../scripts/constant.js';
 import fundBlock from '../fund-card/fund-card.js';
-import { div } from '../../scripts/dom-helpers.js';
-import { loadCSS } from '../../scripts/aem.js';
-import dataMapMoObj from '../../scripts/constant.js';
-import fundBlock from '../fund-card/fund-card.js';
 import {
   CALC_FILENAME_MAPPING,
   createSummaryCTA,
@@ -26,17 +22,17 @@ export default function decorate(block) {
   ];
   dataMapMoObj.addIndexed(block);
 
-  const CALC_PATH_ARRAY = window.location.pathname.split("/");
+  const CALC_PATH_ARRAY = window.location.pathname.split('/');
   const CALC_TYPE = CALC_PATH_ARRAY[CALC_PATH_ARRAY.length - 1];
 
-  const CALC_AUTHOR_MAIN = block.querySelector(".calc-author-main1");
+  const CALC_AUTHOR_MAIN = block.querySelector('.calc-author-main1');
   if (
-    !window.matchMedia("(max-width: 768px)").matches &&
-    ["lumpsum-calculator", "inflation-calculator"].includes(CALC_TYPE)
+    !window.matchMedia('(max-width: 768px)').matches
+    && ['lumpsum-calculator', 'inflation-calculator'].includes(CALC_TYPE)
   ) {
     const prevHeight = CALC_AUTHOR_MAIN.offsetHeight;
     CALC_AUTHOR_MAIN.style.maxHeight = `${prevHeight}px`; // temporarily fix height
-    CALC_AUTHOR_MAIN.style.overflow = "hidden";
+    CALC_AUTHOR_MAIN.style.overflow = 'hidden';
   }
 
   if (CALCULATOR_GRAPH_CONTAINER) {
@@ -112,10 +108,9 @@ export default function decorate(block) {
   const CALC_INSIGHT_N_DISCLAIMER = SECTION_CONTAINER.querySelector(
     '.calculator-container > .calculator-block-wrapper + .default-content-wrapper',
   );
-  CALC_INSIGHT_N_DISCLAIMER.classList.add("calculator-disclaimer-wrapper");
-  const CALC_INSIGHT =
-    CALC_INSIGHT_N_DISCLAIMER.querySelector("ul:first-child");
-  CALC_INSIGHT.classList.add("calculator-container_insight");
+  CALC_INSIGHT_N_DISCLAIMER.classList.add('calculator-disclaimer-wrapper');
+  const CALC_INSIGHT = CALC_INSIGHT_N_DISCLAIMER.querySelector('ul:first-child');
+  CALC_INSIGHT.classList.add('calculator-container_insight');
 
   ALL_CALC_TITLE.classList.add('calculator-container_title');
   dataMapMoObj.CLASS_PREFIXES = [
@@ -144,12 +139,10 @@ export default function decorate(block) {
     (ele) => ele.classList.add('calculator-disclaimer-desc'),
   );
 
-  CALC_INSIGHT.querySelectorAll(":scope>li").forEach((ele) =>
-    ele.classList.add("insight-textcontent")
-  );
-  ICON_IMG.classList.add("calculator-container_title--icon");
-  NESTED_LIST.classList.add("calculator-container-title-textcontent");
-  BUTTON.classList.add("calculator-container-title-btn");
+  CALC_INSIGHT.querySelectorAll(':scope>li').forEach((ele) => ele.classList.add('insight-textcontent'));
+  ICON_IMG.classList.add('calculator-container_title--icon');
+  NESTED_LIST.classList.add('calculator-container-title-textcontent');
+  BUTTON.classList.add('calculator-container-title-btn');
 
   const startInvestingBtn = createSummaryCTA({
     container: block.querySelector('.calc-author-main1'),

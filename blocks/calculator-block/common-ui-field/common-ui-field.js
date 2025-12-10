@@ -55,7 +55,9 @@ export function validateInputWithEvent({
 
   // MIN logic
   if (ignoreMin) {
-    if (minValue === '' || (minValue !== 0 && num < minValue)) { errorType = 'MIN_EMPTY'; }
+    if (minValue === '' || (minValue !== 0 && num < minValue)) {
+      errorType = 'MIN_EMPTY';
+    }
   } else if (minValue !== '' && num < minValue) {
     num = minValue;
     errorType = 'MIN_EMPTY';
@@ -232,7 +234,7 @@ export function createInputBlock({
     year:
       variant === 'stepper'
         ? {
-          min: `${min} ${min === 1 ? 'year' : 'years'}`,
+          min: `${min} ${Number(min) === 1 ? 'year' : 'years'}`,
           max: `${max} years`,
         }
         : {
@@ -274,11 +276,11 @@ export function createInputBlock({
           : 'number',
     min,
     max,
-    "data-fieldType": fieldType,
-    ...(["currency", "percent", "year"].includes(fieldType)
+    'data-fieldType': fieldType,
+    ...(['currency', 'percent', 'year'].includes(fieldType)
       ? {
-          inputmode: "numeric",
-        }
+        inputmode: 'numeric',
+      }
       : {}),
     onchange: (e) => {
       let filteredValue = e.target.value;
@@ -453,8 +455,8 @@ export function createInputBlock({
   }
   // ---------- Label ----------
   const labelEl = label(
-    { for: fieldType === "currency" ? `${id}-fake` : id, class: "calc-label" },
-    labelText
+    { for: fieldType === 'currency' ? `${id}-fake` : id, class: 'calc-label' },
+    labelText,
   );
 
   // ---------- Build input wrapper ----------
@@ -981,28 +983,28 @@ export function safeUpdateMinimalReflow(
   container,
   buildFn,
   useReserve = false,
-  extraPx = 0
+  extraPx = 0,
 ) {
-  if (!container || typeof buildFn !== "function") return;
+  if (!container || typeof buildFn !== 'function') return;
 
   let prevHeight = 0;
   if (useReserve) {
     // Read once — this may cause a reflow here
     prevHeight = container.scrollHeight;
     container.style.maxHeight = `${prevHeight + extraPx}px`;
-    container.style.overflow = "hidden";
+    container.style.overflow = 'hidden';
   }
 
   // Build new content off-DOM
   const newContent = buildFn();
 
   // Replace content in one go — minimal writes
-  container.innerHTML = "";
+  container.innerHTML = '';
   container.appendChild(newContent);
 
   if (useReserve) {
     // Restore natural layout — avoid reading again if you don't need new height
-    container.style.maxHeight = "";
-    container.style.overflow = "";
+    container.style.maxHeight = '';
+    container.style.overflow = '';
   }
 }

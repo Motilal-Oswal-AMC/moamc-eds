@@ -95,7 +95,7 @@ export function calculateTopupSIPSummary({
     investedPercentage: roundValue(investedPercentage),
     returnsPercentage: roundValue(returnsPercentage),
   };
-  
+
   // console.log('result : ', totalValue); // Optional: removed/commented for cleaner linting
 
   if (callbackFunc) callbackFunc(result);
