@@ -748,18 +748,21 @@ function articleStructure() {
         leftpost.textContent = 'Article';
         leftpost.prepend(spanHtml);
         leftpost.querySelector('span').setAttribute('src', '/icons/Article.svg');
+        leftpost.querySelector('img').setAttribute('src', '/icons/Article.svg');
         leftpost.querySelector('span').setAttribute('alt', 'article');
       } else if (window.location.href.includes('/videos/')) {
         const spanHtml = leftpost.querySelector('span');
         leftpost.textContent = 'Video';
         leftpost.prepend(spanHtml);
         leftpost.querySelector('span').setAttribute('src', '/icons/youtube-1.svg');
+        leftpost.querySelector('img').setAttribute('src', '/icons/youtube-1.svg');
         leftpost.querySelector('span').setAttribute('alt', 'video');
       } else if (window.location.href.includes('/podcast/')) {
         const spanHtml = leftpost.querySelector('span');
         leftpost.textContent = 'Podcast';
         leftpost.prepend(spanHtml);
         leftpost.querySelector('span').setAttribute('src', '/icons/mic-1.svg');
+        leftpost.querySelector('img').setAttribute('src', '/icons/mic-1.svg');
         leftpost.querySelector('span').setAttribute('alt', 'mic');
       }
     }
