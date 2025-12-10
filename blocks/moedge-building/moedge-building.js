@@ -241,6 +241,7 @@ export default function decorate(block) {
       const validHtml = htmlArray.filter(Boolean).join('');
 
       // 3. Update DOM ONCE (Much faster than innerHTML += in a loop)
+      block.innerHTML = '';
       block.innerHTML = validHtml;
 
       // 4. NOW it is safe to query the DOM
@@ -261,7 +262,7 @@ export default function decorate(block) {
         const leveliteration = (Number(level) * 3);
 
         if (leveliteration && items.length > 0) {
-          block.innerHTML = ''; // Clear to re-order
+          // block.innerHTML = ''; // Clear to re-order
           items.forEach((el, index) => {
             block.appendChild(el);
             // Insert banner at specific index
