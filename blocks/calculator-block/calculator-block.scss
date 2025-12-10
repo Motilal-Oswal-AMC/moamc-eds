@@ -183,7 +183,7 @@ body:has(.calculator-container) {
                 flex-shrink: 0;
                 margin: 0;
                 background-color: inherit;
-                border-radius: 4px;
+                border-radius: 8px;
                 border: 1px solid $primary-white;
 
                 @include media(mobile) {
@@ -298,6 +298,7 @@ body:has(.calculator-container) {
 }
 
 
+
 body:has(.calc-error) {
     .calculator-sticky-cta-container .button.calculator-container-title-btn,
     div[class*='calculator-container_title'].default-content-wrapper .calculator-container-title-item1 p.button-container a.calculator-container-title-btn {
@@ -305,6 +306,7 @@ body:has(.calc-error) {
         // cursor: not-allowed;
         color: $neutrals-550;
         border: 1px solid $neutrals-400;
+        background-color: $neutrals-50;
         pointer-events: none;
     }
 }
@@ -1023,7 +1025,7 @@ main {
 
                         background-color: $primary-blue;
                         border: none;
-                        border-radius: 4px;
+                        border-radius: 8px;
                         padding: 12px;
                         cursor: pointer;
                         margin: 0;
@@ -1065,7 +1067,7 @@ main {
             }
 
             .question {
-                @include font-style(22px, 32px, $primary-blue, 600, $inter);
+                @include font-style(24px, 32px, $primary-blue, 500, $inter);
 
                 .link {
                     color: $primary-blue;
@@ -1088,6 +1090,15 @@ main {
 
             ol.answer-container {
                 // gap: 35px;
+                &:not(:has(.pointer)) {
+                    li.answer {
+                        margin-bottom: 0 !important;
+
+                        &::marker {
+                            color: $neutrals-700 !important;
+                        }
+                    }
+                }
 
                 li.answer:not(:has(em.small-bold)) {
                     position: relative;
@@ -1098,10 +1109,10 @@ main {
                     margin-left: 24px;
 
                     &:not(:last-child) {
-                        margin-bottom: 28px;
+                        margin-bottom: 24px;
 
                         @include media(mobile) {
-                            margin-bottom: 12px;
+                            margin-bottom: 16px;
                         }
                     }
 
@@ -1114,28 +1125,16 @@ main {
                         width: 100%;
                         display: block;
                         margin-bottom: 4px;
-
-                        // padding-left: 16px;
-
-                        // &::before {
-                        //     content: counter(num) ".";
-                        //     position: absolute;
-                        //     left: 0;
-                        //     top: 50%;
-                        //     transform: translateY(-50%);
-                        //     color: black;
-                        //     font-weight: bold;
-                        // }
                     }
                 }
 
             }
 
             p.answer {
-                margin-bottom: 14px;
+                margin-bottom: 24px;
 
                 @include media(mobile) {
-                    margin-bottom: 12px;
+                    margin-bottom: 16px;
                 }
 
                 .link {
@@ -1158,7 +1157,11 @@ main {
                     list-style: none;
 
                     &:not(:last-child) {
-                        margin-bottom: 14px;
+                        margin-bottom: 24px;
+
+                        @include media(mobile) {
+                            margin-bottom: 16px;
+                        }
                     }
 
                     &:has(strong):not(:has(em.small-bold)) {
@@ -1173,9 +1176,9 @@ main {
                         text-decoration: underline;
                     }
 
-                    
+
                     .small-bold {
-                        @include font-style(18px, 24px, $neutrals-800, 500, $inter);
+                        @include font-style(18px, 28px, $neutrals-800, 500, $inter);
 
                         text-decoration: none;
                         font-style: normal;

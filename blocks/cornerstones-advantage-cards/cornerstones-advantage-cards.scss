@@ -16,6 +16,7 @@
     }
 
     .default-content-wrapper {
+
       h1,
       h2,
       h3,
@@ -182,6 +183,81 @@
   }
 }
 
+.section.fab-container.cornerstones-advantage {
+  &-cards-container {
+    padding: 40px 0;
+
+    @include media (mobile) {
+      padding: 0;
+    }
+
+    .default-content-wrapper {
+      text-align: left;
+
+      h3 {
+        text-align: left;
+        margin: 0;
+        font-size: 28px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 32px;
+
+        @include media (mobile) {
+          font-size: 24px;
+          line-height: 28px;
+        }
+      }
+    }
+
+    .cornerstones-advantage-cards {
+      @include media (mobile) {
+        gap: 28px;
+      }
+
+      >div.cards-item {
+        max-width: 227px;
+        width: 100%;
+        min-height: 184px;
+
+        @include media (mobile) {
+          max-width: 100%;
+          min-height: unset;
+        }
+
+        >div {
+          padding-right: 0;
+          gap: 24px;
+
+          @include media (mobile) {
+            padding-bottom: 0;
+            display: flex;
+            flex-direction: unset;
+            align-items: center;
+            gap: 8px;
+          }
+        }
+
+        .item-child {
+          &-1 {
+            .icon {
+              padding: 8px;
+            }
+          }
+
+          &-2 {
+            letter-spacing: 0.9px;
+            margin: 0;
+
+            @include media (mobile) {
+              letter-spacing: 0.4px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
 .section.cornerstones-advantage.gift-cornerstones-advantage {
   .cornerstones-advantage-cards-wrapper {
     .cornerstones-advantage-cards {
@@ -254,7 +330,11 @@
 }
 
 .section.cornerstones-elss-fund {
-  padding: unset;
+  padding: 80px 0;
+
+  @include media(mobile) {
+    padding: 40px 0;
+  }
 
   .cornerstones-advantage-cards-wrapper {
     .cornerstones-advantage-cards {
@@ -262,7 +342,12 @@
       flex-wrap: wrap;
       gap: 24px;
       justify-content: space-between;
-      margin: 40px 0 0;
+      margin: 64px 0 0;
+
+      @include media(mobile) {
+        flex-direction: column;
+        gap: 24px;
+      }
     }
   }
 
@@ -272,8 +357,51 @@
       width: 100%;
       min-height: 244px;
 
-      @include media(tab) {
-        min-height: unset;
+      @include media(mobile) {
+        max-width: unset;
+        width: 100%;
+        min-height: 116px;
+      }
+
+      div {
+        .item-child.item-child-2 {
+          color: var(--neutrals-900);
+          font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
+          font-family: var(--Body, Inter);
+          font-size: 20px;
+          font-style: normal;
+          font-weight: 500;
+          line-height: 28px;
+
+          @include media(mobile) {
+            margin: unset;
+            font-size: 18px;
+            font-weight: 500;
+            line-height: 24px;
+            /* 133.333% */
+          }
+        }
+
+        .item-child.item-child-3 {
+          color: var(--neutrals-800);
+          font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
+          font-family: var(--Body, Inter);
+          font-size: 16px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 24px;
+          padding-bottom: 24px;
+
+          @include media(mobile) {
+            padding-bottom: unset;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 24px;
+            /* 150% */
+
+          }
+
+        }
       }
     }
   }
@@ -372,6 +500,590 @@
               line-height: 24px;
             }
           }
+        }
+      }
+    }
+  }
+}
+
+// common css code move here 
+
+
+// elss fund page 
+
+.section.elss-fund-banner {
+  padding-bottom: 40px;
+
+  .default-content-wrapper {
+    .choose-us-para1 {
+      color: var(--blue-1-800-primary);
+      font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
+      font-family: var(--TItle, Inter);
+      font-size: 32px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 40px;
+
+      @include media(mobile) {
+        font-size: 28px;
+        font-weight: 600;
+        line-height: 32px;
+      }
+    }
+
+    .choose-us-para2 {
+      color: var(--sub-header);
+      font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
+      font-family: var(--Body, Inter);
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 24px;
+
+      @include media(mobile) {
+        margin-bottom: 24px;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 24px;
+        /* 150% */
+      }
+    }
+
+    .choose-us-para3 {
+      .choose-us-img1 {
+        max-width: 160px;
+        width: 100%;
+        color: var(--neutrals-white);
+        text-align: center;
+        font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
+        font-family: var(--Body, Inter);
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 16px;
+        border-radius: 8px;
+        background: var(--blue-1-800-primary);
+        padding: 8px 12px;
+      }
+    }
+  }
+}
+
+
+.section.fund-tax {
+  margin: 40px 0;
+
+  @include media(mobile) {
+    margin: unset;
+    margin-bottom: 40px;
+  }
+
+  .fund-tax-contain1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    align-self: stretch;
+
+    @include media(mobile) {
+      flex-direction: column;
+      gap: 12px;
+    }
+
+  }
+
+  .fund-tax-txt1 {
+    max-width: 343px;
+    width: 100%;
+    color: var(--blue-1-800-primary);
+    font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
+    font-family: var(--title, Inter);
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 32px;
+    /* 114.286% */
+
+    @include media(mobile) {
+      margin-top: unset;
+    }
+  }
+
+  .fund-tax-txt2 {
+    margin: unset;
+    max-width: 608px;
+    width: 100%;
+    color: var(--neutrals-800);
+    font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
+    font-family: var(--body, Inter);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 24px;
+    /* 150% */
+  }
+}
+
+.section.fund-tax.fab-container {
+  .fund-tax-contain1 {
+    @include media(mobile) {
+      gap: 12px;
+    }
+
+    .fund-tax-txt {
+      &1 {
+        max-width: 100%;
+        width: 24.1%;
+
+        @include media(mobile) {
+          width: 100%;
+          font-size: var(--sub-header-large-size, 24px);
+          line-height: 28px;
+        }
+      }
+
+      &2 {
+        max-width: 100%;
+        width: 64.14%;
+        font-size: var(--body-small-regular-size, 14px);
+        line-height: var(--label-large-line-height, 20px);
+
+        @include media(mobile) {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+.section.invest-blog {
+  margin: 0 0 80px;
+
+  @include media(mobile) {
+    padding: 0 16px;
+  }
+
+  .invest-blog-contain1 {
+    display: flex;
+    padding: 24px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 40px;
+    align-self: stretch;
+    border-radius: 8px;
+    background: linear-gradient(257deg, rgba(154, 148, 255, 0.50) -5.54%, rgba(235, 234, 255, 0.50) 100%);
+
+    @include media(mobile) {
+      padding: 24px 12px;
+      background: linear-gradient(257deg, rgba(235, 234, 255, 0.50) -5.54%, rgba(154, 148, 255, 0.50) 100%);
+    }
+  }
+
+  .invest-blog-txt1 {
+    margin: unset;
+    color: var(--blue-1-800-primary);
+    font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
+    font-family: var(--body, Inter);
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 28px;
+
+    // @include font-style(var(--body-medium-semibold-size),
+    //   var(--body-medium-semibold-line-height),
+    //   var(--neutrals-black),
+    //   600,
+    //   var(--body));
+  }
+
+  .invest-blog-txt2 {
+    margin: unset;
+    color: var(--blue-1-800-primary);
+    font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
+    font-family: var(--body, Inter);
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 28px;
+  }
+}
+
+.section.tax-blog {
+  background: var(--Neutrals-100, #F5F5F5);
+  padding: 80px 67px 64px;
+  margin: unset;
+
+  @include media(mobile) {
+    padding: 80px 16px 40px;
+  }
+
+  .tax-blog-contain1 {
+    display: flex;
+    align-items: flex-start;
+    gap: 146px;
+    align-self: stretch;
+
+    @include media(mobile) {
+      flex-direction: column;
+      gap: 12px;
+      margin: unset;
+      padding: unset;
+    }
+
+    .tax-blog-txt1 {
+      color: var(--blue-1-800-primary);
+      font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
+      font-family: var(--title, Inter);
+      font-size: 28px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 32px;
+
+      @include media(mobile) {
+        margin: unset;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 28px;
+        /* 116.667% */
+      }
+    }
+
+    .tax-blog-txt2 {
+      max-width: 728px;
+      width: 100%;
+      margin: unset;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+
+      @include media(mobile) {
+        max-width: unset;
+        width: unset;
+        margin: 0 0 0 16px;
+      }
+
+      .tax-blog-subtxt1 {
+        color: var(--text-body);
+        font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
+        font-family: var(--body, Inter);
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 20px;
+        /* 142.857% */
+      }
+
+      .tax-blog-subtxt2 {
+        color: var(--text-body);
+        font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
+        font-family: var(--body, Inter);
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 20px;
+
+        /* 142.857% */
+      }
+    }
+  }
+}
+
+.section.sip-blog {
+  background: var(--Neutrals-100, #F5F5F5);
+  padding-bottom: 80px;
+  margin: unset;
+
+  .sip-blog-contain1 {
+    display: flex;
+    align-items: flex-start;
+    gap: 111px;
+    align-self: stretch;
+
+    @include media(mobile) {
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .sip-blog-txt1 {
+      color: var(--blue-1-800-primary);
+      font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
+      font-family: var(--title, Inter);
+      font-size: 28px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 32px;
+
+      @include media(mobile) {
+        margin: unset;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 28px;
+        /* 116.667% */
+      }
+    }
+
+    .sip-blog-txt2 {
+      display: flex;
+      gap: 60px;
+      max-width: 735px;
+      width: 100%;
+      margin: unset;
+
+      @include media(mobile) {
+        flex-direction: column;
+        gap: 32px;
+      }
+
+      .sip-blog-subtxt1 {
+        color: var(--text-body);
+        font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
+        font-family: var(--body, Inter);
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 20px;
+        list-style-type: none;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+
+        @include media(mobile) {
+          display: flex;
+          gap: 8px;
+          flex-direction: unset;
+        }
+
+        .icon-elss-sip1 {
+          width: 68px;
+          height: 68px;
+
+          @include media(mobile) {
+            max-width: 48px;
+            max-height: 48px;
+            width: 100%;
+            height: 100%;
+          }
+        }
+      }
+
+    }
+
+    .sip-blog-subtxt2 {
+      color: var(--text-body);
+      font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
+      font-family: var(--body, Inter);
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 20px;
+      list-style-type: none;
+
+      @include media(mobile) {
+        display: flex;
+        gap: 8px;
+        flex-direction: unset;
+      }
+
+      /* 142.857% */
+      .icon-elss-sip2 {
+        width: 68px;
+        height: 68px;
+
+        @include media(mobile) {
+          max-width: 48px;
+          max-height: 48px;
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+  }
+}
+
+
+
+.section.sebi-blog {
+  margin: unset;
+  padding-bottom: 80px;
+
+  .sebi-blog-contain1 {
+    .sebi-blog-txt1 {
+      margin: unset;
+      color: var(--neutrals-700);
+      font-family: var(--Body, Inter);
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 16px;
+    }
+  }
+}
+
+.section.elss-stock-table {
+  margin: 0 0 80px;
+
+  .elss-stock-table-contain1 {
+    .elss-stock-table-txt1 {
+      color: var(--blue-1-800-primary);
+      font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
+      font-family: var(--title, Inter);
+      font-size: 28px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 32px;
+      padding-bottom: 24px;
+      margin-top: 80px;
+
+      /* 114.286% */
+    }
+
+    .elss-stock-table-txt2 {
+      margin: unset;
+
+      @include media(mobile) {
+        width: 100%;
+        overflow-x: auto;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+
+        .elss-stock-table-txt2::-webkit-scrollbar {
+          display: none;
+        }
+      }
+
+      .elss-stock-table-subtxt1 {
+        width: 1188px;
+        height: auto;
+
+        @include media(mobile) {
+          width: 1188px;
+          /* your span width */
+          display: inline-block;
+        }
+      }
+    }
+  }
+}
+
+.section.fund-philosophy {
+  border-radius: 8px;
+  background: var(--blue-1-800-primary, #2E2A94);
+  margin: unset;
+
+  @include media(mobile) {
+    border-radius: 0;
+  }
+
+  .eels-vedio-wrap {
+    display: flex;
+    padding: 16px 0;
+    justify-content: center;
+    align-items: center;
+    gap: 64px;
+    align-self: stretch;
+
+    @include media(mobile) {
+      flex-direction: column;
+      gap: 24px;
+      padding: 40px 16px;
+    }
+
+    .fund-philosophy-contain1 {
+      max-width: 40.02%;
+      width: 100%;
+
+      @include media(mobile) {
+        max-width: 100%;
+      }
+
+      .fund-philosophy-txt1 {
+        margin: 0 0 2px;
+        color: var(--neutrals-white);
+        font-feature-settings: var(--font-features-default);
+        font-family: var(--title);
+        font-size: var(--heading-h5-size);
+        font-style: normal;
+        font-weight: 600;
+        line-height: var(--heading-h5-line-height);
+
+        @include media(mobile) {
+          font-size: var(--sub-header-large-size);
+          line-height: 28px;
+        }
+      }
+
+      .fund-philosophy-txt2 {
+        margin: unset;
+        color: var(--blue-1-50);
+        font-feature-settings: var(--font-features-default);
+        font-family: var(--body);
+        font-size: var(--body-medium-regular-size);
+        font-style: normal;
+        font-weight: 400;
+        line-height: 24px;
+
+        @include media(mobile) {
+          font-size: var(--paragraph-small-regular-size);
+          line-height: var(--paragraph-small-regular-line-height);
+        }
+      }
+    }
+
+    .fund-philosophy-contain2 {
+      width: 320px;
+      height: 180px;
+      aspect-ratio: 16/9;
+      padding: 0;
+
+      @include media(mobile) {
+        width: 100%;
+        height: 190px;
+      }
+
+      .embed {
+        width: 100%;
+        height: 100%;
+
+        >div {
+          width: 100%;
+          height: 100%;
+
+          iframe {
+            border-radius: 8px;
+            width: 100%;
+            height: 100%;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+.section.fab-container {
+  .eels-vedio-wrap {
+    .fund-philosophy-contain {
+      &1 {
+        max-width: inherit;
+        width: auto;
+
+        .fund-philosophy-txt2 {
+          @include media(mobile) {
+            letter-spacing: 0.2px;
+          }
+        }
+      }
+
+      &2 {
+        width: 272px;
+        height: 160px;
+
+        @include media(mobile) {
+          width: 340px;
+          height: 200px;
         }
       }
     }

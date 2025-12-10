@@ -549,6 +549,7 @@ function articleStructure() {
   // Investor Education article left and right wrapper
   if (
     window.location.href.includes('/investor-education/all-articles/')
+    || window.location.href.includes('/investor-education/video-listing/')
     || window.location.href.includes('/motilal-oswal-edge/insights/blogs')
     || window.location.href.includes('/motilal-oswal-edge/article-details')
     || window.location.href.includes(
@@ -585,6 +586,20 @@ function articleStructure() {
       leftarticle.append(leftel);
     });
 
+    Array.from(rightSub).forEach((subright) => {
+      dataMapMoObj.CLASS_PREFIXES = [
+        'investarticle-rightmain',
+        'investarticle-rightsub',
+        'investarticle-rightinner',
+        'investsub-rightarticle',
+        'investright-subinner',
+        'investright-articleitem',
+        'investright-itemchild',
+        'investright-subchild',
+      ];
+      dataMapMoObj.addIndexed(subright);
+    });
+
     if (!maincloser.querySelector('.moedge-article-details')) {
       Array.from(leftSub).forEach((subleft) => {
         dataMapMoObj.CLASS_PREFIXES = [
@@ -598,20 +613,6 @@ function articleStructure() {
           'investleft-subchild',
         ];
         dataMapMoObj.addIndexed(subleft);
-      });
-  
-      Array.from(rightSub).forEach((subright) => {
-        dataMapMoObj.CLASS_PREFIXES = [
-          'investarticle-rightmain',
-          'investarticle-rightsub',
-          'investarticle-rightinner',
-          'investsub-rightarticle',
-          'investright-subinner',
-          'investright-articleitem',
-          'investright-itemchild',
-          'investright-subchild',
-        ];
-        dataMapMoObj.addIndexed(subright);
       });
     }
 
@@ -740,50 +741,162 @@ function articleStructure() {
       // mainwrapperDiv.appendChild(main2);
     }
 
-    function addIndexedThree(parentElement, level = 0) {
-    const prefix = 'rightlist';
-    const { children } = parentElement; // Cache children for clarity.
-    for (let i = 0; i < children.length; i += 1) {
-      let parClass = Array.from(children[0].parentElement.classList)[0].split('-').at(-2);
-      const child = children[i];
-      const index = i + 1; // Class names are typically 1-based.
-      child.classList.add(`${prefix}`);
-      parClass = '';
-      addIndexedThree(child, level + 1);
+    if (!maincloser.querySelector('.moedge-article-details')
+        && maincloser.querySelector('.investsub-leftarticle1')) {
+      const leftpost = maincloser.querySelector('.investsub-leftarticle1 .investleft-subinner1');
+      if (window.location.href.includes('/images/')) {
+        const spanHtml = leftpost.querySelector('span');
+        leftpost.textContent = 'Article';
+        leftpost.prepend(spanHtml);
+        leftpost.querySelector('span').setAttribute('src', '/icons/Article.svg');
+        leftpost.querySelector('img').setAttribute('src', '/icons/Article.svg');
+        leftpost.querySelector('span').setAttribute('alt', 'article');
+      } else if (window.location.href.includes('/videos/')) {
+        const spanHtml = leftpost.querySelector('span');
+        leftpost.textContent = 'Video';
+        leftpost.prepend(spanHtml);
+        leftpost.querySelector('span').setAttribute('src', '/icons/youtube-1.svg');
+        leftpost.querySelector('img').setAttribute('src', '/icons/youtube-1.svg');
+        leftpost.querySelector('span').setAttribute('alt', 'video');
+      } else if (window.location.href.includes('/podcast/')) {
+        const spanHtml = leftpost.querySelector('span');
+        leftpost.textContent = 'Podcast';
+        leftpost.prepend(spanHtml);
+        leftpost.querySelector('span').setAttribute('src', '/icons/mic-1.svg');
+        leftpost.querySelector('img').setAttribute('src', '/icons/mic-1.svg');
+        leftpost.querySelector('span').setAttribute('alt', 'mic');
+      }
     }
-    }
+
+    function convertDate(dateStr) {
+    const date = new Date(dateStr);
+    const options = {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
+    };
+    return date.toLocaleDateString('en-US', options);
+  }
+
+    maincloser.querySelector('.cards .investright-articleitem1').innerHTML = '';
+    let dataincl;
+        if (window.location.href.includes('/videos/')) {
+          dataincl = '/videos/';
+        } else {
+          dataincl = '/images/';
+        }
+        const currentUrl = window.location.href.replace(/\/$/, '');
+        const linktext = currentUrl.substring(currentUrl.lastIndexOf('/') + 1);
+        const data = dataMapMoObj.getinvestorblog.data
+          .filter((el) => linktext !== el.title && el.path.includes(dataincl))
+        // 1. Assign a random value to each item
+          .map((value) => ({ value, sort: Math.random() }))
+        // 2. Sort based on that random value
+          .sort((a, b) => a.sort - b.sort)
+        // 3. Extract the original object back
+          .map(({ value }) => value);
+    
+        console.log(data);
+        const datafin = data.slice(0, 3)
+     datafin.forEach((elem)=>{
+      const titleText = dataMapMoObj.toTitleCase(elem.title.replaceAll('-', ' '));
+      const dateText = convertDate(elem.date.split('T')[0]);
+        const cardsRecom = `<li class="comlist investright-itemchild1 rightlist"><div class="cards-card-image comlist investright-subchild1 rightlist">
+        <a href="${elem.path}"><picture class="rightlist"><source type="image/webp" srcset="/mutual-fund/in/en/fragment/media_137cba9f427af426d8583a091e8135bb0fa14d0f7.svg?width=750&amp;format=webply&amp;optimize=medium" class="rightlist"><img loading="lazy" alt="" src="/mutual-fund/in/en/fragment/media_137cba9f427af426d8583a091e8135bb0fa14d0f7.svg?width=750&amp;format=svg&amp;optimize=medium" class="rightlist"></picture></a>
+      </div><div class="cards-card-body comlist investright-subchild2 rightlist">
+        <p class="rightlist">Trending</p>
+        <a href="${elem.path}"><h4 id="${titleText}" class="rightlist">${titleText}</h4></a>
+        <p class="rightlist"><span class="icon icon-calendar-inves rightlist"><img data-icon-name="calendar-inves" src="/icons/calendar-inves.svg" alt="" loading="lazy" width="16" height="16" class="rightlist"></span>${dateText}</p>
+      </div></li>`
+      maincloser.querySelector('.cards .investright-articleitem1').innerHTML += cardsRecom;
+     });
+
+    document.addEventListener('click', (e) => {
+      const icon = e.target.closest('.article-right-wrapper .icon');
+      if (icon) {
+        const socialLinks = {
+            'facebook-black': 'https://www.facebook.com/MotilalOswalSecurities/',
+            'twitter-black': 'https://x.com/MotilalOswalLtd?lang=en',
+            'instagram-black': 'https://www.instagram.com/motilaloswalgroup/?hl=en',
+            'youtube-black': 'https://www.youtube.com/motilaloswalamc',
+        };
+
+        // Get attribute from the image inside, or the icon div itself
+        const key = icon.getAttribute('data-icon-name') || icon.querySelector('img')?.getAttribute('data-icon-name');
+        
+        if (socialLinks[key]) {
+          window.open(socialLinks[key], '_blank');
+        }
+      }
+    });
+    const addIndexedThree = (parentElement, level = 0) => {
+      const prefix = 'rightlist';
+      const { children } = parentElement; // Cache children for clarity.
+      for (let i = 0; i < children.length; i += 1) {
+        let parClass = Array.from(children[0].parentElement.classList)[0].split('-').at(-2);
+        const child = children[i];
+        const index = i + 1; // Class names are typically 1-based.
+        child.classList.add(`${prefix}`);
+        parClass = '';
+        addIndexedThree(child, level + 1);
+      }
+    };
     addIndexedThree(maincloser.querySelector('.article-right-wrapper'));
     // const shareWrapper = document.querySelector('.itemmainleftart3');
     const openSharePopup = document.querySelector('.open-share-popup');
     const shareBtn = openSharePopup.querySelector('.icon-share-black');
     const dropdown = openSharePopup.querySelector('.submainleftart2');
+    let dropdownV2;
+    if (dropdown === null) {
+      const sharemedia = `<ul class="comlist list-share-media">
+                        <li class="list-media listindex1"><a class="list-link" title="Facebook"><span class="media-icon icon icon-facebookfdp"><img data-icon-name="facebookfdp" src="/icons/facebookfdp.svg" alt="" loading="lazy" width="16" height="16"></span>Facebook</a></li>
+                        <li class="list-media listindex2"><a class="list-link" title="WhatsApp"><span class="media-icon icon icon-whatsapp"><img data-icon-name="whatsapp" src="/icons/whatsapp.svg" alt="" loading="lazy" width="16" height="16"></span>WhatsApp</a></li>
+                        <li class="list-media listindex3"><a class="list-link" title="X"><span class="media-icon icon icon-Twitter"><img data-icon-name="Twitter" src="/icons/Twitter.svg" alt="" loading="lazy" width="16" height="16"></span>X</a></li>
+                        <li class="list-media listindex4"><a class="list-link" title="Copy"><span class="media-icon icon icon-copyfdp"><img data-icon-name="copyfdp" src="/icons/copyfdp.svg" alt="" loading="lazy" width="16" height="16"></span>Copy</a></li>
+                        <li class="list-media listindex5">URL Copied</li>
+                      </ul>`;
+      const sharemediaV2 = document.createElement('div');
+      sharemediaV2.classList.add('list-share-popup');
+      // sharemediaV2.style.display = 'none';
+      sharemediaV2.innerHTML += sharemedia;
+      sharemediaV2.querySelector('.listindex5').style.display = 'none';
+      shareBtn.closest('li').appendChild(sharemediaV2);
+      shareBtn.closest('li').classList.add('mediaicons');
+      dropdownV2 = openSharePopup.querySelector('.list-share-popup');
+    }
     if (openSharePopup) {
       // Toggle dropdown when clicking share icon
       shareBtn.addEventListener('click', (e) => {
         e.stopPropagation();
-        dropdown.classList.toggle('active');
+        if (dropdown !== null) {
+          dropdown.classList.toggle('active');
+        } else if (dropdownV2 !== null) {
+          dropdownV2.classList.toggle('active');
+        }
       });
 
       // Close dropdown on outside click
       document.addEventListener('click', (e) => {
-        if (!e.target.closest('.open-share-popup')) {
+        if (!e.target.closest('.open-share-popup') && dropdown !== null) {
           dropdown.classList.remove('active');
+        }
+        if (!e.target.closest('.list-share-popup') && dropdownV2 !== null) {
+          dropdownV2.classList.remove('active');
         }
       });
     }
+    // document.querySelectorAll('.comlist.submainart3.itemmainleftart3').forEach((listItem) => {
+    //   const ul = listItem.querySelector('.list-share-popup');
+    //   if (!ul) return;
 
-    document.querySelectorAll('.comlist.submainart3.itemmainleftart3').forEach((listItem) => {
-      const ul = listItem.querySelector('.comlist.submainleftart2');
-      if (!ul) return;
+    //   [...ul.children].forEach((li, index) => {
+    //     li.classList.add(`listindex${index + 1}`);
+    //   });
+    // });
 
-      [...ul.children].forEach((li, index) => {
-        li.classList.add(`listindex${index + 1}`);
-      });
-    });
-
-    document.querySelectorAll('.comlist.submainart3.itemmainleftart3').forEach((item) => {
+    document.querySelectorAll('.mediaicons').forEach((item) => {
       const shareIcon = item.querySelector('.icon-share-black');
-      const popup = item.querySelector('.comlist.submainleftart2');
+      const popup = item.querySelector('.list-share-popup');
 
       if (!shareIcon || !popup) return;
 
@@ -794,7 +907,7 @@ function articleStructure() {
       shareIcon.addEventListener('click', (e) => {
         e.stopPropagation();
 
-        const isVisible = popup.style.display === 'block';
+        // const isVisible = popup.style.display === 'block';
       });
 
       // GET SHARE TEXT + URL
@@ -847,12 +960,12 @@ function articleStructure() {
 
       if (cp && copyPopup) {
         // hide listindex5 initially
-        copyPopup.style.display = 'none';
-        copyPopup.style.position = 'absolute';
-        copyPopup.style.left = '50%';
-        copyPopup.style.top = '50%';
-        copyPopup.style.transform = 'translate(-50%, -50%)';
-        copyPopup.style.zIndex = '999';
+        // copyPopup.style.display = 'none';
+        // copyPopup.style.position = 'absolute';
+        // copyPopup.style.left = '50%';
+        // copyPopup.style.top = '50%';
+        // copyPopup.style.transform = 'translate(-50%, -50%)';
+        // copyPopup.style.zIndex = '999';
 
         cp.querySelector('a')?.removeAttribute('href');
 
@@ -875,6 +988,7 @@ function articleStructure() {
         });
       }
     });
+
     const delay = (ms) => new Promise((resolve) => { setTimeout(resolve, ms); });
     delay(2000).then(() => {
       let blokform;
@@ -892,7 +1006,7 @@ function articleStructure() {
         const formem = blokform;
         formem.classList.add('email-imput');
         formem.addEventListener('input', (event) => {
-          const closblock = event.target.closest('.footer');
+          const closblock = event.target.closest('.subscribe-email');
           elemObj.errorelm = closblock;
           if (closblock.querySelector('.errormsg') === null) {
             closblock.querySelector('.field-wrapper').append(span({ class: 'errormsg' }, 'Enter a valid email address'));
@@ -904,16 +1018,19 @@ function articleStructure() {
             inpelm.remove('email-success');
             closblock.querySelector('.errormsg').style.display = 'none';
             formem.nextElementSibling.style.display = 'none';
+            event.target.closest('.email-wrapper').classList.remove('active');
           } else if (emailRegex.test(inpval)) {
             closblock.querySelector('.errormsg').style.display = 'none';
             inpelm.remove('email-fail');
             formem.nextElementSibling.style.display = 'none';
+            event.target.closest('.email-wrapper').classList.add('active');
             // inpelm.add('email-success');
           } else {
+            event.target.closest('.email-wrapper').classList.add('active');
             closblock.querySelector('.errormsg').style.display = 'block';
             inpelm.add('email-fail');
             formem.nextElementSibling.style.display = 'block';
-            // inpelm.remove('email-success');
+            inpelm.remove('email-success');
           }
         });
         const wrapperimg = document.createElement('div');
@@ -922,13 +1039,18 @@ function articleStructure() {
         wrapperimg.append(img({
           src: '/icons/error-cross.svg',
           alt: 'Img',
-          class: 'crossimg',
+          class: 'crossimg crosserror',
           onclick: () => {
             formem.value = '';
             formem.parentElement.classList.remove('email-fail');
             elemObj.errorelm.querySelector('.errormsg').style.display = 'none';
             formem.nextElementSibling.style.display = 'none';
           },
+        }));
+        wrapperimg.append(img({
+          src: '/icons/success-cross.svg',
+          alt: 'Img',
+          class: 'crossimg crosssuccess',
         }));
         formdiv.querySelector('.email-wrapper').append(wrapperimg);
         formdiv.querySelector('.submit-btn .button').addEventListener('click', () => {
@@ -1206,11 +1328,34 @@ try {
   // console.log(error);
 }
 
+// Unclaimed Redemption Block
+try {
+  // if (window.location.href == 'mutual-fund/in/en/static-pages/unclaimed-redemptions') {
+  const section = document.querySelector('.unclaimed-redemption');
+  const cardSection = document.querySelector('.unclaimed-redemption .cards-wrapper');
+  const unclaimedForm = document.querySelector('.unclaimed-redemption .wealth-modal-wrapper');
+  const elementNew = document.createElement('div');
+  const elementDiv = document.createElement('div');
+  elementDiv.classList.add('section-container');
+  elementNew.classList.add('container');
+  if (section !== null) {
+    section.appendChild(elementNew);
+    section.appendChild(elementDiv);
+    elementDiv.appendChild(elementNew);
+    elementNew.appendChild(cardSection);
+    elementNew.appendChild(unclaimedForm);
+  }
+  // }
+} catch (error) {
+  console.log(error);
+}
+// Unclaimed Redemption Block
+
 async function getlisting() {
   const resp = await myAPI('GET', 'https://m71vqgw4cj.execute-api.ap-south-1.amazonaws.com/dev/api/public/v1/funds/listing');
   return resp;
 }
-dataMapMoObj.getlisting = getlisting;
+dataMapMoObj.getlisting = await getlisting();
 
 async function getscheme(param) {
   const resp = await myAPI('GET', `https://m71vqgw4cj.execute-api.ap-south-1.amazonaws.com/dev/api/public/v1/funds?schcode=${param}`);
@@ -1225,14 +1370,14 @@ async function getfundmanager(param) {
 dataMapMoObj.getfundmanager = getfundmanager;
 
 async function getinsights() {
-  const resp = await myAPI('GET', 'https://main--moamc-eds--motilal-oswal-amc.aem.live/query-index-insights.json');
+  const resp = await myAPI('GET', '/query-index-insights.json');
   return resp;
 }
-dataMapMoObj.getinsights = getinsights;
+dataMapMoObj.getinsights = getinsights();
 
 async function getinvestorblog() {
-  const resp = await myAPI('GET', 'https://main--moamc-eds--motilal-oswal-amc.aem.live/query-index-investorblog.json');
+  const resp = await myAPI('GET', '/query-index-investorblog.json');
   return resp;
 }
-dataMapMoObj.getinvestorblog = getinvestorblog;
+dataMapMoObj.getinvestorblog = await getinvestorblog();
 // dataMapMoObj.qglpwcs = qglpwcs;

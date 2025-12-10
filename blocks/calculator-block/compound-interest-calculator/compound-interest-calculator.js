@@ -5,6 +5,7 @@ import {
   extractOptionsSelect,
   formatNumber,
   getAuthorData,
+  safeUpdateMinimalReflow,
 } from '../common-ui-field/common-ui-field.js';
 
 const freqMap = {
@@ -56,6 +57,18 @@ export function calculateCompoundSummary({
   roundDecimal,
   callbackFunc,
 }) {
+  const inputErrors = document.querySelectorAll('.calc-input.calc-error');
+  if (inputErrors?.length) {
+    return {
+      principal: 0,
+      totalValue: 0,
+      interestEarned: 0,
+      multiplier: '0x',
+      investedPercentage: 0,
+      returnsPercentage: 0,
+    };
+  }
+
   const P = principal;
   const r = annualRateRate / 100;
   const n = compoundingFrequency;
@@ -173,12 +186,13 @@ export default function decorate(block) {
   // Create a new container div
   const container = document.createElement('div');
   container.classList.add('calc-second-group'); // optional class name
-  OVERVIEW_AUTHOR_DATA.forEach((el) => container.appendChild(el));
+  OVERVIEW_AUTHOR_DATA.forEach((el) => container.appendChild(el.cloneNode(true)));
+  // console.log(" container : ", container);
 
   const sipBlock = createBarSummaryBlock({
     container,
   });
-  CALC_AUTHOR_MAIN.innerHTML = '';
+  // CALC_AUTHOR_MAIN.innerHTML = "";
 
   const pi = getAuthorData(CALC_AUTHORED_DATA, 'PI');
   const tp = getAuthorData(CALC_AUTHORED_DATA, 'TP');
@@ -261,19 +275,17 @@ export default function decorate(block) {
     },
   });
 
-  CALC_AUTHOR_MAIN.append(piBlock, tpBlock, roiBlock, selector);
+  safeUpdateMinimalReflow(
+    CALC_AUTHOR_MAIN,
+    () => {
+      const frag = document.createDocumentFragment();
+      frag.append(piBlock, tpBlock, roiBlock, selector);
+      return frag;
+    },
+    /* useReserve= */ true,
+    /* extraPx= */ 0,
+  );
   block.appendChild(sipBlock);
 
-  const summaryData = calculateCompoundSummary({
-    principal: Number(pi?.default),
-    annualRateRate: Number(roi?.default),
-    years: Number(tp?.default),
-    compoundingFrequency: freqMap[compoundFreqOptions[0]?.value || 'yearly'], // e.g., 1,2,4,12 based on value
-    roundDecimal: 0,
-  });
-
-  updateCalculateCompoundSummary({
-    container: block,
-    data: summaryData,
-  });
+  recalculateCompoundInterest({ container: block });
 }

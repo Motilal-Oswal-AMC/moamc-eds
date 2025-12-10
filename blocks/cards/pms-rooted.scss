@@ -1,6 +1,6 @@
 @use "sass:map";
-@use "../../styles/common-theme/css/variables_mixins"as *;
-@use "../../styles/common-theme/css/fluid-typography"as *;
+@use "../../styles/common-theme/css/variables_mixins" as *;
+@use "../../styles/common-theme/css/fluid-typography" as *;
 
 $breakpoint-desktop-s: 1100px;
 $breakpoint-desktop-ss: 1280px;
@@ -564,7 +564,7 @@ $breakpoint-tablet: 900px;
                         color: var(--blue-1800-primary, #2E2A94);
                         font-weight: 600;
                         text-align: center;
-                        font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
+                        font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
                         font-family: var(--title, Inter);
                         font-size: var(--heading-h4-size, 32px);
                         font-style: normal;
@@ -605,6 +605,126 @@ $breakpoint-tablet: 900px;
 
     }
 }
+
+// NRI high-skin Strat  // 
+
+.section.high-skin.nri-high-skin {
+    max-width: 1232px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 40px 48px 0px;
+    border-radius: 12px;
+    background-color: #F5F5F5;
+    margin-bottom: 60px;
+
+    @include media (mobile) {
+        padding: 0;
+        margin-bottom: 80px;
+        background-color: #fff;
+        padding: 0px 16px;
+    }
+
+    .cards-wrapper {
+         @include media (mobile) {
+        padding: 40px 16px 0 16px; 
+        background-color: #F5F5F5;
+        border-radius: 12px;
+    }
+
+        .cards {
+            .comlist {
+                .pms-high-skin-card-subcont1 {
+                    gap: 69px;
+
+                    .cards-card-body {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 24px;
+
+                      
+                            h2.high-skin-sub-inner1{
+                                font-size: 32px;
+                                line-height: 40px;
+                                font-weight: 600;
+                                
+                            @include media (mobile) {
+                                      font-size: 24px;
+                                      line-height: 28px;
+                                    }
+                                }
+                        
+
+                        .high-skin-sub-inner2 {
+                            margin: 0;
+                            display: flex;
+                            flex-direction: column;
+                            gap: 2px;
+                            color: #616161;
+                            text-align: center;
+                            font-family: var(--body, Inter);
+                            font-size: 16px;
+                            font-style: normal;
+                            font-weight: 400;
+                            line-height: 24px;
+
+                            .high-skin-sinner-sub1 {
+                               font-weight: 600;
+                            }
+                        }
+
+                        .high-skin-sub-inner3 {
+                            margin: 0;
+                            list-style: none;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            gap: 8px;
+
+                            .comlist {
+                                display: flex;
+                                width: 165px;
+                                height: 40px;
+                                padding: var(--spacing-12);
+                                justify-content: center;
+                                align-items: center;
+                                gap: var(--spacing-8);
+                                border-radius: var(--border-radius-8);
+                                background: #2E2A94;
+                                cursor: pointer;
+
+                                a {
+                                    color: var(--text-white, #FFF);
+                                    text-align: center;
+                                    font-family: var(--title, Inter);
+                                    font-size: var(--button-medium-size);
+                                    font-style: normal;
+                                    font-weight: 500;
+                                    line-height: var(--button-medium-line-height);
+
+                                    /* 125% */
+                                }
+
+                            }
+
+                            .high-skin-sinner-sub2 {
+                                border: 1px solid #2E2A94;
+                                background-color: #F5F5F5;
+
+                                a {
+                                    color: #2E2A94;
+                                }
+                            }
+                        }
+
+
+                    }
+                }
+            }
+        }
+    }
+}
+
+// NRI high-skin End  // 
 
 // Gift City //
 

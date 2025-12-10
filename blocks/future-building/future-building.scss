@@ -883,6 +883,7 @@
                     .swiper-slide {
                         display: flex;
                         flex-direction: column;
+                        margin: 0 !important;
 
                         @include media(desktop-sm) {
                             width: 32.223% !important;

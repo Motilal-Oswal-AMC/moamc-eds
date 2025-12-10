@@ -9,6 +9,12 @@
             display: flex;
             flex-wrap: wrap;
 
+            &.comlist {
+                @include media(mobile) {
+                    align-items: start;
+                }
+            }
+
             .pi-inp-container {
                 max-width: 100%;
             }
@@ -21,5 +27,9 @@
                 max-width: calc(50% - 8px);
             }
         }
+    }
+
+    .calc-overview-summary.calc-author-main2 {
+        max-height: 254px;
     }
 }

@@ -7,7 +7,7 @@ import {
   createSummaryCTA,
   getCardsPerRow,
 } from './common-ui-field/common-ui-field.js';
-import dataCfObj from '../../scripts/dataCfObj.js';
+// import dataCfObj from "../../scripts/dataCfObj.js";
 
 export default function decorate(block) {
   const MAIN_CONTAINER = block.parentElement.parentElement.parentElement;
@@ -22,17 +22,21 @@ export default function decorate(block) {
   ];
   dataMapMoObj.addIndexed(block);
 
-  const CALC_PATH_ARRAY = window.location.pathname.split("/");
+  const CALC_PATH_ARRAY = window.location.pathname.split('/');
   const CALC_TYPE = CALC_PATH_ARRAY[CALC_PATH_ARRAY.length - 1];
 
-  const CALC_AUTHOR_MAIN = block.querySelector(".calc-author-main1");
+  const CALC_AUTHOR_MAIN = block.querySelector('.calc-author-main1');
   if (
-    !window.matchMedia("(max-width: 768px)").matches &&
-    ["lumpsum-calculator", "inflation-calculator"].includes(CALC_TYPE)
+    !window.matchMedia('(max-width: 768px)').matches
+    && [
+      'lumpsum-calculator',
+      'inflation-calculator',
+      'compound-interest-calculator',
+    ].includes(CALC_TYPE)
   ) {
     const prevHeight = CALC_AUTHOR_MAIN.offsetHeight;
     CALC_AUTHOR_MAIN.style.maxHeight = `${prevHeight}px`; // temporarily fix height
-    CALC_AUTHOR_MAIN.style.overflow = "hidden";
+    CALC_AUTHOR_MAIN.style.overflow = 'hidden';
   }
 
   if (CALCULATOR_GRAPH_CONTAINER) {
@@ -108,7 +112,7 @@ export default function decorate(block) {
   const CALC_INSIGHT_N_DISCLAIMER = SECTION_CONTAINER.querySelector(
     '.calculator-container > .calculator-block-wrapper + .default-content-wrapper',
   );
-
+  CALC_INSIGHT_N_DISCLAIMER.classList.add('calculator-disclaimer-wrapper');
   const CALC_INSIGHT = CALC_INSIGHT_N_DISCLAIMER.querySelector('ul:first-child');
   CALC_INSIGHT.classList.add('calculator-container_insight');
 
@@ -139,12 +143,10 @@ export default function decorate(block) {
     (ele) => ele.classList.add('calculator-disclaimer-desc'),
   );
 
-  CALC_INSIGHT.querySelectorAll(":scope>li").forEach((ele) =>
-    ele.classList.add("insight-textcontent")
-  );
-  ICON_IMG.classList.add("calculator-container_title--icon");
-  NESTED_LIST.classList.add("calculator-container-title-textcontent");
-  BUTTON.classList.add("calculator-container-title-btn");
+  CALC_INSIGHT.querySelectorAll(':scope>li').forEach((ele) => ele.classList.add('insight-textcontent'));
+  ICON_IMG.classList.add('calculator-container_title--icon');
+  NESTED_LIST.classList.add('calculator-container-title-textcontent');
+  BUTTON.classList.add('calculator-container-title-btn');
 
   const startInvestingBtn = createSummaryCTA({
     container: block.querySelector('.calc-author-main1'),
@@ -245,12 +247,16 @@ export default function decorate(block) {
     RECOMMENDED_FUNDS.querySelector('.default-content-wrapper').append(
       VIEW_FUND_CTA.cloneNode(true),
     );
+    const tempDfilt = dataMapMoObj.getlisting.cfDataObjs.filter((el) => {
+      if (!el.fundsTaggingSection) {
+        return false;
+      }
+      return el;
+    });
 
-    dataCfObj.cfDataObjs
-      .slice(0, getCardsPerRow({ padding: 0 }))
-      .forEach((card) => {
-        FUNDS_CARDS_CONTAINER.append(fundBlock(card));
-      });
+    tempDfilt.slice(0, getCardsPerRow({ padding: 0 })).forEach((card) => {
+      FUNDS_CARDS_CONTAINER.append(fundBlock(card));
+    });
   }
   // const BREAD_CRUMB_CONTAINER =
   //   MAIN_CONTAINER.querySelector(".breadcrumbs-fdp");

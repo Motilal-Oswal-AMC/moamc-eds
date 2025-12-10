@@ -4,7 +4,7 @@ import {
   getAuthorData,
   formatNumber,
   safeUpdateMinimalReflow,
-} from "../common-ui-field/common-ui-field.js";
+} from '../common-ui-field/common-ui-field.js';
 
 export function updateCalculateSummary({ container, data }) {
   if (!container || !data) return;
@@ -69,10 +69,7 @@ export function calculateInflationSummary({
   let data;
   const inputErrors = document.querySelectorAll('.calc-input.calc-error');
   // Guard clause for invalid inputs
-  if (
-    (!currentCost || !rateOfInflation || !timePeriod)
-    && inputErrors?.length
-  ) {
+  if (!currentCost || !rateOfInflation || !timePeriod || inputErrors?.length) {
     data = {
       currentCost: 0,
       futureCost: 0,
@@ -260,20 +257,21 @@ export default function decorate(block) {
       return frag;
     },
     /* useReserve= */ true,
-    /* extraPx= */ 0
+    /* extraPx= */ 0,
   );
 
   // Add summary block
   block.appendChild(inflationBlock);
 
   // Initial calculation
-  updateCalculateSummary({
-    container: block,
-    data: calculateInflationSummary({
-      currentCost: cc.default,
-      rateOfInflation: roi.default,
-      timePeriod: tp.default,
-      roundDecimal: 0,
-    }),
-  });
+  recalculateInflation({ container: block });
+  // updateCalculateSummary({
+  //   container: block,
+  //   data: calculateInflationSummary({
+  //     currentCost: cc.default,
+  //     rateOfInflation: roi.default,
+  //     timePeriod: tp.default,
+  //     roundDecimal: 0,
+  //   }),
+  // });
 }

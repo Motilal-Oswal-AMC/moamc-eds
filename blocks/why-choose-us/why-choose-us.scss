@@ -1,10 +1,10 @@
 @use "sass:map";
-@use "../../styles/common-theme/css/variables_mixins"as *;
-@use "../../styles/common-theme/css/fluid-typography"as *;
+@use "../../styles/common-theme/css/variables_mixins" as *;
+@use "../../styles/common-theme/css/fluid-typography" as *;
 
 .section.why-choose-us-container {
     margin-bottom: 0;
-    margin-top: 123px;
+    margin-top: 160px;
 
     @include media (mobile) {
         margin-bottom: 0;
@@ -37,7 +37,7 @@
             flex-direction: column;
             justify-content: space-between;
             align-items: flex-start;
-            
+
             // padding-top: 130px;
 
             @include media (mobile) {
@@ -76,7 +76,12 @@
                             padding-left: 19px;
                         }
 
-                        h1, h2, h3, h4, h5, h6 {
+                        h1,
+                        h2,
+                        h3,
+                        h4,
+                        h5,
+                        h6 {
                             margin: 0;
                             color: var(--blue-1800-primary, #2E2A94);
                             font-variant-numeric: lining-nums proportional-nums;
@@ -127,7 +132,7 @@
                         p {
                             margin: 0;
                             color: var(--text-body-2);
-                            font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
+                            font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
                             font-family: var(--body, Inter);
                             font-size: var(--body-medium-regular-size);
                             font-style: normal;
@@ -167,7 +172,7 @@
                         background: var(--button-primary-default, #2E2A94);
                         color: var(--text-white, #FFF);
                         text-align: center;
-                        font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
+                        font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
                         font-family: var(--body);
                         font-size: var(--button-medium-size);
                         font-style: normal;
@@ -211,6 +216,83 @@
                         width: 100%;
                         height: 346px;
                         aspect-ratio: 186/173;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.section.why-choose-us-container.nri-why-choose {
+    height: 500px;
+
+    @include media (mobile) {
+        height: unset;
+    }
+
+    .why-choose-us-wrapper {
+        .why-choose-us {
+            .why-choose-us-row1 {
+                max-width: 500px;
+                width: 100%;
+
+                .why-choose-us-sec1 {
+                    .why-choose-us-sub1 {
+                        .choose-us-lists1 {
+                            h1 {
+                                @include media (mobile) {
+                                    font-size: 24px;
+                                    line-height: 28px;
+                                }
+                            }
+
+                            .choose-us-lists-wrap2 {
+
+                                @include media (mobile) {
+                                    left: 0;
+                                    top: -21px;
+                                }
+                            }
+                        }
+
+                        .choose-us-lists2 {
+
+                            @include media (mobile) {
+                                       padding-top: 8px;
+                                    }
+
+                            p {
+                                .comlist {
+                                    font-weight: 600;
+
+                                }
+                            }
+
+                        }
+
+                        .choose-us-lists3 {
+                            p {
+                                margin: 0;
+                                color: var(--text-body-2);
+                                font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
+                                font-family: var(--body, Inter);
+                                font-size: var(--body-medium-regular-size);
+                                font-style: normal;
+                                font-weight: 400;
+                                line-height: 24px;
+
+                                @include media (mobile) {
+                                    font-size: 16px;
+                                    font-style: normal;
+                                    font-weight: 400;
+                                    line-height: 24px;
+                                }
+
+                                .comlist {
+                                    font-weight: 600;
+                                }
+                            }
+                        }
                     }
                 }
             }

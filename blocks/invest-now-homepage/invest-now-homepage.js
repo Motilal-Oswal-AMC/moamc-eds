@@ -18,7 +18,7 @@ import {
   td,
 } from '../../scripts/dom-helpers.js';
 import '../../scripts/flatpickr.js';
-import dataCfObj from '../../scripts/dataCfObj.js';
+// import dataCfObj from '../../scripts/dataCfObj.js';
 import dataMapMoObj from '../../scripts/constant.js';
 import {
   myAPI,
@@ -26,6 +26,13 @@ import {
 
 const delay = (ms) => new Promise((resolve) => {
   setTimeout(resolve, ms);
+});
+
+const tempDfilt = dataMapMoObj.getlisting.cfDataObjs.filter((el) => {
+  if (!el.fundsTaggingSection) {
+    return false;
+  }
+  return el;
 });
 
 async function removeClassAfterDelay() {
@@ -1338,8 +1345,8 @@ export async function existingUser(paramblock) {
           planslabel = 'LM';
         } else {
           const path = window.location.pathname.split('/').at(-1);
-          const planobj = dataCfObj.cfDataObjs.filter(
-            (el) => path === el.schDetail.schemeName.toLocaleLowerCase().split(' ').join('-'),
+          const planobj = tempDfilt.filter(
+            (el) => path === el.schemeName.toLocaleLowerCase().split(' ').join('-'),
           );
           planslabel = planobj[0].schcode;
         }
@@ -1348,7 +1355,7 @@ export async function existingUser(paramblock) {
         const parcloset = closestParam.querySelector('.fdp-card-container');
         const paranearby = parcloset.querySelector('.dropdownmidle .selecttext');
         const planCodenearby = paranearby.getAttribute('dataattr');
-        const dataplan = dataCfObj.cfDataObjs.filter((eldata) => eldata.schcode === schemeCode);
+        const dataplan = tempDfilt.filter((eldata) => eldata.schcode === schemeCode);
         const amcPlanCode = dataplan[0].moAmcCode;
         const optioncode = dataplan[0].planList
           .filter((elop) => elop.groupedCode === planCodenearby);
@@ -1905,13 +1912,13 @@ export default function decorate(block) {
   }
   loadCSS('../../scripts/flatpickr.min.css');
   const schcodeFromStorage = localStorage.getItem('schcodeactive');
-  const fundData = dataCfObj.cfDataObjs.find(
+  const fundData = tempDfilt.find(
     (fund) => fund.schcode === schcodeFromStorage,
   );
   let fundNameFromData;
   if (fundData) {
     // console.log('Found Fund Data:', fundData);
-    fundNameFromData = fundData.schDetail.schemeName;
+    fundNameFromData = fundData.schemeName;
   } else {
     // console.error('No fund data found for schcode:', schcodeFromStorage);
   }
@@ -2137,8 +2144,8 @@ export default function decorate(block) {
 
   // Build modal
   if (dataMapMoObj.planText === undefined || dataMapMoObj.planText === '') {
-    dataCfObj.cfDataObjs.forEach((fund) => {
-      if (fund.schDetail.schemeName === fundNameFromData) {
+    tempDfilt.forEach((fund) => {
+      if (fund.schemeName === fundNameFromData) {
         if (dataMapMoObj.planlistArr === undefined || dataMapMoObj.planlistArr.length === 0) {
           dataMapMoObj.planlistArr = fund.planList;
         }

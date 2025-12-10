@@ -1,3 +1,4 @@
+import dataMapMoObj from '../../../scripts/constant.js';
 import {
   div,
   label,
@@ -44,7 +45,10 @@ export function validateInputWithEvent({
   let errorType = null;
 
   // Normalize numeric text
-  const normalized = rawValue.replace(/,/g, '').replace(/[^\d.-]/g, '');
+  const normalized = rawValue
+    .replace(/,/g, '')
+    .replace(/\./g, '')
+    .replace(/[^\d-]/g, '');
   let num = Number(normalized);
 
   // INVALID number
@@ -55,7 +59,9 @@ export function validateInputWithEvent({
 
   // MIN logic
   if (ignoreMin) {
-    if (minValue === '' || (minValue !== 0 && num < minValue)) { errorType = 'MIN_EMPTY'; }
+    if (minValue === '' || (minValue !== 0 && num < minValue)) {
+      errorType = 'MIN_EMPTY';
+    }
   } else if (minValue !== '' && num < minValue) {
     num = minValue;
     errorType = 'MIN_EMPTY';
@@ -73,15 +79,25 @@ export function validateInputWithEvent({
 
   // Decide finalValue
   // debugger;
-  const finalValue = currency
-    ? num !== 0
-      ? formatNumber({ value: num, currencyCode, locale })
-      : minValue === 0 && eventType === 'blur'
-        ? 0
-        : ''
-    : rawValue === '' && allowEmpty
-      ? rawValue
-      : num;
+  let finalValue;
+
+  if (currency) {
+    if (num !== 0) {
+      finalValue = dataMapMoObj.formatNumber({
+        value: num,
+        currencyCode,
+        locale,
+      });
+    } else if (minValue === 0 && eventType === 'blur') {
+      finalValue = 0;
+    } else {
+      finalValue = '';
+    }
+  } else if (rawValue === '' && allowEmpty) {
+    finalValue = rawValue;
+  } else {
+    finalValue = num;
+  }
 
   // Update input
   if (currency) {
@@ -140,6 +156,7 @@ export function formatNumber({
     useGrouping,
   });
 }
+dataMapMoObj.formatNumber = formatNumber;
 
 /**
  * Derive input width in `ch` based on its value length
@@ -151,7 +168,8 @@ export function formatNumber({
 export function getInputWidth(value, minChars = 1, extraChars = 0) {
   const str = value != null ? String(value) : '';
   const { length } = str;
-  const widthCh = Math.max(length + extraChars, minChars);
+  const maxLen = length + extraChars > 2 ? 2 : length + extraChars;
+  const widthCh = Math.max(maxLen, minChars);
   return `${widthCh}ch`;
 }
 
@@ -232,7 +250,7 @@ export function createInputBlock({
     year:
       variant === 'stepper'
         ? {
-          min: `${min} ${min === 1 ? 'year' : 'years'}`,
+          min: `${min} ${Number(min) === 1 ? 'year' : 'years'}`,
           max: `${max} years`,
         }
         : {
@@ -274,11 +292,11 @@ export function createInputBlock({
           : 'number',
     min,
     max,
-    "data-fieldType": fieldType,
-    ...(["currency", "percent", "year"].includes(fieldType)
+    'data-fieldType': fieldType,
+    ...(['currency', 'percent', 'year'].includes(fieldType)
       ? {
-          inputmode: "numeric",
-        }
+        inputmode: 'numeric',
+      }
       : {}),
     onchange: (e) => {
       let filteredValue = e.target.value;
@@ -288,6 +306,9 @@ export function createInputBlock({
         filteredValue = filteredValue?.replace(/[^\d]/g, ''); // allow only digits
       }
       updateInputSuffix(e);
+    },
+    onbeforeinput: (e) => {
+      if (e.data === '.') e.preventDefault();
     },
     oninput: (e) => {
       let filteredValue = e.target.value;
@@ -304,7 +325,7 @@ export function createInputBlock({
       if (updateWidthonChange) {
         e.target.style.setProperty(
           '--input-ch-width',
-          `${getInputWidth(filteredValue)}`,
+          `${getInputWidth(e.target.value)}`,
         );
       }
       if (
@@ -377,6 +398,7 @@ export function createInputBlock({
       class: 'calc-input',
       'data-fieldType': fieldType,
       value: formatNumber({ value: defVal }),
+      inputmode: 'numeric',
     });
 
     // SYNC: fake → hidden
@@ -453,8 +475,8 @@ export function createInputBlock({
   }
   // ---------- Label ----------
   const labelEl = label(
-    { for: fieldType === "currency" ? `${id}-fake` : id, class: "calc-label" },
-    labelText
+    { for: fieldType === 'currency' ? `${id}-fake` : id, class: 'calc-label' },
+    labelText,
   );
 
   // ---------- Build input wrapper ----------
@@ -474,12 +496,15 @@ export function createInputBlock({
 
   if (suffix) {
     const inlineSuffix = span(
-      { ...suffixAttr, class: `calc-inline-suffix ${suffixAttr?.class || ''}` },
+      {
+        ...suffixAttr,
+        class: `calc-inline-suffix ${suffixAttr?.class || ''}`,
+      },
       suffix,
     );
     // Wrap input and suffix together
-    innerInputWrapper = div(
-      { class: 'calc-inner-input-wrapper' },
+    innerInputWrapper = label(
+      { class: 'calc-inner-input-wrapper', for: id },
       inputEl,
       inlineSuffix,
     );
@@ -858,7 +883,7 @@ export function createBarSummaryBlock({
 }
 
 export function createSummaryCTA({ container }) {
-  const authorCTAData = container.querySelector('.calc-author-sub4 a');
+  const authorCTAData = container.querySelector('a');
   const ctaBtn = button(
     {
       class: 'calc-overview-cta',
@@ -866,7 +891,7 @@ export function createSummaryCTA({ container }) {
         window.location.href = authorCTAData?.href || '#';
       },
     },
-    authorCTAData?.textContent.trim() || 'Start SIP',
+    authorCTAData?.textContent.trim() || 'tets',
   );
   return ctaBtn;
 }
@@ -981,28 +1006,28 @@ export function safeUpdateMinimalReflow(
   container,
   buildFn,
   useReserve = false,
-  extraPx = 0
+  extraPx = 0,
 ) {
-  if (!container || typeof buildFn !== "function") return;
+  if (!container || typeof buildFn !== 'function') return;
 
   let prevHeight = 0;
   if (useReserve) {
     // Read once — this may cause a reflow here
     prevHeight = container.scrollHeight;
     container.style.maxHeight = `${prevHeight + extraPx}px`;
-    container.style.overflow = "hidden";
+    container.style.overflow = 'hidden';
   }
 
   // Build new content off-DOM
   const newContent = buildFn();
 
   // Replace content in one go — minimal writes
-  container.innerHTML = "";
+  container.innerHTML = '';
   container.appendChild(newContent);
 
   if (useReserve) {
     // Restore natural layout — avoid reading again if you don't need new height
-    container.style.maxHeight = "";
-    container.style.overflow = "";
+    container.style.maxHeight = '';
+    container.style.overflow = '';
   }
 }

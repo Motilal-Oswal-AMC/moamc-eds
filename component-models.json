@@ -175,6 +175,22 @@
             "value": "highlight"
           },
           {
+            "name": "NRI Hero",
+            "value": "nri-hero"
+          },
+          {
+            "name": "NRI Why choose",
+            "value": "nri-why-choose"
+          },
+          {
+            "name": "NRI High Skin",
+            "value": "nri-high-skin"
+          },
+          {
+            "name": "NRI Accordion",
+            "value": "nri-accordion"
+          },
+          {
             "name": "Fund Tax",
             "value": "fund-tax"
           },
@@ -763,6 +779,10 @@
             "value": "investor-term-blog"
           },
           {
+            "name": " Elss Fund Banner",
+            "value": "elss-fund-banner"
+          },
+          {
             "name": "Cornerstones Elss Fund",
             "value": "cornerstones-elss-fund"
           },
@@ -851,12 +871,20 @@
             "value": "structure-governance-tab"
           },
           {
+            "name": "Unclaimed Redemption",
+            "value": "unclaimed-redemption"
+          },
+          {
             "name": "Why Invest Minor",
             "value": "why-invest-minor"
           },
           {
             "name": "Minors folio FAQ",
             "value": "minors-folio-faq"
+          },
+          {
+            "name": "Key Details",
+            "value": "key-details"
           },
           {
             "name": "Key Details Card",
@@ -873,6 +901,18 @@
           {
             "name": "Fab Download",
             "value": "fab-download"
+          },
+          {
+            "name": "Unclaimed Redemption Procedure",
+            "value": "unclaimed-redemption-procedure"
+          },
+          {
+            "name": "Fab Container",
+            "value": "fab-container"
+          },
+          {
+            "name": "Podcast Section",
+            "value": "podcast-section"
           }
         ]
       },
@@ -3956,6 +3996,86 @@
         "value": "",
         "label": "Text",
         "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "quick-purchase-item",
+    "fields": [
+      {
+        "component": "text",
+        "name": "col1_Label",
+        "label": "Select Scheme Label"
+      },
+      {
+        "component": "richtext",
+        "name": "col1__Transaction_Type_Details",
+        "label": "Transaction Type Details"
+      },
+      {
+        "component": "text",
+        "name": "col1_Purchase_Amount_Label",
+        "label": "Purchase Amount Label"
+      },
+      {
+        "component": "number",
+        "name": "col1_Default_Purchase_Amount",
+        "label": "Default Purchase Amount"
+      },
+      {
+        "component": "richtext",
+        "name": "col1_Advisor_Type",
+        "label": "Advisor Type Details"
+      },
+      {
+        "component": "text",
+        "name": "col1_Distributor_Code_label",
+        "label": "Distributor Code Label"
+      },
+      {
+        "component": "text",
+        "name": "col1_Default_Distributor_Code",
+        "label": "Default Distributor Code"
+      },
+      {
+        "component": "text",
+        "name": "col1_SubDistributor_Code_label",
+        "label": "Sub Distributor Code Label"
+      },
+      {
+        "component": "text",
+        "name": "col1_Default_SubDistributor_Code",
+        "label": "Default Sub Distributor Code"
+      },
+      {
+        "component": "text",
+        "name": "col1_Employee_Code_label",
+        "label": "Employee Code Label"
+      },
+      {
+        "component": "text",
+        "name": "col1_Default_Employee_Code",
+        "label": "Default Employee Code"
+      },
+      {
+        "component": "text",
+        "name": "col1_Euin_no_label",
+        "label": "EUIN Number Label"
+      },
+      {
+        "component": "text",
+        "name": "col1_Default_Euin_no",
+        "label": "Default EUIN Number"
+      },
+      {
+        "component": "richtext",
+        "name": "col2_quick_purchase_cta",
+        "label": "Quick Purchase CTA's Details"
+      },
+      {
+        "component": "richtext",
+        "name": "col3_generated_campaign_details",
+        "label": "Generated Campaign URL Details"
       }
     ]
   }

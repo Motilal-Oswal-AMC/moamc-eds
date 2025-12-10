@@ -37,7 +37,7 @@ main {
       position: sticky;
       top: 209px;
       padding: 0;
-      overflow-y: auto;
+      // overflow-y: auto;
 
       @include media(mobile) {
         max-width: 100%;
@@ -77,7 +77,7 @@ main {
           margin: 3px 0 0;
           background-color: $primary-white;
           border-radius: 6px;
-          border: 1px solid #B9BBFF;
+          border: 1px solid $neutrals-200;
           box-shadow: 0 0 14px 0 rgb(40 40 40 / 6%);
 
           // @include media(mobile) {
@@ -103,7 +103,7 @@ main {
 
           &::-webkit-scrollbar-thumb {
             width: 3px;
-            background-color: #424242; // $primary-blue;
+            background-color: #424242; //$primary-blue;
             border-radius: 0 1px 1px 0;
           }
 
@@ -318,7 +318,7 @@ main {
 
                 &::after {
                   content: "";
-                  background: url("/icons/direction-right.svg") center / cover no-repeat;
+                  background: url("../../icons/direction-right.svg") center / cover no-repeat;
                   background-position: center;
                   background-size: cover;
                   transform: rotate(90deg);
@@ -413,7 +413,7 @@ main {
 
                   &::after {
                     content: "";
-                    background: url("/icons/direction-right.svg") center / cover no-repeat;
+                    background: url("../../icons/direction-right.svg") center / cover no-repeat;
                     min-width: 16px;
                     height: 16px;
                     display: block;
@@ -779,7 +779,7 @@ main {
 
           &::-webkit-scrollbar-thumb {
             width: 3px;
-            background-color: #464343; // #eee;
+            background-color: #464343; //#eee;
           }
         }
       }
@@ -917,7 +917,7 @@ main {
 
         &::after {
           content: "";
-          background-image: url("/icons/arrow-left.svg");
+          background-image: url("../../icons/arrow-left.svg");
           background-position: center;
           background-repeat: no-repeat;
           background-size: cover;

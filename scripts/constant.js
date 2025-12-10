@@ -449,5 +449,45 @@ const dataMapMoObj = {
     // Return the number concatenated with the superscript suffix
     return `${n}<sup>${suffix}</sup>`;
   },
+  getReadingTime: async (currentPath) => {
+    try {
+    // 1. Fetch the HTML
+      const url = `${currentPath}`;
+      const resp = await fetch(url);
+      if (!resp.ok) throw new Error('Network response was not ok');
+      const html = await resp.text();
+
+      // 2. Parse HTML into a Document Object
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(html, 'text/html');
+
+      // 3. Select the content
+      // Replace '.article-content' with the actual class name of your text container
+      // for better accuracy (e.g., 'main', 'article', '#post-body').
+      const contentEl = doc.querySelector('article')
+                      || doc.querySelector('.article-body')
+                      || doc.querySelector('main')
+                      || doc.body;
+
+      // 4. Extract text and count words
+      const text = contentEl.innerText || contentEl.textContent;
+      // Split by whitespace and filter out empty strings
+      const wordCount = text.trim().split(/\s+/).filter((word) => word.length > 0).length;
+
+      // 5. Calculate Reading Time
+      // Standard speed is 200 words per minute (WPM)
+      const wpm = 200;
+      const minutes = Math.ceil(wordCount / wpm);
+
+      return {
+        minutes,
+        wordCount,
+        text: `${minutes}`,
+      };
+    } catch (error) {
+      console.error('Failed to calculate reading time:', error);
+      return { minutes: 0, wordCount: 0, text: '' };
+    }
+  },
 };
 export default dataMapMoObj;
