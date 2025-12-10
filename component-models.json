@@ -671,6 +671,10 @@
             "value": "why-choose-card"
           },
           {
+            "name": "Customized Section",
+            "value": "customized-section"
+          },
+          {
             "name": "Section One",
             "value": "section-one"
           },
