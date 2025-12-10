@@ -1,3 +1,4 @@
+import dataMapMoObj from '../../../scripts/constant.js';
 import {
   div,
   label,
@@ -78,15 +79,21 @@ export function validateInputWithEvent({
 
   // Decide finalValue
   // debugger;
-  const finalValue = currency
-    ? num !== 0
-      ? formatNumber({ value: num, currencyCode, locale })
-      : minValue === 0 && eventType === "blur"
-      ? 0
-      : ""
-    : rawValue === "" && allowEmpty
-    ? rawValue
-    : num;
+  let finalValue;
+
+  if (currency) {
+    if (num !== 0) {
+      finalValue = dataMapMoObj.formatNumber({ value: num, currencyCode, locale });
+    } else if (minValue === 0 && eventType === 'blur') {
+      finalValue = 0;
+    } else {
+      finalValue = '';
+    }
+  } else if (rawValue === '' && allowEmpty) {
+    finalValue = rawValue;
+  } else {
+    finalValue = num;
+  }
 
   // Update input
   if (currency) {
@@ -145,6 +152,7 @@ export function formatNumber({
     useGrouping,
   });
 }
+dataMapMoObj.formatNumber = formatNumber;
 
 /**
  * Derive input width in `ch` based on its value length

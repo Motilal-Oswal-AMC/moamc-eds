@@ -290,20 +290,20 @@ export default async function decorate(block) {
     const tablegrp = (param) => {
       const returnValue = [];
       dataMapMoObj.attr = param;
-      const planCode = localStorage.getItem('planCode');
-      let planslabel;
-      if (planCode !== null) {
-        const schode = planCode.split(':')[1];
-        planslabel = schode;
-      } else if (window.location.href.includes('/our-funds/funds-details-page')) {
-        planslabel = 'LM';
-      } else {
-        const path = window.location.pathname.split('/').at(-1);
-        const planobj = tempDfilt.filter(
-          (el) => path === el.schemeName.toLocaleLowerCase().split(' ').join('-'),
-        );
-        planslabel = planobj[0] !== undefined ? planobj[0].schcode : '';
-      }
+      // const planCode = localStorage.getItem('planCode');
+      // let planslabel;
+      // if (planCode !== null) {
+      //   const schode = planCode.split(':')[1];
+      //   planslabel = schode;
+      // } else if (window.location.href.includes('/our-funds/funds-details-page')) {
+      //   planslabel = 'LM';
+      // } else {
+      //   const path = window.location.pathname.split('/').at(-1);
+      //   const planobj = tempDfilt.filter(
+      //     (el) => path === el.schemeName.toLocaleLowerCase().split(' ').join('-'),
+      //   );
+      //   planslabel = planobj[0] !== undefined ? planobj[0].schcode : '';
+      // }
       // const planslabel = planCode.split(':')[1];
       const planObj = dataMapMoObj.schemeCodeResp;
       // dataMapMoObj.getlisting.cfDataObjs.filter((el) => planslabel === el.schcode);
@@ -477,20 +477,20 @@ export default async function decorate(block) {
     tabpaneltwo.appendChild(wrapper);
     return wrapper;
   }
-  const planCode = localStorage.getItem('planCode');
-  let planslabel;
-  if (planCode !== null) {
-    const schode = planCode.split(':')[1];
-    planslabel = schode;
-  } else if (window.location.href.includes('/our-funds/funds-details-page')) {
-    planslabel = 'LM';
-  } else {
-    const path = window.location.pathname.split('/').at(-1);
-    const planobj = tempDfilt.filter(
-      (el) => path === el.schemeName.toLocaleLowerCase().split(' ').join('-'),
-    );
-    planslabel = planobj[0] !== undefined ? planobj[0].schcode : '';
-  }
+  // const planCode = localStorage.getItem('planCode');
+  // let planslabel;
+  // if (planCode !== null) {
+  //   const schode = planCode.split(':')[1];
+  //   planslabel = schode;
+  // } else if (window.location.href.includes('/our-funds/funds-details-page')) {
+  //   planslabel = 'LM';
+  // } else {
+  //   const path = window.location.pathname.split('/').at(-1);
+  //   const planobj = tempDfilt.filter(
+  //     (el) => path === el.schemeName.toLocaleLowerCase().split(' ').join('-'),
+  //   );
+  //   planslabel = planobj[0] !== undefined ? planobj[0].schcode : '';
+  // }
   // const planslabel = planCode.split(':')[1];
   if (block.closest('.tabdiv')) {
     const planObj = dataMapMoObj.schemeCodeResp;

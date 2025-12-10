@@ -474,26 +474,26 @@ function searchFunctionality(block) {
         searchInput.value = visibleItems[currentFocusIndex].textContent;
       }
       searchContainer.classList.remove('search-active');
-      const tempDfilt = dataMapMoObj.getlisting.cfDataObjs.filter((el) => {
+      const tempDfilta = dataMapMoObj.getlisting.cfDataObjs.filter((el) => {
         if (!el.fundsTaggingSection || !el.planList) {
           return false;
         }
         return el;
       });
-      dataMapMoObj.funddata = tempDfilt.filter((ellim) => ellim.schemeName === searchInput.value);
+      dataMapMoObj.funddata = tempDfilta.filter((ellim) => ellim.schemeName === searchInput.value);
       // viewFunction(block);
       // CARD HIDE LOGIC ON SEARCH
       const cardsContainercd = block.querySelector('.filter-cards');
       const cardsContainer = cardsContainercd.querySelector('.cards-container');
       const squarecard = block.querySelector('.squareby-container');
       if (Array.from(squarecard.classList).includes('grid-view-active')) {
-        const tempDfilt = dataMapMoObj.getlisting.cfDataObjs.filter((el) => {
-          if (!el.fundsTaggingSection || !el.planList) {
+        const tempDfiltone = dataMapMoObj.getlisting.cfDataObjs.filter((el) => {
+          if (!el.fundsTaggingSection || !el.planList || !el.returns) {
             return false;
           }
           return el;
         });
-        const datatem = tempDfilt.filter(
+        const datatem = tempDfiltone.filter(
           (elsch) => elsch.schemeName === searchInput.value,
         );
         cardsContainer.innerHTML = '';
@@ -505,13 +505,13 @@ function searchFunctionality(block) {
       const listcard = block.querySelector('.listby-container');
       if (Array.from(listcard).includes('list-view-active')) {
         if (cardsContainer && cardsContainer.checkVisibility()) {
-          const tempDfilt = dataMapMoObj.getlisting.cfDataObjs.filter((el) => {
-            if (!el.fundsTaggingSection || !el.planList) {
+          const tempDfilttwo = dataMapMoObj.getlisting.cfDataObjs.filter((el) => {
+            if (!el.fundsTaggingSection || !el.planList || !el.returns) {
               return false;
             }
             return el;
           });
-          const datatem = tempDfilt.filter(
+          const datatem = tempDfilttwo.filter(
             (elsch) => (elsch.schemeName === searchInput.value),
           );
           listHeader.innerHTML = '';
@@ -546,26 +546,26 @@ function searchFunctionality(block) {
       const cardsContainer = block.querySelector('.filter-cards .cards-container');
 
       if (cardsContainer && cardsContainer.checkVisibility()) {
-        const tempDfilt = dataMapMoObj.getlisting.cfDataObjs.filter((el) => {
-          if (!el.fundsTaggingSection || !el.planList) {
+        const tempDfiltthree = dataMapMoObj.getlisting.cfDataObjs.filter((el) => {
+          if (!el.fundsTaggingSection || !el.planList || !el.returns) {
             return false;
           }
           return el;
         });
-        const datatem = tempDfilt.slice(0, 10);
+        const datatem = tempDfiltthree.slice(0, 10);
         cardsContainer.innerHTML = '';
         datatem.forEach((elcard) => cardsContainer.append(fundcardblock(elcard)));
       }
       const listHeader = block.querySelector('.filter-cards .list-container');
       if (listHeader && listHeader.checkVisibility()) {
         if (cardsContainer && cardsContainer.checkVisibility()) {
-          const tempDfilt = dataMapMoObj.getlisting.cfDataObjs.filter((el) => {
+          const tempDfiltfour = dataMapMoObj.getlisting.cfDataObjs.filter((el) => {
             if (!el.fundsTaggingSection || !el.planList) {
               return false;
             }
             return el;
           });
-          const datatem = tempDfilt.slice(0, 10);
+          const datatem = tempDfiltfour.slice(0, 10);
           listHeader.innerHTML = '';
           datatem.forEach((elist) => cardsContainer.append(listviewblock(elist)));
         }
@@ -579,26 +579,27 @@ function searchFunctionality(block) {
     if (event.target.matches('.list-fund-name:not(.no-results-message)')) {
       searchInput.value = event.target.dataset.originalText;
       searchContainer.classList.remove('search-active');
-      const tempDfilt = dataMapMoObj.getlisting.cfDataObjs.filter((el) => {
+      const tempDfiltfive = dataMapMoObj.getlisting.cfDataObjs.filter((el) => {
         if (!el.fundsTaggingSection || !el.planList) {
           return false;
         }
         return el;
       });
-      dataMapMoObj.funddata = tempDfilt.filter((ellim) => ellim.schemeName === searchInput.value);
+      dataMapMoObj.funddata = tempDfiltfive
+        .filter((ellim) => ellim.schemeName === searchInput.value);
       viewFunction(block);
       // CARD HIDE LOGIC ON SEARCH
       const cardsContainercd = block.querySelector('.filter-cards');
       const cardsContainer = cardsContainercd.querySelector('.cards-container');
       const squarecard = block.querySelector('.squareby-container');
       if (Array.from(squarecard.classList).includes('grid-view-active')) {
-        const tempDfilt = dataMapMoObj.getlisting.cfDataObjs.filter((el) => {
-          if (!el.fundsTaggingSection) {
+        const tempDfiltsix = dataMapMoObj.getlisting.cfDataObjs.filter((el) => {
+          if (!el.fundsTaggingSection || !el.planList || !el.returns) {
             return false;
           }
           return el;
         });
-        const datatem = tempDfilt.filter(
+        const datatem = tempDfiltsix.filter(
           (elsch) => elsch.schemeName === searchInput.value,
         );
         cardsContainer.innerHTML = '';
@@ -653,13 +654,13 @@ function searchFunctionality(block) {
     filterListItems('');
     cancelButton.style.display = 'none';
     searchContainer.classList.remove('search-active');
-    const tempDfilt = dataMapMoObj.getlisting.cfDataObjs.filter((el) => {
+    const tempDfiltseven = dataMapMoObj.getlisting.cfDataObjs.filter((el) => {
       if (!el.fundsTaggingSection || !el.planList) {
         return false;
       }
       return el;
     });
-    dataMapMoObj.funddata = tempDfilt.slice(0, 10);
+    dataMapMoObj.funddata = tempDfiltseven.slice(0, 10);
     viewFunction(block);
   });
 
@@ -738,22 +739,22 @@ function checkfilter(block) {
     const sorttext = sorttextcont.textContent.trim();
     if (sorttext === 'Popular') {
       dataMapMoObj.funddata = '';
-      const tempDfilt = dataMapMoObj.getlisting.cfDataObjs.filter((el) => {
+      const tempDfilteight = dataMapMoObj.getlisting.cfDataObjs.filter((el) => {
         if (!el.fundsTaggingSection || !el.planList) {
           return false;
         }
         return el;
       });
-      dataMapMoObj.funddata = tempDfilt.slice(0, 10);
+      dataMapMoObj.funddata = tempDfilteight.slice(0, 10);
     }
     if (sorttext === 'Oldest to Newest') {
-      const tempDfilt = dataMapMoObj.getlisting.cfDataObjs.filter((el) => {
+      const tempDfiltnine = dataMapMoObj.getlisting.cfDataObjs.filter((el) => {
         if (!el.fundsTaggingSection || !el.planList) {
           return false;
         }
         return el;
       });
-      const tempDataad = JSON.parse(JSON.stringify(tempDfilt));
+      const tempDataad = JSON.parse(JSON.stringify(tempDfiltnine));
       const tempa = tempDataad.sort(
         (a, b) => new Date(a.dateOfAllotment) - new Date(b.dateOfAllotment),
       );
@@ -761,13 +762,13 @@ function checkfilter(block) {
       dataMapMoObj.funddata = tempa;
     }
     if (sorttext === 'Newest to Oldest') {
-      const tempDfilt = dataMapMoObj.getlisting.cfDataObjs.filter((el) => {
+      const tempDfilteleven = dataMapMoObj.getlisting.cfDataObjs.filter((el) => {
         if (!el.fundsTaggingSection || !el.planList) {
           return false;
         }
         return el;
       });
-      const tempDataad = JSON.parse(JSON.stringify(tempDfilt));
+      const tempDataad = JSON.parse(JSON.stringify(tempDfilteleven));
       const tempa = tempDataad.sort(
         (a, b) => new Date(b.dateOfAllotment) - new Date(a.dateOfAllotment),
       );
@@ -1008,23 +1009,23 @@ export default function decorate(block) {
       }
     });
     if (funddata !== undefined) {
-      const tempDfilt = dataMapMoObj.getlisting.cfDataObjs.filter((el) => {
+      const tempDfilttweleve = dataMapMoObj.getlisting.cfDataObjs.filter((el) => {
         if (!el.fundsTaggingSection || !el.planList) {
           return false;
         }
         return el;
       });
-      dataMapMoObj.funddata = tempDfilt.filter((el) => funddata.includes(el.schcode));
+      dataMapMoObj.funddata = tempDfilttweleve.filter((el) => funddata.includes(el.schcode));
     }
   }
   if (funddata === undefined) {
-    const tempDfilt = dataMapMoObj.getlisting.cfDataObjs.filter((el) => {
+    const tempDfiltthirdh = dataMapMoObj.getlisting.cfDataObjs.filter((el) => {
       if (!el.fundsTaggingSection || !el.planList) {
         return false;
       }
       return el;
     });
-    dataMapMoObj.funddata = tempDfilt.slice(0, 10); // .slice(0, 11);;
+    dataMapMoObj.funddata = tempDfiltthirdh.slice(0, 10); // .slice(0, 11);;
   }
   const subfourer = block.querySelector('.block-subitem2');
   const subun = subfourer.querySelector('.block-subitem-finelsub3 span');
@@ -1214,13 +1215,13 @@ export default function decorate(block) {
                       }
                       el.querySelector('input').checked = false;
                     });
-                    const tempDfilt = dataMapMoObj.getlisting.cfDataObjs.filter((el) => {
+                    const tempDfiltfourteen = dataMapMoObj.getlisting.cfDataObjs.filter((el) => {
                       if (!el.fundsTaggingSection || !el.planList) {
                         return false;
                       }
                       return el;
                     });
-                    dataMapMoObj.funddata = tempDfilt.slice(0, 11);
+                    dataMapMoObj.funddata = tempDfiltfourteen.slice(0, 11);
                     viewFunction(block);
                     block.querySelector('.applied-filter-list').innerHTML = '';
                     block.querySelector('.applied-filter-wrap').classList.remove('filter-active');
@@ -1287,13 +1288,13 @@ export default function decorate(block) {
                         }
                         el.querySelector('input').checked = false;
                       });
-                      const tempDfilt = dataMapMoObj.getlisting.cfDataObjs.filter((el) => {
+                      const tempDfiltfivteen = dataMapMoObj.getlisting.cfDataObjs.filter((el) => {
                         if (!el.fundsTaggingSection || !el.planList) {
                           return false;
                         }
                         return el;
                       });
-                      dataMapMoObj.funddata = tempDfilt.slice(0, 11);
+                      dataMapMoObj.funddata = tempDfiltfivteen.slice(0, 11);
                     },
                   },
                   'Clear All',
@@ -1407,13 +1408,14 @@ export default function decorate(block) {
                               });
                             }
                             // console.log(dup);
-                            const tempDfilt = dataMapMoObj.getlisting.cfDataObjs.filter((el) => {
-                              if (!el.fundsTaggingSection || !el.planList) {
-                                return false;
-                              }
-                              return el;
-                            });
-                            const tempdata = tempDfilt
+                            const tempDfiltsixteen = dataMapMoObj.getlisting.cfDataObjs
+                              .filter((el) => {
+                                if (!el.fundsTaggingSection || !el.planList) {
+                                  return false;
+                                }
+                                return el;
+                              });
+                            const tempdata = tempDfiltsixteen
                               .filter((el) => (dup.includes(el.schcode) ? el : ''));
                             dataMapMoObj.tempMobReturn = [];
                             dataMapMoObj.tempMobReturn = tempdata;
@@ -1498,13 +1500,14 @@ export default function decorate(block) {
                           });
                         }
                         // console.log(dup);
-                        const tempDfilt = dataMapMoObj.getlisting.cfDataObjs.filter((el) => {
-                          if (!el.fundsTaggingSection || !el.planList) {
-                            return false;
-                          }
-                          return el;
-                        });
-                        const tempdata = tempDfilt
+                        const tempDfiltseventeen = dataMapMoObj.getlisting.cfDataObjs
+                          .filter((el) => {
+                            if (!el.fundsTaggingSection || !el.planList) {
+                              return false;
+                            }
+                            return el;
+                          });
+                        const tempdata = tempDfiltseventeen
                           .filter((el) => (dup.includes(el.schcode) ? el : ''));
                         dataMapMoObj.tempMobReturn = [];
                         dataMapMoObj.tempMobReturn = tempdata;
@@ -1898,22 +1901,24 @@ export default function decorate(block) {
                         .querySelector('p').innerText = name;
                       if (name === 'Popular') {
                         dataMapMoObj.funddata = '';
-                        const tempDfilt = dataMapMoObj.getlisting.cfDataObjs.filter((el) => {
-                          if (!el.fundsTaggingSection || !el.planList) {
-                            return false;
-                          }
-                          return el;
-                        });
-                        dataMapMoObj.funddata = tempDfilt.slice(0, 10);
+                        const tempDfilteighteen = dataMapMoObj.getlisting.cfDataObjs
+                          .filter((el) => {
+                            if (!el.fundsTaggingSection || !el.planList) {
+                              return false;
+                            }
+                            return el;
+                          });
+                        dataMapMoObj.funddata = tempDfilteighteen.slice(0, 10);
                       }
                       if (event.target.textContent.trim() === 'Oldest to Newest') {
-                        const tempDfilt = dataMapMoObj.getlisting.cfDataObjs.filter((el) => {
-                          if (!el.fundsTaggingSection || !el.planList) {
-                            return false;
-                          }
-                          return el;
-                        });
-                        const tempData = JSON.parse(JSON.stringify(tempDfilt));
+                        const tempDfilttweefour = dataMapMoObj.getlisting.cfDataObjs
+                          .filter((el) => {
+                            if (!el.fundsTaggingSection || !el.planList) {
+                              return false;
+                            }
+                            return el;
+                          });
+                        const tempData = JSON.parse(JSON.stringify(tempDfilttweefour));
                         const tempa = tempData.sort(
                           (a, b) => new Date(a.dateOfAllotment) - new Date(b.dateOfAllotment),
                         );
@@ -1921,13 +1926,13 @@ export default function decorate(block) {
                         dataMapMoObj.funddata = tempa;
                       }
                       if (event.target.textContent.trim() === 'Newest to Oldest') {
-                        const tempDfilt = dataMapMoObj.getlisting.cfDataObjs.filter((el) => {
+                        const tempDfiltninteen = dataMapMoObj.getlisting.cfDataObjs.filter((el) => {
                           if (!el.fundsTaggingSection || !el.planList) {
                             return false;
                           }
                           return el;
                         });
-                        const tempData = JSON.parse(JSON.stringify(tempDfilt));
+                        const tempData = JSON.parse(JSON.stringify(tempDfiltninteen));
                         const tempa = tempData.sort(
                           (a, b) => new Date(b.dateOfAllotment) - new Date(a.dateOfAllotment),
                         );
@@ -2026,22 +2031,23 @@ export default function decorate(block) {
                       const sorttext = sorttextcont.textContent.trim();
                       if (sorttext === 'Popular') {
                         dataMapMoObj.funddata = '';
-                        const tempDfilt = dataMapMoObj.getlisting.cfDataObjs.filter((el) => {
+                        const tempDfilttweelen = dataMapMoObj.getlisting.cfDataObjs.filter((el) => {
                           if (!el.fundsTaggingSection || !el.planList) {
                             return false;
                           }
                           return el;
                         });
-                        dataMapMoObj.funddata = tempDfilt.slice(0, 10);
+                        dataMapMoObj.funddata = tempDfilttweelen.slice(0, 10);
                       }
                       if (sorttext === 'Oldest to Newest') {
-                        const tempDfilt = dataMapMoObj.getlisting.cfDataObjs.filter((el) => {
-                          if (!el.fundsTaggingSection || !el.planList) {
-                            return false;
-                          }
-                          return el;
-                        });
-                        const tempData = JSON.parse(JSON.stringify(tempDfilt));
+                        const tempDfilttweelenone = dataMapMoObj.getlisting.cfDataObjs
+                          .filter((el) => {
+                            if (!el.fundsTaggingSection || !el.planList) {
+                              return false;
+                            }
+                            return el;
+                          });
+                        const tempData = JSON.parse(JSON.stringify(tempDfilttweelenone));
                         const tempa = tempData.sort(
                           (a, b) => new Date(a.dateOfAllotment) - new Date(b.dateOfAllotment),
                         );
@@ -2049,13 +2055,14 @@ export default function decorate(block) {
                         dataMapMoObj.funddata = tempa;
                       }
                       if (sorttext === 'Newest to Oldest') {
-                        const tempDfilt = dataMapMoObj.getlisting.cfDataObjs.filter((el) => {
-                          if (!el.fundsTaggingSection || !el.planList) {
-                            return false;
-                          }
-                          return el;
-                        });
-                        const tempData = JSON.parse(JSON.stringify(tempDfilt));
+                        const tempDfilttweefive = dataMapMoObj.getlisting.cfDataObjs
+                          .filter((el) => {
+                            if (!el.fundsTaggingSection || !el.planList) {
+                              return false;
+                            }
+                            return el;
+                          });
+                        const tempData = JSON.parse(JSON.stringify(tempDfilttweefive));
                         const tempa = tempData.sort(
                           (a, b) => new Date(b.dateOfAllotment) - new Date(a.dateOfAllotment),
                         );
@@ -2161,13 +2168,13 @@ export default function decorate(block) {
 
                     if (block.querySelector('.search-input .search').value !== '') {
                       const searchval = block.querySelector('.search-input .search').value;
-                      const tempDfilt = dataMapMoObj.getlisting.cfDataObjs.filter((el) => {
+                      const tempDfilttweentwo = dataMapMoObj.getlisting.cfDataObjs.filter((el) => {
                         if (!el.fundsTaggingSection || !el.planList) {
                           return false;
                         }
                         return el;
                       });
-                      dataMapMoObj.funddata = tempDfilt
+                      dataMapMoObj.funddata = tempDfilttweentwo
                         .filter((ellim) => ellim.schemeName === searchval);
                     }
                     viewFunction(block);
@@ -2189,13 +2196,13 @@ export default function decorate(block) {
                       .querySelector('.list-view-header').style.display = 'block';
                     if (block.querySelector('.search-input .search').value !== '') {
                       const searchval = block.querySelector('.search-input .search').value;
-                      const tempDfilt = dataMapMoObj.getlisting.cfDataObjs.filter((el) => {
+                      const tempDfilttweethree = dataMapMoObj.getlisting.cfDataObjs.filter((el) => {
                         if (!el.fundsTaggingSection || !el.planList) {
                           return false;
                         }
                         return el;
                       });
-                      dataMapMoObj.funddata = tempDfilt
+                      dataMapMoObj.funddata = tempDfilttweethree
                         .filter((ellim) => ellim.schemeName === searchval);
                     }
                     viewFunction(block);
@@ -2319,26 +2326,27 @@ export default function decorate(block) {
     (el) => {
       el.addEventListener('click', (event) => {
         if (event.target.textContent.trim() === 'Oldest to Newest') {
-          const tempDfilt = dataMapMoObj.getlisting.cfDataObjs.filter((el) => {
-            if (!el.fundsTaggingSection || !el.planList) {
-              return false;
-            }
-            return el;
-          });
-          const tempdata = JSON.parse(JSON.stringify(tempDfilt));
+          const tempDfilttweeeight = dataMapMoObj.getlisting.cfDataObjs
+            .filter((elemen) => {
+              if (!elemen.fundsTaggingSection || !elemen.planList || !el.returns) {
+                return false;
+              }
+              return elemen;
+            });
+          const tempdata = JSON.parse(JSON.stringify(tempDfilttweeeight));
           const tempa = tempdata.sort(
             (a, b) => new Date(a.dateOfAllotment) - new Date(b.dateOfAllotment),
           );
           dataMapMoObj.funddata = tempa;
         }
         if (event.target.textContent.trim() === 'Newest to Oldest') {
-          const tempDfilt = dataMapMoObj.getlisting.cfDataObjs.filter((el) => {
-            if (!el.fundsTaggingSection || !el.planList) {
+          const tempDfilttweenine = dataMapMoObj.getlisting.cfDataObjs.filter((elni) => {
+            if (!elni.fundsTaggingSection || !elni.planList) {
               return false;
             }
-            return el;
+            return elni;
           });
-          const tempdata = JSON.parse(JSON.stringify(tempDfilt));
+          const tempdata = JSON.parse(JSON.stringify(tempDfilttweenine));
           const tempa = tempdata.sort(
             (a, b) => new Date(b.dateOfAllotment) - new Date(a.dateOfAllotment),
           );
@@ -2355,39 +2363,39 @@ export default function decorate(block) {
         .closest('.radio-label')
         .querySelector('label').textContent;
       if (sortText.trim() === 'Oldest to Newest') {
-        const tempDfilt = dataMapMoObj.getlisting.cfDataObjs.filter((el) => {
+        const tempDfilthirdyt = dataMapMoObj.getlisting.cfDataObjs.filter((el) => {
           if (!el.fundsTaggingSection || !el.planList) {
             return false;
           }
           return el;
         });
-        const tempdata = JSON.parse(JSON.stringify(tempDfilt));
+        const tempdata = JSON.parse(JSON.stringify(tempDfilthirdyt));
         const tempa = tempdata.sort(
           (a, b) => new Date(a.dateOfAllotment) - new Date(b.dateOfAllotment),
         );
         dataMapMoObj.tempMobReturn = tempa;
       }
       if (sortText.trim() === 'Newest to Oldest') {
-        const tempDfilt = dataMapMoObj.getlisting.cfDataObjs.filter((el) => {
-          if (!el.fundsTaggingSection || !el.planList) {
+        const tempDfiltthirdone = dataMapMoObj.getlisting.cfDataObjs.filter((el) => {
+          if (!el.fundsTaggingSection || !el.planList || !el.returns) {
             return false;
           }
           return el;
         });
-        const tempdata = JSON.parse(JSON.stringify(tempDfilt));
+        const tempdata = JSON.parse(JSON.stringify(tempDfiltthirdone));
         const tempa = tempdata.sort(
           (a, b) => new Date(b.dateOfAllotment) - new Date(a.dateOfAllotment),
         );
         dataMapMoObj.tempMobReturn = tempa;
       }
       if (sortText.trim() === 'Popular') {
-        const tempDfilt = dataMapMoObj.getlisting.cfDataObjs.filter((el) => {
+        const tempDfiltthirdtwo = dataMapMoObj.getlisting.cfDataObjs.filter((el) => {
           if (!el.fundsTaggingSection || !el.planList) {
             return false;
           }
           return el;
         });
-        dataMapMoObj.tempMobReturn = tempDfilt.slice(0, 10);
+        dataMapMoObj.tempMobReturn = tempDfiltthirdtwo.slice(0, 10);
       }
       dataMapMoObj.schmenmob = sortText;
     });
@@ -2430,13 +2438,13 @@ export default function decorate(block) {
   Array.from(block.querySelector('.return-container .radio-label-container').children).forEach((el) => {
     el.querySelector('input').addEventListener('click', (event) => {
       const dataattr = event.target.getAttribute('dataattr').split('-');
-      const tempDfilt = dataMapMoObj.getlisting.cfDataObjs.filter((el) => {
-        if (!el.fundsTaggingSection) {
+      const tempDfiltthirdfour = dataMapMoObj.getlisting.cfDataObjs.filter((elfou) => {
+        if (!elfou.fundsTaggingSection || !el.returns || !el.planList) {
           return false;
         }
-        return el;
+        return elfou;
       });
-      const tempdata = tempDfilt.filter((elem) => dataattr.includes(elem.schcode));
+      const tempdata = tempDfiltthirdfour.filter((elem) => dataattr.includes(elem.schcode));
 
       dataMapMoObj.tempMobReturn = [];
       dataMapMoObj.tempMobReturn = tempdata;

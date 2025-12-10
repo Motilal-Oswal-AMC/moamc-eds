@@ -175,6 +175,22 @@
             "value": "highlight"
           },
           {
+            "name": "NRI Hero",
+            "value": "nri-hero"
+          },
+          {
+            "name": "NRI Why choose",
+            "value": "nri-why-choose"
+          },
+          {
+            "name": "NRI High Skin",
+            "value": "nri-high-skin"
+          },
+          {
+            "name": "NRI Accordion",
+            "value": "nri-accordion"
+          },
+          {
             "name": "Fund Tax",
             "value": "fund-tax"
           },
@@ -759,6 +775,10 @@
             "value": "investor-term-blog"
           },
           {
+            "name": " Elss Fund Banner",
+            "value": "elss-fund-banner"
+          },
+          {
             "name": "Cornerstones Elss Fund",
             "value": "cornerstones-elss-fund"
           },
@@ -847,6 +867,10 @@
             "value": "structure-governance-tab"
           },
           {
+            "name": "Unclaimed Redemption",
+            "value": "unclaimed-redemption"
+          },
+          {
             "name": "Why Invest Minor",
             "value": "why-invest-minor"
           },
@@ -871,8 +895,16 @@
             "value": "fab-download"
           },
           {
+            "name": "Unclaimed Redemption Procedure",
+            "value": "unclaimed-redemption-procedure"
+          },
+          {
             "name": "Fab Container",
             "value": "fab-container"
+          },
+          {
+            "name": "Podcast Section",
+            "value": "podcast-section"
           }
         ]
       },

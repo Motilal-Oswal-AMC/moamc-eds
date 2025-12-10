@@ -585,20 +585,6 @@ function articleStructure() {
       leftarticle.append(leftel);
     });
 
-    Array.from(leftSub).forEach((subleft) => {
-      dataMapMoObj.CLASS_PREFIXES = [
-        'investarticle-leftmain',
-        'investarticle-leftsub',
-        'investarticle-leftinner',
-        'investsub-leftarticle',
-        'investleft-subinner',
-        'investleft-articleitem',
-        'investleft-itemchild',
-        'investleft-subchild',
-      ];
-      dataMapMoObj.addIndexed(subleft);
-    });
-
     Array.from(rightSub).forEach((subright) => {
       dataMapMoObj.CLASS_PREFIXES = [
         'investarticle-rightmain',
@@ -612,6 +598,23 @@ function articleStructure() {
       ];
       dataMapMoObj.addIndexed(subright);
     });
+
+    if (!maincloser.querySelector('.moedge-article-details')) {
+      Array.from(leftSub).forEach((subleft) => {
+        dataMapMoObj.CLASS_PREFIXES = [
+          'investarticle-leftmain',
+          'investarticle-leftsub',
+          'investarticle-leftinner',
+          'investsub-leftarticle',
+          'investleft-subinner',
+          'investleft-articleitem',
+          'investleft-itemchild',
+          'investleft-subchild',
+        ];
+        dataMapMoObj.addIndexed(subleft);
+      });
+    }
+
     const maindiv = maincloser.querySelector('.main-wrapper');
     maindiv.classList.add('open-share-popup');
     // maindiv.classList.add('main-wrapper');
@@ -737,6 +740,46 @@ function articleStructure() {
       // mainwrapperDiv.appendChild(main2);
     }
 
+    if (!maincloser.querySelector('.moedge-article-details')
+        && maincloser.querySelector('.investsub-leftarticle1')) {
+      const leftpost = maincloser.querySelector('.investsub-leftarticle1 .investleft-subinner1');
+      if (window.location.href.includes('/images/')) {
+        const spanHtml = leftpost.querySelector('span');
+        leftpost.textContent = 'Article';
+        leftpost.prepend(spanHtml);
+        leftpost.querySelector('span').setAttribute('src', '/icons/Article.svg');
+        leftpost.querySelector('img').setAttribute('src', '/icons/Article.svg');
+        leftpost.querySelector('span').setAttribute('alt', 'article');
+      } else if (window.location.href.includes('/videos/')) {
+        const spanHtml = leftpost.querySelector('span');
+        leftpost.textContent = 'Video';
+        leftpost.prepend(spanHtml);
+        leftpost.querySelector('span').setAttribute('src', '/icons/youtube-1.svg');
+        leftpost.querySelector('img').setAttribute('src', '/icons/youtube-1.svg');
+        leftpost.querySelector('span').setAttribute('alt', 'video');
+      } else if (window.location.href.includes('/podcast/')) {
+        const spanHtml = leftpost.querySelector('span');
+        leftpost.textContent = 'Podcast';
+        leftpost.prepend(spanHtml);
+        leftpost.querySelector('span').setAttribute('src', '/icons/mic-1.svg');
+        leftpost.querySelector('img').setAttribute('src', '/icons/mic-1.svg');
+        leftpost.querySelector('span').setAttribute('alt', 'mic');
+      }
+    }
+
+    const addIndexedThree = (parentElement, level = 0) => {
+      const prefix = 'rightlist';
+      const { children } = parentElement; // Cache children for clarity.
+      for (let i = 0; i < children.length; i += 1) {
+        let parClass = Array.from(children[0].parentElement.classList)[0].split('-').at(-2);
+        const child = children[i];
+        const index = i + 1; // Class names are typically 1-based.
+        child.classList.add(`${prefix}`);
+        parClass = '';
+        addIndexedThree(child, level + 1);
+      }
+    };
+    addIndexedThree(maincloser.querySelector('.article-right-wrapper'));
     // const shareWrapper = document.querySelector('.itemmainleftart3');
     const openSharePopup = document.querySelector('.open-share-popup');
     const shareBtn = openSharePopup.querySelector('.icon-share-black');
@@ -744,16 +787,17 @@ function articleStructure() {
     let dropdownV2;
     if (dropdown === null) {
       const sharemedia = `<ul class="comlist list-share-media">
-                        <li class="listindex1"><a title="Facebook"><span class="icon icon-facebookfdp"><img data-icon-name="facebookfdp" src="/icons/facebookfdp.svg" alt="" loading="lazy" width="16" height="16"></span>Facebook</a></li>
-                        <li class="listindex2"><a title="WhatsApp"><span class="icon icon-whatsapp"><img data-icon-name="whatsapp" src="/icons/whatsapp.svg" alt="" loading="lazy" width="16" height="16"></span>WhatsApp</a></li>
-                        <li class="listindex3"><a title="X"><span class="icon icon-Twitter"><img data-icon-name="Twitter" src="/icons/Twitter.svg" alt="" loading="lazy" width="16" height="16"></span>X</a></li>
-                        <li class="listindex4"><a title="Copy"><span class="icon icon-copyfdp"><img data-icon-name="copyfdp" src="/icons/copyfdp.svg" alt="" loading="lazy" width="16" height="16"></span>Copy</a></li>
-                        <li class="listindex5" style="display: none; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 999;">URL Copied</li>
+                        <li class="list-media listindex1"><a class="list-link" title="Facebook"><span class="media-icon icon icon-facebookfdp"><img data-icon-name="facebookfdp" src="/icons/facebookfdp.svg" alt="" loading="lazy" width="16" height="16"></span>Facebook</a></li>
+                        <li class="list-media listindex2"><a class="list-link" title="WhatsApp"><span class="media-icon icon icon-whatsapp"><img data-icon-name="whatsapp" src="/icons/whatsapp.svg" alt="" loading="lazy" width="16" height="16"></span>WhatsApp</a></li>
+                        <li class="list-media listindex3"><a class="list-link" title="X"><span class="media-icon icon icon-Twitter"><img data-icon-name="Twitter" src="/icons/Twitter.svg" alt="" loading="lazy" width="16" height="16"></span>X</a></li>
+                        <li class="list-media listindex4"><a class="list-link" title="Copy"><span class="media-icon icon icon-copyfdp"><img data-icon-name="copyfdp" src="/icons/copyfdp.svg" alt="" loading="lazy" width="16" height="16"></span>Copy</a></li>
+                        <li class="list-media listindex5">URL Copied</li>
                       </ul>`;
       const sharemediaV2 = document.createElement('div');
       sharemediaV2.classList.add('list-share-popup');
       // sharemediaV2.style.display = 'none';
       sharemediaV2.innerHTML += sharemedia;
+      sharemediaV2.querySelector('.listindex5').style.display = 'none';
       shareBtn.closest('li').appendChild(sharemediaV2);
       shareBtn.closest('li').classList.add('mediaicons');
       dropdownV2 = openSharePopup.querySelector('.list-share-popup');
@@ -771,12 +815,14 @@ function articleStructure() {
 
       // Close dropdown on outside click
       document.addEventListener('click', (e) => {
-        if (!e.target.closest('.open-share-popup')) {
+        if (!e.target.closest('.open-share-popup') && dropdown !== null) {
           dropdown.classList.remove('active');
+        }
+        if (!e.target.closest('.list-share-popup') && dropdownV2 !== null) {
+          dropdownV2.classList.remove('active');
         }
       });
     }
-
     // document.querySelectorAll('.comlist.submainart3.itemmainleftart3').forEach((listItem) => {
     //   const ul = listItem.querySelector('.list-share-popup');
     //   if (!ul) return;
@@ -799,7 +845,7 @@ function articleStructure() {
       shareIcon.addEventListener('click', (e) => {
         e.stopPropagation();
 
-        const isVisible = popup.style.display === 'block';
+        // const isVisible = popup.style.display === 'block';
       });
 
       // GET SHARE TEXT + URL
@@ -852,12 +898,12 @@ function articleStructure() {
 
       if (cp && copyPopup) {
         // hide listindex5 initially
-        copyPopup.style.display = 'none';
-        copyPopup.style.position = 'absolute';
-        copyPopup.style.left = '50%';
-        copyPopup.style.top = '50%';
-        copyPopup.style.transform = 'translate(-50%, -50%)';
-        copyPopup.style.zIndex = '999';
+        // copyPopup.style.display = 'none';
+        // copyPopup.style.position = 'absolute';
+        // copyPopup.style.left = '50%';
+        // copyPopup.style.top = '50%';
+        // copyPopup.style.transform = 'translate(-50%, -50%)';
+        // copyPopup.style.zIndex = '999';
 
         cp.querySelector('a')?.removeAttribute('href');
 
@@ -898,7 +944,7 @@ function articleStructure() {
         const formem = blokform;
         formem.classList.add('email-imput');
         formem.addEventListener('input', (event) => {
-          const closblock = event.target.closest('.footer');
+          const closblock = event.target.closest('.subscribe-email');
           elemObj.errorelm = closblock;
           if (closblock.querySelector('.errormsg') === null) {
             closblock.querySelector('.field-wrapper').append(span({ class: 'errormsg' }, 'Enter a valid email address'));
@@ -910,16 +956,19 @@ function articleStructure() {
             inpelm.remove('email-success');
             closblock.querySelector('.errormsg').style.display = 'none';
             formem.nextElementSibling.style.display = 'none';
+            event.target.closest('.email-wrapper').classList.remove('active');
           } else if (emailRegex.test(inpval)) {
             closblock.querySelector('.errormsg').style.display = 'none';
             inpelm.remove('email-fail');
             formem.nextElementSibling.style.display = 'none';
+            event.target.closest('.email-wrapper').classList.add('active');
             // inpelm.add('email-success');
           } else {
+            event.target.closest('.email-wrapper').classList.add('active');
             closblock.querySelector('.errormsg').style.display = 'block';
             inpelm.add('email-fail');
             formem.nextElementSibling.style.display = 'block';
-            // inpelm.remove('email-success');
+            inpelm.remove('email-success');
           }
         });
         const wrapperimg = document.createElement('div');
@@ -928,13 +977,18 @@ function articleStructure() {
         wrapperimg.append(img({
           src: '/icons/error-cross.svg',
           alt: 'Img',
-          class: 'crossimg',
+          class: 'crossimg crosserror',
           onclick: () => {
             formem.value = '';
             formem.parentElement.classList.remove('email-fail');
             elemObj.errorelm.querySelector('.errormsg').style.display = 'none';
             formem.nextElementSibling.style.display = 'none';
           },
+        }));
+        wrapperimg.append(img({
+          src: '/icons/success-cross.svg',
+          alt: 'Img',
+          class: 'crossimg crosssuccess',
         }));
         formdiv.querySelector('.email-wrapper').append(wrapperimg);
         formdiv.querySelector('.submit-btn .button').addEventListener('click', () => {
@@ -1177,6 +1231,29 @@ try {
   // console.log(error);
 }
 
+// Unclaimed Redemption Block
+try {
+  // if (window.location.href == 'mutual-fund/in/en/static-pages/unclaimed-redemptions') {
+  const section = document.querySelector('.unclaimed-redemption');
+  const cardSection = document.querySelector('.unclaimed-redemption .cards-wrapper');
+  const unclaimedForm = document.querySelector('.unclaimed-redemption .wealth-modal-wrapper');
+  const elementNew = document.createElement('div');
+  const elementDiv = document.createElement('div');
+  elementDiv.classList.add('section-container');
+  elementNew.classList.add('container');
+  if (section !== null) {
+    section.appendChild(elementNew);
+    section.appendChild(elementDiv);
+    elementDiv.appendChild(elementNew);
+    elementNew.appendChild(cardSection);
+    elementNew.appendChild(unclaimedForm);
+  }
+  // }
+} catch (error) {
+  console.log(error);
+}
+// Unclaimed Redemption Block
+
 async function getlisting() {
   const resp = await myAPI('GET', 'https://m71vqgw4cj.execute-api.ap-south-1.amazonaws.com/dev/api/public/v1/funds/listing');
   return resp;
@@ -1196,14 +1273,14 @@ async function getfundmanager(param) {
 dataMapMoObj.getfundmanager = getfundmanager;
 
 async function getinsights() {
-  const resp = await myAPI('GET', 'https://main--moamc-eds--motilal-oswal-amc.aem.live/query-index-insights.json');
+  const resp = await myAPI('GET', '/query-index-insights.json');
   return resp;
 }
-dataMapMoObj.getinsights = getinsights;
+dataMapMoObj.getinsights = getinsights();
 
 async function getinvestorblog() {
-  const resp = await myAPI('GET', 'https://main--moamc-eds--motilal-oswal-amc.aem.live/query-index-investorblog.json');
+  const resp = await myAPI('GET', '/query-index-investorblog.json');
   return resp;
 }
-dataMapMoObj.getinvestorblog = getinvestorblog;
+dataMapMoObj.getinvestorblog = await getinvestorblog();
 // dataMapMoObj.qglpwcs = qglpwcs;

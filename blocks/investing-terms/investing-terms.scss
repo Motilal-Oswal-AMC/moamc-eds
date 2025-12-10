@@ -76,6 +76,7 @@ main>.section.investing-terms-container {
         margin: 0;
         padding-bottom: 12px;
         font-style: normal;
+        cursor: pointer;
 
         @include font-style(var(--body-small-medium-size),
           var(--body-small-medium-line-height),
@@ -158,7 +159,11 @@ main>.section.investing-terms-container {
   }
 }
 
+
 .section.investor-term-blog {
+  padding: 40px 0px;
+  margin: unset !important;
+
   .investing-terms-wrapper {
     .investing-terms {
       .inversting2 {
@@ -171,22 +176,19 @@ main>.section.investing-terms-container {
             width: 100%;
             height: 48px;
             padding: 20px 12px;
-            border-radius: var(--border-radius-8, 8px);
-            background: var(--button-primary-default, #2E2A94);
+            border-radius: var(--Border-Radius-8, 8px);
+            background: var(--Button-Primary-Default, #2E2A94);
             color: #FFF;
             text-align: center;
-            font-feature-settings: var(--font-features-default);
-            font-family: var(--body, Inter);
+            font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
+            font-family: var(--Body, Inter);
             font-size: 18px;
             font-style: normal;
             font-weight: 500;
             line-height: 20px;
 
-            @include media (mobile) {
-              max-width: 100%;
-              height: 40px;
-              padding: 12px var(--spacing-12, 12px);
-              font-size: 16px;
+            @include media(mobile) {
+              max-width: unset;
             }
           }
         }
@@ -196,6 +198,9 @@ main>.section.investing-terms-container {
 }
 
 .section.fab-container.investing-terms-container {
+  margin: var(--spacing-40) 0;
+  margin-bottom: 0;
+
   @include media (mobile) {
     margin: var(--spacing-40) 0;
   }
@@ -213,7 +218,7 @@ main>.section.investing-terms-container {
       font-weight: 400;
       line-height: var(--disclaimer-xsmall-line-height, 16px);
 
-      u {
+      a {
         color: var(--text-text-link, #2E2A94);
         font-family: var(--body, Inter);
         font-size: var(--text-link-xsmall-size, 12px);
@@ -226,6 +231,7 @@ main>.section.investing-terms-container {
         text-decoration-thickness: auto;
         text-underline-offset: -0.8px;
         text-underline-position: from-font;
+        cursor: pointer;
       }
     }
   }
