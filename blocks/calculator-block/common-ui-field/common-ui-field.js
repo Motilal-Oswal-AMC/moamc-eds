@@ -250,8 +250,8 @@ export function createInputBlock({
     year:
       variant === 'stepper'
         ? {
-          min: `${min} ${Number(min) === 1 ? 'year' : 'years'}`,
-          max: `${max} years`,
+          min: `${min} ${Number(min) === 1 ? 'Year' : 'Years'}`,
+          max: `${max} Years`,
         }
         : {
           min: `Min. ${min}`,
