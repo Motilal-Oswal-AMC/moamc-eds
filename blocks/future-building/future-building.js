@@ -347,8 +347,14 @@ export default function decorate(block) {
     const linktext = currentUrl.substring(currentUrl.lastIndexOf('/') + 1);
 
     // 2. Filter and Randomize the data
+    let dataincl;
+    if (window.location.href.includes('/videos/')) {
+      dataincl = '/videos/';
+    } else {
+      dataincl = '/images/';
+    }
     const data = dataMapMoObj.getinvestorblog.data
-      .filter((el) => linktext !== el.title && el.path.includes('/videos'))
+      .filter((el) => linktext !== el.title && el.path.includes(dataincl))
     // 1. Assign a random value to each item
       .map((value) => ({ value, sort: Math.random() }))
     // 2. Sort based on that random value
@@ -362,17 +368,17 @@ export default function decorate(block) {
     // 3. Map Data to Promises
     const htmlPromises = datafin.map(async (elem) => {
       const readtime = await dataMapMoObj.getReadingTime(elem.path);
-      const imagePAth = `./${elem.image.split('/')[elem.image.split('/').length - 1]}`;
+      // const imagePAth = `./${elem.image.split('/')[elem.image.split('/').length - 1]}`;
       const titleText = dataMapMoObj.toTitleCase(elem.title.replaceAll('-', ' '));
       const dateText = convertDate(elem.date.split('T')[0]);
 
       return `<div>
           <div>
             <picture>
-              <source type="image/webp" srcset="${imagePAth}" media="(min-width: 600px)">
-              <source type="image/webp" srcset="${imagePAth}">
-              <source type="image/png" srcset="${imagePAth}" media="(min-width: 600px)">
-              <img loading="lazy" alt="planning for the future" src="${imagePAth}" width="400" height="225">
+              <source type="image/webp" srcset="./media_198d0bd7effd4422c99c4935db941ebcd8230abb8.png?width=2000&format=webply&optimize=medium" media="(min-width: 600px)">
+              <source type="image/webp" srcset="./media_198d0bd7effd4422c99c4935db941ebcd8230abb8.png?width=2000&format=webply&optimize=medium">
+              <source type="image/png" srcset="./media_198d0bd7effd4422c99c4935db941ebcd8230abb8.png?width=2000&format=webply&optimize=medium" media="(min-width: 600px)">
+              <img loading="lazy" alt="planning for the future" src="./media_198d0bd7effd4422c99c4935db941ebcd8230abb8.png?width=2000&format=webply&optimize=medium" width="400" height="225">
             </picture>
           </div>
           <div class="button-container"><p><a href="${elem.path}" title="${elem.path}" class="button">${elem.path}</a></p></div>
