@@ -10,12 +10,19 @@ import * as am5themes_Animated from '../../scripts/Animated.js';
 import {
   div, p, h2, span,
 } from '../../scripts/dom-helpers.js';
-import dataCfObj from '../../scripts/dataCfObj.js';
+// import dataCfObj from '../../scripts/dataCfObj.js';
 import { initObserver, myAPI } from '../../scripts/scripts.js';
+import dataMapMoObj from '../../scripts/constant.js';
 
 window.am5.addLicense('AM5C-253273928');
 
 export default function decorate(block) {
+  const tempDfilt = dataMapMoObj.getlisting.cfDataObjs.filter((el) => {
+    if (!el.fundsTaggingSection) {
+      return false;
+    }
+    return el;
+  });
   const col1 = block.children[0].querySelector('h4');
   const col2 = block.children[0].querySelector('p');
 
@@ -55,13 +62,13 @@ export default function decorate(block) {
     schcode = 'LM';
   } else {
     const path = window.location.pathname.split('/').at(-1);
-    const planobj = dataCfObj.cfDataObjs.filter(
-      (el) => path === el.schDetail.schemeName.toLocaleLowerCase().split(' ').join('-'),
+    const planobj = tempDfilt.filter(
+      (el) => path === el.schemeName.toLocaleLowerCase().split(' ').join('-'),
     );
     schcode = planobj[0].schcode;
   }
   // const schcode = planCodeObj.split(':')[1];
-  const selectedFund = dataCfObj.cfDataObjs.find((fund) => fund.schcode === schcode);
+  const selectedFund = tempDfilt.find((fund) => fund.schcode === schcode);
 
   // 2. Get the returns data for the current fund immediately.
   const targetPlan = selectedFund?.planList;

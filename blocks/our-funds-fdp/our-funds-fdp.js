@@ -6,16 +6,40 @@ import {
   img,
 } from '../../scripts/dom-helpers.js';
 
-import objData from '../../scripts/dataCfObj.js';
+// import objData from '../../scripts/dataCfObj.js';
 import dataMapMoObj from '../../scripts/constant.js';
 // import myAPI from '../../scripts/scripts.js';
 
 export default async function decorate(block) {
+  const tempDfilt = dataMapMoObj.getlisting.cfDataObjs.filter((el) => {
+    if (!el.fundsTaggingSection || !el.planList || !el.returns) {
+      return false;
+    }
+    return el;
+  });
   let fundManagers;
   if (dataMapMoObj.fundManagerDetails.length !== 0) {
     fundManagers = dataMapMoObj.fundManagerDetails;
   } else {
-    fundManagers = objData.cfDataObjs[0].fundManager;
+    const planCode = localStorage.getItem('planCode');
+    let planFlow;
+    let planslabel;
+    if (planCode !== null) {
+      [planFlow, planslabel] = planCode.split(':');
+    } else if (window.location.href.includes('/our-funds/funds-details-page')) {
+      planslabel = 'LM';
+      planFlow = 'Direct';
+      console.log(planFlow);
+    } else {
+      const path = window.location.pathname.split('/').at(-1);
+      const planobj = tempDfilt.filter(
+        (el) => path === el.schemeName.toLocaleLowerCase().split(' ').join('-'),
+      );
+      planslabel = planobj[0].schcode;
+      // planFlow = 'Direct';
+    }
+    const respProd = await dataMapMoObj.getscheme(planslabel);
+    fundManagers = [respProd];
   }
   // const planCode = localStorage.getItem('planCode') || 'Direct:LM';
   // const planslabel = planCode.split(':')[1];

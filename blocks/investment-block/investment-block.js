@@ -1,5 +1,6 @@
-import dataCfObj from '../../scripts/dataCfObj.js';
+// import dataCfObj from '../../scripts/dataCfObj.js';
 import fundcardblock from '../fund-card/fund-card.js';
+import dataMapMoObj from '../../scripts/constant.js';
 
 export default function decorate(block) {
   block.style.display = 'none'; // RM11
@@ -11,7 +12,13 @@ export default function decorate(block) {
   });
 
   if (block.closest('.index-fund')) { // [...block.classList].includes('index-fund')
-    const dataCF = dataCfObj.cfDataObjs.slice(0, 2);
+    const tempDfilt = dataMapMoObj.getlisting.cfDataObjs.filter((el) => {
+      if (!el.fundsTaggingSection) {
+        return false;
+      }
+      return el;
+    });
+    const dataCF = tempDfilt.slice(0, 2);
     const divWrapper = document.createElement('div');
     divWrapper.classList.add('card-items');
     dataCF.forEach((el) => {

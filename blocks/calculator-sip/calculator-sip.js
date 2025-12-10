@@ -1,7 +1,6 @@
 import {
   div, a, label, input, span, button, ul, li, img,
 } from '../../scripts/dom-helpers.js';
-import dataCfObj from '../../scripts/dataCfObj.js';
 import dataMapMoObj from '../../scripts/constant.js';
 
 export default function decorate(block) {
@@ -14,7 +13,14 @@ export default function decorate(block) {
   const col3 = block.children[2].querySelectorAll('p');
   const col4 = block.children[3].querySelectorAll('p');
 
-  const schemeNames = dataCfObj.cfDataObjs.map((fund) => fund.schDetail.schemeName);
+  const tempDfilt = dataMapMoObj.getlisting.cfDataObjs.filter((el) => {
+    if (!el.fundsTaggingSection || !el.planList || !el.returns) {
+      return false;
+    }
+    return el;
+  });
+
+  const schemeNames = tempDfilt.map((fund) => fund.schemeName);
 
   // let selectedFund = dataCfObj.find((fund) => fund.schcode === 'FM'); // CP
   const planCode = localStorage.getItem('planCode');
@@ -27,17 +33,17 @@ export default function decorate(block) {
     schcode = 'LM';
   } else {
     const path = window.location.pathname.split('/').at(-1);
-    const planobj = dataCfObj.cfDataObjs.filter(
-      (el) => path === el.schDetail.schemeName.toLocaleLowerCase().split(' ').join('-'),
+    const planobj = tempDfilt.filter(
+      (el) => path === el.schemeName.toLocaleLowerCase().split(' ').join('-'),
     );
     schcode = planobj[0].schcode;
   }
-  let selectedFund = dataCfObj.cfDataObjs.find((fund) => fund.schcode === schcode);
+  let selectedFund = tempDfilt.find((fund) => fund.schcode === schcode);
   let returnCAGR = 0;
   dataMapMoObj.mode = 'sip';
   let planType = 'Direct';
   let planOption = 'Growth';
-  const selectedFundName = selectedFund.schDetail.schemeName;
+  const selectedFundName = selectedFund.schemeName;
 
   // -------------------------------
   // ✅ 2. BUILD MAIN CALCULATOR UI
@@ -49,7 +55,7 @@ export default function decorate(block) {
       { class: 'search-bar-wrapper' },
       label({ class: 'search-bar-label' }, col1[0].textContent.trim()),
       input({
-        value: selectedFund.schDetail.schemeName,
+        value: selectedFund.schemeName,
         type: 'text',
         placeholder: 'Search a fund',
         id: 'searchFundInput',
@@ -587,7 +593,7 @@ export default function decorate(block) {
         searchInput.value = name;
         // searchInput.style.backgroundPosition = 'left center';
         // searchInput.style.paddingLeft = '24px';
-        selectedFund = dataCfObj.cfDataObjs.find((f) => f.schDetail.schemeName === name);
+        selectedFund = tempDfilt.find((f) => f.schemeName === name);
         searchResults.innerHTML = '';
         updatePlanOptions(selectedFund);
         updateReturnRate();
@@ -637,7 +643,7 @@ export default function decorate(block) {
     const searchbar = document.querySelector('.search-bar-wrapper');
     if (!searchbar.contains(event.target)) {
       searchResults.innerHTML = '';
-      searchInput.value = selectedFund.schDetail.schemeName;
+      searchInput.value = selectedFund.schemeName;
       // calContainer.querySelector('.cancel-btn').style.display = 'block';
       calContainer.querySelector('.cancel-search-wrap').classList.remove('searchbar-active');
     }
@@ -654,7 +660,7 @@ export default function decorate(block) {
       ligrp.addEventListener('click', (event) => {
         const name = event.target.textContent;
         searchInput.value = name;
-        selectedFund = dataCfObj.cfDataObjs.find((f) => f.schDetail.schemeName === name);
+        selectedFund = tempDfilt.find((f) => f.schemeName === name);
         searchResults.innerHTML = '';
         updatePlanOptions(selectedFund);
         updateReturnRate();

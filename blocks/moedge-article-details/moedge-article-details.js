@@ -39,7 +39,7 @@ export default function decorate(block) {
     shareIcon.addEventListener('click', (e) => {
       e.stopPropagation();
 
-      const isVisible = popup.style.display === 'block';
+      // const isVisible = popup.style.display === 'block';
     });
 
     // GET SHARE TEXT + URL
@@ -115,7 +115,7 @@ export default function decorate(block) {
             copyPopup.style.display = 'none';
           }, 2000);
         } catch (err) {
-          console.log("Copy failed", err);
+          console.log('Copy failed', err);
         }
       });
     }
@@ -123,7 +123,7 @@ export default function decorate(block) {
 
   // CLOSE popup when clicking outside
   document.addEventListener('click', () => {
-    document.querySelectorAll('.comlist.submainleftart2').forEach(p => p.classList.remove('active'));//p.style.display = "none");
+    document.querySelectorAll('.comlist.submainleftart2').forEach((p) => p.classList.remove('active'));// p.style.display = "none");
   });
 
   // const shareWrapper = document.querySelector(".itemmainleftart3");

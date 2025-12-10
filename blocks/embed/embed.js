@@ -175,12 +175,31 @@ export default function decorate(block) {
       wrapper.addEventListener('click', async (event) => {
         if (block.closest('.article-left-wrapper')) {
           // investor atricle detail
+          if (event.target.closest('.podcast-section')) {
+            const audioHTML = `<audio controls autoplay>
+                <source src="${link}" type="audio/mpeg">
+              Your browser does not support the audio element.
+              </audio>`;
+            // event.target.closest('.embed').innerHTML += audioHTML;
+            const embedContainer = event.target.closest('.embed');
+            const existingAudio = embedContainer.querySelector('audio');
+            if (existingAudio) {
+              existingAudio.remove();
+            }
+            embedContainer.insertAdjacentHTML('beforeend', audioHTML);
 
-          const videoContainer = document.createElement('div');
-          // videoContainer.append(block);
-          loadEmbed(videoContainer, link, true);
-          const { showModal } = await createModal([videoContainer]);
-          showModal();
+            const audio = document.querySelector('audio');
+            audio.addEventListener('ended', () => {
+              console.log('Audio finished. Player hidden.');
+              audio.remove();
+            });
+          } else {
+            const videoContainer = document.createElement('div');
+            // videoContainer.append(block);
+            loadEmbed(videoContainer, link, true);
+            const { showModal } = await createModal([videoContainer]);
+            showModal();
+          }
           // console.log('df');
           return false;
         }
