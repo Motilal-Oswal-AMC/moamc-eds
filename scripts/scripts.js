@@ -899,9 +899,6 @@ function articleStructure() {
         });
       }
     });
-
-
-
     const delay = (ms) => new Promise((resolve) => { setTimeout(resolve, ms); });
     delay(2000).then(() => {
       let blokform;
@@ -981,6 +978,25 @@ function articleStructure() {
   }
 }
 dataMapMoObj.article = articleStructure;
+
+// share-icon functionality
+setTimeout(() => {
+  const socialLinks = {
+    'facebook-black': 'https://www.facebook.com/MotilalOswalSecurities/',
+    'twitter-black': 'https://x.com/MotilalOswalLtd?lang=en',
+    'instagram-black': 'https://www.instagram.com/motilaloswalgroup/?hl=en',
+    'youtube-black': 'https://www.youtube.com/motilaloswalamc',
+  };
+  // console.log("document.querySelectorAll('.article-right-wrapper img') : 
+  // ", document.querySelectorAll('.article-right-wrapper img'));
+
+  document.querySelectorAll('.article-right-wrapper .icon img').forEach((icon) => {
+    icon.addEventListener('click', (e) => {
+      const redirectUrl = socialLinks?.[e.target.getAttribute('data-icon-name')];
+      window.open(redirectUrl, '_blank');
+    });
+  });
+}, 2000);
 
 const chooseUs = document.querySelector('.why-choose-us');
 if (chooseUs != null) {
