@@ -194,7 +194,7 @@ export default function decorate(block) {
       const readtime = await dataMapMoObj.getReadingTime(elem.path);
 
       // Prepare variables
-      const imagePAth = `./${elem.image.split('/')[elem.image.split('/').length - 1]}`;
+      // const imagePAth = `./${elem.image.split('/')[elem.image.split('/').length - 1]}`;
       const titleText = dataMapMoObj.toTitleCase(elem.title.replaceAll('-', ' '));
       const dateText = convertDate(elem.date.split('T')[0]);
 
@@ -202,10 +202,10 @@ export default function decorate(block) {
       return `<div class="comlist moedge-build-cont${index + 1}">
       <div class="secs-wrapper"><div class="comlist moedge-build-sec1">
         <picture class="comlist moedge-build-sub1">
-          <source type="image/webp" srcset="${imagePAth}" media="(min-width: 600px)" class="comlist moedge-build-inner-text1">
-          <source type="image/webp" srcset="${imagePAth}" class="comlist moedge-build-inner-text2">
-          <source type="image/jpeg" srcset="${imagePAth}" media="(min-width: 600px)" class="comlist moedge-build-inner-text3">
-          <img loading="lazy" alt="edge-img" src="${imagePAth}" width="800" height="440" class="comlist moedge-build-inner-text4">
+          <source type="image/webp" srcset="./media_198d0bd7effd4422c99c4935db941ebcd8230abb8.png?width=2000&format=webply&optimize=medium" media="(min-width: 600px)" class="comlist moedge-build-inner-text1">
+          <source type="image/webp" srcset="./media_198d0bd7effd4422c99c4935db941ebcd8230abb8.png?width=2000&format=webply&optimize=medium" class="comlist moedge-build-inner-text2">
+          <source type="image/jpeg" srcset="./media_198d0bd7effd4422c99c4935db941ebcd8230abb8.png?width=2000&format=webply&optimize=medium" media="(min-width: 600px)" class="comlist moedge-build-inner-text3">
+          <img loading="lazy" alt="edge-img" src="./media_198d0bd7effd4422c99c4935db941ebcd8230abb8.png?width=2000&format=webply&optimize=medium" width="800" height="440" class="comlist moedge-build-inner-text4">
         </picture>
       </div><div class="button-container comlist moedge-build-sec2"><p class="comlist moedge-build-sub1"><a href="${elem.path}" title="/mutual-fund/in/en/modals/youtube-video" class="button comlist moedge-build-inner-text1">/mutual-fund/in/en/modals/youtube-video</a></p></div></div>
       
@@ -287,7 +287,7 @@ export default function decorate(block) {
       const readtime = await dataMapMoObj.getReadingTime(elem.path);
 
       // Prepare variables
-      const imagePAth = `./${elem.image.split('/')[elem.image.split('/').length - 1]}`;
+      // const imagePAth = `./${elem.image.split('/')[elem.image.split('/').length - 1]}`;
       const titleText = dataMapMoObj.toTitleCase(elem.title.replaceAll('-', ' '));
       const dateText = convertDate(elem.date.split('T')[0]);
 
@@ -297,12 +297,12 @@ export default function decorate(block) {
     <a class="redirection " href="${elem.path}">
     <div class="comlist moedge-build-sec1">
         <picture class="comlist moedge-build-sub1">
-          <source type="image/webp" srcset="${imagePAth}" media="(min-width: 600px)"
+          <source type="image/webp" srcset="./media_198d0bd7effd4422c99c4935db941ebcd8230abb8.png?width=2000&format=webply&optimize=medium" media="(min-width: 600px)"
             class="comlist moedge-build-inner-text1">
-          <source type="image/webp" srcset="${imagePAth}" class="comlist moedge-build-inner-text2">
-          <source type="image/jpeg" srcset="${imagePAth}" media="(min-width: 600px)"
+          <source type="image/webp" srcset="./media_198d0bd7effd4422c99c4935db941ebcd8230abb8.png?width=2000&format=webply&optimize=medium" class="comlist moedge-build-inner-text2">
+          <source type="image/jpeg" srcset="./media_198d0bd7effd4422c99c4935db941ebcd8230abb8.png?width=2000&format=webply&optimize=medium" media="(min-width: 600px)"
             class="comlist moedge-build-inner-text3">
-          <img loading="lazy" alt="edge-img" src="${imagePAth}" width="800" height="440"
+          <img loading="lazy" alt="edge-img" src="./media_198d0bd7effd4422c99c4935db941ebcd8230abb8.png?width=2000&format=webply&optimize=medium" width="800" height="440"
             class="comlist moedge-build-inner-text4">
         </picture>
     </div>
@@ -416,7 +416,7 @@ export default function decorate(block) {
       const readtime = await dataMapMoObj.getReadingTime(elem.path);
 
       // Prepare variables
-      const imagePAth = `./${elem.image.split('/')[elem.image.split('/').length - 1]}`;
+      // const imagePAth = `./${elem.image.split('/')[elem.image.split('/').length - 1]}`;
       const titleText = dataMapMoObj.toTitleCase(elem.title.replaceAll('-', ' '));
       const dateText = convertDate(elem.date.split('T')[0]);
 
@@ -424,10 +424,10 @@ export default function decorate(block) {
       return `<div class="comlist moedge-build-cont${index + 1}">
       <div class="secs-wrapper"><div class="comlist moedge-build-sec1">
         <picture class="comlist moedge-build-sub1">
-          <source type="image/webp" srcset="${imagePAth}" media="(min-width: 600px)" class="comlist moedge-build-inner-text1">
-          <source type="image/webp" srcset="${imagePAth}" class="comlist moedge-build-inner-text2">
-          <source type="image/jpeg" srcset="${imagePAth}" media="(min-width: 600px)" class="comlist moedge-build-inner-text3">
-          <img loading="lazy" alt="edge-img" src="${imagePAth}" width="800" height="440" class="comlist moedge-build-inner-text4">
+          <source type="image/webp" srcset="./media_198d0bd7effd4422c99c4935db941ebcd8230abb8.png?width=2000&format=webply&optimize=medium" media="(min-width: 600px)" class="comlist moedge-build-inner-text1">
+          <source type="image/webp" srcset="./media_198d0bd7effd4422c99c4935db941ebcd8230abb8.png?width=2000&format=webply&optimize=medium" class="comlist moedge-build-inner-text2">
+          <source type="image/jpeg" srcset="./media_198d0bd7effd4422c99c4935db941ebcd8230abb8.png?width=2000&format=webply&optimize=medium" media="(min-width: 600px)" class="comlist moedge-build-inner-text3">
+          <img loading="lazy" alt="edge-img" src="./media_198d0bd7effd4422c99c4935db941ebcd8230abb8.png?width=2000&format=webply&optimize=medium" width="800" height="440" class="comlist moedge-build-inner-text4">
         </picture>
       </div><div class="button-container comlist moedge-build-sec2"><p class="comlist moedge-build-sub1"><a href="${elem.path}" title="/mutual-fund/in/en/modals/youtube-video" class="button comlist moedge-build-inner-text1">/mutual-fund/in/en/modals/youtube-video</a></p></div></div>
       
