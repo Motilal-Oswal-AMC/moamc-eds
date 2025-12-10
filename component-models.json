@@ -879,6 +879,10 @@
             "value": "minors-folio-faq"
           },
           {
+            "name": "Key Details",
+            "value": "key-details"
+          },
+          {
             "name": "Key Details Card",
             "value": "key-details-card"
           },

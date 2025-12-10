@@ -2669,6 +2669,11 @@ main.nfo-nav {
           li.matters-li3 {
             padding: 12px;
             background-color: unset;
+
+            @include media (mobile) {
+              padding: 12px 0;
+
+            }
           }
         }
 
@@ -2735,6 +2740,11 @@ main.nfo-nav {
     .promise-qglp-ctn1 {
       position: unset;
       height: 203px;
+
+      @include media (mobile) {
+        height: 120px;
+        padding: 0 16px;
+      }
 
       // margin-left: 16px;
     }
