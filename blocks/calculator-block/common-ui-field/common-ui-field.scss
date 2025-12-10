@@ -235,6 +235,7 @@
                 display: flex;
                 gap: 4px;
                 align-items: center;
+                padding: 0 16px;
 
                 @include media(mobile) {
                     &:has(input[data-fieldtype="percent"]) {
@@ -298,11 +299,14 @@
                     display: flex;
                     width: 24px;
                     height: 24px;
+                    font-size: 16px;
                     justify-content: center;
                     align-items: center;
                     margin: 0;
                     background-color: transparent;
                     opacity: 1;
+                    touch-action: manipulation;
+                    -webkit-tap-highlight-color: transparent;
                     transition: background-color 0.2s ease-in-out, opacity 0.2s ease-in-out;
 
                     &.dec-btn {

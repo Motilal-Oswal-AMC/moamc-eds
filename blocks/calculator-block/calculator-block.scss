@@ -1065,7 +1065,7 @@ main {
             }
 
             .question {
-                @include font-style(24px, 32px, $primary-blue, 600, $inter);
+                @include font-style(24px, 32px, $primary-blue, 500, $inter);
 
                 .link {
                     color: $primary-blue;
