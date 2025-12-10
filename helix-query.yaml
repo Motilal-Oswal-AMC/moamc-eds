@@ -125,6 +125,34 @@ indices:
       robots:
         select: head > meta[name="robots"]
         value: attribute(el, "content")
-      youtubeurl:
-        select: body .embed a
+  pressrelease:
+    include:
+      - '/mutual-fund/in/en/motilal-oswal-edge/insights/press-release/**'
+    exclude:
+      - '/**.json'
+    target: /query-index-pressrelease.json
+    properties:
+      title:
+        select: head > meta[property="og:title"]
+        value: attribute(el, "content")
+      description:
+        select: head > meta[name="description"]
+        value: attribute(el, "content")
+      image:
+        select: head > meta[property="og:image"]
+        value: attribute(el, "content")  
+      time:
+        select: head > meta[name="published-time"]
+        value: attribute(el, "content")
+      date:
+        select: head > meta[name="modified-time"]
+        value: attribute(el, "content")
+      readmoreurl:
+        select: head > link[rel="canonical"]
         value: attribute(el, "href")
+      lastModified:
+        select: none
+        value: parseTimestamp(headers["last-modified"], "ddd, DD MMM YYYY hh:mm:ss GMT")
+      robots:
+        select: head > meta[name="robots"]
+        value: attribute(el, "content")
