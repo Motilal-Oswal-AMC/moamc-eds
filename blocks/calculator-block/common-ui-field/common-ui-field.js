@@ -1,4 +1,4 @@
-import dataMapMoObj from '../../../scripts/constant.js';
+import dataMapMoObj from "../../../scripts/constant.js";
 import {
   div,
   label,
@@ -83,13 +83,17 @@ export function validateInputWithEvent({
 
   if (currency) {
     if (num !== 0) {
-      finalValue = dataMapMoObj.formatNumber({ value: num, currencyCode, locale });
-    } else if (minValue === 0 && eventType === 'blur') {
+      finalValue = dataMapMoObj.formatNumber({
+        value: num,
+        currencyCode,
+        locale,
+      });
+    } else if (minValue === 0 && eventType === "blur") {
       finalValue = 0;
     } else {
-      finalValue = '';
+      finalValue = "";
     }
-  } else if (rawValue === '' && allowEmpty) {
+  } else if (rawValue === "" && allowEmpty) {
     finalValue = rawValue;
   } else {
     finalValue = num;
@@ -164,7 +168,8 @@ dataMapMoObj.formatNumber = formatNumber;
 export function getInputWidth(value, minChars = 1, extraChars = 0) {
   const str = value != null ? String(value) : "";
   const { length } = str;
-  const widthCh = Math.max(length + extraChars, minChars);
+  const maxLen = length + extraChars > 2 ? 2 : length + extraChars;
+  const widthCh = Math.max(maxLen, minChars);
   return `${widthCh}ch`;
 }
 
@@ -322,7 +327,7 @@ export function createInputBlock({
       if (updateWidthonChange) {
         e.target.style.setProperty(
           "--input-ch-width",
-          `${getInputWidth(filteredValue)}`
+          `${getInputWidth(e.target.value)}`
         );
       }
       if (
@@ -395,6 +400,7 @@ export function createInputBlock({
       class: "calc-input",
       "data-fieldType": fieldType,
       value: formatNumber({ value: defVal }),
+      inputmode: "numeric",
     });
 
     // SYNC: fake → hidden
@@ -491,17 +497,16 @@ export function createInputBlock({
   let innerInputWrapper;
 
   if (suffix) {
-    const inlineSuffix = label(
+    const inlineSuffix = span(
       {
         ...suffixAttr,
         class: `calc-inline-suffix ${suffixAttr?.class || ""}`,
-        for: id,
       },
       suffix
     );
     // Wrap input and suffix together
-    innerInputWrapper = div(
-      { class: "calc-inner-input-wrapper" },
+    innerInputWrapper = label(
+      { class: "calc-inner-input-wrapper", for: id },
       inputEl,
       inlineSuffix
     );
