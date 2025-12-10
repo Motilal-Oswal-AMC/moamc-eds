@@ -671,6 +671,10 @@
             "value": "why-choose-card"
           },
           {
+            "name": "Customized Section",
+            "value": "customized-section"
+          },
+          {
             "name": "Section One",
             "value": "section-one"
           },
@@ -877,6 +881,10 @@
           {
             "name": "Minors folio FAQ",
             "value": "minors-folio-faq"
+          },
+          {
+            "name": "Key Details",
+            "value": "key-details"
           },
           {
             "name": "Key Details Card",
