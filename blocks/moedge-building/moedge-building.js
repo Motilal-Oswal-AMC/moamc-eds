@@ -346,42 +346,59 @@ export default function decorate(block) {
 </div>`;
     });
 
-    // 2. Wait for ALL promises to resolve
+    // 2. Wait for ALL promises to 
+    const blockHTML = block;
+    block.innerHTML = ''; 
     Promise.all(htmlPromises).then((htmlArray) => {
-      // Filter out nulls (from the if check) and join into one big string
+      // 1. Join the HTML string
       const validHtml = htmlArray.filter(Boolean).join('');
 
-      // 3. Update DOM ONCE (Much faster than innerHTML += in a loop)
-      block.innerHTML = validHtml;
-      block.classList.add('video-listing')
+      // 2. Create a temporary container to turn the String into DOM Nodes
+      // We do not add this to the actual document yet.
+      const tempDiv = document.createElement('div');
+      tempDiv.innerHTML = validHtml;
 
-      // 4. NOW it is safe to query the DOM
-      const items = Array.from(block.querySelectorAll(':scope > [class*="moedge-build-cont"]'));
-      const itemsPerPage = items.slice(0, 9).length;
+      // Get the items from the temp container
+      const items = Array.from(tempDiv.querySelectorAll('[class*="moedge-build-cont"]'));
 
-      if (items.length > itemsPerPage) {
-        dataMapMoObj.setupPagination(block, items, itemsPerPage);
-      }
+      // 3. Prepare a DocumentFragment (a lightweight container for the final DOM)
+      const finalFragment = document.createDocumentFragment();
 
-      // Banner Logic
+      // 4. Banner Logic setup
       const blockdo = block.closest('body');
       const blkcamp = blockdo?.querySelector('.listing-investor-banner');
+      let bannerInsertionIndex = -1;
 
-      // Only proceed if blkcamp exists
       if (blkcamp) {
         const level = blkcamp.getAttribute('data-id');
         const leveliteration = (Number(level) * 3);
-
         if (leveliteration && items.length > 0) {
-          block.innerHTML = ''; // Clear to re-order
-          items.forEach((el, index) => {
-            block.appendChild(el);
-            // Insert banner at specific index
-            if (index === (leveliteration - 1)) {
-              block.appendChild(blkcamp);
-            }
-          });
+          bannerInsertionIndex = leveliteration - 1;
         }
+      }
+
+      // 5. Build the final structure in the Fragment (In Memory)
+      items.forEach((el, index) => {
+        // Add the video item
+        finalFragment.appendChild(el);
+
+        // Check if we need to insert the banner here
+        if (blkcamp && index === bannerInsertionIndex) {
+          finalFragment.appendChild(blkcamp);
+        }
+      });
+
+      // 6. UPDATE DOM ONCE (Clean and Direct)
+      block.innerHTML = ''; // Ensure block is empty
+      block.classList.add('video-listing');
+      block.appendChild(finalFragment); // Single paint operation
+
+      // 7. Pagination Logic
+      // The items are now actually in the DOM, so pagination will work correctly
+      const itemsPerPage = 9; // Simplified based on your slice(0,9) logic
+
+      if (items.length > itemsPerPage) {
+        dataMapMoObj.setupPagination(block, items, itemsPerPage);
       }
     });
   }
