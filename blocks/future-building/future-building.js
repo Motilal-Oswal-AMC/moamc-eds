@@ -346,6 +346,18 @@ export default function decorate(block) {
     const currentUrl = window.location.href.replace(/\/$/, '');
     const linktext = currentUrl.substring(currentUrl.lastIndexOf('/') + 1);
 
+    let datalink;
+    let icons;
+    let texticon;
+    if (window.location.href.includes('/videos/')) {
+      datalink = '/videos/';
+      icons = '/icons/youtube-1.svg';
+      texticon = 'Video';
+    } else if (window.location.href.includes('/images/')) {
+      datalink = '/images/';
+      icons = '/icons/Article.svg';
+      texticon = 'Article';
+    }
     // 2. Filter and Randomize the data
     let dataincl;
     if (window.location.href.includes('/videos/')) {
@@ -385,7 +397,7 @@ export default function decorate(block) {
           <div>
             <ul>
               <li>
-                <p><span class="icon icon-Article"><img data-icon-name="Article" src="/icons/Article.svg" alt="" loading="lazy" width="16" height="16"></span>Video</p>
+                <p><span class="icon icon-Article"><img data-icon-name="${texticon}" src="${icons}" alt="${texticon}" loading="lazy" width="16" height="16"></span>${texticon}</p>
                 <ul>
                   <li>${readtime.minutes} min read</li>
                   <li><span class="icon icon-calendar-01"><img data-icon-name="calendar-01" src="/icons/calendar-01.svg" alt="" loading="lazy" width="16" height="16"></span>${dateText}</li>
@@ -443,7 +455,6 @@ export default function decorate(block) {
 
   return block;
 }
-
 // import Swiper from '../swiper/swiper-bundle.min.js';
 // import dataMapMoObj from '../../scripts/constant.js';
 // import {
