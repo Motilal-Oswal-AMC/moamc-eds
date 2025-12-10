@@ -1055,17 +1055,17 @@
   {
     "id": "accordion-item",
     "type": "accordion/text",
-    "fields": [{
-        "component": "multiselect",
-        "name": "classes",
-        "label": "Classes",
-        "options": [
-          {
-            "name": "Accordion Table",
-            "value": "accordion-table"
-          }
-        ]
-      },
+    "fields": [ {
+          "component": "multiselect",
+          "name": "col2_classes",
+          "label": "Style",
+          "options": [
+            {
+              "name": "Tabs Item",
+              "value": "tabs-item"
+            }
+          ]
+        },
       {
         "component": "richtext",
         "valueType": "string",
