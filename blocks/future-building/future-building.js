@@ -359,8 +359,14 @@ export default function decorate(block) {
       texticon = 'Article';
     }
     // 2. Filter and Randomize the data
+    let dataincl;
+    if (window.location.href.includes('/videos/')) {
+      dataincl = '/videos/';
+    } else {
+      dataincl = '/images/';
+    }
     const data = dataMapMoObj.getinvestorblog.data
-      .filter((el) => linktext !== el.title && el.path.includes(datalink))
+      .filter((el) => linktext !== el.title && el.path.includes(dataincl))
     // 1. Assign a random value to each item
       .map((value) => ({ value, sort: Math.random() }))
     // 2. Sort based on that random value

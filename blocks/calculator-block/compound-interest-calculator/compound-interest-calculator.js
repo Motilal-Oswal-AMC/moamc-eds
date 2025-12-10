@@ -56,6 +56,18 @@ export function calculateCompoundSummary({
   roundDecimal,
   callbackFunc,
 }) {
+  const inputErrors = document.querySelectorAll('.calc-input.calc-error');
+  if (inputErrors?.length) {
+    return {
+      principal: 0,
+      totalValue: 0,
+      interestEarned: 0,
+      multiplier: '0x',
+      investedPercentage: 0,
+      returnsPercentage: 0,
+    };
+  }
+
   const P = principal;
   const r = annualRateRate / 100;
   const n = compoundingFrequency;
@@ -264,16 +276,5 @@ export default function decorate(block) {
   CALC_AUTHOR_MAIN.append(piBlock, tpBlock, roiBlock, selector);
   block.appendChild(sipBlock);
 
-  const summaryData = calculateCompoundSummary({
-    principal: Number(pi?.default),
-    annualRateRate: Number(roi?.default),
-    years: Number(tp?.default),
-    compoundingFrequency: freqMap[compoundFreqOptions[0]?.value || 'yearly'], // e.g., 1,2,4,12 based on value
-    roundDecimal: 0,
-  });
-
-  updateCalculateCompoundSummary({
-    container: block,
-    data: summaryData,
-  });
+  recalculateCompoundInterest({ container: block });
 }
