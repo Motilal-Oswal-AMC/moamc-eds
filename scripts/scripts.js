@@ -1197,6 +1197,26 @@ try {
     dataMapMoObj.addIndexed(whymattersComponent);
   }
 
+  //  class added for accordion table start//
+
+     const accordionTable = maincloser.querySelector('.accordion-table');
+      dataMapMoObj.CLASS_PREFIXES = [
+        'leftartmain',
+        'leftartsub',
+        'leftartitem',
+        'subleftart',
+        'mainleftart',
+        'itemleftart',
+        'itemleftart',
+        'mainitemleftart',
+        'itemmainleftart',
+        'submainleftart',
+      ];
+      dataMapMoObj.addIndexed(accordionTable);
+
+
+    //  class added for accordion table end//
+
   const container = document.querySelector('.section.why-matters-component.cards-container');
 
   const wrapper = document.createElement('div');
