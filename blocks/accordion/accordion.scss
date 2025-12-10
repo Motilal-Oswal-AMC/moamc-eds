@@ -309,6 +309,10 @@
                 border-width: unset;
                 transform: translateY(-50%);
                 background: url("/icons/plus-blue.svg");
+
+                @include media (mobile) {
+                  top: 17px;
+                }
               }
             }
           }
@@ -511,17 +515,18 @@
 
     .accordion-wrapper {
       .accordion {
-        .accordion-item[open]{
-          .accordion-item-body{
-            p{
-                      @include media(mobile) {
-           font-size: 14px;
-                   line-height: 20px;
-                   font-weight: 400;
-        }
+        .accordion-item[open] {
+          .accordion-item-body {
+            p {
+              @include media(mobile) {
+                font-size: 14px;
+                line-height: 20px;
+                font-weight: 400;
+              }
             }
           }
         }
+
         .hidden {
           display: block;
         }
