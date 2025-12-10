@@ -69,10 +69,8 @@ export function calculateInflationSummary({
   let data;
   const inputErrors = document.querySelectorAll('.calc-input.calc-error');
   // Guard clause for invalid inputs
-  if (
-    (!currentCost || !rateOfInflation || !timePeriod)
-    && inputErrors?.length
-  ) {
+  debugger;
+  if (!currentCost || !rateOfInflation || !timePeriod || inputErrors?.length) {
     data = {
       currentCost: 0,
       futureCost: 0,
@@ -267,13 +265,14 @@ export default function decorate(block) {
   block.appendChild(inflationBlock);
 
   // Initial calculation
-  updateCalculateSummary({
-    container: block,
-    data: calculateInflationSummary({
-      currentCost: cc.default,
-      rateOfInflation: roi.default,
-      timePeriod: tp.default,
-      roundDecimal: 0,
-    }),
-  });
+  recalculateInflation({ container: block });
+  // updateCalculateSummary({
+  //   container: block,
+  //   data: calculateInflationSummary({
+  //     currentCost: cc.default,
+  //     rateOfInflation: roi.default,
+  //     timePeriod: tp.default,
+  //     roundDecimal: 0,
+  //   }),
+  // });
 }

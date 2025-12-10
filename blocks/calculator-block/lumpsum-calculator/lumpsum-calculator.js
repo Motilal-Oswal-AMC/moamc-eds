@@ -253,13 +253,14 @@ export default function decorate(block) {
 
   block.appendChild(lumpsumBlock);
 
-  updateCalculateSummary({
-    container: block,
-    data: calculateLumpsumSummary({
-      totalInvestment: ti.default,
-      rateOfReturn: ror.default,
-      timePeriod: tp.default,
-      roundDecimal: 0,
-    }),
-  });
+  recalculateLumpsum({ container: block });
+  // updateCalculateSummary({
+  //   container: block,
+  //   data: calculateLumpsumSummary({
+  //     totalInvestment: ti.default,
+  //     rateOfReturn: ror.default,
+  //     timePeriod: tp.default,
+  //     roundDecimal: 0,
+  //   }),
+  // });
 }

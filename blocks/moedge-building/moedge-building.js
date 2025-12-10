@@ -241,6 +241,7 @@ export default function decorate(block) {
       const validHtml = htmlArray.filter(Boolean).join('');
 
       // 3. Update DOM ONCE (Much faster than innerHTML += in a loop)
+      block.innerHTML = '';
       block.innerHTML = validHtml;
 
       // 4. NOW it is safe to query the DOM
@@ -261,7 +262,7 @@ export default function decorate(block) {
         const leveliteration = (Number(level) * 3);
 
         if (leveliteration && items.length > 0) {
-          block.innerHTML = ''; // Clear to re-order
+          // block.innerHTML = ''; // Clear to re-order
           items.forEach((el, index) => {
             block.appendChild(el);
             // Insert banner at specific index
@@ -314,9 +315,9 @@ export default function decorate(block) {
   <div class="comlist moedge-build-sec3">
     <ul class="comlist moedge-build-sub1">
       <li class="comlist moedge-build-inner-text1" style="display: none;">
-        <p class="comlist moedge-build-list1"><span class="icon icon-Article comlist moedge-build-list-content1"><img
-              data-icon-name="Article" src="/icons/Article.svg" alt="" loading="lazy" width="16"
-              height="16"></span>Article</p>
+        <p class="comlist moedge-build-list1"><span class="icon icon-Vedio comlist moedge-build-list-content1"><img
+              data-icon-name="Vedio" src="/icons/youtube-1.svg" alt="" loading="lazy" width="16"
+              height="16"></span>Vedio</p>
         <ul class="comlist moedge-build-list2">
           <li class="comlist moedge-build-list-content1"> ${readtime.minutes} min read</li>
           <li class="comlist moedge-build-list-content2"><span class="icon icon-calendar-01"><img
