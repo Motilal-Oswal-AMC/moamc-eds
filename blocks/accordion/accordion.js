@@ -1,4 +1,6 @@
 import { isDesktop } from '../header/header.js';
+import dataMapMoObj from './../../scripts/constant.js';
+
 
 /**
  * Transforms a content block into an accessible accordion.
@@ -13,7 +15,9 @@ export default function decorate(block) {
 
   // --- Part 1: Convert rows to semantic <details>/<summary> ---
   [...block.children].forEach((row) => {
-    const [label, body] = row.children;
+  
+    const [label, body , classes] = row.children;
+
     if (!label || !body || !body.textContent.trim()) {
       row.remove();
       return;
@@ -28,6 +32,10 @@ export default function decorate(block) {
     const detailsEl = document.createElement('details');
     detailsEl.className = 'accordion-item';
     detailsEl.append(summary, body);
+    if(classes){
+       const data = classes.textContent.trim();
+       detailsEl.classList.add(data)
+     }
 
     row.replaceWith(detailsEl);
   });
@@ -203,5 +211,25 @@ export default function decorate(block) {
 
     nriAccordion.append(wrapperAccordion);
   });
+
+   //  class added for accordion table start//
+
+     const accordionTable = block.querySelector('.accordion-table');
+      dataMapMoObj.CLASS_PREFIXES = [
+        'leftartmain',
+        'leftartsub',
+        'leftartitem',
+        'subleftart',
+        'mainleftart',
+        'itemleftart',
+        'itemleftart',
+        'mainitemleftart',
+        'itemmainleftart',
+        'submainleftart',
+      ];
+      dataMapMoObj.addIndexed(accordionTable);
+
+
+    //  class added for accordion table end//
   /* NRI Wrapper Js  End */
 }

@@ -224,10 +224,9 @@
 }
 
 .section.why-choose-us-container.nri-why-choose {
-    height: 500px;
-
     @include media (mobile) {
         height: unset;
+        margin-top: 63px;
     }
 
     .why-choose-us-wrapper {
@@ -237,12 +236,14 @@
                 width: 100%;
 
                 .why-choose-us-sec1 {
+                    gap: 40px;
                     .why-choose-us-sub1 {
                         .choose-us-lists1 {
                             h1 {
                                 @include media (mobile) {
                                     font-size: 24px;
                                     line-height: 28px;
+                                    font-weight: 600;
                                 }
                             }
 

@@ -682,9 +682,9 @@ $breakpoint-tablet: 900px;
 
                             .comlist {
                                 display: flex;
-                                width: 165px;
+                                width: 164px;
                                 height: 40px;
-                                padding: var(--spacing-12);
+                                padding: var(--spacing-10) 11.5px;
                                 justify-content: center;
                                 align-items: center;
                                 gap: var(--spacing-8);
@@ -695,7 +695,7 @@ $breakpoint-tablet: 900px;
                                 a {
                                     color: var(--text-white, #FFF);
                                     text-align: center;
-                                    font-family: var(--title, Inter);
+                                    font-family: var(--body);
                                     font-size: var(--button-medium-size);
                                     font-style: normal;
                                     font-weight: 500;
