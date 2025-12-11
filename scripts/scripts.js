@@ -746,7 +746,7 @@ function articleStructure() {
     if (!maincloser.querySelector('.moedge-article-details')
       && maincloser.querySelector('.investsub-leftarticle1')) {
       const leftpost = maincloser.querySelector('.investsub-leftarticle1 .investleft-subinner1');
-      if (window.location.href.includes('/images/')) {
+      if (window.location.href.includes('/images/') || window.location.href.includes('/keys-of-investing/')) {
         const spanHtml = leftpost.querySelector('span');
         leftpost.textContent = 'Article';
         leftpost.prepend(spanHtml);
@@ -770,7 +770,7 @@ function articleStructure() {
       }
     }
 
-    function convertDate(dateStr) {
+    const convertDate = (dateStr) => {
       const date = new Date(dateStr);
       const options = {
         year: 'numeric',
@@ -1351,4 +1351,16 @@ async function getinvestorblog() {
   return resp;
 }
 dataMapMoObj.getinvestorblog = await getinvestorblog();
+
+async function getkeyinvesting() {
+  const resp = await myAPI('GET', '/query-index-keyinvesting.json');
+  return resp;
+}
+dataMapMoObj.getkeyinvesting = await getkeyinvesting();
+
+async function getpressrelease() {
+  const resp = await myAPI('GET', '/query-index-pressrelease.json');
+  return resp;
+}
+dataMapMoObj.getpressrelease = await getpressrelease();
 // dataMapMoObj.qglpwcs = qglpwcs;
