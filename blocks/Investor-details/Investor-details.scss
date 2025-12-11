@@ -1124,7 +1124,7 @@ main.nfo-nav .main-wrapper .section:first-of-type {
                 flex: 1 1 100%;
               }
 
-              em{
+              em {
                 font-style: italic;
               }
             }
@@ -1221,7 +1221,7 @@ main.nfo-nav .main-wrapper .section:first-of-type {
                 order: 3;
               }
 
-              em{
+              em {
                 font-style: italic;
               }
             }
@@ -1715,25 +1715,29 @@ main.nfo-nav .main-wrapper .section:first-of-type {
                           }
                         }
 
-                        h1,
-                        h2,
-                        h3,
-                        h4,
-                        h5,
-                        h6 {
-                          margin: 8px 0 0;
+                        a.rightlist {
+                          word-break: unset;
 
-                          @include font-style(
-                            var(--body-small-medium-size),
-                            var(--body-small-medium-line-height),
-                            var(--neutrals-900),
-                            500,
-                            var(--body)
-                          );
+                          h1,
+                          h2,
+                          h3,
+                          h4,
+                          h5,
+                          h6 {
+                            margin: 8px 0 0;
 
-                          @include media(mobile) {
-                            font-size: var(--body-small-medium-size);
-                            line-height: var(--body-small-medium-line-height);
+                            @include font-style(
+                              var(--body-small-medium-size),
+                              var(--body-small-medium-line-height),
+                              var(--neutrals-900),
+                              500,
+                              var(--body)
+                            );
+
+                            @include media(mobile) {
+                              font-size: var(--body-small-medium-size);
+                              line-height: var(--body-small-medium-line-height);
+                            }
                           }
                         }
 

@@ -266,6 +266,7 @@
   .cornerstones-advantage-cards-wrapper {
     .cornerstones-advantage-cards {
       gap: 60px 64px;
+      margin: 0;
 
       @include media(mobile) {
         gap: 40px;
