@@ -88,6 +88,20 @@ export default function decorate(block) {
     });
   }
 
+  // ------------------------------- Account Statement Block -------------------------------
+
+  let isAccountStatementBlock = mainblock.querySelector(".account-statement-block-container");
+  if (isAccountStatementBlock) {
+    dataMapMoObj.CLASS_PREFIXES = [
+      'hero-banner-img-content',
+      'banner-img-content',
+    ];
+    dataMapMoObj.addIndexed(block);
+  }
+
+
+  // ------------------------------- Account Statement Block -------------------------------
+
   // document.addEventListener("DOMContentLoaded", function () {
   // Select all li elements with class starting with "strategy2" (like strategy21, strategy25...)
   const listItemsStrategy = document.querySelectorAll("li.comlist[class*='strategy2']");

@@ -1320,3 +1320,71 @@
     }
   }
 }
+
+
+// Account Statement -> hero banner 
+
+.section.instant-account.account-statement-block-container {
+  .custom-wrapper {
+    .hero-wrapper {
+      .customize-inner1 {
+        padding: 40px 0px 0px;
+        position: static;
+        min-height: auto;
+        gap: 36px;
+
+        @include media(mobile) {
+          gap: 27px;
+        }
+
+        .hero-banner-img-content1 {
+          .banner-img-content1 {
+            display: flex;
+            justify-content: right;
+
+            .customize-title1 {
+              line-height: 0px;
+
+
+              .customize-subtitle4 {
+                position: static;
+                height: 414px;
+                width: 370px;
+
+                @include media(mobile) {
+                  height: 123px;
+                  width: 188px;
+                }
+              }
+            }
+          }
+        }
+
+        .hero-banner-img-content2 {
+          margin: 0px 16px;
+
+          .banner-img-content1 {
+            .customize-title1 {
+              font-size: 28px;
+              line-height: 32px;
+              max-width: initial;
+            }
+
+            .customize-title2 {
+              margin: 0px;
+              font-size: 12px;
+              line-height: 16px;
+
+              @include media(mobile) {
+               font-size: 14px;
+               line-height: 20px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// Account Statement -> hero banner 
