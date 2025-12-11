@@ -1,7 +1,7 @@
 /* Reset */
 @use "sass:map";
-@use "../../styles/common-theme/css/variables_mixins"as *;
-@use "../../styles/common-theme/css/fluid-typography"as *;
+@use "../../styles/common-theme/css/variables_mixins" as *;
+@use "../../styles/common-theme/css/fluid-typography" as *;
 
 main.nfo-nav .main-wrapper .section:first-of-type {
   margin-top: 0;
@@ -319,16 +319,18 @@ main.nfo-nav .main-wrapper .section:first-of-type {
                 list-style: none;
                 margin: 0;
 
-                >li {
+                > li {
                   display: flex;
                   align-items: center;
                   gap: 4px;
 
-                  @include font-style(var(--label-small-size),
+                  @include font-style(
+                    var(--label-small-size),
                     var(--label-small-line-height),
                     var(--neutrals-700),
                     400,
-                    var(--body));
+                    var(--body)
+                  );
 
                   @include media(mobile) {
                     font-size: var(--label-small-size);
@@ -468,11 +470,13 @@ main.nfo-nav .main-wrapper .section:first-of-type {
             margin: 24px 0 0;
             max-width: 100%;
 
-            @include font-style(var(--heading-h5-size),
+            @include font-style(
+              var(--heading-h5-size),
               var(--heading-h5-line-height),
               var(--blue-1-800-primary),
               600,
-              var(--title));
+              var(--title)
+            );
 
             @include media(mobile) {
               font-size: 20px;
@@ -480,14 +484,16 @@ main.nfo-nav .main-wrapper .section:first-of-type {
             }
           }
 
-          h1.investarticle-leftsub2~p.comlist {
+          h1.investarticle-leftsub2 ~ p.comlist {
             margin: 4px 0 0;
 
-            @include font-style(var(--body-medium-regular-size),
+            @include font-style(
+              var(--body-medium-regular-size),
               24px,
               var(--text-body-2),
               400,
-              var(--body));
+              var(--body)
+            );
 
             @include media(mobile) {
               font-size: var(--paragraph-small-regular-size);
@@ -525,11 +531,13 @@ main.nfo-nav .main-wrapper .section:first-of-type {
 
                   .investleft-subinner {
                     &1 {
-                      @include font-style(var(--body-small-medium-size),
+                      @include font-style(
+                        var(--body-small-medium-size),
                         var(--body-small-medium-line-height),
                         var(--neutrals-900),
                         500,
-                        var(--body));
+                        var(--body)
+                      );
 
                       @include media(mobile) {
                         font-size: var(--body-small-medium-size);
@@ -538,11 +546,13 @@ main.nfo-nav .main-wrapper .section:first-of-type {
                     }
 
                     &2 {
-                      @include font-style(var(--paragraph-small-regular-size),
+                      @include font-style(
+                        var(--paragraph-small-regular-size),
                         var(--paragraph-small-regular-line-height),
                         var(--neutrals-700),
                         400,
-                        var(--body));
+                        var(--body)
+                      );
 
                       @include media(mobile) {
                         font-size: var(--paragraph-small-regular-size);
@@ -569,7 +579,7 @@ main.nfo-nav .main-wrapper .section:first-of-type {
             height: 100%;
           }
 
-          @include media(mobile-md){
+          @include media(mobile-md) {
             height: 160px;
           }
 
@@ -669,7 +679,8 @@ main.nfo-nav .main-wrapper .section:first-of-type {
 
                     &::before {
                       content: "";
-                      background: url("../../icons/play-button.svg") center center no-repeat;
+                      background: url("../../icons/play-button.svg") center
+                        center no-repeat;
                       background-size: contain;
                       width: 48px;
                       height: 48px;
@@ -681,8 +692,8 @@ main.nfo-nav .main-wrapper .section:first-of-type {
               }
             }
 
-            >div,
-            >div iframe {
+            > div,
+            > div iframe {
               width: inherit;
               height: inherit;
             }
@@ -702,15 +713,17 @@ main.nfo-nav .main-wrapper .section:first-of-type {
             .investsub-leftarticle1 {
               p.comlist,
               ul,
-              ul>li.comlist,
-              ol>li.comlist {
+              ul > li.comlist,
+              ol > li.comlist {
                 margin: 0 0 24px;
 
-                @include font-style(var(--body-medium-regular-size),
+                @include font-style(
+                  var(--body-medium-regular-size),
                   24px,
                   #3d3d3d,
                   400,
-                  var(--body));
+                  var(--body)
+                );
 
                 @include media(mobile) {
                   font-size: var(--paragraph-small-regular-size);
@@ -718,7 +731,7 @@ main.nfo-nav .main-wrapper .section:first-of-type {
                 }
 
                 strong {
-                  color: var(--blue-1800-primary, #2E2A94);
+                  color: var(--blue-1800-primary, #2e2a94);
                   font-feature-settings: var(--font-features-default);
                   font-family: var(--body, Inter);
                   font-size: var(--body-large-semibold-size, 18px);
@@ -728,7 +741,7 @@ main.nfo-nav .main-wrapper .section:first-of-type {
 
                   a {
                     text-decoration: underline;
-                    color: var(--blue-1800-primary, #2E2A94);
+                    color: var(--blue-1800-primary, #2e2a94);
                     font-feature-settings: var(--font-features-default);
                     font-family: var(--body, Inter);
                     font-size: var(--body-large-semibold-size, 18px);
@@ -743,8 +756,8 @@ main.nfo-nav .main-wrapper .section:first-of-type {
                 }
               }
 
-              ul>li.comlist,
-              ol>li.comlist {
+              ul > li.comlist,
+              ol > li.comlist {
                 margin: 0 0 24px 20px;
               }
 
@@ -764,9 +777,9 @@ main.nfo-nav .main-wrapper .section:first-of-type {
                   line-height: 20px;
                   color: #fff;
                   font-family: "Inter", sans-serif;
-                  font-feature-settings: "ss01"on, "ss04"on, "cv01"on,
-                    "cv02"on, "cv03"on, "cv04"on, "cv06"on, "cv09"on,
-                    "cv10"on, "cv11"on;
+                  font-feature-settings: "ss01" on, "ss04" on, "cv01" on,
+                    "cv02" on, "cv03" on, "cv04" on, "cv06" on, "cv09" on,
+                    "cv10" on, "cv11" on;
                   font-weight: 500;
                 }
               }
@@ -778,11 +791,13 @@ main.nfo-nav .main-wrapper .section:first-of-type {
               h6.comlist {
                 margin: 0 0 24px;
 
-                @include font-style(var(--body-large-semibold-size),
+                @include font-style(
+                  var(--body-large-semibold-size),
                   var(--body-large-semibold-line-height),
                   var(--blue-1-800-primary),
                   600,
-                  var(--body));
+                  var(--body)
+                );
 
                 @include media(mobile) {
                   font-size: var(--body-large-semibold-size);
@@ -969,11 +984,13 @@ main.nfo-nav .main-wrapper .section:first-of-type {
             // order: 1;
             // grid-area: title-area;
 
-            @include font-style(var(--body-large-semibold-size),
+            @include font-style(
+              var(--body-large-semibold-size),
               var(--body-large-semibold-line-height),
               var(--blue-1-800-primary),
               600,
-              var(--body));
+              var(--body)
+            );
 
             // @media screen and (width <= 1101px){
             //   // flex: 1 1 40%;
@@ -991,11 +1008,13 @@ main.nfo-nav .main-wrapper .section:first-of-type {
             // order: 1;
             // grid-area: text-area;
 
-            @include font-style(var(--body-medium-regular-size),
+            @include font-style(
+              var(--body-medium-regular-size),
               24px,
               #3d3d3d,
               400,
-              var(--body));
+              var(--body)
+            );
 
             // @media screen and (width <= 1101px) {
             //   flex: 1 1 40%;
@@ -1100,7 +1119,7 @@ main.nfo-nav .main-wrapper .section:first-of-type {
                 flex: 1 1 55%;
               }
 
-              @include media(mobile){
+              @include media(mobile) {
                 order: 3;
                 flex: 1 1 100%;
               }
@@ -1135,7 +1154,7 @@ main.nfo-nav .main-wrapper .section:first-of-type {
                 order: 5;
               }
 
-              @include media(mobile){
+              @include media(mobile) {
                 order: 4;
               }
             }
@@ -1244,11 +1263,11 @@ main.nfo-nav .main-wrapper .section:first-of-type {
         }
       }
 
-      &.key-details{
-        .investarticle-leftmain1{
+      &.key-details {
+        .investarticle-leftmain1 {
           padding: 0;
 
-          p.investarticle-leftsub1{
+          p.investarticle-leftsub1 {
             margin: 40px 0 0;
 
             @include font-style(
@@ -1331,17 +1350,69 @@ main.nfo-nav .main-wrapper .section:first-of-type {
     }
 
     .article-sub-right {
+      &.download-analysis {
+        .default-content-wrapper.investarticle-rightmain1 {
+          .investarticle-rightsub {
+            &1 {
+              margin: 0 0 16px;
+
+              @include font-style(
+                var(--body-large-medium-size),
+                var(--body-large-medium-line-height),
+                var(--blue-1-800-primary),
+                500,
+                var(--body)
+              );
+
+              @include media(mobile) {
+                font-size: var(--body-large-medium-size);
+                line-height: var(--body-large-medium-line-height);
+              }
+            }
+
+            &2 {
+              margin: 0;
+              line-height: 0;
+
+              .investarticle-rightinner1 {
+                border-radius: var(--border-radius-8);
+                background: var(--neutrals-black);
+                padding: 10px var(--spacing-12);
+                margin: 0;
+                border: none;
+                width: 100%;
+
+                @include font-style(
+                  var(--button-medium-size),
+                  var(--button-medium-line-height),
+                  var(--text-white),
+                  500,
+                  var(--body)
+                );
+
+                @include media(mobile) {
+                  font-size: var(--button-medium-size);
+                  line-height: var(--button-medium-line-height);
+                }
+              }
+            }
+          }
+        }
+      }
+
       &.stay-updated {
         .default-content-wrapper.investarticle-rightmain1 {
           .investarticle-rightsub {
             &1 {
               margin: 0 0 16px;
 
-              @include font-style(var(--body-large-medium-size),
+              @include font-style(
+                var(--body-large-medium-size),
                 var(--body-large-medium-line-height),
                 var(--blue-1-800-primary),
                 500,
-                var(--body));
+                var(--body)
+              );
 
               @include media(mobile) {
                 font-size: var(--body-large-medium-size);
@@ -1360,7 +1431,7 @@ main.nfo-nav .main-wrapper .section:first-of-type {
                 gap: 20px;
               }
 
-              >li.rightlist {
+              > li.rightlist {
                 width: 32px;
                 height: 32px;
                 cursor: pointer;
@@ -1387,7 +1458,6 @@ main.nfo-nav .main-wrapper .section:first-of-type {
 
         .default-content-wrapper.investarticle-rightmain1 {
           .investarticle-rightsub {
-
             &1,
             &1 .investarticle-rightinner1 {
               margin: 0;
@@ -1398,11 +1468,13 @@ main.nfo-nav .main-wrapper .section:first-of-type {
             &2 {
               margin: 8px 0 24px;
 
-              @include font-style(var(--body-medium-medium-size),
+              @include font-style(
+                var(--body-medium-medium-size),
                 var(--body-medium-medium-line-height),
                 var(--neutrals-white),
                 500,
-                var(--body));
+                var(--body)
+              );
 
               @include media(mobile) {
                 font-size: var(--body-medium-medium-size);
@@ -1427,11 +1499,13 @@ main.nfo-nav .main-wrapper .section:first-of-type {
 
                   label,
                   .email-imput {
-                    @include font-style(var(--body-medium-regular-size),
+                    @include font-style(
+                      var(--body-medium-regular-size),
                       var(--body-medium-regular-line-height),
                       var(--neutrals-200),
                       400,
-                      var(--body));
+                      var(--body)
+                    );
 
                     @include media(mobile) {
                       font-size: var(--body-medium-regular-size);
@@ -1524,11 +1598,13 @@ main.nfo-nav .main-wrapper .section:first-of-type {
                     height: 40px;
                     border: none;
 
-                    @include font-style(var(--button-medium-size),
+                    @include font-style(
+                      var(--button-medium-size),
                       var(--button-medium-line-height),
                       var(--text-button-default),
                       500,
-                      var(--body));
+                      var(--body)
+                    );
 
                     @include media(mobile) {
                       padding: var(--spacing-12);
@@ -1548,11 +1624,13 @@ main.nfo-nav .main-wrapper .section:first-of-type {
         .default-content-wrapper.investarticle-rightmain1 {
           .investarticle-rightsub {
             &1 {
-              @include font-style(var(--body-large-medium-size),
+              @include font-style(
+                var(--body-large-medium-size),
                 var(--body-large-medium-line-height),
                 var(--blue-1-800-primary),
                 500,
-                var(--body));
+                var(--body)
+              );
 
               margin: 0 0 8px;
 
@@ -1572,7 +1650,7 @@ main.nfo-nav .main-wrapper .section:first-of-type {
                     flex-direction: column;
                     gap: 0;
 
-                    >li.rightlist.comlist {
+                    > li.rightlist.comlist {
                       padding: var(--spacing-16) 0;
                       border: none;
                       background-color: transparent;
@@ -1606,11 +1684,13 @@ main.nfo-nav .main-wrapper .section:first-of-type {
                           align-items: center;
                           gap: 4px;
 
-                          @include font-style(var(--label-medium-size),
+                          @include font-style(
+                            var(--label-medium-size),
                             var(--label-medium-line-height),
                             var(--blue-1-800-primary),
                             400,
-                            var(--body));
+                            var(--body)
+                          );
 
                           @include media(mobile) {
                             font-size: var(--label-medium-size);
@@ -1635,11 +1715,13 @@ main.nfo-nav .main-wrapper .section:first-of-type {
                         h6 {
                           margin: 8px 0 0;
 
-                          @include font-style(var(--body-small-medium-size),
+                          @include font-style(
+                            var(--body-small-medium-size),
                             var(--body-small-medium-line-height),
                             var(--neutrals-900),
                             500,
-                            var(--body));
+                            var(--body)
+                          );
 
                           @include media(mobile) {
                             font-size: var(--body-small-medium-size);
@@ -1653,11 +1735,13 @@ main.nfo-nav .main-wrapper .section:first-of-type {
                           align-items: center;
                           gap: 4px;
 
-                          @include font-style(var(--label-small-size),
+                          @include font-style(
+                            var(--label-small-size),
                             var(--label-small-line-height),
                             var(--neutrals-700),
                             400,
-                            var(--body));
+                            var(--body)
+                          );
 
                           @include media(mobile) {
                             font-size: var(--label-small-size);
@@ -1683,11 +1767,13 @@ main.nfo-nav .main-wrapper .section:first-of-type {
         .default-content-wrapper.investarticle-rightmain1 {
           .investarticle-rightsub {
             &1 {
-              @include font-style(var(--body-large-medium-size),
+              @include font-style(
+                var(--body-large-medium-size),
                 var(--body-large-medium-line-height),
                 var(--blue-1-800-primary),
                 500,
-                var(--body));
+                var(--body)
+              );
 
               margin: 0 0 24px;
 
@@ -1728,18 +1814,20 @@ main.nfo-nav .main-wrapper .section:first-of-type {
               gap: 8px;
               list-style: none;
 
-              >li.rightlist {
+              > li.rightlist {
                 padding: var(--spacing-16) 0;
 
                 .investsub-rightarticle {
                   &1 {
                     margin: 0 0 4px;
 
-                    @include font-style(var(--body-medium-medium-size),
+                    @include font-style(
+                      var(--body-medium-medium-size),
                       var(--body-medium-medium-line-height),
                       var(--neutrals-800),
                       500,
-                      var(--body));
+                      var(--body)
+                    );
 
                     @include media(mobile) {
                       font-size: var(--body-medium-medium-size);
@@ -1754,12 +1842,14 @@ main.nfo-nav .main-wrapper .section:first-of-type {
                     list-style: none;
                     margin: 0;
 
-                    >li.rightlist {
-                      @include font-style(var(--label-small-size),
+                    > li.rightlist {
+                      @include font-style(
+                        var(--label-small-size),
                         var(--label-small-line-height),
                         var(--neutrals-700),
                         400,
-                        var(--body));
+                        var(--body)
+                      );
 
                       @include media(mobile) {
                         font-size: var(--label-small-size);
@@ -1791,11 +1881,13 @@ main.nfo-nav .main-wrapper .section:first-of-type {
 
                 &.investarticle-rightinner1 {
                   .investsub-rightarticle1 {
-                    @include font-style(var(--body-medium-semibold-size),
+                    @include font-style(
+                      var(--body-medium-semibold-size),
                       var(--body-medium-semibold-line-height),
                       var(--blue-1-800-primary),
                       600,
-                      var(--body));
+                      var(--body)
+                    );
 
                     @include media(mobile) {
                       font-size: var(--body-medium-semibold-size);
