@@ -335,3 +335,107 @@
         }
     }
 }
+
+.strategy-details.start-building-container {
+    background: var(--blue-1-900, #242177);
+
+    .start-building-wrapper {
+        .start-building {
+            display: flex;
+            padding: 40px 16px;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 40px;
+            align-self: stretch;
+            border-radius: 8px;
+            background: transparent;
+
+            .start-container1 {
+                width: 100%;
+
+                .start-section1 {
+                    h5 {
+                        margin: 0;
+                        padding: 0;
+                        color: var(--blue-1800-primary, #2E2A94);
+                        font-feature-settings: var(--font-features-default);
+                        font-family: var(--title, Inter);
+                        font-size: var(--sub-header-large-size, 24px);
+                        font-style: normal;
+                        font-weight: 600;
+                        line-height: 28px;
+                    }
+
+                    >ul {
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: flex-start;
+                        gap: 40px;
+                        align-self: stretch;
+
+                        li {
+                            display: flex;
+                            width: 260px;
+                            align-items: center;
+                            gap: 16px;
+
+                            a {
+                                display: flex;
+                                align-items: center;
+                                gap: 16px;
+                                color: var(--blue-1800-primary, #2E2A94);
+                                font-feature-settings: var(--font-features-default);
+                                font-family: var(--body, Inter);
+                                font-size: var(--body-medium-medium-size, 16px);
+                                font-style: normal;
+                                font-weight: 500;
+                                line-height: var(--body-medium-medium-line-height, 20px);
+
+                                .icon {
+                                    width: 40px;
+                                    height: 40px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (width >=900px) {
+    .strategy-details.start-building-container {
+        padding: 40px 0;
+        margin: 0;
+
+        .start-building-wrapper {
+            .start-building {
+                align-items: flex-start;
+                padding: 40px 24px;
+
+                .start-container1 {
+                    .start-section1 {
+                        flex-direction: column;
+                        align-items: flex-start;
+
+                        h5 {
+                            font-size: var(--heading-h5-size, 28px);
+                            line-height: var(--heading-h5-line-height, 32px);
+                        }
+
+                        >ul {
+                            flex-direction: row;
+                            gap: 0;
+
+                            li {
+                                width: auto;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

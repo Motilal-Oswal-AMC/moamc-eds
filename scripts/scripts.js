@@ -19,7 +19,9 @@ import formBlock, { createForm } from '../blocks/form/form.js';
 
 // eslint-disable-next-line import/no-cycle
 import { initializeModalHandlers } from '../blocks/modal/modal.js';
-import { img, span } from './dom-helpers.js';
+import {
+  img, span, ulToTable,
+} from './dom-helpers.js';
 
 // console.log('f1 code');
 
@@ -572,6 +574,7 @@ function articleStructure() {
     || window.location.href.includes(
       '/investor-education/blogs/',
     )
+    || window.location.href.includes('/insights/press-release/')
   ) {
     const maincloser = document.querySelector('main');
     const rightSub = maincloser.querySelectorAll('.article-sub-right');
@@ -796,7 +799,7 @@ function articleStructure() {
       .map(({ value }) => value);
 
     console.log(data);
-    const datafin = data.slice(0, 3)
+    const datafin = data.slice(0, 3);
     datafin.forEach((elem) => {
       const titleText = dataMapMoObj.toTitleCase(elem.title.replaceAll('-', ' '));
       const dateText = convertDate(elem.date.split('T')[0]);
@@ -806,7 +809,7 @@ function articleStructure() {
         <p class="rightlist">Trending</p>
         <a href="${elem.path}"><h4 id="${titleText}" class="rightlist">${titleText}</h4></a>
         <p class="rightlist"><span class="icon icon-calendar-inves rightlist"><img data-icon-name="calendar-inves" src="/icons/calendar-inves.svg" alt="" loading="lazy" width="16" height="16" class="rightlist"></span>${dateText}</p>
-      </div></li>`
+      </div></li>`;
       maincloser.querySelector('.cards .investright-articleitem1').innerHTML += cardsRecom;
     });
 
@@ -1064,8 +1067,13 @@ function articleStructure() {
         });
       }
     });
+
+    [...document.querySelectorAll('#eds-table + ul')].forEach((ul) => {
+      ulToTable(ul);
+    });
   }
 }
+
 dataMapMoObj.article = articleStructure;
 
 const chooseUs = document.querySelector('.why-choose-us');
@@ -1198,41 +1206,6 @@ if (skinmoamcComponent != null) {
   ];
   dataMapMoObj.addIndexed(skinmoamcComponent);
 }
-const customizedComponent = document.querySelector('.customized-section');
-if (customizedComponent != null) {
-  dataMapMoObj.CLASS_PREFIXES = [
-    'customize-wrap',
-    'customize-inner',
-    'customize-img-wrap',
-    'customize-img',
-    'customize-title',
-    'customize-subtitle',
-
-  ];
-  dataMapMoObj.addIndexed(customizedComponent);
-}
-
-document.addEventListener("DOMContentLoaded", function () {
-  const customizedSection = document.querySelector(".customized-section");
-  if (!customizedSection) return;
-
-  const heroWrapper = customizedSection.querySelector(".hero-wrapper");
-  const purchaseWrapper = customizedSection.querySelector(".quick-purchase-block-wrapper");
-
-  if (!heroWrapper || !purchaseWrapper) return;
-
-  // Create the new wrapper
-  const newWrapper = document.createElement("div");
-  newWrapper.classList.add("custom-wrapper");
-
-  // Append wrapper INSIDE customized-section (NOT after it)
-  customizedSection.appendChild(newWrapper);
-
-  // Move both inside it
-  newWrapper.appendChild(heroWrapper);
-  newWrapper.appendChild(purchaseWrapper);
-});
-
 
 const privacyPolicy = document.querySelectorAll('.privacy-policy-banner');
 
@@ -1298,26 +1271,6 @@ try {
     wrapper.appendChild(wrap1);
     wrapper.appendChild(wrap2);
   }
-
-  //  class added for accordion table start//
-
-  const accordionTable = document.querySelector('.accordion-table');
-  dataMapMoObj.CLASS_PREFIXES = [
-    'leftartmain',
-    'leftartsub',
-    'leftartitem',
-    'subleftart',
-    'mainleftart',
-    'itemleftart',
-    'itemleftart',
-    'mainitemleftart',
-    'itemmainleftart',
-    'submainleftart',
-  ];
-  dataMapMoObj.addIndexed(accordionTable);
-
-
-  //  class added for accordion table end//
 } catch (error) {
   // console.log(error);
 }
