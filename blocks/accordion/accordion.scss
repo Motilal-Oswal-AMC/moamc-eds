@@ -516,6 +516,17 @@
 
     .accordion-wrapper {
       .accordion {
+        .accordion-item {
+          .accordion-item-label {
+            p::after {
+              @include media(mobile) {
+                top: 10px;
+              }
+
+            }
+          }
+        }
+
         .accordion-item[open] {
           .accordion-item-body {
             p {
@@ -562,6 +573,7 @@
               .leftartitem1 {
                 .subleftart1 {
                   margin: 0px;
+
                   li.comlist {
                     ul.comlist {
                       margin: 0;
@@ -579,15 +591,15 @@
                     }
                   }
 
-                   .comlist.mainleftart1{
+                  .comlist.mainleftart1 {
                     border-top-left-radius: 8px;
-                      border-top-right-radius: 8px;
-                   }
+                    border-top-right-radius: 8px;
+                  }
 
-                    .comlist.mainleftart3{
+                  .comlist.mainleftart3 {
                     border-bottom-left-radius: 8px;
-                      border-bottom-right-radius: 8px;
-                   }
+                    border-bottom-right-radius: 8px;
+                  }
 
                   .comlist.mainleftart1,
                   .comlist.mainleftart3 {

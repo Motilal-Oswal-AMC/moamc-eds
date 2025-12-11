@@ -240,10 +240,11 @@
                     .why-choose-us-sub1 {
                         .choose-us-lists1 {
                             h1 {
+                                      
                                 @include media (mobile) {
                                     font-size: 32px;
                                     line-height: 56px;
-                                    font-weight: 600;
+                                    font-weight: 500;
                                 }
                             }
 
