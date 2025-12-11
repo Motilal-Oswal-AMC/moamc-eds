@@ -5,7 +5,7 @@ import dataMapMoObj from './../../scripts/constant.js';
 /**
  * Transforms a content block into an accessible accordion.
  * - First item is open by default (except mob-accordion on desktop).
- * - Only one item can be open at a time.
+ * - Only one item can be open at a time
  * - "Load More" / "Show Less" toggles visibility of extra items.
  *
  * @param {HTMLElement} block - The accordion block element.
@@ -32,7 +32,11 @@ export default function decorate(block) {
     const detailsEl = document.createElement('details');
     detailsEl.className = 'accordion-item';
     detailsEl.append(summary, body);
-    if(classes){
+    // if(classes){
+    //    const data = classes.textContent.trim();
+    //    detailsEl.classList.add(data)
+    //  }
+    if(classes && Array.from(classes.classList).length == 0){
        const data = classes.textContent.trim();
        detailsEl.classList.add(data)
      }
