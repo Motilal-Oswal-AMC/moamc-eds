@@ -137,7 +137,7 @@ body:has(.calculator-container) {
 
     div[data-id="recommended-funds-id"] {
         position: relative;
-        height: 600px;
+        // height: 600px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -232,6 +232,7 @@ body:has(.calculator-container) {
 
             .fund-cards-container {
                 display: flex;
+                flex-wrap: wrap;
                 gap: 16px;
                 align-items: center;
 
@@ -242,9 +243,9 @@ body:has(.calculator-container) {
 
 
                 .card-container {
-                    @include media(desktop-sm) {
-                        max-width: 31.8%;
-                    }
+                    // @include media(desktop-sm) {
+                    //     max-width: 31.8%;
+                    // }
 
                     @include media(mobile) {
                         max-width: 100%;
