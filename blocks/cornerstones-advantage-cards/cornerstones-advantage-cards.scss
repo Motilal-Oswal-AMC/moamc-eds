@@ -266,6 +266,7 @@
   .cornerstones-advantage-cards-wrapper {
     .cornerstones-advantage-cards {
       gap: 60px 64px;
+      margin: 0;
 
       @include media(mobile) {
         gap: 40px;
@@ -349,6 +350,7 @@
       @include media(mobile) {
         flex-direction: column;
         gap: 24px;
+        margin: 40px 0 0;
       }
     }
   }
@@ -552,7 +554,10 @@
     }
 
     .choose-us-para3 {
+      top: 20px;
+
       .choose-us-img1 {
+        max-height: 32px;
         max-width: 160px;
         width: 100%;
         color: var(--neutrals-white);
@@ -662,6 +667,7 @@
 
   @include media(mobile) {
     padding: 0 16px;
+    margin: 0 0 40px;
   }
 
   .invest-blog-contain1 {
@@ -691,11 +697,12 @@
     font-weight: 500;
     line-height: 28px;
 
-    // @include font-style(var(--body-medium-semibold-size),
-    //   var(--body-medium-semibold-line-height),
-    //   var(--neutrals-black),
-    //   600,
-    //   var(--body));
+    @include media(mobile) {
+      font-size: 18px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 24px;
+    }
   }
 
   .invest-blog-txt2 {
@@ -707,6 +714,13 @@
     font-style: normal;
     font-weight: 500;
     line-height: 28px;
+
+    @include media(mobile) {
+      font-size: 18px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 24px;
+    }
   }
 }
 
@@ -881,6 +895,9 @@
       font-weight: 400;
       line-height: 20px;
       list-style-type: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
 
       @include media(mobile) {
         display: flex;
@@ -919,12 +936,20 @@
       font-style: normal;
       font-weight: 400;
       line-height: 16px;
+
+      a {
+        display: block;
+      }
     }
   }
 }
 
 .section.elss-stock-table {
   margin: 0 0 80px;
+
+  @include media(mobile) {
+    margin: 0 0 40px;
+  }
 
   .elss-stock-table-contain1 {
     .elss-stock-table-txt1 {
@@ -937,6 +962,11 @@
       line-height: 32px;
       padding-bottom: 24px;
       margin-top: 80px;
+
+      @include media(mobile) {
+        padding-bottom: unset;
+        margin-top: 40px;
+      }
 
       /* 114.286% */
     }
@@ -965,6 +995,25 @@
           /* your span width */
           display: inline-block;
         }
+      }
+    }
+
+    .elss-stock-table-txt3 {
+      display: none;
+      list-style: none;
+
+      @include media(mobile) {
+        display: block;
+        color: var(--neutrals-700);
+        text-align: center;
+        font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
+        font-family: var(--Body, Inter);
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 14px;
+        padding-top: 24px;
+        margin: unset;
       }
     }
   }
