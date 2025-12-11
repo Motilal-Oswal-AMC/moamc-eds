@@ -933,6 +933,10 @@
           {
             "name": "Strategy Download",
             "value": "strategy-download"
+          },
+          {
+            "name": "Performance Strategy",
+            "value": "performance-strategy"
           }
         ]
       },
@@ -4161,6 +4165,33 @@
         "value": "",
         "label": "Text",
         "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "our-fund-managers-item",
+    "fields": [
+      {
+        "component": "reference",
+        "name": "image",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "name": "imageAlt",
+        "label": "Alt Text"
+      },
+      {
+        "component": "text",
+        "name": "col_link",
+        "label": "Image Link"
+      },
+      {
+        "component": "richtext",
+        "name": "description",
+        "label": "Our Fund Managers Item Description",
+        "value": ""
       }
     ]
   }
