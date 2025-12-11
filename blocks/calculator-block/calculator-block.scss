@@ -169,8 +169,9 @@ body:has(.calculator-container) {
             @include media(mobile) {
                 margin: 40px 0;
             }
+
             a.recommended-funds-cta {
-                @include font-style(14px, 16px, $primary-white, 400, $inter);
+                @include font-style(14px, 16px, var(--neutrals-white), 400, $inter);
 
                 display: none;
                 max-width: 124px;
@@ -183,8 +184,17 @@ body:has(.calculator-container) {
                 flex-shrink: 0;
                 margin: 0;
                 background-color: inherit;
-                border-radius: 8px;
-                border: 1px solid $primary-white;
+                border-radius: var(--border-radius-4);
+                border: 1px solid var(--neutrals-white);
+
+                @include media(mobile) {
+                    border-radius: var(--border-radius-8);
+                    font-size: 14px;
+                    line-height: var(--button-small-line-height);
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
 
                 @include media(mobile) {
                     display: flex;
@@ -210,6 +220,7 @@ body:has(.calculator-container) {
                         line-height: 28px;
                     }
                 }
+
                 a.recommended-funds-cta {
                     display: flex;
 
@@ -229,7 +240,12 @@ body:has(.calculator-container) {
                     justify-content: center;
                 }
 
-                .card-container{
+
+                .card-container {
+                    @include media(desktop-sm) {
+                        max-width: 31.8%;
+                    }
+
                     @include media(mobile) {
                         max-width: 100%;
                     }
@@ -248,6 +264,7 @@ body:has(.calculator-container) {
 
 
 body:has(.calc-error) {
+
     .calculator-sticky-cta-container .button.calculator-container-title-btn,
     div[class*='calculator-container_title'].default-content-wrapper .calculator-container-title-item1 p.button-container a.calculator-container-title-btn {
         // opacity: 0.58;
@@ -1041,6 +1058,7 @@ main {
             }
 
             ol.answer-container {
+
                 // gap: 35px;
                 &:not(:has(.pointer)) {
                     li.answer {
