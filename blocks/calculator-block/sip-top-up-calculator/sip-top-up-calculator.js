@@ -7,20 +7,31 @@ import {
 
 /**
  * Calculate Top-up SIP Summary
+ *
+ * Implements the following logic based on the provided specification:
+ * - g (Annual step-up rate) = annualIncreaseRate / 100
+ * - R (Annual return rate) = annualReturnRate / 100
+ * - i (Monthly return) = R / 12
+ * - n (Total months) = years * 12
+ * - SIPm (SIP in month m) = P0 * (1 + g) ^ floor((m - 1) / 12)
+ * - Returnm (Return in month m) = (OBm + Depositm) * i
+ * - CBm (Closing Balance) = OBm + Depositm + Returnm
+ * - FV (Final Value) = CBn
+ *
  * @param {Object} params
- * @param {number} params.monthlyInvestment - Initial monthly SIP amount
- * @param {number} params.annualIncreaseRate - Annual top-up rate (%)
- * @param {number} params.annualReturnRate - Expected annual return rate (%)
- * @param {number} params.years - Investment duration (years)
- * @param {number} [params.roundDecimal] - Decimal rounding precision
- * @param {Function} [params.callbackFunc] - Optional callback with result
+ * @param {number} params.monthlyInvestment - Initial monthly SIP amount (P0)
+ * @param {number} params.annualIncreaseRate - Annual top-up rate in percentage (StepUp%)
+ * @param {number} params.annualReturnRate - Expected annual return rate in percentage (Expected Return %)
+ * @param {number} params.years - Investment duration in years
+ * @param {number} [params.roundDecimal=0] - Decimal rounding precision for final output
+ * @param {Function} [params.callbackFunc] - Optional callback function to receive the result object
  * @returns {{
- *   totalInvestment: number,
- *   totalValue: number,
- *   estimatedReturns: number,
- *   compoundingAt: string,
- *   investedPercentage: number,
- *   returnsPercentage: number
+ * totalInvestment: number,    // Total amount invested (Σ Depositm)
+ * totalValue: number,         // Final maturity value (FV)
+ * estimatedReturns: number,   // Total gains (FV - Invested)
+ * compoundingAt: string,      // Multiplier string (e.g., "1.5x")
+ * investedPercentage: number, // % of Total Value that is Principal
+ * returnsPercentage: number   // % of Total Value that is Interest
  * }}
  */
 export function calculateTopupSIPSummary({
@@ -31,12 +42,15 @@ export function calculateTopupSIPSummary({
   roundDecimal = 0,
   callbackFunc,
 }) {
+  const inputErrors = document.querySelectorAll('.calc-input.calc-error');
+
   // 1. Validation check
   if (
-    !monthlyInvestment
-    || !annualIncreaseRate
-    || !annualReturnRate
-    || !years
+    !monthlyInvestment ||
+    monthlyInvestment === 0 || // Handle explicit 0
+    annualIncreaseRate == null ||
+    annualReturnRate == null ||
+    !years || inputErrors?.length
   ) {
     const empty = {
       totalInvestment: 0,
@@ -52,38 +66,57 @@ export function calculateTopupSIPSummary({
 
   const num = (v, d = 0) => (v != null ? parseFloat(v) : d);
 
-  // 2. Fix: Assign processed values to NEW constants
-  const parsedMonthlyInvestment = num(monthlyInvestment);
-  const parsedAnnualIncreaseRate = num(annualIncreaseRate);
-  const parsedAnnualReturnRate = num(annualReturnRate);
+  // 2. Parse Inputs
+  const P0 = num(monthlyInvestment); // Row 1
+  const g = num(annualIncreaseRate) / 100; // Row 2
+  const R = num(annualReturnRate) / 100; // Row 3
   const parsedYears = num(years);
 
-  // 3. Update calculations to use the new constants
-  const months = parsedYears * 12;
-  const monthlyRate = parsedAnnualReturnRate / 12 / 100;
-  const topUpRate = parsedAnnualIncreaseRate / 100;
+  // 3. Derived Variables
+  const i = R / 12; // Row 4: Monthly return
+  const n = parsedYears * 12; // Row 5: Total months
 
-  let totalValue = 0;
-  let totalInvestment = 0;
-  let currentMonthly = parsedMonthlyInvestment; // Initialize with parsed value
+  let OBm = 0; // Opening Balance (Row 7: OB1 = 0)
+  let totalInvestment = 0; // To calculate Row 12
+  let CBm = 0; // Closing Balance
 
-  // Loop year by year
-  for (let y = 1; y <= parsedYears; y += 1) {
-    for (let m = 1; m <= 12; m += 1) {
-      const monthsLeft = months - (y - 1) * 12 - (m - 1);
-      totalValue += currentMonthly * (1 + monthlyRate) ** monthsLeft;
-      totalInvestment += currentMonthly;
-    }
-    // Apply annual top-up at the end of each year
-    currentMonthly *= 1 + topUpRate;
+  // 4. Monthly Iteration Loop
+  for (let m = 1; m <= n; m += 1) {
+    // Row 6: SIP in month m
+    // Formula: P0 * (1 + g) ^ floor((m - 1) / 12)
+    const stepUpFactor = Math.floor((m - 1) / 12);
+    const SIPm = P0 * Math.pow(1 + g, stepUpFactor);
+
+    // Row 9: Monthly investment
+    const Depositm = SIPm;
+
+    // Row 8: Return in month m
+    // Formula: (OBm + Depositm) * i
+    const Returnm = (OBm + Depositm) * i;
+
+    // Row 10: Closing balance in month m
+    // Formula: OBm + Depositm + Returnm
+    CBm = OBm + Depositm + Returnm;
+
+    // Update totals
+    totalInvestment += Depositm;
+
+    // Set Opening Balance for next month (Row 7: OBm = CB(m-1))
+    OBm = CBm;
   }
 
+  // Row 11: Final Value
+  const totalValue = CBm;
+
+  // Row 13: Returns gained
   const estimatedReturns = totalValue - totalInvestment;
-  const multiplier = totalValue / totalInvestment;
+
+  // Calculate Metrics
+  const multiplier = totalInvestment > 0 ? totalValue / totalInvestment : 0;
   const compoundingAt = `${multiplier.toFixed(1)}x`;
 
-  const investedPercentage = (totalInvestment / totalValue) * 100;
-  const returnsPercentage = (estimatedReturns / totalValue) * 100;
+  const investedPercentage = totalValue > 0 ? (totalInvestment / totalValue) * 100 : 0;
+  const returnsPercentage = totalValue > 0 ? (estimatedReturns / totalValue) * 100 : 0;
 
   const roundValue = (val) => Number(val.toFixed(roundDecimal));
 
@@ -95,8 +128,6 @@ export function calculateTopupSIPSummary({
     investedPercentage: roundValue(investedPercentage),
     returnsPercentage: roundValue(returnsPercentage),
   };
-
-  // console.log('result : ', totalValue); // Optional: removed/commented for cleaner linting
 
   if (callbackFunc) callbackFunc(result);
   return result;
@@ -239,6 +270,7 @@ export default function decorate(block) {
     ...mi,
     prefix: '₹',
     fieldType: 'currency',
+    ignoreMin: true,
     prefixAttr: { class: 'currency-prefix' },
     inputBlockAttr: { class: 'mi-inp-container' },
     variant: 'number',
@@ -250,6 +282,7 @@ export default function decorate(block) {
     id: 'asu-return',
     ...asu,
     suffix: '%',
+    ignoreMin: true,
     inputBlockAttr: { class: 'asu-inp-container' },
     suffixAttr: { class: 'input-suffix' },
     fieldType: 'percent',
@@ -263,6 +296,7 @@ export default function decorate(block) {
     id: 'eror-return',
     ...eror,
     suffix: '%',
+    ignoreMin: true,
     inputBlockAttr: { class: 'eror-inp-container' },
     suffixAttr: { class: 'input-suffix' },
     fieldType: 'percent',
@@ -277,6 +311,7 @@ export default function decorate(block) {
     ...tp,
     inputBlockAttr: { class: 'tp-inp-container' },
     fieldType: 'year',
+    ignoreMin: true,
     suffix: tp?.default > 1 ? 'years' : 'year',
     variant: 'stepper',
     updateWidthonChange: true,
