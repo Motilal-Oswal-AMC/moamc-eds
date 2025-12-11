@@ -46,15 +46,21 @@ export default function decorate(block) {
             p({ "class": 'urm-title-txt' }, urmTitle.textContent)
           ),
           div({ "class": 'urm-pan-wrap' },
-            label({ "for": '', "class": 'urm-pan-lbl' }, panLabel.textContent),
-            input({ "type": 'text', "class": 'urm-pan-inp' })
+            div({ "class": 'pan-innerwrap' },
+              label({ "for": '', "class": 'urm-pan-lbl' }, panLabel.textContent),
+              input({ "type": 'text', "class": 'urm-pan-inp' })
+            ),
+            p({ "class": 'urm-pan-error hide-error' }, 'Please enter valid PAN Number.'),
           ),
           div({ "class": 'urm-or-txt' },
             p({ "class": 'urm-txt' }, orTxt.textContent)
           ),
           div({ "class": 'urm-folio-wrap' },
-            label({ "for": '', "class": 'urm-folio-lbl' }, folioLabel.textContent),
-            input({ "type": 'text', "class": 'urm-folio-inp' })
+            div({ "class": 'folio-innerwrap' },
+              label({ "for": '', "class": 'urm-folio-lbl' }, folioLabel.textContent),
+              input({ "type": 'text', "class": 'urm-folio-inp' })
+            ),
+            p({ "class": 'urm-folio-error hide-error' }, 'Please enter valid folio number.'),
           ),
           div({ "class": 'urm-enter-otp-wrap' },
             p({ "class": 'urm-otp-txt' }, enterOtpLAbel.textContent),
@@ -81,7 +87,6 @@ export default function decorate(block) {
               ),
               button({ "class": 'urm-resend' }, resendOtpLabel.textContent)),
           ),
-
           div({ "class": 'urm-otp-msg-wrap' },
             p({ "class": 'urm-otpmsg-txt' }, otpMsg.textContent)),
           button({ "class": 'urm-submit' }, urmSubmitBtn.textContent)),
@@ -99,19 +104,85 @@ export default function decorate(block) {
   urmInputs.forEach(input => { // Add active on click
     input.addEventListener('click', (e) => {
       if (e.target.value === '') {
-        e.target.parentElement.classList.add('active');
+        e.target.parentElement.parentElement.classList.add('active');
       }
     });
   });
 
-  // Remove active when clicking outside empty input
+  // Remove active when clicking outside for input label focus
   document.addEventListener('click', (e) => {
-  urmInputs.forEach(input => {
-    if (!input.contains(e.target) && input.value === '') {
-      input.parentElement.classList.remove('active');
+    urmInputs.forEach(input => {
+      if (!input.contains(e.target) && input.value === '') {
+        input.parentElement.parentElement.classList.remove('active');
+      }
+    });
+  });
+
+  // Unclaimed redemption PAN handling
+  // const panInput = unclaimedRedemptionModal.querySelector('.urm-pan-wrap');
+  // panInput.addEventListener('click', (e) => {
+  //   const inputVal = e.currentTarget.querySelector('input');
+  //   if (inputVal.value === '') {
+  //     e.target.parentElement.parentElement.classList.add('active');
+  //   }
+  // });
+
+
+  // Unclaimed redemption PAN Number Oninput handling
+  const panInput = unclaimedRedemptionModal.querySelector('.urm-pan-wrap');
+  panInput.addEventListener('input', (e) => {
+    const panRegex = /^[A-Z]{5}[0-9]{4}[A-Z]{1}$/;
+    // const inputValue = e.target.value.toUpperCase();
+    e.target.value = e.target.value.toUpperCase();
+    const inputValue = e.target.value;
+    const errorPanEl = unclaimedRedemptionModal.querySelector('.urm-pan-error');
+    // const btnAuthenticate = document.querySelector('.subpandts3 .innerpandts1');
+
+    if (inputValue === '') {
+      // If empty, hide the error
+      errorPanEl.parentElement.classList.remove('show-error');
+      errorPanEl.parentElement.classList.add('hide-error');
+      e.target.parentElement.classList.remove('active');
+    } else if (panRegex.test(inputValue)) {
+      // If valid PAN, hide error
+      errorPanEl.parentElement.classList.remove('show-error');
+      errorPanEl.parentElement.classList.add('hide-error');
+      // btnAuthenticate.classList.add('pan-active');
+      // e.target.parentElement.classList.add('active');
+    } else {
+      // If invalid PAN, show error
+      errorPanEl.parentElement.classList.remove('hide-error');
+      errorPanEl.parentElement.classList.add('show-error');
+      // btnAuthenticate.classList.remove('pan-active');
+      e.target.parentElement.classList.add('active');
+    }
+
+  });
+
+  // Unclaimed redemption Folio handling
+  const folioInput = unclaimedRedemptionModal.querySelector('.urm-folio-wrap .urm-folio-inp');
+
+  folioInput.addEventListener('input', (e) => {
+    const folioRegex = /^[A-Za-z0-9]{1,20}$/;   // correct regex (not string)
+    e.target.value = e.target.value.toUpperCase();
+    const inputVal = e.target.value;
+
+    const errorEl = unclaimedRedemptionModal.querySelector('.urm-folio-error');
+    const wrapper = errorEl.parentElement; // .urm-folio-wrap
+
+    // If empty → show error
+    if (inputVal === '') {
+      wrapper.classList.add('show-error');
+      wrapper.classList.remove('hide-error');
+      return;
+    } else if (folioRegex.test(inputVal)) {
+      wrapper.classList.remove('show-error');
+      wrapper.classList.add('hide-error');
+    } else {
+      wrapper.classList.add('show-error');
+      wrapper.classList.remove('hide-error');
     }
   });
-});
 
 
   try {
