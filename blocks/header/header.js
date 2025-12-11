@@ -253,7 +253,7 @@ export default async function decorate(block) {
           navSection.setAttribute('aria-expanded', 'true');
 
           // Prevent body scrolling while the menu is open.
-          document.body.classList.add('no-scroll');
+          // document.body.classList.add('no-scroll');
 
           // *** CRITICAL FIX: The nested mouseleave listener was removed here. ***
           // It was causing multiple redundant timers to fire.

@@ -1259,17 +1259,15 @@ try {
       'why-matters-card-text3',
     ];
     dataMapMoObj.addIndexed(whymattersComponent);
-  }
+    const container = document.querySelector('.section.why-matters-component.cards-container');
 
-  const container = document.querySelector('.section.why-matters-component.cards-container');
+    const wrapper = document.createElement('div');
+    wrapper.classList.add('why-matters-wrapper-in');
 
-  const wrapper = document.createElement('div');
-  wrapper.classList.add('why-matters-wrapper-in');
+    const wrap1 = container.querySelector('.why-matters-wrap1');
+    const wrap2 = container.querySelector('.why-matters-wrap2');
 
-  const wrap1 = container.querySelector('.why-matters-wrap1');
-  const wrap2 = container.querySelector('.why-matters-wrap2');
-
-  container.insertBefore(wrapper, container.firstChild);
+    container.insertBefore(wrapper, container.firstChild);
 
   wrapper.appendChild(wrap1);
   wrapper.appendChild(wrap2);

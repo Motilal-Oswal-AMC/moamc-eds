@@ -82,9 +82,9 @@ body:has(.calculator-container) {
             z-index: -1;
         }
 
-        div.library-btn1 {
-            padding-bottom: 40px;
-        }
+        // div.library-btn1 {
+        //     padding-bottom: 40px;
+        // }
 
         .future-building {
             .swiper-wrapper {
@@ -168,7 +168,6 @@ body:has(.calculator-container) {
             @include media(mobile) {
                 margin: 40px 0;
             }
-
             a.recommended-funds-cta {
                 @include font-style(14px, 16px, $primary-white, 400, $inter);
 
@@ -210,7 +209,6 @@ body:has(.calculator-container) {
                         line-height: 28px;
                     }
                 }
-
                 a.recommended-funds-cta {
                     display: flex;
 
@@ -230,60 +228,9 @@ body:has(.calculator-container) {
                     justify-content: center;
                 }
 
-                .card-container {
-                    padding: 19.6px 16px 16px;
-
+                .card-container{
                     @include media(mobile) {
-                        max-width: 340px;
-                        padding-top: 20px;
-                    }
-
-
-                    .card-wrapper {
-                        .card-category {
-                            @include media(mobile) {
-                                margin-bottom: 35px;
-                            }
-                        }
-
-                        .cagr-container {
-                            .cagr-dropdown {
-                                .selectedtext {
-                                    gap: 0;
-                                }
-                            }
-
-                            @include media(mobile) {
-                                min-height: 74px;
-                            }
-                        }
-
-                        .cagr-container .cagr-value .cagr-val-label span {
-                            @include media(mobile) {
-                                line-height: 28px;
-                            }
-                        }
-
-                        .discription {
-                            .dis-choosen {
-                                min-height: 20px;
-                                align-items: center;
-
-                                .dis-investor {
-                                    .dis-investor {
-                                        .person {
-                                            width: 16px;
-                                            height: 16px;
-                                        }
-                                    }
-                                }
-
-                                .riskfactor-icon {
-                                    width: 20px;
-                                    height: 20px;
-                                }
-                            }
-                        }
+                        max-width: 100%;
                     }
                 }
             }
@@ -505,7 +452,7 @@ main {
 
                 @include media(mobile) {
                     font-size: 12px;
-                    line-height: 16px;
+                    line-height: 14px;
                 }
 
                 .icon-key-facts-no-bg {
@@ -1068,6 +1015,10 @@ main {
 
             .question {
                 @include font-style(24px, 32px, $primary-blue, 500, $inter);
+
+                @include media(mobile) {
+                    font-size: 22px;
+                }
 
                 .link {
                     color: $primary-blue;
