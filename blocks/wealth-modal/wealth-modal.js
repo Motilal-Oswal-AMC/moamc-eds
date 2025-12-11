@@ -98,7 +98,6 @@ export default function decorate(block) {
   unclaimedRedemptionModal.textContent = '';
   unclaimedRedemptionModal.append(urmModalContent);
 
-  // const inputLabels = wealthModal.querySelectorAll('.urm-modal-wrapper label');
   const urmInputs = unclaimedRedemptionModal.querySelectorAll('.urm-modal-wrapper input');
 
   urmInputs.forEach(input => { // Add active on click
@@ -118,21 +117,10 @@ export default function decorate(block) {
     });
   });
 
-  // Unclaimed redemption PAN handling
-  // const panInput = unclaimedRedemptionModal.querySelector('.urm-pan-wrap');
-  // panInput.addEventListener('click', (e) => {
-  //   const inputVal = e.currentTarget.querySelector('input');
-  //   if (inputVal.value === '') {
-  //     e.target.parentElement.parentElement.classList.add('active');
-  //   }
-  // });
-
-
   // Unclaimed redemption PAN Number Oninput handling
   const panInput = unclaimedRedemptionModal.querySelector('.urm-pan-wrap');
   panInput.addEventListener('input', (e) => {
     const panRegex = /^[A-Z]{5}[0-9]{4}[A-Z]{1}$/;
-    // const inputValue = e.target.value.toUpperCase();
     e.target.value = e.target.value.toUpperCase();
     const inputValue = e.target.value;
     const errorPanEl = unclaimedRedemptionModal.querySelector('.urm-pan-error');
@@ -170,7 +158,6 @@ export default function decorate(block) {
     const errorEl = unclaimedRedemptionModal.querySelector('.urm-folio-error');
     const wrapper = errorEl.parentElement; // .urm-folio-wrap
 
-    // If empty → show error
     if (inputVal === '') {
       wrapper.classList.add('show-error');
       wrapper.classList.remove('hide-error');
