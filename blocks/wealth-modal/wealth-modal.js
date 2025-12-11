@@ -474,7 +474,8 @@ export default function decorate(block) {
           'User-Agent': 'WEB/MultipleCampaign',
           'user-agent': 'WEB/MultipleCampaign',
           UserAgent: 'WEB/MultipleCampaign',
-          appid: generateAppId(),
+          appid: '27820BB4MEC3DA4D65MAC74CDFF81E020A60'
+          // generateAppId(),
         };
 
         const response = await myAPI(
@@ -486,8 +487,31 @@ export default function decorate(block) {
 
         const result = await response;
         console.log(result);
+        if (result) {
+          block.closest('main').querySelector('.thank-you-screen').style.display = 'flex';
+          // alert
+          dataMapMoObj.msgError.innerText = '';
+          dataMapMoObj.msgError.innerText = 'Your details have been submitted successfully!';
+          // Reset form
+          fields.forEach((f) => {
+            f.value = '';
+            const labelvar = f.parentElement.querySelector('.label');
+            if (labelvar) labelvar.classList.remove('filled');
+          });
+          // block.querySelector('.btn-mand .btn').classList.remove('active');
+          toggleSubmitButton();
+        } else {
+          block.closest('main').querySelector('.thank-you-screen').style.display = 'flex';
+          dataMapMoObj.msgError.innerText = '';
+          dataMapMoObj.msgError.innerText = `Something went wrong: ${result.message || 'Unknown error'}`;
+          // alert
+          // popup(div(`Something went wrong: ${result.message || 'Unknown error'}`));
+        }
       } catch (error) {
         console.log("eror: ", error);
+        block.closest('main').querySelector('.thank-you-screen').style.display = 'flex';
+        dataMapMoObj.msgError.innerText = '';
+        dataMapMoObj.msgError.innerText = 'Failed to submit form. Please try again later.';
 
       }
     }

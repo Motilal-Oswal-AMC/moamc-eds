@@ -351,13 +351,12 @@ export async function myAPI(method, url, body = null, customHeaders = {}) {
 }
 
 export function generateAppId() {
-  // const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVXYZ';
-  // let appId = '';
-  // for (let i = 0; i < 36; i += 1) {
-  //   appId += chars[Math.floor(Math.random() * chars.length)];
-  // }
-  // return appId;
-  return "27820BB4MEC3DA4D65MAC74CDFF81E020A60";
+  const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVXYZ';
+  let appId = '';
+  for (let i = 0; i < 36; i += 1) {
+    appId += chars[Math.floor(Math.random() * chars.length)];
+  }
+  return appId;
 }
 
 // export async function myAPI(method, url, body = null, header) {
