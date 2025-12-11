@@ -76,7 +76,8 @@
       "quick-purchase-block",
       "investment-philosophy",
       "portfolio-composition",
-      "your-wealth-journey"
+      "your-wealth-journey",
+      "our-fund-managers"
     ]
   },
   {
@@ -255,6 +256,12 @@
     "id": "quick-purchase-block",
     "components": [
       "quick-purchase-item"
+    ]
+  },
+  {
+    "id": "our-fund-managers",
+    "components": [
+      "our-fund-managers-item"
     ]
   }
 ]
