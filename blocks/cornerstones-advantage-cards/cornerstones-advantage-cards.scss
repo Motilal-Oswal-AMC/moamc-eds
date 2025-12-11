@@ -259,10 +259,12 @@
 }
 
 .section.cornerstones-advantage.gift-cornerstones-advantage {
-    @include media(mobile) {
-        padding: 24px 0 40px;;
+  @include media(mobile) {
+    padding: 24px 0 40px;
+    ;
 
-      }
+  }
+
   .cornerstones-advantage-cards-wrapper {
     .cornerstones-advantage-cards {
       gap: 60px 64px;
@@ -285,9 +287,9 @@
 
         div {
           padding: 0;
-           display: flex;
-            flex-direction: column;
-            gap: 6px;
+          display: flex;
+          flex-direction: column;
+          gap: 6px;
 
 
           .item-child-1 {

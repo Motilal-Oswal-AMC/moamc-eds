@@ -286,16 +286,18 @@ export function createInputBlock({
             value: defVal,
           })
         : defVal,
-    type:
-      fieldType === "currency"
-        ? "text"
-        : variant === "text"
-        ? "text"
-        : "number",
+    // type:
+    //   fieldType === "currency"
+    //     ? "text"
+    //     : variant === "text"
+    //     ? "text"
+    //     : "number",
+    type: "text",
     min,
     max,
     "data-fieldType": fieldType,
-    ...(["currency", "percent", "year"].includes(fieldType)
+    ...(["currency", "percent", "year"].includes(fieldType) ||
+    ["number", "stepper"].includes(variant)
       ? {
           inputmode: "numeric",
         }
@@ -382,6 +384,19 @@ export function createInputBlock({
     ...rest,
   };
   let inputEl;
+
+  const getRealInput = () =>
+    fieldType === "currency"
+      ? inputEl.querySelector("input.calc-input") // the visible fake input
+      : inputEl;
+
+  const placeCaretAtEnd = (el) => {
+    const len = String(el?.value ?? "").length;
+    try {
+      el.setSelectionRange(len, len);
+    } catch {}
+  };
+
   if (fieldType === "currency") {
     // Hidden input (original ID)
     const hiddenInput = input({
@@ -511,13 +526,26 @@ export function createInputBlock({
       inlineSuffix
     );
     innerInputWrapper.tabIndex = 0;
-    innerInputWrapper.addEventListener("focus", () => {
-      setTimeout(() => {
-        inputEl.focus();
-        const len = inputEl.value.length;
-        inputEl.setSelectionRange(len, len);
-      }, 0);
+
+    // Mouse: if user clicked the wrapper/suffix (not the input), put caret at end.
+    innerInputWrapper.addEventListener("mousedown", (e) => {
+      const real = getRealInput();
+      if (e.target !== real) {
+        e.preventDefault(); // stop browser from placing caret at start
+        real.focus({ preventScroll: true });
+        requestAnimationFrame(() => placeCaretAtEnd(real));
+      }
     });
+
+    // Keyboard (Tab): when wrapper gets focus, forward to input and put caret at end.
+    innerInputWrapper.addEventListener("focus", (e) => {
+      if (e.target === innerInputWrapper) {
+        const real = getRealInput();
+        real.focus({ preventScroll: true });
+        requestAnimationFrame(() => placeCaretAtEnd(real));
+      }
+    });
+    
   } else {
     innerInputWrapper = inputEl;
   }
