@@ -2136,12 +2136,15 @@ main.nfo-nav {
 .section.high-skin-text.gift-high-skin {
   .high-skin-wrap-one1 {
     .high-skin-wrap-two1 {
+      margin: 0;
       @include media(mobile) {
         margin: 0;
       }
 
       .high-skin-wrap-three1 {
         .high-skin-heading1 {
+          margin: 0;
+
           .high-skin-subheading1 {
             max-width: 395px;
             width: 100%;
@@ -2154,6 +2157,7 @@ main.nfo-nav {
               font-style: normal;
               font-weight: 600;
               line-height: var(--heading-h5-line-height);
+              margin: 0;
 
               @include media(mobile) {
                 font-size: var(--sub-header-large-size);
@@ -2175,6 +2179,7 @@ main.nfo-nav {
                 font-style: normal;
                 font-weight: 400;
                 line-height: 24px;
+                margin: 0;
 
                 /* 150% */
               }
