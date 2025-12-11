@@ -558,12 +558,18 @@ main.nfo-nav .main-wrapper .section:first-of-type {
 
         &2.embed-wrapper {
           width: 100%;
-          height: 320px;
+          // height: 320px;
+          height: 375px;
           margin: 0 auto;
           overflow: hidden;
 
           @include media(mobile) {
             padding: 0;
+            // height: 160px;
+            height: 100%;
+          }
+
+          @include media(mobile-md){
             height: 160px;
           }
 
