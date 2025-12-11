@@ -155,108 +155,33 @@ export function tr(...items) { return domEl('tr', ...items); }
 export function td(...items) { return domEl('td', ...items); }
 export function sup(...items) { return domEl('sup', ...items); }
 
-/**
- * Convert your nested UL/LI structure into a semantic TABLE.
- *
- * Expected structure:
- *
- * <ul class="...">                     <-- whole table
- *   <li class="...">                   <-- row
- *     <ul class="...">
- *       <li class="...">
- *         <p>Cell 1</p>                <-- TH (row label)
- *       </li>
- *       <li class="...">
- *         <p>Cell 2</p>                <-- TD
- *       </li>
- *       <li class="...">
- *         <p>Cell 3</p>                <-- TD
- *       </li>
- *     </ul>
- *   </li>
- *   ...
- * </ul>
- */
-export function convertListToTable(ulRoot) {
-  if (!ulRoot || ulRoot.tagName?.toLowerCase() !== 'ul') return null;
+export function ulToTable(ulRoot) {
+  if (!ulRoot || ulRoot.tagName.toLowerCase() !== 'ul') return null;
 
-  try {
-    // Helper: extract children of a <p> as domEl-friendly items (strings / Elements)
-    const extractContentItems = (sourceEl) => {
-      if (!sourceEl) return [];
+  const rowLis = [...ulRoot.children].filter((li) => li.tagName.toLowerCase() === 'li');
 
-      const items = [];
-      sourceEl.childNodes.forEach((node) => {
-        if (node.nodeType === Node.ELEMENT_NODE) {
-          // Clone element nodes (e.g. <sup>, <strong>, <em>, etc.)
-          items.push(node.cloneNode(true));
-        } else if (node.nodeType === Node.TEXT_NODE) {
-          const cvText = node.textContent;
-          if (cvText && cvText.trim() !== '') {
-            items.push(cvText);
-          }
-        }
-      });
-      return items;
-    };
+  const rows = rowLis.map((rowLi, rowIndex) => {
+    const innerUl = rowLi.querySelector('ul');
+    if (!innerUl) return null;
 
-    // Build table rows
-    const rowLis = Array.from(ulRoot.children).filter(
-      (el) => el.tagName.toLowerCase() === 'li',
-    );
+    const cellLis = [...innerUl.children].filter((li) => li.tagName.toLowerCase() === 'li');
 
-    const trElements = rowLis.map((rowLi) => {
-      const innerUl = rowLi.querySelector('ul');
-      if (!innerUl) return null;
+    const cells = cellLis.map((cellLi) => {
+      // Get HTML directly from <p> or <strong>, or innerHTML fallback
+      const p = cellLi.querySelector('p, strong');
+      const html = p ? p.innerHTML : cellLi.innerHTML;
 
-      const cellLis = Array.from(innerUl.children).filter(
-        (el) => el.tagName.toLowerCase() === 'li',
-      );
+      // Create empty th/td, then inject HTML inside
+      const cell = rowIndex === 0 ? th() : td();
+      cell.innerHTML = html;
+      return cell;
+    });
 
-      const cellElements = cellLis.map((cellLi, index) => {
-        const cvP = cellLi.querySelector('p');
+    return tr(...cells);
+  }).filter(Boolean);
 
-        const contentItems = extractContentItems(cvP || cellLi);
+  const tbl = table({ class: 'eds-table' }, tbody(...rows));
 
-        // Build attributes object for cell
-        const cellAttrs = {};
-        if (cellLi.className) {
-          cellAttrs.class = cellLi.className;
-        }
-
-        // First cell -> TH, others -> TD
-        if (index === 0) {
-          return th(cellAttrs, ...contentItems);
-        }
-        return td(cellAttrs, ...contentItems);
-      });
-
-      // Build attributes for row
-      const rowAttrs = {};
-      if (rowLi.className) {
-        rowAttrs.class = rowLi.className;
-      }
-
-      return tr(rowAttrs, ...cellElements);
-    }).filter(Boolean);
-
-    // Table attributes from root UL
-    const tableAttrs = {};
-    if (ulRoot.className) {
-      tableAttrs.class = ulRoot.className;
-    }
-
-    const tbl = table(
-      tableAttrs,
-      tbody(...trElements),
-    );
-
-    // Optional: replace original UL in DOM
-    ulRoot.replaceWith(tbl);
-    return tbl;
-  } catch (error) {
-    console.warn('Error converting list to table:', error);
-  }
-
-  return null;
+  ulRoot.replaceWith(tbl);
+  return tbl;
 }

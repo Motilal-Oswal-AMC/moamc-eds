@@ -19,7 +19,9 @@ import formBlock, { createForm } from '../blocks/form/form.js';
 
 // eslint-disable-next-line import/no-cycle
 import { initializeModalHandlers } from '../blocks/modal/modal.js';
-import { convertListToTable, img, span } from './dom-helpers.js';
+import {
+  img, span, ulToTable,
+} from './dom-helpers.js';
 
 // console.log('f1 code');
 
@@ -743,7 +745,7 @@ function articleStructure() {
     }
 
     if (!maincloser.querySelector('.moedge-article-details')
-        && maincloser.querySelector('.investsub-leftarticle1')) {
+      && maincloser.querySelector('.investsub-leftarticle1')) {
       const leftpost = maincloser.querySelector('.investsub-leftarticle1 .investleft-subinner1');
       if (window.location.href.includes('/images/')) {
         const spanHtml = leftpost.querySelector('span');
@@ -790,11 +792,11 @@ function articleStructure() {
     const linktext = currentUrl.substring(currentUrl.lastIndexOf('/') + 1);
     const data = dataMapMoObj.getinvestorblog.data
       .filter((el) => linktext !== el.title && el.path.includes(dataincl))
-    // 1. Assign a random value to each item
+      // 1. Assign a random value to each item
       .map((value) => ({ value, sort: Math.random() }))
-    // 2. Sort based on that random value
+      // 2. Sort based on that random value
       .sort((a, b) => a.sort - b.sort)
-    // 3. Extract the original object back
+      // 3. Extract the original object back
       .map(({ value }) => value);
 
     console.log(data);
@@ -1066,10 +1068,13 @@ function articleStructure() {
         });
       }
     });
-  }
 
-  convertListToTable(document.querySelector('h6 > ul'));
+    [...document.querySelectorAll('#eds-table + ul')].forEach((ul) => {
+      ulToTable(ul);
+    });
+  }
 }
+
 dataMapMoObj.article = articleStructure;
 
 const chooseUs = document.querySelector('.why-choose-us');
