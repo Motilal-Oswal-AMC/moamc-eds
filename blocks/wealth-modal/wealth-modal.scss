@@ -588,8 +588,8 @@
 
 // Unclaimed Redemption Modal Styles
 .unclaimed-redemption.wealth-modal-container {
-    margin-bottom: unset;
-    
+  margin-bottom: unset;
+
   .wealth-modal-wrapper {
 
     .urm-modal-content-wrapper {
@@ -630,6 +630,11 @@
               font-weight: 600;
               line-height: var(--body-xlarge-bold-line-height);
               margin: unset;
+
+              @include media(mobile) {
+                font-size: var(--body-large-semibold-size);
+                line-height: var(--body-large-semibold-line-height);
+              }
             }
 
           }
@@ -640,8 +645,17 @@
             border-radius: var(--border-radius-8);
             border: var(--border-width-01) solid var(--strokes-default);
             height: 40px;
+            // min-width: 308px;
+            min-width: 560px;
+            width: 100%;
             display: flex;
             margin-bottom: 16px;
+
+            @include media(mobile) {
+              max-width: 308px;
+              min-width: 308px;
+              width: 100%;
+            }
 
             .urm-pan-lbl {
               position: absolute;
@@ -698,8 +712,17 @@
             border-radius: var(--border-radius-8);
             border: var(--border-width-01) solid var(--strokes-default);
             height: 40px;
+            // min-width: 308px;
+            min-width: 560px;
+            width: 100%;
             display: flex;
             margin-bottom: 16px;
+
+            @include media(mobile) {
+              min-width: 308px;
+              max-width: 308px;
+              width: 100%;
+            }
 
             .urm-folio-lbl {
               position: absolute;
@@ -786,7 +809,7 @@
               .urm-resend {
                 color: var(--text-text-link);
                 font-family: var(--body);
-                font-size: var(--text-link-small-size);
+                font-size: 14px;
                 font-weight: 400;
                 line-height: var(--text-link-small-line-height);
                 text-decoration-line: underline;
@@ -858,6 +881,15 @@
             line-height: var(--button-medium-line-height);
             border-radius: var(--border-radius-8);
             background: var(--button-primary-default);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            @include media(mobile) {
+              padding: 12px;
+              min-width: 308px;
+              width: 100%;
+            }
           }
         }
       }
