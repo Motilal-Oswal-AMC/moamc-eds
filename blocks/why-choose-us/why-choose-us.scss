@@ -226,10 +226,14 @@
 .section.why-choose-us-container.nri-why-choose {
     @include media (mobile) {
         height: unset;
-        margin-top: 63px;
+        margin-top: 40px;
     }
 
     .why-choose-us-wrapper {
+        @include media (mobile) {
+            padding-top: 6px;
+        }
+
         .why-choose-us {
             .why-choose-us-row1 {
                 max-width: 500px;
@@ -237,13 +241,15 @@
 
                 .why-choose-us-sec1 {
                     gap: 40px;
+
                     .why-choose-us-sub1 {
                         .choose-us-lists1 {
                             h1 {
+
                                 @include media (mobile) {
-                                    font-size: 24px;
-                                    line-height: 28px;
-                                    font-weight: 600;
+                                    font-size: 32px;
+                                    line-height: 56px;
+                                    font-weight: 500;
                                 }
                             }
 
@@ -251,7 +257,7 @@
 
                                 @include media (mobile) {
                                     left: 0;
-                                    top: -21px;
+                                    // top: -21px;
                                 }
                             }
                         }
@@ -259,8 +265,8 @@
                         .choose-us-lists2 {
 
                             @include media (mobile) {
-                                       padding-top: 8px;
-                                    }
+                                padding-top: 8px;
+                            }
 
                             p {
                                 .comlist {

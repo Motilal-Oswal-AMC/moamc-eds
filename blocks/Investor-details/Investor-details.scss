@@ -1123,11 +1123,15 @@ main.nfo-nav .main-wrapper .section:first-of-type {
                 order: 3;
                 flex: 1 1 100%;
               }
+
+              em{
+                font-style: italic;
+              }
             }
 
             .comlist:last-of-type {
               order: 2;
-              margin-top: -24px;
+              margin: -24px 0 0;
 
               @media screen and (width <= 1101px) {
                 order: 3;
@@ -1182,7 +1186,7 @@ main.nfo-nav .main-wrapper .section:first-of-type {
             .comlist:first-of-type {
               flex: 0 1 64%;
               order: 3;
-              margin-left: 276px;
+              margin: 0 0 0 276px;
 
               @media screen and (width <= 1112px) {
                 // flex: 0 1 56%;
@@ -1216,11 +1220,15 @@ main.nfo-nav .main-wrapper .section:first-of-type {
                 flex: 1 1 100%;
                 order: 3;
               }
+
+              em{
+                font-style: italic;
+              }
             }
 
             .comlist:last-of-type {
               order: 2;
-              margin-top: -24px;
+              margin: -24px 0 0;
 
               @media screen and (width <= 1112px) {
                 // order: 2;

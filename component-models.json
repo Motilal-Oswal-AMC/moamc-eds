@@ -611,6 +611,10 @@
             "value": "our-author-detail"
           },
           {
+            "name": "Gift Previous Studies",
+            "value": "gift-previous-studies"
+          },
+          {
             "name": "QGLP Tabs",
             "value": "qglp-tabs"
           },
