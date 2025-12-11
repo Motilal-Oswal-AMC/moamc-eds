@@ -1220,6 +1220,10 @@ main.nfo-nav .main-wrapper .section:first-of-type {
                 flex: 1 1 100%;
                 order: 3;
               }
+
+              em{
+                font-style: italic;
+              }
             }
 
             .comlist:last-of-type {
