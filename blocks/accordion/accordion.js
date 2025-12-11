@@ -36,7 +36,7 @@ export default function decorate(block) {
     //    const data = classes.textContent.trim();
     //    detailsEl.classList.add(data)
     //  }
-    if(classes && Array.from(classes.classList).length !== 0){
+    if(classes && Array.from(classes.classList).length == 0){
        const data = classes.textContent.trim();
        detailsEl.classList.add(data)
      }
