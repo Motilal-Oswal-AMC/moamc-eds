@@ -471,6 +471,9 @@ export default function decorate(block) {
         };
         const headers = {
           'Content-Type': 'application/json',
+          'User-Agent': 'WEB/MultipleCampaign',
+          'user-agent': 'WEB/MultipleCampaign',
+          UserAgent: 'WEB/MultipleCampaign',
           appid: generateAppId(),
         };
 
@@ -484,13 +487,14 @@ export default function decorate(block) {
         const result = await response;
         console.log(result);
       } catch (error) {
+        console.log("eror: ", error);
 
       }
     }
     submitButton.addEventListener('click', async (e) => {
       e.preventDefault();
-      if (block.closest('.static-modal')) {
-        elessSaveform();
+      if (document.querySelector('.static-modal')) {
+        const response = await elessSaveform();
         return false;
       }
       fields.forEach((f) => touchedFields.add(f));

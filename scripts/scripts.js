@@ -351,13 +351,13 @@ export async function myAPI(method, url, body = null, customHeaders = {}) {
 }
 
 export function generateAppId() {
-  const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVXYZ';
-  let appId = '';
-  for (let i = 0; i < 36; i += 1) {
-    appId += chars[Math.floor(Math.random() * chars.length)];
-  }
-  return appId;
-  // return "877C010EM8A9CA4820M987BCB394B48563BE";
+  // const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVXYZ';
+  // let appId = '';
+  // for (let i = 0; i < 36; i += 1) {
+  //   appId += chars[Math.floor(Math.random() * chars.length)];
+  // }
+  // return appId;
+  return "27820BB4MEC3DA4D65MAC74CDFF81E020A60";
 }
 
 // export async function myAPI(method, url, body = null, header) {
@@ -586,18 +586,18 @@ function articleStructure() {
     });
 
     Array.from(rightSub).forEach((subright) => {
-        dataMapMoObj.CLASS_PREFIXES = [
-          'investarticle-rightmain',
-          'investarticle-rightsub',
-          'investarticle-rightinner',
-          'investsub-rightarticle',
-          'investright-subinner',
-          'investright-articleitem',
-          'investright-itemchild',
-          'investright-subchild',
-        ];
-        dataMapMoObj.addIndexed(subright);
-      });
+      dataMapMoObj.CLASS_PREFIXES = [
+        'investarticle-rightmain',
+        'investarticle-rightsub',
+        'investarticle-rightinner',
+        'investsub-rightarticle',
+        'investright-subinner',
+        'investright-articleitem',
+        'investright-itemchild',
+        'investright-subchild',
+      ];
+      dataMapMoObj.addIndexed(subright);
+    });
 
     if (!maincloser.querySelector('.moedge-article-details')) {
       Array.from(leftSub).forEach((subleft) => {
@@ -741,16 +741,16 @@ function articleStructure() {
     }
 
     function addIndexedThree(parentElement, level = 0) {
-    const prefix = 'rightlist';
-    const { children } = parentElement; // Cache children for clarity.
-    for (let i = 0; i < children.length; i += 1) {
-      let parClass = Array.from(children[0].parentElement.classList)[0].split('-').at(-2);
-      const child = children[i];
-      const index = i + 1; // Class names are typically 1-based.
-      child.classList.add(`${prefix}`);
-      parClass = '';
-      addIndexedThree(child, level + 1);
-    }
+      const prefix = 'rightlist';
+      const { children } = parentElement; // Cache children for clarity.
+      for (let i = 0; i < children.length; i += 1) {
+        let parClass = Array.from(children[0].parentElement.classList)[0].split('-').at(-2);
+        const child = children[i];
+        const index = i + 1; // Class names are typically 1-based.
+        child.classList.add(`${prefix}`);
+        parClass = '';
+        addIndexedThree(child, level + 1);
+      }
     }
     addIndexedThree(maincloser.querySelector('.article-right-wrapper'));
     // const shareWrapper = document.querySelector('.itemmainleftart3');
@@ -1207,20 +1207,20 @@ try {
 // Unclaimed Redemption Block
 try {
   // if (window.location.href == 'mutual-fund/in/en/static-pages/unclaimed-redemptions') {
-    const section = document.querySelector('.unclaimed-redemption');
-    const cardSection = document.querySelector('.unclaimed-redemption .cards-wrapper');
-    const unclaimedForm = document.querySelector('.unclaimed-redemption .wealth-modal-wrapper');
-    const elementNew = document.createElement('div');
-    const elementDiv = document.createElement('div');
-    elementDiv.classList.add('section-container');
-    elementNew.classList.add('container');
-    if (section !== null) {
-      section.appendChild(elementNew);
-      section.appendChild(elementDiv);
-      elementDiv.appendChild(elementNew);
-      elementNew.appendChild(cardSection);
-      elementNew.appendChild(unclaimedForm);
-    }
+  const section = document.querySelector('.unclaimed-redemption');
+  const cardSection = document.querySelector('.unclaimed-redemption .cards-wrapper');
+  const unclaimedForm = document.querySelector('.unclaimed-redemption .wealth-modal-wrapper');
+  const elementNew = document.createElement('div');
+  const elementDiv = document.createElement('div');
+  elementDiv.classList.add('section-container');
+  elementNew.classList.add('container');
+  if (section !== null) {
+    section.appendChild(elementNew);
+    section.appendChild(elementDiv);
+    elementDiv.appendChild(elementNew);
+    elementNew.appendChild(cardSection);
+    elementNew.appendChild(unclaimedForm);
+  }
   // }
 } catch (error) {
   console.log(error);
