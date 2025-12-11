@@ -3,7 +3,6 @@
 @use "../../styles/common-theme/css/fluid-typography" as *;
 
 .unclaimed-redemption {
-
     margin-bottom: unset;
 
     .section-container {
@@ -29,17 +28,18 @@
 
                 .cards.block {
                     ul.card-li1 {
-
                         min-height: 504px;
                         height: 100%;
                         position: relative;
 
                         li.card-content1 {
                             display: flex;
+
                             // flex-direction: column-reverse;
                             gap: 30px;
                             border-radius: 12px;
                             background: var(--neutrals-white);
+
                             // background: peru;
                             padding: 40px 40px 0;
                             border: unset;

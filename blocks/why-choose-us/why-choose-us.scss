@@ -245,7 +245,6 @@
                     .why-choose-us-sub1 {
                         .choose-us-lists1 {
                             h1 {
-
                                 @include media (mobile) {
                                     font-size: 24px;
                                     line-height: 28px;
@@ -254,16 +253,15 @@
                             }
 
                             .choose-us-lists-wrap2 {
-
                                 @include media (mobile) {
                                     left: 0;
+
                                     // top: -21px;
                                 }
                             }
                         }
 
                         .choose-us-lists2 {
-
                             @include media (mobile) {
                                 padding-top: 8px;
                             }

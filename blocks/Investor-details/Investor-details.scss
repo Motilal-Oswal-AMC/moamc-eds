@@ -396,14 +396,14 @@ main.nfo-nav .main-wrapper .section:first-of-type {
                 left: 0;
                 border-radius: 6px;
                 border: 1px solid var(--neutrals-200);
-                box-shadow: 0 0 14px 0 rgba(40, 40, 40, 0.06);
+                box-shadow: 0 0 14px 0 rgb(40 40 40 / 6%);
                 width: 170px;
                 background: var(--neutrals-white);
                 min-height: 126px;
                 height: auto;
                 padding: 2px 6px;
                 scrollbar-width: auto;
-                scrollbar-color: rgba(0, 0, 0, 0);
+                scrollbar-color: rgb(0 0 0 / 0%);
                 list-style: none;
                 display: none;
 
@@ -451,7 +451,7 @@ main.nfo-nav .main-wrapper .section:first-of-type {
                       bottom: 10%;
                       background-color: var(--neutrals-white);
                       color: var(--blue-1-800-primary);
-                      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+                      box-shadow: 0 4px 12px rgb(0 0 0 / 10%);
                       padding: 4px 14px;
                       border-radius: 4px;
                       font-size: 14px;
@@ -568,6 +568,7 @@ main.nfo-nav .main-wrapper .section:first-of-type {
 
         &2.embed-wrapper {
           width: 100%;
+
           // height: 320px;
           height: 375px;
           margin: 0 auto;
@@ -575,6 +576,7 @@ main.nfo-nav .main-wrapper .section:first-of-type {
 
           @include media(mobile) {
             padding: 0;
+
             // height: 160px;
             height: 100%;
           }
@@ -776,7 +778,7 @@ main.nfo-nav .main-wrapper .section:first-of-type {
                   font-size: 16px;
                   line-height: 20px;
                   color: #fff;
-                  font-family: "Inter", sans-serif;
+                  font-family: Inter, sans-serif;
                   font-feature-settings: "ss01" on, "ss04" on, "cv01" on,
                     "cv02" on, "cv03" on, "cv04" on, "cv06" on, "cv09" on,
                     "cv10" on, "cv11" on;
@@ -980,6 +982,7 @@ main.nfo-nav .main-wrapper .section:first-of-type {
           .comlist:first-of-type {
             all: unset;
             margin: 0;
+
             // flex: 1 1 60%;
             // order: 1;
             // grid-area: title-area;
@@ -1004,6 +1007,7 @@ main.nfo-nav .main-wrapper .section:first-of-type {
 
           .comlist:not(:first-of-type, :last-of-type) {
             margin: 24px 0 0;
+
             // flex: 1 1 60%;
             // order: 1;
             // grid-area: text-area;
@@ -1037,6 +1041,7 @@ main.nfo-nav .main-wrapper .section:first-of-type {
             min-width: 260px;
             width: 260px;
             height: 260px;
+
             // order: 2;
             // margin-top: -24px;
             // grid-area: image-area;
@@ -1168,9 +1173,8 @@ main.nfo-nav .main-wrapper .section:first-of-type {
         &.left-key-card {
           .default-content-wrapper.investarticle-leftmain1 {
             padding-right: 44px;
-            flex-wrap: wrap-reverse;
+            flex-flow: row-reverse wrap-reverse;
             align-items: flex-end;
-            flex-direction: row-reverse;
 
             @include media(tab) {
               padding: 0;
@@ -1310,18 +1314,20 @@ main.nfo-nav .main-wrapper .section:first-of-type {
             padding: 10px 20px;
             width: 100%;
             max-width: 500px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 6px rgb(0 0 0 / 10%);
             display: flex;
             align-items: center;
             margin: 10px 0 0;
 
             &::-webkit-media-controls-panel {
               background-color: #e3f2fd;
+
               /* Light Blue */
             }
 
             &::-webkit-media-controls-play-button {
               background-color: #0288d1;
+
               /* Dark Blue */
               border-radius: 50%;
               color: white;
@@ -1503,6 +1509,7 @@ main.nfo-nav .main-wrapper .section:first-of-type {
                   //   border: var(--border-width-01) solid var(--neutrals-white);
                   //   padding: var(--spacing-8) var(--spacing-12);
                   position: relative;
+
                   // height: 40px;
 
                   label,

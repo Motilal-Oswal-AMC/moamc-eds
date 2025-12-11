@@ -363,7 +363,7 @@
                 .moedge-build-sec1 {
                     &::before {
                         content: "";
-                        background: url(../../icons/play-button.svg) center center no-repeat, linear-gradient(0deg, rgba(0, 0, 0, 0.30) 0%, rgba(0, 0, 0, 0.30) 100%);
+                        background: url("../../icons/play-button.svg") center center no-repeat, linear-gradient(0deg, rgb(0 0 0 / 30%) 0%, rgb(0 0 0 / 30%) 100%);
                         background-size: 24px 24px;
                         width: 100%;
                         height: 100%;
@@ -609,7 +609,6 @@
             }
 
             .moedge-build-sec1 {
-
                 img {
                     border-radius: var(--border-radius-8);
                     background: lightgray 0 -0.156px #{"/"} 100% 127.052% no-repeat;

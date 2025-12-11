@@ -168,6 +168,7 @@ body:has(.calculator-container) {
             @include media(mobile) {
                 margin: 40px 0;
             }
+
             a.recommended-funds-cta {
                 @include font-style(14px, 16px, $primary-white, 400, $inter);
 
@@ -209,6 +210,7 @@ body:has(.calculator-container) {
                         line-height: 28px;
                     }
                 }
+
                 a.recommended-funds-cta {
                     display: flex;
 

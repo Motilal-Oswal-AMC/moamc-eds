@@ -1,1 +1,51 @@
-@import"../../../styles/fonts.css";.calculator-container .calculator-block .calc-author-main1{display:flex;flex-wrap:wrap}.calculator-container .calculator-block .calc-author-main1 .laitss-inp-container{max-width:100%}.calculator-container .calculator-block .calc-author-main1 .tosi-inp-container,.calculator-container .calculator-block .calc-author-main1 .msa-inp-container,.calculator-container .calculator-block .calc-author-main1 .erfts-inp-container,.calculator-container .calculator-block .calc-author-main1 .erfss-inp-container{max-width:calc(50% - 8px)}.calculator-container .calculator-block .calc-overview-summary .comlist{margin:0}.calculator-container .calculator-block .calc-overview-summary ul[class*=calc-overview-item]{list-style:none}.calculator-container .calculator-block .calc-overview-summary ul[class*=calc-overview-item]:has(.calc-overview-amount){max-width:45%;width:100%;display:flex;flex-direction:column;gap:4px}.calculator-container .calculator-block .calc-overview-summary ul[class*=calc-overview-item] li[class*=calc-overview-subitem]{max-height:-moz-fit-content;max-height:fit-content;list-style:none}.calculator-container .calculator-block .calc-overview-summary ul[class*=calc-overview-item] li[class*=calc-overview-subitem].calc-overview-small-title{font-size:12px;line-height:16px;color:#616161;font-family:"Inter",sans-serif;font-feature-settings:"ss01" on,"ss04" on,"cv01" on,"cv02" on,"cv03" on,"cv04" on,"cv06" on,"cv09" on,"cv10" on,"cv11" on;font-weight:400}.calculator-container .calculator-block .calc-overview-summary ul[class*=calc-overview-item] li[class*=calc-overview-subitem].calc-overview-amount{font-size:16px;line-height:20px;color:#2e2a94;font-family:"Inter",sans-serif;font-feature-settings:"ss01" on,"ss04" on,"cv01" on,"cv02" on,"cv03" on,"cv04" on,"cv06" on,"cv09" on,"cv10" on,"cv11" on;font-weight:600}.calculator-container .calculator-block .calc-overview-summary ul[class*=calc-overview-item] li[class*=calc-overview-subitem] .calc-overview-cta{width:100%}
+@import "../../../styles/fonts.css";
+.calculator-container .calculator-block .calc-author-main1 {
+  display: flex;
+  flex-wrap: wrap;
+}
+.calculator-container .calculator-block .calc-author-main1 .laitss-inp-container {
+  max-width: 100%;
+}
+.calculator-container .calculator-block .calc-author-main1 .tosi-inp-container,
+.calculator-container .calculator-block .calc-author-main1 .msa-inp-container,
+.calculator-container .calculator-block .calc-author-main1 .erfts-inp-container,
+.calculator-container .calculator-block .calc-author-main1 .erfss-inp-container {
+  max-width: calc(50% - 8px);
+}
+.calculator-container .calculator-block .calc-overview-summary .comlist {
+  margin: 0;
+}
+.calculator-container .calculator-block .calc-overview-summary ul[class*=calc-overview-item] {
+  list-style: none;
+}
+.calculator-container .calculator-block .calc-overview-summary ul[class*=calc-overview-item]:has(.calc-overview-amount) {
+  max-width: 45%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.calculator-container .calculator-block .calc-overview-summary ul[class*=calc-overview-item] li[class*=calc-overview-subitem] {
+  max-height: -moz-fit-content;
+  max-height: fit-content;
+  list-style: none;
+}
+.calculator-container .calculator-block .calc-overview-summary ul[class*=calc-overview-item] li[class*=calc-overview-subitem].calc-overview-small-title {
+  font-size: 12px;
+  line-height: 16px;
+  color: #616161;
+  font-family: "Inter", sans-serif;
+  font-feature-settings: "ss01" on, "ss04" on, "cv01" on, "cv02" on, "cv03" on, "cv04" on, "cv06" on, "cv09" on, "cv10" on, "cv11" on;
+  font-weight: 400;
+}
+.calculator-container .calculator-block .calc-overview-summary ul[class*=calc-overview-item] li[class*=calc-overview-subitem].calc-overview-amount {
+  font-size: 16px;
+  line-height: 20px;
+  color: #2e2a94;
+  font-family: "Inter", sans-serif;
+  font-feature-settings: "ss01" on, "ss04" on, "cv01" on, "cv02" on, "cv03" on, "cv04" on, "cv06" on, "cv09" on, "cv10" on, "cv11" on;
+  font-weight: 600;
+}
+.calculator-container .calculator-block .calc-overview-summary ul[class*=calc-overview-item] li[class*=calc-overview-subitem] .calc-overview-cta {
+  width: 100%;
+}/*# sourceMappingURL=systematic-transfer-plan-calculator.css.map */

@@ -1,1 +1,79 @@
-@import"../../../styles/fonts.css";.things-keep-mind.cards-container{padding:40px 0;margin:0}.things-keep-mind.cards-container>.default-content-wrapper{margin-bottom:40px}@media(max-width: 899px){.things-keep-mind.cards-container>.default-content-wrapper{margin-bottom:20px}}.things-keep-mind.cards-container>.default-content-wrapper h4{color:var(--blue-1800-primary, #2E2A94);text-align:center;font-feature-settings:"ss01" on,"ss04" on,"cv01" on,"cv02" on,"cv03" on,"cv04" on,"cv06" on,"cv09" on,"cv10" on,"cv11" on;font-family:var(--title, Inter);font-size:32px;font-style:normal;font-weight:600;line-height:40px}@media(max-width: 899px){.things-keep-mind.cards-container>.default-content-wrapper h4{text-align:left;margin:0;font-size:24px;line-height:28px}}.things-keep-mind.cards-container .cards-wrapper .cards ul{gap:16px}@media(max-width: 899px){.things-keep-mind.cards-container .cards-wrapper .cards ul{gap:10px}}.things-keep-mind.cards-container .cards-wrapper .cards ul li{border:unset;background:unset}.things-keep-mind.cards-container .cards-wrapper .cards ul li .cards-card-image{width:296px;height:160px;display:flex;align-items:center;justify-content:center;border-radius:8px;background:var(--blue-1-50, #D5DEFF)}@media(max-width: 899px){.things-keep-mind.cards-container .cards-wrapper .cards ul li .cards-card-image{width:100%}}.things-keep-mind.cards-container .cards-wrapper .cards ul li .cards-card-image img{aspect-ratio:inherit}.things-keep-mind.cards-container .cards-wrapper .cards ul li .cards-card-body{display:flex;padding:var(--spacing-24, 24px) 0;margin:0;flex-direction:column;align-items:flex-start;gap:24px;align-self:stretch}.things-keep-mind.cards-container .cards-wrapper .cards ul li .cards-card-body p{margin:0;color:var(--neutrals-900, #212121);font-feature-settings:"ss01" on,"ss04" on,"cv01" on,"cv02" on,"cv03" on,"cv04" on,"cv06" on,"cv09" on,"cv10" on,"cv11" on;font-family:var(--body, Inter);font-size:var(--body-large-medium-size, 18px);font-style:normal;font-weight:500;line-height:var(--body-large-medium-line-height, 24px)}
+@import "../../../styles/fonts.css";
+.things-keep-mind.cards-container {
+  padding: 40px 0;
+  margin: 0;
+}
+.things-keep-mind.cards-container > .default-content-wrapper {
+  margin-bottom: 40px;
+}
+@media (max-width: 899px) {
+  .things-keep-mind.cards-container > .default-content-wrapper {
+    margin-bottom: 20px;
+  }
+}
+.things-keep-mind.cards-container > .default-content-wrapper h4 {
+  color: var(--blue-1800-primary, #2E2A94);
+  text-align: center;
+  font-feature-settings: "ss01" on, "ss04" on, "cv01" on, "cv02" on, "cv03" on, "cv04" on, "cv06" on, "cv09" on, "cv10" on, "cv11" on;
+  font-family: var(--title, Inter);
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 40px;
+}
+@media (max-width: 899px) {
+  .things-keep-mind.cards-container > .default-content-wrapper h4 {
+    text-align: left;
+    margin: 0;
+    font-size: 24px;
+    line-height: 28px;
+  }
+}
+.things-keep-mind.cards-container .cards-wrapper .cards ul {
+  gap: 16px;
+}
+@media (max-width: 899px) {
+  .things-keep-mind.cards-container .cards-wrapper .cards ul {
+    gap: 10px;
+  }
+}
+.things-keep-mind.cards-container .cards-wrapper .cards ul li {
+  border: unset;
+  background: unset;
+}
+.things-keep-mind.cards-container .cards-wrapper .cards ul li .cards-card-image {
+  width: 296px;
+  height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background: var(--blue-1-50, #D5DEFF);
+}
+@media (max-width: 899px) {
+  .things-keep-mind.cards-container .cards-wrapper .cards ul li .cards-card-image {
+    width: 100%;
+  }
+}
+.things-keep-mind.cards-container .cards-wrapper .cards ul li .cards-card-image img {
+  aspect-ratio: inherit;
+}
+.things-keep-mind.cards-container .cards-wrapper .cards ul li .cards-card-body {
+  display: flex;
+  padding: var(--spacing-24, 24px) 0;
+  margin: 0;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  align-self: stretch;
+}
+.things-keep-mind.cards-container .cards-wrapper .cards ul li .cards-card-body p {
+  margin: 0;
+  color: var(--neutrals-900, #212121);
+  font-feature-settings: "ss01" on, "ss04" on, "cv01" on, "cv02" on, "cv03" on, "cv04" on, "cv06" on, "cv09" on, "cv10" on, "cv11" on;
+  font-family: var(--body, Inter);
+  font-size: var(--body-large-medium-size, 18px);
+  font-style: normal;
+  font-weight: 500;
+  line-height: var(--body-large-medium-line-height, 24px);
+}/*# sourceMappingURL=things-keep-mind.css.map */

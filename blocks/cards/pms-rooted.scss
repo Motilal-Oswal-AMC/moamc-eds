@@ -612,21 +612,20 @@ $breakpoint-tablet: 900px;
     max-width: 1232px;
     width: 100%;
     margin: 0 auto;
-    padding: 40px 48px 0px;
+    padding: 40px 48px 0;
     border-radius: 12px;
     background-color: #F5F5F5;
     margin-bottom: 60px;
 
     @include media (mobile) {
-        padding: 0;
         margin-bottom: 80px;
         background-color: #fff;
-        padding: 0px 16px;
+        padding: 0 16px;
     }
 
     .cards-wrapper {
          @include media (mobile) {
-        padding: 40px 16px 0 16px; 
+        padding: 40px 16px 0; 
         background-color: #F5F5F5;
         border-radius: 12px;
     }
@@ -919,6 +918,7 @@ $breakpoint-tablet: 900px;
                                 .icon-skin-game {
                                     min-width: 50px;
                                     min-height: 50px;
+
                                     // height: 100%;
                                 }
                             }

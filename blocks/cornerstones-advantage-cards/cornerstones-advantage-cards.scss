@@ -16,7 +16,6 @@
     }
 
     .default-content-wrapper {
-
       h1,
       h2,
       h3,
@@ -263,6 +262,7 @@
         padding: 24px 0 40px;;
 
       }
+
   .cornerstones-advantage-cards-wrapper {
     .cornerstones-advantage-cards {
       gap: 60px 64px;
@@ -381,6 +381,7 @@
             font-size: 18px;
             font-weight: 500;
             line-height: 24px;
+
             /* 133.333% */
           }
         }
@@ -400,6 +401,7 @@
             font-size: 16px;
             font-weight: 400;
             line-height: 24px;
+
             /* 150% */
 
           }
@@ -548,6 +550,7 @@
         font-size: 16px;
         font-weight: 400;
         line-height: 24px;
+
         /* 150% */
       }
     }
@@ -604,6 +607,7 @@
     font-style: normal;
     font-weight: 600;
     line-height: 32px;
+
     /* 114.286% */
 
     @include media(mobile) {
@@ -622,6 +626,7 @@
     font-style: normal;
     font-weight: 400;
     line-height: 24px;
+
     /* 150% */
   }
 }
@@ -674,11 +679,11 @@
     gap: 40px;
     align-self: stretch;
     border-radius: 8px;
-    background: linear-gradient(257deg, rgba(154, 148, 255, 0.50) -5.54%, rgba(235, 234, 255, 0.50) 100%);
+    background: linear-gradient(257deg, rgb(154 148 255 / 50%) -5.54%, rgb(235 234 255 / 50%) 100%);
 
     @include media(mobile) {
       padding: 24px 12px;
-      background: linear-gradient(257deg, rgba(235, 234, 255, 0.50) -5.54%, rgba(154, 148, 255, 0.50) 100%);
+      background: linear-gradient(257deg, rgb(235 234 255 / 50%) -5.54%, rgb(154 148 255 / 50%) 100%);
     }
   }
 
@@ -748,6 +753,7 @@
         font-style: normal;
         font-weight: 600;
         line-height: 28px;
+
         /* 116.667% */
       }
     }
@@ -774,6 +780,7 @@
         font-style: normal;
         font-weight: 400;
         line-height: 20px;
+
         /* 142.857% */
       }
 
@@ -823,6 +830,7 @@
         font-style: normal;
         font-weight: 600;
         line-height: 28px;
+
         /* 116.667% */
       }
     }
@@ -947,8 +955,7 @@
 
       @include media(mobile) {
         width: 100%;
-        overflow-x: auto;
-        overflow-y: hidden;
+        overflow: auto hidden;
         -webkit-overflow-scrolling: touch;
         scrollbar-width: none;
 
@@ -963,6 +970,7 @@
 
         @include media(mobile) {
           width: 1188px;
+
           /* your span width */
           display: inline-block;
         }
