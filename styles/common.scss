@@ -3,8 +3,8 @@
 /* media-feature-range-notation */
 
 @use "sass:map";
-@use "../styles/common-theme/css/variables_mixins"as *;
-@use "../styles/common-theme/css/fluid-typography"as *;
+@use "../styles/common-theme/css/variables_mixins" as *;
+@use "../styles/common-theme/css/fluid-typography" as *;
 
 // @import "../blocks/moedge-article-details/moedge-article-details.css";
 // @import '../blocks/Investor-details/investor-details.css';
@@ -1683,6 +1683,10 @@ main>.section.previous-studies-tab.tabs-container {
             @media screen and (width > 768px) {
               max-width: 510px;
             }
+
+            &:last-child {
+              padding-bottom: unset;
+            }
           }
         }
       }
@@ -2000,7 +2004,7 @@ main.nfo-nav {
       &1 {
         margin: 0;
         color: var(--text-body, #424242);
-        font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
+        font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
         font-family: var(--body, Inter);
         font-size: var(--body-xlarge-regular-size, 20px);
         font-style: normal;
@@ -2011,7 +2015,7 @@ main.nfo-nav {
       &2 {
         margin: 0;
         color: var(--blue-1800-primary, #2E2A94);
-        font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on, 'liga'off;
+        font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on, 'liga' off;
         font-family: var(--body, Inter);
         font-size: var(--body-xlarge-bold-size, 20px);
         font-style: normal;
@@ -2138,6 +2142,7 @@ main.nfo-nav {
   .high-skin-wrap-one1 {
     .high-skin-wrap-two1 {
       margin: 0;
+
       @include media(mobile) {
         margin: 0;
       }
