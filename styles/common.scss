@@ -3,8 +3,8 @@
 /* media-feature-range-notation */
 
 @use "sass:map";
-@use "../styles/common-theme/css/variables_mixins"as *;
-@use "../styles/common-theme/css/fluid-typography"as *;
+@use "../styles/common-theme/css/variables_mixins" as *;
+@use "../styles/common-theme/css/fluid-typography" as *;
 
 // @import "../blocks/moedge-article-details/moedge-article-details.css";
 // @import '../blocks/Investor-details/investor-details.css';
@@ -1678,9 +1678,14 @@ main>.section.previous-studies-tab.tabs-container {
             margin: 0;
             width: 100%;
             max-width: unset;
+            padding-bottom: 14px;
 
             @media screen and (width > 768px) {
               max-width: 510px;
+            }
+
+            &:last-child {
+              padding-bottom: unset;
             }
           }
         }
@@ -1999,7 +2004,7 @@ main.nfo-nav {
       &1 {
         margin: 0;
         color: var(--text-body, #424242);
-        font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
+        font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
         font-family: var(--body, Inter);
         font-size: var(--body-xlarge-regular-size, 20px);
         font-style: normal;
@@ -2010,7 +2015,7 @@ main.nfo-nav {
       &2 {
         margin: 0;
         color: var(--blue-1800-primary, #2E2A94);
-        font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on, 'liga'off;
+        font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on, 'liga' off;
         font-family: var(--body, Inter);
         font-size: var(--body-xlarge-bold-size, 20px);
         font-style: normal;
@@ -2136,12 +2141,16 @@ main.nfo-nav {
 .section.high-skin-text.gift-high-skin {
   .high-skin-wrap-one1 {
     .high-skin-wrap-two1 {
+      margin: 0;
+
       @include media(mobile) {
         margin: 0;
       }
 
       .high-skin-wrap-three1 {
         .high-skin-heading1 {
+          margin: 0;
+
           .high-skin-subheading1 {
             max-width: 395px;
             width: 100%;
@@ -2154,6 +2163,7 @@ main.nfo-nav {
               font-style: normal;
               font-weight: 600;
               line-height: var(--heading-h5-line-height);
+              margin: 0;
 
               @include media(mobile) {
                 font-size: var(--sub-header-large-size);
@@ -2175,6 +2185,7 @@ main.nfo-nav {
                 font-style: normal;
                 font-weight: 400;
                 line-height: 24px;
+                margin: 0;
 
                 /* 150% */
               }
@@ -2669,6 +2680,11 @@ main.nfo-nav {
           li.matters-li3 {
             padding: 12px;
             background-color: unset;
+
+            @include media (mobile) {
+              padding: 12px 0;
+
+            }
           }
         }
 
@@ -2735,6 +2751,11 @@ main.nfo-nav {
     .promise-qglp-ctn1 {
       position: unset;
       height: 203px;
+
+      @include media (mobile) {
+        height: 120px;
+        padding: 0 16px;
+      }
 
       // margin-left: 16px;
     }

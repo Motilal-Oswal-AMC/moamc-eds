@@ -9,6 +9,12 @@
             display: flex;
             flex-wrap: wrap;
 
+            &.comlist {
+                @include media(mobile) {
+                    align-items: start;
+                }
+            }
+
             .pi-inp-container {
                 max-width: 100%;
             }

@@ -82,9 +82,9 @@ body:has(.calculator-container) {
             z-index: -1;
         }
 
-        div.library-btn1 {
-            padding-bottom: 40px;
-        }
+        // div.library-btn1 {
+        //     padding-bottom: 40px;
+        // }
 
         .future-building {
             .swiper-wrapper {
@@ -170,7 +170,7 @@ body:has(.calculator-container) {
             }
 
             a.recommended-funds-cta {
-                @include font-style(14px, 16px, $primary-white, 400, $inter);
+                @include font-style(14px, 16px, var(--neutrals-white), 400, $inter);
 
                 display: none;
                 max-width: 124px;
@@ -183,8 +183,17 @@ body:has(.calculator-container) {
                 flex-shrink: 0;
                 margin: 0;
                 background-color: inherit;
-                border-radius: 8px;
-                border: 1px solid $primary-white;
+                border-radius: var(--border-radius-4);
+                border: 1px solid var(--neutrals-white);
+
+                @include media(mobile) {
+                    border-radius: var(--border-radius-8);
+                    font-size: 14px;
+                    line-height: var(--button-small-line-height);
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
 
                 @include media(mobile) {
                     display: flex;
@@ -230,60 +239,14 @@ body:has(.calculator-container) {
                     justify-content: center;
                 }
 
-                .card-container {
-                    padding: 19.6px 16px 16px;
 
-                    @include media(mobile) {
-                        max-width: 340px;
-                        padding-top: 20px;
+                .card-container {
+                    @include media(desktop-sm) {
+                        max-width: 31.8%;
                     }
 
-
-                    .card-wrapper {
-                        .card-category {
-                            @include media(mobile) {
-                                margin-bottom: 35px;
-                            }
-                        }
-
-                        .cagr-container {
-                            .cagr-dropdown {
-                                .selectedtext {
-                                    gap: 0;
-                                }
-                            }
-
-                            @include media(mobile) {
-                                min-height: 74px;
-                            }
-                        }
-
-                        .cagr-container .cagr-value .cagr-val-label span {
-                            @include media(mobile) {
-                                line-height: 28px;
-                            }
-                        }
-
-                        .discription {
-                            .dis-choosen {
-                                min-height: 20px;
-                                align-items: center;
-
-                                .dis-investor {
-                                    .dis-investor {
-                                        .person {
-                                            width: 16px;
-                                            height: 16px;
-                                        }
-                                    }
-                                }
-
-                                .riskfactor-icon {
-                                    width: 20px;
-                                    height: 20px;
-                                }
-                            }
-                        }
+                    @include media(mobile) {
+                        max-width: 100%;
                     }
                 }
             }
@@ -298,13 +261,16 @@ body:has(.calculator-container) {
 }
 
 
+
 body:has(.calc-error) {
+
     .calculator-sticky-cta-container .button.calculator-container-title-btn,
     div[class*='calculator-container_title'].default-content-wrapper .calculator-container-title-item1 p.button-container a.calculator-container-title-btn {
         // opacity: 0.58;
         // cursor: not-allowed;
         color: $neutrals-550;
         border: 1px solid $neutrals-400;
+        background-color: $neutrals-50;
         pointer-events: none;
     }
 }
@@ -503,7 +469,7 @@ main {
 
                 @include media(mobile) {
                     font-size: 12px;
-                    line-height: 16px;
+                    line-height: 14px;
                 }
 
                 .icon-key-facts-no-bg {
@@ -1065,7 +1031,11 @@ main {
             }
 
             .question {
-                @include font-style(22px, 32px, $primary-blue, 600, $inter);
+                @include font-style(24px, 32px, $primary-blue, 500, $inter);
+
+                @include media(mobile) {
+                    font-size: 22px;
+                }
 
                 .link {
                     color: $primary-blue;
@@ -1087,7 +1057,17 @@ main {
             }
 
             ol.answer-container {
+
                 // gap: 35px;
+                &:not(:has(.pointer)) {
+                    li.answer {
+                        margin-bottom: 0 !important;
+
+                        &::marker {
+                            color: $neutrals-700 !important;
+                        }
+                    }
+                }
 
                 li.answer:not(:has(em.small-bold)) {
                     position: relative;
@@ -1098,10 +1078,10 @@ main {
                     margin-left: 24px;
 
                     &:not(:last-child) {
-                        margin-bottom: 28px;
+                        margin-bottom: 24px;
 
                         @include media(mobile) {
-                            margin-bottom: 12px;
+                            margin-bottom: 16px;
                         }
                     }
 
@@ -1114,28 +1094,16 @@ main {
                         width: 100%;
                         display: block;
                         margin-bottom: 4px;
-
-                        // padding-left: 16px;
-
-                        // &::before {
-                        //     content: counter(num) ".";
-                        //     position: absolute;
-                        //     left: 0;
-                        //     top: 50%;
-                        //     transform: translateY(-50%);
-                        //     color: black;
-                        //     font-weight: bold;
-                        // }
                     }
                 }
 
             }
 
             p.answer {
-                margin-bottom: 14px;
+                margin-bottom: 24px;
 
                 @include media(mobile) {
-                    margin-bottom: 12px;
+                    margin-bottom: 16px;
                 }
 
                 .link {
@@ -1158,7 +1126,11 @@ main {
                     list-style: none;
 
                     &:not(:last-child) {
-                        margin-bottom: 14px;
+                        margin-bottom: 24px;
+
+                        @include media(mobile) {
+                            margin-bottom: 16px;
+                        }
                     }
 
                     &:has(strong):not(:has(em.small-bold)) {
@@ -1173,9 +1145,9 @@ main {
                         text-decoration: underline;
                     }
 
-                    
+
                     .small-bold {
-                        @include font-style(18px, 24px, $neutrals-800, 500, $inter);
+                        @include font-style(18px, 28px, $neutrals-800, 500, $inter);
 
                         text-decoration: none;
                         font-style: normal;

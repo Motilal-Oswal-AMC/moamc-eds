@@ -3,8 +3,8 @@
 /*   media-feature-range-notation */
 
 @use "sass:map";
-@use "../../styles/common-theme/css/variables_mixins"as *;
-@use "../../styles/common-theme/css/fluid-typography"as *;
+@use "../../styles/common-theme/css/variables_mixins" as *;
+@use "../../styles/common-theme/css/fluid-typography" as *;
 @import "./faq-page.css";
 
 .accordion-container {
@@ -309,6 +309,10 @@
                 border-width: unset;
                 transform: translateY(-50%);
                 background: url("/icons/plus-blue.svg");
+
+                @include media (mobile) {
+                  top: 17px;
+                }
               }
             }
           }
@@ -482,6 +486,7 @@
 
   @include media(mobile) {
     margin-top: 40px;
+    margin-bottom: 0px;
   }
 
   .faq-our-fund {
@@ -511,17 +516,160 @@
 
     .accordion-wrapper {
       .accordion {
-        .accordion-item[open]{
-          .accordion-item-body{
-            p{
-                      @include media(mobile) {
-           font-size: 14px;
-                   line-height: 20px;
-                   font-weight: 400;
-        }
+        .accordion-item {
+          .accordion-item-label {
+            p::after {
+              @include media(mobile) {
+                top: 10px;
+              }
+
             }
           }
         }
+
+        .accordion-item[open] {
+          .accordion-item-body {
+            p {
+              @include media(mobile) {
+                font-size: 14px;
+                line-height: 20px;
+                font-weight: 400;
+              }
+            }
+          }
+        }
+
+        .accordion-table[open] {
+          .accordion-item-body {
+            // background-color: red;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+
+            .leftartsub1,
+            .leftartsub2 {
+              color: #424242;
+              font-family: var(--body);
+              font-size: 14px;
+              font-style: normal;
+              font-weight: 400;
+              line-height: 20px;
+
+              .comlist {
+                color: var(#424242);
+                font-family: var(--body);
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 600;
+                line-height: 20px;
+              }
+
+              /* 142.857% */
+            }
+
+            .leftartsub3 {
+              margin: 0;
+
+              .leftartitem1 {
+                .subleftart1 {
+                  margin: 0px;
+
+                  li.comlist {
+                    ul.comlist {
+                      margin: 0;
+                      width: 100%;
+                      display: flex;
+                      list-style: none;
+                      justify-content: space-between;
+
+                      li.comlist {
+                        max-width: 248px;
+                        width: 100%;
+                        padding: 20px 8px;
+
+                      }
+                    }
+                  }
+
+                  .comlist.mainleftart1 {
+                    border-top-left-radius: 8px;
+                    border-top-right-radius: 8px;
+                  }
+
+                  .comlist.mainleftart3 {
+                    border-bottom-left-radius: 8px;
+                    border-bottom-right-radius: 8px;
+                  }
+
+                  .comlist.mainleftart1,
+                  .comlist.mainleftart3 {
+                    background: #F5F5F5;
+                  }
+
+                  .comlist.comlist.mainleftart1 {
+                    ul.comlist {
+                      li.comlist {
+                        color: #2E2A94;
+                        font-family: var(--body);
+                        font-size: var(--body-small-medium-size);
+                        font-style: normal;
+                        font-weight: 500;
+                        line-height: var(--body-small-medium-line-height);
+                        /* 114.286% */
+                        display: flex;
+                        justify-content: start;
+                        align-items: center;
+                      }
+                    }
+                  }
+
+                  .comlist.comlist.mainleftart2,
+                  .comlist.comlist.mainleftart3 {
+                    ul.comlist {
+                      li.comlist {
+                        color: #424242;
+                        font-family: var(--body);
+                        font-size: var(--paragraph-xsmall-regular-size);
+                        font-style: normal;
+                        font-weight: 400;
+                        line-height: var(--paragraph-xsmall-regular-line-height);
+                        display: flex;
+                        justify-content: start;
+                        align-items: center;
+                        /* 133.333% */
+                      }
+                    }
+                  }
+
+
+                  .comlist.comlist.mainleftart2,
+                  .comlist.comlist.mainleftart3 {
+                    ul.comlist {
+                      li.itemleftart1 {
+                        color: #212121;
+                        font-family: var(--body);
+                        font-size: 12px;
+                        font-style: normal;
+                        font-weight: 500;
+                        line-height: 14px;
+                        /* 116.667% */
+                      }
+                    }
+                  }
+
+
+
+                  .comlist.mainleftart2 {
+                    background: #FFF;
+                  }
+                }
+              }
+            }
+          }
+
+        }
+
+
         .hidden {
           display: block;
         }
@@ -570,7 +718,7 @@
             p.comlist {
               margin: unset;
               color: var(--blue-1-800-primary);
-              font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
+              font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
               font-family: var(--body);
               font-size: var(--body-large-medium-size);
               font-style: normal;

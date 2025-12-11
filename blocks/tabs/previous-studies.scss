@@ -371,3 +371,34 @@ main.nfo-nav {
     }
   }
 }
+
+// nri page // 
+
+.section.gift-previous-studies.previous-studies-ctn{
+  .previous-studies-ex1{
+    .previous-studies-inter1{
+       @include media(mobile) {
+        margin: 0 0 24px;
+      }
+    }
+  }
+  .tabs-wrapper{
+    .tabs{
+      .tabs-list{
+        @include media(mobile) {
+        display: flex;
+        justify-content: start;
+      }
+
+      .tabs-tab{
+         @include media(mobile) {
+        flex: none;
+
+      }
+      }
+
+
+      }
+    }
+  }
+}

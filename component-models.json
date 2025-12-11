@@ -531,6 +531,10 @@
             "value": "article-sub-right"
           },
           {
+            "name": "Download Analysis",
+            "value": "download-analysis"
+          },
+          {
             "name": "Stay Updated",
             "value": "stay-updated"
           },
@@ -607,6 +611,10 @@
             "value": "our-author-detail"
           },
           {
+            "name": "Gift Previous Studies",
+            "value": "gift-previous-studies"
+          },
+          {
             "name": "QGLP Tabs",
             "value": "qglp-tabs"
           },
@@ -669,6 +677,10 @@
           {
             "name": "Why Choose Card",
             "value": "why-choose-card"
+          },
+          {
+            "name": "Customized Section",
+            "value": "customized-section"
           },
           {
             "name": "Section One",
@@ -883,6 +895,10 @@
             "value": "minors-folio-faq"
           },
           {
+            "name": "Key Details",
+            "value": "key-details"
+          },
+          {
             "name": "Key Details Card",
             "value": "key-details-card"
           },
@@ -1076,6 +1092,17 @@
         "name": "answer",
         "label": "Answer",
         "raw": true
+      },
+      {
+        "component": "multiselect",
+        "name": "style",
+        "label": "Style",
+        "options": [
+          {
+            "name": "Accordion Table",
+            "value": "accordion-table"
+          }
+        ]
       }
     ]
   },
