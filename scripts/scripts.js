@@ -357,7 +357,6 @@ export function generateAppId() {
     appId += chars[Math.floor(Math.random() * chars.length)];
   }
   return appId;
-  // return "877C010EM8A9CA4820M987BCB394B48563BE";
 }
 
 // export async function myAPI(method, url, body = null, header) {
