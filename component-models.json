@@ -933,6 +933,10 @@
           {
             "name": "Strategy Download",
             "value": "strategy-download"
+          },
+          {
+            "name": "Performance Strategy",
+            "value": "performance-strategy"
           }
         ]
       },
