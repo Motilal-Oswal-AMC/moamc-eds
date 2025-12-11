@@ -26,8 +26,6 @@ export default function decoratePurchaseForm(block) {
         { class: 'scheme-select-wrapper' },
 
         p({ class: 'selectedtext' }, 'NFO-Motilal Oswal Consumption Fund'),
-        p({ class: 'cagr-date' }, ''),
-
         ul(
           { class: 'dropdown-list' },
           li(
@@ -88,6 +86,7 @@ export default function decoratePurchaseForm(block) {
           name: 'amount',
           placeholder: '₹ 70000',
         }),
+        span({ class: 'error-msg scheme-error' }, 'Please select a scheme'),
       ),
 
       div(
@@ -133,6 +132,7 @@ export default function decoratePurchaseForm(block) {
           name: 'distributorArn',
           placeholder: 'ARN Number',
         }),
+        span({ class: 'error-msg scheme-error'}, 'Please select a scheme'),
       ),
       div(
         { class: 'form-group' },
@@ -143,6 +143,7 @@ export default function decoratePurchaseForm(block) {
           name: 'subDistributorArn',
           placeholder: 'ARN Number',
         }),
+        span({ class: 'error-msg scheme-error' }, 'Please select a scheme'),
       ),
     ),
 
@@ -160,6 +161,7 @@ export default function decoratePurchaseForm(block) {
           name: 'employeeCode',
           placeholder: 'Employee Code',
         }),
+        span({ class: 'error-msg scheme-error'}, 'Please select a scheme'),
       ),
       div(
         { class: 'form-group' },
@@ -170,6 +172,7 @@ export default function decoratePurchaseForm(block) {
           name: 'euin',
           placeholder: 'E',
         }),
+        span({ class: 'error-msg scheme-error' }, 'Please select a scheme'),
       ),
     ),
 
@@ -236,6 +239,89 @@ export default function decoratePurchaseForm(block) {
 
   block.textContent = '';
   block.append(purchaseForm);
+
+const wrapper = block.querySelector('.quick-purchase-block .purchase-form');
+
+wrapper.closest('form').addEventListener('submit', function (event) {
+  event.preventDefault();
+
+  let formIsValid = true;
+
+  const showError = (input, message) => {
+    const span = input.parentElement.querySelector('.error-msg');
+    span.textContent = message;
+    span.style.display = 'block';
+    formIsValid = false;
+  };
+
+  const clearError = (input) => {
+    const span = input.parentElement.querySelector('.error-msg');
+    span.style.display = 'none';
+  };
+
+  const amountInput = wrapper.querySelector('.select-schema-radio input');
+
+  const distributorArn = document.getElementById('distributorArn');
+  const subDistributorArn = document.getElementById('subDistributorArn');
+  const employeeCode = document.getElementById('employeeCode');
+  const euin = document.getElementById('euin');
+
+  const arnRegex = /^ARN-\d{2,6}$/i;
+  const employeeRegex = /^[a-zA-Z0-9-]{1,20}$/;
+  const euinRegex = /^E\d{6}$/i;
+
+  if (amountInput.value.trim() === '' || amountInput.value.trim() === '0') {
+    showError(amountInput, 'Please select a scheme');
+  } else {
+    clearError(amountInput);
+  }
+
+  if (distributorArn.value.trim() === '') {
+    showError(distributorArn, 'Distributor ARN is required');
+  } else if (!arnRegex.test(distributorArn.value.trim())) {
+    showError(distributorArn, 'Invalid ARN (e.g., ARN-12345)');
+  } else {
+    clearError(distributorArn);
+  }
+
+  if (subDistributorArn.value.trim() !== '' && !arnRegex.test(subDistributorArn.value.trim())) {
+    showError(subDistributorArn, 'Invalid Sub-Distributor ARN');
+  } else {
+    clearError(subDistributorArn);
+  }
+
+  if (employeeCode.value.trim() !== '' && !employeeRegex.test(employeeCode.value.trim())) {
+    showError(employeeCode, 'Only A-Z, 0-9, hyphen, max 20 chars');
+  } else {
+    clearError(employeeCode);
+  }
+
+  if (euin.value.trim() !== '' && !euinRegex.test(euin.value.trim())) {
+    showError(euin, 'Invalid EUIN (e.g., E123456)');
+  } else {
+    clearError(euin);
+  }
+
+  if (formIsValid) {
+    this.submit();
+  }
+});
+
+
+  if (purchaseForm !== null) {
+    const wrapper = block.querySelector('.quick-purchase-block .scheme-select-wrapper');
+
+    if (wrapper) {
+      wrapper.addEventListener('click', (event) => {
+        const dropdown = wrapper.querySelector('.dropdown-list');
+        if (dropdown.style.display === 'block') {
+          dropdown.style.display = 'none';
+        } else {
+          dropdown.style.display = 'block';
+        }
+      });
+    }
+  }
 
   return block;
 }

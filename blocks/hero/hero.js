@@ -123,4 +123,27 @@ export default function decorate(block) {
     'mo-inter-list-row',
   ];
   newSection.forEach((sublist) => dataMapMoObj.addIndexed(sublist));
+
+  document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll('.selectedtext').forEach(sel => {
+        sel.addEventListener('click', function () {
+            let dropdown = this.nextElementSibling;
+
+            dropdown.style.display =
+              dropdown.style.display === "block" ? "none" : "block";
+        });
+    });
+});
+
+document.querySelectorAll('.selectedtext').forEach(sel => {
+    sel.addEventListener('click', function () {
+        let dropdown = this.nextElementSibling;
+
+        if (dropdown.style.display === "block") {
+            dropdown.style.display = "none";
+        } else {
+            dropdown.style.display = "block";
+        }
+    });
+});
 }
