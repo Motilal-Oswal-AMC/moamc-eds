@@ -682,9 +682,9 @@ $breakpoint-tablet: 900px;
 
                             .comlist {
                                 display: flex;
-                                width: 165px;
+                                width: 164px;
                                 height: 40px;
-                                padding: var(--spacing-12);
+                                padding: var(--spacing-10) 11.5px;
                                 justify-content: center;
                                 align-items: center;
                                 gap: var(--spacing-8);
@@ -695,7 +695,7 @@ $breakpoint-tablet: 900px;
                                 a {
                                     color: var(--text-white, #FFF);
                                     text-align: center;
-                                    font-family: var(--title, Inter);
+                                    font-family: var(--body);
                                     font-size: var(--button-medium-size);
                                     font-style: normal;
                                     font-weight: 500;
@@ -781,7 +781,14 @@ $breakpoint-tablet: 900px;
 
                         p {
                             max-width: 496px;
-                            margin: 0 0 57px;
+                            margin: 0 0 45.06px;
+
+                             @include media(mobile) {
+                                font-size: 16px;
+                                line-height: 24px;
+                                font-weight: 400;
+
+                            }
                         }
                     }
                 }
@@ -855,12 +862,13 @@ $breakpoint-tablet: 900px;
 
                     .cards-card-image {
                         max-width: 660px;
-                        height: 369px;
+                        height: 358px;
                         flex-shrink: 0;
                         aspect-ratio: unset;
 
                         @include media(mobile) {
                             height: 205px;
+                            
                         }
 
 
@@ -869,6 +877,10 @@ $breakpoint-tablet: 900px;
                             aspect-ratio: unset;
                             height: 100%;
                             object-fit: cover;
+
+                             @include media(mobile) {
+                           border-radius: 6.706px;
+                        }
                         }
                     }
 
@@ -892,6 +904,7 @@ $breakpoint-tablet: 900px;
                                 font-style: normal;
                                 font-weight: 500;
                                 line-height: var(--body-large-medium-line-height);
+                                gap: 16px;
 
                                 /* 133.333% */
                                 @include media(mobile) {
@@ -904,8 +917,9 @@ $breakpoint-tablet: 900px;
 
 
                                 .icon-skin-game {
-                                    width: 50px;
-                                    height: 50px;
+                                    min-width: 50px;
+                                    min-height: 50px;
+                                    // height: 100%;
                                 }
                             }
                         }
@@ -970,7 +984,7 @@ $breakpoint-tablet: 900px;
                 font-style: normal;
                 font-weight: 600;
                 line-height: 44px;
-                margin: 4px;
+                margin: 0;
 
                 @include media(mobile) {
                     display: flex;
@@ -979,8 +993,9 @@ $breakpoint-tablet: 900px;
                     font-size: 20px;
                     line-height: 24px;
                 }
+                
 
-
+          
                 /* 122.222% */
                 .comlist {
                     list-style: none;
@@ -990,6 +1005,7 @@ $breakpoint-tablet: 900px;
                     font-style: normal;
                     font-weight: 400;
                     line-height: var(--body-small-regular-line-height);
+                    margin: 0;
 
                     @include media(mobile) {
                         font-size: 14px;
@@ -1001,7 +1017,24 @@ $breakpoint-tablet: 900px;
 
                     /* 114.286% */
                 }
+
+               
+
             }
+
+             .comlist.high-skin-wrap-three1,
+             .comlist.high-skin-wrap-three2,
+             .comlist.high-skin-wrap-three3,
+             .comlist.high-skin-wrap-three4{
+                    display: flex;
+                    flex-direction: column;
+                    gap: 4px;
+
+                    @include media(mobile) {
+                       flex-direction: row;
+                    }
+
+                }
         }
     }
 }

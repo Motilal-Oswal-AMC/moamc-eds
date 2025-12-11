@@ -612,8 +612,8 @@
             text-decoration-style: solid;
             text-decoration-skip-ink: auto;
             text-decoration-thickness: auto;
-            text-underline-offset: auto;
             text-underline-position: from-font;
+            text-underline-offset: -1.2px;
 
             @include font-style(var(--button-small-size),
               var(--button-small-line-height),

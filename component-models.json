@@ -531,6 +531,10 @@
             "value": "article-sub-right"
           },
           {
+            "name": "Download Analysis",
+            "value": "download-analysis"
+          },
+          {
             "name": "Stay Updated",
             "value": "stay-updated"
           },
@@ -605,6 +609,10 @@
           {
             "name": "Our Author Detail",
             "value": "our-author-detail"
+          },
+          {
+            "name": "Gift Previous Studies",
+            "value": "gift-previous-studies"
           },
           {
             "name": "QGLP Tabs",
@@ -1080,6 +1088,17 @@
         "name": "answer",
         "label": "Answer",
         "raw": true
+      },
+      {
+        "component": "multiselect",
+        "name": "style",
+        "label": "Style",
+        "options": [
+          {
+            "name": "Accordion Table",
+            "value": "accordion-table"
+          }
+        ]
       }
     ]
   },
