@@ -595,16 +595,26 @@
 
 .mo-inter-business.hero-container {
   background: var(--blue-1-900, #242177);
+  margin-bottom: 80px;
+
+  @include media (mobile) {
+    margin-bottom: 40px;
+  }
+
 
   .mo-inter-sec1 {
     display: flex;
     flex-direction: column-reverse;
     align-items: center;
-    gap: 40px;
+    justify-content: space-between;
     padding: 40px 0;
+    min-height: 557px;
+
 
     @include media (mobile) {
       padding: 40px 0;
+      min-height: unset;
+      height: 486px;
     }
 
 
@@ -620,7 +630,12 @@
         align-items: center;
         gap: 4px;
 
-                h1, h2, h3, h4, h5, h6 {
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
           margin: 0;
           color: var(--neutrals-white, #FFF);
           text-align: center;
@@ -663,6 +678,9 @@
     .mo-inter-sub1 {
       .mo-inter-inner-text1 {
         height: 347px;
+    .mo-inter-sub1 {
+      .mo-inter-inner-text1 {
+        height: 321px;
 
         @include media (mobile) {
           height: 270px;
@@ -807,9 +825,15 @@
       }
 
       .mo-inter-inner-text1 {
+        @include media (mobile) {
+          height: 196px;
+        }
+
         .mo-inter-list-content4 {
           height: 100%;
           object-fit: cover;
+
+  
         }
       }
     }

@@ -651,6 +651,12 @@
             display: flex;
             margin-bottom: 16px;
 
+            @include media(mobile) {
+              max-width: 308px;
+              min-width: 308px;
+              width: 100%;
+            }
+
             .urm-pan-lbl {
               position: absolute;
               top: 50%;
@@ -711,6 +717,12 @@
             width: 100%;
             display: flex;
             margin-bottom: 16px;
+
+            @include media(mobile) {
+              min-width: 308px;
+              max-width: 308px;
+              width: 100%;
+            }
 
             .urm-folio-lbl {
               position: absolute;
