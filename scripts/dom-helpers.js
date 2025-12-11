@@ -154,3 +154,34 @@ export function th(...items) { return domEl('th', ...items); }
 export function tr(...items) { return domEl('tr', ...items); }
 export function td(...items) { return domEl('td', ...items); }
 export function sup(...items) { return domEl('sup', ...items); }
+
+export function ulToTable(ulRoot) {
+  if (!ulRoot || ulRoot.tagName.toLowerCase() !== 'ul') return null;
+
+  const rowLis = [...ulRoot.children].filter((li) => li.tagName.toLowerCase() === 'li');
+
+  const rows = rowLis.map((rowLi, rowIndex) => {
+    const innerUl = rowLi.querySelector('ul');
+    if (!innerUl) return null;
+
+    const cellLis = [...innerUl.children].filter((li) => li.tagName.toLowerCase() === 'li');
+
+    const cells = cellLis.map((cellLi) => {
+      // Get HTML directly from <p> or <strong>, or innerHTML fallback
+      const p = cellLi.querySelector('p, strong');
+      const html = p ? p.innerHTML : cellLi.innerHTML;
+
+      // Create empty th/td, then inject HTML inside
+      const cell = rowIndex === 0 ? th() : td();
+      cell.innerHTML = html;
+      return cell;
+    });
+
+    return tr(...cells);
+  }).filter(Boolean);
+
+  const tbl = table({ class: 'eds-table' }, tbody(...rows));
+
+  ulRoot.replaceWith(tbl);
+  return tbl;
+}
