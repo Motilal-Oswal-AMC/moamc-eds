@@ -127,7 +127,7 @@ $breakpoint-tablet: 900px;
       top: unset;
       left: 0;
       padding: 0 16.5px 0 15.5px;
-      bottom: 32px;
+      bottom: 142px;
     }
 
     .comlist.para1 {
@@ -138,7 +138,7 @@ $breakpoint-tablet: 900px;
       font-weight: 400;
       line-height: normal;
       margin: 0;
-      max-width: 504px;
+      max-width: 552px;
 
       @include media(mobile) {
         color: var(--neutrals-white);
