@@ -298,20 +298,44 @@ export default function decorate(block) {
     const phoneInput = wealthModal.querySelector('.num-inp');
     const submitButton = wealthModal.querySelector('.btn');
 
-    const fields = [nameInput, emailInput, phoneInput, assocInput];
+    const fields = [nameInput, emailInput, phoneInput, assocInput]
+      .filter(Boolean);
     const touchedFields = new Set();
 
     function validateForm() {
+
       // Ensure all fields are validated, including the associated dropdown
       return fields.every((f) => dataMapMoObj.validateField(f));
     }
 
     function toggleSubmitButton() {
+      const hasStaticModal = document.querySelector('.static-modal');
+
+      const filteredFields = fields.filter(f => {
+        const isAssociated = !!(f?.classList?.contains('associated-inp'));
+        // Remove ONLY when hasStaticModal AND isAssociated
+        if (hasStaticModal && isAssociated) {
+          return false;
+        }
+        return true;
+      });
+
       // FIX: removed hasAttribute('readonly') logic that was incorrectly marking assocInput as filled
-      const allFilled = fields.every((f) => f.value.trim() !== '');
-      const allValid = fields
+      // console.log(" fields :", fields);
+      console.log("!hasStaticModal ? assocInput : null : ", filteredFields);
+
+      const allFilled = filteredFields.every((f) => {
+        const fValue = f.value.trim();
+
+        const isValid = fValue ? !f.classList.contains('error') : false;
+        return isValid;
+      });
+
+      const allValid = filteredFields
         .every((f) => (touchedFields.has(f) ? dataMapMoObj.validateField(f) : true));
+      // conslog(" allValid :", allValid);
       submitButton.disabled = !(allFilled && allValid);
+
       submitButton.classList.toggle('active', allFilled && allValid);
     }
     dataMapMoObj.toggleSubmitButton = toggleSubmitButton;
@@ -372,6 +396,7 @@ export default function decorate(block) {
       }
       inputarg.classList.toggle('error', !valid && inputarg.value.trim() !== '');
       toggleErrorIcon(inputarg, valid);
+
       return valid;
     }
     dataMapMoObj.validateField = validateField;
@@ -415,8 +440,59 @@ export default function decorate(block) {
     moclosse.querySelector('.thank-you-scr-sec4').addEventListener('click', () => {
       moclosse.style.display = 'none';
     });
+
+    async function elessSaveform() {
+      try {
+        const objreqelss = {
+          "panNo": "",
+          "name": nameInput.value.trim(),
+          "stdCode": "91",
+          "mobileNo": phoneInput.value.trim(),
+          "emailID": emailInput.value.trim(),
+          "country": "",
+          "state": "",
+          "city": "",
+          "pinCode": "",
+          "isKYC": false,
+          "campaign": "",
+          "productName": "",
+          "url": "https://mf.moamc.com/mutual-funds/motilal-oswal-large-cap-fund",
+          "deviceType": "Web",
+          "osName": "Windows",
+          "osVersion": "Chrome",
+          "ip": "",
+          "fundName": "",
+          "fundCode": "",
+          "plan": "",
+          "option": "",
+          "isNewInvestor": true,
+          "_nextType": "/SaveRawLead"
+
+        };
+        const headers = {
+          'Content-Type': 'application/json',
+          appid: generateAppId(),
+        };
+
+        const response = await myAPI(
+          'POST',
+          'https://api.moamc.com/LMS/api/Lead/SaveRawLead',
+          objreqelss,
+          headers,
+        );
+
+        const result = await response;
+        console.log(result);
+      } catch (error) {
+
+      }
+    }
     submitButton.addEventListener('click', async (e) => {
       e.preventDefault();
+      if (block.closest('.static-modal')) {
+        elessSaveform();
+        return false;
+      }
       fields.forEach((f) => touchedFields.add(f));
       if (validateForm()) {
         // console.log('Form is valid. Submitting...');
@@ -493,7 +569,6 @@ export default function decorate(block) {
     block.closest('.wealth-register')
       .classList.add('modal-show');
   } catch (error) {
-
   }
   // const crossBtn = wealthModal.querySelector('.wealth-inner1').cloneNode(true);
   // const flag = wealthModal.querySelector('.icon-national-flag').cloneNode(true);
