@@ -1269,8 +1269,9 @@ try {
 
     container.insertBefore(wrapper, container.firstChild);
 
-  wrapper.appendChild(wrap1);
-  wrapper.appendChild(wrap2);
+    wrapper.appendChild(wrap1);
+    wrapper.appendChild(wrap2);
+  }
 } catch (error) {
   // console.log(error);
 }
