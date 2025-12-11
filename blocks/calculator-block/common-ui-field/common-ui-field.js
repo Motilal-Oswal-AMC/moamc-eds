@@ -505,25 +505,19 @@ export function createInputBlock({
       suffix
     );
     // Wrap input and suffix together
-    innerInputWrapper = label(
-      { class: "calc-inner-input-wrapper", for: id },
+    innerInputWrapper = div(
+      { class: "calc-inner-input-wrapper" },
       inputEl,
       inlineSuffix
     );
-    // innerInputWrapper.addEventListener("click", () => {
-    //   const value = inputEl.value;
-
-    //   // Temporarily switch to text to allow caret movement
-    //   inputEl.type = "text";
-    //   inputEl.focus();
-
-    //   // Move cursor to end
-    //   const len = value.length;
-    //   inputEl.setSelectionRange(len, len);
-
-    //   // Switch back to number
-    //   inputEl.type = "number";
-    // });
+    innerInputWrapper.tabIndex = 0;
+    innerInputWrapper.addEventListener("focus", () => {
+      setTimeout(() => {
+        inputEl.focus();
+        const len = inputEl.value.length;
+        inputEl.setSelectionRange(len, len);
+      }, 0);
+    });
   } else {
     innerInputWrapper = inputEl;
   }
