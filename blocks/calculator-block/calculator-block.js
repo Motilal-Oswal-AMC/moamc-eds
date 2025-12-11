@@ -270,6 +270,14 @@ export default function decorate(block) {
       FUNDS_CARDS_CONTAINER.append(fundBlock(card));
     });
   }
+  
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Enter" && e.target.tagName === "INPUT") {
+      e.preventDefault();
+      e.target.blur(); // triggers your existing blur → validation → formatting
+    }
+  });
+
   // const BREAD_CRUMB_CONTAINER =
   //   MAIN_CONTAINER.querySelector(".breadcrumbs-fdp");
 
