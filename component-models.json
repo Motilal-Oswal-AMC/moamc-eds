@@ -735,6 +735,10 @@
             "value": "fund-investment-options"
           },
           {
+            "name": "Become Partner Banner",
+            "value": "become-partner-banner"
+          },
+          {
             "name": "Thank You Screen",
             "value": "thank-you-screen"
           },
