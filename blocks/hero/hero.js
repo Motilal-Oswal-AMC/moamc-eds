@@ -135,4 +135,16 @@ export default function decorate(block) {
     'strategy-detail-list-row',
   ];
   strategies.forEach((sublist) => dataMapMoObj.addIndexed(sublist));
+
+  const performance = document.querySelectorAll('.performance-strategy.hero-container');
+  dataMapMoObj.CLASS_PREFIXES = [
+    'performance-cont',
+    'performance-sec',
+    'performance-sub',
+    'performance-inner-text',
+    'performance-list',
+    'performance-list-content',
+    'performance-list-row',
+  ];
+  performance.forEach((sublist) => dataMapMoObj.addIndexed(sublist));
 }
