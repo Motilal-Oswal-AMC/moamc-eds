@@ -66,6 +66,10 @@ $breakpoint-tablet: 900px;
   .fdp-campaign-wrapper {
     padding: 0;
 
+    @include media(mobile){
+      padding: 0 16px;
+    }
+
     .fdp-campaign {
       .compaign1 {
         .compaignsub1 {
@@ -92,7 +96,16 @@ $breakpoint-tablet: 900px;
 
     }
   }
+}
 
+.section.moedge-building-container{
+  .section.fdp-campaign-container.investor-banner.listing-investor-banner{
+    .fdp-campaign-wrapper{
+      @include media(mobile){
+        padding: 0;
+      }
+    }
+  }
 }
 
 .section.fdp-campaign-container.investor-banner.listing-investor-banner {
