@@ -529,6 +529,7 @@
 
         .accordion-item[open] {
           .accordion-item-body {
+            box-shadow: unset;
             p {
               @include media(mobile) {
                 font-size: 14px;
