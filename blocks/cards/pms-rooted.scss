@@ -862,12 +862,13 @@ $breakpoint-tablet: 900px;
 
                     .cards-card-image {
                         max-width: 660px;
-                        height: 369px;
+                        height: 358px;
                         flex-shrink: 0;
                         aspect-ratio: unset;
 
                         @include media(mobile) {
                             height: 205px;
+                            
                         }
 
 
