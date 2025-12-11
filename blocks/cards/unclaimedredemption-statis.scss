@@ -75,6 +75,11 @@
                                     font-size: 32px;
                                     font-weight: 600;
                                     line-height: 40px;
+
+                                    @include media(mobile) {
+                                        font-size: 28px;
+                                        line-height: var(--sub-header-large-line-height);
+                                    }
                                 }
 
                                 .card-contentinner-picture2 {
@@ -83,6 +88,11 @@
                                     font-size: var(--body-medium-regular-size);
                                     font-weight: 400;
                                     line-height: var(--body-medium-regular-line-height);
+
+                                    @include media(mobile) {
+                                        font-size: var(--paragraph-small-regular-size);
+                                        line-height: var(--paragraph-small-regular-line-height);
+                                    }
                                 }
                             }
                         }

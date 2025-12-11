@@ -1,6 +1,6 @@
 @use "sass:map";
-@use "../../styles/common-theme/css/variables_mixins" as *;
-@use "../../styles/common-theme/css/fluid-typography" as *;
+@use "../../styles/common-theme/css/variables_mixins"as *;
+@use "../../styles/common-theme/css/fluid-typography"as *;
 @import "../swiper/swiper-bundle.min.css";
 
 // @import '../blocks/swiper/swiper-bundle.min.css';
@@ -398,7 +398,7 @@
                                     text-decoration-skip-ink: auto;
                                     text-decoration-thickness: auto;
                                     text-underline-position: from-font;
-                                    text-underline-offset: 0;
+                                    text-underline-offset: -0.5px;
                                     border-radius: unset;
                                     border: none;
                                     padding: 0;
@@ -1249,6 +1249,27 @@
                         var(--text-white),
                         500,
                         var(--body));
+                }
+            }
+        }
+    }
+}
+
+.article-detail-library.future-building-container {
+    .library-btn2 {
+        .swiper-slide:last-child {
+            .swiper-slide-cards-1 {
+                .button {
+                    background: transparent;
+                    opacity: unset;
+
+                    img {
+                        opacity: unset;
+                    }
+                }
+
+                &::after {
+                    display: none;
                 }
             }
         }
