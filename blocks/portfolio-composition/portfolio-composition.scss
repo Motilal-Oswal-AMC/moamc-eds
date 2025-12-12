@@ -1,3 +1,8 @@
+ @use "sass:map";
+@use "../../styles/common-theme/css/variables_mixins" as *;
+@use "../../styles/common-theme/css/fluid-typography" as *;
+ 
+ 
  #abha {
         width: 100%;
         height: 432px;
@@ -5,5 +10,9 @@
         border-radius: 8px;
         background-color: #fff;
         box-shadow: 0 4px 12px 0 rgb(0 0 0 / 5%);
+}
 
-      }
+
+.section.strategy-details{
+background: #F5F5F5;
+}

@@ -122,8 +122,7 @@
         "component": "text",
         "name": "linkTitle",
         "label": "Title"
-      },
-      {
+      },      {
         "component": "select",
         "name": "linkType",
         "label": "Type",
@@ -173,6 +172,10 @@
           {
             "name": "Highlight",
             "value": "highlight"
+          },
+          {
+            "name": "Portfolio Composition",
+            "value": "portfolio-composition"
           },
           {
             "name": "NRI Hero",
