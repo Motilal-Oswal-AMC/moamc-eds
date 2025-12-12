@@ -166,8 +166,8 @@ dataMapMoObj.formatNumber = formatNumber;
  * @returns {string} width in ch units
  */
 export function getInputWidth(value, minChars = 1, extraChars = 0) {
-  const str = value != null ? String(value) : "";
-  const { length } = str;
+  const str = value != null ? Number(value) : "";
+  const { length } = String(str);
   const maxLen = length + extraChars > 2 ? 2 : length + extraChars;
   const widthCh = Math.max(maxLen, minChars);
   return `${widthCh}ch`;
@@ -545,7 +545,6 @@ export function createInputBlock({
         requestAnimationFrame(() => placeCaretAtEnd(real));
       }
     });
-    
   } else {
     innerInputWrapper = inputEl;
   }
