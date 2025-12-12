@@ -295,11 +295,12 @@
           .item-child-1 {
             width: 100%;
             color: #212121;
-            font-family: var(--bod, Inter);
+            font-family: var(--body, Inter);
             font-size: var(--sub-header-medium-size, );
             font-style: normal;
             font-weight: 500;
             line-height: var(--sub-header-medium-line-height);
+            height: unset;
 
             @include media(mobile) {
               font-size: 18px;
@@ -1143,7 +1144,7 @@
 }
 
 .strategy-details.cornerstones-advantage-cards-container {
-  padding: 40px 0 80px;
+  padding: 27px 0 67px;
 
   >.construct-contain1 {
     text-align: left;
@@ -1214,6 +1215,7 @@
               font-style: normal;
               font-weight: 400;
               line-height: var(--label-large-line-height, 20px);
+              padding-right: 10px;
             }
           }
         }

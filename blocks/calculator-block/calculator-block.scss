@@ -87,48 +87,46 @@ body:has(.calculator-container) {
         //     padding-bottom: 40px;
         // }
 
-        .future-building {
-            .swiper-wrapper {
-                .swiper-slide {
-                    .swiper-slide-cards-2 {
-                        padding-bottom: 24px;
+        // .future-building {
+        //     .swiper-wrapper {
+        //         .swiper-slide {
+        //             .swiper-slide-cards-2 {
+        //                 // .cards-list-1-cards1 {
+        //                 //     .list-child-11 {
+        //                 //         max-height: 24px;
+        //                 //     }
+        //                 // }
 
-                        // .cards-list-1-cards1 {
-                        //     .list-child-11 {
-                        //         max-height: 24px;
-                        //     }
-                        // }
+        //                 .cards-list-1-cards2 {
+        //                     .list-child-11 {
+        //                         line-height: unset;
+        //                         min-height: 24px;
 
-                        .cards-list-1-cards2 {
-                            .list-child-11 {
-                                line-height: unset;
-                                min-height: 24px;
+        //                         .list-grandch-button1 {
+        //                             @include media(mobile) {
+        //                                 letter-spacing: 0.6px;
+        //                                 word-spacing: 0.5px;
+        //                             }
+        //                         }
+        //                     }
+        //                 }
 
-                                .list-grandch-button1 {
-                                    @include media(mobile) {
-                                        letter-spacing: 0.6px;
-                                        word-spacing: 0.5px;
-                                    }
-                                }
-                            }
-                        }
+        //                 .cards-list-1-cards4 {
+        //                     .list-child-11 {
+        //                         line-height: unset;
+        //                         font-family: $inter;
+        //                         max-height: fit-content;
+        //                         font-size: 14px;
 
-                        .cards-list-1-cards4 {
-                            .list-child-11 {
-                                line-height: unset;
-                                font-family: $inter;
-                                max-height: fit-content;
-                                font-size: 14px;
-
-                                .list-grandch-button1 {
-                                    min-height: fit-content;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
+        //                         .list-grandch-button1 {
+        //                             min-height: fit-content;
+        //                         }
+        //                     }
+        //                 }
+        //             }
+        //         }
+        //     }
+        // }
     }
 
     // .section:not(div[data-id="recommended-funds-id"]) {
@@ -137,7 +135,7 @@ body:has(.calculator-container) {
 
     div[data-id="recommended-funds-id"] {
         position: relative;
-        // height: 600px;
+        min-height: 600px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -148,6 +146,7 @@ body:has(.calculator-container) {
 
         @include media(mobile) {
             height: fit-content;
+            min-height: unset;
             padding: 0;
         }
 
@@ -170,13 +169,13 @@ body:has(.calculator-container) {
                 margin: 40px 0;
             }
 
+
             a.recommended-funds-cta {
-                @include font-style(14px, 16px, var(--neutrals-white), 400, $inter);
+                @include font-style(14px, 16px, var(--neutrals-white), 500, $inter);
 
                 display: none;
                 max-width: 124px;
                 min-width: 124px;
-                max-height: 32px;
                 padding: 8px 12px;
                 justify-content: center;
                 align-items: center;
@@ -185,6 +184,7 @@ body:has(.calculator-container) {
                 margin: 0;
                 background-color: inherit;
                 border-radius: var(--border-radius-4);
+
                 border: 1px solid var(--neutrals-white);
 
                 @include media(mobile) {
@@ -250,8 +250,18 @@ body:has(.calculator-container) {
                     @include media(mobile) {
                         max-width: 100%;
                     }
+
+                    .dropdown-list {
+                        max-height: 155px;
+                    }
                 }
             }
+        }
+    }
+
+    .section.freq-ask-ques {
+        .faq-our-fund>.default-content-wrapper:nth-child(3) ul {
+            flex-direction: column;
         }
     }
 
@@ -344,7 +354,11 @@ main {
         }
 
         &_title.default-content-wrapper {
-            margin-bottom: 28px;
+            margin-bottom: 24px;
+
+            @include media(mobile) {
+                margin-bottom: 40px;
+            }
 
             li {
                 list-style: none;
@@ -1037,6 +1051,7 @@ main {
 
                 @include media(mobile) {
                     font-size: 22px;
+
                 }
 
                 .link {
@@ -1056,6 +1071,11 @@ main {
                 font-weight: 500;
                 line-height: 24px;
                 color: $primary-blue;
+
+                @include media(mobile) {
+                    font-size: 16px;
+                    line-height: 20px;
+                }
             }
 
             ol.answer-container {

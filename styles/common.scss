@@ -1384,8 +1384,13 @@ main>.section.previous-studies-tab.tabs-container {
   background: transparent;
   padding-bottom: 0;
 
+  @media (width >=1390px) {
+    left: 152px;
+  }
+
   @include media(mobile) {
     padding: 20px 0 24px;
+    left: 16px;
   }
 
   .breadul {
@@ -1408,6 +1413,7 @@ main>.section.previous-studies-tab.tabs-container {
       -ms-overflow-style: none;
       scrollbar-width: none;
       overflow-x: auto;
+      display: none;
     }
 
     &::-webkit-scrollbar {
@@ -1519,10 +1525,18 @@ main>.section.previous-studies-tab.tabs-container {
     justify-content: flex-end;
     gap: 24px;
 
+    @include media (mobile) {
+      justify-content: flex-start;
+      gap: 16px;
+      padding: 0;
+    }
+
     >ul {
       li {
-        a,p {
+        a,
+        p {
           color: var(--neutrals-white, #FFF);
+          line-height: 0;
         }
       }
     }
