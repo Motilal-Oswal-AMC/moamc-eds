@@ -23,7 +23,20 @@
             }
         }
 
-        .calc-overview-summary {
+        .calc-author-main2.calc-overview-summary {
+            display: grid;
+            gap: 40px 0;
+            grid-template-areas: 
+                "title title"
+                "IIISS ARISS"
+                "TIITS FMVOTS"
+                "overviewCta overviewCta";
+
+            @include media(mobile) {
+                display: flex;
+                gap: 32px;
+            }
+
             .comlist {
                 margin: 0;
             }
@@ -32,7 +45,7 @@
                 list-style: none;
 
                 &:has(.calc-overview-amount) {
-                    max-width: calc(45%);
+                    /* max-width: calc(45%); */
                     width: 100%;
                     display: flex;
                     flex-direction: column;
@@ -45,15 +58,51 @@
 
                     &.calc-overview-small-title {
                         @include font-style(12px, 16px, $neutrals-700, 400, $inter);
+                        
+                        @include media(mobile) {
+                            font-size: 12px;
+                            line-height: 16px;
+                        }
                     }
 
                     &.calc-overview-amount {
                         @include font-style(16px, 20px, $primary-blue, 600, $inter);
+                        
+                        @include media(mobile) {
+                            font-size: 14px;
+                            line-height: 16px;
+                        }
                     }
 
                     .calc-overview-cta {
                         width: 100%;
                     }
+                }
+            }
+            .total-returns-item{
+                grid-area: title;
+            }
+            .calc-overview-item2{
+                grid-area: IIISS;
+            }
+            .calc-overview-item3{
+                grid-area: ARISS;
+            }
+            .calc-overview-item4{
+                grid-area: TIITS;
+            }
+            .calc-overview-item5{
+                grid-area: FMVOTS;
+            }
+            .calc-overview-item6{
+                grid-area: overviewCta;
+                
+                @include media(mobile) {
+                    display: none;
+                }
+
+                .calc-overview-subitem1{
+                    line-height: 0;
                 }
             }
         }
