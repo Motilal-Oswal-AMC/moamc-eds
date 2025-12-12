@@ -412,6 +412,9 @@ export default function decorate(block) {
         return null; // Return null if condition isn't met
       }
 
+      if (elem.path === '/mutual-fund/in/en/investor-education/blogs/podcast/5-reason-to-boost-your-sip') {
+        return null;
+      }
       // Perform async operation
       const readtime = await dataMapMoObj.getReadingTime(elem.path);
 
@@ -424,10 +427,10 @@ export default function decorate(block) {
       return `<div class="comlist moedge-build-cont${index + 1}">
       <div class="secs-wrapper"><div class="comlist moedge-build-sec1">
         <picture class="comlist moedge-build-sub1">
-          <source type="image/webp" srcset="./media_198d0bd7effd4422c99c4935db941ebcd8230abb8.png?width=2000&format=webply&optimize=medium" media="(min-width: 600px)" class="comlist moedge-build-inner-text1">
-          <source type="image/webp" srcset="./media_198d0bd7effd4422c99c4935db941ebcd8230abb8.png?width=2000&format=webply&optimize=medium" class="comlist moedge-build-inner-text2">
-          <source type="image/jpeg" srcset="./media_198d0bd7effd4422c99c4935db941ebcd8230abb8.png?width=2000&format=webply&optimize=medium" media="(min-width: 600px)" class="comlist moedge-build-inner-text3">
-          <img loading="lazy" alt="edge-img" src="./media_198d0bd7effd4422c99c4935db941ebcd8230abb8.png?width=2000&format=webply&optimize=medium" width="800" height="440" class="comlist moedge-build-inner-text4">
+          <source type="image/webp" srcset="${elem.imgvedios}" media="(min-width: 600px)" class="comlist moedge-build-inner-text1">
+          <source type="image/webp" srcset="${elem.imgvedios}" class="comlist moedge-build-inner-text2">
+          <source type="image/jpeg" srcset="${elem.imgvedios}" media="(min-width: 600px)" class="comlist moedge-build-inner-text3">
+          <img loading="lazy" alt="edge-img" src="${elem.imgvedios}" width="800" height="440" class="comlist moedge-build-inner-text4">
         </picture>
       </div><div class="button-container comlist moedge-build-sec2"><p class="comlist moedge-build-sub1"><a href="${elem.path}" title="/mutual-fund/in/en/modals/youtube-video" class="button comlist moedge-build-inner-text1">/mutual-fund/in/en/modals/youtube-video</a></p></div></div>
       
@@ -458,6 +461,7 @@ export default function decorate(block) {
     });
 
     // 2. Wait for ALL promises to resolve
+    block.innerHTML = '';
     Promise.all(htmlPromises).then((htmlArray) => {
       // Filter out nulls (from the if check) and join into one big string
       const validHtml = htmlArray.filter(Boolean).join('');
@@ -483,7 +487,7 @@ export default function decorate(block) {
         const leveliteration = (Number(level) * 3);
 
         if (leveliteration && items.length > 0) {
-          block.innerHTML = ''; // Clear to re-order
+          // block.innerHTML = ''; // Clear to re-order
           items.forEach((el, index) => {
             block.appendChild(el);
             // Insert banner at specific index
@@ -636,6 +640,7 @@ export default function decorate(block) {
     });
 
     // 2. Wait for ALL promises to resolve
+    block.innerHTML = '';
     Promise.all(htmlPromises).then((htmlArray) => {
       // Filter out nulls (from the if check) and join into one big string
       const validHtml = htmlArray.filter(Boolean).join('');
@@ -662,7 +667,7 @@ export default function decorate(block) {
         const leveliteration = (Number(level) * 3);
 
         if (leveliteration && items.length > 0) {
-          block.innerHTML = ''; // Clear to re-order
+          // block.innerHTML = ''; // Clear to re-order
           items.forEach((el, index) => {
             block.appendChild(el);
             // Insert banner at specific index
