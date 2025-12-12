@@ -22,7 +22,17 @@
 
         
         .calc-author-main2 {
+            display: grid;
+            grid-template-areas: 
+                "title title"
+                "delayMonth delay"
+                "investToday investToday"
+                "overviewCta overviewCta";
+gap: 24px 40px;
+padding: 16px 12px;
+
             @include media(mobile) {
+                display:flex;
                 gap: 24px;
             }
 
@@ -34,13 +44,63 @@
                 list-style: none;
                 margin: 0;
 
+@include media(mobile) {
+gap:0;            
+}
+
                 li {
                     list-style: none;
                 }
 
                 &.calc-author-subitem5 {
                     @include font-style(14px, 16px, $primary-blue, 500, $inter);
+
+                    grid-area: title;
+
+@include media(mobile) {
+font-size: 14px;
+line-height: 16px;
+}
                 }
+
+&.calc-author-subitem6.comlist{
+    grid-area: delayMonth;
+    max-width: 220px;
+    
+@include media(mobile) {
+    max-width: unset;           
+}
+}
+
+&.calc-author-subitem7.comlist{
+    grid-area: delay;
+    max-width: 220px;
+margin-top: auto;
+
+@include media(mobile) {
+                margin-top: unset;
+    max-width: unset;
+            }
+}
+
+&.calc-author-subitem8{
+    grid-area: investToday;
+    margin-top: 16px;
+    
+@include media(mobile) {
+                margin-top: unset;
+            }
+}
+
+&.button-container.calc-author-subitem9{
+    grid-area: overviewCta;
+    margin-top: 16px;
+    
+@include media(mobile) {
+    display: none;
+                margin-top: unset;
+            }
+}
 
                 &.delay-item,
                 &.delay-investment-item {
@@ -80,6 +140,13 @@
 
                 li.sip-amount {
                     @include font-style(20px, 24px, $primary-blue, 600, $inter);
+
+
+@include media(mobile) {
+    font-size: 14px;
+    line-height: 16px;
+    margin-top:4px;
+}
 
                     &#delay-value {
                         color: $red-500-primary;

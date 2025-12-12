@@ -933,6 +933,10 @@
           {
             "name": "Strategy Download",
             "value": "strategy-download"
+          },
+          {
+            "name": "Performance Strategy",
+            "value": "performance-strategy"
           }
         ]
       },
@@ -4111,7 +4115,7 @@
     ]
   },
   {
-    "id": "investment-philosophy",
+    "id": "strategy-philosophy",
     "fields": [
       {
         "component": "richtext",
@@ -4161,6 +4165,67 @@
         "value": "",
         "label": "Text",
         "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "our-fund-managers-item",
+    "fields": [
+      {
+        "component": "reference",
+        "name": "image",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "name": "imageAlt",
+        "label": "Alt Text"
+      },
+      {
+        "component": "text",
+        "name": "col_link",
+        "label": "Image Link"
+      },
+      {
+        "component": "richtext",
+        "name": "description",
+        "label": "Our Fund Managers Item Description",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "id": "strategy-performance-graph",
+    "fields": [
+      {
+        "component": "richtext",
+        "name": "cont1_text",
+        "value": "",
+        "label": "Text",
+        "valueType": "string"
+      },
+      {
+        "component": "reference",
+        "name": "fstimage",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "name": "fstimageAlt",
+        "label": "Alt Text"
+      },
+      {
+        "component": "reference",
+        "name": "sndimage",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "name": "sndimageAlt",
+        "label": "Alt Text"
       }
     ]
   }

@@ -5,29 +5,42 @@ import {
   getAuthorData,
 } from '../common-ui-field/common-ui-field.js';
 
+
 /**
  * Calculate SIP Delay Summary with Opportunity Loss
- * * This function calculates the future value of a Systematic Investment Plan (SIP)
- * under two scenarios (starting now vs. starting later) using the formula for
- * the Future Value of an Annuity Due (payments at the start of the period).
- * * The calculation is based on the summation method:
- * * 1. Future Value Today (FV_T):
- * FV_T = Sum(m = 1 to M) [ P * (1 + r_m)^(M - m + 1) ]
- * * 2. Future Value Delayed (FV_D):
- * FV_D = Sum(m = 1 to (M - D_m)) [ P * (1 + r_m)^(M - m - D_m + 1) ]
- * * Where:
- * P   = monthlyInvestment (Monthly SIP)
- * r_m = monthlyRate (Monthly Return Rate)
- * M   = months (Total Investment Months)
- * D_m = delayMonths (Delay in Months)
- * m   = Current month index in the loop
- * * @param {Object} params
- * @param {number} params.monthlyInvestment - Amount invested per month (P)
+ *
+ * Implements the following logic based on the provided specification:
+ * 1. Inputs:
+ * P0 = monthlyInvestment (Monthly SIP entered by user)
+ * Years = Investment period in years
+ * d = Delay in months (derived from delayYears * 12)
+ * R = annualReturnRate / 100
+ *
+ * 2. Derived Variables:
+ * i = R / 12 (Monthly return)
+ * n = Years * 12 (Total months)
+ * n_delay = n - d (Months with SIP after delay)
+ *
+ * 3. Formulas (Annuity Due):
+ * FV_start = P0 * ((1 + i)^n - 1) / i * (1 + i)
+ * FV_delay = P0 * ((1 + i)^n_delay - 1) / i * (1 + i)
+ * OppLoss = FV_start - FV_delay
+ *
+ * @param {Object} params
+ * @param {number} params.monthlyInvestment - Amount invested per month (P0)
  * @param {number} params.annualReturnRate - Expected annual return rate (%)
- * @param {number} params.years - Investment duration (years)
- * @param {number} params.delayYears - Delay in years (e.g., 1 month = 1/12)
- * @param {number} [params.roundDecimal] - Decimal rounding
- * @param {function} [params.callbackFunc] - Function to call with result
+ * @param {number} params.years - Investment duration in years
+ * @param {number} params.delayYears - Delay in years (converted to 'd' months)
+ * @param {number} [params.roundDecimal=0] - Decimal rounding precision
+ * @param {Function} [params.callbackFunc] - Optional callback function
+ * @returns {{
+ * todaySummary: { totalValue: number },
+ * delaySummary: { totalValue: number },
+ * opportunityLoss: number,
+ * totalInvestment: number,
+ * delayInvestment: number,
+ * delayMonths: number  // Added this field
+ * }}
  */
 export function calculateSipDelaySummary({
   monthlyInvestment,
@@ -37,66 +50,61 @@ export function calculateSipDelaySummary({
   roundDecimal = 0,
   callbackFunc,
 }) {
-  // 1. Calculate Periodic Rate and Total Periods
-  const monthlyRate = annualReturnRate / 12 / 100; // i (Monthly Rate)
-  const totalMonths = years * 12; // Total Timeframe in months
-  const delayMonths = Math.round(delayYears * 12); // Delay period in months
-
-  // --- Future Value of Annuity Due (FVA) Helper ---
-  // FV = P * [((1 + i)^n - 1) / i] * (1 + i)
-  const calculateFVA = (P, i, n) => {
-    // Edge case: If the rate is 0, the value is just the total principal invested
-    if (i === 0) {
-      return P * n;
+  const inputErrors = document.querySelectorAll('.calc-input.calc-error');
+  if (inputErrors?.length) {
+    return {
+      todaySummary: { totalValue: 0 },
+      delaySummary: { totalValue: 0 },
+      opportunityLoss: 0,
+      totalInvestment: 0,
+      delayInvestment: 0,
+      delayMonths: 0, // Added strictly for UI display requirement
     }
+  }
+  // 1. Calculate Periodic Rate and Total Periods
+  const P0 = monthlyInvestment;
+  const R = annualReturnRate / 100;
+  const i = R / 12; // Monthly return
 
-    // FVA Factor: [((1 + i)^n - 1) / i]
-    const fvaFactor = ((1 + i) ** n - 1) / i;
+  const n = years * 12; // Total months
+  const d = Math.round(delayYears * 12); // Delay in months
+  const n_delay = n - d; // Months with SIP after delay
 
-    // Annuity Due: Multiply by (1 + i) because payments are at the start of the period
-    return P * fvaFactor * (1 + i);
+  // --- Future Value of Annuity Due Helper ---
+  // Formula: P * [((1 + i)^N - 1) / i] * (1 + i)
+  const calculateFV_AnnuityDue = (P, rate, periods) => {
+    if (periods <= 0) return 0;
+    if (rate === 0) return P * periods;
+    return P * (((1 + rate) ** periods - 1) / rate) * (1 + rate);
   };
 
-  // --- Calculation Logic ---
+  // 2. Calculate Final Values
+  // FV_start: Final value if investor starts SIP today (using n)
+  const FV_start = calculateFV_AnnuityDue(P0, i, n);
 
-  // 1. Total if started today (Today Total)
-  // Total payments (n) = totalMonths
-  const todayTotal = calculateFVA(monthlyInvestment, monthlyRate, totalMonths);
-
-  // 2. Total if delayed (Delay Total)
-  // The number of payments made (n') is reduced by the delay.
-  const delayInstallments = totalMonths - delayMonths;
-
-  let delayTotal = 0;
-  if (delayInstallments > 0) {
-    delayTotal = calculateFVA(
-      monthlyInvestment,
-      monthlyRate,
-      delayInstallments,
-    );
-  }
+  // FV_delay: Final value if investor starts SIP after the delay (using n_delay)
+  const FV_delay = calculateFV_AnnuityDue(P0, i, n_delay);
 
   // 3. Opportunity Loss
-  // The loss is the difference in the final corpus due to missing the early payments.
-  const opportunityLoss = todayTotal - delayTotal;
+  const OppLoss = FV_start - FV_delay;
 
   // --- Formatting and Output ---
   const roundValue = (v) => Number(v.toFixed(roundDecimal));
 
   const result = {
-    todaySummary: { totalValue: roundValue(todayTotal) },
-    delaySummary: { totalValue: roundValue(delayTotal) },
-    opportunityLoss: roundValue(opportunityLoss),
-    // Optional: Add total investment to show the returns earned
-    totalInvestment: roundValue(monthlyInvestment * totalMonths),
-    delayInvestment: roundValue(monthlyInvestment * delayInstallments),
+    todaySummary: { totalValue: roundValue(FV_start) },
+    delaySummary: { totalValue: roundValue(FV_delay) },
+    opportunityLoss: roundValue(OppLoss),
+    totalInvestment: roundValue(P0 * n),
+    delayInvestment: roundValue(P0 * (n_delay > 0 ? n_delay : 0)),
+    delayMonths: d, // Added strictly for UI display requirement
   };
 
-  console.log('result : ', result);
   if (callbackFunc) callbackFunc(result);
 
   return result;
 }
+
 
 /**
  * Create SIP Delay Summary Block from existing authored elements
@@ -268,6 +276,7 @@ export default function decorate(block) {
     ...mi,
     prefix: '₹',
     fieldType: 'currency',
+    ignoreMin: true,
     inputBlockAttr: { class: 'mi-inp-container' },
     onInput: (e) => recalculateSipDelay({ mi: e.target.value, container: block }),
     onChange: (v) => recalculateSipDelay({ mi: v, container: block }),
@@ -279,6 +288,7 @@ export default function decorate(block) {
     fieldType: 'year',
     suffix: ip?.default > 1 ? 'years' : 'year',
     variant: 'stepper',
+    ignoreMin: true,
     inputBlockAttr: { class: 'ip-inp-container' },
     updateWidthonChange: true,
     onInput: (e) => recalculateSipDelay({ ip: e.target.value, container: block }),
@@ -290,6 +300,7 @@ export default function decorate(block) {
     ...ror,
     suffix: '%',
     fieldType: 'percent',
+    ignoreMin: true,
     inputBlockAttr: { class: 'ror-inp-container' },
     variant: 'stepper',
     updateWidthonChange: true,
@@ -302,6 +313,7 @@ export default function decorate(block) {
     ...delay,
     fieldType: 'year',
     suffix: delay?.default > 1 ? 'years' : 'year',
+    ignoreMin: true,
     inputBlockAttr: { class: 'delay-inp-container' },
     variant: 'stepper',
     updateWidthonChange: true,
