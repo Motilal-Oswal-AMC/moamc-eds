@@ -77,7 +77,8 @@
       "investment-philosophy",
       "portfolio-composition",
       "your-wealth-journey",
-      "our-fund-managers"
+      "our-fund-managers",
+      "strategy-performance-graph"
     ]
   },
   {
@@ -262,6 +263,12 @@
     "id": "our-fund-managers",
     "components": [
       "our-fund-managers-item"
+    ]
+  },
+  {
+    "id": "Strategy Performance Graph",
+    "components": [
+      "strategy-performance-graph"
     ]
   }
 ]

@@ -4194,5 +4194,39 @@
         "value": ""
       }
     ]
+  },
+  {
+    "id": "strategy-performance-graph",
+    "fields": [
+      {
+        "component": "richtext",
+        "name": "cont1_text",
+        "value": "",
+        "label": "Text",
+        "valueType": "string"
+      },
+      {
+        "component": "reference",
+        "name": "fstimage",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "name": "fstimageAlt",
+        "label": "Alt Text"
+      },
+      {
+        "component": "reference",
+        "name": "sndimage",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "name": "sndimageAlt",
+        "label": "Alt Text"
+      }
+    ]
   }
 ]
