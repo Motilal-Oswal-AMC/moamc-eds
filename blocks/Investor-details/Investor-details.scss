@@ -15,7 +15,7 @@ main.nfo-nav .main-wrapper .section:first-of-type {
   display: flex;
   gap: 30px;
   justify-content: space-between;
-  padding-bottom: 0;
+  // padding-bottom: 0;
 
   @include media(desktop-sm) {
     padding: 24px 16px 40px;
@@ -560,7 +560,8 @@ main.nfo-nav .main-wrapper .section:first-of-type {
           width: 100%;
 
           // height: 320px;
-          height: 375px;
+          // height: 375px;
+          height: 372px;
           margin: 0 auto;
           overflow: hidden;
 
@@ -747,10 +748,11 @@ main.nfo-nav .main-wrapper .section:first-of-type {
                     font-style: normal;
                     font-weight: 600;
                     line-height: var(--body-large-semibold-line-height, 24px);
+                    word-break: unset;
                   }
                 }
 
-                &:last-child {
+                &:last-child:not(:first-of-type) {
                   margin: 0;
                 }
               }
@@ -1922,7 +1924,7 @@ main.nfo-nav .main-wrapper .section:first-of-type {
   background: #fff;
   border-radius: 10px;
   overflow: hidden;
-
+  border: 1px solid rgb(0 0 0 / 5%);
   /* normal behavior for desktop */
   box-shadow: 0 1px 0 rgb(0 0 0 / 5%);
 }
@@ -1934,7 +1936,8 @@ main.nfo-nav .main-wrapper .section:first-of-type {
   font-weight: 600;
   text-align: left;
   padding: 18px;
-  border-bottom: 1px solid rgb(0 0 0 / 5%);
+  // border-bottom: 1px solid rgb(0 0 0 / 5%);
+  border: 1px solid rgb(0 0 0 / 5%);
 }
 
 /* Header cells */
@@ -1949,7 +1952,8 @@ main.nfo-nav .main-wrapper .section:first-of-type {
   padding: 14px 18px;
   font-size: 13px;
   line-height: 1.45;
-  border-bottom: 1px dashed rgb(0 0 0 / 6%);
+  // border-bottom: 1px dashed rgb(0 0 0 / 6%);
+  border: 1px solid rgb(0 0 0 / 6%);
   text-align: left;
 }
 

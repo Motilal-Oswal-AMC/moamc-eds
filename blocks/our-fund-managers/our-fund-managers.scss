@@ -4,6 +4,12 @@
 @import "../swiper/swiper-bundle.min.css";
 
 .our-fund-managers-container {
+    padding: 40px 0;
+
+    @include media (mobile) {
+        padding: 8px 0;
+    }
+
     >.default-content-wrapper {
         margin-bottom: 40px;
 
@@ -12,15 +18,26 @@
             color: var(--blue-1800-primary, #2E2A94);
             font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
             font-family: var(--title, Inter);
-            font-size: var(--heading-h5-size, 28px);
+            font-size:  28px;
             font-style: normal;
             font-weight: 600;
-            line-height: var(--heading-h5-line-height, 32px);
+            line-height: 32px;
+
+            // @include media (mobile) {
+            //     font-size: var(--heading-h5-size);
+            //     line-height: var(--heading-h5-line-height);
+            // }
         }
     }
 
     .our-fund-managers-wrapper {
         .our-fund-managers {
+            margin-right: -67px;
+
+            @include media (mobile) {
+                margin-right: -16px;
+            }
+
             .swiper-wrapper {
                 display: flex;
                 align-items: stretch;
@@ -76,6 +93,7 @@
                                         font-style: normal;
                                         font-weight: 400;
                                         line-height: var(--body-small-regular-line-height, 16px);
+                                        padding-right: 6px;
                                     }
 
                                     &3 {
@@ -85,7 +103,7 @@
                                             color: var(--text-text-link, #2E2A94);
                                             font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
                                             font-family: var(--body, Inter);
-                                            font-size: var(--text-link-small-size, 14px);
+                                            font-size: 14px;
                                             font-style: normal;
                                             font-weight: 400;
                                             line-height: var(--text-link-small-line-height, 20px);

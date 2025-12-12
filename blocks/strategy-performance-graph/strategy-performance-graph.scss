@@ -19,6 +19,8 @@
             }
 
             p:nth-child(1) {
+                margin: 0;
+                padding-top: 16px;
                 color: var(--neutrals-white, #FFF);
                 font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
                 font-family: var(--body, Inter);
@@ -29,6 +31,8 @@
             }
 
             p:nth-child(2) {
+                margin: 0;
+                padding-top: 24px;
                 color: var(--neutrals-white, #FFF);
                 font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
                 font-family: var(--body, Inter);
@@ -97,6 +101,7 @@
                         ul {
                             margin: 0;
                             list-style: none;
+                            padding-left: 12px;
 
                             li {
                                 color: var(--neutrals-white, #FFF);
@@ -106,9 +111,49 @@
                                 font-style: normal;
                                 font-weight: 400;
                                 line-height: var(--label-large-line-height, 20px);
+
+                                strong {
+                                    font-weight: 600;
+                                }
                             }
                         }
 
+                    }
+
+                    .strategy-performance-bar {
+                        &1 {
+                            position: relative;
+
+                            &::before {
+                                content: '';
+                                display: inline-block;
+                                width: 8px;
+                                height: 8px;
+                                background-color: #7986FD;
+                                border-radius: 50%;
+                                margin-right: 4px;
+                            }
+                        }
+
+                        &2 {
+                            position: relative;
+
+                            &::before {
+                                content: '';
+                                display: inline-block;
+                                width: 8px;
+                                height: 8px;
+                                background-color: #FF9811;
+                                border-radius: 50%;
+                                margin-right: 4px;
+                            }
+                        }
+
+                        &3 {
+                            ul {
+                                padding-left: 0;
+                            }
+                        }
                     }
 
                 }
@@ -117,8 +162,14 @@
     }
 
     &-cont2 {
+        padding-bottom: 16px;
+
         .strategy-performance-sec1 {
             height: 432px;
+
+            img {
+                height: 432px;
+            }
         }
 
         @include media (mobile) {

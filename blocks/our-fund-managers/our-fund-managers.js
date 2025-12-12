@@ -129,3 +129,66 @@ export default function decorate(block) {
   });
   return block;
 }
+
+// export default function decorate(block) {
+//   // 1. Add class to main container
+//   if (typeof dataMapMoObj !== 'undefined') {
+//     dataMapMoObj.CLASS_PREFIXES = [
+//       'swiper-slide-cards',
+//       'strategy-performance-sec',
+//       'strategy-performance-row',
+//       'strategy-performance-bar',
+//       'strategy-performance-label',
+//     ];
+//     dataMapMoObj.addIndexed(block);
+//   }
+//   block.classList.add('swiper');
+
+//   // 2. Setup Wrapper
+//   const wrapper = document.createElement('div');
+//   wrapper.classList.add('swiper-wrapper');
+
+//   [...block.children].forEach((child) => {
+//     child.classList.add('swiper-slide');
+//     wrapper.append(child);
+//   });
+
+//   block.append(wrapper);
+
+//   // 3. Create Buttons (Cleaned up duplicates)
+//   const swiperBtnWrapper = document.createElement('div');
+//   swiperBtnWrapper.classList.add('btn-wrapper');
+
+//   const prevButton = document.createElement('div');
+//   prevButton.classList.add('swiper-button-prev');
+
+//   const nextButton = document.createElement('div');
+//   nextButton.classList.add('swiper-button-next');
+
+//   swiperBtnWrapper.appendChild(prevButton);
+//   swiperBtnWrapper.appendChild(nextButton);
+
+//   // Append the button wrapper to the block
+//   block.appendChild(swiperBtnWrapper);
+
+//   // 4. Initialize Swiper
+//   const swiper = new Swiper(block, {
+//     slidesPerView: 'auto',
+//     spaceBetween: 16,
+//     loop: true, // Buttons will NOT disable if loop is true
+
+//     // Connect the elements we created above
+//     navigation: {
+//       nextEl: nextButton,
+//       prevEl: prevButton,
+//     },
+
+//     breakpoints: {
+//       769: {
+//         spaceBetween: 40,
+//       },
+//     },
+//   });
+
+//   return block;
+// }
