@@ -787,6 +787,10 @@
             "value": "investor-term-blog"
           },
           {
+            "name": "Static Modal",
+            "value": "static-modal"
+          },
+          {
             "name": " Elss Fund Banner",
             "value": "elss-fund-banner"
           },
@@ -921,6 +925,18 @@
           {
             "name": "Podcast Section",
             "value": "podcast-section"
+          },
+          {
+            "name": "Strategy Details",
+            "value": "strategy-details"
+          },
+          {
+            "name": "Strategy Download",
+            "value": "strategy-download"
+          },
+          {
+            "name": "Performance Strategy",
+            "value": "performance-strategy"
           }
         ]
       },
@@ -4095,6 +4111,121 @@
         "component": "richtext",
         "name": "col3_generated_campaign_details",
         "label": "Generated Campaign URL Details"
+      }
+    ]
+  },
+  {
+    "id": "strategy-philosophy",
+    "fields": [
+      {
+        "component": "richtext",
+        "name": "cont1_text",
+        "value": "",
+        "label": "Text",
+        "valueType": "string"
+      },
+      {
+        "component": "reference",
+        "name": "fstimage",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "name": "fstimageAlt",
+        "label": "Alt Text"
+      },
+      {
+        "component": "richtext",
+        "name": "cont2_text",
+        "value": "",
+        "label": "Text",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "portfolio-composition",
+    "fields": [
+      {
+        "component": "richtext",
+        "name": "cont1_text",
+        "value": "",
+        "label": "Text",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "your-wealth-journey",
+    "fields": [
+      {
+        "component": "richtext",
+        "name": "cont_text",
+        "value": "",
+        "label": "Text",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "our-fund-managers-item",
+    "fields": [
+      {
+        "component": "reference",
+        "name": "image",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "name": "imageAlt",
+        "label": "Alt Text"
+      },
+      {
+        "component": "text",
+        "name": "col_link",
+        "label": "Image Link"
+      },
+      {
+        "component": "richtext",
+        "name": "description",
+        "label": "Our Fund Managers Item Description",
+        "value": ""
+      }
+    ]
+  },
+  {
+    "id": "strategy-performance-graph",
+    "fields": [
+      {
+        "component": "richtext",
+        "name": "cont1_text",
+        "value": "",
+        "label": "Text",
+        "valueType": "string"
+      },
+      {
+        "component": "reference",
+        "name": "fstimage",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "name": "fstimageAlt",
+        "label": "Alt Text"
+      },
+      {
+        "component": "reference",
+        "name": "sndimage",
+        "label": "Image",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "name": "sndimageAlt",
+        "label": "Alt Text"
       }
     ]
   }

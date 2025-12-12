@@ -15,6 +15,7 @@ export function updateSTPCalcSummary(data) {
   const ARISS_EL = container.querySelector('#ARISS');
   const TIITS_EL = container.querySelector('#TIITS');
   const FMVOTS_EL = container.querySelector('#FMVOTS');
+  console.log("data : ", data);
 
   if (TEFS_EL) {
     TEFS_EL.textContent = formatNumber({
@@ -24,7 +25,7 @@ export function updateSTPCalcSummary(data) {
   }
   if (IIISS_EL) {
     IIISS_EL.textContent = formatNumber({
-    // Check each value; if undefined, default to 0
+      // Check each value; if undefined, default to 0
       value: (data?.totalValue ?? 0) - (data?.totalGain ?? 0),
       currency: true,
     });
@@ -49,28 +50,47 @@ export function updateSTPCalcSummary(data) {
   }
 }
 
+
 /**
- * Calculate STP summary (Transfer totals, Growth in source & destination fund)
+ * Calculate STP summary using "Beginning of Period" (Type 1) logic.
+ *
+ * Formulas used per iteration (m = 1 to n):
+ * 1. Rates:
+ * i_src = sourceAnnualRate / 1200
+ * i_tgt = destinationAnnualRate / 1200
+ *
+ * 2. Source Scheme (Outflow at Start, Interest on Remainder):
+ * Transfer_m = MIN(transferAmount, SrcOpening)
+ * SrcRemainder = SrcOpening - Transfer_m
+ * SrcInterest = SrcRemainder * i_src
+ * SrcClosing = SrcRemainder + SrcInterest
+ *
+ * 3. Target Scheme (Inflow at Start, Interest on Total):
+ * TgtInvested = TgtOpening + Transfer_m
+ * TgtInterest = TgtInvested * i_tgt
+ * TgtClosing = TgtInvested + TgtInterest
+ *
  * @param {Object} params
- * @param {number} params.initialInvestment - Lump sum invested in source fund
- * @param {number} params.transferAmount - Fixed amount transferred every month
- * @param {number} params.sourceAnnualRate - Annual return rate (%) of source fund
- * @param {number} params.destinationAnnualRate - Annual return rate (%) of destination fund
- * @param {number} params.years - Duration of STP (years)
- * @param {number} [params.roundDecimal] - Decimal rounding; 0 = integer
+ * @param {number} params.initialInvestment - Lump sum invested in source fund (P0)
+ * @param {number} params.transferAmount - Monthly STP Amount
+ * @param {number} params.sourceAnnualRate - Annual return rate (%) of Source fund (#erfss)
+ * @param {number} params.destinationAnnualRate - Annual return rate (%) of Target fund (#erfts)
+ * @param {number} params.years - Duration of STP in years
+ * @param {number} [params.roundDecimal=0] - Decimal rounding precision
+ * @param {Function} [params.callbackFunc] - Optional callback function
+ * @param {HTMLElement} [params.container] - Optional DOM container for inputs
  * @returns {{
- *   totalTransferred: number,
- *   finalDestinationValue: number,
- *   remainingSourceValue: number,
- *   totalValue: number,
- *   totalGain: number,
- *   sourceGain: number,
- *   destinationGain: number,
- *   transferPercentage: number,
- *   gainPercentage: number
+ * totalTransferred: number,
+ * finalDestinationValue: number,
+ * remainingSourceValue: number,
+ * totalValue: number,
+ * totalGain: number,
+ * sourceGain: number,
+ * destinationGain: number,
+ * transferPercentage: number,
+ * gainPercentage: number
  * }}
  */
-
 export function calculateSTPSummary({
   initialInvestment,
   transferAmount,
@@ -82,19 +102,34 @@ export function calculateSTPSummary({
   container,
 }) {
   let data;
-  if (!container) {
-    return console.warn('No container element found.');
-  }
-  const num = (v, d = 0) => (v != null ? parseFloat(v) : d);
-  const laitssAmount = num(initialInvestment)
-    || container.querySelector('#laitss-amount').value * 1;
-  const msaAmount = num(transferAmount) || container.querySelector('#msa-amount').value * 1;
-  const erftsStart = num(sourceAnnualRate) || container.querySelector('#erfts-start').value * 1;
-  const erfssStart = num(destinationAnnualRate)
-    || container.querySelector('#erfss-start').value * 1;
-  const tosiStart = num(years) || container.querySelector('#tosi-start').value * 1;
 
-  if (!laitssAmount || !msaAmount || !erftsStart || !erfssStart || !tosiStart) {
+  // Helper: Parse number, return null if invalid
+  const num = (v) => (v != null && v !== '' && !isNaN(v) ? parseFloat(v) : null);
+
+  // 1. Parse Inputs (Argument Priority > DOM Fallback)
+  // CRITICAL FIX: Ensure correct ID mapping based on acronyms
+  // erfss = Expected Return From Source Scheme
+  // erfts = Expected Return From Target Scheme
+
+  const P0 = num(initialInvestment)
+    ?? (container ? num(container.querySelector('#laitss-amount').value) : 0);
+
+  const STP_amount = num(transferAmount)
+    ?? (container ? num(container.querySelector('#msa-amount').value) : 0);
+
+  const R_source = num(sourceAnnualRate)
+    ?? (container ? num(container.querySelector('#erfss-start').value) : 0);
+
+  const R_target = num(destinationAnnualRate)
+    ?? (container ? num(container.querySelector('#erfts-start').value) : 0);
+
+  const Tenure_years = num(years)
+    ?? (container ? num(container.querySelector('#tosi-start').value) : 0);
+
+  const inputErrors = document.querySelectorAll('.calc-input.calc-error');
+
+  // 2. Validation
+  if ((!P0 || !STP_amount || R_source == null || R_target == null || !Tenure_years) || inputErrors?.length) {
     data = {
       totalTransferred: 0,
       finalDestinationValue: 0,
@@ -105,64 +140,81 @@ export function calculateSTPSummary({
       destinationGain: 0,
       transferPercentage: 0,
       gainPercentage: 0,
+      container
     };
+    if (callbackFunc) callbackFunc(data);
     return data;
   }
 
-  const months = tosiStart * 12;
-  const sourceMonthlyRate = erftsStart / 12 / 100;
-  const destinationMonthlyRate = erfssStart / 12 / 100;
+  // 3. Calculation Setup
+  const n = Tenure_years * 12;
+  const i_src = (R_source / 100) / 12; // Monthly Source Rate
+  const i_tgt = (R_target / 100) / 12; // Monthly Target Rate
 
-  // Track balances
-  let sourceBalance = laitssAmount;
-  let destinationBalance = 0;
+  let SrcBalance = P0;
+  let TgtBalance = 0;
   let totalTransferred = 0;
 
-  for (let i = 1; i <= months; i += 1) {
-    // 1. Apply monthly growth on source fund
-    sourceBalance *= 1 + sourceMonthlyRate;
+  // 4. Monthly Loop (Type 1: Transactions occur at start of month)
+  for (let m = 1; m <= n; m++) {
+    // --- SOURCE SIDE ---
+    // 1. Deduct Transfer immediately (Start of Month)
+    let actualTransfer = SrcBalance > 0 ? Math.min(STP_amount, SrcBalance) : 0;
 
-    // 2. Transfer from source → destination
-    const transfer = Math.min(msaAmount, sourceBalance);
-    sourceBalance -= transfer;
-    totalTransferred += transfer;
+    // 2. Calculate Interest on the REMAINING balance
+    let srcRemainder = SrcBalance - actualTransfer;
+    let srcInterest = srcRemainder * i_src;
 
-    // 3. Apply growth on destination fund AFTER transfer
-    destinationBalance = (destinationBalance + transfer) * (1 + destinationMonthlyRate);
+    // 3. Update Closing Balance
+    SrcBalance = srcRemainder + srcInterest;
+
+    // --- TARGET SIDE ---
+    // 1. Add Investment immediately (Start of Month)
+    totalTransferred += actualTransfer;
+    let tgtInvestedBalance = TgtBalance + actualTransfer;
+
+    // 2. Calculate Interest on the NEW balance (Opening + Investment)
+    let tgtInterest = tgtInvestedBalance * i_tgt;
+
+    // 3. Update Closing Balance
+    TgtBalance = tgtInvestedBalance + tgtInterest;
   }
 
-  const remainingSourceValue = sourceBalance;
-  const finalDestinationValue = destinationBalance;
+  // 5. Final Aggregation
+  const remainingSourceValue = SrcBalance;
+  const finalDestinationValue = TgtBalance;
   const totalValue = remainingSourceValue + finalDestinationValue;
-  const totalGain = totalValue - laitssAmount;
+  const totalGain = totalValue - P0;
 
-  const sourceGain = remainingSourceValue - (laitssAmount - totalTransferred);
+  // Breakdown
+  const sourcePrincipalRemaining = P0 - totalTransferred;
+  const sourceGain = remainingSourceValue - sourcePrincipalRemaining;
   const destinationGain = finalDestinationValue - totalTransferred;
 
-  const transferPercentage = (totalTransferred / laitssAmount) * 100;
-  const gainPercentage = (totalGain / laitssAmount) * 100;
+  // Percentages
+  const transferPercentage = P0 > 0 ? (totalTransferred / P0) * 100 : 0;
+  const gainPercentage = P0 > 0 ? (totalGain / P0) * 100 : 0;
 
-  const roundValue = (val) => {
-    if (roundDecimal == null) return val;
-    return Number(val.toFixed(roundDecimal));
-  };
+  const round = (val) => (roundDecimal != null ? Number(val.toFixed(roundDecimal)) : val);
 
   data = {
-    totalTransferred: roundValue(totalTransferred),
-    finalDestinationValue: roundValue(finalDestinationValue),
-    remainingSourceValue: roundValue(remainingSourceValue),
-    totalValue: roundValue(totalValue),
-    totalGain: roundValue(totalGain),
-    sourceGain: roundValue(sourceGain),
-    destinationGain: roundValue(destinationGain),
-    transferPercentage: roundValue(transferPercentage),
-    gainPercentage: roundValue(gainPercentage),
+    totalTransferred: round(totalTransferred),
+    finalDestinationValue: round(finalDestinationValue),
+    remainingSourceValue: round(remainingSourceValue),
+    totalValue: round(totalValue),
+    totalGain: round(totalGain),
+    sourceGain: round(sourceGain),
+    destinationGain: round(destinationGain),
+    transferPercentage: round(transferPercentage),
+    gainPercentage: round(gainPercentage),
     container,
   };
-  console.log('data : ', data);
+
+  // Optional: Console log for debugging exact values if needed
+  // console.log(`Source Rate: ${R_source}%, Target Rate: ${R_target}%`);
+  // console.log(`Source Rem: ${remainingSourceValue}, Target FV: ${finalDestinationValue}`);
 
   if (callbackFunc) callbackFunc(data);
-
   return data;
 }
 
@@ -267,6 +319,7 @@ export default function decorate(block) {
     ...laitss,
     prefix: '₹',
     fieldType: 'currency',
+    ignoreMin: true,
     prefixAttr: { class: 'currency-prefix' },
     inputBlockAttr: {
       class: 'laitss-inp-container',
@@ -286,6 +339,7 @@ export default function decorate(block) {
   const tosiBlock = createInputBlock({
     id: 'tosi-start',
     ...tosi,
+    ignoreMin: true,
     inputBlockAttr: {
       class: 'tosi-inp-container',
     },
@@ -305,6 +359,7 @@ export default function decorate(block) {
     ...msa,
     prefix: '₹',
     fieldType: 'currency',
+    ignoreMin: true,
     prefixAttr: { class: 'currency-prefix' },
     inputBlockAttr: {
       class: 'msa-inp-container',
@@ -324,6 +379,7 @@ export default function decorate(block) {
   const erftsBlock = createInputBlock({
     id: 'erfts-start',
     ...erfts,
+    ignoreMin: true,
     inputBlockAttr: {
       class: 'erfts-inp-container',
     },
@@ -345,6 +401,7 @@ export default function decorate(block) {
   const erfssBlock = createInputBlock({
     id: 'erfss-start',
     ...erfss,
+    ignoreMin: true,
     inputBlockAttr: {
       class: 'erfss-inp-container',
     },

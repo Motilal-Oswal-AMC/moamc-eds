@@ -19,7 +19,9 @@ import formBlock, { createForm } from '../blocks/form/form.js';
 
 // eslint-disable-next-line import/no-cycle
 import { initializeModalHandlers } from '../blocks/modal/modal.js';
-import { img, span } from './dom-helpers.js';
+import {
+  img, span, ulToTable,
+} from './dom-helpers.js';
 
 // console.log('f1 code');
 
@@ -357,7 +359,6 @@ export function generateAppId() {
     appId += chars[Math.floor(Math.random() * chars.length)];
   }
   return appId;
-  // return "877C010EM8A9CA4820M987BCB394B48563BE";
 }
 
 // export async function myAPI(method, url, body = null, header) {
@@ -573,6 +574,7 @@ function articleStructure() {
     || window.location.href.includes(
       '/investor-education/blogs/',
     )
+    || window.location.href.includes('/insights/press-release/')
   ) {
     const maincloser = document.querySelector('main');
     const rightSub = maincloser.querySelectorAll('.article-sub-right');
@@ -742,9 +744,9 @@ function articleStructure() {
     }
 
     if (!maincloser.querySelector('.moedge-article-details')
-        && maincloser.querySelector('.investsub-leftarticle1')) {
+      && maincloser.querySelector('.investsub-leftarticle1')) {
       const leftpost = maincloser.querySelector('.investsub-leftarticle1 .investleft-subinner1');
-      if (window.location.href.includes('/images/')) {
+      if (window.location.href.includes('/images/') || window.location.href.includes('/keys-of-investing/')) {
         const spanHtml = leftpost.querySelector('span');
         leftpost.textContent = 'Article';
         leftpost.prepend(spanHtml);
@@ -768,62 +770,62 @@ function articleStructure() {
       }
     }
 
-    function convertDate(dateStr) {
-    const date = new Date(dateStr);
-    const options = {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric',
-    };
-    return date.toLocaleDateString('en-US', options);
-  }
+    const convertDate = (dateStr) => {
+      const date = new Date(dateStr);
+      const options = {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+      };
+      return date.toLocaleDateString('en-US', options);
+    }
 
     maincloser.querySelector('.cards .investright-articleitem1').innerHTML = '';
     let dataincl;
-        if (window.location.href.includes('/videos/')) {
-          dataincl = '/videos/';
-        } else {
-          dataincl = '/images/';
-        }
-        const currentUrl = window.location.href.replace(/\/$/, '');
-        const linktext = currentUrl.substring(currentUrl.lastIndexOf('/') + 1);
-        const data = dataMapMoObj.getinvestorblog.data
-          .filter((el) => linktext !== el.title && el.path.includes(dataincl))
-        // 1. Assign a random value to each item
-          .map((value) => ({ value, sort: Math.random() }))
-        // 2. Sort based on that random value
-          .sort((a, b) => a.sort - b.sort)
-        // 3. Extract the original object back
-          .map(({ value }) => value);
-    
-        console.log(data);
-        const datafin = data.slice(0, 3)
-     datafin.forEach((elem)=>{
+    if (window.location.href.includes('/videos/')) {
+      dataincl = '/videos/';
+    } else {
+      dataincl = '/images/';
+    }
+    const currentUrl = window.location.href.replace(/\/$/, '');
+    const linktext = currentUrl.substring(currentUrl.lastIndexOf('/') + 1);
+    const data = dataMapMoObj.getinvestorblog.data
+      .filter((el) => linktext !== el.title && el.path.includes(dataincl))
+      // 1. Assign a random value to each item
+      .map((value) => ({ value, sort: Math.random() }))
+      // 2. Sort based on that random value
+      .sort((a, b) => a.sort - b.sort)
+      // 3. Extract the original object back
+      .map(({ value }) => value);
+
+    console.log(data);
+    const datafin = data.slice(0, 3);
+    datafin.forEach((elem) => {
       const titleText = dataMapMoObj.toTitleCase(elem.title.replaceAll('-', ' '));
       const dateText = convertDate(elem.date.split('T')[0]);
-        const cardsRecom = `<li class="comlist investright-itemchild1 rightlist"><div class="cards-card-image comlist investright-subchild1 rightlist">
+      const cardsRecom = `<li class="comlist investright-itemchild1 rightlist"><div class="cards-card-image comlist investright-subchild1 rightlist">
         <a href="${elem.path}"><picture class="rightlist"><source type="image/webp" srcset="/mutual-fund/in/en/fragment/media_137cba9f427af426d8583a091e8135bb0fa14d0f7.svg?width=750&amp;format=webply&amp;optimize=medium" class="rightlist"><img loading="lazy" alt="" src="/mutual-fund/in/en/fragment/media_137cba9f427af426d8583a091e8135bb0fa14d0f7.svg?width=750&amp;format=svg&amp;optimize=medium" class="rightlist"></picture></a>
       </div><div class="cards-card-body comlist investright-subchild2 rightlist">
         <p class="rightlist">Trending</p>
         <a href="${elem.path}"><h4 id="${titleText}" class="rightlist">${titleText}</h4></a>
         <p class="rightlist"><span class="icon icon-calendar-inves rightlist"><img data-icon-name="calendar-inves" src="/icons/calendar-inves.svg" alt="" loading="lazy" width="16" height="16" class="rightlist"></span>${dateText}</p>
-      </div></li>`
+      </div></li>`;
       maincloser.querySelector('.cards .investright-articleitem1').innerHTML += cardsRecom;
-     });
+    });
 
     document.addEventListener('click', (e) => {
       const icon = e.target.closest('.article-right-wrapper .icon');
       if (icon) {
         const socialLinks = {
-            'facebook-black': 'https://www.facebook.com/MotilalOswalSecurities/',
-            'twitter-black': 'https://x.com/MotilalOswalLtd?lang=en',
-            'instagram-black': 'https://www.instagram.com/motilaloswalgroup/?hl=en',
-            'youtube-black': 'https://www.youtube.com/motilaloswalamc',
+          'facebook-black': 'https://www.facebook.com/MotilalOswalSecurities/',
+          'twitter-black': 'https://x.com/MotilalOswalLtd?lang=en',
+          'instagram-black': 'https://www.instagram.com/motilaloswalgroup/?hl=en',
+          'youtube-black': 'https://www.youtube.com/motilaloswalamc',
         };
 
         // Get attribute from the image inside, or the icon div itself
         const key = icon.getAttribute('data-icon-name') || icon.querySelector('img')?.getAttribute('data-icon-name');
-        
+
         if (socialLinks[key]) {
           window.open(socialLinks[key], '_blank');
         }
@@ -1065,8 +1067,13 @@ function articleStructure() {
         });
       }
     });
+
+    [...document.querySelectorAll('#eds-table + ul')].forEach((ul) => {
+      ulToTable(ul);
+    });
   }
 }
+
 dataMapMoObj.article = articleStructure;
 
 const chooseUs = document.querySelector('.why-choose-us');
@@ -1199,41 +1206,6 @@ if (skinmoamcComponent != null) {
   ];
   dataMapMoObj.addIndexed(skinmoamcComponent);
 }
-const customizedComponent = document.querySelector('.customized-section');
-if (customizedComponent != null) {
-  dataMapMoObj.CLASS_PREFIXES = [
-    'customize-wrap',
-    'customize-inner',
-    'customize-img-wrap',
-    'customize-img',
-    'customize-title',
-    'customize-subtitle',
-
-  ];
-  dataMapMoObj.addIndexed(customizedComponent);
-}
-
-document.addEventListener("DOMContentLoaded", function () {
-  const customizedSection = document.querySelector(".customized-section");
-  if (!customizedSection) return;
-
-  const heroWrapper = customizedSection.querySelector(".hero-wrapper");
-  const purchaseWrapper = customizedSection.querySelector(".quick-purchase-block-wrapper");
-
-  if (!heroWrapper || !purchaseWrapper) return;
-
-  // Create the new wrapper
-  const newWrapper = document.createElement("div");
-  newWrapper.classList.add("custom-wrapper");
-
-  // Append wrapper INSIDE customized-section (NOT after it)
-  customizedSection.appendChild(newWrapper);
-
-  // Move both inside it
-  newWrapper.appendChild(heroWrapper);
-  newWrapper.appendChild(purchaseWrapper);
-});
-
 
 const privacyPolicy = document.querySelectorAll('.privacy-policy-banner');
 
@@ -1286,40 +1258,19 @@ try {
       'why-matters-card-text3',
     ];
     dataMapMoObj.addIndexed(whymattersComponent);
+    const container = document.querySelector('.section.why-matters-component.cards-container');
+
+    const wrapper = document.createElement('div');
+    wrapper.classList.add('why-matters-wrapper-in');
+
+    const wrap1 = container.querySelector('.why-matters-wrap1');
+    const wrap2 = container.querySelector('.why-matters-wrap2');
+
+    container.insertBefore(wrapper, container.firstChild);
+
+    wrapper.appendChild(wrap1);
+    wrapper.appendChild(wrap2);
   }
-
-  //  class added for accordion table start//
-
-     const accordionTable = maincloser.querySelector('.accordion-table');
-      dataMapMoObj.CLASS_PREFIXES = [
-        'leftartmain',
-        'leftartsub',
-        'leftartitem',
-        'subleftart',
-        'mainleftart',
-        'itemleftart',
-        'itemleftart',
-        'mainitemleftart',
-        'itemmainleftart',
-        'submainleftart',
-      ];
-      dataMapMoObj.addIndexed(accordionTable);
-
-
-    //  class added for accordion table end//
-
-  const container = document.querySelector('.section.why-matters-component.cards-container');
-
-  const wrapper = document.createElement('div');
-  wrapper.classList.add('why-matters-wrapper-in');
-
-  const wrap1 = container.querySelector('.why-matters-wrap1');
-  const wrap2 = container.querySelector('.why-matters-wrap2');
-
-  container.insertBefore(wrapper, container.firstChild);
-
-  wrapper.appendChild(wrap1);
-  wrapper.appendChild(wrap2);
 } catch (error) {
   // console.log(error);
 }
@@ -1400,4 +1351,16 @@ async function getinvestorblog() {
   return resp;
 }
 dataMapMoObj.getinvestorblog = await getinvestorblog();
+
+async function getkeyinvesting() {
+  const resp = await myAPI('GET', '/query-index-keyinvesting.json');
+  return resp;
+}
+dataMapMoObj.getkeyinvesting = await getkeyinvesting();
+
+async function getpressrelease() {
+  const resp = await myAPI('GET', '/query-index-pressrelease.json');
+  return resp;
+}
+dataMapMoObj.getpressrelease = await getpressrelease();
 // dataMapMoObj.qglpwcs = qglpwcs;

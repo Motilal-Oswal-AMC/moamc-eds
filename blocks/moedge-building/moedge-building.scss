@@ -361,6 +361,8 @@
         .secs-wrapper {
             .redirection {
                 .moedge-build-sec1 {
+                    position: relative;
+                    
                     &::before {
                         content: "";
                         background: url(../../icons/play-button.svg) center center no-repeat, linear-gradient(0deg, rgba(0, 0, 0, 0.30) 0%, rgba(0, 0, 0, 0.30) 100%);

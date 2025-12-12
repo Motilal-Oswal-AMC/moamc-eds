@@ -2,6 +2,12 @@
 @use "../../styles/common-theme/css/variables_mixins" as *;
 @use "../../styles/common-theme/css/fluid-typography" as *;
 
+body:has(.static-modal) {
+  .associated-drop.inp-lab-div {
+    display: none;
+  }
+}
+
 .modal dialog .section.wealth-register {
   max-width: 379px;
   width: 100%;

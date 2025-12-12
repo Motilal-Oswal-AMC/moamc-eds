@@ -263,6 +263,7 @@ export default function decorate(block) {
           titleAry.push(storeTitle);
         }
       });
+      dataMapMoObj.titles = titles;
 
       const profileNameAry = [];
       profileName.forEach((subprofileName) => {
@@ -280,9 +281,20 @@ export default function decorate(block) {
           const newItem = document.createElement('p');
           const anchotTag = document.createElement('a');
           anchotTag.classList.add('list');
+          const aval = Array.from(dataMapMoObj.titles)
+            .filter((elem) => elem.textContent.trim() === value);
+          let ancthor;
+          if (aval[0]) {
+            ancthor = aval[0].getAttribute('href');
+          } else {
+            ancthor = 'https://mosl-dev-upd--mosl-eds--motilal-oswal-amc.aem.live/mutual-fund/in/en/motilal-oswal-edge/article-details-list';
+          }
+          if (block.closest('.section').getAttribute('data-id') !== 'Search-listing') {
+            ancthor = 'https://mosl-dev-upd--mosl-eds--motilal-oswal-amc.aem.live/mutual-fund/in/en/motilal-oswal-edge/article-details-list';
+          }
           anchotTag.setAttribute(
             'href',
-            'https://mosl-dev-upd--mosl-eds--motilal-oswal-amc.aem.live/mutual-fund/in/en/motilal-oswal-edge/article-details-list',
+            ancthor,
           );
           newItem.classList.add('result-item');
           newItem.setAttribute('data-original-text', value);

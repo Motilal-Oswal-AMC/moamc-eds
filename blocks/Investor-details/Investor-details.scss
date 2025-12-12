@@ -319,18 +319,16 @@ main.nfo-nav .main-wrapper .section:first-of-type {
                 list-style: none;
                 margin: 0;
 
-                > li {
+                >li {
                   display: flex;
                   align-items: center;
                   gap: 4px;
 
-                  @include font-style(
-                    var(--label-small-size),
+                  @include font-style(var(--label-small-size),
                     var(--label-small-line-height),
                     var(--neutrals-700),
                     400,
-                    var(--body)
-                  );
+                    var(--body));
 
                   @include media(mobile) {
                     font-size: var(--label-small-size);
@@ -396,14 +394,14 @@ main.nfo-nav .main-wrapper .section:first-of-type {
                 left: 0;
                 border-radius: 6px;
                 border: 1px solid var(--neutrals-200);
-                box-shadow: 0 0 14px 0 rgba(40, 40, 40, 0.06);
+                box-shadow: 0 0 14px 0 rgb(40 40 40 / 6%);
                 width: 170px;
                 background: var(--neutrals-white);
                 min-height: 126px;
                 height: auto;
                 padding: 2px 6px;
                 scrollbar-width: auto;
-                scrollbar-color: rgba(0, 0, 0, 0);
+                scrollbar-color: rgb(0 0 0 / 0%);
                 list-style: none;
                 display: none;
 
@@ -451,7 +449,7 @@ main.nfo-nav .main-wrapper .section:first-of-type {
                       bottom: 10%;
                       background-color: var(--neutrals-white);
                       color: var(--blue-1-800-primary);
-                      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+                      box-shadow: 0 4px 12px rgb(0 0 0 / 10%);
                       padding: 4px 14px;
                       border-radius: 4px;
                       font-size: 14px;
@@ -470,13 +468,11 @@ main.nfo-nav .main-wrapper .section:first-of-type {
             margin: 24px 0 0;
             max-width: 100%;
 
-            @include font-style(
-              var(--heading-h5-size),
+            @include font-style(var(--heading-h5-size),
               var(--heading-h5-line-height),
               var(--blue-1-800-primary),
               600,
-              var(--title)
-            );
+              var(--title));
 
             @include media(mobile) {
               font-size: 20px;
@@ -484,16 +480,14 @@ main.nfo-nav .main-wrapper .section:first-of-type {
             }
           }
 
-          h1.investarticle-leftsub2 ~ p.comlist {
+          h1.investarticle-leftsub2~p.comlist {
             margin: 4px 0 0;
 
-            @include font-style(
-              var(--body-medium-regular-size),
+            @include font-style(var(--body-medium-regular-size),
               24px,
               var(--text-body-2),
               400,
-              var(--body)
-            );
+              var(--body));
 
             @include media(mobile) {
               font-size: var(--paragraph-small-regular-size);
@@ -531,13 +525,11 @@ main.nfo-nav .main-wrapper .section:first-of-type {
 
                   .investleft-subinner {
                     &1 {
-                      @include font-style(
-                        var(--body-small-medium-size),
+                      @include font-style(var(--body-small-medium-size),
                         var(--body-small-medium-line-height),
                         var(--neutrals-900),
                         500,
-                        var(--body)
-                      );
+                        var(--body));
 
                       @include media(mobile) {
                         font-size: var(--body-small-medium-size);
@@ -546,13 +538,11 @@ main.nfo-nav .main-wrapper .section:first-of-type {
                     }
 
                     &2 {
-                      @include font-style(
-                        var(--paragraph-small-regular-size),
+                      @include font-style(var(--paragraph-small-regular-size),
                         var(--paragraph-small-regular-line-height),
                         var(--neutrals-700),
                         400,
-                        var(--body)
-                      );
+                        var(--body));
 
                       @include media(mobile) {
                         font-size: var(--paragraph-small-regular-size);
@@ -568,6 +558,7 @@ main.nfo-nav .main-wrapper .section:first-of-type {
 
         &2.embed-wrapper {
           width: 100%;
+
           // height: 320px;
           height: 375px;
           margin: 0 auto;
@@ -575,6 +566,7 @@ main.nfo-nav .main-wrapper .section:first-of-type {
 
           @include media(mobile) {
             padding: 0;
+
             // height: 160px;
             height: 100%;
           }
@@ -679,8 +671,7 @@ main.nfo-nav .main-wrapper .section:first-of-type {
 
                     &::before {
                       content: "";
-                      background: url("../../icons/play-button.svg") center
-                        center no-repeat;
+                      background: url("../../icons/play-button.svg") center center no-repeat;
                       background-size: contain;
                       width: 48px;
                       height: 48px;
@@ -692,12 +683,22 @@ main.nfo-nav .main-wrapper .section:first-of-type {
               }
             }
 
-            > div,
-            > div iframe {
+            >div,
+            >div iframe {
               width: inherit;
               height: inherit;
             }
           }
+        }
+      }
+
+      &[data-id="podcast-detail-section"]> {
+        .investarticle-leftmain1 ul.comlist:last-of-type .investarticle-leftinner1 .investsub-leftarticle1 {
+          width: unset;
+        }
+
+        .investarticle-leftmain1 .investarticle-leftsub1 .investarticle-leftinner1 .investsub-leftarticle1>li:last-of-type::before {
+          display: none;
         }
       }
 
@@ -713,17 +714,15 @@ main.nfo-nav .main-wrapper .section:first-of-type {
             .investsub-leftarticle1 {
               p.comlist,
               ul,
-              ul > li.comlist,
-              ol > li.comlist {
+              ul>li.comlist,
+              ol>li.comlist {
                 margin: 0 0 24px;
 
-                @include font-style(
-                  var(--body-medium-regular-size),
+                @include font-style(var(--body-medium-regular-size),
                   24px,
                   #3d3d3d,
                   400,
-                  var(--body)
-                );
+                  var(--body));
 
                 @include media(mobile) {
                   font-size: var(--paragraph-small-regular-size);
@@ -776,7 +775,7 @@ main.nfo-nav .main-wrapper .section:first-of-type {
                   font-size: 16px;
                   line-height: 20px;
                   color: #fff;
-                  font-family: "Inter", sans-serif;
+                  font-family: Inter, sans-serif;
                   font-feature-settings: "ss01" on, "ss04" on, "cv01" on,
                     "cv02" on, "cv03" on, "cv04" on, "cv06" on, "cv09" on,
                     "cv10" on, "cv11" on;
@@ -791,13 +790,11 @@ main.nfo-nav .main-wrapper .section:first-of-type {
               h6.comlist {
                 margin: 0 0 24px;
 
-                @include font-style(
-                  var(--body-large-semibold-size),
+                @include font-style(var(--body-large-semibold-size),
                   var(--body-large-semibold-line-height),
                   var(--blue-1-800-primary),
                   600,
-                  var(--body)
-                );
+                  var(--body));
 
                 @include media(mobile) {
                   font-size: var(--body-large-semibold-size);
@@ -980,17 +977,16 @@ main.nfo-nav .main-wrapper .section:first-of-type {
           .comlist:first-of-type {
             all: unset;
             margin: 0;
+
             // flex: 1 1 60%;
             // order: 1;
             // grid-area: title-area;
 
-            @include font-style(
-              var(--body-large-semibold-size),
+            @include font-style(var(--body-large-semibold-size),
               var(--body-large-semibold-line-height),
               var(--blue-1-800-primary),
               600,
-              var(--body)
-            );
+              var(--body));
 
             // @media screen and (width <= 1101px){
             //   // flex: 1 1 40%;
@@ -1004,17 +1000,16 @@ main.nfo-nav .main-wrapper .section:first-of-type {
 
           .comlist:not(:first-of-type, :last-of-type) {
             margin: 24px 0 0;
+
             // flex: 1 1 60%;
             // order: 1;
             // grid-area: text-area;
 
-            @include font-style(
-              var(--body-medium-regular-size),
+            @include font-style(var(--body-medium-regular-size),
               24px,
               #3d3d3d,
               400,
-              var(--body)
-            );
+              var(--body));
 
             // @media screen and (width <= 1101px) {
             //   flex: 1 1 40%;
@@ -1037,6 +1032,7 @@ main.nfo-nav .main-wrapper .section:first-of-type {
             min-width: 260px;
             width: 260px;
             height: 260px;
+
             // order: 2;
             // margin-top: -24px;
             // grid-area: image-area;
@@ -1124,7 +1120,7 @@ main.nfo-nav .main-wrapper .section:first-of-type {
                 flex: 1 1 100%;
               }
 
-              em{
+              em {
                 font-style: italic;
               }
             }
@@ -1168,9 +1164,8 @@ main.nfo-nav .main-wrapper .section:first-of-type {
         &.left-key-card {
           .default-content-wrapper.investarticle-leftmain1 {
             padding-right: 44px;
-            flex-wrap: wrap-reverse;
+            flex-flow: row-reverse wrap-reverse;
             align-items: flex-end;
-            flex-direction: row-reverse;
 
             @include media(tab) {
               padding: 0;
@@ -1221,7 +1216,7 @@ main.nfo-nav .main-wrapper .section:first-of-type {
                 order: 3;
               }
 
-              em{
+              em {
                 font-style: italic;
               }
             }
@@ -1310,18 +1305,20 @@ main.nfo-nav .main-wrapper .section:first-of-type {
             padding: 10px 20px;
             width: 100%;
             max-width: 500px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 6px rgb(0 0 0 / 10%);
             display: flex;
             align-items: center;
             margin: 10px 0 0;
 
             &::-webkit-media-controls-panel {
               background-color: #e3f2fd;
+
               /* Light Blue */
             }
 
             &::-webkit-media-controls-play-button {
               background-color: #0288d1;
+
               /* Dark Blue */
               border-radius: 50%;
               color: white;
@@ -1414,13 +1411,11 @@ main.nfo-nav .main-wrapper .section:first-of-type {
             &1 {
               margin: 0 0 16px;
 
-              @include font-style(
-                var(--body-large-medium-size),
+              @include font-style(var(--body-large-medium-size),
                 var(--body-large-medium-line-height),
                 var(--blue-1-800-primary),
                 500,
-                var(--body)
-              );
+                var(--body));
 
               @include media(mobile) {
                 font-size: var(--body-large-medium-size);
@@ -1439,7 +1434,7 @@ main.nfo-nav .main-wrapper .section:first-of-type {
                 gap: 20px;
               }
 
-              > li.rightlist {
+              >li.rightlist {
                 width: 32px;
                 height: 32px;
                 cursor: pointer;
@@ -1476,13 +1471,11 @@ main.nfo-nav .main-wrapper .section:first-of-type {
             &2 {
               margin: 8px 0 24px;
 
-              @include font-style(
-                var(--body-medium-medium-size),
+              @include font-style(var(--body-medium-medium-size),
                 var(--body-medium-medium-line-height),
                 var(--neutrals-white),
                 500,
-                var(--body)
-              );
+                var(--body));
 
               @include media(mobile) {
                 font-size: var(--body-medium-medium-size);
@@ -1503,17 +1496,16 @@ main.nfo-nav .main-wrapper .section:first-of-type {
                   //   border: var(--border-width-01) solid var(--neutrals-white);
                   //   padding: var(--spacing-8) var(--spacing-12);
                   position: relative;
+
                   // height: 40px;
 
                   label,
                   .email-imput {
-                    @include font-style(
-                      var(--body-medium-regular-size),
+                    @include font-style(var(--body-medium-regular-size),
                       var(--body-medium-regular-line-height),
                       var(--neutrals-200),
                       400,
-                      var(--body)
-                    );
+                      var(--body));
 
                     @include media(mobile) {
                       font-size: var(--body-medium-regular-size);
@@ -1606,13 +1598,11 @@ main.nfo-nav .main-wrapper .section:first-of-type {
                     height: 40px;
                     border: none;
 
-                    @include font-style(
-                      var(--button-medium-size),
+                    @include font-style(var(--button-medium-size),
                       var(--button-medium-line-height),
                       var(--text-button-default),
                       500,
-                      var(--body)
-                    );
+                      var(--body));
 
                     @include media(mobile) {
                       padding: var(--spacing-12);
@@ -1632,13 +1622,11 @@ main.nfo-nav .main-wrapper .section:first-of-type {
         .default-content-wrapper.investarticle-rightmain1 {
           .investarticle-rightsub {
             &1 {
-              @include font-style(
-                var(--body-large-medium-size),
+              @include font-style(var(--body-large-medium-size),
                 var(--body-large-medium-line-height),
                 var(--blue-1-800-primary),
                 500,
-                var(--body)
-              );
+                var(--body));
 
               margin: 0 0 8px;
 
@@ -1658,7 +1646,7 @@ main.nfo-nav .main-wrapper .section:first-of-type {
                     flex-direction: column;
                     gap: 0;
 
-                    > li.rightlist.comlist {
+                    >li.rightlist.comlist {
                       padding: var(--spacing-16) 0;
                       border: none;
                       background-color: transparent;
@@ -1692,13 +1680,11 @@ main.nfo-nav .main-wrapper .section:first-of-type {
                           align-items: center;
                           gap: 4px;
 
-                          @include font-style(
-                            var(--label-medium-size),
+                          @include font-style(var(--label-medium-size),
                             var(--label-medium-line-height),
                             var(--blue-1-800-primary),
                             400,
-                            var(--body)
-                          );
+                            var(--body));
 
                           @include media(mobile) {
                             font-size: var(--label-medium-size);
@@ -1715,25 +1701,29 @@ main.nfo-nav .main-wrapper .section:first-of-type {
                           }
                         }
 
-                        h1,
-                        h2,
-                        h3,
-                        h4,
-                        h5,
-                        h6 {
-                          margin: 8px 0 0;
+                        a.rightlist {
+                          word-break: unset;
 
-                          @include font-style(
-                            var(--body-small-medium-size),
-                            var(--body-small-medium-line-height),
-                            var(--neutrals-900),
-                            500,
-                            var(--body)
-                          );
+                          h1,
+                          h2,
+                          h3,
+                          h4,
+                          h5,
+                          h6 {
+                            margin: 8px 0 0;
 
-                          @include media(mobile) {
-                            font-size: var(--body-small-medium-size);
-                            line-height: var(--body-small-medium-line-height);
+                            @include font-style(
+                              var(--body-small-medium-size),
+                              var(--body-small-medium-line-height),
+                              var(--neutrals-900),
+                              500,
+                              var(--body)
+                            );
+
+                            @include media(mobile) {
+                              font-size: var(--body-small-medium-size);
+                              line-height: var(--body-small-medium-line-height);
+                            }
                           }
                         }
 
@@ -1743,13 +1733,11 @@ main.nfo-nav .main-wrapper .section:first-of-type {
                           align-items: center;
                           gap: 4px;
 
-                          @include font-style(
-                            var(--label-small-size),
+                          @include font-style(var(--label-small-size),
                             var(--label-small-line-height),
                             var(--neutrals-700),
                             400,
-                            var(--body)
-                          );
+                            var(--body));
 
                           @include media(mobile) {
                             font-size: var(--label-small-size);
@@ -1775,13 +1763,11 @@ main.nfo-nav .main-wrapper .section:first-of-type {
         .default-content-wrapper.investarticle-rightmain1 {
           .investarticle-rightsub {
             &1 {
-              @include font-style(
-                var(--body-large-medium-size),
+              @include font-style(var(--body-large-medium-size),
                 var(--body-large-medium-line-height),
                 var(--blue-1-800-primary),
                 500,
-                var(--body)
-              );
+                var(--body));
 
               margin: 0 0 24px;
 
@@ -1822,20 +1808,18 @@ main.nfo-nav .main-wrapper .section:first-of-type {
               gap: 8px;
               list-style: none;
 
-              > li.rightlist {
+              >li.rightlist {
                 padding: var(--spacing-16) 0;
 
                 .investsub-rightarticle {
                   &1 {
                     margin: 0 0 4px;
 
-                    @include font-style(
-                      var(--body-medium-medium-size),
+                    @include font-style(var(--body-medium-medium-size),
                       var(--body-medium-medium-line-height),
                       var(--neutrals-800),
                       500,
-                      var(--body)
-                    );
+                      var(--body));
 
                     @include media(mobile) {
                       font-size: var(--body-medium-medium-size);
@@ -1850,14 +1834,12 @@ main.nfo-nav .main-wrapper .section:first-of-type {
                     list-style: none;
                     margin: 0;
 
-                    > li.rightlist {
-                      @include font-style(
-                        var(--label-small-size),
+                    >li.rightlist {
+                      @include font-style(var(--label-small-size),
                         var(--label-small-line-height),
                         var(--neutrals-700),
                         400,
-                        var(--body)
-                      );
+                        var(--body));
 
                       @include media(mobile) {
                         font-size: var(--label-small-size);
@@ -1889,13 +1871,11 @@ main.nfo-nav .main-wrapper .section:first-of-type {
 
                 &.investarticle-rightinner1 {
                   .investsub-rightarticle1 {
-                    @include font-style(
-                      var(--body-medium-semibold-size),
+                    @include font-style(var(--body-medium-semibold-size),
                       var(--body-medium-semibold-line-height),
                       var(--blue-1-800-primary),
                       600,
-                      var(--body)
-                    );
+                      var(--body));
 
                     @include media(mobile) {
                       font-size: var(--body-medium-semibold-size);
@@ -1923,5 +1903,110 @@ main.nfo-nav .main-wrapper .section:first-of-type {
     &3 {
       top: 14px;
     }
+  }
+}
+
+#eds-table {
+  display: none;
+}
+
+/* Base table */
+.eds-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-family: Inter, Arial, sans-serif;
+  font-size: 14px;
+  margin-top: 24px;
+  color: #222;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+
+  /* normal behavior for desktop */
+  box-shadow: 0 1px 0 rgb(0 0 0 / 5%);
+}
+
+/* Header row styling */
+.eds-table tr:first-child th {
+  background: #f6f6f9;
+  color: #5b3aa8;
+  font-weight: 600;
+  text-align: left;
+  padding: 18px;
+  border-bottom: 1px solid rgb(0 0 0 / 5%);
+}
+
+/* Header cells */
+.eds-table th {
+  padding: 16px 18px;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+/* Body cells */
+.eds-table td {
+  padding: 14px 18px;
+  font-size: 13px;
+  line-height: 1.45;
+  border-bottom: 1px dashed rgb(0 0 0 / 6%);
+  text-align: left;
+}
+
+/* Remove bottom border on last row */
+.eds-table tr:last-child td {
+  border-bottom: none;
+}
+
+/* Subtext lines */
+.eds-table br {
+  line-height: 0;
+}
+
+.eds-table .comlist {
+  display: block;
+  font-size: 12px;
+  color: #6b6b76;
+  margin: 2px 0;
+  font-weight: 500;
+}
+
+/* Rounded corners */
+.eds-table tr:first-child th:first-child {
+  border-top-left-radius: 10px;
+}
+
+.eds-table tr:first-child th:last-child {
+  border-top-right-radius: 10px;
+}
+
+.eds-table tr:last-child td:first-child {
+  border-bottom-left-radius: 10px;
+}
+
+.eds-table tr:last-child td:last-child {
+  border-bottom-right-radius: 10px;
+}
+
+@media (width <=720px) {
+  .eds-table {
+    display: block;
+    overflow-x: auto;
+
+    /* enable scrolling on mobile */
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
+
+    /* prevent wrapping so table scrolls */
+  }
+
+  .eds-table th,
+  .eds-table td {
+    white-space: nowrap;
+
+    /* keep cells in one line */
+    padding: 12px 14px;
+
+    /* slightly reduced padding for mobile */
   }
 }

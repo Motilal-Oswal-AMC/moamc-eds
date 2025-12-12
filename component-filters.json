@@ -73,7 +73,12 @@
       "global-gateway",
       "calculator-block",
       "investing-minors",
-      "quick-purchase-block"
+      "quick-purchase-block",
+      "strategy-philosophy",
+      "portfolio-composition",
+      "your-wealth-journey",
+      "our-fund-managers",
+      "strategy-performance-graph"
     ]
   },
   {
@@ -252,6 +257,18 @@
     "id": "quick-purchase-block",
     "components": [
       "quick-purchase-item"
+    ]
+  },
+  {
+    "id": "our-fund-managers",
+    "components": [
+      "our-fund-managers-item"
+    ]
+  },
+  {
+    "id": "Strategy Performance Graph",
+    "components": [
+      "strategy-performance-graph"
     ]
   }
 ]

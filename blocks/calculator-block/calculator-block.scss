@@ -13,6 +13,7 @@ body:has(.calculator-container) {
         flex-direction: row;
         padding: 24px 0;
         min-height: 72px;
+        position: unset;
 
         @media (width <=1279px) {
             max-width: 1280px;
@@ -82,9 +83,9 @@ body:has(.calculator-container) {
             z-index: -1;
         }
 
-        div.library-btn1 {
-            padding-bottom: 40px;
-        }
+        // div.library-btn1 {
+        //     padding-bottom: 40px;
+        // }
 
         .future-building {
             .swiper-wrapper {
@@ -136,7 +137,7 @@ body:has(.calculator-container) {
 
     div[data-id="recommended-funds-id"] {
         position: relative;
-        height: 600px;
+        // height: 600px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -170,7 +171,7 @@ body:has(.calculator-container) {
             }
 
             a.recommended-funds-cta {
-                @include font-style(14px, 16px, $primary-white, 400, $inter);
+                @include font-style(14px, 16px, var(--neutrals-white), 400, $inter);
 
                 display: none;
                 max-width: 124px;
@@ -183,8 +184,17 @@ body:has(.calculator-container) {
                 flex-shrink: 0;
                 margin: 0;
                 background-color: inherit;
-                border-radius: 8px;
-                border: 1px solid $primary-white;
+                border-radius: var(--border-radius-4);
+                border: 1px solid var(--neutrals-white);
+
+                @include media(mobile) {
+                    border-radius: var(--border-radius-8);
+                    font-size: 14px;
+                    line-height: var(--button-small-line-height);
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
 
                 @include media(mobile) {
                     display: flex;
@@ -222,6 +232,7 @@ body:has(.calculator-container) {
 
             .fund-cards-container {
                 display: flex;
+                flex-wrap: wrap;
                 gap: 16px;
                 align-items: center;
 
@@ -230,60 +241,14 @@ body:has(.calculator-container) {
                     justify-content: center;
                 }
 
+
                 .card-container {
-                    padding: 19.6px 16px 16px;
+                    // @include media(desktop-sm) {
+                    //     max-width: 31.8%;
+                    // }
 
                     @include media(mobile) {
-                        max-width: 340px;
-                        padding-top: 20px;
-                    }
-
-
-                    .card-wrapper {
-                        .card-category {
-                            @include media(mobile) {
-                                margin-bottom: 35px;
-                            }
-                        }
-
-                        .cagr-container {
-                            .cagr-dropdown {
-                                .selectedtext {
-                                    gap: 0;
-                                }
-                            }
-
-                            @include media(mobile) {
-                                min-height: 74px;
-                            }
-                        }
-
-                        .cagr-container .cagr-value .cagr-val-label span {
-                            @include media(mobile) {
-                                line-height: 28px;
-                            }
-                        }
-
-                        .discription {
-                            .dis-choosen {
-                                min-height: 20px;
-                                align-items: center;
-
-                                .dis-investor {
-                                    .dis-investor {
-                                        .person {
-                                            width: 16px;
-                                            height: 16px;
-                                        }
-                                    }
-                                }
-
-                                .riskfactor-icon {
-                                    width: 20px;
-                                    height: 20px;
-                                }
-                            }
-                        }
+                        max-width: 100%;
                     }
                 }
             }
@@ -300,6 +265,7 @@ body:has(.calculator-container) {
 
 
 body:has(.calc-error) {
+
     .calculator-sticky-cta-container .button.calculator-container-title-btn,
     div[class*='calculator-container_title'].default-content-wrapper .calculator-container-title-item1 p.button-container a.calculator-container-title-btn {
         // opacity: 0.58;
@@ -505,7 +471,7 @@ main {
 
                 @include media(mobile) {
                     font-size: 12px;
-                    line-height: 16px;
+                    line-height: 14px;
                 }
 
                 .icon-key-facts-no-bg {
@@ -1069,6 +1035,10 @@ main {
             .question {
                 @include font-style(24px, 32px, $primary-blue, 500, $inter);
 
+                @include media(mobile) {
+                    font-size: 22px;
+                }
+
                 .link {
                     color: $primary-blue;
                     text-decoration: underline;
@@ -1089,6 +1059,7 @@ main {
             }
 
             ol.answer-container {
+
                 // gap: 35px;
                 &:not(:has(.pointer)) {
                     li.answer {
