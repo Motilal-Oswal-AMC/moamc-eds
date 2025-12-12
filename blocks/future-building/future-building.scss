@@ -398,7 +398,8 @@
                                     text-decoration-skip-ink: auto;
                                     text-decoration-thickness: auto;
                                     text-underline-position: from-font;
-                                    text-underline-offset: -0.5px;
+                                    // text-underline-offset: -0.5px;
+                                    text-underline-offset: -0.2px;
                                     border-radius: unset;
                                     border: none;
                                     padding: 0;
@@ -407,19 +408,21 @@
                                     height: 100%;
                                     min-height: unset;
 
-                                    @include font-style(map.get($typography-desktop, body-small-regular-size),
-                                        map.get($typography-desktop, body-small-regular-line-height),
-                                        $text-text-link,
+                                    @include font-style(
+                                        14px,
+                                        var(--text-link-small-line-height),
+                                        var(--text-text-link),
                                         400,
-                                        $body);
+                                        var(--body)
+                                    );
 
                                     @include media(mobile) {
-                                        @include font-style(map.get($typography-mobile, body-small-regular-size),
-                                            map.get($typography-mobile, body-small-regular-line-height),
-                                            $text-text-link,
-                                            400,
-                                            $body);
-
+                                        // @include font-style(map.get($typography-mobile, body-small-regular-size),
+                                        //     map.get($typography-mobile, body-small-regular-line-height),
+                                        //     $text-text-link,
+                                        //     400,
+                                        //     $body);
+                                        font-size: var(--text-link-small-size);
                                         line-height: var(--text-link-small-line-height);
                                         min-height: unset;
                                     }

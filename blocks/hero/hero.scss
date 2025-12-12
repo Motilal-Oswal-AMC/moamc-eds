@@ -1479,11 +1479,16 @@
                 color: var(--neutrals-white, #FFF);
                 font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
                 font-family: var(--title, Inter);
-                font-size: var(--heading-h4-size, 32px);
+                font-size: 32px;
                 font-style: normal;
                 font-weight: 600;
-                line-height: var(--heading-h4-line-height, 40px);
+                line-height: 40px;
                 margin-top: 7px;
+
+                @include media (mobile) {
+                  font-size: var(--heading-h4-size);
+                  line-height: 32px;
+                }
               }
 
               &-list3 {
@@ -1497,6 +1502,13 @@
                 font-weight: 400;
                 line-height: var(--label-large-line-height, 20px);
                 margin-top: 8px;
+
+                @include media (mobile) {
+                  font-size: var(--paragraph-xsmall-regular-size, 12px);
+                  font-style: normal;
+                  font-weight: 400;
+                  line-height: var(--paragraph-xsmall-regular-line-height, 16px);
+                }
               }
 
               &-list4 {
@@ -1528,6 +1540,11 @@
                 border-radius: var(--border-radius-8, 8px);
                 background: var(--neutrals-white, #FFF);
                 margin-top: 19px;
+
+                @include media (mobile) {
+                  margin-top: 24px;
+                  width: 100%;
+                }
 
                 a {
                   color: var(--text-button-default, #2E2A94);
