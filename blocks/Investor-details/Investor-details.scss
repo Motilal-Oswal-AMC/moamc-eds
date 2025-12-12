@@ -15,7 +15,7 @@ main.nfo-nav .main-wrapper .section:first-of-type {
   display: flex;
   gap: 30px;
   justify-content: space-between;
-  padding-bottom: 0;
+  // padding-bottom: 0;
 
   @include media(desktop-sm) {
     padding: 24px 16px 40px;
