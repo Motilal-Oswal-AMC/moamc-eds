@@ -406,7 +406,7 @@ export default function decorate(block) {
   if (mainblklist.getAttribute('data-id') === 'listing-podcast-cards') {
     // Select all the card items
     // 1. Create an array of Promises using .map() instead of .forEach()
-    const htmlPromises = dataMapMoObj.getinvestorblog.data.map(async (elem, index) => {
+    const htmlPromises = dataMapMoObj.getinvestorblog.data.slice(1).map(async (elem, index) => {
       // Check condition
       if (!elem.path.includes('/podcast/')) {
         return null; // Return null if condition isn't met
