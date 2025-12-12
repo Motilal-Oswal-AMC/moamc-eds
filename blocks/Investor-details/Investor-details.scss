@@ -1924,7 +1924,7 @@ main.nfo-nav .main-wrapper .section:first-of-type {
   background: #fff;
   border-radius: 10px;
   overflow: hidden;
-
+  border: 1px solid rgb(0 0 0 / 5%);
   /* normal behavior for desktop */
   box-shadow: 0 1px 0 rgb(0 0 0 / 5%);
 }
@@ -1936,7 +1936,8 @@ main.nfo-nav .main-wrapper .section:first-of-type {
   font-weight: 600;
   text-align: left;
   padding: 18px;
-  border-bottom: 1px solid rgb(0 0 0 / 5%);
+  // border-bottom: 1px solid rgb(0 0 0 / 5%);
+  border: 1px solid rgb(0 0 0 / 5%);
 }
 
 /* Header cells */
@@ -1951,7 +1952,8 @@ main.nfo-nav .main-wrapper .section:first-of-type {
   padding: 14px 18px;
   font-size: 13px;
   line-height: 1.45;
-  border-bottom: 1px dashed rgb(0 0 0 / 6%);
+  // border-bottom: 1px dashed rgb(0 0 0 / 6%);
+  border: 1px solid rgb(0 0 0 / 6%);
   text-align: left;
 }
 
