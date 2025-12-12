@@ -351,6 +351,10 @@
             border-radius: 8px;
             background: transparent;
 
+            @include media (mobile) {
+                padding: 48px 0;
+            }
+
             .start-container1 {
                 width: 100%;
 
@@ -361,8 +365,13 @@
 
                     h5 {
                         color: var(--neutrals-white, #FFF);
-                        font-size: var(--heading-h5-size, 28px);
-                        line-height: var(--heading-h5-line-height, 32px);
+                        font-size: var(--heading-h4-size, 28px);
+                        line-height: 32px;
+
+                        @include media (mobile) {
+                            font-size: var(--heading-h5-size);
+                            line-height: var(--heading-h5-line-height);
+                        }
                     }
 
                     >ul {
@@ -471,6 +480,10 @@
 }
 
 .strategy-download.start-building-container {
+    @include media (mobile) {
+        margin: 0;
+    }
+
     .start-building-wrapper {
         .start-building {
             display: flex;
@@ -482,10 +495,18 @@
             border-radius: 8px;
             background: transparent;
 
+            // @include media (mobile) {
+            //     gap: 20px;
+            // }
+
             .start-container1 {
                 width: 100%;
 
                 .start-section1 {
+                    @include media (mobile) {
+                        gap: 20px;
+                    }
+
                     h5 {
                         margin: 0;
                         padding: 0;
@@ -496,6 +517,11 @@
                         font-style: normal;
                         font-weight: 600;
                         line-height: 28px;
+
+                        @include media (mobile) {
+                            font-size: 20px;
+                            line-height: 24px;
+                        }
                     }
 
                     // >ul {
@@ -538,6 +564,10 @@
                         align-items: flex-start;
                         gap: 40px;
                         align-self: stretch;
+
+                        @include media (mobile) {
+                            gap: 8px;
+                        }
 
                         li {
                             display: flex;
@@ -592,7 +622,7 @@
 
 @media (width >=900px) {
     .strategy-download.start-building-container {
-        padding: 40px 0;
+        padding: 0;
         margin: 0;
 
         .start-building-wrapper {
@@ -638,8 +668,8 @@
 
                                     .icon {
                                         display: flex;
-                                        width: 40px;
-                                        height: 40px;
+                                        width: auto;
+                                        height: auto;
                                         padding: 13.333px;
                                         flex-direction: column;
                                         justify-content: center;

@@ -295,11 +295,12 @@
           .item-child-1 {
             width: 100%;
             color: #212121;
-            font-family: var(--bod, Inter);
+            font-family: var(--body, Inter);
             font-size: var(--sub-header-medium-size, );
             font-style: normal;
             font-weight: 500;
             line-height: var(--sub-header-medium-line-height);
+            height: unset;
 
             @include media(mobile) {
               font-size: 18px;
@@ -1143,77 +1144,106 @@
 }
 
 .strategy-details.cornerstones-advantage-cards-container {
-  padding: 40px 0 80px;
+  padding: 27px 0 67px;
+
+  @include media(mobile) {
+    padding: 8px 0;
+  }
 
   >.construct-contain1 {
     text-align: left;
     margin-bottom: 40px;
+
+    @include media (mobile) {
+      margin: 0;
+      margin-bottom: 20px;
+    }
 
     .construct-list1 {
       text-align: left;
       color: var(--blue-1800-primary, #2E2A94);
       font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
       font-family: var(--title, Inter);
-      font-size: var(--heading-h5-size, 28px);
+      font-size: 28px;
       font-style: normal;
       font-weight: 600;
-      line-height: var(--heading-h5-line-height, 32px);
+      line-height: 32px;
       margin: 0;
+
+      @include media (mobile) {
+        font-size: var(--heading-h5-size);
+        font-style: normal;
+        font-weight: 600;
+        line-height: var(--heading-h5-line-height);
+      }
     }
   }
 
   .cornerstones-advantage-cards-wrapper {
-    .cornerstones-advantage-cards {
-      .cards-item.comlist {
-        max-width: 32.4%;
-        flex: 0 0 32.4%;
-        width: 100%;
-        min-height: auto;
-
-        @include media (mobile-ed) {
-          max-width: 100%;
-          flex: 0 0 100%;
+    .cornerstones-advantage {
+      &-cards {
+        @include media (mobile) {
+          margin: 0;
+          margin-top: 20px;
+          gap: 16px;
         }
 
-        >div {
-          // width: 400px;
-          // height: 80px;
-          display: flex;
-          padding: 8px 0;
-          align-items: flex-start;
-          gap: 24px;
-          flex-direction: row;
+        .cards-item.comlist {
+          max-width: 32.4%;
+          flex: 0 0 32.4%;
+          width: 100%;
+          min-height: auto;
 
-          .item-child-1 {
-            margin: 0;
-            width: 44px;
-            height: 44px;
-            flex-shrink: 0;
+          @include media (mobile-ed) {
+            max-width: 100%;
+            flex: 0 0 100%;
+          }
 
-            .icon {
+          >div {
+            // width: 400px;
+            // height: 80px;
+            display: flex;
+            padding: 8px 0;
+            align-items: flex-start;
+            gap: 24px;
+            flex-direction: row;
+
+            @include media (mobile-ed) {
+              gap: 20px;
+            }
+
+            .item-child-1 {
+              margin: 0;
               width: 44px;
               height: 44px;
               flex-shrink: 0;
-            }
-          }
 
-          .text-content-wrapper {
-            .item-child-2 {
-              margin: 0;
-              margin-bottom: 4px;
-              font-size: var(--body-medium-medium-size, 16px);
-              font-style: normal;
-              font-weight: 500;
-              line-height: var(--body-medium-medium-line-height, 20px);
+              .icon {
+                width: 44px;
+                height: 44px;
+                flex-shrink: 0;
+              }
             }
 
-            .item-child-3 {
-              margin: 0;
-              padding: 0;
-              font-size: var(--body-small-regular-size, 14px);
-              font-style: normal;
-              font-weight: 400;
-              line-height: var(--label-large-line-height, 20px);
+            .text-content-wrapper {
+              .item-child-2 {
+                margin: 0;
+                margin-bottom: 4px;
+                font-size: var(--body-medium-medium-size, 16px);
+                font-style: normal;
+                font-weight: 500;
+                line-height: var(--body-medium-medium-line-height, 20px);
+              }
+
+              .item-child-3 {
+                margin: 0;
+                padding: 0;
+                font-size: var(--body-small-regular-size, 14px);
+                font-style: normal;
+                font-weight: 400;
+                line-height: var(--label-large-line-height, 20px);
+                padding-right: 10px;
+              }
             }
           }
         }

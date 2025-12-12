@@ -3,8 +3,8 @@
 /*   media-feature-range-notation */
 
 @use "sass:map";
-@use "../../styles/common-theme/css/variables_mixins" as *;
-@use "../../styles/common-theme/css/fluid-typography" as *;
+@use "../../styles/common-theme/css/variables_mixins"as *;
+@use "../../styles/common-theme/css/fluid-typography"as *;
 @import "./faq-page.css";
 
 .accordion-container {
@@ -365,7 +365,9 @@
               padding: $spacing-16 $spacing-none;
               padding-top: 0;
               border-radius: 0 0 8px 8px;
-              box-shadow: 0 4px 12px 0 rgb(0 0 0 / 5%);
+              
+              // box-shadow: 0 4px 12px 0 rgb(0 0 0 / 5%);
+
               background-color: transparent;
 
               @include media(mobile) {
@@ -530,6 +532,7 @@
         .accordion-item[open] {
           .accordion-item-body {
             box-shadow: unset;
+
             p {
               @include media(mobile) {
                 font-size: 14px;
@@ -719,7 +722,7 @@
             p.comlist {
               margin: unset;
               color: var(--blue-1-800-primary);
-              font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
+              font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
               font-family: var(--body);
               font-size: var(--body-large-medium-size);
               font-style: normal;
