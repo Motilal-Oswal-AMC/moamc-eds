@@ -750,7 +750,7 @@ main.nfo-nav .main-wrapper .section:first-of-type {
                   }
                 }
 
-                &:last-child {
+                &:last-child:not(:first-of-type) {
                   margin: 0;
                 }
               }
