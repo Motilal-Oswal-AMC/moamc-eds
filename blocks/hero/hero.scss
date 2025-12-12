@@ -979,8 +979,8 @@
           border: 1px solid #ccc;
           border-radius: 8px;
           color: var(--text-typed-input);
-          font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on,
-            'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
+          font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on,
+            'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
           font-family: var(--body);
           font-size: var(--body-medium-regular-size);
           font-weight: 400;
@@ -1407,6 +1407,8 @@
         &1 {
           .strategy-detail-inner-text1 {
             height: 496px;
+            display: flex;
+            justify-content: center;
 
             @include media (mobile) {
               height: 309px;
@@ -1440,11 +1442,13 @@
           }
 
           .strategy-detail-inner-text1 {
-            height: 496px;
+            height: auto;
+            margin-top: 58px;
 
             @include media (mobile) {
               width: 100%;
               height: auto;
+              margin-top: 0;
 
               @include media (mobile) {
                 img {
