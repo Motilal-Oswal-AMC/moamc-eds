@@ -265,7 +265,7 @@
           }
         },
         {
-          "title": "Live Streaming Carousel",
+          "title": "Live portfolio-compositionreaming Carousel",
           "id": "live-streaming",
           "plugins": {
             "xwalk": {
@@ -1516,21 +1516,6 @@
                 "template": {
                   "name": "Your wealth Journey",
                   "model": "your-wealth-journey"
-                }
-              }
-            }
-          }
-        },
-        {
-          "title": "Portfolio Composition",
-          "id": "portfolio-composition",
-          "plugins": {
-            "xwalk": {
-              "page": {
-                "resourceType": "core/franklin/components/block/v1/block",
-                "template": {
-                  "name": "Portfolio Composition",
-                  "model": "portfolio-composition"
                 }
               }
             }

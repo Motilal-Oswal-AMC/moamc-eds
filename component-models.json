@@ -4150,6 +4150,22 @@
   {
     "id": "portfolio-composition",
     "fields": [
+       {
+        "component": "multiselect",
+        "name": "classes",
+        "label": "Style",
+        "options": [
+          {
+            "name": "XCL World Academy",
+            "children": [
+              {
+                "name": "Portfolio Composition Block",
+                "value": "portfolio-composition-block"
+              }
+            ]
+          }
+        ]
+      },
       {
         "component": "richtext",
         "name": "cont1_text",
