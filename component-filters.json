@@ -73,7 +73,8 @@
       "global-gateway",
       "investing-minors",
       "quick-purchase-block",
-      "calculator-block"
+      "calculator-block",
+      "test-block"
     ]
   },
   {
