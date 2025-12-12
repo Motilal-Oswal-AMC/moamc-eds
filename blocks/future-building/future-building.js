@@ -374,7 +374,7 @@ export default function decorate(block) {
     // 3. Extract the original object back
       .map(({ value }) => value);
 
-    console.log(data);
+    // console.log(data);
     const datafin = data.slice(0, 3);
 
     // 3. Map Data to Promises
