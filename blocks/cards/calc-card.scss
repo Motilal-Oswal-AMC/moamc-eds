@@ -165,6 +165,8 @@
     .cards {
       .cal-item-inner1 {
         .sub-cal-item1 {
+          height: 386px;
+
           .sub-inner-cal-item2 {
             .sub-cal-item-inner1 {
               color: var(--Neutrals-900, #212121);
@@ -184,10 +186,16 @@
               font-style: normal;
               font-weight: 400;
               line-height: var(--Label-Large-Line-Height, 20px);
-
-
             }
           }
+        }
+
+        .sub-cal-item2 {
+          height: 386px;
+        }
+
+        .sub-cal-item3 {
+          height: 386px;
         }
       }
     }
@@ -202,7 +210,7 @@
   height: unset;
   color: var(--neutrals-black);
   font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
-  font-family: var(--Body, Inter)+;
+  font-family: var(--Body, Inter);
   font-size: 14px;
   font-style: normal;
   font-weight: 400;

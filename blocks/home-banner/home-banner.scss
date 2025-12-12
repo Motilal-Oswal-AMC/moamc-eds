@@ -297,3 +297,23 @@
     }
   }
 }
+
+.section.become-partner-banner {
+  max-width: 1232px;
+  margin: 0 auto;
+  max-height: 396px;
+
+  .home-banner-wrapper {
+    .home-banner {
+      .sub-home-banner {
+        position: relative;
+
+        .sub-banner-item-1 {
+          &::after {
+            background: unset;
+          }
+        }
+      }
+    }
+  }
+}
