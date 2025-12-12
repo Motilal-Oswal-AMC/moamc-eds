@@ -1384,6 +1384,10 @@ main>.section.previous-studies-tab.tabs-container {
   background: transparent;
   padding-bottom: 0;
 
+ @media (width >=1390px) {
+    left: 152px;
+  }
+
   @include media(mobile) {
     padding: 20px 0 24px;
   }
@@ -1521,7 +1525,9 @@ main>.section.previous-studies-tab.tabs-container {
 
     >ul {
       li {
-        a,p {
+
+        a,
+        p {
           color: var(--neutrals-white, #FFF);
           line-height: 0;
         }
