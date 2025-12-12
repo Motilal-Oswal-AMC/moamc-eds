@@ -16,6 +16,10 @@
             align-self: stretch;
 
             @include media (mobile) {
+                gap: 28px;
+            }
+
+            @include media (mobile) {
                 flex-direction: column;
                 padding: 48px 0;
                 margin-top: 0;
@@ -35,6 +39,8 @@
 
                 @include media (mobile) {
                     width: 100%;
+                    padding: var(--spacing-24, 24px) var(--spacing-20, 20px) 0 var(--spacing-20, 20px);
+                    gap: 20px;
                 }
 
                 .philosophy-cont1 {
@@ -44,10 +50,15 @@
                             color: var(--blue-1800-primary, #2E2A94);
                             font-feature-settings: 'ss01'on, 'ss04'on, 'cv01'on, 'cv02'on, 'cv03'on, 'cv04'on, 'cv06'on, 'cv09'on, 'cv10'on, 'cv11'on;
                             font-family: var(--title, Inter);
-                            font-size: var(--heading-h5-size, 28px);
+                            font-size: var(--heading-h4-size, 28px);
                             font-style: normal;
                             font-weight: 600;
-                            line-height: var(--heading-h5-line-height, 32px);
+                            line-height: 32px;
+
+                            @include media (mobile) {
+                                font-size: var(--heading-h5-size);
+                                line-height: var(--heading-h5-line-height);
+                            }
                         }
 
                         p {
@@ -68,6 +79,12 @@
                     .philosophy-sec1 {
                         height: 246px;
                         align-self: stretch;
+
+                        @include media (mobile) {
+                            height: 225px;
+                            flex-shrink: 0;
+                            align-self: stretch;
+                        }
                     }
                 }
             }
@@ -108,6 +125,10 @@
 
                             @include media (mobile) {
                                 width: 100%;
+                                font-size: var(--body-medium-semibold-size, 16px);
+                                font-style: normal;
+                                font-weight: 600;
+                                line-height: var(--body-medium-semibold-line-height, 20px);
                             }
                         }
 
@@ -115,6 +136,10 @@
                             margin: 0;
                             list-style: none;
                             margin-top: 8px;
+
+                            @include media (mobile) {
+                                margin-top: 4px;
+                            }
 
                             li {
                                 width: 100%;

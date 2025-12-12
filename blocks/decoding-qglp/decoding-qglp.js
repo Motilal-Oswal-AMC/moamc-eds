@@ -53,5 +53,77 @@ export default async function decorate(block) {
         }
       });
     }
+
+    (function () {
+      const mobileBreakpoint = 768;
+      let imageContainer = block.querySelector('.decoding-qglp-static .comlist.glpcoding2');
+      let targetParent = block.querySelector('.decoding-qglp-static .comlist.glpcoding1 > .comlist.glpcoding-inner1');
+      let referenceElement = block.querySelector('.decoding-qglp-static .comlist.glpcoding-sub-inner3');
+
+      // Fallback attempt to search within a broader scope (mainbl)
+      if (!imageContainer || !targetParent || !referenceElement) {
+        imageContainer = imageContainer || mainbl.querySelector('.comlist.glpcoding2');
+        targetParent = targetParent || mainbl.querySelector('.comlist.glpcoding1 > .comlist.glpcoding-inner1');
+        referenceElement = referenceElement || mainbl.querySelector('.comlist.glpcoding-sub-inner3');
+      }
+
+      // Final check for required elements
+      if (!imageContainer || !targetParent || !referenceElement) {
+        console.error('QGLP reordering: required elements not found.');
+        return;
+      }
+
+      // Save original location for desktop restoration
+      // const originalParent = imageContainer.parentElement;
+      // const originalNextSibling = imageContainer.nextElementSibling;
+
+      // --- Responsive Movement Logic ---
+      function moveImageForMobile() {
+        const currentWidth = window.innerWidth;
+
+        if (currentWidth < mobileBreakpoint) {
+          // Mobile (Width <= 767px): move into the text area before the reference element
+          if (imageContainer.parentElement !== targetParent) {
+            targetParent.insertBefore(imageContainer, referenceElement);
+            // console.debug('QGLP: moved image into text block for mobile');
+          }
+        }
+        // else {
+        //   if (imageContainer.parentElement !== originalParent) {
+        //     if (originalNextSibling && originalNextSibling.parentElement === originalParent) {
+        //       originalParent.insertBefore(imageContainer, originalNextSibling);
+        //     } else {
+        //       originalParent.appendChild(imageContainer);
+        //     }
+        //   }
+        // }
+      }
+      // --- End of moveImageForMobile function ---
+
+      // 1. Run once now (for direct load)
+      moveImageForMobile();
+
+      // 2. Keep it responsive (listen for resize/orientation change)
+      window.addEventListener('resize', moveImageForMobile);
+
+      // Correctly close the Immediately Invoked Function Expression (IIFE)
+    }());
+
+    (function () {
+      const parentElements = document.querySelectorAll('.qglp-static-component .comlist.qglp-static-ls-li2');
+
+      const newClass = 'highlight';
+
+      // 2. Check if any parent elements were found (length > 0)
+      if (parentElements.length > 0) {
+        // 3. Iterate over each parent element found
+        parentElements.forEach((parentElement) => {
+          const strongElement = parentElement.querySelector('strong');
+          if (strongElement) {
+            strongElement.classList.add(newClass);
+          }
+        });
+      }
+    }());
   }
 }
