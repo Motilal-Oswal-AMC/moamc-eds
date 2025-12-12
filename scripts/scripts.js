@@ -602,7 +602,7 @@ function articleStructure() {
       dataMapMoObj.addIndexed(subright);
     });
 
-    if (!maincloser.querySelector('.moedge-article-details')) {
+    // if (!maincloser.querySelector('.moedge-article-details')) {
       Array.from(leftSub).forEach((subleft) => {
         dataMapMoObj.CLASS_PREFIXES = [
           'investarticle-leftmain',
@@ -616,7 +616,7 @@ function articleStructure() {
         ];
         dataMapMoObj.addIndexed(subleft);
       });
-    }
+    // }
 
     const maindiv = maincloser.querySelector('.main-wrapper');
     maindiv.classList.add('open-share-popup');

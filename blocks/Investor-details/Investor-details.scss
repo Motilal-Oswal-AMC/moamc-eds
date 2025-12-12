@@ -15,7 +15,7 @@ main.nfo-nav .main-wrapper .section:first-of-type {
   display: flex;
   gap: 30px;
   justify-content: space-between;
-  padding-bottom: 0;
+  // padding-bottom: 0;
 
   @include media(desktop-sm) {
     padding: 24px 16px 40px;
@@ -560,7 +560,8 @@ main.nfo-nav .main-wrapper .section:first-of-type {
           width: 100%;
 
           // height: 320px;
-          height: 375px;
+          // height: 375px;
+          height: 372px;
           margin: 0 auto;
           overflow: hidden;
 
@@ -747,10 +748,11 @@ main.nfo-nav .main-wrapper .section:first-of-type {
                     font-style: normal;
                     font-weight: 600;
                     line-height: var(--body-large-semibold-line-height, 24px);
+                    word-break: unset;
                   }
                 }
 
-                &:last-child {
+                &:last-child:not(:first-of-type) {
                   margin: 0;
                 }
               }
