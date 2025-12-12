@@ -295,11 +295,12 @@
           .item-child-1 {
             width: 100%;
             color: #212121;
-            font-family: var(--bod, Inter);
+            font-family: var(--body, Inter);
             font-size: var(--sub-header-medium-size, );
             font-style: normal;
             font-weight: 500;
             line-height: var(--sub-header-medium-line-height);
+            height: unset;
 
             @include media(mobile) {
               font-size: 18px;
