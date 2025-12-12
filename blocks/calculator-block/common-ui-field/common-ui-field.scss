@@ -436,7 +436,7 @@
         }
 
         &-label {
-            @include font-style(12px, 16px, $neutrals-black, 500, $poppins);
+            @include font-style(12px, 16px, $neutrals-black, 500, $inter);
 
             white-space: nowrap;
 

@@ -167,6 +167,7 @@ body:has(.calculator-container) {
             @include media(mobile) {
                 margin: 40px 0;
             }
+            
 
             a.recommended-funds-cta {
                 @include font-style(14px, 16px, var(--neutrals-white), 400, $inter);
