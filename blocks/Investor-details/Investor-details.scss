@@ -747,10 +747,11 @@ main.nfo-nav .main-wrapper .section:first-of-type {
                     font-style: normal;
                     font-weight: 600;
                     line-height: var(--body-large-semibold-line-height, 24px);
+                    word-break: unset;
                   }
                 }
 
-                &:last-child {
+                &:last-child:not(:first-of-type) {
                   margin: 0;
                 }
               }
