@@ -95,35 +95,50 @@
               width: 32px;
               height: 32px;
 
-
-              .button {
-                background-color: transparent;
-                margin: 0;
+              li {
+                list-style: none;
                 display: flex;
-                justify-content: center;
-                align-items: center;
+                gap: 5px;
 
+                &::before {
+                  content: '';
+                  min-width: 4px;
+                  height: 4px;
+                  background-color: var(--neutrals-black);
+                  border-radius: 50%;
+                  display: block;
+                  margin-top: 7px;
+                }
 
-                .icon-cal-vector {
+                .button {
+                  background-color: transparent;
+                  margin: 0;
                   display: flex;
-                  width: 32px;
-                  height: 32px;
-                  flex-direction: column;
                   justify-content: center;
                   align-items: center;
-                  gap: 8px;
-                  aspect-ratio: 1/1;
-                  border-radius: var(--border-radius-circle);
-                  background: var(--blue-1-800-primary);
-                  margin: 0;
 
-                  // position: absolute;
-                  // top: 10px;
-                  // right: 10px;
 
-                  img {
-                    width: 11px;
-                    height: 11px;
+                  .icon-cal-vector {
+                    display: flex;
+                    width: 32px;
+                    height: 32px;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    gap: 8px;
+                    aspect-ratio: 1/1;
+                    border-radius: var(--border-radius-circle);
+                    background: var(--blue-1-800-primary);
+                    margin: 0;
+
+                    // position: absolute;
+                    // top: 10px;
+                    // right: 10px;
+
+                    img {
+                      width: 11px;
+                      height: 11px;
+                    }
                   }
                 }
               }
@@ -152,9 +167,11 @@
       padding-bottom: 40px;
 
       @include media(mobile) {
-        font-size: 28px;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 600;
         line-height: 24px;
-        padding-bottom: 24px;
+        padding-bottom: 40px;
         margin-top: unset;
         margin-bottom: unset;
       }
@@ -169,33 +186,118 @@
 
           .sub-inner-cal-item2 {
             .sub-cal-item-inner1 {
-              color: var(--Neutrals-900, #212121);
+              color: var(--neutrals-900);
               font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
-              font-family: var(--Body, Inter);
-              font-size: var(--Sub-Header-Medium-Size, 20px);
+              font-family: var(--body, Inter);
+              font-size: 20px;
               font-style: normal;
               font-weight: 500;
-              line-height: var(--Sub-Header-Medium-Line-Height, 28px);
+              line-height: 28px;
+
+              @include media(mobile) {
+                font-size: 18px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: 24px;
+                /* 133.333% */
+              }
             }
 
             .sub-cal-item-inner2 {
-              color: var(--Neutrals-Black, #111);
+              color: var(--neutrals-black);
               font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
-              font-family: var(--Body, Inter);
-              font-size: var(--Body-Small-regular-Size, 14px);
+              font-family: var(--body, Inter);
+              font-size: 14px;
               font-style: normal;
               font-weight: 400;
-              line-height: var(--Label-Large-Line-Height, 20px);
+              line-height: 20px;
             }
           }
         }
 
         .sub-cal-item2 {
           height: 386px;
+
+          .sub-inner-cal-item2 {
+            .sub-cal-item-inner1 {
+              color: var(--neutrals-900);
+              font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
+              font-family: var(--body, Inter);
+              font-size: 20px;
+              font-style: normal;
+              font-weight: 500;
+              line-height: 28px;
+
+              @include media(mobile) {
+                font-size: 18px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: 24px;
+                /* 133.333% */
+              }
+            }
+
+            .sub-cal-item-inner2 {
+              color: var(--neutrals-black);
+              font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
+              font-family: var(--body, Inter);
+              font-size: 14px;
+              font-style: normal;
+              font-weight: 400;
+              line-height: 20px;
+
+            }
+          }
         }
 
         .sub-cal-item3 {
           height: 386px;
+
+          .sub-inner-cal-item2 {
+            .sub-cal-item-inner1 {
+              color: var(--neutrals-900);
+              font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
+              font-family: var(--body, Inter);
+              font-size: 20px;
+              font-style: normal;
+              font-weight: 500;
+              line-height: 28px;
+
+              @include media(mobile) {
+                font-size: 18px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: 24px;
+                /* 133.333% */
+              }
+            }
+
+            .sub-cal-item-inner2 {
+              color: var(--neutrals-black);
+              font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
+              font-family: var(--body, Inter);
+              font-size: 14px;
+              font-style: normal;
+              font-weight: 400;
+              line-height: 20px;
+
+              li {
+                list-style: none;
+                display: flex;
+                gap: 5px;
+
+                &::before {
+                  content: '';
+                  min-width: 4px;
+                  height: 4px;
+                  background-color: var(--neutrals-black);
+                  border-radius: 50%;
+                  display: block;
+                  margin-top: 7px;
+                }
+              }
+            }
+          }
         }
       }
     }
@@ -210,14 +312,12 @@
   height: unset;
   color: var(--neutrals-black);
   font-feature-settings: 'ss01' on, 'ss04' on, 'cv01' on, 'cv02' on, 'cv03' on, 'cv04' on, 'cv06' on, 'cv09' on, 'cv10' on, 'cv11' on;
-  font-family: var(--Body, Inter);
+  font-family: var(--body, Inter);
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
   line-height: 20px;
-  padding-left: 30px;
+  padding-left: 5px;
 
-  @include media(mobile) {
-    padding-left: 31px;
-  }
+
 }
