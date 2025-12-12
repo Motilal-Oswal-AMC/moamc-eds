@@ -1079,6 +1079,12 @@ main {
             }
 
             ol.answer-container {
+                list-style: none;
+                /* 1. Remove default numbering */
+                counter-reset: item;
+                /* 2. Initialize the counter */
+                padding-left: 0;
+                /* Adjust container padding as needed */
 
                 // gap: 35px;
                 &:not(:has(.pointer)) {
@@ -1092,12 +1098,34 @@ main {
                 }
 
                 li.answer:not(:has(em.small-bold)) {
-                    position: relative;
 
+                    counter-increment: item;
+                    /* 3. Increment the counter for each item */
+                    position: relative;
+                    /* 4. Create positioning context for the number */
+                    margin-left: 20px;
+                    /* Add margin for the number's space */
                     // counter-increment: num;
-                    display: list-item;
+                    // display: list-item;
                     list-style-type: decimal;
                     margin-left: 24px;
+
+                    &::before {
+                        content: counter(item) ".";
+                        /* 5. Display the counter value */
+                        position: absolute;
+                        /* 6. Position the number precisely */
+                        left: -20px;
+                        width: 20px;
+                        @include font-style(18px, 24px, $primary-blue, 500, $inter);
+                        text-align: left;
+
+                        @include media(mobile) {
+                            font-size: 16px;
+                            line-height: 20px;
+                        }
+
+                    }
 
                     &:not(:last-child) {
                         margin-bottom: 24px;
@@ -1107,9 +1135,9 @@ main {
                         }
                     }
 
-                    &::marker {
-                        @include font-style(18px, 24px, $primary-blue, 500, $inter);
-                    }
+                    // &::marker {
+                    //     @include font-style(18px, 24px, $primary-blue, 500, $inter);
+                    // }
 
                     .pointer {
                         position: relative;
@@ -1188,5 +1216,39 @@ main {
                 margin-bottom: 38px;
             }
         }
+    }
+
+    // Custom ordered list styles
+    ol.custom-list {
+        list-style: none;
+        /* 1. Remove default numbering */
+        counter-reset: item;
+        /* 2. Initialize the counter */
+        padding-left: 0;
+        /* Adjust container padding as needed */
+    }
+
+    ol.custom-list li {
+        counter-increment: item;
+        /* 3. Increment the counter for each item */
+        position: relative;
+        /* 4. Create positioning context for the number */
+        margin-left: 2em;
+        /* Add margin for the number's space */
+    }
+
+    ol.custom-list li::before {
+        content: counter(item) ".";
+        /* 5. Display the counter value */
+        position: absolute;
+        /* 6. Position the number precisely */
+        left: -2em;
+        /* Moves the number to the left of the list item content */
+        /* Add custom styles like color, font, etc. */
+        color: blue;
+        font-weight: bold;
+        width: 2em;
+        /* Define a width for alignment */
+        text-align: right;
     }
 }
