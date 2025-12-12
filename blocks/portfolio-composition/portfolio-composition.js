@@ -31,82 +31,80 @@ export default function decorate(block) {
   );
   block.append(middleContainer);
 
-// window.am5.ready(function() {
-// var root = window.am5.Root.new("abha");
-// root.setThemes([
-//   window.am5themes_Animated.new(root)
-// ]);
+window.am5.ready(function() {
+var root = window.am5.Root.new("abha");
+root.setThemes([
+  window.am5themes_Animated.new(root)
+]);
 
-// var chart = root.container.children.push(window.am5percent.PieChart.new(root, {
-//   layout: root.verticalLayout
-// }));
+var chart = root.container.children.push(window.am5percent.PieChart.new(root, {
+  layout: root.verticalLayout
+}));
 
-// var series = chart.series.push(window.am5percent.PieSeries.new(root, {
-//   alignLabels: true,
-//   calculateAggregates: true,
-//   valueField: "value",
-//   categoryField: "category"
-// }));
+var series = chart.series.push(window.am5percent.PieSeries.new(root, {
+  alignLabels: true,
+  calculateAggregates: true,
+  valueField: "value",
+  categoryField: "category"
+}));
 
-// series.slices.template.setAll({
-//   strokeWidth: 3,
-//   stroke: window.am5.color(0xffffff)
-// });
+series.slices.template.setAll({
+  strokeWidth: 3,
+  stroke: window.am5.color(0xffffff)
+});
 
-// series.labelsContainer.set("paddingTop", 30)
-
-
-// series.slices.template.adapters.add("radius", function (radius, target) {
-//   var dataItem = target.dataItem;
-//   var high = series.getPrivate("valueHigh");
-
-//   if (dataItem) {
-//     var value = target.dataItem.get("valueWorking", 0);
-//     return radius * value / high
-//   }
-//   return radius;
-// });
+series.labelsContainer.set("paddingTop", 30)
 
 
-// series.data.setAll([{
-//   value: 10,
-//   category: "One"
-// }, {
-//   value: 9,
-//   category: "Two"
-// }, {
-//   value: 6,
-//   category: "Three"
-// }, {
-//   value: 5,
-//   category: "Four"
-// }, {
-//   value: 4,
-//   category: "Five"
-// }, {
-//   value: 3,
-//   category: "Six"
-// }]);
+series.slices.template.adapters.add("radius", function (radius, target) {
+  var dataItem = target.dataItem;
+  var high = series.getPrivate("valueHigh");
 
-// var legend = chart.children.push(window.am5.Legend.new(root, {
-//   centerX: window.am5.p50,
-//   x: window.am5.p50,
-//   marginTop: 15,
-//   marginBottom: 15
-// }));
-
-// // legend.data.setAll(series.dataItems);3333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333333
+  if (dataItem) {
+    var value = target.dataItem.get("valueWorking", 0);
+    return radius * value / high
+  }
+  return radius;
+});
 
 
+series.data.setAll([{
+  value: 10,
+  category: "One"
+}, {
+  value: 9,
+  category: "Two"
+}, {
+  value: 6,
+  category: "Three"
+}, {
+  value: 5,
+  category: "Four"
+}, {
+  value: 4,
+  category: "Five"
+}, {
+  value: 3,
+  category: "Six"
+}]);
+
+var legend = chart.children.push(window.am5.Legend.new(root, {
+  centerX: window.am5.p50,
+  x: window.am5.p50,
+  marginTop: 15,
+  marginBottom: 15
+}));
+
+// legend.data.setAll(series.dataItems);
 
 
 
 
 
 
-// series.appear(1000, 100);
+series.appear(1000, 100);
 
-// }); 
+}); 
 
 
 window.am5.ready(function() {
@@ -233,9 +231,155 @@ var centerCircle = chart.seriesContainer.children.push(window.am5.Circle.new(roo
 
   series.appear(1000, 100);
 });
+
+
 }
 
 
 
+// export default function decorate(block){
 
+
+//       const graphDiv = div({ id: 'abha' });
+//   const middleContainer = div(
+//     { class: 'wrapnote' },
+//     graphDiv,
+//   );
+//   block.append(middleContainer);
+
+
+//    var root = window.am5.Root.new("abha");
+
+   
+// window.am5.ready(function() {
+//      var root = window.am5.Root.new("abha");
+
+// // Create root element
+// // https://www.amcharts.com/docs/v5/getting-started/#Root_element
+// var root = window.am5.Root.new("chartdiv");
+
+// // Set themes
+// // https://www.amcharts.com/docs/v5/concepts/themes/
+// root.setThemes([
+//   window.am5themes_Animated.new(root)
+// ]);
+
+// // Data
+// // https://www.amcharts.com/docs/v5/charts/radar-chart/#Setting_data
+// var data = [{
+//   category: "One",
+//   value1: 8,
+//   value2: 2
+// }, {
+//   category: "Two",
+//   value1: 11,
+//   value2: 4
+// }, {
+//   category: "Three",
+//   value1: 7,
+//   value2: 6
+// }, {
+//   category: "Four",
+//   value1: 13,
+//   value2: 8
+// }, {
+//   category: "Five",
+//   value1: 12,
+//   value2: 10
+// }, {
+//   category: "Six",
+//   value1: 15,
+//   value2: 12
+// }, {
+//   category: "Seven",
+//   value1: 9,
+//   value2: 14
+// }, {
+//   category: "Eight",
+//   value1: 6,
+//   value2: 16
+// }];
+
+// // Create chart
+// // https://www.amcharts.com/docs/v5/charts/radar-chart/
+// var chart = root.container.children.push(
+//   window.am5radar.RadarChart.new(root, {
+//     panX: false,
+//     panY: false,
+//     wheelX: "panX",
+//     wheelY: "zoomX"
+//   })
+// );
+
+// // Add cursor
+// // https://www.amcharts.com/docs/v5/charts/radar-chart/#Cursor
+// var cursor = chart.set("cursor", window.am5radar.RadarCursor.new(root, {
+//   behavior: "zoomX"
+// }));
+
+// cursor.lineY.set("visible", false);
+
+// // Create axes and their renderers
+// // https://www.amcharts.com/docs/v5/charts/radar-chart/#Adding_axes
+// var xRenderer = window.am5radar.AxisRendererCircular.new(root, {
+//   cellStartLocation: 0.2,
+//   cellEndLocation: 0.8
+// });
+
+// xRenderer.labels.template.setAll({
+//   radius: 10
+// });
+
+// var xAxis = chart.xAxes.push(
+//   window.am5xy.CategoryAxis.new(root, {
+//     maxDeviation: 0,
+//     categoryField: "category",
+//     renderer: xRenderer,
+//     tooltip: am5.Tooltip.new(root, {})
+//   })
+// );
+
+// xAxis.data.setAll(data);
+
+// var yAxis = chart.yAxes.push(
+//   window.am5xy.ValueAxis.new(root, {
+//     renderer: window.am5radar.AxisRendererRadial.new(root, {})
+//   })
+// );
+
+// // Create series
+// // https://www.amcharts.com/docs/v5/charts/radar-chart/#Adding_series
+// for (var i = 1; i <= 2; i++) {
+//   var series = chart.series.push(
+//     window.am5radar.RadarColumnSeries.new(root, {
+//       name: "Series " + i,
+//       xAxis: xAxis,
+//       yAxis: yAxis,
+//       valueYField: "value" + i,
+//       categoryXField: "category"
+//     })
+//   );
+
+//   series.columns.template.setAll({
+//     tooltipText: "{name}: {valueY}",
+//     width: window.am5.percent(100)
+//   });
+
+//   series.data.setAll(data);
+  
+//   series.appear(1000);
+// }
+
+// // Add scrollbars
+// chart.set("scrollbarX", window.am5.Scrollbar.new(root, { orientation: "horizontal", exportable: false }));
+// chart.set("scrollbarY", window.am5.Scrollbar.new(root, { orientation: "vertical", exportable: false }));
+
+
+// // Animate chart
+// // https://www.amcharts.com/docs/v5/concepts/animations/#Initial_animation
+// chart.appear(1000, 100);
+
+// }); // end am5.ready()
+
+// }
 
