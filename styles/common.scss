@@ -1391,6 +1391,7 @@ main>.section.previous-studies-tab.tabs-container {
   @include media(mobile) {
     padding: 20px 0 24px;
     left: 16px;
+    width: auto;
   }
 
   .breadul {
@@ -1529,6 +1530,7 @@ main>.section.previous-studies-tab.tabs-container {
       justify-content: flex-start;
       gap: 16px;
       padding: 0;
+      max-width: 100%;
     }
 
     >ul {
