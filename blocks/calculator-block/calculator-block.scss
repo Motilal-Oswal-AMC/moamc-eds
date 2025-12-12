@@ -174,8 +174,7 @@ body:has(.calculator-container) {
                 @include font-style(14px, 16px, var(--neutrals-white), 500, $inter);
 
                 display: none;
-                max-width: 124px;
-                min-width: 124px;
+                min-width: 120px;
                 padding: 8px 12px;
                 justify-content: center;
                 align-items: center;
@@ -184,8 +183,9 @@ body:has(.calculator-container) {
                 margin: 0;
                 background-color: inherit;
                 border-radius: var(--border-radius-4);
-
                 border: 1px solid var(--neutrals-white);
+                text-decoration: none;
+                margin: 0;
 
                 @include media(mobile) {
                     border-radius: var(--border-radius-8);
@@ -253,6 +253,16 @@ body:has(.calculator-container) {
 
                     .dropdown-list {
                         max-height: 155px;
+
+                        &::-webkit-scrollbar {
+                            width: 3px;
+                        }
+
+                        &::-webkit-scrollbar-track {
+                            width: 3px;
+                            background-color: var(--neutrals-white);
+                            border-radius: 0 6px 6px 0;
+                        }
                     }
                 }
             }
@@ -261,7 +271,65 @@ body:has(.calculator-container) {
 
     .section.freq-ask-ques {
         .faq-our-fund>.default-content-wrapper:nth-child(3) ul {
+            display: none;
             flex-direction: column;
+            gap: 16px;
+            list-style: none;
+            margin: 0;
+            position: absolute;
+            padding: 0;
+            right: 67px;
+
+            // top: 62%;
+            bottom: -31px;
+            z-index: 15;
+            max-width: max-content;
+
+
+            @include media(tab) {
+                right: 16px;
+            }
+
+            @include media(mobile) {
+                display: flex;
+                position: fixed;
+
+                // top: 510px;
+                top: 465px;
+                bottom: unset;
+            }
+
+            @include media(mobile) {
+                flex-direction: column;
+            }
+
+            li {
+                width: 56px;
+                height: 56px;
+                border-radius: 28px;
+                background: var(--blue-1-500);
+
+                @include flex-center($align: center, $justify: center);
+
+                cursor: pointer;
+
+                &:first-of-type {
+                    background: var(--blue-1-900);
+                }
+
+                &:last-of-type {
+                    display: none;
+
+                    @include media(mobile) {
+                        display: flex;
+                    }
+                }
+
+                .icon {
+                    height: 37px;
+                    width: 37px;
+                }
+            }
         }
     }
 

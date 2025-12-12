@@ -270,11 +270,36 @@ export default function decorate(block) {
       FUNDS_CARDS_CONTAINER.append(fundBlock(card));
     });
   }
-  
+
   document.addEventListener("keydown", (e) => {
     if (e.key === "Enter" && e.target.tagName === "INPUT") {
       e.preventDefault();
       e.target.blur(); // triggers your existing blur → validation → formatting
+    }
+  });
+
+  // Add outside click listener to close dropdown
+  document.addEventListener("click", (event) => {
+    if (!event.target.closest(".cagr-select-wrapper")) {
+      document
+        .querySelectorAll(".dropdown-list.dropdown-active")
+        .forEach((dropdown) => dropdown.classList.remove("dropdown-active"));
+    }
+  });
+
+  // Close other dropdowns when a new one is opened
+  document.addEventListener("click", (event) => {
+    if (event.target.classList.contains("selectedtext") || 
+        event.target.closest(".selectedtext")) {
+      // Close all other dropdowns before opening the clicked one
+      const clickedWrapper = event.target.closest(".cagr-select-wrapper");
+      document
+        .querySelectorAll(".dropdown-list.dropdown-active")
+        .forEach((dropdown) => {
+          if (clickedWrapper && !clickedWrapper.contains(dropdown)) {
+            dropdown.classList.remove("dropdown-active");
+          }
+        });
     }
   });
 
