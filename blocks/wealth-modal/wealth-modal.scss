@@ -958,7 +958,8 @@ body:has(.static-modal) {
             }
           }
 
-          .urm-submit {
+          .urm-submit,
+          .urm-authenticate {
             margin: 40px 0 0;
             width: 100%;
             height: 40px;
