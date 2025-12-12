@@ -21,6 +21,12 @@
 
     .our-fund-managers-wrapper {
         .our-fund-managers {
+            margin-right: -67px;
+
+            @include media (mobile) {
+                margin-right: -16px;
+            }
+
             .swiper-wrapper {
                 display: flex;
                 align-items: stretch;

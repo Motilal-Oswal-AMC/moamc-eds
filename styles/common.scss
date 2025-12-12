@@ -1523,6 +1523,7 @@ main>.section.previous-studies-tab.tabs-container {
       li {
         a,p {
           color: var(--neutrals-white, #FFF);
+          line-height: 0;
         }
       }
     }
