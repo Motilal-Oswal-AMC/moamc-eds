@@ -135,7 +135,7 @@ body:has(.calculator-container) {
 
     div[data-id="recommended-funds-id"] {
         position: relative;
-        // height: 600px;
+        min-height: 600px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -146,6 +146,7 @@ body:has(.calculator-container) {
 
         @include media(mobile) {
             height: fit-content;
+            min-height: unset;
             padding: 0;
         }
 
@@ -167,15 +168,14 @@ body:has(.calculator-container) {
             @include media(mobile) {
                 margin: 40px 0;
             }
-            
+
 
             a.recommended-funds-cta {
-                @include font-style(14px, 16px, var(--neutrals-white), 400, $inter);
+                @include font-style(14px, 16px, var(--neutrals-white), 500, $inter);
 
                 display: none;
                 max-width: 124px;
                 min-width: 124px;
-                max-height: 32px;
                 padding: 8px 12px;
                 justify-content: center;
                 align-items: center;
@@ -250,8 +250,18 @@ body:has(.calculator-container) {
                     @include media(mobile) {
                         max-width: 100%;
                     }
+
+                    .dropdown-list {
+                        max-height: 155px;
+                    }
                 }
             }
+        }
+    }
+
+    .section.freq-ask-ques {
+        .faq-our-fund>.default-content-wrapper:nth-child(3) ul {
+            flex-direction: column;
         }
     }
 
