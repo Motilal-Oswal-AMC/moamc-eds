@@ -129,6 +129,7 @@ body:has(.calculator-container) {
         //     }
         // }
     }
+
     // .section:not(div[data-id="recommended-funds-id"]) {
     //     display: none;
     // }
@@ -347,6 +348,7 @@ body:has(.calculator-container) {
 
 
 body:has(.calc-error) {
+
     .calculator-sticky-cta-container .button.calculator-container-title-btn,
     div[class*='calculator-container_title'].default-content-wrapper .calculator-container-title-item1 p.button-container a.calculator-container-title-btn {
         // opacity: 0.58;
@@ -496,9 +498,9 @@ main {
                         align-items: start;
                         gap: 4px;
 
-                        li::marker {
-                            content: "";
-                        }
+                        // li::marker {
+                        //     content: "";
+                        // }
 
                         &:last-child {
                             @include font-style(16px, 24px, $blue-1-800-primary, 400, $inter);
@@ -1165,9 +1167,9 @@ main {
                     li.answer {
                         margin-bottom: 0 !important;
 
-                        &::marker {
-                            color: $neutrals-700 !important;
-                        }
+                        // &::marker {
+                        //     color: $neutrals-700 !important;
+                        // }
                     }
                 }
 
@@ -1182,26 +1184,25 @@ main {
                     /* Add margin for the number's space */
                     // counter-increment: num;
                     // display: list-item;
-                    list-style-type: decimal;
+                    list-style: none;
                     margin-left: 24px;
 
                     &::before {
+                        @include font-style(18px, 28px, $neutrals-700, 400, $inter);
                         content: counter(item) ".";
 
                         /* 5. Display the counter value */
                         position: absolute;
 
                         /* 6. Position the number precisely */
-                        left: -20px;
-                        width: 20px;
-
-                        @include font-style(18px, 24px, $primary-blue, 500, $inter);
+                        left: -24px;
+                        width: 24px;
 
                         text-align: left;
 
                         @include media(mobile) {
                             font-size: 16px;
-                            line-height: 20px;
+                            line-height: 24px;
                         }
 
                     }
@@ -1223,6 +1224,19 @@ main {
                         width: 100%;
                         display: block;
                         margin-bottom: 4px;
+                    }
+                }
+
+                li.answer:has(strong.pointer) {
+                    &::before {
+                        font-weight: 500;
+                        line-height: 24px;
+                        color: $blue-1-800-primary;
+
+                        @include media(mobile) {
+                            font-size: 16px;
+                            line-height: 20px;
+                        }
                     }
                 }
 
@@ -1295,50 +1309,5 @@ main {
                 margin-bottom: 38px;
             }
         }
-    }
-
-    // Custom ordered list styles
-    ol.custom-list {
-        list-style: none;
-
-        /* 1. Remove default numbering */
-        counter-reset: item;
-
-        /* 2. Initialize the counter */
-        padding-left: 0;
-
-        /* Adjust container padding as needed */
-    }
-
-    ol.custom-list li {
-        counter-increment: item;
-
-        /* 3. Increment the counter for each item */
-        position: relative;
-
-        /* 4. Create positioning context for the number */
-        margin-left: 2em;
-
-        /* Add margin for the number's space */
-    }
-
-    ol.custom-list li::before {
-        content: counter(item) ".";
-
-        /* 5. Display the counter value */
-        position: absolute;
-
-        /* 6. Position the number precisely */
-        left: -2em;
-
-        /* Moves the number to the left of the list item content */
-
-        /* Add custom styles like color, font, etc. */
-        color: blue;
-        font-weight: bold;
-        width: 2em;
-
-        /* Define a width for alignment */
-        text-align: right;
     }
 }
