@@ -694,6 +694,15 @@
   }
 
   .faq-our-fund {
+    &>.default-content-wrapper:nth-child(1){
+      p{
+        padding-top: 14px;
+
+        @include media(mobile) {
+        padding: 0;
+      }
+      }
+    }
     &>.default-content-wrapper:nth-child(3) {
       @include media(mobile) {
         margin: 0;

@@ -798,7 +798,7 @@ function articleStructure() {
       // 3. Extract the original object back
       .map(({ value }) => value);
 
-    console.log(data);
+    // console.log(data);
     const datafin = data.slice(0, 3);
     datafin.forEach((elem) => {
       const titleText = dataMapMoObj.toTitleCase(elem.title.replaceAll('-', ' '));
