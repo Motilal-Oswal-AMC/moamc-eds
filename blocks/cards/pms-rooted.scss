@@ -811,6 +811,7 @@ $breakpoint-tablet: 900px;
     justify-content: center;
     align-items: center;
     gap: 64px;
+    margin-bottom: 0;
 
     @include media(mobile) {
         padding: 40px 16px;
@@ -838,7 +839,8 @@ $breakpoint-tablet: 900px;
     .gift-choose2 {
         max-width: 1232px;
         width: 100%;
-        height: 454px;
+        // height: 358px;
+        padding-bottom: 80px;
 
         @include media(mobile) {
             padding: 0;

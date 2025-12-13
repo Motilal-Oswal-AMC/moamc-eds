@@ -1428,10 +1428,11 @@ $breakpoint-tablet: 900px;
 
 .section.privacy-policy-banner.gift-campaign {
   display: block;
-  padding: 40px 0 20px;
+  padding: 0 0 20px;
+  margin-top: 0px;
 
   @include media(mobile) {
-    padding: 20px 16px 40px;
+    padding: 40px 16px 40px;
   }
 
   .wrapper-policy {
