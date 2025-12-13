@@ -100,7 +100,7 @@ export default function decorate(block) {
   const kycVerifiedAdd = loginImage.querySelector('.response-block');
 
   // block when need to response kyc succssess
-  // kycVerifiedAdd.append(kycVerified);
+  kycVerifiedAdd.append(kycVerified);
 
   const twoFactor = div(
     { class: 'passcode-main', style: 'display:none' },
@@ -121,7 +121,7 @@ export default function decorate(block) {
 
   // block when need to use Two Factor Authentication
 
-  // kycVerifiedAdd.append(twoFactor);
+  kycVerifiedAdd.append(twoFactor);
 
   const kycRegistered = div(
     { class: 'main-register', style: 'display:block' },
@@ -198,7 +198,7 @@ export default function decorate(block) {
   );
 
   // kycRegistered  for Registered UI
-  // kycVerifiedAdd.append(kycRegistered);
+  kycVerifiedAdd.append(kycRegistered);
 
   // Api Calls
   dataMapMoObj.panDlts = {};
