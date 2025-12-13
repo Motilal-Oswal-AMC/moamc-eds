@@ -1187,6 +1187,10 @@ main {
                     list-style: none;
                     margin-left: 24px;
 
+                    @include media(mobile) {
+                        margin-left: 18px;
+                    }
+
                     &::before {
                         @include font-style(18px, 28px, $neutrals-700, 400, $inter);
                         content: counter(item) ".";
@@ -1203,6 +1207,8 @@ main {
                         @include media(mobile) {
                             font-size: 16px;
                             line-height: 24px;
+                            left: -18px;
+                            width: 18px;
                         }
 
                     }
