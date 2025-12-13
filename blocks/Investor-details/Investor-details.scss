@@ -315,6 +315,7 @@ main.nfo-nav .main-wrapper .section:first-of-type {
               .investsub-leftarticle1 {
                 display: flex;
                 align-items: center;
+                flex-wrap: wrap;
                 gap: 8px;
                 list-style: none;
                 margin: 0;
@@ -755,6 +756,7 @@ main.nfo-nav .main-wrapper .section:first-of-type {
                 a{
                   word-break: unset;
                   text-decoration: underline;
+                  word-wrap: break-word;
                 }
 
                 &:last-of-type:not(:first-of-type) {
