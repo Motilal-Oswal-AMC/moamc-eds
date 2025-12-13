@@ -135,7 +135,7 @@ body:has(.calculator-container) {
 
     div[data-id="recommended-funds-id"] {
         position: relative;
-        // height: 600px;
+        min-height: 600px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -146,6 +146,7 @@ body:has(.calculator-container) {
 
         @include media(mobile) {
             height: fit-content;
+            min-height: unset;
             padding: 0;
         }
 
@@ -167,15 +168,13 @@ body:has(.calculator-container) {
             @include media(mobile) {
                 margin: 40px 0;
             }
-            
+
 
             a.recommended-funds-cta {
-                @include font-style(14px, 16px, var(--neutrals-white), 400, $inter);
+                @include font-style(14px, 16px, var(--neutrals-white), 500, $inter);
 
                 display: none;
-                max-width: 124px;
-                min-width: 124px;
-                max-height: 32px;
+                min-width: 120px;
                 padding: 8px 12px;
                 justify-content: center;
                 align-items: center;
@@ -184,8 +183,9 @@ body:has(.calculator-container) {
                 margin: 0;
                 background-color: inherit;
                 border-radius: var(--border-radius-4);
-
                 border: 1px solid var(--neutrals-white);
+                text-decoration: none;
+                margin: 0;
 
                 @include media(mobile) {
                     border-radius: var(--border-radius-8);
@@ -250,6 +250,84 @@ body:has(.calculator-container) {
                     @include media(mobile) {
                         max-width: 100%;
                     }
+
+                    .dropdown-list {
+                        max-height: 155px;
+
+                        &::-webkit-scrollbar {
+                            width: 3px;
+                        }
+
+                        &::-webkit-scrollbar-track {
+                            width: 3px;
+                            background-color: var(--neutrals-white);
+                            border-radius: 0 6px 6px 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .section.freq-ask-ques {
+        .faq-our-fund>.default-content-wrapper:nth-child(3) ul {
+            display: none;
+            flex-direction: column;
+            gap: 16px;
+            list-style: none;
+            margin: 0;
+            position: absolute;
+            padding: 0;
+            right: 67px;
+
+            // top: 62%;
+            bottom: -31px;
+            z-index: 15;
+            max-width: max-content;
+
+
+            @include media(tab) {
+                right: 16px;
+            }
+
+            @include media(mobile) {
+                display: flex;
+                position: fixed;
+
+                // top: 510px;
+                top: 465px;
+                bottom: unset;
+            }
+
+            @include media(mobile) {
+                flex-direction: column;
+            }
+
+            li {
+                width: 56px;
+                height: 56px;
+                border-radius: 28px;
+                background: var(--blue-1-500);
+
+                @include flex-center($align: center, $justify: center);
+
+                cursor: pointer;
+
+                &:first-of-type {
+                    background: var(--blue-1-900);
+                }
+
+                &:last-of-type {
+                    display: none;
+
+                    @include media(mobile) {
+                        display: flex;
+                    }
+                }
+
+                .icon {
+                    height: 37px;
+                    width: 37px;
                 }
             }
         }
@@ -1069,6 +1147,12 @@ main {
             }
 
             ol.answer-container {
+                list-style: none;
+                /* 1. Remove default numbering */
+                counter-reset: item;
+                /* 2. Initialize the counter */
+                padding-left: 0;
+                /* Adjust container padding as needed */
 
                 // gap: 35px;
                 &:not(:has(.pointer)) {
@@ -1082,12 +1166,34 @@ main {
                 }
 
                 li.answer:not(:has(em.small-bold)) {
-                    position: relative;
 
+                    counter-increment: item;
+                    /* 3. Increment the counter for each item */
+                    position: relative;
+                    /* 4. Create positioning context for the number */
+                    margin-left: 20px;
+                    /* Add margin for the number's space */
                     // counter-increment: num;
-                    display: list-item;
+                    // display: list-item;
                     list-style-type: decimal;
                     margin-left: 24px;
+
+                    &::before {
+                        content: counter(item) ".";
+                        /* 5. Display the counter value */
+                        position: absolute;
+                        /* 6. Position the number precisely */
+                        left: -20px;
+                        width: 20px;
+                        @include font-style(18px, 24px, $primary-blue, 500, $inter);
+                        text-align: left;
+
+                        @include media(mobile) {
+                            font-size: 16px;
+                            line-height: 20px;
+                        }
+
+                    }
 
                     &:not(:last-child) {
                         margin-bottom: 24px;
@@ -1097,9 +1203,9 @@ main {
                         }
                     }
 
-                    &::marker {
-                        @include font-style(18px, 24px, $primary-blue, 500, $inter);
-                    }
+                    // &::marker {
+                    //     @include font-style(18px, 24px, $primary-blue, 500, $inter);
+                    // }
 
                     .pointer {
                         position: relative;
@@ -1178,5 +1284,39 @@ main {
                 margin-bottom: 38px;
             }
         }
+    }
+
+    // Custom ordered list styles
+    ol.custom-list {
+        list-style: none;
+        /* 1. Remove default numbering */
+        counter-reset: item;
+        /* 2. Initialize the counter */
+        padding-left: 0;
+        /* Adjust container padding as needed */
+    }
+
+    ol.custom-list li {
+        counter-increment: item;
+        /* 3. Increment the counter for each item */
+        position: relative;
+        /* 4. Create positioning context for the number */
+        margin-left: 2em;
+        /* Add margin for the number's space */
+    }
+
+    ol.custom-list li::before {
+        content: counter(item) ".";
+        /* 5. Display the counter value */
+        position: absolute;
+        /* 6. Position the number precisely */
+        left: -2em;
+        /* Moves the number to the left of the list item content */
+        /* Add custom styles like color, font, etc. */
+        color: blue;
+        font-weight: bold;
+        width: 2em;
+        /* Define a width for alignment */
+        text-align: right;
     }
 }

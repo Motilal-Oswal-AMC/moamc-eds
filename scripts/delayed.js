@@ -10,7 +10,14 @@ function decorateBreadcrumbItems(title, url, icon = '') {
     const img = document.createElement('img');
     img.classList.add('homeicon');
     img.src = icon;
-    img.alt = 'home-icon';
+
+    // Check if URL matches the PMS page, otherwise keep default
+    if (url.includes('pms/in/en/strategy-detail-page')) {
+      img.alt = 'home-pms';
+    } else {
+      img.alt = 'home-icon';
+    }
+
     link.appendChild(img);
     return li(link);
   }
