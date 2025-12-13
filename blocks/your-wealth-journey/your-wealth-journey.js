@@ -14,11 +14,11 @@ export default function decorate(block) {
   ];
   dataMapMoObj.addIndexed(block);
 
-  const indImg = block.querySelector('.wealth-formsub-inner1 img').src;
-  const contCode = block.querySelector('.wealth-form-inner-sub3 .wealth-form-sub2');
-  const numLable = block.querySelector('.wealth-form-inner-sub3 .wealth-form-sub3');
-  const emailLable = block.querySelector('.wealth-form-inner-sub3 .wealth-form-sub4');
-  const submitBtn = block.querySelector('.wealth-form-inner-sub3 .wealth-form-sub5');
+  const indImg = block.querySelector(' .wealth-form-sub1 .wealth-formsub-inner1 img').src;
+  const contCode = block.querySelector('.wealth-form-inner-sub2 .wealth-form-sub2');
+  const numLable = block.querySelector('.wealth-form-inner-sub2 .wealth-form-sub3');
+  const emailLable = block.querySelector('.wealth-form-inner-sub2 .wealth-form-sub4');
+  const submitBtn = block.querySelector('.wealth-form-inner-sub2 .wealth-form-sub5');
 
   const wealthFormModal = div(
     { class: 'form-container' },
@@ -50,7 +50,7 @@ export default function decorate(block) {
     ),
   );
 
-  const formData = block.querySelector('.wealth-form-inner-sub3');
+  const formData = block.querySelector('.wealth-form-inner-sub2');
   formData.innerHTML = '';
   formData.appendChild(wealthFormModal);
 }
