@@ -1327,7 +1327,7 @@ main.nfo-nav .main-wrapper .section:first-of-type {
               }
             }
 
-            .comlist:not(:first-of-type, :last-of-type, :nth-child(2)) {
+            p.comlist:not(:first-of-type, :last-of-type, :nth-child(2)) {
               order: 0;
               margin: 40px 0 0;
 
