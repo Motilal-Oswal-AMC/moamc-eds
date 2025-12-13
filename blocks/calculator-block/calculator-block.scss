@@ -7,6 +7,7 @@
 
 body:has(.calculator-container) {
     background-color: $neutrals-100;
+    overflow-x: hidden;
 
     .section.breadcrumbs-fdp {
         // max-width: calc(1232px + 48px);
@@ -254,14 +255,19 @@ body:has(.calculator-container) {
                     .dropdown-list {
                         max-height: 155px;
 
-                        &::-webkit-scrollbar {
+                        &.dropdown-active::-webkit-scrollbar {
                             width: 3px;
                         }
 
-                        &::-webkit-scrollbar-track {
+                        &.dropdown-active::-webkit-scrollbar-track {
                             width: 3px;
                             background-color: var(--neutrals-white);
                             border-radius: 0 6px 6px 0;
+                        }
+
+                        &.dropdown-active::-webkit-scrollbar-thumb {
+                            width: 3px;
+                            background-color: #464343;
                         }
                     }
                 }
