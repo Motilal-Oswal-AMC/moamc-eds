@@ -412,10 +412,10 @@ main.nfo-nav .main-wrapper .section:first-of-type {
                   display: block;
                 }
 
-                @include media(mobile) {
-                  left: unset;
-                  right: 0;
-                }
+                // @include media(mobile) {
+                //   left: unset;
+                //   right: 0;
+                // }
 
                 .list-share-media {
                   margin: 0;
