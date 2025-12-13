@@ -15,13 +15,13 @@ export function updateSTPCalcSummary(data) {
   const ARISS_EL = container.querySelector('#ARISS');
   const TIITS_EL = container.querySelector('#TIITS');
   const FMVOTS_EL = container.querySelector('#FMVOTS');
-  console.log("data : ", data);
+  console.log('data : ', data);
 
   if (TEFS_EL) {
     TEFS_EL.textContent = formatNumber({
       value: data?.totalGain,
       currency: true,
-    });
+    })?.replace('₹', '₹ ');
   }
   if (IIISS_EL) {
     IIISS_EL.textContent = formatNumber({
@@ -49,7 +49,6 @@ export function updateSTPCalcSummary(data) {
     });
   }
 }
-
 
 /**
  * Calculate STP summary using "Beginning of Period" (Type 1) logic.
@@ -129,7 +128,14 @@ export function calculateSTPSummary({
   const inputErrors = document.querySelectorAll('.calc-input.calc-error');
 
   // 2. Validation
-  if ((!P0 || !STP_amount || R_source == null || R_target == null || !Tenure_years) || inputErrors?.length) {
+  if (
+    !P0
+    || !STP_amount
+    || R_source == null
+    || R_target == null
+    || !Tenure_years
+    || inputErrors?.length
+  ) {
     data = {
       totalTransferred: 0,
       finalDestinationValue: 0,
@@ -140,7 +146,7 @@ export function calculateSTPSummary({
       destinationGain: 0,
       transferPercentage: 0,
       gainPercentage: 0,
-      container
+      container,
     };
     if (callbackFunc) callbackFunc(data);
     return data;
@@ -148,8 +154,8 @@ export function calculateSTPSummary({
 
   // 3. Calculation Setup
   const n = Tenure_years * 12;
-  const i_src = (R_source / 100) / 12; // Monthly Source Rate
-  const i_tgt = (R_target / 100) / 12; // Monthly Target Rate
+  const i_src = R_source / 100 / 12; // Monthly Source Rate
+  const i_tgt = R_target / 100 / 12; // Monthly Target Rate
 
   let SrcBalance = P0;
   let TgtBalance = 0;
@@ -159,11 +165,11 @@ export function calculateSTPSummary({
   for (let m = 1; m <= n; m++) {
     // --- SOURCE SIDE ---
     // 1. Deduct Transfer immediately (Start of Month)
-    let actualTransfer = SrcBalance > 0 ? Math.min(STP_amount, SrcBalance) : 0;
+    const actualTransfer = SrcBalance > 0 ? Math.min(STP_amount, SrcBalance) : 0;
 
     // 2. Calculate Interest on the REMAINING balance
-    let srcRemainder = SrcBalance - actualTransfer;
-    let srcInterest = srcRemainder * i_src;
+    const srcRemainder = SrcBalance - actualTransfer;
+    const srcInterest = srcRemainder * i_src;
 
     // 3. Update Closing Balance
     SrcBalance = srcRemainder + srcInterest;
@@ -171,10 +177,10 @@ export function calculateSTPSummary({
     // --- TARGET SIDE ---
     // 1. Add Investment immediately (Start of Month)
     totalTransferred += actualTransfer;
-    let tgtInvestedBalance = TgtBalance + actualTransfer;
+    const tgtInvestedBalance = TgtBalance + actualTransfer;
 
     // 2. Calculate Interest on the NEW balance (Opening + Investment)
-    let tgtInterest = tgtInvestedBalance * i_tgt;
+    const tgtInterest = tgtInvestedBalance * i_tgt;
 
     // 3. Update Closing Balance
     TgtBalance = tgtInvestedBalance + tgtInterest;
@@ -344,7 +350,7 @@ export default function decorate(block) {
       class: 'tosi-inp-container',
     },
     fieldType: 'year',
-    suffix: tosi?.default > 1 ? 'years' : 'year',
+    suffix: tosi?.default > 1 ? 'Years' : 'Year',
     variant: 'stepper',
     updateWidthonChange: true,
     onInput: (e) => {

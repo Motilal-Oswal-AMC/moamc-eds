@@ -3,8 +3,8 @@ import {
   createInputBlock,
   formatNumber,
   getAuthorData,
+  safeUpdateMinimalReflow,
 } from '../common-ui-field/common-ui-field.js';
-
 
 /**
  * Calculate SIP Delay Summary with Opportunity Loss
@@ -59,7 +59,7 @@ export function calculateSipDelaySummary({
       totalInvestment: 0,
       delayInvestment: 0,
       delayMonths: 0, // Added strictly for UI display requirement
-    }
+    };
   }
   // 1. Calculate Periodic Rate and Total Periods
   const P0 = monthlyInvestment;
@@ -104,7 +104,6 @@ export function calculateSipDelaySummary({
 
   return result;
 }
-
 
 /**
  * Create SIP Delay Summary Block from existing authored elements
@@ -177,7 +176,7 @@ export function updateSipDelayOverview({ container, data }) {
     opportunityLossEl.textContent = formatNumber({
       value: opportunityLoss,
       currency: true,
-    });
+    })?.replace('₹', '₹ ');
   }
 
   // ✅ Update delayed investment value
@@ -186,7 +185,7 @@ export function updateSipDelayOverview({ container, data }) {
     delayValueEl.textContent = formatNumber({
       value: delaySummary?.totalValue,
       currency: true,
-    });
+    })?.replace('₹', '₹ ');
   }
 
   // ✅ Update “Invest Today” value
@@ -195,7 +194,7 @@ export function updateSipDelayOverview({ container, data }) {
     todayValueEl.textContent = formatNumber({
       value: todaySummary?.totalValue,
       currency: true,
-    });
+    })?.replace('₹', '₹ ');
   }
 }
 
@@ -263,7 +262,7 @@ export default function decorate(block) {
 
   block.appendChild(summaryBlock); // or append to wherever needed
 
-  CALC_AUTHOR_MAIN.innerHTML = '';
+  // CALC_AUTHOR_MAIN.innerHTML = "";
 
   const mi = getAuthorData(CALC_AUTHORED_DATA, 'MI');
   const ip = getAuthorData(CALC_AUTHORED_DATA, 'IP');
@@ -286,7 +285,7 @@ export default function decorate(block) {
     id: 'inv-period',
     ...ip,
     fieldType: 'year',
-    suffix: ip?.default > 1 ? 'years' : 'year',
+    suffix: ip?.default > 1 ? 'Years' : 'Year',
     variant: 'stepper',
     ignoreMin: true,
     inputBlockAttr: { class: 'ip-inp-container' },
@@ -321,10 +320,20 @@ export default function decorate(block) {
     onChange: (v) => recalculateSipDelay({ delay: v, container: block }),
   });
 
-  CALC_AUTHOR_MAIN.append(miBlock, ipBlock, rorBlock, delayBlock);
+  // CALC_AUTHOR_MAIN.append(miBlock, ipBlock, rorBlock, delayBlock);
 
+  safeUpdateMinimalReflow(
+    CALC_AUTHOR_MAIN,
+    () => {
+      const frag = document.createDocumentFragment();
+      frag.append(miBlock, ipBlock, rorBlock, delayBlock);
+      return frag;
+    },
+    /* useReserve= */ true,
+    /* extraPx= */ 0,
+  );
   //   const overviewBlock = createSipDelayOverviewBlock({ container: block });
-
+  recalculateSipDelay({ container: block });
   // Initial calculation
   //   recalculateSipDelay({
   //     mi: mi?.default,

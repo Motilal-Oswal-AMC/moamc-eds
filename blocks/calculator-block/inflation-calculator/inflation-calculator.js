@@ -259,7 +259,7 @@ export default function decorate(block) {
     /* useReserve= */ true,
     /* extraPx= */ 0,
   );
-
+  // CALC_AUTHOR_MAIN.append(ccBlock, roiBlock, tpBlock);
   // Add summary block
   block.appendChild(inflationBlock);
 
