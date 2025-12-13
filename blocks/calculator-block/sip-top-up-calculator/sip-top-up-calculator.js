@@ -3,6 +3,7 @@ import {
   formatNumber,
   createBarSummaryBlock,
   getAuthorData,
+  safeUpdateMinimalReflow,
 } from '../common-ui-field/common-ui-field.js';
 
 /**
@@ -46,11 +47,12 @@ export function calculateTopupSIPSummary({
 
   // 1. Validation check
   if (
-    !monthlyInvestment ||
-    monthlyInvestment === 0 || // Handle explicit 0
-    annualIncreaseRate == null ||
-    annualReturnRate == null ||
-    !years || inputErrors?.length
+    !monthlyInvestment
+    || monthlyInvestment === 0 // Handle explicit 0
+    || annualIncreaseRate == null
+    || annualReturnRate == null
+    || !years
+    || inputErrors?.length
   ) {
     const empty = {
       totalInvestment: 0,
@@ -85,7 +87,7 @@ export function calculateTopupSIPSummary({
     // Row 6: SIP in month m
     // Formula: P0 * (1 + g) ^ floor((m - 1) / 12)
     const stepUpFactor = Math.floor((m - 1) / 12);
-    const SIPm = P0 * Math.pow(1 + g, stepUpFactor);
+    const SIPm = P0 * (1 + g) ** stepUpFactor;
 
     // Row 9: Monthly investment
     const Depositm = SIPm;
@@ -150,7 +152,7 @@ export function updateCalculateTopupSipSummary({ container, data }) {
     totalReturnsEl.textContent = formatNumber({
       value: data.totalValue,
       currency: true,
-    });
+    })?.replace('₹', '₹ ');
   }
 
   if (investedAmountEl) {
@@ -258,7 +260,7 @@ export default function decorate(block) {
   }
 
   const sipBlock = createBarSummaryBlock({ container: OVERVIEW_DATA });
-  CALC_AUTHOR_MAIN.innerHTML = '';
+  // CALC_AUTHOR_MAIN.innerHTML = "";
 
   const mi = getAuthorData(CALC_AUTHORED_DATA, 'MI');
   const asu = getAuthorData(CALC_AUTHORED_DATA, 'ASU');
@@ -312,14 +314,24 @@ export default function decorate(block) {
     inputBlockAttr: { class: 'tp-inp-container' },
     fieldType: 'year',
     ignoreMin: true,
-    suffix: tp?.default > 1 ? 'years' : 'year',
+    suffix: tp?.default > 1 ? 'Years' : 'Year',
     variant: 'stepper',
     updateWidthonChange: true,
     onInput: (e) => recalculateTopupSip({ tp: e.target.value, container: block }),
     onChange: (v) => recalculateTopupSip({ tp: v, container: block }),
   });
 
-  CALC_AUTHOR_MAIN.append(miBlock, asuBlock, erorBlock, tpBlock);
+  safeUpdateMinimalReflow(
+    CALC_AUTHOR_MAIN,
+    () => {
+      const frag = document.createDocumentFragment();
+      frag.append(miBlock, asuBlock, erorBlock, tpBlock);
+      return frag;
+    },
+    /* useReserve= */ true,
+    /* extraPx= */ 0,
+  );
+  // CALC_AUTHOR_MAIN.append(miBlock, asuBlock, erorBlock, tpBlock);
   block.appendChild(sipBlock);
   console.log('sipBlock : ', sipBlock);
 
